@@ -1,0 +1,273 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+X301F,Acute drug-induced ulcer of stomach,CTV3_Children
+J120.,Acute duodenal ulcer,CTV3Map_Code_And_Term
+J120z,Acute duodenal ulcer NOS,CTV3Map_Code_And_Term
+J120y,Acute duodenal ulcer unspecified,CTV3Map_Code_And_Term
+J1201,Acute duodenal ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1203,Acute duodenal ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1204,Acute duodenal ulcer with obstruction,CTV3Map_Code_And_Term
+J1202,Acute duodenal ulcer with perforation,CTV3Map_Code_And_Term
+J1200,Acute duodenal ulcer without mention of complication,CTV3Map_Code_And_Term
+J110.,Acute gastric ulcer,CTV3Map_Code_And_Term
+J110z,Acute gastric ulcer NOS,CTV3Map_Code_And_Term
+J110y,Acute gastric ulcer unspecified,CTV3Map_Code_And_Term
+J1101,Acute gastric ulcer with haemorrhage,CTV3Map_Code_Only
+J1101,Acute gastric ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1103,Acute gastric ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1104,Acute gastric ulcer with obstruction,CTV3Map_Code_And_Term
+J1102,Acute gastric ulcer with perforation,CTV3Map_Code_And_Term
+J1100,Acute gastric ulcer without mention of complication,CTV3Map_Code_And_Term
+J140.,Acute gastrojejunal ulcer,CTV3Map_Code_And_Term
+J140z,Acute gastrojejunal ulcer NOS,CTV3Map_Code_And_Term
+J140y,Acute gastrojejunal ulcer unspecified,CTV3_Children
+J1401,Acute gastrojejunal ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1403,Acute gastrojejunal ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1404,Acute gastrojejunal ulcer with obstruction,CTV3_Children
+J1402,Acute gastrojejunal ulcer with perforation,CTV3Map_Code_And_Term
+J1400,Acute gastrojejunal ulcer without mention of complication,CTV3Map_Code_And_Term
+X301O,Acute haemorrhagic gastritis,High_Level_SNOMED
+J130.,Acute peptic ulcer,CTV3Map_Code_And_Term
+J130z,Acute peptic ulcer NOS,CTV3Map_Code_And_Term
+X302A,Acute peptic ulcer of duodenum,CTV3_Children
+X301E,Acute peptic ulcer of stomach,CTV3_Children
+J130y,Acute peptic ulcer unspecified,CTV3Map_Code_And_Term
+J1301,Acute peptic ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1303,Acute peptic ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1304,Acute peptic ulcer with obstruction,CTV3Map_Code_And_Term
+J1302,Acute peptic ulcer with perforation,CTV3Map_Code_And_Term
+J1300,Acute peptic ulcer without mention of complication,CTV3Map_Code_And_Term
+Xa1qA,Anastomotic ulcer,CTV3Map_Code_And_Term
+Xa1qA,Anastomotic ulcer,CTV3Map_Code_Only
+XaLWs,Anti-platelet induced duodenal ulcer,CTV3Map_Code_And_Term
+XaLWt,Anti-platelet induced duodenal ulcer NOS,CTV3_Children
+XaLWq,Anti-platelet induced gastric ulcer,CTV3Map_Code_And_Term
+XaLWr,Anti-platelet induced gastric ulcer NOS,CTV3Map_Code_And_Term
+X300M,Bacterial ulcer of oesophagus,CTV3_Children
+J1025,Barrett's ulcer of oesophagus,CTV3Map_Code_And_Term
+X30Bh,Bleeding duodenal ulcer,CTV3_Children
+XaB1x,Bleeding gastric erosion,High_Level_SNOMED
+X30Bg,Bleeding gastric ulcer,CTV3_Children
+XaBmb,Bleeding peptic ulcer,High_Level_SNOMED
+XaBel,Bleeding stress ulcer of stomach,CTV3_Children
+J1023,Chemical ulcer of oesophagus,CTV3Map_Code_And_Term
+X301K,Chronic drug-induced ulcer of stomach,CTV3_Children
+J121.,Chronic duodenal ulcer,CTV3Map_Code_And_Term
+J121z,Chronic duodenal ulcer NOS,CTV3Map_Code_And_Term
+J121y,Chronic duodenal ulcer unspecified,CTV3Map_Code_And_Term
+J1211,Chronic duodenal ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1211,Chronic duodenal ulcer with haemorrhage,CTV3Map_Code_Only
+J1213,Chronic duodenal ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1214,Chronic duodenal ulcer with obstruction,CTV3Map_Code_And_Term
+J1212,Chronic duodenal ulcer with perforation,CTV3Map_Code_And_Term
+J1212,Chronic duodenal ulcer with perforation,CTV3Map_Code_Only
+J1210,Chronic duodenal ulcer without mention of complication,CTV3Map_Code_And_Term
+J111.,Chronic gastric ulcer,CTV3Map_Code_And_Term
+J111z,Chronic gastric ulcer NOS,CTV3Map_Code_And_Term
+J111y,Chronic gastric ulcer unspecified,CTV3Map_Code_And_Term
+J1111,Chronic gastric ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1111,Chronic gastric ulcer with haemorrhage,CTV3Map_Code_Only
+J1113,Chronic gastric ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1114,Chronic gastric ulcer with obstruction,CTV3Map_Code_And_Term
+J1112,Chronic gastric ulcer with perforation,CTV3Map_Code_Only
+J1112,Chronic gastric ulcer with perforation,CTV3Map_Code_And_Term
+J1110,Chronic gastric ulcer without mention of complication,CTV3Map_Code_And_Term
+J141.,Chronic gastrojejunal ulcer,CTV3Map_Code_And_Term
+J141z,Chronic gastrojejunal ulcer NOS,CTV3_Children
+J141y,Chronic gastrojejunal ulcer unspecified,CTV3_Children
+J1411,Chronic gastrojejunal ulcer with haemorrhage,CTV3_Children
+J1413,Chronic gastrojejunal ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J1414,Chronic gastrojejunal ulcer with obstruction,CTV3_Children
+J1412,Chronic gastrojejunal ulcer with perforation,CTV3_Children
+J1410,Chronic gastrojejunal ulcer without mention of complication,CTV3_Children
+J131.,Chronic peptic ulcer,CTV3Map_Code_And_Term
+J131z,Chronic peptic ulcer NOS,CTV3Map_Code_And_Term
+X302F,Chronic peptic ulcer of duodenum,CTV3_Children
+X301J,Chronic peptic ulcer of stomach,CTV3_Children
+J131y,Chronic peptic ulcer unspecified,CTV3Map_Code_And_Term
+J1311,Chronic peptic ulcer with haemorrhage,CTV3Map_Code_And_Term
+J1313,Chronic peptic ulcer with haemorrhage and perforation,CTV3_Children
+J1314,Chronic peptic ulcer with obstruction,CTV3Map_Code_And_Term
+J1312,Chronic peptic ulcer with perforation,CTV3Map_Code_And_Term
+J1310,Chronic peptic ulcer without mention of complication,CTV3Map_Code_And_Term
+X70RT,Classical histoplasmosis intestinal ulceration,High_Level_SNOMED
+761J1,Closure gastric ulcer NEC (& suture),CTV3_Children
+XE0Cr,Closure of gastric ulcer NEC,CTV3Map_Code_And_Term
+XE0Cr,Closure of gastric ulcer NEC,CTV3Map_Code_Only
+773C6,Closure of perforated bowel ulcer NEC,CTV3Map_Code_And_Term
+76270,Closure of perforated duodenal ulcer,CTV3Map_Code_And_Term
+761J0,Closure of perforated gastric ulcer,CTV3Map_Code_And_Term
+X20VM,Closure of perforated stomach,CTV3_Children
+76181,Closure of perforation of stomach NEC,CTV3_Children
+X302D,Curling's ulcer of duodenum,CTV3_Children
+X301I,Curling's ulcer of stomach,CTV3_Children
+X302C,Cushing's ulcer of duodenum,CTV3_Children
+X301H,Cushing's ulcer of stomach,CTV3_Children
+J1024,Drug-induced ulcer of oesophagus,CTV3Map_Code_And_Term
+X30CK,Duodenal anastomotic haemorrhage,High_Level_SNOMED
+X302G,Duodenal erosion,CTV3Map_Code_And_Term
+J12..,Duodenal ulcer,CTV3Map_Code_And_Term
+J12z.,Duodenal ulcer NOS,CTV3Map_Code_And_Term
+J122.,Duodenal ulcer disease,CTV3_Children
+X302b,Duodenal ulcer disease,CTV3Map_Code_And_Term
+7627.,Duodenal ulcer operation,CTV3Map_Code_And_Term
+XaFBq,Endoscopic injection haemostasis of duodenal ulcer,CTV3Map_Code_And_Term
+XaFBs,Endoscopic injection haemostasis of gastric ulcer,CTV3Map_Code_And_Term
+X300K,Eosinophilic ulcer of oesophagus,CTV3_Children
+X30CJ,Gastric anastomotic haemorrhage,High_Level_SNOMED
+X301L,Gastric erosion,High_Level_SNOMED
+J68z0,Gastric haemorrhage NOS,CTV3Map_Code_And_Term
+XE0aP,Gastric ulcer,CTV3Map_Code_Only
+XE0aP,Gastric ulcer,CTV3Map_Code_And_Term
+J11..,Gastric ulcer (& [prepyloric] or [pyloric]),CTV3_Children
+XE0aQ,Gastric ulcer NOS,CTV3Map_Code_And_Term
+XE0aQ,Gastric ulcer NOS,CTV3Map_Code_Only
+761J.,Gastric ulcer operation,CTV3Map_Code_And_Term
+761J.,Gastric ulcer operation,CTV3Map_Code_Only
+J11z.,Gastric: [erosions] or [multiple ulcers] or [ulcer NOS],High_Level_SNOMED
+Xa7nW,Gastro-oesophageal erosion,High_Level_SNOMED
+J1020,Gastro-oesophageal reflux disease with ulceration,CTV3Map_Code_And_Term
+Xa1qC,Gastrocolic ulcer,CTV3Map_Code_Only
+Xa1qC,Gastrocolic ulcer,CTV3Map_Code_And_Term
+X30CH,Gastrointestinal anastomotic haemorrhage,High_Level_SNOMED
+J68z.,Gastrointestinal bleeding (& [unspecified]),CTV3_Children
+J68..,Gastrointestinal haemorrhage,CTV3Map_Code_Only
+J68..,Gastrointestinal haemorrhage,CTV3Map_Code_And_Term
+XE0bJ,Gastrointestinal haemorrhage unspecified,CTV3Map_Code_And_Term
+XE0bJ,Gastrointestinal haemorrhage unspecified,CTV3Map_Code_Only
+J68zz,Gastrointestinal tract haemorrhage NOS,CTV3Map_Code_And_Term
+XE0aS,Gastrojejunal ulcer,CTV3Map_Code_Only
+XE0aS,Gastrojejunal ulcer,CTV3Map_Code_And_Term
+J14z.,Gastrojejunal ulcer NOS,CTV3Map_Code_And_Term
+76191,Gastrotomy and ligation of bleeding point of stomach,CTV3Map_Code_And_Term
+XM1RN,H/O: duodenal ulcer,CTV3Map_Code_And_Term
+XM1RN,H/O: duodenal ulcer,CTV3Map_Code_Only
+XM1RO,H/O: gastric ulcer,CTV3Map_Code_And_Term
+XM1RO,H/O: gastric ulcer,CTV3Map_Code_Only
+XE0qB,H/O: peptic ulcer,CTV3Map_Code_Only
+XE0qB,H/O: peptic ulcer,CTV3Map_Code_And_Term
+14C1.,H/O: peptic ulcer (& [duodenal] or [gastric]),CTV3_Children
+X302H,Haemorrhagic duodenitis,High_Level_SNOMED
+XaB5h,Haemorrhagic oesophagitis,High_Level_SNOMED
+X302a,Healed gastric ulcer,High_Level_SNOMED
+J17y8,Healed gastric ulcer leaving a scar,CTV3Map_Code_And_Term
+X300L,Infective ulcer of oesophagus,CTV3_Children
+J68z1,Intestinal haemorrhage NOS,CTV3Map_Code_And_Term
+Xa1qB,Jejunal ulcer,CTV3Map_Code_And_Term
+Xa1qB,Jejunal ulcer,CTV3Map_Code_Only
+X302x,Jejunal ulceration,High_Level_SNOMED
+XaB15,Laparoscopic closure of perforated gastric ulcer,CTV3_Children
+X30CN,Large intestine anastomotic haemorrhage,High_Level_SNOMED
+X30Bi,Lower gastrointestinal haemorrhage,CTV3_Children
+J107.,Mallory-Weiss syndrome,High_Level_SNOMED
+XaB3K,Massive gastrointestinal bleed,CTV3_Children
+X301M,Multiple gastric erosions,CTV3Map_Code_And_Term
+X301M,Multiple gastric erosions,CTV3Map_Code_Only
+XaELE,Multiple gastric ulcers,CTV3Map_Code_Only
+XaELE,Multiple gastric ulcers,CTV3Map_Code_And_Term
+XaMO8,Non steroidal anti inflammatory drug induced duoden ulc NOS,CTV3_Children
+XaMO7,Non steroidal anti inflammatory drug induced duodenal ulcer,CTV3Map_Code_And_Term
+XaMO6,Non steroidal anti inflammatory drug induced gastric ulc NOS,CTV3Map_Code_And_Term
+XaMO5,Non steroidal anti inflammatory drug induced gastric ulcer,CTV3Map_Code_And_Term
+Xa9C0,Non-reflux ulcer of oesophagus,CTV3_Children
+X30CI,Oesophageal anastomotic haemorrhage,High_Level_SNOMED
+Xa7TU,Oesophageal bleeding,High_Level_SNOMED
+J10y0,Oesophageal haemorrhage,High_Level_SNOMED
+J1022,Oesophageal ulcer due to aspirin,CTV3Map_Code_And_Term
+7627z,Operation on duodenal ulcer NOS,CTV3Map_Code_And_Term
+761Jz,Operation on gastric ulcer NOS,CTV3Map_Code_And_Term
+7627y,Other specified operation on duodenal ulcer,CTV3Map_Code_And_Term
+761Jy,Other specified operation on gastric ulcer,CTV3Map_Code_And_Term
+Q414y,Other specified perinatal gastrointestinal haemorrhage,CTV3_Children
+XaLdV,Oversew of blood vessel of duodenal ulcer,CTV3Map_Code_And_Term
+XaB8q,Oversewing of bleeding duodenal ulcer,CTV3_Children
+XaB8s,Oversewing of bleeding gastric ulcer,CTV3_Children
+X20Vu,Oversewing perforated duodenal ulcer,CTV3_Children
+X20VN,Oversewing perforated gastric ulcer,CTV3_Children
+XE0aR,Peptic ulcer - (PU) site unspecified,CTV3Map_Code_And_Term
+XE0aR,Peptic ulcer - (PU) site unspecified,CTV3Map_Code_Only
+J13z.,Peptic ulcer NOS,CTV3Map_Code_And_Term
+XM0BZ,Peptic ulcer disease,High_Level_SNOMED
+X302c,Peptic ulcer of duodenum,CTV3_Children
+X302X,Peptic ulcer of stomach,High_Level_SNOMED
+1956.,Peptic ulcer symptoms,CTV3Map_Code_And_Term
+XE0c1,Perforated DU (& [acute]),High_Level_SNOMED
+XE0bz,Perforated GU (& [acute]),CTV3_Children
+XM0sI,Perforated peptic ulcer,High_Level_SNOMED
+XE0c5,Perforated peptic ulcer (& [acute PU]),High_Level_SNOMED
+X302Q,Perforation of duodenal ulcer,High_Level_SNOMED
+X301o,Perforation of gastric ulcer,High_Level_SNOMED
+Q414.,Perinatal gastrointestinal haemorrhage,CTV3Map_Code_And_Term
+Q414z,Perinatal gastrointestinal haemorrhage NOS,CTV3_Children
+Xa6ot,Prepyloric gastric ulcer,CTV3Map_Code_Only
+Xa6ot,Prepyloric gastric ulcer,CTV3Map_Code_And_Term
+X302z,Primary nonspecific ulceration of small intestine,High_Level_SNOMED
+J57y8,Primary ulcer of intestine,CTV3Map_Code_And_Term
+X300O,Protozoal ulcer of oesophagus,CTV3_Children
+Xa84h,Pyloric ulcer,CTV3Map_Code_And_Term
+Xa84h,Pyloric ulcer,CTV3Map_Code_Only
+X300P,Radiation ulcer of oesophagus,CTV3_Children
+J124.,Recurrent duodenal ulcer,CTV3Map_Code_And_Term
+XaB3J,Recurrent gastrointestinal bleeding,CTV3_Children
+76125,Resection of gastric ulcer by cautery,CTV3Map_Code_And_Term
+Xa00e,Sepsis-associated gastrointestinal haemorrhage,CTV3_Children
+X40Ys,Sepsis-related gastrointestinal ulceration,High_Level_SNOMED
+X30CM,Small intestine anastomotic haemorrhage,High_Level_SNOMED
+X304I,Stercoral ulcer of large intestine,High_Level_SNOMED
+Xa3u7,Stomach ulcer excision,CTV3Map_Code_And_Term
+XaYMi,Stress ulcer,High_Level_SNOMED
+X302B,Stress ulcer of duodenum,CTV3_Children
+X301G,Stress ulcer of stomach,CTV3_Children
+X300Q,Stress ulceration of oesophagus,CTV3_Children
+XaB2R,Suture of duodenal ulcer,CTV3_Children
+76271,Suture of duodenal ulcer not elsewhere classified,CTV3Map_Code_And_Term
+XaB2Q,Suture of gastric ulcer,CTV3_Children
+XM1I9,Suture of ulcer of stomach NEC,CTV3Map_Code_Only
+XM1I9,Suture of ulcer of stomach NEC,CTV3Map_Code_And_Term
+J102.,Ulcer of oesophagus,CTV3Map_Code_And_Term
+J102z,Ulcer of oesophagus NOS,CTV3Map_Code_And_Term
+J14..,Ulcer: [gastrojej]/[anast]/[gastrocol]/[jej]/[margin]/[stom],High_Level_SNOMED
+J13..,Ulcer: [peptic (PU) site unspecified] or [stress NOS],CTV3Map_Code_Only
+J13..,Ulcer: [peptic (PU) site unspecified] or [stress NOS],CTV3Map_Code_And_Term
+XE0c3,Ulcer: [peptic NOS]/[gastrojejunal]/[stomal]/[anastomotic],High_Level_SNOMED
+J57y9,Ulceration of colon,CTV3Map_Code_And_Term
+J57yA,Ulceration of intestine NOS,CTV3Map_Code_And_Term
+X304H,Ulceration of large intestine,High_Level_SNOMED
+X302w,Ulceration of small intestine,High_Level_SNOMED
+XaB8r,Under-running of bleeding duodenal ulcer,CTV3_Children
+XaFC4,Under-running of bleeding gastric ulcer,CTV3_Children
+J12yy,Unspec duodenal ulcer; unspec haemorrhage and/or perforation,CTV3Map_Code_And_Term
+J11yy,Unspec gastric ulcer; unspec haemorrhage and/or perforation,CTV3Map_Code_And_Term
+J14y3,Unspec gastrojejunal ulcer with haemorrhage and perforation,CTV3_Children
+J14yy,Unspec gastrojejunal ulcer; unspec haemorrhage/perforation,CTV3_Children
+J13yy,Unspec peptic ulcer; unspec haemorrhage and/or perforation,CTV3Map_Code_And_Term
+J12y.,Unspecified duodenal ulcer,CTV3Map_Code_And_Term
+J12yz,Unspecified duodenal ulcer NOS,CTV3Map_Code_And_Term
+J12y1,Unspecified duodenal ulcer with haemorrhage,CTV3Map_Code_And_Term
+J12y3,Unspecified duodenal ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J12y4,Unspecified duodenal ulcer with obstruction,CTV3Map_Code_And_Term
+J12y2,Unspecified duodenal ulcer with perforation,CTV3Map_Code_And_Term
+J12y0,Unspecified duodenal ulcer without mention of complication,CTV3Map_Code_And_Term
+J11y.,Unspecified gastric ulcer,CTV3Map_Code_And_Term
+J11yz,Unspecified gastric ulcer NOS,CTV3Map_Code_And_Term
+J11y1,Unspecified gastric ulcer with haemorrhage,CTV3Map_Code_And_Term
+J11y3,Unspecified gastric ulcer with haemorrhage and perforation,CTV3_Children
+J11y4,Unspecified gastric ulcer with obstruction,CTV3Map_Code_And_Term
+J11y2,Unspecified gastric ulcer with perforation,CTV3Map_Code_And_Term
+J11y0,Unspecified gastric ulcer without mention of complication,CTV3Map_Code_And_Term
+J14y.,Unspecified gastrojejunal ulcer,CTV3Map_Code_And_Term
+J14yz,Unspecified gastrojejunal ulcer NOS,CTV3Map_Code_And_Term
+J14y1,Unspecified gastrojejunal ulcer with haemorrhage,CTV3Map_Code_And_Term
+J14y4,Unspecified gastrojejunal ulcer with obstruction,CTV3Map_Code_And_Term
+J14y2,Unspecified gastrojejunal ulcer with perforation,CTV3Map_Code_And_Term
+J14y0,Unspecified gastrojejunal ulcer without mention complication,CTV3_Children
+J13y.,Unspecified peptic ulcer,CTV3Map_Code_And_Term
+J13yz,Unspecified peptic ulcer NOS,CTV3Map_Code_And_Term
+J13y1,Unspecified peptic ulcer with haemorrhage,CTV3Map_Code_And_Term
+J13y3,Unspecified peptic ulcer with haemorrhage and perforation,CTV3Map_Code_And_Term
+J13y4,Unspecified peptic ulcer with obstruction,CTV3Map_Code_And_Term
+J13y2,Unspecified peptic ulcer with perforation,CTV3Map_Code_And_Term
+J13y0,Unspecified peptic ulcer without mention of complication,CTV3Map_Code_And_Term
+X30Be,Upper gastrointestinal haemorrhage,CTV3Map_Code_And_Term
+X300N,Viral ulcer of oesophagus,CTV3_Children
+XaCLu,[V] Personal history of gastric ulcer,CTV3Map_Code_And_Term
+ZV127,[V]Pers hist digest syst disease (& [pept ulcer (& [duod])]),CTV3_Children

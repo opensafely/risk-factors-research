@@ -1,0 +1,68 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14C4.,H/O: colitis (& [ulcerative]),CTV3_Children
+J08z9,Orofacial Crohn's disease,CTV3Map_Code_And_Term
+J4...,(Noninf enter/colit) or (inflam bowel dis) or (noninf diarr),High_Level_SNOMED
+J40..,Enteritis: [regional-Crohn's disease] or [granulomatous],CTV3_Children
+J400.,Regional enteritis of small bowel,CTV3Map_Code_And_Term
+J4000,Crohn's disease of duodenum,CTV3Map_Code_And_Term
+J4001,Regional enteritis of the jejunum,CTV3Map_Code_And_Term
+J4002,Crohn's disease of terminal ileum,CTV3Map_Code_And_Term
+J4003,Crohn's disease of the ileum unspecified,CTV3Map_Code_And_Term
+J4004,Crohn's disease of the ileum NOS,CTV3Map_Code_And_Term
+J400z,Crohn's disease of the small bowel NOS,CTV3Map_Code_And_Term
+J401.,Regional enteritis of the large bowel,CTV3Map_Code_And_Term
+J4010,Crohn's colitis,CTV3Map_Code_And_Term
+J4010,Crohn's colitis,CTV3Map_Code_Only
+J4011,Crohn's proctitis,CTV3Map_Code_And_Term
+J401z,(Crohn's colitis) or (Crohn's disease of large bowel NOS),CTV3_Children
+J402.,Regional ileocolitis,CTV3Map_Code_And_Term
+J40z.,Regional enteritis NOS,CTV3Map_Code_And_Term
+J40z.,Regional enteritis NOS,CTV3Map_Code_Only
+J41..,(Idiopath proctocol)/(muc colit/proctit)/(ulc colit/proctit),CTV3_Children
+J410.,Ulcerative proctocolitis,CTV3Map_Code_And_Term
+J410.,Ulcerative proctocolitis,CTV3Map_Code_Only
+J4100,Ulcerative ileocolitis,CTV3Map_Code_And_Term
+J4103,Ulcerative proctitis,CTV3Map_Code_And_Term
+J410z,Ulcerative proctocolitis NOS,CTV3Map_Code_And_Term
+J41y.,Other idiopathic proctocolitis,CTV3Map_Code_And_Term
+J41yz,Other idiopathic proctocolitis NOS,CTV3Map_Code_And_Term
+J41z.,Idiopathic proctocolitis NOS,CTV3Map_Code_And_Term
+J41z.,Idiopathic proctocolitis NOS,CTV3Map_Code_Only
+Jyu40,[X]Other Crohn's disease,CTV3Map_Code_And_Term
+Jyu41,[X]Other ulcerative colitis,CTV3Map_Code_And_Term
+N0310,Arthropathy in ulcerative colitis,CTV3Map_Code_And_Term
+N0311,Arthropathy in Crohn's disease,CTV3Map_Code_And_Term
+N0453,Juvenile arthritis in Crohn's disease,CTV3Map_Code_And_Term
+N0454,Juvenile arthritis in ulcerative colitis,CTV3Map_Code_And_Term
+X20Pq,Orofacial Crohn's disease of gingivae,CTV3_Children
+X300J,Crohn's disease of oesophagus,High_Level_SNOMED
+X301b,Crohn's disease of stomach,High_Level_SNOMED
+X302r,Crohn's jejunitis,CTV3_Children
+X302t,Crohn's ileitis,CTV3_Children
+X3030,Ulcerative enterocolitis,CTV3Map_Code_And_Term
+X303k,Indeterminate colitis,CTV3_Children
+X3050,Perianal Crohn's disease,CTV3_Children
+XE0ae,Inflammatory bowel disease,CTV3Map_Code_And_Term
+XE0af,Crohn's disease of the large bowel NOS,CTV3Map_Code_And_Term
+XE0af,Crohn's disease of the large bowel NOS,CTV3Map_Code_Only
+XE0ag,Ulcerative colitis,CTV3Map_Code_And_Term
+XE0aj,Other non-infective inflammatory gastroenteritis and colitis,CTV3_Children
+XE0cX,Inflammatory bowel disease (& [noninfect enteritis/colitis]),CTV3_Children
+XE0cZ,Crohn's disease (& [regional enteritis]),CTV3_Children
+XE0qC,H/O: colitis,CTV3Map_Code_Only
+XE2QL,Crohn's disease,CTV3Map_Code_And_Term
+XE2QL,Crohn's disease,CTV3Map_Code_Only
+XM1RP,H/O: ulcerative colitis,CTV3Map_Code_And_Term
+Xa0lh,Regional enteritis,CTV3Map_Code_And_Term
+Xa0lh,Regional enteritis,CTV3Map_Code_Only
+Xa3fm,"Non-infective gastrointestinal inflammation, NOS",CTV3_Children
+Xa7nY,Non-infective colitis,CTV3Map_Code_Only
+XaB5x,Non-infective enteritis and colitis,CTV3Map_Code_Only
+XaB5z,Enterocolitis,CTV3Map_Code_Only
+XaK6C,Exacerbation of Crohn's disease of small intestine,CTV3Map_Code_And_Term
+XaK6D,Exacerbation of Crohn's disease of large intestine,CTV3Map_Code_And_Term
+XaK6E,Exacerbation of ulcerative colitis,CTV3Map_Code_And_Term
+XaK6F,Exacerbation of non-infective colitis,CTV3_Children
+XaYzX,Ulcerative pancolitis,CTV3_Children
+XaZ2j,Left sided ulcerative colitis,CTV3_Children
+Y2903,Inflammatory bowel disease in remission,CTV3_Children
