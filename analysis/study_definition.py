@@ -1,11 +1,26 @@
 from datalab_cohorts import StudyDefinition, patients, codelist_from_csv
 
+
+## CODE LISTS
+# All codelist are held within the codelist/ folder.
+
 chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
 )
 chronic_liver_disease_codes = codelist_from_csv(
     "codelists/chronic_liver_disease.csv", system="ctv3", column="CTV3ID"
 )
+
+organ_transplant_codes = codelist_from_csv(
+    "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
+)
+
+ra_sle_psoriasis_codes = codelist_from_csv(
+    "codelists/ra_sle_psoriasis.csv", system="ctv3", column="CTV3ID"
+)
+
+## STUDY POPULATION
+# Defines both the study population and points to the important covariates
 
 study = StudyDefinition(
     # This line defines the study population
@@ -23,9 +38,21 @@ study = StudyDefinition(
         return_first_date_in_period=True,
         include_month=True,
     ),
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/12
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/12
     chronic_liver_disease=patients.with_these_clinical_events(
         chronic_liver_disease_codes,
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/49
+    ra_sle_psoriasis=patients.with_these_clinical_events(
+        ra_sle_psoriasis_codes,
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/31
+    organ_transplant=patients.with_these_clinical_events(
+        organ_transplant_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
