@@ -2,17 +2,13 @@
 
 Some covariates used in the study were created from codelists of clinical conditions or numerical values available on a patient's records. 
 
-This folder contains csv files for each covariate with a list of included read codes. 
+This folder contains csv files for each covariate with a list of included Read codes. 
 
-Read codes are coded thesaurus of clinical terms, and have been used for a long time in clinical records. This study uses patients from TPP 
-practices. TPP use a Read Code system called CTV3 or Read Code Version 3. Most of the lists of readcodes were developed in this 
-study from Read Code Version 2 (from previous studies performed by LSHTM Electronic Health Records Group). For the purpose of
-this study, these were mapped across to CTV3. In order to make sure no codes were lost, relevant SNOWMED codes were 
-identified and mapped into CTV3. Additionally Quality Outcome Framework (QOF) codes were included, which are already in 
-CTV3 were manually identified by researchers.  The CTV3 code list for each covariate was examined by researchers and signed off, manually 
-altered to exclude irrelevant codes and signed off by both a researcher and a clinician. Definition 
-of the covariate and discussion of development process of this definition and 
-what codes to include are recorded within Git issues and can be access by clicking on the covariate name in the table below. 
+Read codes are coded thesaurus of clinical terms, and have been used for a long time in clinical records. This study uses patients from TPP practices. TPP use a Read code system called CTV3 or Read Code Version 3. Most codelists in this study were developed from from lists used in previous studies performed by LSHTM Electronic Health Records Group, which are coded in Read Code Version 2. For the purpose of this study, these were mapped to CTV3.
+
+Each Read 2 term maps to a CTV3 code, but the CTV3 hierarchy contains additional codes that may not have a Read 2 equivalent. To address this, relevant SNOWMED codes were identified and mapped into CTV3, and CTV3 Quality Outcome Framework (QOF) cluster codes were included where available. The converted CTV3 code lists for each covariate were then manually reviewed by researchers to exclude irrelevant codes and signed off by both a researcher and a clinician.
+
+The development process for each covariate is documented in Git issues. This includes discussion of what codes should be included for each covariate as well as final definitions of each. These can be found at the links in the list below. 
 
 ### Summary of Code Lists
 
