@@ -4,9 +4,14 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv
 ## CODE LISTS
 # All codelist are held within the codelist/ folder.
 
+chronic_respiratory_disease_codes = codelist_from_csv(
+    "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
+)
+
 chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
 )
+
 chronic_liver_disease_codes = codelist_from_csv(
     "codelists/chronic_liver_disease.csv", system="ctv3", column="CTV3ID"
 )
@@ -32,6 +37,12 @@ study = StudyDefinition(
     age=patients.age_as_of("2020-02-01"),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/46
     sex=patients.sex(),
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/21
+    chronic_respiratory_disease=patients.with_these_clinical_events(
+        chronic_respiratory_disease_codes,
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
     chronic_cardiac_disease=patients.with_these_clinical_events(
         chronic_cardiac_disease_codes,
