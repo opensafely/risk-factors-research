@@ -1,0 +1,257 @@
+CTV3Code,Description,CodeSource,Category,NumericCode
+137..,[Tobacco consumption] or [smoker - amount smoked],QOF,S,0
+1371.,Non-smoker (& [never smoked tobacco]),QOF,N,0
+1372.,(Trivial smoker - < 1 cig/day) or (occasional smoker),QOF,S,0
+1373.,Light cigarette smoker (1-9 cigs/day),QOF,S,0
+1374.,Moderate cigarette smoker (10-19 cigs/day),QOF,S,0
+1375.,Heavy cigarette smoker (20-39 cigs/day),QOF,S,0
+1376.,Very heavy cigarette smoker (40+ cigs/day),QOF,S,0
+1377.,Ex-trivial smoker (<1/day),QOF,E,0
+1378.,Ex-light smoker (1-9/day),QOF,E,0
+1379.,Ex-moderate smoker (10-19/day),QOF,E,0
+137A.,Ex-heavy smoker (20-39/day),QOF,E,0
+137B.,Ex-very heavy smoker (40+/day),QOF,E,0
+137C.,Keeps trying to stop smoking,QOF,S,0
+137D.,Admitted tobacco cons untrue ?,QOF,S,0
+137E.,Tobacco consumption unknown,High_Level_SNOMED,D,0
+137F.,Ex-smoker - amount unknown,QOF,E,0
+137G.,Trying to give up smoking,QOF,S,0
+137H.,Pipe smoker,QOF,S,1
+137I.,Passive smoker,QOF,P,0
+137J.,Cigar smoker,QOF,S,0
+137K.,Stopped smoking,QOF,E,1
+137L.,Current non-smoker,QOF,N,0
+137M.,Rolls own cigarettes,QOF,S,0
+137N.,Ex-pipe smoker,QOF,E,0
+137O.,Ex-cigar smoker,QOF,E,0
+137P.,Smoker (& cigarette),QOF,S,0
+137Q.,Smoking: [started] or [restarted],QOF,S,0
+137R.,Smoker,QOF,S,0
+137T.,Date ceased smoking,QOF,E,0
+137Z.,Tobacco consumption NOS,QOF,S,1
+137l.,Ex roll-up cigarette smoker,QOF,E,0
+13WF.,Family smoking history (& smoker in the family),Smoke_Text,P,0
+13WF1,Father smokes,Smoke_Text,P,0
+13WF2,Mother smokes,Smoke_Text,P,0
+13WF3,Both parents smoke,Smoke_Text,P,0
+63C5.,Maternal tobacco abuse,High_Level_SNOMED,D,0
+6791.,Health education - smoking,QOF,S,0
+67A3.,Pregnancy smoking advice,QOF,S,0
+6893.,Tobacco usage screening,Tobacco_Text,D,0
+9OO..,Stop smoking monitoring admin: [monitoring] or [clinic],QOF,S,0
+9OO1.,Attends stop smoking monitoring,QOF,S,0
+9OO2.,Refuses stop smoking monitor,QOF,S,0
+9OO3.,Stop smoking monitor default,QOF,S,0
+9OO4.,Stop smoking monitoring first letter,QOF,S,0
+9OO5.,Stop smoking monitoring second letter,QOF,S,0
+9OO6.,Stop smoking monitoring third letter,QOF,S,0
+9OO7.,Stop smoking monitoring verbal invite,QOF,S,0
+9OO8.,Stop smoking monitoring telephone invite,QOF,S,0
+9OO9.,Stop smoking monitoring delete,QOF,S,0
+9OOA.,Stop smoking monitoring check done,QOF,S,0
+E251.,Tobacco dependence,Tobacco_Text,S,0
+E2510,"Tobacco dependence, unspecified",Tobacco_Text,S,0
+E2511,"Tobacco dependence, continuous",Tobacco_Text,S,0
+E2512,"Tobacco dependence, episodic",Tobacco_Text,S,0
+E2513,Tobacco dependence in remission,Tobacco_Text,E,0
+E251z,Tobacco dependence NOS,Tobacco_Text,S,0
+Eu17.,[X]Mental and behavioural disorder due to use of tobacco,Tobacco_Text,S,0
+Eu170,[X]Mental & behav dis due to use tobacco: acute intoxication,Tobacco_Text,S,0
+Eu171,[X]Mental and behav dis due to use of tobacco: harmful use,Tobacco_Text,S,0
+Eu172,[X]Mental and behav dis due to use tobacco: dependence syndr,Tobacco_Text,S,0
+Eu173,[X]Mental and behav dis due to use tobacco: withdrawal state,Tobacco_Text,E,0
+Eu174,[X]Men & behav dis due tobacco: withdrawl state wth delirium,Tobacco_Text,E,0
+Eu175,[X]Mental & behav dis due to use tobacco: psychotic disorder,Tobacco_Text,S,0
+Eu176,[X]Mental and behav dis due to use tobacco: amnesic syndrome,Tobacco_Text,S,0
+Eu177,[X]Men & beh dis due tobacco: resid & late-onset psychot dis,Tobacco_Text,S,0
+Eu17y,[X]Men & behav dis due to use tobacco: oth men & behav dis,Tobacco_Text,S,0
+Eu17z,[X]Ment & behav dis due use tobacco: unsp ment & behav dis,Tobacco_Text,S,0
+H3101,Smokers' cough,Smoke_Text,S,0
+J0364,Extrinsic staining of tooth - tobacco,Tobacco_Text,D,0
+SMC..,Toxic effect of tobacco and nicotine,Tobacco_Text,D,0
+Ua1Nz,Smoking cessation advice,QOF,S,0
+Ua1O0,Advice on effects of smoking on health,QOF,S,0
+Ua2Cl,Smokes in bed,QOF,S,0
+Ub0oo,Tobacco smoking behaviour,QOF,S,0
+Ub0oq,Non-smoker,QOF,N,0
+Ub0p1,Time since stopped smoking,QOF,E,0
+Ub0p2,Total time smoked,QOF,S,1
+Ub0p3,Age at starting smoking,QOF,D,1
+Ub0p6,Does not use snuff,High_Level_SNOMED,D,0
+Ub0p7,Never used snuff,High_Level_SNOMED,D,0
+Ub0p8,Ex-snuff user,High_Level_SNOMED,D,0
+Ub0p9,Snuff user,High_Level_SNOMED,D,0
+Ub0pE,Moist tobacco use,High_Level_SNOMED,D,0
+Ub0pG,Does not use moist powdered tobacco,High_Level_SNOMED,D,0
+Ub0pH,Never used moist powdered tobacco,High_Level_SNOMED,D,0
+Ub0pI,Ex-user of moist powdered tobacco,High_Level_SNOMED,D,0
+Ub0pJ,User of moist powdered tobacco,High_Level_SNOMED,D,0
+Ub0pO,Tobacco chewing,High_Level_SNOMED,D,0
+Ub0pQ,Does not chew tobacco,High_Level_SNOMED,D,0
+Ub0pR,Never chewed tobacco,High_Level_SNOMED,D,0
+Ub0pS,Ex-tobacco chewer,High_Level_SNOMED,D,0
+Ub0pT,Chews tobacco,High_Level_SNOMED,D,0
+Ub0pU,Chews plug tobacco,High_Level_SNOMED,D,0
+Ub0pV,Chews twist tobacco,High_Level_SNOMED,D,0
+Ub0pW,Chews loose leaf tobacco,High_Level_SNOMED,D,0
+Ub0pX,Chews fine cut tobacco,High_Level_SNOMED,D,0
+Ub0pY,Chews products containing tobacco,High_Level_SNOMED,D,0
+Ub0pe,Exposed to tobacco smoke at work,QOF,P,0
+Ub0pf,Exposed to tobacco smoke at home,QOF,P,0
+Ub0pg,Exposed to tobacco smoke in public places,QOF,P,0
+Ub1nZ,Tobacco use and exposure,QOF,S,0
+Ub1na,Ex-smoker,QOF,E,0
+Ub1tI,Cigarette consumption,QOF,S,1
+Ub1tJ,Cigar consumption,QOF,S,1
+Ub1tK,Pipe tobacco consumption,QOF,S,1
+Ub1tR,Occasional cigarette smoker,QOF,S,0
+Ub1tS,Light cigarette smoker,QOF,S,0
+Ub1tT,Moderate cigarette smoker,QOF,S,0
+Ub1tU,Heavy cigarette smoker,QOF,S,0
+Ub1tV,Very heavy cigarette smoker,QOF,S,0
+Ub1tW,Chain smoker,QOF,S,0
+X20Qm,Smokers keratosis,Smoke_Text,S,0
+X798g,Tobacco smoke,Smoke_Text,D,0
+XE0og,Tobacco smoking consumption,QOF,S,0
+XE0oh,Never smoked tobacco,QOF,N,0
+XE0oi,Trivial cigarette smoker (less than one cigarette/day),QOF,S,1
+XE0oj,Ex-trivial cigarette smoker (<1/day),QOF,E,0
+XE0ok,Ex-light cigarette smoker (1-9/day),QOF,E,0
+XE0ol,Ex-moderate cigarette smoker (10-19/day),QOF,E,0
+XE0om,Ex-heavy cigarette smoker (20-39/day),QOF,E,0
+XE0on,Ex-very heavy cigarette smoker (40+/day),QOF,E,0
+XE0oo,Tobacco smoking consumption unknown,QOF,D,0
+XE0op,Ex-cigarette smoker amount unknown,QOF,E,0
+XE0oq,Cigarette smoker,QOF,S,0
+XE0or,Smoking started,QOF,S,0
+XE0sl,Tobacco consumptn: [non-smoker] or [smoker - amount smoked,QOF,S,0
+XE1UO,(Apgar at 10 minutes = 4 ) or (tobacco abuse -maternal),High_Level_SNOMED,D,0
+XE1b4,Tobacco dependence (& [dependent smoker]),Smoke_Text,S,0
+XM1Jh,Smoker in the family,Smoke_Text,P,0
+Xa1bv,Ex-cigarette smoker,QOF,E,0
+Xa1dC,Advice on smoking,QOF,S,0
+XaBSp,Smoking restarted,QOF,S,0
+XaBUG,Smoking monitoring status,QOF,S,0
+XaCGl,Smoking monitoring invitation,QOF,S,0
+XaEKU,Nicotine replacement therapy,QOF,S,0
+XaF98,Tobacco related optic neuropathy,Tobacco_Text,S,0
+XaFst,Over the counter nicotine replacement therapy,QOF,S,0
+XaFvq,Not a passive smoker,QOF,D,0
+XaFw9,Referral to stop-smoking clinic,QOF,S,0
+XaIIu,Smoking reduced,QOF,S,0
+XaIQi,Smoking cessation milestones,QOF,S,0
+XaIQj,Negotiated date for cessation of smoking,QOF,S,0
+XaIQk,Smoking status at 4 weeks,QOF,S,0
+XaIQl,Smoking status between 4 and 52 weeks,QOF,S,0
+XaIQm,Smoking status at 52 weeks,QOF,S,0
+XaIQn,Nicotine replacement therapy provided free,QOF,S,0
+XaIkW,Thinking about stopping smoking,QOF,S,0
+XaIkX,Ready to stop smoking,QOF,S,0
+XaIkY,Not interested in stopping smoking,QOF,S,0
+XaIkp,Parents do not smoke,Smoke_Text,D,0
+XaIn9,No smokers in the household,Smoke_Text,D,0
+XaIpo,Did not attend smoking cessation clinic,QOF,S,0
+XaIr7,Smoking free weeks,QOF,S,1
+XaItC,Referral to smoking cessation advisor,QOF,S,0
+XaItg,Reason for restarting smoking,QOF,S,0
+XaIth,Smoking cessation programme start date,QOF,S,0
+XaIuQ,Cigarette pack-years,QOF,S,1
+XaIye,Seen by smoking cessation advisor,QOF,S,0
+XaJIs,Lifestyle advice regarding smoking,QOF,S,0
+XaJX2,Minutes from waking to first tobacco consumption,QOF,S,1
+XaK28,Carbon monoxide reading at 4 weeks,QOF,D,1
+XaKlS,[V]Personal history of tobacco abuse,QOF,S,0
+XaLD4,Smoking cessation advice provided by community pharmacist,QOF,S,0
+XaLIY,Excepted from smoking quality indicators: Patient unsuitable,QOF,S,0
+XaLIZ,Excepted from smoking quality indicators: Informed dissent,QOF,S,0
+XaLMR,Attends practice smoking cessation clinic,QOF,S,0
+XaLMS,Attends smoking cessation clinic not at practice,QOF,S,0
+XaLQh,Wants to stop smoking,QOF,S,0
+XaMlI,Smoking cessation drug therapy,QOF,S,0
+XaMlJ,Nicotine replacement therapy using nicotine patches,QOF,S,0
+XaMlK,Nicotine replacement therapy using nicotine gum,QOF,S,0
+XaMlL,Nicotine replacement therapy using nicotine inhalator,QOF,S,0
+XaMlM,Nicotine replacement therapy using nicotine lozenges,QOF,S,0
+XaMlN,Other specified smoking cessation therapy,QOF,S,0
+XaMt6,Smoking cessation therapy NOS,QOF,S,0
+XaMwY,Smoking cessation therapy,QOF,S,0
+XaPEA,Mother does not smoke,Smoke_Text,D,0
+XaPid,Smoking cessation enhanced services administration,QOF,S,0
+XaPyn,Refusal to give smoking status,QOF,D,0
+XaQ8V,Ex roll-up cigarette smoker,QOF,E,0
+XaQT5,Referral to NHS stop smoking service,QOF,S,0
+XaQUB,Current smoker annual review,Smoke_Text,S,0
+XaQUC,Non-smoker annual review,QOF,N,0
+XaQUI,Ex-smoker annual review,QOF,E,0
+XaQVQ,Brief intervention for smoking cessation,QOF,S,0
+XaQzw,Recently stopped smoking,QOF,E,0
+XaREz,Smoking cessation programme declined,QOF,S,0
+XaRFh,Smoking cessation advice declined,QOF,S,0
+XaW0h,Practice based smoking cessation programme start date,QOF,S,0
+XaWNE,Failed attempt to stop smoking,QOF,S,0
+XaX0O,Consent given follow-up after smoking cessation intervention,QOF,S,0
+XaX0i,Declin cons follow-up evaluation after smoking cess interven,QOF,S,0
+XaX5W,Consent given for follow-up by smoking cessation team,QOF,S,0
+XaX5X,Declined consent for follow-up by smoking cessation team,QOF,S,0
+XaXP6,Stopped smoking during pregnancy,QOF,E,0
+XaXP8,Stopped smoking before pregnancy,QOF,E,0
+XaXP9,Smoker before confirmation of pregnancy,QOF,E,0
+XaXPD,Smoker in household,QOF,N,0
+XaXPX,Smoking status at 12 weeks,QOF,S,0
+XaXR4,Referral for smoking cessation service offered,QOF,S,0
+XaXUL,Lost to smoking cessation follow-up,QOF,S,0
+XaXYo,Tobacco smoke free home,Smoke_Text,N,0
+XaXnG,Stop smoking service opportunity signposted,QOF,S,0
+XaXnf,Stop smoking invitation short message service text message,QOF,S,0
+XaXng,Stop smoking invitation first SMS text message,QOF,S,0
+XaXni,Stop smoking invitation second SMS text message,QOF,S,0
+XaXnk,Stop smoking invitation third SMS text message,QOF,S,0
+XaZ01,Smoking cessation drug therapy declined,QOF,S,0
+XaZIE,Waterpipe tobacco consumption,QOF,S,0
+XaZhB,Smoking cessation 12 week follow-up,QOF,S,0
+Xaa26,Number of previous attempts to stop smoking,QOF,S,0
+XaaDx,Referral to smoking cessation service declined,QOF,S,0
+XaaDy,Referral to smoking cessation service,QOF,S,0
+XacZz,Varenicline smoking cessation therapy declined,QOF,S,0
+Xaca0,Varenicline smoking cessation therapy offered,QOF,S,0
+Xaety,Varenicline therapy,QOF,S,0
+XagO3,Occasional tobacco smoker,QOF,S,0
+Y0018,Smoking Target Notes,QOF,S,0
+Y01e6,Loose tobacco consumption,Tobacco_Text,S,0
+Y0790,Prompted for smoking cessation support by Smoke Free Bus,Smoke_Text,S,0
+Y0983,Smoking status at 4 weeks - Smoker,Smoke_Text,S,0
+Y0984,Smoking status at 4 weeks - Ex-smoker,Smoke_Text,E,0
+Y0989,Smoking status at 4 weeks - Tobacco consumption unknown,Tobacco_Text,D,0
+Y0990,Smoking status between 4 and 52 weeks - Tobacco consumption unknown,Tobacco_Text,D,0
+Y0993,Smoking status between 4 and 52 weeks - Current non-smoker,Smoke_Text,N,0
+Y0994,Smoking status between 4 and 52 weeks - Smoker,Smoke_Text,S,0
+Y099e,Smoking status at 52 weeks - Tobacco consumption unknown,Tobacco_Text,D,0
+Y099f,Smoking status at 52 weeks - Current non-smoker,Smoke_Text,N,0
+Y09a0,Smoking status at 52 weeks - Smoker,Smoke_Text,S,0
+Y1152,Smoke free at 6 weeks confirmed by CO reading,Smoke_Text,E,0
+Y1153,Smoke free at 12 weeks confirmed by CO reading,Smoke_Text,E,0
+Y121c,Non-Smoker (History Unknown),QOF,D,0
+Y121d,Smoking Status Not Stated (Patient declined to respond),QOF,D,0
+Y1758,Smoker in household,QOF,P,0
+Y19d7,Stop Smoking Medication Offered,QOF,S,0
+Y1f8f,Quality and Outcomes Framework quality indicator-related care invitation (procedure),QOF,D,0
+Y1fa2,Quality and Outcomes Framework smoking quality indicator-related care invitation (procedure),QOF,D,0
+Y2869,Wants to stop smoking,QOF,S,0
+Y3637,Family member not interested in stopping smoking,QOF,P,0
+Y3638,Family member wants to stop smoking,QOF,P,0
+Y3839,Mother does not smoke,Smoke_Text,D,0
+Y3840,Father does not smoke,Smoke_Text,D,0
+Y3985,Reduced Smoker,QOF,S,0
+Y4949,Smoker in the household,Smoke_Text,P,0
+Y6626,Ex cigar smoker,Smoke_Text,E,0
+Y6627,Ex pipe smoker,Smoke_Text,E,0
+Y6628,Ex smoker,Smoke_Text,E,0
+Y7110,Heavy smoker - 20-39 cigs/day,Smoke_Text,S,0
+Y7467,Light smoker - 1-9 cigs/day,Smoke_Text,S,0
+Y7677,Moderate smoker - 10-19 cigs/d,Smoke_Text,S,0
+Y9843,Very heavy smoker - 40+cigs/d,Smoke_Text,S,0
+YA602,Contented smoker,Smoke_Text,S,0
+YA834,Smoked before pregnancy was confirmed,Smoke_Text,D,0
+YA835,Smoked during pregnancy,Smoke_Text,D,0
+ZV4K0,[V]Tobacco use,QOF,S,0
+ZV6D8,[V]Tobacco abuse counselling,Tobacco_Text,S,0
