@@ -1,0 +1,198 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14F2.,H/O: psoriasis,CTV3Map_Code_And_Term
+F3710,Polyneuropathy in disseminated lupus erythematosus,CTV3Map_Code_And_Term
+F3961,Myopathy due to disseminated lupus erythematosus,CTV3Map_Code_And_Term
+F4D33,Discoid lupus eyelid,CTV3Map_Code_And_Term
+H57y4,Lung disease with systemic lupus erythematosus,CTV3Map_Code_And_Term
+K01x4,(Nephr synd in system lupus erythemat) or (lupus nephritis],High_Level_SNOMED
+M07y0,Acute palmoplantar pustular psoriasis,CTV3_Children
+M143.,[Pustular psoriasis] or [impetigo herpetiformis],High_Level_SNOMED
+M154.,Lupus erythematosus,CTV3Map_Code_And_Term
+M1540,Lupus erythematosus chronicus,CTV3Map_Code_And_Term
+M1541,Discoid lupus erythematosus,CTV3Map_Code_And_Term
+M1542,Lupus erythematosus migrans,CTV3Map_Code_And_Term
+M1543,Lupus erythematosus nodularis,CTV3Map_Code_And_Term
+M1544,Lupus erythematosus profundus,CTV3Map_Code_And_Term
+M1545,Lupus erythematosus tumidus,CTV3Map_Code_And_Term
+M1546,Lupus erythematosus unguium mutilans,CTV3Map_Code_And_Term
+M154z,Lupus erythematosus NOS,CTV3Map_Code_And_Term
+M16..,Psoriasis and similar disorders,CTV3Map_Code_And_Term
+M160.,Psoriatic arthritis,CTV3Map_Code_And_Term
+M160.,Psoriatic arthritis,CTV3Map_Code_Only
+M1600,Psoriatic arthritis with spine involvement,CTV3Map_Code_And_Term
+M160z,Psoriatic arthropathy NOS,CTV3Map_Code_And_Term
+M161.,Other psoriasis,CTV3Map_Code_And_Term
+M1610,Psoriasis unspecified,CTV3Map_Code_And_Term
+M1611,Psoriasis annularis,CTV3Map_Code_And_Term
+M1612,Psoriasis circinata,CTV3Map_Code_And_Term
+M1613,Psoriasis diffusa,CTV3Map_Code_And_Term
+M1614,Plaque psoriasis,CTV3Map_Code_And_Term
+M1615,Psoriasis geographica,CTV3Map_Code_And_Term
+M1616,Guttate psoriasis,CTV3Map_Code_And_Term
+M1617,Psoriasis gyrata,CTV3Map_Code_And_Term
+M1618,Psoriasis inveterata,CTV3Map_Code_And_Term
+M1619,Rupioid psoriasis,CTV3Map_Code_And_Term
+M161A,Psoriasis palmaris,CTV3Map_Code_And_Term
+M161B,Psoriasis plantaris,CTV3Map_Code_And_Term
+M161C,Psoriasis punctata,CTV3Map_Code_And_Term
+M161D,[Pustular psoriasis] or [impetigo herpetiformis],High_Level_SNOMED
+M161E,Psoriasis universalis,CTV3Map_Code_And_Term
+M161F,Psoriasis vulgaris & (Chronic large plaque psoriasis),CTV3_Children
+M161z,Psoriasis NOS,CTV3Map_Code_And_Term
+M16y.,Other psoriasis and similar disorders,CTV3Map_Code_And_Term
+M16z.,Psoriasis and similar disorders NOS,CTV3Map_Code_And_Term
+Myu30,[X]Other psoriasis,CTV3Map_Code_And_Term
+Myu78,[X]Other local lupus erythematosus,CTV3_Children
+N000.,Systemic lupus erythematosus,CTV3Map_Code_And_Term
+N0002,Drug-induced systemic lupus erythematosus,CTV3Map_Code_And_Term
+N000z,Systemic lupus erythematosus NOS,CTV3Map_Code_And_Term
+Nyu13,[X]Other psoriatic arthropathies,CTV3Map_Code_And_Term
+Nyu43,[X]Other forms of systemic lupus erythematosus,CTV3Map_Code_And_Term
+X00Dx,Cerebral lupus,CTV3Map_Code_And_Term
+X00Dx,Cerebral lupus,CTV3Map_Code_Only
+X30Kn,Lupus nephritis - WHO Class I,CTV3_Children
+X30Ko,Lupus nephritis - WHO Class II,CTV3_Children
+X30Kp,Lupus nephritis - WHO Class III,CTV3_Children
+X30Kq,Lupus nephritis - WHO Class IV,CTV3_Children
+X30Kr,Lupus nephritis - WHO Class V,CTV3_Children
+X30Ks,Lupus nephritis - WHO Class VI,CTV3_Children
+X506Y,Psoriasis,High_Level_SNOMED
+X506Z,Flexural psoriasis,CTV3Map_Code_And_Term
+X506a,Unstable psoriasis,High_Level_SNOMED
+X506b,Erythrodermic psoriasis,CTV3Map_Code_And_Term
+X506c,Psoriasis-eczema overlap condition,High_Level_SNOMED
+X506d,Eczematised psoriasis,High_Level_SNOMED
+X506e,Psoriasis of nail,High_Level_SNOMED
+X506f,Psoriatic nail dystrophy,High_Level_SNOMED
+X506g,Psoriatic nail pitting,High_Level_SNOMED
+X506i,Scalp psoriasis,CTV3Map_Code_And_Term
+X506k,Koebner psoriasis,High_Level_SNOMED
+X506l,Localised pustular psoriasis,CTV3_Children
+X506m,Palmoplantar pustular psoriasis,CTV3Map_Code_And_Term
+X506o,Lapiere type of psoriasis,CTV3_Children
+X506p,Generalised pustular psoriasis,CTV3_Children
+X506q,Acute generalised pustular psoriasis,CTV3_Children
+X506r,Generalised pustular psoriasis of pregnancy,CTV3_Children
+X506s,Pustular psoriasis in children,CTV3_Children
+X506t,Juvenile pustular psoriasis,CTV3_Children
+X506u,Infantile pustular psoriasis,CTV3_Children
+X506v,Circinate and annular pustular psoriasis,CTV3_Children
+X50Ew,Lupus erythematosus and erythema multiforme-like syndrome,CTV3_Children
+X50Ex,Chronic discoid lupus erythematosus,CTV3_Children
+X50Ez,Chilblain lupus erythematosus,CTV3_Children
+X50JD,Acropustulosis of infancy,High_Level_SNOMED
+X701u,Juvenile psoriatic arthritis,CTV3_Children
+X701v,Juvenile psoriatic arthritis with psoriasis,CTV3Map_Code_And_Term
+X701w,Juvenile psoriatic arthritis without psoriasis,CTV3_Children
+X7026,Psoriatic arthritis with distal interphalangeal joint involv,CTV3Map_Code_And_Term
+X7027,Psoriatic arthritis - destructive type,CTV3Map_Code_And_Term
+X7028,Psoriatic dactylitis,CTV3_Children
+X704W,Limited lupus erythematosus,CTV3_Children
+X704X,Systemic lupus erythematosus with organ/system involvement,CTV3Map_Code_And_Term
+X704a,Lupus panniculitis,CTV3_Children
+X704b,Bullous systemic lupus erythematosus,CTV3_Children
+X704c,Systemic lupus erythematosus with multisystem involvement,CTV3_Children
+X704d,Cutaneous lupus erythematosus,CTV3_Children
+X704g,Neonatal lupus erythematosus,CTV3Map_Code_And_Term
+X704h,Subacute cutaneous lupus erythematosus,CTV3Map_Code_And_Term
+XE0da,Lupus nephritis,CTV3Map_Code_And_Term
+XE0da,Lupus nephritis,CTV3Map_Code_Only
+XE1CQ,(Psoriasis NOS) or (guttate psoriasis) or (parapsoriasis),High_Level_SNOMED
+XM197,[EDTA] Lupus erythematosus associated with renal failure,CTV3_Children
+XaBE1,Renal tubulo-interstitial disord in systemic lupus erythemat,CTV3Map_Code_And_Term
+XaC1J,Systemic lupus erythematosus with pericarditis,CTV3Map_Code_And_Term
+XaNXa,Chronic large plaque psoriasis,CTV3Map_Code_And_Term
+XaNXa,Chronic large plaque psoriasis,CTV3Map_Code_Only
+XaNXt,Psoriasis vulgaris,CTV3Map_Code_And_Term
+XaNXt,Psoriasis vulgaris,CTV3Map_Code_Only
+XaYOv,Impetigo herpetiformis,High_Level_SNOMED
+XaYOx,Pustular psoriasis,CTV3Map_Code_And_Term
+N0431,Acute polyarticular juvenile rheumatoid arthritis,High_Level_SNOMED
+X705I,Adult onset Still's disease,CTV3Map_Code_And_Term
+X701o,Early onset pauciarticular chronic arthritis,High_Level_SNOMED
+X701r,Early onset polyarticular juvenile chronic arthritis,High_Level_SNOMED
+N041.,Felty's syndrome,CTV3Map_Code_And_Term
+X701k,Fibrosing alveolitis associated with rheumatoid arthritis,CTV3Map_Code_Only
+X701k,Fibrosing alveolitis associated with rheumatoid arthritis,CTV3Map_Code_And_Term
+N040T,Flare of rheumatoid arthritis,CTV3Map_Code_And_Term
+14G1.,H/O: rheumatoid arthritis,High_Level_SNOMED
+X701t,Juvenile rheumatoid arthritis,High_Level_SNOMED
+XE1Gi,Juvenile rheumatoid arthritis &/or Still's disease,High_Level_SNOMED
+N043z,Juvenile rheumatoid arthritis NOS,High_Level_SNOMED
+X701p,Late onset pauciarticular chronic arthritis,High_Level_SNOMED
+X701s,Late onset polyarticular juvenile chronic arthritis,High_Level_SNOMED
+N0433,Monarticular juvenile rheumatoid arthritis,High_Level_SNOMED
+F3964,Myopathy due to rheumatoid arthritis,CTV3Map_Code_And_Term
+X705t,Nailfold rheumatoid vasculitis,CTV3_Children
+X705v,Necrotising rheumatoid vasculitis,CTV3_Children
+2G27.,O/E-hands-rheumatoid spindling,CTV3Map_Code_And_Term
+N0401,Other rheumatoid arthritis of spine,CTV3Map_Code_And_Term
+N042.,Other rheumatoid arthropathy + visceral/systemic involvement,CTV3Map_Code_And_Term
+N0432,Pauciarticular onset juvenile chronic arthritis,High_Level_SNOMED
+X701q,Polyarticular onset juvenile chronic arthritis,High_Level_SNOMED
+F3712,Polyneuropathy in rheumatoid arthritis,CTV3Map_Code_And_Term
+Xafj8,Rheum arth monitor invitation by SMS (short message service),QOF
+N040.,Rheumatoid arthritis,CTV3Map_Code_And_Term
+Xa3gN,Rheumatoid arthritis - ankle/foot,CTV3_Children
+Xa3gM,Rheumatoid arthritis - hand joint,CTV3_Children
+N040S,Rheumatoid arthritis - multiple joint,CTV3_Children
+Xa3gL,Rheumatoid arthritis - multiple joint,CTV3Map_Code_And_Term
+Xa3gO,Rheumatoid arthritis - other joint,CTV3_Children
+Xa3gP,Rheumatoid arthritis NOS,CTV3_Children
+XE1DU,Rheumatoid arthritis and other inflammatory polyarthropathy,QOF
+XaZdB,Rheumatoid arthritis annual review,CTV3_Children
+XM1XV,Rheumatoid arthritis monitoring,CTV3Map_Code_And_Term
+XafjA,Rheumatoid arthritis monitoring SMS text mesg 2nd invitation,QOF
+XafjB,Rheumatoid arthritis monitoring SMS text mesg 3rd invitation,QOF
+XaaWW,Rheumatoid arthritis monitoring invitation,QOF
+XagLZ,Rheumatoid arthritis monitoring invitation email,QOF
+XaaWt,Rheumatoid arthritis monitoring invitation first letter,QOF
+XaaWu,Rheumatoid arthritis monitoring invitation second letter,QOF
+XaaWv,Rheumatoid arthritis monitoring invitation third letter,QOF
+XaaWx,Rheumatoid arthritis monitoring telephone invitation,QOF
+XaaWw,Rheumatoid arthritis monitoring verbal invitation,QOF
+Xafj9,Rheumatoid arthritis monitring SMS text msg first invitation,QOF
+N040A,Rheumatoid arthritis of DIP joint of finger,CTV3Map_Code_And_Term
+N0409,Rheumatoid arthritis of PIP joint of finger,CTV3Map_Code_And_Term
+N0404,Rheumatoid arthritis of acromioclavicular joint,CTV3Map_Code_And_Term
+N040F,Rheumatoid arthritis of ankle,CTV3Map_Code_And_Term
+N0400,Rheumatoid arthritis of cervical spine,CTV3Map_Code_And_Term
+N0406,Rheumatoid arthritis of distal radioulnar joint,CTV3Map_Code_And_Term
+N0405,Rheumatoid arthritis of elbow,CTV3Map_Code_And_Term
+N040K,Rheumatoid arthritis of first metatarsophalangeal joint,CTV3Map_Code_And_Term
+N040B,Rheumatoid arthritis of hip,CTV3Map_Code_And_Term
+N040M,Rheumatoid arthritis of interphalangeal joint of toe,CTV3Map_Code_And_Term
+N040D,Rheumatoid arthritis of knee,CTV3Map_Code_And_Term
+N040L,Rheumatoid arthritis of lesser metatarsophalangeal joint,CTV3Map_Code_And_Term
+N0408,Rheumatoid arthritis of metacarpophalangeal joint,CTV3Map_Code_And_Term
+N040J,Rheumatoid arthritis of other tarsal joint,CTV3Map_Code_And_Term
+N040C,Rheumatoid arthritis of sacroiliac joint,CTV3Map_Code_And_Term
+N0402,Rheumatoid arthritis of shoulder,CTV3Map_Code_And_Term
+N0403,Rheumatoid arthritis of sternoclavicular joint,CTV3Map_Code_And_Term
+N040G,Rheumatoid arthritis of subtalar joint,CTV3Map_Code_And_Term
+N040H,Rheumatoid arthritis of talonavicular joint,CTV3Map_Code_And_Term
+N040E,Rheumatoid arthritis of tibiofibular joint,CTV3Map_Code_And_Term
+N0407,Rheumatoid arthritis of wrist,CTV3Map_Code_And_Term
+X701m,Rheumatoid arthritis with multisystem involvement,CTV3_Children
+X701j,Rheumatoid arthritis with organ / system involvement,CTV3_Children
+N042z,Rheumatoid arthropathy + visceral/systemic involvement NOS,CTV3Map_Code_And_Term
+N040Q,Rheumatoid bursitis,CTV3Map_Code_And_Term
+G5yA.,Rheumatoid carditis,CTV3Map_Code_And_Term
+N0421,Rheumatoid lung,CTV3Map_Code_And_Term
+N0421,Rheumatoid lung,CTV3Map_Code_Only
+G5y8.,Rheumatoid myocarditis,CTV3Map_Code_And_Term
+N0422,Rheumatoid nodule,CTV3Map_Code_And_Term
+X103Y,Rheumatoid pneumoconiosis,CTV3Map_Code_Only
+X103Y,Rheumatoid pneumoconiosis,CTV3Map_Code_And_Term
+X701l,Rheumatoid vasculitis,CTV3Map_Code_And_Term
+X701i,Seronegative rheumatoid arthritis,CTV3Map_Code_And_Term
+XaBMO,Seropositive errosive rheumatoid arthritis,CTV3Map_Code_And_Term
+X701h,Seropositive rheumatoid arthritis,CTV3_Children
+Xa3wk,Still's disease - juvenile rheumatoid arthritis,High_Level_SNOMED
+N043.,Systemic onset juvenile chronic arthritis,High_Level_SNOMED
+X705u,Systemic rheumatoid vasculitis,CTV3_Children
+Nyu11,[X]Other seropositive rheumatoid arthritis,CTV3Map_Code_And_Term
+Nyu12,[X]Other specified rheumatoid arthritis,CTV3Map_Code_And_Term
+Nyu10,[X]Rheumatoid arthritis+involvement/other organs or systems,CTV3Map_Code_And_Term
+Nyu1G,"[X]Seropositive rheumatoid arthritis, unspecified",CTV3Map_Code_And_Term
+N04X.,"[X]Seropositive rheumatoid arthritis, unspecified",CTV3_Children
