@@ -15,6 +15,12 @@ chronic_cardiac_disease_codes = codelist_from_csv(
 chronic_liver_disease_codes = codelist_from_csv(
     "codelists/chronic_liver_disease.csv", system="ctv3", column="CTV3ID"
 )
+gi_bleed_and_ulcer_codes = codelist_from_csv(
+    "codelists/gi_bleed_and_ulcer.csv", system="ctv3", column="CTV3ID"
+)
+inflammatory_bowel_disease_codes = codelist_from_csv(
+    "codelists/inflammatory_bowel_disease.csv", system="ctv3", column="CTV3ID"
+)
 
 organ_transplant_codes = codelist_from_csv(
     "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
@@ -77,7 +83,18 @@ study = StudyDefinition(
         include_measurement_date=True,
         include_month=True,
     ),
-
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/51
+    gi_bleed_and_ulcer=patients.with_these_clinical_events(
+        gi_bleed_and_ulcer_codes,
+        return_first_date_in_period=True,
+        include_month=True
+    ),
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/50
+    inflammatory_bowel_disease=patients.with_these_clinical_events(
+        inflammatory_bowel_disease_codes,
+        return_first_date_in_period=True,
+        include_month=True
+    ),
     # Blood pressure
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/35
     bp_sys=patients.mean_recorded_value(
