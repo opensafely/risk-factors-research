@@ -1,0 +1,320 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14B4.,H/O: asthma,High_Level_SNOMED
+173A.,Exercise-induced asthma,CTV3Map_Code_And_Term
+173A.,Exercise-induced asthma,CTV3Map_Code_Only
+173A.,Exercise-induced asthma,QOF
+663N.,Asthma disturbing sleep,CTV3Map_Code_And_Term
+663N.,Asthma disturbing sleep,QOF
+663N0,Asthma causing night waking,CTV3Map_Code_And_Term
+663N0,Asthma causing night waking,QOF
+663N1,Asthma disturbs sleep weekly,CTV3Map_Code_And_Term
+663N1,Asthma disturbs sleep weekly,QOF
+663N2,Asthma disturbs sleep frequently,CTV3Map_Code_And_Term
+663N2,Asthma disturbs sleep frequently,QOF
+663O.,Asthma not disturbing sleep,QOF
+663O0,Asthma never disturbs sleep,CTV3Map_Code_And_Term
+663O0,Asthma never disturbs sleep,QOF
+663P.,Asthma limiting activities,CTV3Map_Code_And_Term
+663P.,Asthma limiting activities,QOF
+663Q.,Asthma not limiting activities,QOF
+663U.,Asthma management plan given,CTV3Map_Code_And_Term
+663V.,Asthma severity,CTV3Map_Code_And_Term
+663V0,Occasional asthma,CTV3Map_Code_And_Term
+663V0,Occasional asthma,QOF
+663V1,Mild asthma,CTV3Map_Code_And_Term
+663V1,Mild asthma,QOF
+663V2,Moderate asthma,CTV3Map_Code_And_Term
+663V2,Moderate asthma,QOF
+663V3,Severe asthma,CTV3Map_Code_And_Term
+663V3,Severe asthma,QOF
+663W.,Asthma prophylactic medication used,CTV3_Children
+663d.,Emergency asthma admission since last appointment,CTV3Map_Code_And_Term
+663e.,Asthma restricts exercise,CTV3Map_Code_And_Term
+663e.,Asthma restricts exercise,QOF
+663e0,Asthma sometimes restricts exercise,CTV3Map_Code_And_Term
+663e0,Asthma sometimes restricts exercise,QOF
+663e1,Asthma severely restricts exercise,CTV3Map_Code_And_Term
+663e1,Asthma severely restricts exercise,QOF
+663f.,Asthma never restricts exercise,CTV3Map_Code_And_Term
+663f.,Asthma never restricts exercise,QOF
+679J.,Health education - asthma,High_Level_SNOMED
+8791.,Further asthma - drug prevention,CTV3Map_Code_And_Term
+8793.,Asthma control step 0,High_Level_SNOMED
+8794.,Asthma control step 1,CTV3Map_Code_And_Term
+8795.,Asthma control step 2,CTV3Map_Code_And_Term
+8796.,Asthma control step 3,CTV3Map_Code_And_Term
+8797.,Asthma control step 4,CTV3Map_Code_And_Term
+8798.,Asthma control step 5,CTV3Map_Code_And_Term
+8H2P.,"Emergency admission, asthma",CTV3Map_Code_And_Term
+8H2P.,"Emergency admission, asthma",QOF
+9OJ1.,Attends asthma monitoring,CTV3Map_Code_And_Term
+9OJ3.,Asthma monitor offer default,High_Level_SNOMED
+9OJ4.,Asthma monitoring call first letter,QOF
+9OJ5.,Asthma monitoring call second letter,QOF
+9OJ6.,Asthma monitoring call third letter,QOF
+9OJ7.,Asthma monitoring call verbal invite,QOF
+9OJ8.,Asthma monitoring call telephone invite,QOF
+9OJ9.,Asthma monitoring deleted,High_Level_SNOMED
+9OJA.,Asthma monitored (& check done),QOF
+9Q21.,Patient in asthma study,High_Level_SNOMED
+H3120,Chronic asthmatic bronchitis,CTV3Map_Code_And_Term
+H3120,Chronic asthmatic bronchitis,CTV3Map_Code_Only
+H3120,Chronic asthmatic bronchitis,QOF
+H33..,Asthma,CTV3Map_Code_And_Term
+H33..,Asthma,CTV3Map_Code_Only
+H33..,Asthma,QOF
+H330.,Asthma: [extrins - atop][allerg][pollen][childh][+ hay fev],CTV3_Children
+H330.,Asthma: [extrins - atop][allerg][pollen][childh][+ hay fev],QOF
+H3300,(Hay fever + asthma) or (extr asthma without status asthmat),CTV3_Children
+H3300,(Hay fever + asthma) or (extr asthma without status asthmat),QOF
+H3301,Extrins asthma with: [asthma attack] or [status asthmaticus],CTV3_Children
+H3301,Extrins asthma with: [asthma attack] or [status asthmaticus],QOF
+H330z,Extrinsic asthma NOS,CTV3Map_Code_And_Term
+H330z,Extrinsic asthma NOS,QOF
+H331.,(Intrinsic asthma) or (late onset asthma),CTV3_Children
+H331.,(Intrinsic asthma) or (late onset asthma),QOF
+H3310,Intrinsic asthma without status asthmaticus,CTV3Map_Code_And_Term
+H3310,Intrinsic asthma without status asthmaticus,QOF
+H3311,Intrins asthma with: [asthma attack] or [status asthmaticus],CTV3_Children
+H3311,Intrins asthma with: [asthma attack] or [status asthmaticus],QOF
+H331z,Intrinsic asthma NOS,CTV3Map_Code_And_Term
+H331z,Intrinsic asthma NOS,CTV3Map_Code_Only
+H331z,Intrinsic asthma NOS,QOF
+H332.,Mixed asthma,CTV3_Children
+H332.,Mixed asthma,QOF
+H33z.,Asthma unspecified,CTV3Map_Code_And_Term
+H33z.,Asthma unspecified,CTV3Map_Code_Only
+H33z.,Asthma unspecified,QOF
+H33z0,(Severe asthma attack) or (status asthmaticus NOS),CTV3_Children
+H33z0,(Severe asthma attack) or (status asthmaticus NOS),QOF
+H33z1,Asthma attack (& NOS),CTV3_Children
+H33z1,Asthma attack (& NOS),QOF
+H33z2,Late onset asthma,CTV3_Children
+H33z2,Late onset asthma,QOF
+H33zz,(Asthma:[exerc ind][allerg NEC][NOS]) or (allerg bronch NEC),CTV3_Children
+H33zz,(Asthma:[exerc ind][allerg NEC][NOS]) or (allerg bronch NEC),QOF
+H47y0,Detergent asthma,CTV3Map_Code_And_Term
+H47y0,Detergent asthma,QOF
+Ua1AX,Brittle asthma,CTV3Map_Code_And_Term
+Ua1AX,Brittle asthma,QOF
+X101t,Childhood asthma,CTV3Map_Code_Only
+X101t,Childhood asthma,QOF
+X101u,Late onset asthma,CTV3Map_Code_And_Term
+X101u,Late onset asthma,CTV3Map_Code_Only
+X101u,Late onset asthma,QOF
+X101x,Allergic asthma,CTV3Map_Code_And_Term
+X101x,Allergic asthma,CTV3Map_Code_Only
+X101x,Allergic asthma,QOF
+X101y,Extrinsic asthma with asthma attack,CTV3Map_Code_And_Term
+X101y,Extrinsic asthma with asthma attack,CTV3Map_Code_Only
+X101y,Extrinsic asthma with asthma attack,QOF
+X101z,Allergic asthma NEC,CTV3Map_Code_And_Term
+X101z,Allergic asthma NEC,CTV3Map_Code_Only
+X101z,Allergic asthma NEC,QOF
+X1020,Hay fever with asthma,CTV3Map_Code_And_Term
+X1020,Hay fever with asthma,CTV3Map_Code_Only
+X1020,Hay fever with asthma,QOF
+X1021,Allergic non-atopic asthma,CTV3_Children
+X1021,Allergic non-atopic asthma,QOF
+X1022,Intrinsic asthma with asthma attack,CTV3Map_Code_And_Term
+X1022,Intrinsic asthma with asthma attack,CTV3Map_Code_Only
+X1022,Intrinsic asthma with asthma attack,QOF
+X1023,Drug-induced asthma,CTV3_Children
+X1023,Drug-induced asthma,QOF
+X1024,Aspirin-sensitive asthma with nasal polyps,CTV3_Children
+X1024,Aspirin-sensitive asthma with nasal polyps,QOF
+X1025,Occupational asthma,CTV3Map_Code_And_Term
+X1025,Occupational asthma,QOF
+X1026,Baker's asthma,CTV3_Children
+X1026,Baker's asthma,QOF
+X1027,Colophony asthma,CTV3_Children
+X1027,Colophony asthma,QOF
+X1028,Grain worker's asthma,CTV3_Children
+X1028,Grain worker's asthma,QOF
+X1029,Sulphite-induced asthma,CTV3_Children
+X1029,Sulphite-induced asthma,QOF
+X102D,Status asthmaticus,CTV3_Children
+X102D,Status asthmaticus,QOF
+X102G,Asthmatic pulmonary eosinophilia,QOF
+XE0YQ,Allergic atopic asthma,CTV3Map_Code_And_Term
+XE0YQ,Allergic atopic asthma,CTV3Map_Code_Only
+XE0YQ,Allergic atopic asthma,QOF
+XE0YR,Extrinsic asthma without status asthmaticus,CTV3Map_Code_And_Term
+XE0YR,Extrinsic asthma without status asthmaticus,CTV3Map_Code_Only
+XE0YR,Extrinsic asthma without status asthmaticus,QOF
+XE0YS,Extrinsic asthma with status asthmaticus,CTV3Map_Code_And_Term
+XE0YS,Extrinsic asthma with status asthmaticus,CTV3Map_Code_Only
+XE0YS,Extrinsic asthma with status asthmaticus,QOF
+XE0YT,Non-allergic asthma,CTV3_Children
+XE0YT,Non-allergic asthma,QOF
+XE0YU,Intrinsic asthma with status asthmaticus,CTV3Map_Code_And_Term
+XE0YU,Intrinsic asthma with status asthmaticus,CTV3Map_Code_Only
+XE0YU,Intrinsic asthma with status asthmaticus,QOF
+XE0YV,Status asthmaticus NOS,CTV3Map_Code_And_Term
+XE0YV,Status asthmaticus NOS,CTV3Map_Code_Only
+XE0YV,Status asthmaticus NOS,QOF
+XE0YW,Asthma attack,CTV3Map_Code_And_Term
+XE0YW,Asthma attack,CTV3Map_Code_Only
+XE0YW,Asthma attack,QOF
+XE0YX,Asthma NOS,CTV3Map_Code_And_Term
+XE0YX,Asthma NOS,CTV3Map_Code_Only
+XE0YX,Asthma NOS,QOF
+XE0ZP,Extrinsic asthma - atopy (& pollen),CTV3_Children
+XE0ZP,Extrinsic asthma - atopy (& pollen),QOF
+XE0ZR,Asthma: [intrinsic] or [late onset],CTV3_Children
+XE0ZR,Asthma: [intrinsic] or [late onset],QOF
+XE0ZT,Asthma: [NOS] or [attack],CTV3_Children
+XE0ZT,Asthma: [NOS] or [attack],QOF
+XE2Nb,Asthma monitoring check done,CTV3Map_Code_And_Term
+XE2Nb,Asthma monitoring check done,CTV3Map_Code_Only
+XE2Nb,Asthma monitoring check done,QOF
+XM0s2,Asthma attack NOS,CTV3Map_Code_And_Term
+XM0s2,Asthma attack NOS,CTV3Map_Code_Only
+XM0s2,Asthma attack NOS,QOF
+XM1Xb,Asthma monitoring,CTV3Map_Code_And_Term
+Xa0lZ,Asthmatic bronchitis,CTV3Map_Code_Only
+Xa0lZ,Asthmatic bronchitis,QOF
+Xa1hD,Exacerbation of asthma,CTV3Map_Code_And_Term
+Xa1hD,Exacerbation of asthma,QOF
+Xa8Hn,Asthma control steps,High_Level_SNOMED
+Xa9zf,Acute asthma,CTV3_Children
+Xa9zf,Acute asthma,QOF
+XaBAQ,Recent asthma management,CTV3_Children
+XaBU2,Asthma monitoring call,High_Level_SNOMED
+XaBU3,Asthma monitoring status,High_Level_SNOMED
+XaDvK,Asthma - currently active,CTV3Map_Code_And_Term
+XaDvK,Asthma - currently active,QOF
+XaDvL,Asthma - currently dormant,High_Level_SNOMED
+XaIIW,Asthma accident and emergency attendance since last visit,CTV3Map_Code_And_Term
+XaIIX,Asthma treatment compliance satisfactory,CTV3Map_Code_And_Term
+XaIIY,Asthma treatment compliance unsatisfactory,CTV3Map_Code_And_Term
+XaIIZ,Asthma daytime symptoms,CTV3Map_Code_And_Term
+XaIIZ,Asthma daytime symptoms,QOF
+XaINZ,Asthma causes night symptoms 1 to 2 times per month,CTV3Map_Code_And_Term
+XaINZ,Asthma causes night symptoms 1 to 2 times per month,QOF
+XaINa,Asthma never causes daytime symptoms,CTV3Map_Code_And_Term
+XaINa,Asthma never causes daytime symptoms,QOF
+XaINb,Asthma causes daytime symptoms 1 to 2 times per month,CTV3Map_Code_And_Term
+XaINb,Asthma causes daytime symptoms 1 to 2 times per month,QOF
+XaINc,Asthma causes daytime symptoms 1 to 2 times per week,CTV3Map_Code_And_Term
+XaINc,Asthma causes daytime symptoms 1 to 2 times per week,QOF
+XaINd,Asthma causes daytime symptoms most days,CTV3Map_Code_And_Term
+XaINd,Asthma causes daytime symptoms most days,QOF
+XaINf,Asthma limits walking up hills or stairs,CTV3Map_Code_And_Term
+XaINf,Asthma limits walking up hills or stairs,QOF
+XaINg,Asthma limits walking on the flat,CTV3Map_Code_And_Term
+XaINg,Asthma limits walking on the flat,QOF
+XaINh,Number of asthma exacerbations in past year,CTV3Map_Code_And_Term
+XaIOV,Asthma finding,High_Level_SNOMED
+XaIQ4,Change in asthma management plan,CTV3Map_Code_And_Term
+XaIQ4,Change in asthma management plan,QOF
+XaIQD,Step up change in asthma management plan,CTV3Map_Code_And_Term
+XaIQD,Step up change in asthma management plan,QOF
+XaIQE,Step down change in asthma management plan,CTV3Map_Code_And_Term
+XaIQE,Step down change in asthma management plan,QOF
+XaIR3,Absent from work or school due to asthma,CTV3Map_Code_And_Term
+XaIR3,Absent from work or school due to asthma,QOF
+XaIRN,Asthma monitoring due,High_Level_SNOMED
+XaIeq,Asthma annual review,CTV3Map_Code_And_Term
+XaIeq,Asthma annual review,QOF
+XaIer,Asthma follow-up,CTV3Map_Code_And_Term
+XaIer,Asthma follow-up,QOF
+XaIfK,Asthma medication review,CTV3Map_Code_And_Term
+XaIfK,Asthma medication review,QOF
+XaIoE,Asthma night-time symptoms,CTV3Map_Code_And_Term
+XaIoE,Asthma night-time symptoms,QOF
+XaIu5,Asthma monitoring by nurse,CTV3Map_Code_And_Term
+XaIu5,Asthma monitoring by nurse,QOF
+XaIu6,Asthma monitoring by doctor,CTV3Map_Code_And_Term
+XaIu6,Asthma monitoring by doctor,QOF
+XaIuG,Asthma confirmed,CTV3Map_Code_And_Term
+XaIuG,Asthma confirmed,QOF
+XaIww,Asthma trigger,High_Level_SNOMED
+XaJFG,Aspirin-induced asthma,CTV3Map_Code_And_Term
+XaJFG,Aspirin-induced asthma,QOF
+XaJYe,Asthma clinical management plan,CTV3Map_Code_And_Term
+XaKdk,Work aggravated asthma,CTV3Map_Code_And_Term
+XaKdk,Work aggravated asthma,QOF
+XaLIm,Asthma trigger - respiratory infection,CTV3Map_Code_And_Term
+XaLIn,Asthma trigger - seasonal,CTV3Map_Code_And_Term
+XaLIr,Asthma trigger - animals,CTV3Map_Code_And_Term
+XaLJS,Asthma trigger - cold air,CTV3Map_Code_And_Term
+XaLJT,Asthma trigger - damp,CTV3Map_Code_And_Term
+XaLJU,Asthma trigger - emotion,CTV3Map_Code_And_Term
+XaLPE,Nocturnal asthma,CTV3_Children
+XaLPE,Nocturnal asthma,QOF
+XaNKw,Royal College of Physicians asthma assessment,CTV3Map_Code_And_Term
+XaNKw,Royal College of Physicians asthma assessment,CTV3Map_Code_Only
+XaObi,Asthma trigger - airborne dust,CTV3Map_Code_And_Term
+XaObj,Asthma trigger - exercise,CTV3Map_Code_And_Term
+XaObk,Asthma trigger - pollen,CTV3Map_Code_And_Term
+XaObl,Asthma trigger - tobacco smoke,CTV3Map_Code_And_Term
+XaObm,Asthma trigger - warm air,CTV3Map_Code_And_Term
+XaQHq,Asthma control test,CTV3Map_Code_And_Term
+XaQig,Asthma control questionnaire,CTV3Map_Code_And_Term
+XaQih,Mini asthma quality of life questionnaire,CTV3Map_Code_And_Term
+XaQij,Under care of asthma specialist nurse,CTV3Map_Code_And_Term
+XaR8K,Did not attend asthma review,High_Level_SNOMED
+XaRFi,Patient has a written asthma personal action plan,CTV3Map_Code_And_Term
+XaRFj,Health education - asthma self management,CTV3Map_Code_And_Term
+XaRFk,Health education - structured asthma discussion,CTV3Map_Code_And_Term
+XaRFl,Health education - structured patient focused asthma discuss,CTV3Map_Code_And_Term
+XaX3n,Asthma review using Roy Colleg of Physicians three questions,CTV3Map_Code_And_Term
+XaX3n,Asthma review using Roy Colleg of Physicians three questions,QOF
+XaXZm,Asthma causes night time symptoms 1 to 2 times per week,CTV3Map_Code_And_Term
+XaXZm,Asthma causes night time symptoms 1 to 2 times per week,QOF
+XaXZp,Asthma causes symptoms most nights,CTV3Map_Code_And_Term
+XaXZp,Asthma causes symptoms most nights,QOF
+XaXZs,Asthma limits activities 1 to 2 times per month,CTV3Map_Code_And_Term
+XaXZs,Asthma limits activities 1 to 2 times per month,QOF
+XaXZu,Asthma limits activities 1 to 2 times per week,CTV3Map_Code_And_Term
+XaXZu,Asthma limits activities 1 to 2 times per week,QOF
+XaXZx,Asthma limits activities most days,CTV3Map_Code_And_Term
+XaXZx,Asthma limits activities most days,QOF
+XaXa0,Royal College Physician asthma assessment 3 question score,CTV3Map_Code_And_Term
+XaY2V,Asthma never causes night symptoms,CTV3Map_Code_And_Term
+XaY2V,Asthma never causes night symptoms,QOF
+XaYZB,Asthma self-management plan review,CTV3Map_Code_And_Term
+XaYZh,Number days absent from school due to asthma in past 6 month,CTV3Map_Code_And_Term
+XaYZh,Number days absent from school due to asthma in past 6 month,QOF
+XaYb8,Asthma self-management plan agreed,CTV3Map_Code_And_Term
+XaYja,Asthma trigger - wind,High_Level_SNOMED
+XaYpF,Asthma trigger - perfume,High_Level_SNOMED
+Xaa7B,Chronic asthma with fixed airflow obstruction,CTV3Map_Code_And_Term
+Xaa7B,Chronic asthma with fixed airflow obstruction,QOF
+Xaa7Q,No asthma trigger identified by subject,High_Level_SNOMED
+Xabiu,Asthma monitorng invit SMS (short message servce) txt messge,QOF
+Xabj3,Asthma monitoring invitation email,QOF
+Xac33,Asthma-chronic obstructive pulmonary disease overlap syndrom,QOF
+Xac8r,Telehealth asthma monitoring,CTV3_Children
+XacLz,Asthma monitoring SMS text message 1st invitation,QOF
+XacM0,Asthma monitoring SMS text message 2nd invitation,QOF
+XacM1,Asthma monitoring SMS text message 3rd invitation,QOF
+XacXj,At risk of severe asthma exacerbation,High_Level_SNOMED
+Xafdj,Acute severe exacerbation of asthma,CTV3Map_Code_And_Term
+Xafdj,Acute severe exacerbation of asthma,CTV3Map_Code_Only
+Xafdj,Acute severe exacerbation of asthma,QOF
+Xafdy,Moderate acute exacerbation of asthma,CTV3_Children
+Xafdy,Moderate acute exacerbation of asthma,QOF
+Xafdz,Life threatening acute exacerbation of asthma,CTV3_Children
+Xafdz,Life threatening acute exacerbation of asthma,QOF
+Xaff0,Use of asthma symptom diary,CTV3_Children
+Y0017,Nocturnal Asthma,CTV3_Children
+Y0017,Nocturnal Asthma,QOF
+Y137e,Asthma guidance,CTV3_Children
+Y137f,Indicators - worsening asthma,CTV3_Children
+Y138a,Indicators - asthma attack,CTV3_Children
+Y139b,Asthma guidance,CTV3_Children
+Y139c,Indicators - worsening asthma,CTV3_Children
+Y139d,Indicators - asthma attack,CTV3_Children
+Y13a1,Worsening asthma - preventer inhaler increased dose,CTV3_Children
+Y13a2,Worsening asthma - reliever inhaler increased dose 4 hourly,CTV3_Children
+Y13a3,Worsening asthma - steroid Rescue dose prednisolone,CTV3_Children
+Y13a4,Worsening asthma - steroid Rescue dose prednisolone no. 5mg tabs,CTV3_Children
+Y13a5,Worsening asthma - steroid Rescue dose prednisolone no. days treatment,CTV3_Children
+Y13a7,Peak flow - worsening asthma - less than,CTV3_Children
+Y13a8,Asthma attack - reliever use more frequent than every,CTV3_Children
+Y13a9,Asthma attack - peak flow less than,CTV3_Children
+Y1b24,Acute severe exacerbation of allergic asthma,CTV3_Children
+Y1b24,Acute severe exacerbation of allergic asthma,QOF
+Y1f90,Quality and Outcomes Framework asthma quality indicator-related care invitation (procedure),QOF

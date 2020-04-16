@@ -1,0 +1,670 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+4C53.,Bone marrow: myeloma cells,CTV3Map_Code_And_Term
+A7896,HIV disease resulting in Burkitt's lymphoma,CTV3Map_Code_And_Term
+A7897,HIV dis resulting oth types of non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+AyuC6,[X]HIV disease resulting in other non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+B6...,Malig neoplasm lympha & haemopoiet tiss (& [histiocyt tiss]),CTV3_Children
+B60..,Lymphosarcoma and reticulosarcoma,CTV3Map_Code_And_Term
+B600.,Reticulosarcoma,CTV3Map_Code_And_Term
+B6000,Reticulosarcoma of unspecified site,CTV3Map_Code_And_Term
+B6001,"Reticulosarcoma of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B6002,Reticulosarcoma of intrathoracic lymph nodes,CTV3_Children
+B6003,Reticulosarcoma of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6004,Reticulosarcoma of lymph nodes of axilla and upper limb,CTV3_Children
+B6005,Reticulosarcoma of lymph nodes of inguinal region and leg,CTV3_Children
+B6006,Reticulosarcoma of intrapelvic lymph nodes,CTV3_Children
+B6007,Reticulosarcoma of spleen,CTV3Map_Code_And_Term
+B6008,Reticulosarcoma of lymph nodes of multiple sites,CTV3_Children
+B600z,Reticulosarcoma NOS,CTV3Map_Code_And_Term
+B601.,Lymphosarcoma,CTV3Map_Code_And_Term
+B6010,Lymphosarcoma of unspecified site,CTV3Map_Code_And_Term
+B6011,"Lymphosarcoma of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B6012,Lymphosarcoma of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6013,Lymphosarcoma of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6014,Lymphosarcoma of lymph nodes of axilla and upper limb,CTV3_Children
+B6015,Lymphosarcoma of lymph nodes of inguinal region and leg,CTV3Map_Code_And_Term
+B6016,Lymphosarcoma of intrapelvic lymph nodes,CTV3_Children
+B6017,Lymphosarcoma of spleen,CTV3Map_Code_And_Term
+B6018,Lymphosarcoma of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B601z,Lymphosarcoma NOS,CTV3Map_Code_And_Term
+B602.,Burkitt's lymphoma - disorder,CTV3Map_Code_And_Term
+B6020,Burkitt's lymphoma of unspecified site,CTV3_Children
+B6021,"Burkitt's lymphoma of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B6022,Burkitt's lymphoma of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6023,Burkitt's lymphoma of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6024,Burkitt's lymphoma of lymph nodes of axilla and upper limb,CTV3_Children
+B6025,Burkitt's lymphoma of lymph nodes of inguinal region and leg,CTV3Map_Code_And_Term
+B6026,Burkitt's lymphoma of intrapelvic lymph nodes,CTV3_Children
+B6027,Burkitt's lymphoma of spleen,CTV3_Children
+B6028,Burkitt's lymphoma of lymph nodes of multiple sites,CTV3_Children
+B602z,Burkitt's lymphoma NOS,CTV3Map_Code_And_Term
+B60y.,Other specified reticulosarcoma or lymphosarcoma,CTV3Map_Code_And_Term
+B60z.,Reticulosarcoma or lymphosarcoma NOS,CTV3Map_Code_And_Term
+B61..,Hodgkin's disease,CTV3Map_Code_And_Term
+B611.,Hodgkin's granuloma,CTV3Map_Code_And_Term
+B6110,Hodgkin's granuloma of unspecified site,CTV3_Children
+B6111,"Hodgkin's granuloma of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B6112,Hodgkin's granuloma of intrathoracic lymph nodes,CTV3_Children
+B6113,Hodgkin's granuloma of intra-abdominal lymph nodes,CTV3_Children
+B6114,Hodgkin's granuloma of lymph nodes of axilla and upper limb,CTV3_Children
+B6115,Hodgkin's granuloma lymph nodes of inguinal region and leg,CTV3_Children
+B6116,Hodgkin's granuloma of intrapelvic lymph nodes,CTV3_Children
+B6117,Hodgkin's granuloma of spleen,CTV3_Children
+B6118,Hodgkin's granuloma of lymph nodes of multiple sites,CTV3_Children
+B611z,Hodgkin's granuloma NOS,CTV3_Children
+B612.,Hodgkin's sarcoma,CTV3Map_Code_And_Term
+B6120,Hodgkin's sarcoma of unspecified site,CTV3_Children
+B6121,"Hodgkin's sarcoma of lymph nodes of head, face and neck",CTV3_Children
+B6122,Hodgkin's sarcoma of intrathoracic lymph nodes,CTV3_Children
+B6123,Hodgkin's sarcoma of intra-abdominal lymph nodes,CTV3_Children
+B6124,Hodgkin's sarcoma of lymph nodes of axilla and upper limb,CTV3Map_Code_And_Term
+B6125,Hodgkin's sarcoma of lymph nodes of inguinal region and leg,CTV3_Children
+B6126,Hodgkin's sarcoma of intrapelvic lymph nodes,CTV3_Children
+B6127,Hodgkin's sarcoma of spleen,CTV3_Children
+B6128,Hodgkin's sarcoma of lymph nodes of multiple sites,CTV3_Children
+B612z,Hodgkin's sarcoma NOS,CTV3_Children
+B613.,Lymphocyte-rich classical Hodgkin lymphoma,CTV3Map_Code_And_Term
+B6130,"Hodgkin's, lymphocytic-histiocytic predominance unspec site",CTV3Map_Code_And_Term
+B6131,"Hodgkin's, lymphocytic-histiocytic pred of head, face, neck",CTV3Map_Code_And_Term
+B6132,"Hodgkin's, lymphocytic-histiocytic pred intrathoracic nodes",CTV3Map_Code_And_Term
+B6133,"Hodgkin's, lymphocytic-histiocytic pred intra-abdominal node",CTV3Map_Code_And_Term
+B6134,"Hodgkin's, lymphocytic-histiocytic pred axilla and arm",CTV3_Children
+B6135,"Hodgkin's, lymphocytic-histiocytic pred inguinal and leg",CTV3Map_Code_And_Term
+B6136,"Hodgkin's, lymphocytic-histiocytic pred intrapelvic nodes",CTV3Map_Code_And_Term
+B6137,"Hodgkin's, lymphocytic-histiocytic predominance of spleen",CTV3Map_Code_And_Term
+B6138,"Hodgkin's, lymphocytic-histiocytic pred of multiple sites",CTV3Map_Code_And_Term
+B613z,"Hodgkin's, lymphocytic-histiocytic predominance NOS",CTV3Map_Code_And_Term
+B614.,"Hodgkin's disease, nodular sclerosis",CTV3Map_Code_And_Term
+B6140,"Hodgkin's disease, nodular sclerosis of unspecified site",CTV3Map_Code_And_Term
+B6141,"Hodgkin's nodular sclerosis of head, face and neck",CTV3Map_Code_And_Term
+B6142,Hodgkin's nodular sclerosis of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6143,Hodgkin's nodular sclerosis of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6144,Hodgkin's nodular sclerosis of lymph nodes of axilla and arm,CTV3Map_Code_And_Term
+B6145,Hodgkin's nodular sclerosis of inguinal region and leg,CTV3_Children
+B6146,Hodgkin's nodular sclerosis of intrapelvic lymph nodes,CTV3_Children
+B6147,"Hodgkin's disease, nodular sclerosis of spleen",CTV3Map_Code_And_Term
+B6148,Hodgkin's nodular sclerosis of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B614z,"Hodgkin's disease, nodular sclerosis NOS",CTV3Map_Code_And_Term
+B615.,"Hodgkin's disease, mixed cellularity",CTV3Map_Code_And_Term
+B6150,"Hodgkin's disease, mixed cellularity of unspecified site",CTV3Map_Code_And_Term
+B6151,"Hodgkin's mixed cellularity of lymph nodes head, face, neck",CTV3Map_Code_And_Term
+B6152,Hodgkin's mixed cellularity of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6153,Hodgkin's mixed cellularity of intra-abdominal lymph nodes,CTV3_Children
+B6154,Hodgkin's mixed cellularity of lymph nodes of axilla and arm,CTV3_Children
+B6155,Hodgkin's mixed cellularity of lymph nodes inguinal and leg,CTV3Map_Code_And_Term
+B6156,Hodgkin's mixed cellularity of intrapelvic lymph nodes,CTV3_Children
+B6157,"Hodgkin's disease, mixed cellularity of spleen",CTV3_Children
+B6158,Hodgkin's mixed cellularity of lymph nodes of multiple sites,CTV3_Children
+B615z,"Hodgkin's disease, mixed cellularity NOS",CTV3Map_Code_And_Term
+B616.,"Hodgkin's disease, lymphocytic depletion",CTV3Map_Code_And_Term
+B6160,Hodgkin's lymphocytic depletion of unspecified site,CTV3Map_Code_And_Term
+B6161,"Hodgkin's lymphocytic depletion of head, face and neck",CTV3Map_Code_And_Term
+B6162,Hodgkin's lymphocytic depletion of intrathoracic lymph nodes,CTV3_Children
+B6163,Hodgkin's lymphocytic depletion intra-abdominal lymph nodes,CTV3_Children
+B6164,Hodgkin's lymphocytic depletion lymph nodes axilla and arm,CTV3Map_Code_And_Term
+B6165,Hodgkin's lymphocytic depletion lymph nodes inguinal and leg,CTV3Map_Code_And_Term
+B6166,Hodgkin's lymphocytic depletion of intrapelvic lymph nodes,CTV3_Children
+B6167,"Hodgkin's disease, lymphocytic depletion of spleen",CTV3Map_Code_And_Term
+B6168,Hodgkin's lymphocytic depletion lymph nodes multiple sites,CTV3Map_Code_And_Term
+B616z,"Hodgkin's disease, lymphocytic depletion NOS",CTV3Map_Code_And_Term
+B61z.,Hodgkin's disease NOS,CTV3Map_Code_And_Term
+B61z0,"Hodgkin's disease NOS, unspecified site",CTV3Map_Code_And_Term
+B61z1,"Hodgkin's disease NOS of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B61z2,Hodgkin's disease NOS of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B61z3,Hodgkin's disease NOS of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B61z4,Hodgkin's disease NOS of lymph nodes of axilla and arm,CTV3Map_Code_And_Term
+B61z5,Hodgkin's disease NOS of lymph nodes inguinal region and leg,CTV3Map_Code_And_Term
+B61z6,Hodgkin's disease NOS of intrapelvic lymph nodes,CTV3_Children
+B61z7,Hodgkin's disease NOS of spleen,CTV3Map_Code_And_Term
+B61z8,Hodgkin's disease NOS of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B61zz,Hodgkin's disease NOS,CTV3_Children
+B62..,Other malignant neoplasm of lymphoid and histiocytic tissue,CTV3Map_Code_And_Term
+B620.,(Nodular lymphoma: Brill-Symmers) or (reticulosarc foll/nod),CTV3_Children
+B6200,Nodular lymphoma of unspecified site,CTV3Map_Code_And_Term
+B6201,"Nodular lymphoma of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B6202,Nodular lymphoma of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6203,Nodular lymphoma of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6204,Nodular lymphoma of lymph nodes of axilla and upper limb,CTV3Map_Code_And_Term
+B6205,Nodular lymphoma of lymph nodes of inguinal region and leg,CTV3Map_Code_And_Term
+B6206,Nodular lymphoma of intrapelvic lymph nodes,CTV3_Children
+B6207,Nodular lymphoma of spleen,CTV3_Children
+B6208,Nodular lymphoma of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B620z,Nodular lymphoma NOS,CTV3Map_Code_And_Term
+B621.,Mycosis fungoides,CTV3Map_Code_And_Term
+B6210,Mycosis fungoides of unspecified site,CTV3Map_Code_And_Term
+B6211,"Mycosis fungoides of the lymph nodes of head, face and neck",CTV3_Children
+B6212,Mycosis fungoides of intrathoracic lymph nodes,CTV3_Children
+B6213,Mycosis fungoides of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6214,Mycosis fungoides of lymph nodes of axilla and upper limb,CTV3Map_Code_And_Term
+B6215,Mycosis fungoides of lymph nodes of inguinal region and leg,CTV3Map_Code_And_Term
+B6216,Mycosis fungoides of intrapelvic lymph nodes,CTV3_Children
+B6217,Mycosis fungoides of spleen,CTV3_Children
+B6218,Mycosis fungoides of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B621z,Mycosis fungoides NOS,CTV3Map_Code_And_Term
+B622.,Sezary's disease,CTV3Map_Code_And_Term
+B6220,Sezary's disease of unspecified site,CTV3_Children
+B6221,"Sezary's disease of lymph nodes of head, face and neck",CTV3_Children
+B6222,Sezary's disease of intrathoracic lymph nodes,CTV3_Children
+B6223,Sezary's disease of intra-abdominal lymph nodes,CTV3_Children
+B6224,Sezary's disease of lymph nodes of axilla and upper limb,CTV3_Children
+B6225,Sezary's disease of lymph nodes of inguinal region and leg,CTV3_Children
+B6226,Sezary's disease of intrapelvic lymph nodes,CTV3_Children
+B6227,Sezary's disease of spleen,CTV3_Children
+B6228,Sezary's disease of lymph nodes of multiple sites,CTV3_Children
+B622z,Sezary's disease NOS,CTV3Map_Code_And_Term
+B623.,Malignant histiocytosis,CTV3Map_Code_And_Term
+B6230,Malignant histiocytosis of unspecified site,CTV3Map_Code_And_Term
+B6231,"Malignant histiocytosis of lymph nodes head, face and neck",CTV3Map_Code_And_Term
+B6232,Malignant histiocytosis of intrathoracic lymph nodes,CTV3_Children
+B6233,Malignant histiocytosis of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6234,Malignant histiocytosis of lymph nodes of axilla and arm,CTV3Map_Code_And_Term
+B6235,Malignant histiocytosis of lymph nodes inguinal and leg,CTV3_Children
+B6236,Malignant histiocytosis of intrapelvic lymph nodes,CTV3_Children
+B6237,Malignant histiocytosis of spleen,CTV3_Children
+B6238,Malignant histiocytosis of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B623z,Malignant histiocytosis NOS,CTV3Map_Code_And_Term
+B624.,Hairy cell leukaemia,CTV3Map_Code_And_Term
+B6240,Leukaemic reticuloendotheliosis of unspecified sites,CTV3Map_Code_And_Term
+B6241,"Leukaemic reticuloend of lymph nodes of head, face and neck",CTV3_Children
+B6242,Leukaemic reticuloendotheliosis of intrathoracic lymph nodes,CTV3_Children
+B6243,Leukaemic reticuloend of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B6244,Leukaemic reticuloend of lymph nodes of axilla and arm,CTV3_Children
+B6245,Leukaemic reticuloend of lymph nodes inguinal region and leg,CTV3_Children
+B6246,Leukaemic reticuloendotheliosis of intrapelvic lymph nodes,CTV3_Children
+B6247,Leukaemic reticuloendotheliosis of spleen,CTV3_Children
+B6248,Leukaemic reticuloend of lymph nodes of multiple sites,CTV3_Children
+B624z,Leukaemic reticuloendotheliosis NOS,CTV3Map_Code_And_Term
+B625.,Letterer-Siwe disease,CTV3Map_Code_And_Term
+B6250,Letterer-Siwe disease of unspecified sites,CTV3Map_Code_And_Term
+B6251,"Letterer-Siwe disease of lymph nodes of head, face and neck",CTV3_Children
+B6252,Letterer-Siwe disease of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B6253,Letterer-Siwe disease of intra-abdominal lymph nodes,CTV3_Children
+B6254,Letterer-Siwe disease of lymph nodes of axilla and arm,CTV3_Children
+B6255,Letterer-Siwe disease of lymph nodes inguinal region and leg,CTV3_Children
+B6256,Letterer-Siwe disease of intrapelvic lymph nodes,CTV3_Children
+B6257,Letterer-Siwe disease of spleen,CTV3_Children
+B6258,Letterer-Siwe disease of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B625z,Letterer-Siwe disease NOS,CTV3Map_Code_And_Term
+B626.,Malignant mast cell tumours,CTV3Map_Code_And_Term
+B6260,Mast cell malignancy of unspecified site,CTV3Map_Code_And_Term
+B6261,"Mast cell malignancy of lymph nodes of head, face and neck",CTV3_Children
+B6262,Mast cell malignancy of intrathoracic lymph nodes,CTV3_Children
+B6263,Mast cell malignancy of intra-abdominal lymph nodes,CTV3_Children
+B6264,Mast cell malignancy of lymph nodes of axilla and upper limb,CTV3_Children
+B6265,Mast cell malignancy of lymph nodes inguinal region and leg,CTV3Map_Code_And_Term
+B6266,Mast cell malignancy of intrapelvic lymph nodes,CTV3_Children
+B6267,Mast cell malignancy of spleen,CTV3_Children
+B6268,Mast cell malignancy of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B626z,Malignant mast cell tumour NOS,CTV3Map_Code_And_Term
+B627.,Non-Hodgkin's lymphoma - disorder,CTV3Map_Code_And_Term
+B6271,Follicular non-Hodg mixed sml cleavd & lge cell lymphoma,CTV3Map_Code_And_Term
+B6273,Diffuse malignant lymphoma - small non-cleaved cell,CTV3Map_Code_And_Term
+B6274,Malignant lymphoma - small cleaved cell,CTV3Map_Code_And_Term
+B6275,Malignant lymphoma - mixed small and large cell,CTV3Map_Code_And_Term
+B6276,Diffuse non-Hodgkin's immunoblastic (diffuse) lymphoma,CTV3Map_Code_And_Term
+B6277,Diffuse non-Hodgkin's lymphoblastic (diffuse) lymphoma,CTV3Map_Code_And_Term
+B6278,Diffuse non-Hodgkin's lymphoma undifferentiated (diffuse),CTV3Map_Code_And_Term
+B627B,Other types of follicular non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+B627C,Follicular lymphoma: [non-Hodgkin's] or [NOS],CTV3_Children
+B62x.,Malignant lymphoma otherwise specified,CTV3Map_Code_And_Term
+B62x5,Malignant immunoproliferative small intestinal disease,CTV3Map_Code_And_Term
+B62y.,Malignant lymphoma NOS,CTV3Map_Code_And_Term
+B62y0,Malignant lymphoma NOS of unspecified site,CTV3Map_Code_And_Term
+B62y1,"Malignant lymphoma NOS of lymph nodes of head, face and neck",CTV3Map_Code_And_Term
+B62y2,Malignant lymphoma NOS of intrathoracic lymph nodes,CTV3Map_Code_And_Term
+B62y3,Malignant lymphoma NOS of intra-abdominal lymph nodes,CTV3Map_Code_And_Term
+B62y4,Malignant lymphoma NOS of lymph nodes of axilla and arm,CTV3Map_Code_And_Term
+B62y5,Malignant lymphoma NOS of lymph node inguinal region and leg,CTV3Map_Code_And_Term
+B62y6,Malignant lymphoma NOS of intrapelvic lymph nodes,CTV3Map_Code_And_Term
+B62y7,Malignant lymphoma NOS of spleen,CTV3Map_Code_And_Term
+B62y8,Malignant lymphoma NOS of lymph nodes of multiple sites,CTV3Map_Code_And_Term
+B62z.,Malignant neoplasms of lymphoid and histiocytic tissue NOS,CTV3Map_Code_And_Term
+B62z0,Unspec malig neop lymphoid/histiocytic of unspecified site,CTV3Map_Code_And_Term
+B62z1,Unspec malig neop lymphoid/histiocytic lymph node head/neck,CTV3Map_Code_And_Term
+B62z2,Unspec malig neop lymphoid/histiocytic of intrathoracic node,CTV3Map_Code_And_Term
+B62z3,Unspec malig neop lymphoid/histiocytic intra-abdominal nodes,CTV3Map_Code_And_Term
+B62z4,Unspec malig neop lymphoid/histiocytic lymph node axilla/arm,CTV3Map_Code_And_Term
+B62z5,Unspec malig neop lymphoid/histiocytic nodes inguinal/leg,CTV3Map_Code_And_Term
+B62z6,Unspec malig neop lymphoid/histiocytic of intrapelvic nodes,CTV3Map_Code_And_Term
+B62z7,Unspec malig neop lymphoid/histiocytic of spleen,CTV3_Children
+B62z8,Unspec malig neop lymphoid/histiocytic of multiple sites,CTV3Map_Code_And_Term
+B62zz,(Lymphoid & histiocytic malign NOS) or (immunoprolif neopl),QOF
+B63..,Multiple myeloma and immunoproliferative disease,CTV3Map_Code_And_Term
+B630.,Myeloma,CTV3Map_Code_And_Term
+B6300,"Malignant plasma cell neoplasm, extramedullary plasmacytoma",CTV3Map_Code_And_Term
+B6302,Plasmacytoma NOS,CTV3_Children
+B63y.,Other immunoproliferative neoplasms,CTV3Map_Code_And_Term
+B63z.,Immunoproliferative neoplasm or myeloma NOS,CTV3Map_Code_And_Term
+B64..,Lymphoid leukaemia,CTV3Map_Code_And_Term
+B640.,Acute lymphoid leukaemia,CTV3Map_Code_And_Term
+B641.,Chronic lymphoid leukaemia,CTV3Map_Code_And_Term
+B642.,Subacute lymphoid leukaemia,CTV3Map_Code_And_Term
+B64y.,Other lymphoid leukaemia,CTV3Map_Code_And_Term
+B64y0,Aleukaemic lymphoid leukaemia,CTV3_Children
+B64y1,Prolymphocytic leukaemia,CTV3Map_Code_And_Term
+B64y2,Adult T-cell leukaemia,CTV3Map_Code_And_Term
+B64yz,Other lymphoid leukaemia NOS,CTV3Map_Code_And_Term
+B64z.,Lymphoid leukaemia NOS,CTV3Map_Code_And_Term
+B65..,Myeloid leukaemia,CTV3Map_Code_And_Term
+B650.,Acute myeloid leukaemia,CTV3Map_Code_And_Term
+B651.,Chronic myeloid leukaemia,CTV3Map_Code_And_Term
+B6510,Chronic eosinophilic leukaemia,CTV3Map_Code_And_Term
+B6512,Chronic neutrophilic leukaemia,CTV3Map_Code_And_Term
+B651z,Chronic myeloid leukaemia NOS,CTV3Map_Code_And_Term
+B652.,Subacute myeloid leukaemia,CTV3Map_Code_And_Term
+B653.,Myeloid sarcoma,CTV3Map_Code_And_Term
+B6530,Chloroma,CTV3Map_Code_And_Term
+B6531,Granulocytic sarcoma,CTV3_Children
+B653z,Myeloid sarcoma NOS,CTV3_Children
+B65y.,Other myeloid leukaemia,CTV3Map_Code_And_Term
+B65y0,Aleukaemic myeloid leukaemia,CTV3_Children
+B65y1,Acute promyelocytic leukaemia,CTV3Map_Code_And_Term
+B65yz,Other myeloid leukaemia NOS,CTV3Map_Code_And_Term
+B65z.,Myeloid leukaemia NOS,CTV3Map_Code_And_Term
+B66..,Monocytic leukaemia,CTV3Map_Code_And_Term
+B660.,Acute monocytic leukaemia,CTV3Map_Code_And_Term
+B661.,Chronic monocytic leukaemia,CTV3Map_Code_And_Term
+B662.,Subacute monocytic leukaemia,CTV3Map_Code_And_Term
+B66y.,Other monocytic leukaemia,CTV3Map_Code_And_Term
+B66y0,Aleukaemic monocytic leukaemia,CTV3_Children
+B66yz,Other monocytic leukaemia NOS,CTV3Map_Code_And_Term
+B66z.,Monocytic leukaemia NOS,CTV3Map_Code_And_Term
+B67..,Other specified leukaemia,CTV3Map_Code_And_Term
+B670.,(Acute erythraemia+erythroleukaemia) or( Di Guglielmo's dis),CTV3_Children
+B671.,(Chronic erythraemia) or (Heilmeyer - Schoner disease),CTV3_Children
+B672.,Megakaryocytic leukaemia,CTV3Map_Code_And_Term
+B673.,Mast cell leukaemia,CTV3Map_Code_And_Term
+B674.,Acute panmyelosis,CTV3Map_Code_And_Term
+B675.,Acute myelofibrosis,CTV3_Children
+B67y.,Other and unspecified leukaemia,CTV3Map_Code_And_Term
+B67y0,Lymphosarcoma cell leukaemia,CTV3Map_Code_And_Term
+B67yz,Other and unspecified leukaemia NOS,CTV3Map_Code_And_Term
+B67z.,Other specified leukaemia NOS,CTV3Map_Code_And_Term
+B68..,Leukaemia of unspecified cell type,CTV3Map_Code_And_Term
+B680.,Acute leukaemia NOS,CTV3Map_Code_And_Term
+B681.,Chronic leukaemia NOS,CTV3Map_Code_And_Term
+B682.,Subacute leukaemia NOS,CTV3Map_Code_And_Term
+B68y.,Other leukaemia of unspecified cell type,CTV3Map_Code_And_Term
+B68z.,Leukaemia NOS,CTV3Map_Code_And_Term
+B69..,Myelomonocytic leukaemia,CTV3Map_Code_And_Term
+B690.,Acute myelomonocytic leukaemia,CTV3Map_Code_And_Term
+B691.,Chronic myelomonocytic leukaemia,CTV3Map_Code_And_Term
+B692.,Subacute myelomonocytic leukaemia,CTV3Map_Code_And_Term
+B6y..,Malignant neoplasm lymphatic or haematopoietic tissue OS,CTV3Map_Code_And_Term
+B6z..,Malignant neoplasm lymphatic or haematopoietic tissue NOS,CTV3Map_Code_And_Term
+BBg1.,[M]Malignant lymphoma NOS,CTV3Map_Code_And_Term
+BBg10,"[M]Malignant lymphoma, diffuse NOS",CTV3Map_Code_And_Term
+BBg2.,"[M]Malignant lymphoma, non-Hodgkin's type",CTV3Map_Code_And_Term
+BBg3.,"[M]Malignant lymphoma, undifferentiated cell type NOS",CTV3Map_Code_And_Term
+BBg4.,"Malignant lymphoma, stem cell type",CTV3Map_Code_And_Term
+BBg5.,"[M]Malignant lymphoma, convoluted cell type NOS",CTV3Map_Code_And_Term
+BBg6.,[M]Lymphosarcoma NOS,CTV3Map_Code_And_Term
+BBg7.,"[M]Malignant lymphoma, lymphoplasmacytoid type",CTV3Map_Code_And_Term
+BBg8.,"[M]Malignant lymphoma, immunoblastic type",CTV3Map_Code_And_Term
+BBg9.,"[M]Mal lymphoma, mix lymph-hist NOS (& [diff reticulosarc])",CTV3_Children
+BBgA.,"[M]Malignant lymphoma, centroblastic-centrocytic, diffuse",CTV3Map_Code_And_Term
+BBgB.,"[M]Malignant lymphoma, follicular centre cell NOS",CTV3Map_Code_And_Term
+BBgC.,"[M]Malignant lymphoma, lymphocytic, well differentiated NOS",CTV3Map_Code_And_Term
+BBgD.,"[M]Malig lymphoma, lymphocytic, intermediate different NOS",CTV3Map_Code_And_Term
+BBgE.,"[M]Malignant lymphoma, centrocytic",CTV3Map_Code_And_Term
+BBgF.,"[M]Malignant lymphoma, follicular centre cell, cleaved NOS",CTV3_Children
+BBgG.,"[M]Malignant lymphoma, lymphocytic, poorly different NOS",CTV3Map_Code_And_Term
+BBgH.,[M]Prolymphocytic lymphosarcoma,CTV3_Children
+BBgJ.,"[M]Malignant lymphoma, centroblastic type NOS",CTV3Map_Code_And_Term
+BBgK.,"[M]Malig lymphoma, follicular centre cell, non-cleaved NOS",CTV3Map_Code_And_Term
+BBgL.,"[M]Malignant lymphoma, small lymphocytic NOS",CTV3Map_Code_And_Term
+BBgM.,"[M]Malignant lymphoma, small cleaved cell, diffuse",CTV3Map_Code_And_Term
+BBgN.,"[M]Malign lymphoma,lymphocytic,intermediate differn, diffuse",CTV3Map_Code_And_Term
+BBgP.,"[M]Malignant lymphoma, mixed small and large cell, diffuse",CTV3Map_Code_And_Term
+BBgQ.,[M]Malignant lymphomatous polyposis,CTV3Map_Code_And_Term
+BBgR.,"[M]Malignant lymphoma, large cell, diffuse NOS",CTV3Map_Code_And_Term
+BBgS.,"[M]Malignant lymphoma, large cell, cleaved, diffuse",CTV3Map_Code_And_Term
+BBgT.,"[M]Malignant lymphoma, large cell, non-cleaved, diffuse",CTV3Map_Code_And_Term
+BBgV.,"[M]Malignant lymphoma, small cell, non-cleaved, diffuse",CTV3Map_Code_And_Term
+BBgz.,"[M]Lymphoma, diffuse or NOS",CTV3Map_Code_And_Term
+BBh..,Reticulosarcoma morphology,CTV3Map_Code_And_Term
+BBh1.,"Reticulosarcoma, pleomorphic cell type",CTV3Map_Code_And_Term
+BBh2.,"Reticulosarcoma, nodular",CTV3Map_Code_And_Term
+BBj..,[M]Hodgkin's disease,CTV3Map_Code_And_Term
+BBj0.,[M]Hodgkin's disease NOS (& [lymphogranuloma malignant]),CTV3_Children
+BBj1.,"[M]Hodgkin's disease, lymphocytic predominance",CTV3Map_Code_And_Term
+BBj10,"[M]Hodgkin,s disease, lymphocytic predominance, diffuse",CTV3Map_Code_And_Term
+BBj11,"[M]Hodgkin,s disease, lymphocytic predominance, nodular",CTV3Map_Code_And_Term
+BBj2.,"[M]Hodgkin's disease, mixed cellularity",CTV3Map_Code_And_Term
+BBj3.,"[M]Hodgkin's disease, lymphocytic depletion NOS",CTV3Map_Code_And_Term
+BBj4.,"[M]Hodgkin's disease,lymphocytic depletion,diffuse fibrosis",CTV3Map_Code_And_Term
+BBj5.,"[M]Hodgkin's disease, lymphocytic depletion, reticular type",CTV3_Children
+BBj6.,"[M]Hodgkin's disease, nodular sclerosis NOS",CTV3Map_Code_And_Term
+BBj60,"[M]Hodgkin,s disease, nodular sclerosis, lymphocytic predom",CTV3Map_Code_And_Term
+BBj61,"[M]Hodgkin,s disease, nodular sclerosis, mixed cellularity",CTV3Map_Code_And_Term
+BBj62,"[M]Hodgkin's disease, nodular sclerosis, lymphocytic deplet",CTV3Map_Code_And_Term
+BBj7.,"[M]Hodgkin's disease, nodular sclerosis, cellular phase",CTV3Map_Code_And_Term
+BBj9.,[M]Hodgkin's granuloma,CTV3Map_Code_And_Term
+BBjA.,[M]Hodgkin's sarcoma,CTV3_Children
+BBk..,"Lymphoma, nodular or follicular",CTV3Map_Code_And_Term
+BBk0.,"[M]Malignant lymphoma, nodular NOS (& [Brill-Symmers dis])",CTV3_Children
+BBk1.,"[M]Malig lymphoma, mixed lymphocytic-histiocytic, nodular",CTV3_Children
+BBk2.,"[M]Malignant lymphoma, centroblastic-centrocytic, follicular",CTV3Map_Code_And_Term
+BBk3.,"Malign lymphoma, lymphocytic, well differentiated, nodular",CTV3Map_Code_And_Term
+BBk4.,"Malig lymphoma,lymphocytic,intermed differentiation,nodular",CTV3_Children
+BBk5.,"Malig lymphoma, follicular centre cell, cleaved, follicular",CTV3Map_Code_And_Term
+BBk6.,"Malig lymphoma, lymphocytic, poorly differentiated, nodular",CTV3_Children
+BBk7.,"[M]Malignant lymphoma, centroblastic type, follicular",CTV3Map_Code_And_Term
+BBk8.,"[M]Mal lymphoma, follic centre cell, non-cleaved, follicular",CTV3Map_Code_And_Term
+BBkz.,"[M]Lymphoma, nodular or follicular NOS",CTV3Map_Code_And_Term
+BBl..,[M]Mycosis fungoides,CTV3Map_Code_And_Term
+BBl1.,[M]Sezary's disease,CTV3Map_Code_And_Term
+BBlz.,[M]Mycosis fungoides NOS,CTV3Map_Code_And_Term
+BBm1.,[M]Malignant histiocytosis,CTV3Map_Code_And_Term
+BBm2.,[M]Histiocytic medullary reticulosis,CTV3Map_Code_And_Term
+BBm3.,[M]Letterer - Siwe disease,CTV3Map_Code_And_Term
+BBm4.,[M]True histiocytic lymphoma,CTV3Map_Code_And_Term
+BBm5.,[M] Peripheral T-cell lymphoma NOS,CTV3Map_Code_And_Term
+BBm6.,[M] Alpha heavy chain disease,CTV3Map_Code_And_Term
+BBm8.,[M] Angioimmunoblastic lymphadenopathy,CTV3Map_Code_And_Term
+BBmD.,[M] Cutaneous lymphoma,CTV3Map_Code_And_Term
+BBmE.,[M] Gamma heavy chain disease,CTV3Map_Code_And_Term
+BBmH.,[M] Large cell lymphoma,CTV3Map_Code_And_Term
+BBn..,[M]Plasma cell tumours,CTV3Map_Code_And_Term
+BBn0.,[M]Plasma cell myeloma,CTV3Map_Code_And_Term
+BBn2.,[M]Plasmacytoma NOS,CTV3Map_Code_And_Term
+BBn3.,"Plasma cell tumour, malignant",CTV3Map_Code_And_Term
+BBnz.,[M]Plasma cell tumour NOS,CTV3Map_Code_And_Term
+BBp1.,Mast cell sarcoma,CTV3Map_Code_And_Term
+BBp2.,[M]Malignant mastocytosis,CTV3Map_Code_And_Term
+BBq..,[M]Burkitt's tumours,CTV3_Children
+BBq0.,[M]Burkitt's tumour,CTV3_Children
+BBqz.,[M]Burkitt's tumour NOS,CTV3_Children
+BBr..,Leukaemia morphology,CTV3Map_Code_And_Term
+BBr0.,[M]Leukaemias unspecified,CTV3Map_Code_And_Term
+BBr00,[M]Leukaemia NOS,CTV3Map_Code_And_Term
+BBr01,[M]Acute leukaemia NOS,CTV3Map_Code_And_Term
+BBr02,[M]Subacute leukaemia NOS,CTV3Map_Code_And_Term
+BBr03,[M]Chronic leukaemia NOS,CTV3Map_Code_And_Term
+BBr04,[M]Aleukaemic leukaemia NOS,CTV3Map_Code_And_Term
+BBr0z,"[M]Leukaemia unspecified, NOS",CTV3Map_Code_And_Term
+BBr1.,Compound leukaemias,CTV3_Children
+BBr10,[M]Compound leukaemia,CTV3_Children
+BBr1z,[M]Compound leukaemia NOS,CTV3_Children
+BBr2.,[M]Lymphoid leukaemias,CTV3Map_Code_And_Term
+BBr20,[M]Lymphoid leukaemia NOS,CTV3Map_Code_And_Term
+BBr21,[M]Acute lymphoid leukaemia,CTV3Map_Code_And_Term
+BBr22,[M]Subacute lymphoid leukaemia,CTV3_Children
+BBr23,[M]Chronic lymphoid leukaemia,CTV3Map_Code_And_Term
+BBr24,[M]Aleukaemic lymphoid leukaemia,CTV3_Children
+BBr25,[M]Prolymphocytic leukaemia,CTV3Map_Code_And_Term
+BBr26,Burkitt's cell leukaemia,CTV3Map_Code_And_Term
+BBr27,[M]Adult T-cell leukaemia/lymphoma,CTV3Map_Code_And_Term
+BBr2z,[M]Other lymphoid leukaemia NOS,CTV3_Children
+BBr3.,[M]Plasma cell leukaemias,CTV3Map_Code_And_Term
+BBr30,[M]Plasma cell leukaemia,CTV3_Children
+BBr3z,[M]Plasma cell leukaemia NOS,CTV3Map_Code_And_Term
+BBr4.,[M]Erythroleukaemias,CTV3_Children
+BBr40,[M]Erythroleukaemia,CTV3_Children
+BBr41,Acute erythraemia,CTV3_Children
+BBr42,[M]Chronic erythraemia,CTV3_Children
+BBr4z,[M]Erythroleukaemia NOS,CTV3Map_Code_And_Term
+BBr50,[M]Lymphosarcoma cell leukaemia,CTV3_Children
+BBr5z,[M]Lymphosarcoma cell leukaemia NOS,CTV3_Children
+BBr6.,[M]Myeloid leukaemias,CTV3Map_Code_And_Term
+BBr60,[M]Myeloid leukaemia NOS,CTV3Map_Code_And_Term
+BBr61,[M]Acute myeloid leukaemia,CTV3Map_Code_And_Term
+BBr62,[M]Subacute myeloid leukaemia,CTV3Map_Code_And_Term
+BBr63,[M]Chronic myeloid leukaemia,CTV3Map_Code_And_Term
+BBr64,[M]Aleukaemic myeloid leukaemia,CTV3_Children
+BBr65,[M]Neutrophilic leukaemia,CTV3_Children
+BBr66,[M]Acute promyelocytic leukaemia,CTV3Map_Code_And_Term
+BBr67,[M]Acute myelomonocytic leukaemia,CTV3Map_Code_And_Term
+BBr68,[M]Chronic myelomonocytic leukaemia,CTV3Map_Code_And_Term
+BBr6z,[M]Other myeloid leukaemia NOS,CTV3Map_Code_And_Term
+BBr7.,[M]Basophilic leukaemias,CTV3_Children
+BBr70,[M]Basophilic leukaemia,CTV3Map_Code_And_Term
+BBr7z,[M]Basophilic leukaemia NOS,CTV3_Children
+BBr8.,[M]Eosinophilic leukaemias,CTV3Map_Code_And_Term
+BBr80,Eosinophilic leukaemia,CTV3Map_Code_And_Term
+BBr8z,[M]Eosinophilic leukaemia NOS,CTV3Map_Code_And_Term
+BBr9.,[M]Monocytic leukaemias,CTV3_Children
+BBr90,[M]Monocytic leukaemia NOS,CTV3Map_Code_And_Term
+BBr91,[M]Acute monocytic leukaemia,CTV3_Children
+BBr92,[M]Subacute monocytic leukaemia,CTV3_Children
+BBr93,[M]Chronic monocytic leukaemia,CTV3_Children
+BBr94,[M]Aleukaemic monocytic leukaemia,CTV3_Children
+BBr9z,[M]Other monocytic leukaemia NOS,CTV3_Children
+BBrA.,[M]Miscellaneous leukaemias,CTV3Map_Code_And_Term
+BBrA0,[M]Mast cell leukaemia,CTV3_Children
+BBrA1,[M]Megakaryocytic leukaemia,CTV3Map_Code_And_Term
+BBrA2,Megakaryocytic myelosis,CTV3_Children
+BBrA3,[M]Myeloid sarcoma,CTV3Map_Code_And_Term
+BBrA5,[M]Acute megakaryoblastic leukaemia,CTV3Map_Code_And_Term
+BBrA7,[M]Acute myelofibrosis,CTV3Map_Code_And_Term
+BBrA8,[M]Leukaemic reticuloendotheliosis,CTV3Map_Code_And_Term
+BBrAz,[M]Miscellaneous leukaemia NOS,CTV3Map_Code_And_Term
+BBs..,[M]Misc myeloproliferative and lymphoproliferative disorders,CTV3Map_Code_And_Term
+BBs1.,[M]Acute panmyelosis,CTV3Map_Code_And_Term
+BBv0.,[M]Monocytoid B-cell lymphoma,CTV3Map_Code_And_Term
+BBv2.,[M]AngiocentricT-cell lymphoma,CTV3Map_Code_And_Term
+ByuD.,"[X]Malignant neoplasms of lymphoid, haematopoietic and rela",CTV3Map_Code_And_Term
+ByuD0,[X]Other Hodgkin's disease,CTV3Map_Code_And_Term
+ByuD1,[X]Other types of follicular non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+ByuD2,[X]Other types of diffuse non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+ByuD3,[X]Other specified types of non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+ByuD4,[X]Other malignant immunoproliferative diseases,CTV3Map_Code_And_Term
+ByuD5,[X]Other lymphoid leukaemia,CTV3Map_Code_And_Term
+ByuD6,[X]Other myeloid leukaemia,CTV3Map_Code_And_Term
+ByuD7,[X]Other monocytic leukaemia,CTV3Map_Code_And_Term
+ByuD8,[X]Other specified leukaemias,CTV3Map_Code_And_Term
+ByuD9,[X]Other leukaemia of unspecified cell type,CTV3Map_Code_And_Term
+ByuDA,"[X]Oth spcf mal neoplsm/lymphoid,haematopoietic+rltd tissue",CTV3Map_Code_And_Term
+ByuDB,"[X]Mal neoplasm/lymphoid,haematopoietic+related tissu,unspcf",CTV3Map_Code_And_Term
+ByuDC,"[X]Diffuse non-Hodgkin's lymphoma, unspecified",CTV3Map_Code_And_Term
+ByuDE,[X]Unspecified B-cell non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+ByuH6,[X]Neoplasm/uncertn+unknwn behavior/oth myelodysplastic synd,QOF
+C333.,Macroglobulinaemia,CTV3_Children
+C3330,Waldenstrom's macroglobulinaemia,CTV3Map_Code_And_Term
+C3331,Alpha heavy chain disease,CTV3Map_Code_And_Term
+C3332,Gamma heavy chain disease,CTV3Map_Code_And_Term
+C333z,Macroglobulinaemia NOS,CTV3_Children
+C37y0,Schuller-Christian syndrome,CTV3_Children
+C37y1,Eosinophilic granuloma,CTV3Map_Code_And_Term
+C37y5,Histiocytosis X syndrome,CTV3_Children
+C37y6,"Histiocytosis X , unspecified",CTV3_Children
+C37y7,"Histiocytosis, unspecified",CTV3_Children
+N3309,Osteoporosis in multiple myelomatosis,CTV3Map_Code_And_Term
+X00eT,Lymphoma of retina,High_Level_SNOMED
+X102I,Pulmonary histiocytosis X,CTV3_Children
+X20E9,Langerhans' cell histiocytosis,CTV3Map_Code_And_Term
+X20HV,Lipochrome histiocytosis - familial,CTV3Map_Code_And_Term
+X30L7,Leukaemic infiltrate of kidney,High_Level_SNOMED
+X30L8,Lymphoma of kidney,High_Level_SNOMED
+X50BR,Lymphomatoid papulosis,High_Level_SNOMED
+X70LK,African Burkitt's lymphoma,High_Level_SNOMED
+X78e2,Leukaemia,CTV3_Children
+X78hl,Cutaneous lymphoma,CTV3Map_Code_And_Term
+X78hm,Mycosis fungoides of skin,CTV3_Children
+X78hn,Sezary's disease of skin,CTV3_Children
+XE13I,(Plasma prot met dis: & [hyper/hypo prot]) or (Wald macrogl),High_Level_SNOMED
+XE1vo,Malignant tumour of lymphoid haemopoietic and related tissue,CTV3Map_Code_And_Term
+XE1vp,Nodular lymphoma,CTV3Map_Code_And_Term
+XE1vq,Lymphoid and histiocytic malignancy NOS,CTV3Map_Code_And_Term
+XE1vr,Chronic erythraemia,CTV3_Children
+XE1wd,"[M]Malignant lymphoma, mixed lymphocytic-histiocytic NOS",CTV3_Children
+XE1we,"[M]Lymphogranuloma, malignant",CTV3Map_Code_And_Term
+XE1wf,"[M]Malignant lymphoma, nodular NOS",CTV3Map_Code_And_Term
+XE20J,(Lymphatic tissue carcinoma) or (lymphoma),CTV3_Children
+XE20N,Multiple myeloma etc.,CTV3Map_Code_And_Term
+XE20P,(Plasma cell leukaemia) or (immunoprolif neoplasm NOS),High_Level_SNOMED
+XE20R,Leukaemia: [lymphoid][monocytic][myeloid][specif cell type],CTV3_Children
+XE20T,Leukaemia - specif. cell NOS,CTV3_Children
+XE20V,(Aleukaemic leukaemia) or (leukaemia - unspec cell NOS),CTV3_Children
+XE2bV,Malignant lymphoma - immunoblastic,CTV3_Children
+XE2t9,"[X]Non-Hodgkin's lymphoma, unspecified type",CTV3Map_Code_And_Term
+XE2vi,Acute erythraemia and erythroleukaemia,CTV3Map_Code_And_Term
+XM1FM,"Malign lymphoma - lymphocytic, intermediate differentiation",CTV3_Children
+XS5X2,Enteropathy associated T-cell lymphoma,CTV3_Children
+Xa0DX,Gastric lymphoma,High_Level_SNOMED
+Xa0Dd,Lymphoma of intestine,High_Level_SNOMED
+Xa0E1,Primary cerebral lymphoma,QOF
+Xa0QP,B-cell chronic lymphocytic leukaemia,CTV3Map_Code_And_Term
+Xa0QQ,B-cell chronic lymphocytic leukaemia variant,CTV3_Children
+Xa0Ri,Malignant white blood cell disorder,CTV3_Children
+Xa0Rk,T-cell chronic lymphocytic leukaemia,CTV3_Children
+Xa0Rn,Chronic lymphocytic prolymphocytic leukaemia syndrome,CTV3_Children
+Xa0Ro,Richter's syndrome,CTV3_Children
+Xa0Rp,Splenic lymphoma with villous lymphocytes,CTV3_Children
+Xa0S9,T-cell prolymphocytic leukaemia,CTV3Map_Code_And_Term
+Xa0SA,Hairy cell leukaemia variant,CTV3_Children
+Xa0SB,Large granular lymphocytic leukaemia,CTV3_Children
+Xa0SC,Lymphoma with spill,CTV3_Children
+Xa0SD,B-cell acute lymphoblastic leukaemia,CTV3Map_Code_And_Term
+Xa0SE,Pre B-cell acute lymphoblastic leukaemia,CTV3_Children
+Xa0SF,Common acute lymphoblastic leukaemia,CTV3_Children
+Xa0SG,Null cell acute lymphoblastic leukaemia,CTV3_Children
+Xa0SH,T-cell acute lymphoblastic leukaemia,CTV3_Children
+Xa0SL,Light chain myeloma,CTV3_Children
+Xa0SM,Heavy chain disease,CTV3Map_Code_And_Term
+Xa0SN,Non-secretory myeloma,CTV3_Children
+Xa0SV,Juvenile chronic myeloid leukaemia,CTV3_Children
+Xa0SX,Atypical chronic myeloid leukaemia,CTV3_Children
+Xa0Sk,Acute myeloblastic leukaemia,CTV3Map_Code_And_Term
+Xa0Sl,Acute monoblastic leukaemia,CTV3Map_Code_And_Term
+Xa0Sm,Acute megakaryoblastic leukaemia,CTV3_Children
+Xa0Sn,Acute eosinophilic leukaemia,CTV3_Children
+Xa0So,Acute myelofibrosis,CTV3Map_Code_And_Term
+Xa0St,"Hodgkin's disease, lymphocytic predominance - nodular",CTV3Map_Code_And_Term
+Xa0Su,"Hodgkin's disease, lymphocytic predominance - diffuse",CTV3_Children
+Xa0Sv,"Hodgkin's disease,nodular sclerosis-lymphocytic predominance",CTV3_Children
+Xa0Sw,"Hodgkin's disease, nodular sclerosis - mixed cellularity",CTV3_Children
+Xa0Sx,"Hodgkin's disease, nodular sclerosis - lymphocytic depletion",CTV3_Children
+Xa0Sy,B-cell lymphoma,CTV3_Children
+Xa0Sz,Cutaneous/peripheral T-cell lymphoma,CTV3Map_Code_And_Term
+Xa0T0,Prethymic and thymic T-cell lymphoma/leukaemia,CTV3_Children
+Xa0T1,Low grade B-cell lymphoma,CTV3Map_Code_And_Term
+Xa0T2,Diffuse low grade B-cell lymphoma,CTV3_Children
+Xa0T3,High grade B-cell lymphoma,CTV3_Children
+Xa0T4,Follicular low grade B-cell lymphoma,CTV3_Children
+Xa0T5,B-cell prolymphocytic leukaemia,CTV3Map_Code_And_Term
+Xa0T7,Malignant lymphomatous polyposis,CTV3_Children
+Xa0T8,Mucosa-associated lymphoma,CTV3Map_Code_And_Term
+Xa0T9,Monocytoid B-cell lymphoma,CTV3_Children
+Xa0TA,Follicular malignant lymphoma - mixed cell type,CTV3_Children
+Xa0TD,Follicular malignant lymphoma - small cleaved cell,CTV3Map_Code_And_Term
+Xa0TE,Diffuse high grade B-cell lymphoma,CTV3_Children
+Xa0TF,Nodular high grade B-cell lymphoma,CTV3_Children
+Xa0TG,Diffuse malignant lymphoma - large cell,CTV3Map_Code_And_Term
+Xa0TH,Diffuse malignant lymphoma - large cleaved cell,CTV3_Children
+Xa0TI,Diffuse malignant lymphoma - large non-cleaved cell,CTV3_Children
+Xa0TM,Diffuse malignant lymphoma - centroblastic polymorphic,CTV3_Children
+Xa0TP,Malignant lymphoma - lymphoblastic,CTV3Map_Code_And_Term
+Xa0TS,Large cell anaplastic lymphoma,CTV3_Children
+Xa0TX,Follicular malignant lymphoma - large cell,CTV3Map_Code_And_Term
+Xa0TY,Low grade T-cell lymphoma,CTV3_Children
+Xa0TZ,High grade T-cell lymphoma,CTV3_Children
+Xa0Th,Peripheral T-cell lymphoma,CTV3Map_Code_And_Term
+Xa0Ti,T-zone lymphoma,CTV3Map_Code_And_Term
+Xa0Tj,Lymphoepithelioid lymphoma,CTV3Map_Code_And_Term
+Xa0Tk,Angioimmunoblastic lymphadenopathy with dysproteinaemia,CTV3Map_Code_And_Term
+Xa0To,Angiocentric T-cell lymphoma,CTV3_Children
+Xa0Tr,Peripheral T-cell lymphoma - pleomorphic small cell,CTV3_Children
+Xa0Tt,Peripheral T-cell lymphoma-pleomorphic medium and large cell,CTV3_Children
+Xa0Tu,Enteropathy-associated T-cell lymphoma,CTV3Map_Code_And_Term
+Xa0Ty,True histiocytic lymphoma,CTV3Map_Code_And_Term
+Xa0U5,Malignant lymphoma of testis,QOF
+Xa0bR,Malignant lymphoma of thyroid gland,High_Level_SNOMED
+Xa0bS,Malignant lymphoma of breast,High_Level_SNOMED
+Xa0eB,Hypergranular promyelocytic leukaemia,CTV3_Children
+Xa0eC,Erythraemia,CTV3_Children
+Xa0jn,Acute biphenotypic leukaemia,CTV3_Children
+Xa36a,IgA myeloma,CTV3_Children
+Xa36b,IgG myeloma,CTV3_Children
+Xa36c,IgD myeloma,CTV3_Children
+Xa3EW,Acute myeloblastic leukaemia - undifferentiated,CTV3_Children
+Xa3Ea,Acute myeloblastic leukaemia without maturation,CTV3_Children
+Xa3Ec,Acute myeloblastic leukaemia with maturation,CTV3_Children
+Xa3Ee,Acute promyelocytic leukaemia - hypogranular variant,CTV3_Children
+Xa3En,Intermediate grade B-cell lymphoma,CTV3_Children
+Xa3HG,Acute myelomonocytic leukaemia - eosinophilic variant,CTV3_Children
+Xa8Jb,T-cell lymphoma,CTV3Map_Code_And_Term
+Xa99k,Malignant lymphoma,CTV3_Children
+Xa99l,Malignant lymphoma - small lymphocytic,CTV3_Children
+Xa99n,Diffuse malignant lymphoma - centroblastic,CTV3Map_Code_And_Term
+Xa99w,"Nodular malignant lymphoma, lymphocytic - well diffrentiated",CTV3_Children
+Xa99z,"Nodul malig lymphoma, lymphocytic - intermed differentiation",CTV3_Children
+Xa9AA,Plasmacytoma - disorder,CTV3Map_Code_And_Term
+Xa9AM,Acute leukaemia,CTV3_Children
+Xa9AN,Subacute leukaemia,CTV3_Children
+Xa9AO,Chronic leukaemia,CTV3_Children
+Xa9AP,Aleukaemic leukaemia,CTV3_Children
+Xa9EH,"Malignant lymphoma, convoluted cell type",CTV3_Children
+Xa9FC,"Malignant lymphoma, follicular centre cell",CTV3_Children
+Xa9FD,"Malignant lymphoma, follicular centre cell, cleaved",CTV3_Children
+Xa9FE,"Malignant lymphoma, follicular centre cell, non-cleaved",CTV3_Children
+Xa9FF,"Malignant lymphoma, nodular",CTV3_Children
+XaB47,Atypical hairy cell leukaemia,CTV3_Children
+XaBAk,Malignant mastocytosis,CTV3_Children
+XaBAl,Erythroleukaemia,CTV3Map_Code_And_Term
+XaBAm,Basophilic leukaemia,CTV3_Children
+XaBB3,Plasma cell leukaemia,CTV3Map_Code_And_Term
+XaBBC,Neutrophilic leukaemia,CTV3_Children
+XaBBM,Prolymphocytic lymphosarcoma,CTV3_Children
+XaBBN,Malignant lymphoma - lymphoplasmacytic,CTV3_Children
+XaBBO,Diffuse malignant lymphoma - centroblastic-centrocytic,CTV3_Children
+XaBBP,Malignant lymphoma - centrocytic,CTV3_Children
+XaBBZ,"Hodgkin's disease, lymphocytic depletion, diffuse fibrosis",CTV3_Children
+XaBBb,"Hodgkin's disease, lymphocytic depletion, reticular type",CTV3_Children
+XaBBc,"Hodgkin's disease, nodular sclerosis - cellular phase",CTV3_Children
+XaBBd,"Malignant lymphoma, mixed lymphocytic-histiocytic, nodular",CTV3_Children
+XaBBf,"Malignant lymphoma, centroblastic-centrocytic, follicular",CTV3_Children
+XaBBo,"Malign lymphoma, lymphocytic, poorly differentiated, nodular",CTV3_Children
+XaBBp,"Malignant lymphoma, centroblastic type, follicular",CTV3_Children
+XaBBs,Histiocytic medullary reticulosis,CTV3_Children
+XaBLw,Follicular non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+XaBLx,Plasmacytoma NOS,CTV3Map_Code_And_Term
+XaBLz,[M]Waldenstrom's macroglobulinaemia,CTV3Map_Code_And_Term
+XaC2n,[M]Hodgkin's disease NOS,CTV3Map_Code_And_Term
+XaE68,Ocular lymphoma,High_Level_SNOMED
+XaELI,Lambda light chain myeloma,CTV3Map_Code_And_Term
+XaFpR,B-cell lymphoma morphology,CTV3_Children
+XaFpS,Low grade B-cell lymphoma morphology,CTV3_Children
+XaFpT,Follicular low grade B-cell lymphoma morphology,CTV3_Children
+XaFpU,High grade B-cell lymphoma morphology,CTV3_Children
+XaFpV,T-cell lymphoma morphology,CTV3_Children
+XaFpW,High grade T-cell lymphoma morphology,CTV3_Children
+XaFpy,Diffuse low grade B-cell lymphoma morphology,CTV3_Children
+XaFpz,Low grade T-cell lymphoma morphology,CTV3_Children
+XaFqH,Nodular high grade B-cell lymphoma morphology,CTV3_Children
+XaFqN,Diffuse high grade B-cell lymphoma morphology,CTV3_Children
+XaImp,Lymphoma stage I,CTV3Map_Code_And_Term
+XaImq,Lymphoma stage II,CTV3Map_Code_And_Term
+XaImr,Lymphoma stage III,CTV3Map_Code_And_Term
+XaIms,Lymphoma stage IV,CTV3Map_Code_And_Term
+XaPQD,Mantle cell lymphoma,CTV3Map_Code_And_Term
+XaYdL,Juvenile myelomonocytic leukaemia,CTV3Map_Code_And_Term
+XaYgm,Primary mediastinal (thymic) large B-cell lymphoma,CTV3Map_Code_And_Term
+XaYi5,Diffuse follicle centre lymphoma,CTV3Map_Code_And_Term
+XaYiI,Anaplastic lymphoma kinase negative anaplastic lg cell lymph,CTV3Map_Code_And_Term
+XaYiL,ALK positive anaplastic large cell lymphoma,CTV3Map_Code_And_Term
+XaYiN,Hepatosplenic T-cell lymphoma,CTV3Map_Code_And_Term
+XaYii,Extranod marg zone B-cell lymphom mucosa-assoc lymphoid tiss,CTV3Map_Code_And_Term
+XaYij,Follicular lymphoma grade 1,CTV3Map_Code_And_Term
+XaYil,Follicular lymphoma grade 3a,CTV3Map_Code_And_Term
+XaYim,Follicular lymphoma grade 3b,CTV3Map_Code_And_Term
+XaYin,Cutaneous follicle centre lymphoma,CTV3Map_Code_And_Term
+XaYip,Sarcoma of dendritic cells,CTV3Map_Code_And_Term
+XaYis,"Atypical chronic myeloid leukaemia, BCR/ABL negative",CTV3Map_Code_And_Term
+XaYj0,"Chronic myelogenous leukaemia, BCR/ABL positive",CTV3Map_Code_And_Term
+XaYj4,Acute myeloid leukaemia with myelodysplasia-related changes,CTV3_Children
+XaYj9,Acute myeloid leukaemia with 11q23 abnormality,CTV3_Children
+XaYjI,Primary cutaneous CD30 antigen positive large T-cell lymphom,CTV3Map_Code_And_Term
+XaYje,"Extranodal natural killer/T-cell lymphoma, nasal type",CTV3Map_Code_And_Term
+XaYjf,Subcutaneous panniculitic T-cell lymphoma,CTV3Map_Code_And_Term
+XaYk0,Blastic plasmacytoid dendritic cell neoplasm,CTV3Map_Code_And_Term
+XaYv2,Refractory anaemia with multilineage dysplasia,CTV3_Children
+XaZdD,Follicular lymphoma grade 3,CTV3Map_Code_And_Term
+XaZdF,Follicular lymphoma grade 2,CTV3Map_Code_And_Term
+XaZdn,Diffuse large B-cell lymphoma,CTV3Map_Code_And_Term
+XaZfR,Adult T-cell leukaemia/lymphoma,CTV3Map_Code_And_Term
+Xaa1N,Clinical stage A chronic lymphocytic leukaemia,CTV3Map_Code_And_Term
+Xaa1O,Clinical stage B chronic lymphocytic leukaemia,CTV3Map_Code_And_Term
+Xaa1P,Clinical stage C chronic lymphocytic leukaemia,CTV3Map_Code_And_Term
+Xaa8z,[M]Juvenile myelomonocytic leukaemia,CTV3Map_Code_And_Term
+Y1b23,Solitary osseous myeloma,CTV3_Children

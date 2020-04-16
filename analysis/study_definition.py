@@ -12,12 +12,44 @@ chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
 )
 
+diabetes_codes = codelist_from_csv(
+    "codelists/diabetes_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+lung_cancer_codes = codelist_from_csv(
+    "codelists/lung_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+haem_cancer_codes = codelist_from_csv(
+    "codelists/haematological_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+other_cancer_codes = codelist_from_csv(
+    "codelists/other_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+bone_marrow_transplant_codes = codelist_from_csv(
+    "codelists/bone_marrow_transplant_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+chemo_radio_therapy_codes = codelist_from_csv(
+    "codelists/chemo_radio_therapy_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
 chronic_liver_disease_codes = codelist_from_csv(
     "codelists/chronic_liver_disease.csv", system="ctv3", column="CTV3ID"
 )
 
 organ_transplant_codes = codelist_from_csv(
     "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
+)
+
+spleen_codes = codelist_from_csv(
+    "codelists/spleen_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+sickle_cell_codes = codelist_from_csv(
+    "codelists/sickle_cell_2020-04-16.csv", system="ctv3", column="CTV3ID"
 )
 
 ra_sle_psoriasis_codes = codelist_from_csv(
@@ -80,34 +112,34 @@ study = StudyDefinition(
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/30
     diabetes=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        diabetes_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/32
     lung_cancer=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        lung_cancer_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
     haem_cancer=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        haem_cancer_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
     other_cancer=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        other_cancer_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
     bone_marrow_transplant=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        bone_marrow_transplant_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
     chemo_radio_therapy=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        chemo_radio_therapy_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
@@ -141,13 +173,13 @@ study = StudyDefinition(
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/13
-    dysplenia=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    spleen=patients.with_these_clinical_events(
+        spleen_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
     sickle_cell=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        sickle_cell_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),

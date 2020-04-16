@@ -1,0 +1,52 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14N7.,H/O splenectomy,CTV3Map_Code_And_Term
+7840.,Total splenectomy,CTV3Map_Code_And_Term
+7840.,Total splenectomy,CTV3Map_Code_Only
+7840.,Total splenectomy,QOF
+78400,Total splenectomy and reimplantation of fragments,CTV3Map_Code_And_Term
+78401,Total splenectomy,High_Level_SNOMED
+78403,Splenectomy NEC,CTV3Map_Code_And_Term
+78403,Splenectomy NEC,QOF
+7840y,Other specified total excision of spleen,CTV3Map_Code_And_Term
+7840y,Other specified total excision of spleen,QOF
+7840z,Total excision of spleen NOS,CTV3Map_Code_And_Term
+7840z,Total excision of spleen NOS,QOF
+7841.,Other excision of spleen,CTV3Map_Code_And_Term
+7841.,Other excision of spleen,QOF
+78410,Partial splenectomy,CTV3Map_Code_And_Term
+78412,Excision of lesion of spleen,High_Level_SNOMED
+7841y,Other specified other excision of spleen,CTV3Map_Code_And_Term
+7841y,Other specified other excision of spleen,QOF
+7841z,Other excision of spleen NOS,CTV3Map_Code_And_Term
+7841z,Other excision of spleen NOS,QOF
+78421,Embolisation of spleen,CTV3Map_Code_And_Term
+A8410,Plasmodium vivax malaria with rupture of spleen,QOF
+D4154,Atrophy of spleen,CTV3Map_Code_And_Term
+D4154,Atrophy of spleen,QOF
+D4156,Splenic fibrosis,CTV3Map_Code_And_Term
+D4156,Splenic fibrosis,QOF
+D4157,Infarction of spleen,CTV3Map_Code_And_Term
+D4157,Infarction of spleen,QOF
+G74y6,Embolism and thrombosis of the splenic artery,CTV3Map_Code_And_Term
+PK01.,(Absent spleen) or (asplenia),High_Level_SNOMED
+PK06.,Hypoplasia of spleen,CTV3Map_Code_And_Term
+PK06.,Hypoplasia of spleen,QOF
+Ua1JD,Subtotal splenectomy,CTV3_Children
+X205i,Splenic vein thrombosis,QOF
+X20BK,Splenectomy,QOF
+X20Fp,Post-splenectomy leucocytosis,QOF
+XA07k,Avulsion of spleen,QOF
+XE1Mi,Congenital absence of spleen,CTV3Map_Code_And_Term
+XE1Mi,Congenital absence of spleen,CTV3Map_Code_Only
+XE1Mi,Congenital absence of spleen,QOF
+XM1OF,Congenital syphilitic splenomegaly,CTV3Map_Code_And_Term
+Xa0hO,Hyposplenism,CTV3Map_Code_And_Term
+Xa0hO,Hyposplenism,QOF
+Xa7Ya,Spleen absent,CTV3Map_Code_And_Term
+Xa7Ya,Spleen absent,CTV3Map_Code_Only
+Xa7Ya,Spleen absent,QOF
+Xa9D7,Hereditary splenic hypoplasia,QOF
+XaEXw,Laparoscopic total splenectomy,CTV3Map_Code_And_Term
+XaEXw,Laparoscopic total splenectomy,QOF
+XaZvR,Acquired absence of spleen,CTV3_Children
+XaZvR,Acquired absence of spleen,QOF

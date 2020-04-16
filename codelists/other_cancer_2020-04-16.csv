@@ -1,0 +1,1973 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+7G03J,Excision of melanoma,CTV3_Children
+A7886,Human immunodeficiency virus with secondary cancers,CTV3Map_Code_And_Term
+A7895,HIV disease resulting in Kaposi's sarcoma,CTV3Map_Code_And_Term
+A7898,HIV disease resulting in multiple malignant neoplasms,CTV3Map_Code_And_Term
+AyuC8,[X]HIV disease resulting in other malignant neoplasms,CTV3Map_Code_And_Term
+AyuC9,[X]HIV disease resulting in unspecified malignant neoplasm,CTV3Map_Code_And_Term
+B0...,Malignant neoplasm: [lip] or [oral cavity] or [pharynx],CTV3_Children
+B00..,Malignant neoplasm of lip (& carcinoma),CTV3_Children
+B000.,Malignant tumour of vermilion border of upper lip,CTV3Map_Code_And_Term
+B0000,"Malignant neoplasm of upper lip, external",CTV3Map_Code_And_Term
+B0001,"Malignant neoplasm of upper lip, lipstick area",CTV3Map_Code_And_Term
+B000z,"Malignant neoplasm of upper lip, vermilion border NOS",CTV3Map_Code_And_Term
+B0010,"Malignant neoplasm of lower lip, external",CTV3Map_Code_And_Term
+B0011,Malignant tumour of vermilion border of lower lip,CTV3Map_Code_And_Term
+B001z,"Malignant neoplasm of lower lip, vermilion border NOS",CTV3Map_Code_And_Term
+B002.,Malignant tumour of upper labial mucosa,CTV3Map_Code_And_Term
+B0020,"Malignant neoplasm of upper lip, buccal aspect",CTV3Map_Code_And_Term
+B0021,Malignant tumour of fraenum of upper lip,CTV3Map_Code_And_Term
+B002z,"Malignant neoplasm of upper lip, inner aspect NOS",CTV3Map_Code_And_Term
+B0030,"Malignant neoplasm of lower lip, buccal aspect",CTV3Map_Code_And_Term
+B0031,Malignant tumour of fraenum of lower lip,CTV3Map_Code_And_Term
+B0032,"Malignant neoplasm of lower lip, mucosa",CTV3Map_Code_And_Term
+B003z,"Malignant neoplasm of lower lip, inner aspect NOS",CTV3Map_Code_And_Term
+B004.,"Malignant neoplasm of lip unspecified, inner aspect",CTV3Map_Code_And_Term
+B0041,"Malignant neoplasm of lip unspecified, frenulum",CTV3Map_Code_And_Term
+B0042,"Malignant neoplasm of lip unspecified, mucosa",CTV3Map_Code_And_Term
+B0043,Malignant tumour of labial mucosa,CTV3Map_Code_And_Term
+B004z,"Malignant neoplasm of lip, inner aspect NOS",CTV3_Children
+B005.,Malignant tumour of commissure of lip,CTV3Map_Code_And_Term
+B006.,Malignant neoplasm of overlapping lesion of lip,CTV3Map_Code_And_Term
+B00y.,Malignant neoplasm of other sites of lip,CTV3_Children
+B00z.,Malignant neoplasm of vermilion border of lip unspecified,CTV3_Children
+B00z0,"Malignant neoplasm of lip, unspecified, external",CTV3Map_Code_And_Term
+B00z1,"Malignant neoplasm of lip, unspecified, lipstick area",CTV3Map_Code_And_Term
+B00zz,"Malignant neoplasm of lip, vermilion border NOS",CTV3Map_Code_And_Term
+B01..,Malignant tumour of tongue,CTV3Map_Code_And_Term
+B010.,Malignant tumour of base of tongue,CTV3Map_Code_And_Term
+B0100,Malignant neoplasm of base of tongue dorsal surface,CTV3Map_Code_And_Term
+B010z,Malignant neoplasm of fixed part of tongue NOS,CTV3Map_Code_And_Term
+B011.,Malignant neoplasm of dorsal surface of tongue,CTV3Map_Code_And_Term
+B0110,Malig tumour anterior two-thirds of tongue dorsal surface,CTV3_Children
+B0111,Malignant neoplasm of midline of tongue,CTV3Map_Code_And_Term
+B011z,Malignant neoplasm of dorsum of tongue NOS,CTV3Map_Code_And_Term
+B012.,"Malignant neoplasm of tongue, tip and lateral border",CTV3Map_Code_And_Term
+B013.,Malignant neoplasm of ventral surface of tongue,CTV3Map_Code_And_Term
+B0130,Malig tumour anterior two-thirds of tongue ventral surface,CTV3Map_Code_And_Term
+B0131,Malignant tumour of fraenum linguae,CTV3Map_Code_And_Term
+B013z,Malignant neoplasm of ventral tongue surface NOS,CTV3Map_Code_And_Term
+B014.,Malignant neoplasm of anterior 2/3 of tongue unspecified,CTV3Map_Code_And_Term
+B015.,Malignant tumour of junctional zone of tongue,CTV3Map_Code_And_Term
+B016.,Malignant tumour of lingual tonsil,CTV3Map_Code_And_Term
+B017.,Malignant overlapping lesion of tongue,CTV3Map_Code_And_Term
+B01y.,Malignant neoplasm of other sites of tongue,CTV3Map_Code_And_Term
+B01z.,Malignant neoplasm of tongue NOS,CTV3Map_Code_And_Term
+B02..,Malignant tumour of major salivary gland,CTV3Map_Code_And_Term
+B020.,Malignant tumour of parotid gland,CTV3Map_Code_And_Term
+B021.,Malignant tumour of submandibular gland,CTV3Map_Code_And_Term
+B022.,Malignant tumour of sublingual gland,CTV3Map_Code_And_Term
+B023.,"Malignant neoplasm, overlapping lesion of major saliv gland",CTV3_Children
+B02y.,Malignant neoplasm of other major salivary glands,CTV3Map_Code_And_Term
+B02z.,Malignant neoplasm of major salivary gland NOS,CTV3Map_Code_And_Term
+B03..,Malignant tumour of gum,CTV3Map_Code_And_Term
+B030.,Malignant tumour of upper gingiva,CTV3Map_Code_And_Term
+B031.,Malignant tumour of lower gingiva,CTV3Map_Code_And_Term
+B03y.,Malignant neoplasm of other sites of gum,CTV3Map_Code_And_Term
+B03z.,Malignant neoplasm of gum NOS,CTV3Map_Code_And_Term
+B04..,Malignant tumour of floor of mouth,CTV3Map_Code_And_Term
+B040.,Malignant tumour of anterior floor of mouth,CTV3Map_Code_And_Term
+B041.,Malignant tumour of lateral floor of mouth,CTV3Map_Code_And_Term
+B042.,"Malignant neoplasm, overlapping lesion of floor of mouth",CTV3Map_Code_And_Term
+B04y.,Malignant neoplasm of other sites of floor of mouth,CTV3Map_Code_And_Term
+B04z.,Malignant neoplasm of floor of mouth NOS,CTV3Map_Code_And_Term
+B05..,Malignant neoplasm of other and unspecified parts of mouth,CTV3Map_Code_And_Term
+B050.,Malignant tumour of buccal mucosa,CTV3Map_Code_And_Term
+B051.,Malignant tumour of vestibule of mouth,CTV3Map_Code_And_Term
+B0510,Malignant tumour of upper buccal sulcus,CTV3Map_Code_And_Term
+B0511,Malignant tumour of lower buccal sulcus,CTV3Map_Code_And_Term
+B0512,Malignant tumour of upper labial sulcus,CTV3_Children
+B0513,Malignant tumour of lower labial sulcus,CTV3_Children
+B051z,Malignant neoplasm of vestibule of mouth NOS,CTV3Map_Code_And_Term
+B052.,Malignant tumour of hard palate,CTV3Map_Code_And_Term
+B053.,Malignant tumour of soft palate,CTV3Map_Code_And_Term
+B054.,Malignant tumour of uvula,CTV3Map_Code_And_Term
+B055.,Malignant neoplasm of palate unspecified,CTV3Map_Code_And_Term
+B0550,Malignant neoplasm of junction of hard and soft palate,CTV3Map_Code_And_Term
+B0551,Malignant tumour of palate,CTV3Map_Code_And_Term
+B055z,Malignant neoplasm of palate NOS,CTV3Map_Code_And_Term
+B056.,Malignant tumour of retromolar area,CTV3Map_Code_And_Term
+B05y.,Malignant neoplasm of other specified mouth parts,CTV3Map_Code_And_Term
+B05z.,Malignant neoplasm of mouth NOS,CTV3Map_Code_And_Term
+B05z0,Kaposi's sarcoma of palate,CTV3Map_Code_And_Term
+B06..,Malignant tumour of oropharynx,CTV3Map_Code_And_Term
+B060.,Malignant tumour of tonsil,CTV3Map_Code_And_Term
+B0600,Malignant neoplasm of faucial tonsil,CTV3Map_Code_And_Term
+B0601,Malignant neoplasm of palatine tonsil,CTV3Map_Code_And_Term
+B0602,Malignant neoplasm of overlapping lesion of tonsil,CTV3Map_Code_And_Term
+B060z,Malignant neoplasm tonsil NOS,CTV3Map_Code_And_Term
+B061.,Malignant tumour of tonsillar fossa,CTV3Map_Code_And_Term
+B062.,Malignant tumour of tonsillar pillar,CTV3Map_Code_And_Term
+B0621,Malignant tumour of glossopalatine fold,CTV3Map_Code_And_Term
+B0622,Malignant tumour of anterior tonsillar pillar,CTV3Map_Code_And_Term
+B062z,Malignant neoplasm of tonsillar fossa NOS,CTV3Map_Code_And_Term
+B063.,Malignant tumour of vallecula,CTV3Map_Code_And_Term
+B064.,Malignant neoplasm of anterior epiglottis,CTV3Map_Code_And_Term
+B0640,"Malignant neoplasm of epiglottis, free border",CTV3Map_Code_And_Term
+B0641,Malignant neoplasm of glossoepiglottic fold,CTV3Map_Code_And_Term
+B064z,Malignant neoplasm of anterior epiglottis NOS,CTV3Map_Code_And_Term
+B065.,Malignant neoplasm of junctional region of epiglottis,CTV3Map_Code_And_Term
+B066.,Malignant neoplasm of lateral wall of oropharynx,CTV3Map_Code_And_Term
+B067.,Malignant tumour of posterior wall of oropharynx,CTV3Map_Code_And_Term
+B06y.,"Malignant neoplasm of oropharynx, other specified sites",CTV3Map_Code_And_Term
+B06y0,Malignant tumour of branchial cleft,CTV3_Children
+B06yz,Malignant neoplasm of other specified site of oropharynx NOS,CTV3Map_Code_And_Term
+B06z.,Malignant neoplasm of oropharynx NOS,CTV3Map_Code_And_Term
+B07..,Malignant tumour of nasopharynx,CTV3Map_Code_And_Term
+B070.,Malignant tumour of roof of nasopharynx,CTV3Map_Code_And_Term
+B071.,Malignant tumour of posterior wall of nasopharynx,CTV3Map_Code_And_Term
+B0710,Malignant tumour of adenoid,CTV3Map_Code_And_Term
+B071z,Malignant neoplasm of posterior wall of nasopharynx NOS,CTV3Map_Code_And_Term
+B072.,Malignant tumour of lateral wall of nasopharynx,CTV3Map_Code_And_Term
+B0720,Malignant tumour of pharyngeal recess,CTV3Map_Code_And_Term
+B0721,Malignant tumour of opening of auditory tube,CTV3_Children
+B072z,Malignant neoplasm of lateral wall of nasopharynx NOS,CTV3Map_Code_And_Term
+B073.,Malignant tumour of anterior wall of nasopharynx,CTV3Map_Code_And_Term
+B0730,Malignant neoplasm of floor of nasopharynx,CTV3_Children
+B0731,Malignant tumour of nasopharyngeal soft palate surface,CTV3Map_Code_And_Term
+B0732,Malignant tumour posterior margin nasal septum and choanae,CTV3Map_Code_And_Term
+B073z,Malignant neoplasm of anterior wall of nasopharynx NOS,CTV3Map_Code_And_Term
+B074.,"Malignant neoplasm, overlapping lesion of nasopharynx",CTV3Map_Code_And_Term
+B07y.,Malignant neoplasm of other specified site of nasopharynx,CTV3Map_Code_And_Term
+B07z.,Malignant neoplasm of nasopharynx NOS,CTV3Map_Code_And_Term
+B08..,Malignant tumour of hypopharynx,CTV3Map_Code_And_Term
+B080.,Malignant tumour of postcricoid region,CTV3Map_Code_And_Term
+B081.,Malignant tumour of pyriform fossa,CTV3Map_Code_And_Term
+B082.,Malignant tumour aryepiglottic fold - hypopharyngeal aspect,CTV3Map_Code_And_Term
+B083.,Malignant neoplasm of posterior pharynx,CTV3Map_Code_And_Term
+B084.,"Malignant neoplasm, overlapping lesion of hypopharynx",CTV3_Children
+B08y.,Malignant neoplasm of other specified hypopharyngeal site,CTV3Map_Code_And_Term
+B08z.,Malignant neoplasm of hypopharynx NOS,CTV3Map_Code_And_Term
+B0z..,"Malig neop other/ill-defined sites lip, oral cavity, pharynx",CTV3Map_Code_And_Term
+B0z0.,Malignant neoplasm of pharynx unspecified,CTV3Map_Code_And_Term
+B0z1.,Malignant tumour of Waldeyer's ring,CTV3Map_Code_And_Term
+B0zy.,"Malignant neoplasm of other sites lip, oral cavity, pharynx",CTV3Map_Code_And_Term
+B0zz.,"Malignant neoplasm of lip, oral cavity and pharynx NOS",CTV3Map_Code_And_Term
+B1...,Malig neoplasm digest organs and peritoneum (& [carcinoma]),CTV3_Children
+B10..,Malignant tumour of oesophagus,CTV3Map_Code_And_Term
+B100.,Malignant tumour of cervical part of oesophagus,CTV3Map_Code_And_Term
+B101.,Malignant tumour of thoracic part of oesophagus,CTV3Map_Code_And_Term
+B102.,Malignant tumour of abdominal part of oesophagus,CTV3Map_Code_And_Term
+B103.,Malignant tumour of upper third of oesophagus,CTV3Map_Code_And_Term
+B104.,Malignant tumour of middle third of oesophagus,CTV3Map_Code_And_Term
+B105.,Malignant tumour of lower third of oesophagus,CTV3Map_Code_And_Term
+B106.,"Malignant neoplasm, overlapping lesion of oesophagus",CTV3Map_Code_And_Term
+B10y.,Malignant neoplasm of other specified part of oesophagus,CTV3Map_Code_And_Term
+B10z.,(Malignant neoplasm of oesophagus NOS or oesophageal cancer,CTV3_Children
+B11..,(Malignant neoplasm of stomach) or (gastric neoplasm),CTV3_Children
+B110.,Malignant tumour of cardia,CTV3Map_Code_And_Term
+B1100,Malignant neoplasm of cardiac orifice of stomach,CTV3Map_Code_And_Term
+B1101,Malignant neoplasm of cardio-oesophageal junction of stomach,CTV3Map_Code_And_Term
+B110z,Malignant neoplasm of cardia of stomach NOS,CTV3Map_Code_And_Term
+B111.,Malignant tumour of pylorus,CTV3Map_Code_And_Term
+B1110,Malignant neoplasm of prepylorus of stomach,CTV3Map_Code_And_Term
+B1111,Malignant neoplasm of pyloric canal of stomach,CTV3Map_Code_And_Term
+B111z,Malignant neoplasm of pylorus of stomach NOS,CTV3Map_Code_And_Term
+B112.,Malignant tumour of pyloric antrum,CTV3Map_Code_And_Term
+B113.,Malignant tumour of fundus of stomach,CTV3Map_Code_And_Term
+B114.,Malignant tumour of body of stomach,CTV3Map_Code_And_Term
+B115.,Malignant neoplasm of lesser curve of stomach unspecified,CTV3Map_Code_And_Term
+B116.,Malignant neoplasm of greater curve of stomach unspecified,CTV3Map_Code_And_Term
+B117.,"Malignant neoplasm, overlapping lesion of stomach",CTV3Map_Code_And_Term
+B11y.,Malignant neoplasm of other specified site of stomach,CTV3Map_Code_And_Term
+B11y0,Malignant neoplasm of anterior wall of stomach NEC,CTV3Map_Code_And_Term
+B11y1,Malignant neoplasm of posterior wall of stomach NEC,CTV3Map_Code_And_Term
+B11yz,Malignant neoplasm of other specified site of stomach NOS,CTV3Map_Code_And_Term
+B11z.,Malignant neoplasm of stomach NOS,CTV3Map_Code_And_Term
+B12..,Malignant neoplasm of small intestine and duodenum,CTV3Map_Code_And_Term
+B120.,Malignant tumour of duodenum,CTV3Map_Code_And_Term
+B121.,Malignant tumour of jejunum,CTV3Map_Code_And_Term
+B122.,Malignant tumour of ileum,CTV3Map_Code_And_Term
+B123.,Malignant tumour of Meckel's diverticulum,CTV3Map_Code_And_Term
+B124.,"Malignant neoplasm, overlapping lesion of small intestine",CTV3Map_Code_And_Term
+B12y.,Malignant neoplasm of other specified site small intestine,CTV3Map_Code_And_Term
+B12z.,Malignant neoplasm of small intestine NOS,CTV3Map_Code_And_Term
+B13..,Malignant tumour of colon,CTV3Map_Code_And_Term
+B130.,Malignant tumour of hepatic flexure,CTV3Map_Code_And_Term
+B131.,Malignant tumour of transverse colon,CTV3Map_Code_And_Term
+B132.,Malignant tumour of descending colon,CTV3Map_Code_And_Term
+B133.,Malignant tumour of sigmoid colon,CTV3Map_Code_And_Term
+B134.,Malignant neoplasm of caecum (& carcinoma),CTV3_Children
+B135.,Malignant tumour of appendix,CTV3Map_Code_And_Term
+B136.,Malignant tumour of ascending colon,CTV3Map_Code_And_Term
+B137.,Malignant tumour of splenic flexure,CTV3Map_Code_And_Term
+B138.,"Malignant neoplasm, overlapping lesion of colon",CTV3Map_Code_And_Term
+B13y.,Malignant neoplasm of other specified sites of colon,CTV3Map_Code_And_Term
+B13z.,Malignant neoplasm of colon (& NOS),CTV3_Children
+B14..,"Malignant neoplasm of rectum, rectosigmoid junction and anus",CTV3Map_Code_And_Term
+B140.,Malignant tumour of rectosigmoid junction,CTV3Map_Code_And_Term
+B141.,Malignant neoplasm of rectum (& carcinoma),CTV3_Children
+B142.,Malignant neoplasm of anal canal (& anal carcinoma),CTV3_Children
+B143.,Malignant neoplasm of anus unspecified,CTV3Map_Code_And_Term
+B14y.,"Malig neop other site rectum, rectosigmoid junction and anus",CTV3Map_Code_And_Term
+B14z.,"Malignant neoplasm rectum,rectosigmoid junction and anus NOS",CTV3Map_Code_And_Term
+B15..,Malignant neoplasm of liver and intrahepatic bile ducts,CTV3Map_Code_And_Term
+B150.,Primary malignant neoplasm of liver,CTV3Map_Code_And_Term
+B1500,Primary carcinoma of liver,CTV3Map_Code_And_Term
+B1501,Hepatoblastoma of liver,CTV3Map_Code_And_Term
+B1503,Hepatocellular carcinoma,CTV3Map_Code_And_Term
+B150z,Primary malignant neoplasm of liver NOS,CTV3Map_Code_And_Term
+B151.,Malignant neoplasm of intrahepatic bile ducts,CTV3Map_Code_And_Term
+B1510,Malignant neoplasm of interlobular bile ducts,CTV3Map_Code_And_Term
+B1511,Malignant neoplasm of interlobular biliary canals,CTV3Map_Code_And_Term
+B1512,Malignant neoplasm of intrahepatic biliary passages,CTV3Map_Code_And_Term
+B1513,Malignant neoplasm of intrahepatic canaliculi,CTV3_Children
+B1514,Malignant neoplasm of intrahepatic gall duct,CTV3Map_Code_And_Term
+B151z,Malignant neoplasm of intrahepatic bile ducts NOS,CTV3Map_Code_And_Term
+B152.,Malignant neoplasm of liver unspecified,CTV3Map_Code_And_Term
+B15z.,Malignant neoplasm of liver and intrahepatic bile ducts NOS,CTV3Map_Code_And_Term
+B16..,Malignant tumour of biliary tract,CTV3Map_Code_And_Term
+B160.,Malignant neoplasm of gallbladder (& carcinoma),CTV3_Children
+B161.,Malignant tumour of extrahepatic bile duct,CTV3Map_Code_And_Term
+B1610,Malignant neoplasm of cystic duct,CTV3Map_Code_And_Term
+B1611,Malignant neoplasm of hepatic duct,CTV3Map_Code_And_Term
+B1612,Malignant neoplasm of common bile duct (& [carcinoma]),CTV3_Children
+B1613,Malignant neoplasm of sphincter of Oddi,CTV3Map_Code_And_Term
+B161z,Malignant neoplasm of extrahepatic bile ducts NOS,CTV3Map_Code_And_Term
+B162.,Malignant tumour of ampulla of Vater,CTV3Map_Code_And_Term
+B163.,"Malignant neoplasm, overlapping lesion of biliary tract",CTV3Map_Code_And_Term
+B16y.,Malignant neoplasm other gallbladder/extrahepatic bile duct,CTV3Map_Code_And_Term
+B16z.,Malignant neoplasm gallbladder/extrahepatic bile ducts NOS,CTV3Map_Code_And_Term
+B17..,Malignant tumour of pancreas,CTV3Map_Code_And_Term
+B170.,Malignant tumour of head of pancreas,CTV3Map_Code_And_Term
+B171.,Malignant tumour of body of pancreas,CTV3Map_Code_And_Term
+B172.,Malignant tumour of tail of pancreas,CTV3Map_Code_And_Term
+B173.,Malignant tumour of pancreatic duct,CTV3Map_Code_And_Term
+B174.,Malignant tumour of Islets of Langerhans,CTV3Map_Code_And_Term
+B175.,"Malignant neoplasm, overlapping lesion of pancreas",CTV3Map_Code_And_Term
+B17y.,Malignant neoplasm of other specified sites of pancreas,CTV3Map_Code_And_Term
+B17y0,Malignant neoplasm of ectopic pancreatic tissue,CTV3Map_Code_And_Term
+B17yz,Malignant neoplasm of specified site of pancreas NOS,CTV3Map_Code_And_Term
+B17z.,Malignant neoplasm of pancreas NOS,CTV3Map_Code_And_Term
+B18..,Malignant tumour of peritoneum and retroperitoneum,CTV3Map_Code_And_Term
+B180.,Malignant retroperitoneal tumour,CTV3Map_Code_And_Term
+B1800,Malignant neoplasm of periadrenal tissue,CTV3_Children
+B1801,Malignant neoplasm of perinephric tissue,CTV3Map_Code_And_Term
+B1802,Malignant neoplasm of retrocaecal tissue,CTV3Map_Code_And_Term
+B180z,Malignant neoplasm of retroperitoneum NOS,CTV3Map_Code_And_Term
+B182.,Overlapping malign lesion of retroperitoneum and peritoneum,CTV3Map_Code_And_Term
+B18y.,Malignant neoplasm of specified parts of peritoneum,CTV3Map_Code_And_Term
+B18y0,Malignant neoplasm of mesocolon,CTV3_Children
+B18y1,Malignant neoplasm of mesocaecum,CTV3Map_Code_And_Term
+B18y2,Malignant neoplasm of mesorectum,CTV3Map_Code_And_Term
+B18y3,Malignant neoplasm of omentum,CTV3Map_Code_And_Term
+B18y4,Malignant neoplasm of parietal peritoneum,CTV3Map_Code_And_Term
+B18y5,Malignant neoplasm of pelvic peritoneum,CTV3Map_Code_And_Term
+B18y6,Malignant neoplasm of the pouch of Douglas,CTV3Map_Code_And_Term
+B18yz,Malignant neoplasm of specified parts of peritoneum NOS,CTV3Map_Code_And_Term
+B18z.,Malignant neoplasm of retroperitoneum and peritoneum NOS,CTV3Map_Code_And_Term
+B1z..,Malig neop oth/ill-defined sites digestive tract/peritoneum,CTV3Map_Code_And_Term
+B1z0.,"Malignant neoplasm of intestinal tract, part unspecified",CTV3Map_Code_And_Term
+B1z2.,"Malignant neoplasm, overlapping lesion of digestive system",CTV3Map_Code_And_Term
+B1zy.,Malignant neoplasm other spec digestive tract and peritoneum,CTV3Map_Code_And_Term
+B1zz.,Malignant neoplasm of digestive tract and peritoneum NOS,CTV3Map_Code_And_Term
+B2...,Malign neopl resp tract and intrathor organs (& [carcinoma]),CTV3_Children
+B20..,"Malig neop nasal cavities, middle ear and accessory sinuses",CTV3Map_Code_And_Term
+B200.,Malignant tumour of nasal cavity,CTV3Map_Code_And_Term
+B2000,Malignant neoplasm of cartilage of nose,CTV3Map_Code_And_Term
+B2001,Malignant neoplasm of nasal conchae,CTV3Map_Code_And_Term
+B2002,Malignant tumour of nasal septum,CTV3Map_Code_And_Term
+B2003,Malignant tumour of nasal vestibule,CTV3Map_Code_And_Term
+B200z,Malignant neoplasm of nasal cavities NOS,CTV3Map_Code_And_Term
+B201.,"Malig neop auditory tube, middle ear and mastoid air cells",CTV3Map_Code_And_Term
+B2010,Malignant tumour of Eustachian tube,CTV3Map_Code_And_Term
+B2011,Malignant tumour of tympanic cavity,CTV3Map_Code_And_Term
+B2012,Malignant tumour of tympanic antrum,CTV3Map_Code_And_Term
+B2013,Malignant tumour of mastoid air cells,CTV3Map_Code_And_Term
+B201z,"Malig neop auditory tube, middle ear, mastoid air cells NOS",CTV3Map_Code_And_Term
+B202.,Malignant tumour of maxillary sinus,CTV3Map_Code_And_Term
+B203.,Malignant tumour of ethmoid sinus,CTV3Map_Code_And_Term
+B204.,Malignant tumour of frontal sinus,CTV3Map_Code_And_Term
+B205.,Malignant tumour of sphenoid sinus,CTV3Map_Code_And_Term
+B206.,"Malignant neoplasm, overlapping lesion of accessory sinuses",CTV3Map_Code_And_Term
+B20y.,"Malig neop other site nasal cavity, middle ear and sinuses",CTV3Map_Code_And_Term
+B20z.,Malignant neoplasm of accessory sinus NOS,CTV3Map_Code_And_Term
+B21..,Malignant tumour of larynx,CTV3Map_Code_And_Term
+B210.,Malignant tumour of glottis,CTV3Map_Code_And_Term
+B211.,Malignant tumour of supraglottis,CTV3Map_Code_And_Term
+B212.,Malignant tumour of subglottis,CTV3Map_Code_And_Term
+B213.,Malignant tumour of laryngeal cartilage,CTV3Map_Code_And_Term
+B2130,Malignant neoplasm of arytenoid cartilage,CTV3Map_Code_And_Term
+B2131,Malignant neoplasm of cricoid cartilage,CTV3Map_Code_And_Term
+B2132,Malignant neoplasm of cuneiform cartilage,CTV3Map_Code_And_Term
+B2133,Malignant neoplasm of thyroid cartilage,CTV3Map_Code_And_Term
+B213z,Malignant neoplasm of laryngeal cartilage NOS,CTV3Map_Code_And_Term
+B214.,"Malignant neoplasm, overlapping lesion of larynx",CTV3Map_Code_And_Term
+B21y.,"Malignant neoplasm of larynx, other specified site",CTV3Map_Code_And_Term
+B21z.,Malignant neoplasm of larynx NOS,CTV3Map_Code_And_Term
+B24..,"Malignant neoplasm of thymus, heart and mediastinum",CTV3Map_Code_And_Term
+B240.,Malignant tumour of thymus,CTV3Map_Code_And_Term
+B241.,Malignant tumour of heart,CTV3Map_Code_And_Term
+B2410,Malignant tumour of endocardium,CTV3Map_Code_And_Term
+B2411,Malignant neoplasm of epicardium,CTV3_Children
+B2412,Malignant tumour of myocardium,CTV3Map_Code_And_Term
+B2413,Malignant neoplasm of pericardium,CTV3Map_Code_And_Term
+B241z,Malignant neoplasm of heart NOS,CTV3Map_Code_And_Term
+B242.,Malignant neoplasm of anterior mediastinum,CTV3Map_Code_And_Term
+B243.,Malignant neoplasm of posterior mediastinum,CTV3Map_Code_And_Term
+B24y.,"Malig neop of other site of heart, thymus and mediastinum",CTV3Map_Code_And_Term
+B24z.,"Malignant neoplasm of heart, thymus and mediastinum NOS",CTV3Map_Code_And_Term
+B25..,"Malig neo, overlapping lesion of heart, mediastinum & pleura",CTV3Map_Code_And_Term
+B26..,"Malignant neoplasm, overlap lesion of resp & intrathor orgs",CTV3Map_Code_And_Term
+B2z..,Malig neop other/ill-defined sites resp/intrathoracic organs,CTV3Map_Code_And_Term
+B2z0.,"Malig neop of upper respiratory tract, part unspecified",CTV3Map_Code_And_Term
+B3...,"[Mal neop][carc] bone (& [sarc]), connect tiss, skin, breast",CTV3_Children
+B30..,Malig neopl bone and artic cartilag (& [chondroma][osteoma]),CTV3_Children
+B300.,Malignant neoplasm of bones of skull and face,CTV3Map_Code_And_Term
+B3000,Malignant neoplasm of ethmoid bone,CTV3Map_Code_And_Term
+B3001,Malignant neoplasm of frontal bone,CTV3Map_Code_And_Term
+B3002,Malignant neoplasm of malar bone,CTV3Map_Code_And_Term
+B3003,Malignant neoplasm of nasal bone,CTV3Map_Code_And_Term
+B3004,Malignant neoplasm of occipital bone,CTV3Map_Code_And_Term
+B3005,Malignant neoplasm of orbital bone,CTV3Map_Code_And_Term
+B3006,Malignant neoplasm of parietal bone,CTV3Map_Code_And_Term
+B3007,Malignant neoplasm of sphenoid bone,CTV3Map_Code_And_Term
+B3008,Malignant neoplasm of temporal bone,CTV3Map_Code_And_Term
+B3009,Malignant neoplasm of zygomatic bone,CTV3Map_Code_And_Term
+B300A,Malignant neoplasm of maxilla,CTV3Map_Code_And_Term
+B300B,Malignant neoplasm of turbinate,CTV3Map_Code_And_Term
+B300C,Malignant neoplasm of vomer,CTV3Map_Code_And_Term
+B300z,Malignant neoplasm of bones of skull and face NOS,CTV3Map_Code_And_Term
+B301.,Malignant neoplasm of mandible,CTV3Map_Code_And_Term
+B302.,Malignant neoplasm of vertebral column,CTV3Map_Code_And_Term
+B3020,Malignant neoplasm of cervical vertebra,CTV3Map_Code_And_Term
+B3021,Malignant neoplasm of thoracic vertebra,CTV3Map_Code_And_Term
+B3022,Malignant neoplasm of lumbar vertebra,CTV3Map_Code_And_Term
+B302z,Malignant neoplasm of vertebral column NOS,CTV3Map_Code_And_Term
+B303.,"Malignant neoplasm of ribs, sternum and clavicle",CTV3Map_Code_And_Term
+B3030,Malignant neoplasm of rib,CTV3Map_Code_And_Term
+B3031,Malignant neoplasm of sternum,CTV3Map_Code_And_Term
+B3032,Malignant neoplasm of clavicle,CTV3Map_Code_And_Term
+B3033,Malignant neoplasm of costal cartilage,CTV3Map_Code_And_Term
+B3034,Malignant neoplasm of costovertebral joint,CTV3Map_Code_And_Term
+B3035,Malignant neoplasm of xiphoid process,CTV3Map_Code_And_Term
+B303z,"Malignant neoplasm of rib, sternum and clavicle NOS",CTV3Map_Code_And_Term
+B304.,Malignant neoplasm of scapula and long bones of upper arm,CTV3Map_Code_And_Term
+B3040,Malignant neoplasm of scapula,CTV3Map_Code_And_Term
+B3041,Malignant neoplasm of acromion,CTV3Map_Code_And_Term
+B3042,Malignant neoplasm of humerus,CTV3Map_Code_And_Term
+B3043,Malignant neoplasm of radius,CTV3Map_Code_And_Term
+B3044,Malignant neoplasm of ulna,CTV3Map_Code_And_Term
+B304z,Malig neop of scapula and long bones of upper arm NOS,CTV3Map_Code_And_Term
+B305.,Malign neoplasm hand bones (& [carpals] or [metacarpals]),CTV3_Children
+B3050,Malignant neoplasm of carpal bone - scaphoid,CTV3Map_Code_And_Term
+B3051,Malignant neoplasm of carpal bone - lunate,CTV3Map_Code_And_Term
+B3052,Malignant neoplasm of carpal bone - triquetrum,CTV3_Children
+B3053,Malignant neoplasm of carpal bone - pisiform,CTV3_Children
+B3054,Malignant neoplasm of carpal bone - trapezium,CTV3_Children
+B3055,Malignant neoplasm of carpal bone - trapezoid,CTV3_Children
+B3056,Malignant neoplasm of carpal bone - capitate,CTV3_Children
+B3057,Malignant neoplasm of carpal bone - hamate,CTV3_Children
+B3058,Malignant neoplasm of first metacarpal bone,CTV3Map_Code_And_Term
+B3059,Malignant neoplasm of second metacarpal bone,CTV3_Children
+B305A,Malignant neoplasm of third metacarpal bone,CTV3Map_Code_And_Term
+B305B,Malignant neoplasm of fourth metacarpal bone,CTV3_Children
+B305C,Malignant neoplasm of fifth metacarpal bone,CTV3Map_Code_And_Term
+B305D,Malignant neoplasm of phalanges of hand,CTV3Map_Code_And_Term
+B305z,Malignant neoplasm of hand bones NOS,CTV3Map_Code_And_Term
+B306.,"Malignant neoplasm of pelvic bones, sacrum and coccyx",CTV3Map_Code_And_Term
+B3060,Malignant neoplasm of ilium,CTV3Map_Code_And_Term
+B3061,Malignant neoplasm of ischium,CTV3Map_Code_And_Term
+B3062,Malignant neoplasm of pubis,CTV3Map_Code_And_Term
+B3063,Malignant neoplasm of sacral vertebra,CTV3Map_Code_And_Term
+B3064,Malignant neoplasm of coccygeal vertebra,CTV3Map_Code_And_Term
+B306z,"Malignant neoplasm of pelvis, sacrum or coccyx NOS",CTV3Map_Code_And_Term
+B307.,Malignant neoplasm of long bones of leg,CTV3Map_Code_And_Term
+B3070,Malignant neoplasm of femur,CTV3Map_Code_And_Term
+B3071,Malignant neoplasm of fibula,CTV3Map_Code_And_Term
+B3072,Malignant neoplasm of tibia,CTV3Map_Code_And_Term
+B307z,Malignant neoplasm of long bones of leg NOS,CTV3Map_Code_And_Term
+B308.,Malign neoplasm of short bones of leg (& [metatarsal bones]),CTV3_Children
+B3080,Malignant neoplasm of patella,CTV3Map_Code_And_Term
+B3081,Malignant neoplasm of talus,CTV3Map_Code_And_Term
+B3082,Malignant neoplasm of calcaneum,CTV3Map_Code_And_Term
+B3083,Malignant neoplasm of medial cuneiform,CTV3Map_Code_And_Term
+B3084,Malignant neoplasm of intermediate cuneiform,CTV3_Children
+B3085,Malignant neoplasm of lateral cuneiform,CTV3_Children
+B3086,Malignant neoplasm of cuboid,CTV3_Children
+B3087,Malignant neoplasm of navicular,CTV3_Children
+B3088,Malignant neoplasm of first metatarsal bone,CTV3Map_Code_And_Term
+B3089,Malignant neoplasm of second metatarsal bone,CTV3Map_Code_And_Term
+B308A,Malignant neoplasm of third metatarsal bone,CTV3_Children
+B308B,Malignant neoplasm of fourth metatarsal bone,CTV3Map_Code_And_Term
+B308C,Malignant neoplasm of fifth metatarsal bone,CTV3_Children
+B308D,Malignant neoplasm of phalanges of foot,CTV3Map_Code_And_Term
+B308z,Malignant neoplasm of short bones of leg NOS,CTV3Map_Code_And_Term
+B309.,"Malignant neoplasm, overlap les bone and artic cart of limbs",CTV3_Children
+B30z.,Malignant neoplasm of bone and articular cartilage NOS,CTV3Map_Code_And_Term
+B31..,Malignant neoplasm of connective and other soft tissue,CTV3Map_Code_And_Term
+B310.,"Malig neop of connective and soft tissue head, face and neck",CTV3Map_Code_And_Term
+B3100,Malignant tumour of soft tissue of head,CTV3Map_Code_And_Term
+B3101,Malignant tumour of soft tissue of face,CTV3Map_Code_And_Term
+B3102,Malignant tumour of soft tissue of neck,CTV3Map_Code_And_Term
+B3103,Malignant neoplasm of cartilage of ear,CTV3Map_Code_And_Term
+B3104,Malignant neoplasm of tarsus of eyelid,CTV3Map_Code_And_Term
+B3105,Malignant neoplasm soft tissues of cervical spine,CTV3Map_Code_And_Term
+B310z,"Malig neop connective and soft tissue head, face, neck NOS",CTV3Map_Code_And_Term
+B311.,Malig neop connective and soft tissue upper limb/shoulder,CTV3Map_Code_And_Term
+B3110,Malignant neoplasm of connective and soft tissue of shoulder,CTV3Map_Code_And_Term
+B3111,"Malignant neoplasm of connective and soft tissue, upper arm",CTV3Map_Code_And_Term
+B3112,Malignant neoplasm of connective and soft tissue of fore-arm,CTV3Map_Code_And_Term
+B3113,Malignant neoplasm of connective and soft tissue of hand,CTV3Map_Code_And_Term
+B3114,Malignant neoplasm of connective and soft tissue of finger,CTV3Map_Code_And_Term
+B3115,Malignant neoplasm of connective and soft tissue of thumb,CTV3Map_Code_And_Term
+B311z,Malig neop connective soft tissue upper limb/shoulder NOS,CTV3Map_Code_And_Term
+B312.,Malig neop of connective and soft tissue of hip and leg,CTV3Map_Code_And_Term
+B3120,Malignant neoplasm of connective and soft tissue of hip,CTV3Map_Code_And_Term
+B3121,Malig neop of connective and soft tissue thigh and upper leg,CTV3Map_Code_And_Term
+B3122,Malig neop connective and soft tissue of popliteal space,CTV3Map_Code_And_Term
+B3123,Malig neop of connective and soft tissue of lower leg,CTV3Map_Code_And_Term
+B3124,Malignant neoplasm of connective and soft tissue of foot,CTV3Map_Code_And_Term
+B3125,Malignant neoplasm of connective and soft tissue of toe,CTV3Map_Code_And_Term
+B3126,Malig neop of connective and soft tissue of great toe,CTV3_Children
+B312z,Malig neop connective and soft tissue hip and leg NOS,CTV3Map_Code_And_Term
+B313.,Malignant neoplasm of connective and soft tissue of thorax,CTV3Map_Code_And_Term
+B3130,Malignant neoplasm of connective and soft tissue of axilla,CTV3Map_Code_And_Term
+B3131,Malignant neoplasm of diaphragm,CTV3Map_Code_And_Term
+B3132,Malignant neoplasm of great vessels,CTV3Map_Code_And_Term
+B3133,Malig neoplasm of connective and soft tissues of thor spine,CTV3Map_Code_And_Term
+B313z,Malig neop of connective and soft tissue of thorax NOS,CTV3Map_Code_And_Term
+B314.,Malignant neoplasm of connective and soft tissue of abdomen,CTV3Map_Code_And_Term
+B3140,Malig neop of connective and soft tissue of abdominal wall,CTV3Map_Code_And_Term
+B3141,Malig neoplasm of connective and soft tissues of lumb spine,CTV3Map_Code_And_Term
+B314z,Malig neop of connective and soft tissue of abdomen NOS,CTV3Map_Code_And_Term
+B315.,Malignant neoplasm of connective and soft tissue of pelvis,CTV3Map_Code_And_Term
+B3150,Malignant neoplasm of connective and soft tissue of buttock,CTV3Map_Code_And_Term
+B3151,Malig neop of connective and soft tissue of inguinal region,CTV3Map_Code_And_Term
+B3152,Malignant neoplasm of connective and soft tissue of perineum,CTV3Map_Code_And_Term
+B3153,Malig neopl of connective and soft tissue - sacrum or coccyx,CTV3Map_Code_And_Term
+B315z,Malig neop of connective and soft tissue of pelvis NOS,CTV3Map_Code_And_Term
+B316.,Malig neop of connective and soft tissue trunk unspecified,CTV3Map_Code_And_Term
+B317.,"Malignant neoplasm, overlap lesion connective & soft tissue",CTV3Map_Code_And_Term
+B31y.,Malig neop connective and soft tissue other specified site,CTV3Map_Code_And_Term
+B31z.,"Malignant neoplasm of connective and soft tissue, site NOS",CTV3Map_Code_And_Term
+B31z0,Kaposi's sarcoma of soft tissue,CTV3Map_Code_And_Term
+B32..,Malignant melanoma of skin,CTV3Map_Code_And_Term
+B320.,Malignant melanoma of lip,CTV3Map_Code_And_Term
+B321.,Malignant melanoma of eyelid including canthus,CTV3Map_Code_And_Term
+B322.,Malignant melanoma of ear and external auricular canal,CTV3Map_Code_And_Term
+B3220,Malignant melanoma of auricle (ear),CTV3Map_Code_And_Term
+B3221,Malignant melanoma of external auditory meatus,CTV3Map_Code_And_Term
+B322z,Malignant melanoma of ear and external auricular canal NOS,CTV3Map_Code_And_Term
+B323.,Malignant melanoma of other and unspecified parts of face,CTV3Map_Code_And_Term
+B3230,Malignant melanoma of external surface of cheek,CTV3Map_Code_And_Term
+B3231,Malignant melanoma of chin,CTV3Map_Code_And_Term
+B3232,Malignant melanoma of eyebrow,CTV3Map_Code_And_Term
+B3233,Malignant melanoma of forehead,CTV3Map_Code_And_Term
+B3234,Malignant melanoma of external surface of nose,CTV3Map_Code_And_Term
+B3235,Malignant melanoma of temple,CTV3Map_Code_And_Term
+B323z,Malignant melanoma of face NOS,CTV3Map_Code_And_Term
+B324.,Malignant melanoma of scalp and neck,CTV3Map_Code_And_Term
+B3240,Malignant melanoma of scalp,CTV3Map_Code_And_Term
+B3241,Malignant melanoma of neck,CTV3Map_Code_And_Term
+B324z,Malignant melanoma of scalp and neck NOS,CTV3Map_Code_And_Term
+B325.,Malignant melanoma of trunk (excluding scrotum),CTV3Map_Code_And_Term
+B3250,Malignant melanoma of axilla,CTV3Map_Code_And_Term
+B3251,Malignant melanoma of breast,CTV3Map_Code_And_Term
+B3252,Malignant melanoma of buttock,CTV3Map_Code_And_Term
+B3253,Malignant melanoma of groin,CTV3Map_Code_And_Term
+B3254,Malignant melanoma of perianal skin,CTV3Map_Code_And_Term
+B3255,Malignant melanoma of perineum,CTV3Map_Code_And_Term
+B3256,Malignant melanoma of umbilicus,CTV3Map_Code_And_Term
+B325z,"Malignant melanoma of trunk, excluding scrotum, NOS",CTV3Map_Code_And_Term
+B326.,Malignant melanoma of upper limb and shoulder,CTV3Map_Code_And_Term
+B3260,Malignant melanoma of shoulder,CTV3Map_Code_And_Term
+B3261,Malignant melanoma of upper arm,CTV3Map_Code_And_Term
+B3262,Malignant melanoma of fore-arm,CTV3Map_Code_And_Term
+B3263,Malignant melanoma of hand,CTV3Map_Code_And_Term
+B3264,Malignant melanoma of finger,CTV3Map_Code_And_Term
+B3265,Malignant melanoma of thumb,CTV3Map_Code_And_Term
+B326z,Malignant melanoma of upper limb or shoulder NOS,CTV3Map_Code_And_Term
+B327.,Malignant melanoma of lower limb and hip,CTV3Map_Code_And_Term
+B3270,Malignant melanoma of hip,CTV3Map_Code_And_Term
+B3271,Malignant melanoma of thigh,CTV3Map_Code_And_Term
+B3272,Malignant melanoma of knee,CTV3Map_Code_And_Term
+B3273,Malignant melanoma of popliteal fossa area,CTV3Map_Code_And_Term
+B3274,Malignant melanoma of lower leg,CTV3Map_Code_And_Term
+B3275,Malignant melanoma of ankle,CTV3Map_Code_And_Term
+B3276,Malignant melanoma of heel,CTV3Map_Code_And_Term
+B3277,Malignant melanoma of foot,CTV3Map_Code_And_Term
+B3278,Malignant melanoma of toe,CTV3Map_Code_And_Term
+B3279,Malignant melanoma of great toe,CTV3Map_Code_And_Term
+B327z,Malignant melanoma of lower limb or hip NOS,CTV3Map_Code_And_Term
+B32y.,Malignant melanoma of other specified skin site,CTV3Map_Code_And_Term
+B32y0,Overlapping malignant melanoma of skin,CTV3Map_Code_And_Term
+B32z.,Malignant melanoma of skin NOS,CTV3Map_Code_And_Term
+B34..,Malignant neoplasm of female breast,CTV3Map_Code_And_Term
+B340.,Malignant neoplasm of nipple and areola of female breast,CTV3Map_Code_And_Term
+B3400,Malignant neoplasm of nipple of female breast,CTV3Map_Code_And_Term
+B3401,Malignant neoplasm of areola of female breast,CTV3Map_Code_And_Term
+B340z,Malignant neoplasm of nipple or areola of female breast NOS,CTV3Map_Code_And_Term
+B341.,Malignant neoplasm of central part of female breast,CTV3Map_Code_And_Term
+B342.,Malignant neoplasm of upper-inner quadrant of female breast,CTV3Map_Code_And_Term
+B343.,Malignant neoplasm of lower-inner quadrant of female breast,CTV3Map_Code_And_Term
+B344.,Malignant neoplasm of upper-outer quadrant of female breast,CTV3Map_Code_And_Term
+B345.,Malignant neoplasm of lower-outer quadrant of female breast,CTV3Map_Code_And_Term
+B346.,Malignant neoplasm of axillary tail of female breast,CTV3Map_Code_And_Term
+B347.,"Malignant neoplasm, overlapping lesion of breast",CTV3Map_Code_And_Term
+B34y.,Malignant neoplasm of other site of female breast,CTV3Map_Code_And_Term
+B34y0,Malignant neoplasm of ectopic site of female breast,CTV3Map_Code_And_Term
+B34yz,Malignant neoplasm of other site of female breast NOS,CTV3Map_Code_And_Term
+B34z.,Malignant neoplasm of female breast NOS,CTV3Map_Code_And_Term
+B35..,Malignant neoplasm of male breast,CTV3Map_Code_And_Term
+B350.,Malignant neoplasm of nipple and areola of male breast,CTV3Map_Code_And_Term
+B3500,Malignant neoplasm of nipple of male breast,CTV3Map_Code_And_Term
+B3501,Malignant neoplasm of areola of male breast,CTV3Map_Code_And_Term
+B350z,Malignant neoplasm of nipple or areola of male breast NOS,CTV3_Children
+B35z.,Malignant neoplasm of other site of male breast,CTV3Map_Code_And_Term
+B35z0,Malignant neoplasm of ectopic site of male breast,CTV3Map_Code_And_Term
+B35zz,Malignant neoplasm of male breast NOS,CTV3Map_Code_And_Term
+B3y..,"Malig neop of bone, connective tissue, skin and breast OS",CTV3Map_Code_And_Term
+B3z..,"Malig neop of bone, connective tissue, skin and breast NOS",CTV3Map_Code_And_Term
+B4...,Malignant neoplasm of genitourinary organ (& [carcinoma]),CTV3_Children
+B40..,"Malignant neoplasm of uterus, part unspecified",CTV3Map_Code_And_Term
+B41..,Malignant neoplasm of cervix uteri (& carcinoma),CTV3_Children
+B410.,Malignant neoplasm of endocervix,CTV3Map_Code_And_Term
+B4100,Malignant neoplasm of endocervical canal,CTV3Map_Code_And_Term
+B4101,Malignant neoplasm of endocervical gland,CTV3Map_Code_And_Term
+B410z,Malignant neoplasm of endocervix NOS,CTV3Map_Code_And_Term
+B411.,Malignant neoplasm of exocervix,CTV3Map_Code_And_Term
+B412.,"Malignant neoplasm, overlapping lesion of cervix uteri",CTV3Map_Code_And_Term
+B41y.,Malignant neoplasm of other site of cervix,CTV3Map_Code_And_Term
+B41y0,Malignant neoplasm of cervical stump,CTV3Map_Code_And_Term
+B41y1,Malignant neoplasm of squamocolumnar junction of cervix,CTV3Map_Code_And_Term
+B41yz,Malignant neoplasm of other site of cervix NOS,CTV3Map_Code_And_Term
+B41z.,Malignant neoplasm of cervix uteri NOS,CTV3Map_Code_And_Term
+B42..,Malignant neoplasm of placenta,CTV3Map_Code_And_Term
+B420.,Choriocarcinoma,CTV3Map_Code_And_Term
+B43..,Malignant tumour of body of uterus,CTV3Map_Code_And_Term
+B430.,"Malignant neoplasm of corpus uteri, excluding isthmus",CTV3Map_Code_And_Term
+B4300,Malignant neoplasm of cornu of corpus uteri,CTV3Map_Code_And_Term
+B4301,Malignant neoplasm of fundus of corpus uteri,CTV3Map_Code_And_Term
+B4302,Malignant neoplasm of endometrium of corpus uteri,CTV3Map_Code_And_Term
+B4303,Malignant neoplasm of myometrium of corpus uteri,CTV3Map_Code_And_Term
+B430z,Malignant neoplasm of corpus uteri NOS,CTV3Map_Code_And_Term
+B431.,Malignant neoplasm of isthmus of uterine body,CTV3Map_Code_And_Term
+B4310,Malignant neoplasm of lower uterine segment,CTV3Map_Code_And_Term
+B431z,Malignant neoplasm of isthmus of uterine body NOS,CTV3Map_Code_And_Term
+B432.,Malignant neoplasm of overlapping lesion of corpus uteri,CTV3Map_Code_And_Term
+B43y.,Malignant neoplasm of other site of uterine body,CTV3Map_Code_And_Term
+B43z.,Malignant neoplasm of body of uterus NOS,CTV3Map_Code_And_Term
+B44..,Malignant neoplasm of ovary and other uterine adnexa,CTV3Map_Code_And_Term
+B440.,Malignant tumour of ovary,CTV3Map_Code_And_Term
+B441.,Malignant tumour of fallopian tube,CTV3Map_Code_And_Term
+B442.,Malignant neoplasm of broad ligament,CTV3Map_Code_And_Term
+B443.,Malignant neoplasm of parametrium,CTV3Map_Code_And_Term
+B444.,Malignant neoplasm of round ligament,CTV3_Children
+B44y.,Malignant neoplasm of other site of uterine adnexa,CTV3Map_Code_And_Term
+B44z.,Malignant neoplasm of uterine adnexa NOS,CTV3Map_Code_And_Term
+B45..,Malig neop of other and unspecified female genital organs,CTV3Map_Code_And_Term
+B450.,Malignant tumour of vagina,CTV3Map_Code_And_Term
+B4500,Malignant neoplasm of Gartner's duct,CTV3_Children
+B4501,Malignant neoplasm of vaginal vault,CTV3Map_Code_And_Term
+B450z,Malignant neoplasm of vagina NOS,CTV3Map_Code_And_Term
+B451.,Malignant neoplasm of labia majora,CTV3Map_Code_And_Term
+B4510,Malignant neoplasm of greater vestibular (Bartholin's) gland,CTV3Map_Code_And_Term
+B451z,Malignant neoplasm of labia majora NOS,CTV3Map_Code_And_Term
+B452.,Malignant neoplasm of labia minora,CTV3Map_Code_And_Term
+B453.,Malignant neoplasm of clitoris,CTV3Map_Code_And_Term
+B454.,Malign neoplasm of vulva: [unspecified] or [primary cancer],CTV3_Children
+B45y.,Malignant neoplasm of other specified female genital organ,CTV3Map_Code_And_Term
+B45y0,Malignant neoplasm of overlapping lesion of vulva,CTV3Map_Code_And_Term
+B45z.,Malignant neoplasm of female genital organ NOS,CTV3Map_Code_And_Term
+B46..,Malignant tumour of prostate,CTV3Map_Code_And_Term
+B47..,Malignant tumour of testis,CTV3Map_Code_And_Term
+B470.,Malignant tumour of undescended testis,CTV3Map_Code_And_Term
+B4700,Malignant tumour of ectopic testis,CTV3_Children
+B4701,Malignant tumour of retained testis,CTV3_Children
+B470z,Malignant neoplasm of undescended testis NOS,CTV3Map_Code_And_Term
+B471.,Malignant neoplasm of descended testis,CTV3Map_Code_And_Term
+B47z.,Malign neoplasm of testis: [NOS] or [seminoma] or [teratoma],CTV3_Children
+B48..,Malignant neoplasm of penis and other male genital organs,CTV3Map_Code_And_Term
+B480.,Malignant tumour of foreskin,CTV3Map_Code_And_Term
+B481.,Malignant tumour of glans penis,CTV3Map_Code_And_Term
+B482.,Malignant tumour of body of penis,CTV3Map_Code_And_Term
+B483.,"Malignant neoplasm of penis, part unspecified",CTV3Map_Code_And_Term
+B484.,Malignant tumour of epididymis,CTV3Map_Code_And_Term
+B485.,Malignant tumour of spermatic cord,CTV3Map_Code_And_Term
+B486.,Malignant tumour of scrotum,CTV3Map_Code_And_Term
+B487.,"Malignant neoplasm, overlapping lesion of penis",CTV3Map_Code_And_Term
+B48y.,Malignant neoplasm of other male genital organ,CTV3Map_Code_And_Term
+B48y0,Malignant tumour of seminal vesicle,CTV3Map_Code_And_Term
+B48y1,Malignant tumour of tunica vaginalis,CTV3Map_Code_And_Term
+B48y2,"Malignant neoplasm, overlapping lesion male genital orgs",CTV3Map_Code_And_Term
+B48yz,Malignant neoplasm of other male genital organ NOS,CTV3Map_Code_And_Term
+B48z.,Malignant neoplasm of penis and other male genital organ NOS,CTV3Map_Code_And_Term
+B49..,Malignant tumour of urinary bladder,CTV3Map_Code_And_Term
+B490.,Malignant tumour of trigone of urinary bladder,CTV3Map_Code_And_Term
+B491.,Malignant tumour of vault of bladder,CTV3Map_Code_And_Term
+B492.,Malignant neoplasm of lateral wall of urinary bladder,CTV3Map_Code_And_Term
+B493.,Malignant neoplasm of anterior wall of urinary bladder,CTV3Map_Code_And_Term
+B494.,Malignant neoplasm of posterior wall of urinary bladder,CTV3Map_Code_And_Term
+B495.,Malignant tumour of bladder neck,CTV3Map_Code_And_Term
+B496.,Malignant tumour of ureteric orifice,CTV3Map_Code_And_Term
+B497.,Malignant tumour of urachus,CTV3Map_Code_And_Term
+B49y.,Malignant neoplasm of other site of urinary bladder,CTV3Map_Code_And_Term
+B49y0,"Malignant neoplasm, overlapping lesion of bladder",CTV3Map_Code_And_Term
+B49z.,Malignant neoplasm of urinary bladder NOS,CTV3Map_Code_And_Term
+B4A..,Malignant renal neoplasm (& [other unspecif urinary organs]),CTV3_Children
+B4A0.,Malignant tumour of kidney parenchyma,CTV3Map_Code_And_Term
+B4A00,Hypernephroma,CTV3Map_Code_And_Term
+B4A1.,Malignant tumour of renal pelvis,CTV3Map_Code_And_Term
+B4A10,Malignant tumour of renal calyx,CTV3Map_Code_And_Term
+B4A11,Malignant tumour of pelviureteric junction,CTV3Map_Code_And_Term
+B4A1z,Malignant neoplasm of renal pelvis NOS,CTV3Map_Code_And_Term
+B4A2.,Malignant tumour of ureter,CTV3Map_Code_And_Term
+B4A3.,Malignant tumour of urethra,CTV3Map_Code_And_Term
+B4A4.,Malignant tumour of paraurethral gland,CTV3Map_Code_And_Term
+B4Ay.,Malignant neoplasm of other urinary organs,CTV3Map_Code_And_Term
+B4Ay0,Malignant neoplasm of overlapping lesion of urinary organs,CTV3Map_Code_And_Term
+B4Az.,Malignant neoplasm of kidney or urinary organs NOS,CTV3Map_Code_And_Term
+B4y..,Malignant neoplasm of genitourinary organ OS,CTV3Map_Code_And_Term
+B4z..,Malignant neoplasm of genitourinary organ NOS,CTV3Map_Code_And_Term
+B5...,Malignant neopl other unspecified sites: (& [[carcinoma]),CTV3_Children
+B50..,Malignant tumour of eye,CTV3Map_Code_And_Term
+B500.,"Malig neop eyeball excl conjunctiva, cornea, retina, choroid",CTV3Map_Code_And_Term
+B5000,Malignant tumour of ciliary body,CTV3Map_Code_And_Term
+B5001,Malignant tumour of iris,CTV3Map_Code_And_Term
+B5002,Malignant neoplasm of crystalline lens,CTV3Map_Code_And_Term
+B5003,Malignant neoplasm of sclera,CTV3_Children
+B500z,Malignant neoplasm of eyeball NOS,CTV3Map_Code_And_Term
+B501.,Malignant tumour of orbit,CTV3Map_Code_And_Term
+B5010,Malignant neoplasm of connective tissue of orbit,CTV3Map_Code_And_Term
+B5011,Malignant neoplasm of extraocular muscle of orbit,CTV3Map_Code_And_Term
+B501z,Malignant neoplasm of orbit NOS,CTV3Map_Code_And_Term
+B503.,Malignant tumour of conjunctiva,CTV3Map_Code_And_Term
+B504.,Malignant tumour of cornea,CTV3Map_Code_And_Term
+B505.,Malignant tumour of retina,CTV3Map_Code_And_Term
+B506.,Malignant tumour of choroid,CTV3Map_Code_And_Term
+B507.,Malignant tumour of lacrimal gland,CTV3Map_Code_And_Term
+B5070,Malignant neoplasm of lacrimal sac,CTV3Map_Code_And_Term
+B5071,Malignant neoplasm of nasolacrimal duct,CTV3Map_Code_And_Term
+B507z,Malignant neoplasm of lacrimal duct NOS,QOF
+B508.,"Malignant neoplasm, overlapping lesion of eye and adnexa",CTV3Map_Code_And_Term
+B50y.,Malignant neoplasm of other specified site of eye,CTV3Map_Code_And_Term
+B50z.,Malignant neoplasm of eye NOS,CTV3Map_Code_And_Term
+B510.,Malignant neoplasm cerebrum (excluding lobes and ventricles),CTV3Map_Code_And_Term
+B5100,Malignant neoplasm of basal ganglia,CTV3Map_Code_And_Term
+B5101,Malignant neoplasm of cerebral cortex,CTV3Map_Code_And_Term
+B5102,Malignant neoplasm of corpus striatum,CTV3_Children
+B5103,Malignant neoplasm of globus pallidus,CTV3Map_Code_And_Term
+B5104,Malignant tumour of hypothalamus,CTV3Map_Code_And_Term
+B5105,Malignant neoplasm of thalamus,CTV3Map_Code_And_Term
+B510z,Malignant neoplasm of cerebrum NOS,CTV3Map_Code_And_Term
+B511.,Malignant neoplasm of frontal lobe,CTV3Map_Code_And_Term
+B512.,Malignant neoplasm of temporal lobe,CTV3Map_Code_And_Term
+B5120,Malignant neoplasm of hippocampus,CTV3Map_Code_And_Term
+B5121,Malignant neoplasm of uncus,CTV3_Children
+B512z,Malignant neoplasm of temporal lobe NOS,CTV3Map_Code_And_Term
+B513.,Malignant neoplasm of parietal lobe,CTV3Map_Code_And_Term
+B514.,Malignant neoplasm of occipital lobe,CTV3Map_Code_And_Term
+B515.,Malignant neoplasm of cerebral ventricles,CTV3Map_Code_And_Term
+B5150,Malignant tumour of choroid plexus,CTV3Map_Code_And_Term
+B5151,Malignant neoplasm of floor of cerebral ventricle,CTV3_Children
+B515z,Malignant neoplasm of cerebral ventricle NOS,CTV3_Children
+B516.,Malignant neoplasm of cerebellum,CTV3Map_Code_And_Term
+B517.,Malignant neoplasm of brainstem,CTV3Map_Code_And_Term
+B5170,Malignant neoplasm of cerebral peduncle,CTV3Map_Code_And_Term
+B5171,Malignant neoplasm of medulla oblongata,CTV3Map_Code_And_Term
+B5172,Malignant neoplasm of midbrain,CTV3Map_Code_And_Term
+B5173,Malignant neoplasm of pons,CTV3Map_Code_And_Term
+B517z,Malignant neoplasm of brainstem NOS,CTV3Map_Code_And_Term
+B51y.,Malignant neoplasm of other parts of brain,CTV3Map_Code_And_Term
+B51y0,Malignant neoplasm of corpus callosum,CTV3Map_Code_And_Term
+B51y1,Malignant neoplasm of tapetum,CTV3_Children
+B51yz,Malignant neoplasm of other part of brain NOS,CTV3Map_Code_And_Term
+B51z.,Malignant neoplasm of brain NOS,CTV3Map_Code_And_Term
+B52..,Malig neop of other and unspecified parts of nervous system,CTV3Map_Code_And_Term
+B520.,Malignant tumour of cranial nerve,CTV3Map_Code_And_Term
+B5200,Malignant neoplasm of olfactory bulb,CTV3Map_Code_And_Term
+B520z,Malignant neoplasm of cranial nerves NOS,CTV3Map_Code_And_Term
+B521.,Malignant neoplasm of cerebral meninges,CTV3Map_Code_And_Term
+B5210,Malignant neoplasm of cerebral dura mater,CTV3Map_Code_And_Term
+B5211,Malignant neoplasm of cerebral arachnoid mater,CTV3_Children
+B5212,Malignant neoplasm of cerebral pia mater,CTV3Map_Code_And_Term
+B521z,Malignant neoplasm of cerebral meninges NOS,CTV3Map_Code_And_Term
+B522.,Malignant tumour of spinal cord,CTV3Map_Code_And_Term
+B523.,Malignant neoplasm of spinal meninges,CTV3Map_Code_And_Term
+B5230,Malignant neoplasm of spinal dura mater,CTV3_Children
+B5231,Malignant neoplasm of spinal arachnoid mater,CTV3_Children
+B5232,Malignant neoplasm of spinal pia mater,CTV3_Children
+B523z,Malignant neoplasm of spinal meninges NOS,CTV3Map_Code_And_Term
+B524.,Malig neopl peripheral nerves and autonomic nervous system,CTV3Map_Code_And_Term
+B5240,"Malignant neoplasm of peripheral nerves of head, face & neck",CTV3Map_Code_And_Term
+B5241,"Malignant neoplasm of peripheral nerve,upp limb,incl should",CTV3Map_Code_And_Term
+B5242,"Malignant neoplasm of peripheral nerve of low limb, incl hip",CTV3Map_Code_And_Term
+B5243,Malignant neoplasm of peripheral nerve of thorax,CTV3Map_Code_And_Term
+B5244,Malignant neoplasm of peripheral nerve of abdomen,CTV3Map_Code_And_Term
+B5245,Malignant neoplasm of peripheral nerve of pelvis,CTV3Map_Code_And_Term
+B5246,"Malignant neoplasm,overlap lesion periph nerve & auton ns",CTV3Map_Code_And_Term
+B525.,Malignant neoplasm of cauda equina,CTV3Map_Code_And_Term
+B52y.,Malignant neoplasm of other specified part of nervous system,CTV3Map_Code_And_Term
+B52z.,Malignant neoplasm of nervous system NOS,CTV3Map_Code_And_Term
+B53..,Malignant tumour of thyroid gland,CTV3Map_Code_And_Term
+B54..,Malig neop of other endocrine glands and related structures,CTV3Map_Code_And_Term
+B540.,Malignant neoplasm of adrenal gland (& phaeochromocytoma),CTV3_Children
+B5400,Malignant tumour of adrenal cortex,CTV3Map_Code_And_Term
+B5401,Malignant tumour of adrenal medulla,CTV3Map_Code_And_Term
+B540z,Malignant neoplasm of adrenal gland NOS,CTV3Map_Code_And_Term
+B541.,Malignant tumour of parathyroid gland,CTV3Map_Code_And_Term
+B542.,Malignant neoplasm pituitary gland and craniopharyngeal duct,CTV3Map_Code_And_Term
+B5420,Malignant tumour of pituitary gland,CTV3Map_Code_And_Term
+B5421,Malignant tumour of craniopharyngeal duct,CTV3Map_Code_And_Term
+B542z,Malig neop pituitary gland or craniopharyngeal duct NOS,CTV3Map_Code_And_Term
+B543.,Malignant tumour of pineal gland,CTV3Map_Code_And_Term
+B544.,Malignant neoplasm of carotid body,CTV3Map_Code_And_Term
+B545.,Malignant neoplasm of aortic body and other paraganglia,CTV3Map_Code_And_Term
+B5450,Malignant neoplasm of glomus jugulare,CTV3Map_Code_And_Term
+B5451,Malignant neoplasm of aortic body,CTV3Map_Code_And_Term
+B5452,Malignant neoplasm of coccygeal body,CTV3Map_Code_And_Term
+B545z,Malignant neoplasm of aortic body or paraganglia NOS,CTV3Map_Code_And_Term
+B54y.,Malignant neoplasm of other specified endocrine gland,CTV3Map_Code_And_Term
+B54z.,Malig neop of endocrine gland or related structure NOS,CTV3Map_Code_And_Term
+B55..,Malignant neoplasm of other and ill-defined sites,CTV3Map_Code_And_Term
+B550.,"Malignant neoplasm of head, neck and face",CTV3Map_Code_And_Term
+B5500,Malignant neoplasm of head NOS,CTV3Map_Code_And_Term
+B5501,Malignant neoplasm of cheek NOS,CTV3Map_Code_And_Term
+B5502,Malignant neoplasm of nose NOS,CTV3Map_Code_And_Term
+B5503,Malignant neoplasm of jaw NOS,CTV3Map_Code_And_Term
+B5504,Malignant neoplasm of neck NOS,CTV3Map_Code_And_Term
+B5505,Malignant neoplasm of supraclavicular fossa NOS,CTV3Map_Code_And_Term
+B550z,"Malignant neoplasm of head, neck and face NOS",CTV3Map_Code_And_Term
+B551.,Malignant tumour of thorax,CTV3Map_Code_And_Term
+B5510,Malignant neoplasm of axilla NOS,CTV3Map_Code_And_Term
+B5511,Malignant neoplasm of chest wall NOS,CTV3Map_Code_And_Term
+B5512,Malignant neoplasm of intrathoracic site NOS,CTV3Map_Code_And_Term
+B551z,Malignant neoplasm of thorax NOS,CTV3Map_Code_And_Term
+B552.,Malignant tumour of abdomen,CTV3Map_Code_And_Term
+B553.,Malignant tumour of pelvis,CTV3Map_Code_And_Term
+B5530,Malignant neoplasm of inguinal region NOS,CTV3Map_Code_And_Term
+B5531,Malignant neoplasm of presacral region,CTV3Map_Code_And_Term
+B5532,Malignant neoplasm of sacrococcygeal region,CTV3Map_Code_And_Term
+B553z,Malignant neoplasm of pelvis NOS,CTV3Map_Code_And_Term
+B554.,Malignant neoplasm of upper limb NOS,CTV3Map_Code_And_Term
+B555.,Malignant neoplasm of lower limb NOS,CTV3Map_Code_And_Term
+B55y.,Malignant neoplasm of other specified sites,CTV3Map_Code_And_Term
+B55y0,Malignant neoplasm of back NOS,CTV3Map_Code_And_Term
+B55y1,Malignant neoplasm of trunk NOS,CTV3Map_Code_And_Term
+B55y2,Malignant neoplasm of flank NOS,CTV3Map_Code_And_Term
+B55yz,Malignant neoplasm of specified site NOS,CTV3Map_Code_And_Term
+B55z.,Malignant neoplasm of other and ill-defined site NOS,CTV3Map_Code_And_Term
+B56..,(Lymph node metast) or (sec unsp malig neop lymph nodes),CTV3_Children
+B560.,Secondary and unspec malig neop lymph nodes head/face/neck,CTV3_Children
+B5600,Secondary and unspec malig neop of superficial parotid LN,CTV3_Children
+B5601,Secondary and unspec malignant neoplasm mastoid lymph nodes,CTV3_Children
+B5602,Secondary and unspec malig neop superficial cervical LN,CTV3_Children
+B5603,Secondary and unspec malignant neoplasm occipital lymph node,CTV3_Children
+B5604,Secondary and unspec malig neop deep parotid lymph nodes,CTV3_Children
+B5605,Secondary and unspec malig neop submandibular lymph nodes,CTV3_Children
+B5606,Secondary and unspec malig neop of facial lymph nodes,CTV3_Children
+B5607,Secondary and unspec malig neop submental lymph nodes,CTV3_Children
+B5608,Secondary and unspec malig neop anterior cervical LN,CTV3_Children
+B5609,Secondary and unspec malig neop deep cervical LN,CTV3_Children
+B560z,Secondary unspec malig neop lymph nodes head/face/neck NOS,CTV3_Children
+B561.,Secondary and unspec malig neop intrathoracic lymph nodes,CTV3_Children
+B5610,Secondary and unspec malig neop internal mammary lymph nodes,CTV3_Children
+B5611,Secondary and unspec malig neop intercostal lymph nodes,CTV3_Children
+B5612,Secondary and unspec malig neop diaphragmatic lymph nodes,CTV3_Children
+B5613,Secondary and unspec malig neop ant mediastinal lymph nodes,CTV3_Children
+B5614,Secondary and unspec malig neop post mediastinal lymph nodes,CTV3_Children
+B5615,Secondary and unspec malig neop paratracheal lymph nodes,CTV3_Children
+B5616,Secondary and unspec malig neop superfic tracheobronchial LN,CTV3_Children
+B5617,Secondary and unspec malig neop inferior tracheobronchial LN,CTV3_Children
+B5618,Secondary and unspec malig neop bronchopulmonary lymph nodes,CTV3_Children
+B5619,Secondary and unspec malig neop pulmonary lymph nodes,CTV3_Children
+B561z,Secondary and unspec malig neop intrathoracic LN NOS,CTV3_Children
+B562.,Secondary and unspec malig neop intra-abdominal lymph nodes,CTV3_Children
+B5620,Secondary and unspec malig neop coeliac lymph nodes,CTV3_Children
+B5621,Secondary and unspec malig neop superficial mesenteric LN,CTV3_Children
+B5622,Secondary and unspec malig neop inferior mesenteric LN,CTV3_Children
+B5623,Secondary and unspec malig neop common iliac lymph nodes,CTV3_Children
+B5624,Secondary and unspec malig neop external iliac lymph nodes,CTV3_Children
+B562z,Secondary and unspec malig neop intra-abdominal LN NOS,CTV3_Children
+B563.,Secondary and unspec malig neop axilla and upper limb LN,CTV3_Children
+B5630,Secondary and unspec malig neop axillary lymph nodes,CTV3_Children
+B5631,Secondary and unspec malig neop supratrochlear lymph nodes,CTV3_Children
+B5632,Secondary and unspec malig neop infraclavicular lymph nodes,CTV3_Children
+B5633,Secondary and unspec malig neop pectoral lymph nodes,CTV3_Children
+B563z,Secondary and unspec malig neop axilla and upper limb LN NOS,CTV3_Children
+B564.,Secondary and unspec malig neop inguinal and lower limb LN,CTV3_Children
+B5640,Secondary and unspec malig neop superficial inguinal LN,CTV3_Children
+B5641,Secondary and unspec malig neop deep inguinal lymph nodes,CTV3_Children
+B5642,Secondary and unspec malig neop popliteal lymph nodes,CTV3_Children
+B564z,Secondary and unspec malig neop of inguinal and leg LN NOS,CTV3_Children
+B565.,Secondary and unspec malig neop intrapelvic lymph nodes,CTV3_Children
+B5650,Secondary and unspec malig neop internal iliac lymph nodes,CTV3_Children
+B5651,Secondary and unspec malig neop inferior epigastric LN,CTV3_Children
+B5652,Secondary and unspec malig neop circumflex iliac LN,CTV3_Children
+B5653,Secondary and unspec malig neop sacral lymph nodes,CTV3_Children
+B5654,Secondary and unspec malig neop obturator lymph nodes,CTV3_Children
+B565z,Secondary and unspec malig neop intrapelvic LN NOS,CTV3_Children
+B56y.,Secondary and unspec malig neop lymph nodes multiple sites,CTV3_Children
+B56z.,Secondary and unspec malig neop lymph nodes NOS,CTV3_Children
+B57..,Secondary malign neoplasm of resp &/or digest syst (& carc),CTV3_Children
+B570.,Metastasis to lung,CTV3_Children
+B571.,Metastasis to mediastinum,CTV3_Children
+B572.,Metastasis to pleura,CTV3_Children
+B573.,Secondary malignant neoplasm of other respiratory organs,CTV3_Children
+B574.,Secondary malignant neoplasm of small intestine and duodenum,CTV3_Children
+B5740,Secondary malignant neoplasm of duodenum,CTV3_Children
+B5741,Secondary malignant neoplasm of jejunum,CTV3_Children
+B5742,Secondary malignant neoplasm of ileum,CTV3_Children
+B574z,Secondary malig neop of small intestine or duodenum NOS,CTV3_Children
+B575.,Sec malignant neoplasm of large intestine(AND/OR?[rectum]),CTV3_Children
+B5750,Secondary malignant neoplasm of colon,CTV3_Children
+B5751,Secondary malignant neoplasm of rectum,CTV3_Children
+B575z,Secondary malig neop of large intestine or rectum NOS,CTV3_Children
+B576.,Secondary malig neop of retroperitoneum and peritoneum,CTV3_Children
+B5760,Metastasis to retroperitoneum,CTV3_Children
+B5761,Metastasis to peritoneum,CTV3_Children
+B576z,Secondary malig neop of retroperitoneum or peritoneum NOS,CTV3_Children
+B577.,Metastasis to liver,CTV3_Children
+B57y.,Secondary malignant neoplasm of other digestive organ,CTV3_Children
+B57z.,Secondary malig neop of respiratory or digestive system NOS,CTV3_Children
+B58..,Secondary [malig neopl] or [carcinoma] of other specif sites,CTV3_Children
+B580.,Metastasis to kidney,CTV3_Children
+B581.,Secondary malignant neoplasm of other urinary organs,CTV3_Children
+B5810,Metastasis to ureter,CTV3_Children
+B5811,Metastasis to bladder,CTV3_Children
+B5812,Metastasis to urethra,CTV3_Children
+B581z,Secondary malignant neoplasm of other urinary organ NOS,CTV3_Children
+B582.,Metastasis to skin,CTV3_Children
+B5820,Secondary malignant neoplasm of skin of head,CTV3_Children
+B5821,Secondary malignant neoplasm of skin of face,CTV3_Children
+B5822,Secondary malignant neoplasm of skin of neck,CTV3_Children
+B5823,Secondary malignant neoplasm of skin of trunk,CTV3_Children
+B5824,Secondary malignant neoplasm of skin of shoulder and arm,CTV3_Children
+B5825,Secondary malignant neoplasm of skin of hip and leg,CTV3_Children
+B5826,Secondary malignant neoplasm of skin of breast,CTV3_Children
+B582z,Secondary malignant neoplasm of skin NOS,CTV3_Children
+B583.,Secondary malignant neoplasm of brain and spinal cord,CTV3_Children
+B5830,Metastasis to brain,CTV3_Children
+B5831,Metastasis to spinal cord,CTV3_Children
+B583z,Secondary malignant neoplasm of brain or spinal cord NOS,CTV3_Children
+B584.,Secondary malignant neoplasm of other part of nervous system,CTV3_Children
+B585.,Metastasis to bone,CTV3_Children
+B586.,Metastasis to ovary,CTV3_Children
+B587.,Metastasis to adrenal gland,CTV3_Children
+B58y0,Metastasis to breast,CTV3_Children
+B58y1,Metastasis to uterus,CTV3_Children
+B58y2,Secondary malignant neoplasm of cervix uteri,CTV3_Children
+B58y3,Metastasis to vagina,CTV3_Children
+B58y4,Secondary malignant neoplasm of vulva,CTV3_Children
+B58y5,Metastasis to prostate,CTV3_Children
+B58y6,Metastasis to testis,CTV3_Children
+B58y7,Metastasis to penis,CTV3_Children
+B58y8,Secondary malignant neoplasm of epididymis and vas deferens,CTV3_Children
+B58yz,Secondary malignant neoplasm of other specified site NOS,CTV3_Children
+B59..,Malignant neoplasm of unspecified site,CTV3Map_Code_And_Term
+B590.,Disseminated malignancy NOS (& carcinomatosis),CTV3_Children
+B591.,Other malignant neoplasm NOS,CTV3Map_Code_And_Term
+B592.,Malignant neoplasms of independent (primary) multiple sites,CTV3Map_Code_And_Term
+B59z.,Malignant neoplasm of unspecified site NOS,CTV3Map_Code_And_Term
+B5y..,Malignant neoplasm of other and unspecified site OS,CTV3Map_Code_And_Term
+B5z..,Malignant neoplasm of other and unspecified site NOS,CTV3Map_Code_And_Term
+B6z0.,Kaposi's sarcoma of lymph nodes,CTV3Map_Code_And_Term
+BB02.,Malignant tumour morphology,High_Level_SNOMED
+BB04.,Malignant tumour - uncertain whether primary or metastatic,CTV3Map_Code_And_Term
+BB07.,Malignant tumour cells,CTV3Map_Code_And_Term
+BB08.,Malignant tumour - small cell type,CTV3Map_Code_And_Term
+BB09.,Malignant tumour - giant cell type,CTV3Map_Code_And_Term
+BB0A.,Malignant tumour - fusiform cell type,CTV3Map_Code_And_Term
+BB14.,[M]Carcinomatosis,CTV3Map_Code_And_Term
+BB53.,"[M]Adenocarcinoma, metastatic, NOS",CTV3_Children
+BB5B1,Islet cell carcinoma,CTV3Map_Code_And_Term
+BB5B3,Malignant insulinoma,CTV3Map_Code_And_Term
+BB5B5,Malignant glucagonoma,CTV3Map_Code_And_Term
+BB5B6,Mixed islet cell and exocrine adenocarcinoma,CTV3Map_Code_And_Term
+BB5C.,[M]Gastrinoma and carcinomas,CTV3_Children
+BB5C1,Malignant gastrinoma,CTV3Map_Code_And_Term
+BB5Cz,[M]Gastrinoma or carcinoma NOS,CTV3_Children
+BB5D1,Cholangiocarcinoma,CTV3Map_Code_And_Term
+BB5D3,Bile duct cystadenocarcinoma,CTV3Map_Code_And_Term
+BB5D5,[M]Hepatocellular carcinoma NOS,CTV3Map_Code_And_Term
+BB5D7,[M]Combined hepatocellular carcinoma and cholangiocarcinoma,CTV3Map_Code_And_Term
+BB5D8,"[M] Hepatocellular carcinoma, fibrolamellar",CTV3Map_Code_And_Term
+BB5F.,Trabecular adenocarcinoma,CTV3Map_Code_And_Term
+BB5P.,[M]Solid carcinoma NOS,CTV3Map_Code_And_Term
+BB5Q.,Carcinoma simplex,CTV3_Children
+BB5R.,Carcinoid tumour - morphology,CTV3_Children
+BB5R0,[M]Carcinoid tumour NOS,CTV3_Children
+BB5R1,"[M]Carcinoid tumour, malignant",CTV3Map_Code_And_Term
+BB5R3,"[M]Carcinoid tumour, argentaffin, malignant",CTV3Map_Code_And_Term
+BB5R4,"[M]Carcinoid tumour, nonargentaffin, NOS",CTV3_Children
+BB5R5,"[M]Carcinoid tumour, nonargentaffin, malignant",CTV3Map_Code_And_Term
+BB5R7,Composite carcinoid,CTV3_Children
+BB5R9,[M] Neuroendocrine carcinoma,CTV3Map_Code_And_Term
+BB5RA,[M] Merkel cell carcinoma,CTV3Map_Code_And_Term
+BB5Rz,[M]Carcinoid tumours NOS,CTV3_Children
+BB5T1,[M]Papillary adenocarcinoma NOS,CTV3Map_Code_And_Term
+BB5U2,Villous adenocarcinoma,CTV3Map_Code_And_Term
+BB5V1,Chromophobe carcinoma,CTV3Map_Code_And_Term
+BB5V3,Acidophil carcinoma,CTV3Map_Code_And_Term
+BB5V5,Mixed acidophil-basophil carcinoma,CTV3_Children
+BB5V7,Basophil carcinoma,CTV3Map_Code_And_Term
+BB5W1,Oxyphilic adenocarcinoma,CTV3Map_Code_And_Term
+BB5X1,[M]Clear cell adenocarcinoma NOS,CTV3Map_Code_And_Term
+BB5Y.,Hypernephroid tumour,CTV3_Children
+BB5a0,Renal cell carcinoma - morphology,CTV3Map_Code_And_Term
+BB5b.,Granular cell carcinoma,CTV3Map_Code_And_Term
+BB5c2,Water-clear cell adenocarcinoma,CTV3Map_Code_And_Term
+BB5d1,Mixed cell adenocarcinoma,CTV3_Children
+BB5f1,[M]Follicular adenocarcinoma NOS,CTV3Map_Code_And_Term
+BB5f2,Follicular adenocarcinoma - well differentiated,CTV3Map_Code_And_Term
+BB5f3,Follicular adenocarcinoma - trabecular,CTV3Map_Code_And_Term
+BB5f6,Papillary and follicular adenocarcinoma,CTV3Map_Code_And_Term
+BB5f7,Nonencapsulated sclerosing carcinoma,CTV3Map_Code_And_Term
+BB5h1,Adrenal cortical carcinoma,CTV3Map_Code_And_Term
+BB5j2,Endometrioid carcinoma,CTV3Map_Code_And_Term
+BB5j5,Malignant endometrioid adenofibroma,CTV3Map_Code_And_Term
+BB5y1,[M] Vipoma,CTV3Map_Code_And_Term
+BB5y2,Klatskin's tumour morphology,CTV3Map_Code_And_Term
+BB621,Apocrine adenocarcinoma,CTV3Map_Code_And_Term
+BB691,[M]Sebaceous adenocarcinoma,CTV3Map_Code_And_Term
+BB6A1,Ceruminous adenocarcinoma,High_Level_SNOMED
+BB71.,Mucoepidermoid carcinoma,CTV3Map_Code_And_Term
+BB801,[M]Cystadenocarcinoma NOS,CTV3Map_Code_And_Term
+BB812,"[M]Serous cystadenocarcinoma, NOS",CTV3Map_Code_And_Term
+BB815,"[M]Papillary cystadenocarcinoma, NOS",CTV3Map_Code_And_Term
+BB818,Papillary serous cystadenocarcinoma,CTV3Map_Code_And_Term
+BB81B,Serous surface papillary carcinoma,CTV3Map_Code_And_Term
+BB81E,[M]Mucinous cystadenocarcinoma NOS,CTV3Map_Code_And_Term
+BB81H,Papillary mucinous cystadenocarcinoma,CTV3Map_Code_And_Term
+BB821,Mucinous adenocarcinoma,CTV3Map_Code_And_Term
+BB83.,[M]Pseudomyxoma peritonei,CTV3_Children
+BB84.,Mucin-producing adenocarcinoma,CTV3Map_Code_And_Term
+BB850,Signet ring cell carcinoma,CTV3Map_Code_And_Term
+BB851,Metastatic signet ring cell carcinoma,CTV3_Children
+BB85z,[M]Signet ring carcinoma NOS,CTV3Map_Code_And_Term
+BB91.,Infiltrating duct carcinoma,CTV3Map_Code_And_Term
+BB93.,[M]Comedocarcinoma NOS,CTV3Map_Code_And_Term
+BB94.,Juvenile carcinoma of the breast,CTV3Map_Code_And_Term
+BB9B.,[M]Medullary carcinoma NOS,CTV3Map_Code_And_Term
+BB9C.,Medullary carcinoma with amyloid stroma,CTV3Map_Code_And_Term
+BB9D.,Medullary carcinoma with lymphoid stroma,CTV3Map_Code_And_Term
+BB9F.,[M]Lobular carcinoma NOS,CTV3Map_Code_And_Term
+BB9G.,Infiltrating ductular carcinoma,CTV3Map_Code_And_Term
+BB9H.,Inflammatory carcinoma,CTV3Map_Code_And_Term
+BB9J.,Mammary Paget's disease,CTV3Map_Code_And_Term
+BB9K.,Paget's disease and infiltrating duct carcinoma of breast,CTV3Map_Code_And_Term
+BB9L.,"[M]Paget's disease, extramammary, exc Paget's disease bone",CTV3Map_Code_And_Term
+BB9M.,[M] Intracystic carcinoma NOS,CTV3Map_Code_And_Term
+BBA2.,Acinar cell carcinoma,CTV3Map_Code_And_Term
+BBB0.,Adenosquamous carcinoma,CTV3Map_Code_And_Term
+BBB2.,Adenocarcinoma with squamous metaplasia,CTV3Map_Code_And_Term
+BBB3.,Adenocarcinoma with cartilaginous and osseous metaplasia,CTV3Map_Code_And_Term
+BBB4.,Adenocarcinoma with spindle cell metaplasia,CTV3Map_Code_And_Term
+BBB5.,Adenocarcinoma with apocrine metaplasia,CTV3Map_Code_And_Term
+BBB61,Malignant thymoma,CTV3Map_Code_And_Term
+BBC4.,Malignant granulosa cell tumour,CTV3Map_Code_And_Term
+BBC61,Malignant androblastoma,High_Level_SNOMED
+BBCA.,Sertoli cell carcinoma,CTV3Map_Code_And_Term
+BBCC1,Malignant Leydig cell tumour,CTV3Map_Code_And_Term
+BBD1.,Malignant paraganglioma,CTV3Map_Code_And_Term
+BBD8.,Malignant extra-adrenal paraganglioma,CTV3_Children
+BBDA.,Malignant phaeochromocytoma,CTV3Map_Code_And_Term
+BBDB.,Glomangiosarcoma,CTV3Map_Code_And_Term
+BBE..,[M]Naevi and melanomas,CTV3_Children
+BBE1.,[M]Malignant melanoma NOS or melanocarcinoma or melanoma NOS,CTV3_Children
+BBE2.,Nodular melanoma,CTV3Map_Code_And_Term
+BBE4.,Balloon cell melanoma,CTV3Map_Code_And_Term
+BBEC.,Malignant melanoma in junctional naevus,CTV3Map_Code_And_Term
+BBEE.,Malignant melanoma in precancerous melais,CTV3_Children
+BBEF.,[M]Hutchinson's melanotic freckle,CTV3_Children
+BBEG.,[M] Malignant melanoma in Hutchinson's melanotic freckle,CTV3Map_Code_And_Term
+BBEH.,Superficial spreading melanoma,CTV3Map_Code_And_Term
+BBEM.,Malignant melanoma in giant pigmented naevus,CTV3Map_Code_And_Term
+BBEP.,Epithelioid cell melanoma,CTV3Map_Code_And_Term
+BBEQ.,[M]Spindle cell melanoma NOS,CTV3Map_Code_And_Term
+BBER.,Spindle cell melanoma - type A,CTV3_Children
+BBES.,Spindle cell melanoma - type B,CTV3Map_Code_And_Term
+BBET.,Mixed epithelioid and spindle cell melanoma,CTV3Map_Code_And_Term
+BBF1.,[M]Sarcoma NOS,CTV3Map_Code_And_Term
+BBF3.,Spindle cell sarcoma,CTV3Map_Code_And_Term
+BBF4.,[M]Giant cell sarcoma (except of bone),CTV3Map_Code_And_Term
+BBF5.,Small cell sarcoma,CTV3Map_Code_And_Term
+BBF6.,Epithelioid sarcoma,CTV3Map_Code_And_Term
+BBG1.,[M]Fibrosarcoma NOS,CTV3Map_Code_And_Term
+BBG3.,Fibromyxosarcoma,CTV3Map_Code_And_Term
+BBG5.,Periosteal fibrosarcoma,CTV3_Children
+BBG7.,Fascial fibrosarcoma,CTV3_Children
+BBG8.,Infantile fibrosarcoma,CTV3Map_Code_And_Term
+BBGF.,Malignant fibrous histiocytoma,CTV3Map_Code_And_Term
+BBGM.,[M]Dermatofibrosarcoma NOS,CTV3Map_Code_And_Term
+BBGP.,[M] Pigmented dermatofibrosarcoma protuberans,CTV3Map_Code_And_Term
+BBH1.,[M]Myxosarcoma,CTV3Map_Code_And_Term
+BBJ1.,[M]Liposarcoma NOS,CTV3Map_Code_And_Term
+BBJ3.,Liposarcoma - well differentiated,CTV3Map_Code_And_Term
+BBJ5.,Myxoid liposarcoma,CTV3Map_Code_And_Term
+BBJ6.,Round cell liposarcoma,CTV3Map_Code_And_Term
+BBJ7.,Pleomorphic liposarcoma,CTV3Map_Code_And_Term
+BBJ8.,Mixed liposarcoma,CTV3Map_Code_And_Term
+BBJB1,[M]Angiomyoliposarcoma,High_Level_SNOMED
+BBJH.,Dedifferentiated liposarcoma,High_Level_SNOMED
+BBK02,[M]Leiomyosarcoma NOS,CTV3Map_Code_And_Term
+BBK04,Epithelioid leiomyosarcoma,CTV3Map_Code_And_Term
+BBK11,Angiomyosarcoma,CTV3Map_Code_And_Term
+BBK2.,[M]Myoma and myosarcoma,High_Level_SNOMED
+BBK21,Myosarcoma,CTV3Map_Code_And_Term
+BBK2z,[M]Myoma or myosarcoma NOS,High_Level_SNOMED
+BBK31,[M]Rhabdomyosarcoma NOS,CTV3Map_Code_And_Term
+BBK32,Pleomorphic rhabdomyosarcoma,CTV3Map_Code_And_Term
+BBK33,Mixed type rhabdomyosarcoma,CTV3Map_Code_And_Term
+BBK36,Embryonal rhabdomyosarcoma,CTV3Map_Code_And_Term
+BBK37,Alveolar rhabdomyosarcoma,CTV3Map_Code_And_Term
+BBL0.,Endometrial stromal sarcoma,CTV3Map_Code_And_Term
+BBL4.,"[M]Mixed tumour, malignant, NOS",CTV3Map_Code_And_Term
+BBL5.,Mullerian mixed tumour,CTV3Map_Code_And_Term
+BBL6.,Mesodermal mixed tumour,CTV3Map_Code_And_Term
+BBL72,[M]Epithelial nephroblastoma,High_Level_SNOMED
+BBL73,[M]Mesenchymal nephroblastoma,CTV3Map_Code_And_Term
+BBL8.,Hepatoblastoma,CTV3Map_Code_And_Term
+BBL9.,[M]Carcinosarcoma NOS,CTV3Map_Code_And_Term
+BBLA.,"Embryonal carcinosarcoma,",CTV3Map_Code_And_Term
+BBLC1,Malignant mesenchymoma,CTV3Map_Code_And_Term
+BBLD.,Embryonal sarcoma,CTV3Map_Code_And_Term
+BBLE.,Adenosarcoma,CTV3Map_Code_And_Term
+BBLJ.,[M] Clear cell sarcoma of kidney,CTV3Map_Code_And_Term
+BBM01,Malignant Brenner tumour,CTV3Map_Code_And_Term
+BBM9.,Malignant cystosarcoma phyllodes,CTV3Map_Code_And_Term
+BBN2.,Synovial sarcoma - spindle cell,CTV3Map_Code_And_Term
+BBN3.,Synovial sarcoma - epithelioid cell,CTV3_Children
+BBN4.,Synovial sarcoma - biphasic,CTV3Map_Code_And_Term
+BBN5.,[M]Clear cell sarcoma of tendons and aponeuroses,CTV3Map_Code_And_Term
+BBP1.,Malignant mesothelioma,CTV3Map_Code_And_Term
+BBP3.,Malignant fibrous mesothelioma,CTV3Map_Code_And_Term
+BBP5.,Malignant epithelioid mesothelioma,CTV3Map_Code_And_Term
+BBP7.,Malignant biphasic mesothelioma,CTV3Map_Code_And_Term
+BBPX.,"[M]Mesothelioma, unspecified",CTV3Map_Code_And_Term
+BBQ0.,Dysgerminoma,CTV3Map_Code_And_Term
+BBQ1.,[M]Seminomas,CTV3Map_Code_And_Term
+BBQ10,Anaplastic seminoma,CTV3Map_Code_And_Term
+BBQ11,Spermatocytic seminoma,CTV3Map_Code_And_Term
+BBQ1z,[M]Seminoma NOS,CTV3Map_Code_And_Term
+BBQ3.,[M]Embryonal carcinoma NOS,CTV3Map_Code_And_Term
+BBQ4.,Endodermal sinus tumour,CTV3Map_Code_And_Term
+BBQ5.,Polyembryoma,CTV3Map_Code_And_Term
+BBQ73,Teratocarcinoma,CTV3Map_Code_And_Term
+BBQ74,Malignant teratoma - undifferentiated,CTV3Map_Code_And_Term
+BBQ75,Malignant teratoma - intermediate,CTV3Map_Code_And_Term
+BBQ9.,Dermoid cyst with malignant transformation,CTV3Map_Code_And_Term
+BBQA1,Malignant struma ovarii,CTV3Map_Code_And_Term
+BBR2.,[M]Choriocarcinoma,CTV3Map_Code_And_Term
+BBR3.,Choriocarcinoma combined with teratoma,CTV3Map_Code_And_Term
+BBR4.,Trophoblastic malignant teratoma,CTV3Map_Code_And_Term
+BBS2.,Malignant mesonephroma,High_Level_SNOMED
+BBT1.,Haemangiosarcoma,CTV3Map_Code_And_Term
+BBT5.,Kupffer cell sarcoma,High_Level_SNOMED
+BBT71,Malignant haemangioendothelioma,CTV3Map_Code_And_Term
+BBTA.,[M]Kaposi's sarcoma,CTV3Map_Code_And_Term
+BBTD2,Malignant haemangiopericytoma,CTV3Map_Code_And_Term
+BBU1.,Lymphangiosarcoma,CTV3Map_Code_And_Term
+BBV1.,Osteosarcoma - morphology,High_Level_SNOMED
+BBV2.,Chondroblastic osteosarcoma,CTV3Map_Code_And_Term
+BBV3.,Fibroblastic osteosarcoma,CTV3Map_Code_And_Term
+BBV4.,Telangiectatic osteosarcoma,CTV3Map_Code_And_Term
+BBV5.,Osteosarcoma in Paget's disease of bone,CTV3Map_Code_And_Term
+BBV6.,Juxtacortical osteosarcoma,CTV3_Children
+BBV9.,[M] Myxoid chondrosarcoma,CTV3Map_Code_And_Term
+BBVA.,[M] Small cell osteosarcoma,CTV3Map_Code_And_Term
+BBVz.,[M]Osteoma or osteosarcoma NOS,CTV3_Children
+BBW4.,[M]Chondrosarcoma NOS,CTV3Map_Code_And_Term
+BBW6.,Juxtacortical chondrosarcoma,CTV3Map_Code_And_Term
+BBW8.,Malignant chondroblastoma,CTV3Map_Code_And_Term
+BBW9.,Mesenchymal chondrosarcoma,CTV3Map_Code_And_Term
+BBX1.,Malignant giant cell tumour of bone,CTV3Map_Code_And_Term
+BBX3.,Malignant giant cell tumour of soft tissue,CTV3Map_Code_And_Term
+BBY0.,Ewing's sarcoma,CTV3Map_Code_And_Term
+BBZ2.,Malignant odontogenic tumour,CTV3Map_Code_And_Term
+BBZC.,Ameloblastic odontosarcoma,CTV3Map_Code_And_Term
+BBZG.,Malignant ameloblastoma,CTV3Map_Code_And_Term
+BBZN.,Ameloblastic fibrosarcoma,CTV3Map_Code_And_Term
+BBa3.,Pineoblastoma,CTV3Map_Code_And_Term
+BBa5.,Chordoma,CTV3Map_Code_And_Term
+BBb0.,"[M]Glioma, malignant &/or glioma NOS &/or gliosarcoma",High_Level_SNOMED
+BBb1.,Gliomatosis cerebri,CTV3Map_Code_And_Term
+BBb2.,Mixed glioma,High_Level_SNOMED
+BBb6.,"[M]Choroid plexus papilloma, malignant",High_Level_SNOMED
+BBbH.,[M]Spongioblastoma NOS,CTV3Map_Code_And_Term
+BBbJ.,Spongioblastoma polare,High_Level_SNOMED
+BBbK.,Astroblastoma,CTV3Map_Code_And_Term
+BBbL.,[M]Glioblastoma multiforme (& NOS),CTV3_Children
+BBbM.,Giant cell glioblastoma,CTV3Map_Code_And_Term
+BBbN.,Glioblastoma with sarcomatous component,CTV3_Children
+BBbP.,Primitive polar spongioblastoma,High_Level_SNOMED
+BBbQ.,[M]Oligodendroglioma NOS,CTV3Map_Code_And_Term
+BBbR.,Anaplastic oligodendroglioma,CTV3Map_Code_And_Term
+BBbS.,Oligodendroblastoma,CTV3Map_Code_And_Term
+BBbT.,[M]Medulloblastoma NOS,CTV3Map_Code_And_Term
+BBbU.,Desmoplastic medulloblastoma,CTV3Map_Code_And_Term
+BBbV.,Medullomyoblastoma,CTV3Map_Code_And_Term
+BBbW.,[M]Cerebellar sarcoma NOS,CTV3Map_Code_And_Term
+BBbX.,Monstrocellular sarcoma,High_Level_SNOMED
+BBc..,[M]Neuroepitheliomatous neoplasms,CTV3Map_Code_And_Term
+BBc01,Ganglioneuroblastoma,CTV3Map_Code_And_Term
+BBc1.,[M](Neuroblastoma NOS) or (sympathicoblastoma),High_Level_SNOMED
+BBc2.,[M]Medulloepithelioma NOS,CTV3Map_Code_And_Term
+BBc3.,Teratoid medulloepithelioma,CTV3Map_Code_And_Term
+BBc4.,[M]Neuroepithelioma NOS,CTV3Map_Code_And_Term
+BBc5.,Spongioneuroblastoma,High_Level_SNOMED
+BBc9.,[M]Retinoblastomas,CTV3Map_Code_And_Term
+BBc90,Retinoblastoma - differentiated,CTV3Map_Code_And_Term
+BBc91,Retinoblastoma - undifferentiated,CTV3Map_Code_And_Term
+BBc9z,[M]Retinoblastoma NOS,CTV3Map_Code_And_Term
+BBcA.,Olfactory neurogenic tumour,CTV3Map_Code_And_Term
+BBcB.,Asthesioneurocytoma,CTV3_Children
+BBcC.,Asthesioneuroblastoma,CTV3Map_Code_And_Term
+BBcD.,Aesthesioneuroepithelioma,CTV3Map_Code_And_Term
+BBcz.,[M]Neuroepitheliomatous neoplasm NOS,CTV3Map_Code_And_Term
+BBd2.,Malignant meningioma,CTV3Map_Code_And_Term
+BBdB.,Meningeal sarcomatosis,CTV3Map_Code_And_Term
+BBe2.,Neurofibrosarcoma,CTV3Map_Code_And_Term
+BBe7.,Malignant neurilemmoma,CTV3Map_Code_And_Term
+BBf1.,Malignant granular cell tumour,High_Level_SNOMED
+BBf2.,[M]Alveolar soft part sarcoma,CTV3Map_Code_And_Term
+BBmG.,[M] Immunoproliferative small intestinal disease,High_Level_SNOMED
+Byu1.,[X]Malignant neoplasm of digestive organs,CTV3Map_Code_And_Term
+Byu10,[X]Other sarcomas of the liver,CTV3_Children
+Byu11,[X]Other specified carcinomas of liver,CTV3Map_Code_And_Term
+Byu12,"[X]Malignant neoplasm of intestinal tract, part unspecified",CTV3Map_Code_And_Term
+Byu13,[X]Malignant neoplsm/ill-defin sites within digestive system,CTV3Map_Code_And_Term
+Byu2.,[X]Malignant neoplasm of respiratory and intrathoracic orga,CTV3Map_Code_And_Term
+Byu24,[X]Malignant neoplasm/ill-defined sites within resp system,CTV3Map_Code_And_Term
+Byu25,"[X]Malignant neoplasm of mediastinum, part unspecified",CTV3Map_Code_And_Term
+Byu3.,[X]Malignant neoplasm of bone and articular cartilage,CTV3Map_Code_And_Term
+Byu30,[X]Mal neoplasm/overlap lesion/bone+articular cartilage/limb,CTV3_Children
+Byu31,"[X]Malignant neoplasm/bones+articular cartilage/limb,unspfd",CTV3Map_Code_And_Term
+Byu32,[X]Malignant neoplasm/overlap lesion/bone+articulr cartilage,CTV3Map_Code_And_Term
+Byu33,"[X]Malignant neoplasm/bone+articular cartilage, unspecified",CTV3Map_Code_And_Term
+Byu52,[X]Kaposi's sarcoma of multiple organs,CTV3Map_Code_And_Term
+Byu53,"[X]Kaposi's sarcoma, unspecified",CTV3Map_Code_And_Term
+Byu54,"[X]Malignant neoplasm/peripheral nerves of trunk,unspecified",CTV3Map_Code_And_Term
+Byu55,[X]Mal neoplasm/overlap les/periph nerv+autonomic nerv systm,CTV3Map_Code_And_Term
+Byu56,"[X]Mal neoplasm/periph nerves+autonomic nervous system,unspc",CTV3Map_Code_And_Term
+Byu57,"[X]Malignant neoplasm of peritoneum, unspecified",CTV3Map_Code_And_Term
+Byu58,"[X]Mal neoplasm/connective+soft tissue of trunk,unspecified",CTV3Map_Code_And_Term
+Byu59,"[X]Malignant neoplasm/connective + soft tissue,unspecified",CTV3Map_Code_And_Term
+Byu5A,[X]Malignant neoplasm overlapping lesion of skin,CTV3Map_Code_And_Term
+Byu5B,[X]Kaposi's sarcoma of other sites,CTV3Map_Code_And_Term
+Byu6.,[X]Malignant neoplasm of breast,CTV3Map_Code_And_Term
+Byu7.,[X]Malignant neoplasm of female genital organs,CTV3Map_Code_And_Term
+Byu70,"[X]Malignant neoplasm of uterine adnexa, unspecified",CTV3Map_Code_And_Term
+Byu71,[X]Malignant neoplasm/other specified female genital organs,CTV3Map_Code_And_Term
+Byu72,[X]Malignant neoplasm/overlapping lesion/feml genital organs,CTV3Map_Code_And_Term
+Byu73,"[X]Malignant neoplasm of female genital organ, unspecified",CTV3Map_Code_And_Term
+Byu8.,[X]Malignant neoplasm of male genital organs,CTV3Map_Code_And_Term
+Byu80,[X]Malignant neoplasm of other specified male genital organs,CTV3Map_Code_And_Term
+Byu81,[X]Malignant neoplasm/overlapping lesion/male genital organs,CTV3_Children
+Byu82,"[X]Malignant neoplasm of male genital organ, unspecified",CTV3Map_Code_And_Term
+Byu9.,[X]Malignant neoplasm of urinary tract,CTV3Map_Code_And_Term
+Byu90,"[X]Malignant neoplasm of urinary organ, unspecified",CTV3Map_Code_And_Term
+ByuA.,"[X]Malignant neoplasm of eye, brain and other parts of cent",CTV3Map_Code_And_Term
+ByuA0,[X]Malignant neoplasm/other and unspecified cranial nerves,CTV3Map_Code_And_Term
+ByuA1,"[X]Malignant neoplasm of central nervous system, unspecified",CTV3Map_Code_And_Term
+ByuA2,"[X]Malignant neoplasm of meninges, unspecified",CTV3Map_Code_And_Term
+ByuA3,"[X]Malig neopl, overlap lesion brain & other part of CNS",CTV3Map_Code_And_Term
+ByuB.,[X]Malignant neoplasm of thyroid and other endocrine glands,CTV3Map_Code_And_Term
+ByuB0,"[X]Malignant neoplasm-pluriglandular involvement,unspecified",CTV3Map_Code_And_Term
+ByuB1,"[X]Malignant neoplasm of endocrine gland, unspecified",CTV3Map_Code_And_Term
+ByuC.,"[X]Malignant neoplasm of ill-defined, secondary and unspeci",CTV3Map_Code_And_Term
+ByuC0,[X]Malignant neoplasm of other specified sites,CTV3Map_Code_And_Term
+ByuC1,[X]Malignant neoplasm/overlap lesion/other+ill-defined sites,CTV3Map_Code_And_Term
+ByuC2,[X]2ndry+unspcf malignant neoplasm lymph nodes/multi regions,CTV3_Children
+ByuC3,[X]Secondary malignant neoplasm/oth+unspc respiratory organs,CTV3_Children
+ByuC4,[X]Secondary malignant neoplasm/oth+unspcfd digestive organs,CTV3_Children
+ByuC5,[X]2ndry malignant neoplasm/bladder+oth+unsp urinary organs,CTV3_Children
+ByuC6,[X]2ndry malignant neoplasm/oth+unspec parts/nervous system,CTV3_Children
+ByuC7,[X]Secondary malignant neoplasm of other specified sites,CTV3_Children
+ByuC8,[X]Malignant neoplasm without specification of site,CTV3Map_Code_And_Term
+C1z2.,Carcinoid syndrome,QOF
+F373.,Carcinomatous neuropathy,CTV3Map_Code_And_Term
+F3811,Myasthenic syndrome due to other malignancy,CTV3Map_Code_And_Term
+F3962,Myopathy associated with malignant disease,CTV3Map_Code_And_Term
+X00eS,Retinoblastoma,CTV3_Children
+X309C,Malignant cystic tumour of exocrine pancreas,CTV3_Children
+X309D,Cystadenocarcinoma of pancreas,CTV3_Children
+X40B6,Gestational trophoblastic tumour,CTV3_Children
+X40B9,Placental site trophoblastic tumour,CTV3_Children
+X40On,Carcinoid crisis,QOF
+X507N,Malignant acanthosis nigricans,QOF
+X77nP,Malignant endocrine tumour morphology,CTV3_Children
+X77nQ,Neuroendocrine carcinoma,CTV3_Children
+X77nR,Merkel cell carcinoma,QOF
+X77nU,Adenocarcinoid tumour,CTV3Map_Code_And_Term
+X77ng,Malignant endometrioid tumour,CTV3_Children
+X77nj,Klatskin's tumour,CTV3_Children
+X77nk,Fibrolamellar hepatocellular carcinoma,CTV3_Children
+X77nu,Intraductal papillary adenocarcinoma with invasion,CTV3Map_Code_And_Term
+X77nv,Intracystic carcinoma,CTV3_Children
+X77nw,Infiltrating duct and lobular carcinoma,CTV3Map_Code_And_Term
+X77ny,Paget's disease and intraductal carcinoma of breast,CTV3Map_Code_And_Term
+X77o1,Epithelial-myoepithelial carcinoma,CTV3Map_Code_And_Term
+X77o2,Adenocarcinoma with metaplasia,CTV3_Children
+X77o7,Malignant thecoma,High_Level_SNOMED
+X77oH,Melanocytic lesion morphology,CTV3Map_Code_Only
+X77oI,Malignant melanocytic lesion,CTV3_Children
+X77oJ,Regressing malignant melanoma,CTV3Map_Code_And_Term
+X77oK,Malignant acral lentiginous melanoma,CTV3Map_Code_And_Term
+X77oL,Malignant desmoplastic melanoma,CTV3Map_Code_And_Term
+X77oT,Round cell sarcoma,CTV3_Children
+X77oU,Askin's tumour,CTV3_Children
+X77oV,[M]Fibroxanthosarcoma,CTV3Map_Code_And_Term
+X77oW,Pigmented dermatofibrosarcoma protuberans,QOF
+X77oX,Myxoid dermatofibrosarcoma,QOF
+X77ob,Dedifferentiated liposarcoma,CTV3Map_Code_And_Term
+X77of,Myxoid leiomyosarcoma,CTV3Map_Code_And_Term
+X77ok,Carcinoma in pleomorphic adenoma,CTV3Map_Code_And_Term
+X77ol,Rhabdoid sarcoma,CTV3Map_Code_And_Term
+X77om,Clear cell sarcoma of kidney,High_Level_SNOMED
+X77on,Pancreatoblastoma,CTV3Map_Code_And_Term
+X77ou,Mesothelioma,CTV3Map_Code_And_Term
+X77ov,Cystic mesothelioma,CTV3_Children
+X77p3,Malignant epithelioid haemangioendothelioma,CTV3Map_Code_And_Term
+X77p6,Malignant lymphangioma,High_Level_SNOMED
+X77pA,Small cell osteosarcoma,CTV3_Children
+X77pB,Myxoid chondrosarcoma,High_Level_SNOMED
+X77pM,Pleomorphic xanthoastrocytoma,CTV3Map_Code_And_Term
+X77pN,Gliosarcoma,CTV3Map_Code_And_Term
+X77pR,Ependymoblastoma,High_Level_SNOMED
+X77pS,Mixed oligoastrocytoma,CTV3Map_Code_And_Term
+X77pT,Anaplastic oligoastrocytoma,High_Level_SNOMED
+X77pW,Gangliorhabdomyosarcoma,High_Level_SNOMED
+X77pZ,Sympathicoblastoma,CTV3Map_Code_Only
+X77pa,Primitive neuroectodermal tumour,CTV3Map_Code_And_Term
+X77pb,Melanotic neuroectodermal tumour of infancy,CTV3_Children
+X77pc,Melanocytic medullomyoblastoma,CTV3_Children
+X77pv,Malig Schwannoma + divergent mesenchymal & epithelial diff,High_Level_SNOMED
+X77pw,Malignant Triton tumour,CTV3Map_Code_And_Term
+X77px,Epithelioid malignant nerve sheath tumour,High_Level_SNOMED
+X77py,Melanotic malignant peripheral nerve sheath tumour,High_Level_SNOMED
+X77q4,Peripheral neuroectodermal tumour,QOF
+X78Gj,FIGO staging of gynaecological malignancy,CTV3Map_Code_And_Term
+X78H1,Carcinoma of vermilion border of upper lip,CTV3_Children
+X78H6,Carcinoma of vermilion border of lower lip,CTV3_Children
+X78HC,Carcinoma of fraenum of lip,CTV3_Children
+X78HI,Carcinoma of fraenum of upper lip,CTV3_Children
+X78HO,Carcinoma of fraenum of lower lip,CTV3_Children
+X78HT,Carcinoma of commissure of lip,CTV3_Children
+X78Hf,Malig tumour anterior two-thirds of tongue- lateral margin,CTV3_Children
+X78Hj,Malignant tumour of tip of tongue,CTV3_Children
+X78Hp,Carcinoma of fraenum linguae,CTV3_Children
+X78Hw,Malignant tumour of glossoepiglottic fold,QOF
+X78Hz,Carcinoma of lingual tonsil,CTV3_Children
+X78I5,Carcinoma of upper gum,CTV3_Children
+X78IA,Carcinoma of lower gum,CTV3_Children
+X78IG,Carcinoma of anterior part of floor of mouth,CTV3_Children
+X78IL,Carcinoma of lateral part of floor of mouth,CTV3_Children
+X78IR,Carcinoma of hard palate,CTV3_Children
+X78IW,Carcinoma of soft palate,CTV3_Children
+X78Ib,Carcinoma of uvula,CTV3_Children
+X78Ig,Squamous cell carcinoma of buccal mucosa,CTV3_Children
+X78In,Carcinoma of upper buccal sulcus,CTV3_Children
+X78Is,Carcinoma of lower buccal sulcus,CTV3_Children
+X78Iy,Carcinoma of upper labial sulcus,CTV3_Children
+X78J3,Carcinoma of lower labial sulcus,CTV3_Children
+X78J8,Carcinoma of retromolar area,CTV3_Children
+X78JC,Malignant tumour of anterior pillar of fauces,CTV3_Children
+X78JJ,Carcinoma of parotid gland,CTV3_Children
+X78JO,Carcinoma of submandibular gland,CTV3_Children
+X78JS,Carcinoma of sublingual gland,CTV3_Children
+X78JV,Malignant tumour of minor salivary gland,CTV3_Children
+X78Jp,Malignant tumour of nasal skeleton,CTV3_Children
+X78Jt,Malignant tumour of inferior turbinate,CTV3_Children
+X78Jw,Malignant tumour of middle turbinate,CTV3_Children
+X78K0,Malignant tumour posterior margin of nasal septum & choanae,QOF
+X78LA,Malignant tumour of inferior surface of soft palate,CTV3_Children
+X78LV,Malignant tumour of vocal cord,CTV3_Children
+X78LZ,Malignant tumour of anterior commissure,CTV3_Children
+X78Ld,Malignant tumour of posterior commissure,CTV3_Children
+X78Li,Malignant tumour of suprahyoid epiglottis,QOF
+X78Ll,Malignant tumour of infrahyoid epiglottis,CTV3_Children
+X78Lo,Malignant tumour of aryepiglottic fold - laryngeal aspect,CTV3_Children
+X78Lr,Malignant tumour of arytenoid,CTV3_Children
+X78Lu,Malignant tumour of false cord,CTV3_Children
+X78Lx,Malignant tumour of laryngeal ventricle,CTV3_Children
+X78M7,Malignant tumour of neck,CTV3_Children
+X78M9,Malignant tumour of parapharyngeal space,CTV3_Children
+X78MH,Carcinoma of cervical part of oesophagus,CTV3_Children
+X78MM,Carcinoma of thoracic part of oesophagus,CTV3_Children
+X78MR,Carcinoma of abdominal part of oesophagus,CTV3_Children
+X78MW,Carcinoma of upper third of oesophagus,CTV3_Children
+X78Mb,Carcinoma of middle third of oesophagus,CTV3_Children
+X78Mg,Carcinoma of lower third of oesophagus,CTV3_Children
+X78Mm,Carcinoma of cardia,CTV3_Children
+X78Mr,Carcinoma of fundus of stomach,CTV3_Children
+X78Mw,Carcinoma of body of stomach,CTV3_Children
+X78N1,Carcinoma of pyloric antrum,CTV3_Children
+X78N6,Carcinoma of pylorus,CTV3_Children
+X78NB,Carcinoma of lesser curve of stomach,CTV3_Children
+X78NC,Carcinoma in situ of lesser curve of stomach,CTV3_Children
+X78NG,Carcinoma of greater curve of stomach,CTV3_Children
+X78NH,Carcinoma in situ of greater curve of stomach,CTV3_Children
+X78NL,Carcinoma of duodenum,CTV3_Children
+X78OK,Adenocarcinoma of rectum,CTV3Map_Code_And_Term
+X78OP,Malignant tumour of anus,CTV3_Children
+X78OW,Malignant tumour of cloacogenic zone,CTV3Map_Code_And_Term
+X78OX,Malignant tumour of anorectal junction,CTV3_Children
+X78Oz,Sarcoma of liver,CTV3_Children
+X78P0,Angiosarcoma of liver,CTV3Map_Code_And_Term
+X78PC,Extrahepatic bile duct carcinoma,CTV3_Children
+X78PX,Carcinoma of ampulla of Vater,CTV3_Children
+X78Pf,Malignant tumour of endocrine pancreas,CTV3_Children
+X78Pg,Carcinoma of endocrine pancreas,QOF
+X78Pq,Malignant tumour of peritoneum,CTV3_Children
+X78Ql,Malignant tumour of mediastinum,CTV3_Children
+X78T8,Melanotic adamantinoma of skin,CTV3_Children
+X78TC,Superficial spreading malignant melanoma of skin,CTV3_Children
+X78TF,Malignant melanoma arising in intradermal naevus,CTV3_Children
+X78TG,Malignant melanoma arising in congenital naevus,CTV3_Children
+X78U0,Peripheral neuroepithelioma,QOF
+X78VQ,Malignant tumour of mesothelial tissue,CTV3_Children
+X78VS,Malignant mesothelioma of peritoneum,CTV3Map_Code_And_Term
+X78VT,Malignant mesothelioma of pericardium,CTV3Map_Code_And_Term
+X78Vi,Malignant lipomatous tumour,CTV3_Children
+X78Vj,Liposarcoma,CTV3_Children
+X78Vm,Malignant tumour of muscle,CTV3_Children
+X78WF,Malignant tumour of soft tissue of abdomen,CTV3_Children
+X78WM,Malignant tumour of breast,CTV3_Children
+X78WN,Carcinoma of breast,CTV3_Children
+X78WO,Scirrhous carcinoma of breast,CTV3_Children
+X78WP,Inflammatory carcinoma of breast,CTV3_Children
+X78WQ,Cancer en cuirasse,CTV3_Children
+X78WR,Paget's disease of nipple,CTV3_Children
+X78WS,Familial cancer of breast,CTV3_Children
+X78WT,Malignant phyllodes tumour of breast,CTV3_Children
+X78Wh,Malignant epithelial tumour of ovary,CTV3_Children
+X78Wi,Serous papillary cystadenocarcinoma ovary,CTV3_Children
+X78Wj,Mucinous cystadenocarcinoma of ovary,CTV3_Children
+X78Wk,Endometrioid carcinoma ovary,CTV3_Children
+X78Wl,Clear cell tumour of ovary,CTV3_Children
+X78Wn,Mixed epithelial tumour of ovary,CTV3_Children
+X78Wo,Undifferentiated carcinoma of ovary,CTV3_Children
+X78Wy,Malignant sex cord tumour of ovary,CTV3_Children
+X78Wz,Malignant granulosa cell tumour of ovary,CTV3_Children
+X78X1,Granulosa cell tumour of ovary,QOF
+X78X8,Malignant germ cell tumour of ovary,CTV3_Children
+X78X9,Choriocarcinoma of ovary,CTV3_Children
+X78XB,Embryonal carcinoma of ovary,CTV3_Children
+X78XD,Dysgerminoma of ovary,CTV3_Children
+X78XH,Endodermal sinus tumour of ovary,CTV3_Children
+X78XN,Sarcoma of uterus,CTV3_Children
+X78XO,Endometrial carcinoma,CTV3_Children
+X78Xf,Squamous cell carcinoma of cervix,CTV3_Children
+X78Xg,Adenocarcinoma of cervix,CTV3_Children
+X78Xh,Adenosquamous carcinoma of cervix,CTV3_Children
+X78Xj,Carcinoma of cervix stage 0,QOF
+X78Xq,Carcinoma of vagina,CTV3_Children
+X78Xw,Squamous cell carcinoma of vulva,CTV3_Children
+X78Xx,Malignant melanoma of vulva,CTV3_Children
+X78Xy,Sarcoma of vulva,CTV3_Children
+X78Y1,Gestational choriocarcinoma,CTV3_Children
+X78Y6,Carcinoma of prostate,CTV3_Children
+X78YK,Carcinoma of glans penis,CTV3_Children
+X78YP,Malignant tumour of skin of penis,CTV3_Children
+X78YR,Carcinoma of foreskin,CTV3_Children
+X78Yb,Regressed malignant testicular tumour,CTV3_Children
+X78Yx,Clear cell carcinoma of kidney,CTV3_Children
+X78Yy,Cystadenocarcinoma of kidney,CTV3_Children
+X78Yz,Papillary cystadenocarcinoma of kidney,CTV3_Children
+X78Z0,Sarcoma of kidney,CTV3_Children
+X78ZS,Malignant tumour of trigone of bladder,QOF
+X78Zc,Malignant tumour of urethral stump,CTV3_Children
+X78Zq,Oligodendroglioma of brain,QOF
+X78a4,Oligodendroglioma of spinal cord,QOF
+X78aB,Pituitary carcinoma,CTV3_Children
+X78aY,Malignant tumour of meninges,CTV3_Children
+X78ac,Malignant tumour of olfactory tract,CTV3_Children
+X78af,Malignant tumour of optic nerve and sheath,CTV3_Children
+X78ag,Malignant tumour of optic nerve,CTV3Map_Code_And_Term
+X78ah,Malignant astrocytoma of optic nerve,QOF
+X78ai,Malignant tumour of optic nerve sheath,QOF
+X78aj,Malignant meningioma of optic nerve sheath,QOF
+X78ap,Malignant tumour of acoustic vestibular nerve,CTV3Map_Code_And_Term
+X78as,Malignant tumour of spinal nerve and sheath,CTV3_Children
+X78av,Malignant tumour of peripheral nerve,CTV3_Children
+X78b0,Adenoid cystic carcinoma of lacrimal gland,CTV3_Children
+X78b1,Adenocarcinoma of lacrimal gland,CTV3_Children
+X78b2,Carcinoma in pleomorphic adenoma of lacrimal gland,CTV3_Children
+X78b3,Mucoepidermoid tumour of lacrimal gland,CTV3_Children
+X78b8,Liposarcoma of orbit,CTV3_Children
+X78b9,Rhabdomyosarcoma of orbit,CTV3_Children
+X78bA,Malignant haemangiopericytoma of orbit,CTV3_Children
+X78bB,Malignant fibrous histiocytoma of orbit,CTV3_Children
+X78bM,Squamous cell carcinoma of conjunctiva,CTV3_Children
+X78bN,Malignant melanoma of conjunctiva,CTV3_Children
+X78bU,Squamous cell carcinoma of cornea,CTV3_Children
+X78bV,Malignant melanoma of cornea,CTV3_Children
+X78bc,Malignant melanoma of iris,CTV3_Children
+X78bj,Medulloepithelioma of ciliary body,QOF
+X78bk,Malignant melanoma of ciliary body,CTV3_Children
+X78bl,Adenocarcinoma of pigmented epithelium of ciliary body,CTV3_Children
+X78bm,Adenocarcinoma of non-pigmented epithelium of ciliary body,CTV3_Children
+X78bw,Malignant melanoma of choroid,CTV3_Children
+X78cP,Follicular thyroid carcinoma,CTV3_Children
+X78cQ,Papillary thyroid carcinoma,CTV3_Children
+X78cR,Mixed follicular and papillary thyroid carcinoma,CTV3_Children
+X78cS,Anaplastic thyroid carcinoma,CTV3_Children
+X78cT,Medullary thyroid carcinoma,CTV3_Children
+X78ca,Adrenal carcinoma,CTV3_Children
+X78ci,Parathyroid carcinoma,CTV3_Children
+X78dW,Malignant pinealoma,CTV3_Children
+X78e9,Malignant tumour of unknown origin,CTV3Map_Code_And_Term
+X78eB,Multiple malignancy,CTV3_Children
+X78eE,Malignant tumour of head and neck,CTV3_Children
+X78eH,Malignant tumour of face,CTV3_Children
+X78eL,Malignant tumour of axilla,CTV3_Children
+X78eV,Malignant tumour of upper limb,CTV3_Children
+X78eY,Malignant tumour of lower limb,CTV3_Children
+X78ef,Malignant tumour,CTV3Map_Code_And_Term
+X78eg,Carcinoma of genitourinary organ,CTV3Map_Code_And_Term
+X78eh,Sarcoma of bone and connective tissue,CTV3Map_Code_And_Term
+X78ej,"Carcinoma of lip, oral cavity and pharynx",CTV3Map_Code_And_Term
+X78ek,"Malignant tumour of oral cavity, lips, salivary glands",CTV3_Children
+X78es,Malignant tumour of oral cavity,CTV3_Children
+X78fC,Malignant tumour of salivary gland,CTV3_Children
+X78fH,"Malignant tumour of ear, nose and throat",CTV3_Children
+X78fI,Malignant tumour of nasal cavity and nasopharynx,CTV3_Children
+X78fK,Malignant tumour of lateral nasal wall,CTV3_Children
+X78fN,Malignant tumour of nasal sinuses,CTV3_Children
+X78fO,Malignant tumour of pharynx,CTV3_Children
+X78g0,Carcinoma of respiratory tract and intrathoracic organs,CTV3Map_Code_And_Term
+X78g1,Malignant tumour of digestive organ,CTV3_Children
+X78g2,"Malignant tumour of oesophagus, stomach and duodenum",CTV3_Children
+X78g3,Carcinoma of oesophagus,CTV3_Children
+X78gA,Carcinoma of stomach,CTV3_Children
+X78gK,Malignant tumour of intestine,CTV3_Children
+X78gL,Malignant tumour of small intestine,CTV3_Children
+X78gM,Carcinoma of caecum,CTV3Map_Code_And_Term
+X78gN,Malignant tumour of large intestine,CTV3_Children
+X78gO,Adenocarcinoma of colon,CTV3_Children
+X78gQ,Malignant tumour of anus and anal canal,CTV3_Children
+X78gS,Squamous cell carcinoma of anal margin,CTV3_Children
+X78gY,Carcinoma gallbladder,CTV3Map_Code_And_Term
+X78ga,Carcinoma common bile duct,CTV3Map_Code_And_Term
+X78gb,Malignant polyp of biliary tract,CTV3_Children
+X78gc,Malignant tumour of exocrine pancreas,CTV3_Children
+X78gd,Carcinoma of pancreas,CTV3_Children
+X78gp,Malignant neoplasm of carpal bones,CTV3Map_Code_And_Term
+X78gq,Malignant neoplasm of metacarpal bones,CTV3Map_Code_And_Term
+X78gr,Malignant neoplasm of metacarpal bones of foot,CTV3_Children
+X78h0,Malignant tumour of epidermal appendage,CTV3_Children
+X78h1,Malignant neoplasm of sebaceous gland,CTV3Map_Code_And_Term
+X78h7,Malignant neoplasm of sweat gland,CTV3Map_Code_And_Term
+X78hq,Malignant tumour of mesothelial and soft tissue,CTV3_Children
+X78i1,Malignant tumour of soft tissue of upper limb,CTV3_Children
+X78i2,Malignant tumour of soft tissue of lower limb,CTV3_Children
+X78iC,Malignant tumour of female genital organ,CTV3_Children
+X78id,Malignant tumour of male genital organ,CTV3_Children
+X78if,Malignant tumour of penis,CTV3_Children
+X78it,Malignant tumour of urinary tract,CTV3_Children
+X78iu,Malignant tumour of kidney,CTV3Map_Code_And_Term
+X78j1,Carcinoma of bladder,CTV3_Children
+X78j2,Transitional cell carcinoma of bladder,CTV3_Children
+X78j3,Adenocarcinoma of bladder,CTV3_Children
+X78j4,Squamous cell carcinoma of bladder,CTV3_Children
+X78j7,Malignant tumour of nervous system,CTV3_Children
+X78jJ,Malignant tumour of pituitary and hypothalamus,CTV3_Children
+X78je,Kaposi's sarcoma of conjunctiva,CTV3_Children
+X78ji,Kaposi's sarcoma of cornea,CTV3_Children
+X78jy,Malignant tumour of endocrine gland,CTV3_Children
+X78kS,Secondary carcinoma of respiratory and/or digestive systems,CTV3_Children
+X78kT,Metastasis to respiratory and intrathoracic organ,CTV3_Children
+X78kU,Metastasis to trachea,CTV3_Children
+X78kV,Metastasis to bronchus,CTV3_Children
+X78kX,Secondary lymphangitic carcinoma,CTV3_Children
+X78kY,Lymphangitis carcinomatosa,CTV3_Children
+X78kZ,Metastasis to heart,CTV3_Children
+X78ka,Metastasis to thymus,CTV3_Children
+X78kb,Metastasis to gastrointestinal tract,CTV3_Children
+X78kc,Metastasis to small intestine,CTV3_Children
+X78kd,Metastasis to pancreas,CTV3_Children
+X78ke,Metastasis to spleen,CTV3_Children
+X78kf,Metastasis to bone marrow,CTV3_Children
+X78kg,Metastasis to soft tissue,CTV3_Children
+X78kh,Malignant infiltration of muscle,CTV3_Children
+X78kk,Carcinomatosis of peritoneal cavity,CTV3_Children
+X78kl,Metastasis to omentum,CTV3_Children
+X78kn,Metastasis to female genital organ,CTV3_Children
+X78kp,Metastasis to male genital organ,CTV3_Children
+X78kq,Metastasis to scrotum,CTV3_Children
+X78kr,Metastasis to spermatic cord,CTV3_Children
+X78ks,Metastasis to urinary tract,CTV3_Children
+X78kv,Metastasis to renal pelvis,CTV3_Children
+X78kw,Metastasis to nervous system and eye,CTV3_Children
+X78kx,Metastasis to nervous system,CTV3_Children
+X78ky,Metastasis to pituitary,CTV3_Children
+X78kz,Metastasis to optic nerve,CTV3_Children
+X78l0,Metastasis to peripheral nerve,CTV3_Children
+X78l1,Metastasis to eye,CTV3_Children
+X78l2,Metastasis to orbit,CTV3_Children
+X78l3,Metastasis to choroid,CTV3_Children
+X78l4,Metastasis to endocrine organ,CTV3_Children
+X78l5,Metastasis to thyroid,CTV3_Children
+X78l7,Secondary carcinoma of other specified sites,CTV3_Children
+X78l8,Local tumour spread,CTV3_Children
+X78lA,Malignant infiltration of peripheral nerve,CTV3_Children
+X78lB,Malignant infiltration of peripheral nerve plexus,CTV3_Children
+X78qc,Localised malignant reticulohistiocytoma,QOF
+XC0dw,Malignant disease,QOF
+XE1Kp,Meckel's diverticulum,CTV3Map_Code_And_Term
+XE1vP,Malignant neoplasm of digestive organs and peritoneum,CTV3Map_Code_And_Term
+XE1vQ,Malignant neoplasm of oesophagus NOS,CTV3Map_Code_And_Term
+XE1vR,Malignant tumour of stomach,CTV3Map_Code_And_Term
+XE1vS,Malignant tumour of lesser curve of stomach,CTV3_Children
+XE1vT,Malignant tumour of greater curve of stomach,CTV3_Children
+XE1vU,Malignant tumour of caecum,CTV3Map_Code_And_Term
+XE1vV,Malignant neoplasm of colon NOS,CTV3Map_Code_And_Term
+XE1vW,Malignant tumour of rectum,CTV3Map_Code_And_Term
+XE1vX,Malignant tumour of anal canal,CTV3Map_Code_And_Term
+XE1vY,Malignant tumour of gallbladder,CTV3Map_Code_And_Term
+XE1vZ,Malignant tumour of respiratory and intrathoracic organ,CTV3Map_Code_And_Term
+XE1va,Malignant tumour of middle ear and mastoid,CTV3_Children
+XE1vd,Malignant tumour of bone and articular cartilage,CTV3Map_Code_And_Term
+XE1ve,Malignant neoplasm of hand bones,CTV3Map_Code_And_Term
+XE1vf,Malignant neoplasm of short bones of leg,CTV3Map_Code_And_Term
+XE1vg,Malignant neoplasm of soft tissue,CTV3_Children
+XE1vi,Malignant tumour of cervix,CTV3Map_Code_And_Term
+XE1vj,Malignant neoplasm of vulva unspecified,CTV3Map_Code_And_Term
+XE1vk,Malignant neoplasm of testis NOS,CTV3Map_Code_And_Term
+XE1vl,Malignant tumour of adrenal gland,CTV3Map_Code_And_Term
+XE1vm,Secondary malig neop of respiratory and digestive systems,CTV3_Children
+XE1vn,Disseminated malignancy NOS,CTV3Map_Code_Only
+XE1wT,Adenoid cystic carcinoma,CTV3Map_Code_And_Term
+XE1wX,[M]Malignant melanoma NOS,CTV3Map_Code_And_Term
+XE1wY,[M]Osteomas and osteosarcomas,CTV3Map_Code_And_Term
+XE1wZ,[M]Adamantinoma of long bones,CTV3Map_Code_And_Term
+XE1wa,Malignant glioma,CTV3Map_Code_And_Term
+XE1wb,[M]Glioblastoma NOS,CTV3Map_Code_And_Term
+XE1wc,[M]Neuroblastoma NOS,CTV3Map_Code_And_Term
+XE1wg,[X]Mesothelioma of other sites,CTV3Map_Code_And_Term
+XE1wj,Malignant neoplasms (& carcinoma),CTV3_Children
+XE1wl,"(Ca lip, oral, pharynx) or (oral carcinomas)",CTV3_Children
+XE1wp,Tongue carcinoma,CTV3_Children
+XE1wr,Ca major saliv gland) or (carc: [parotid][subling][submand]),CTV3_Children
+XE1wt,"(Ca gum, + rest of mouth) or (carc: [cheek][mouth][palate])",CTV3_Children
+XE1wv,(Ca oro/naso/hypopharynx) or (carc: [pharynx] or [tonsil]),CTV3_Children
+XE1wx,"Ca lip, oral, pharynx NOS",CTV3_Children
+XE1wz,Ca upper third oesophagus,CTV3_Children
+XE1x1,Ca middle third oesophagus,CTV3_Children
+XE1x3,Ca lower third oesophagus,CTV3_Children
+XE1x5,Ca oesophagus NOS,CTV3_Children
+XE1x7,Ca cardia - stomach,CTV3_Children
+XE1x9,Ca pylorus - stomach,CTV3_Children
+XE1xB,Ca fundus - stomach,CTV3_Children
+XE1xD,Ca Body - stomach,CTV3_Children
+XE1xF,Ca lesser curvature - stomach,CTV3_Children
+XE1xH,Ca greater curvature - stomach,CTV3_Children
+XE1xJ,Ca stomach NOS,CTV3_Children
+XE1xL,Carcinoma of colon,CTV3_Children
+XE1xN,Ca hepatic flexure - colon,CTV3_Children
+XE1xP,Ca transverse colon,CTV3_Children
+XE1xR,Ca descending colon,CTV3_Children
+XE1xT,Ca sigmoid colon,CTV3_Children
+XE1xV,(Ca caecum) or (caecum carcinoma),CTV3_Children
+XE1xX,Ca ascending colon,CTV3_Children
+XE1xZ,Ca splenic flexure - colon,CTV3_Children
+XE1xb,(Ca appendix) or (appendix carcinoma),CTV3_Children
+XE1xd,Ca colon NOS,CTV3_Children
+XE1xf,Ca rectum with Ca anus,CTV3_Children
+XE1xh,Carcinoma of the rectosigmoid junction,CTV3_Children
+XE1xj,(Ca rectum) or (rectum carcinoma),CTV3_Children
+XE1xl,(Ca anus) or (anus carcinoma),CTV3_Children
+XE1xp,Ca liver - primary,CTV3_Children
+XE1xr,Ca intrahepatic bile ducts,CTV3_Children
+XE1xt,Gallbladder Ca,CTV3_Children
+XE1xv,Ca extrahepatic bile ducts,CTV3_Children
+XE1xx,Ca liver/biliary system NOS,CTV3_Children
+XE1xz,Ca head of pancreas,CTV3_Children
+XE1y1,Ca body of pancreas,CTV3_Children
+XE1y3,Ca tail of pancreas,CTV3_Children
+XE1y5,Ca pancreas NOS,CTV3_Children
+XE1y7,Ca larynx - glottis,CTV3_Children
+XE1y9,Ca larynx - supraglottis,CTV3_Children
+XE1yB,Ca larynx - subglottis,CTV3_Children
+XE1yD,Ca larynx - NOS,CTV3_Children
+XE1yT,(Ca bone/artic cart) or (bone carc) or (sarc bone/art cart),CTV3_Children
+XE1yV,Ca skull/face/jaw bone,CTV3_Children
+XE1yX,(Ca vertebral column) or (spine carcinoma),CTV3_Children
+XE1yZ,Ca ribs/sternum/clavicle,CTV3_Children
+XE1yb,Ca upper limb bones/scapula,CTV3_Children
+XE1yd,Ca pelvic bones/sacrum/coccyx,CTV3_Children
+XE1yf,Ca lower limb bones,CTV3_Children
+XE1yh,Ca bone/joint cartilage NOS,CTV3_Children
+XE1yj,Melanoma: [skin] or [malignant],CTV3_Children
+XE1yl,Malignant melanoma of head and neck,CTV3_Children
+XE1yn,Malignant melanoma of trunk,CTV3_Children
+XE1yp,Malignant melanoma of upper limb,CTV3_Children
+XE1yr,Malignant melanoma of lower limb,CTV3_Children
+XE1z9,"Ca breast-upper,inner quadrant",CTV3_Children
+XE1zB,"Ca breast-lower,inner quadrant",CTV3_Children
+XE1zD,"Ca breast-upper,outer quadrant",CTV3_Children
+XE1zF,"Ca breast-lower,outer quadrant",CTV3_Children
+XE1zH,Ca breast - axillary tail,CTV3_Children
+XE1zJ,Ca breast - male,CTV3_Children
+XE1zL,Ca breast - NOS,CTV3_Children
+XE1zN,Carcinoma cervix uteri: [adenocarcinoma] or [invasive],CTV3_Children
+XE1zP,Ca cervix uteri - endocervix,CTV3_Children
+XE1zR,Ca cervix uteri - exocervix,CTV3_Children
+XE1zT,Ca cervix uteri NOS,CTV3_Children
+XE1zV,(Body of uterus Ca) or (carc body uterus) or (endometr Ca),CTV3_Children
+XE1zX,Ca ovary/other uterine adnexa,CTV3_Children
+XE1zZ,(Fallopian tube Ca) or (Ca ovary/uterine adnexa NOS),CTV3_Children
+XE1zb,Malig tumour testis: [carcinoma] or [seminoma] or [teratoma],CTV3_Children
+XE1zd,Ca vulva: [clitoral Ca] or [labial Ca],CTV3_Children
+XE1zf,Ca penis,CTV3_Children
+XE1zh,(Epidid carc) or (Ca epidid/spermat cord) or (sperm cord Ca),CTV3_Children
+XE1zj,(Carcinoma bladder) or (bladder Ca),CTV3_Children
+XE1zl,Ca kidney/other urinary organs,CTV3_Children
+XE1zn,Ca kidney/urinary organs NOS,CTV3_Children
+XE1zp,(Carcinoma brain) or (brain Ca) or (cerebral tumour - malig),CTV3_Children
+XE1zr,Other primary carcinomas,CTV3_Children
+XE1zt,Ca uterus NOS: [carcinoma] or [cancer],CTV3_Children
+XE1zv,Malign tumour eye: [Ca eye][malign melanoma][retinoblastoma],CTV3_Children
+XE205,(Sec Ca sp site) or (metast sp site) or (sec Ca known site),CTV3_Children
+XE207,Secondary Ca GIT,CTV3_Children
+XE209,(Sec Ca brain/spin cord) or (bone sec Ca) or (brain sec Ca),CTV3_Children
+XE20B,Secondary Ca NOS,CTV3_Children
+XE20D,(Ca unspecified site) or (secondary - unknown site),CTV3_Children
+XE20F,(Carcinomatos) or (dissem Ca unsp site) or (metastatic carc),CTV3_Children
+XE20X,Malignant neoplasm NOS (& sarcoma NOS),CTV3_Children
+XE2rk,"Malignant neoplasm of lip, oral cavity and pharynx",CTV3Map_Code_And_Term
+XE2vN,Malignant neoplasm of common bile duct,CTV3Map_Code_And_Term
+XE2vO,"Malig neop of bone, connective tissue, skin and breast",CTV3Map_Code_And_Term
+XE2vP,Malignant neoplasm of genitourinary organ,CTV3Map_Code_And_Term
+XE2vQ,Malig neop of kidney and other unspecified urinary organs,CTV3Map_Code_And_Term
+XE2vR,Malignant neoplasm of other and unspecified sites,CTV3Map_Code_And_Term
+XE2vS,Malignant brain tumour,CTV3Map_Code_And_Term
+XE2vT,Secondary malignant neoplasm of other specified sites,CTV3_Children
+XE2vj,Malignant hydatidiform mole,CTV3Map_Code_Only
+XE2xB,Secondary and unspecified malignant neoplasm of lymph nodes,CTV3_Children
+XM00E,Malignant tumour of lower labial mucosa,CTV3Map_Code_And_Term
+XM00F,Malignant tumour of ill-defined site,CTV3_Children
+XM0Ac,Carcinoma of base of tongue,CTV3_Children
+XM0Ad,Metastasis to large intestine,CTV3_Children
+XM0B6,Glioblastoma multiforme,CTV3Map_Code_And_Term
+XM0pZ,Palate carcinoma,CTV3_Children
+XM0pb,Tonsil carcinoma,CTV3_Children
+XM0pq,Cerebrum Ca,CTV3_Children
+XM0ps,Malignant melanoma of eye,CTV3Map_Code_And_Term
+XM0pv,Secondary malignant neoplasm of unknown site,CTV3_Children
+XM1F6,Undifferentiated carcinoma,CTV3_Children
+XM1F7,Anaplastic carcinoma,CTV3_Children
+XM1FE,Combined hepatocellular carcinoma and cholangiocarcinoma,CTV3_Children
+XM1FG,Carcinoid tumour - argentaffin,CTV3_Children
+XM1FI,Skin appendage carcinoma,High_Level_SNOMED
+XM1FO,Malignant mixed tumour,High_Level_SNOMED
+XM1MM,Metastasis to digestive organs,CTV3_Children
+XM1Oc,Carcinoma ventral surface of tongue,CTV3_Children
+XM1Od,Carcinoma anterior 2/3 tongue ventrum,CTV3_Children
+XM1Oe,Carcinoma of anterior two-thirds of tongue - dorsal surface,CTV3_Children
+XM1Of,Carcinoma of midline of tongue,CTV3_Children
+XM1Oi,Malignant tumour of lipstick area of lip,CTV3_Children
+XM1P4,Primary vulval cancer,CTV3Map_Code_And_Term
+XM1Pr,Cerebral metastasis,CTV3_Children
+XM1Ps,Cerebral tumour - malignant,CTV3Map_Code_And_Term
+XM1QO,Carcinoma of tongue base - dorsal surface,CTV3_Children
+XSA0M,Secondary malignant neoplasm of mouth,CTV3_Children
+XSHw5,Clark melanoma level 2,CTV3Map_Code_And_Term
+XSHw6,Clark melanoma level 3,CTV3Map_Code_And_Term
+XSHw7,Clark melanoma level 4,CTV3Map_Code_And_Term
+XSHw8,Clark melanoma level 5,CTV3Map_Code_And_Term
+Xa059,Malignant tumour of corpus spongiosum,CTV3_Children
+Xa05A,Malignant tumour of corpus cavernosum,CTV3_Children
+Xa0D7,Malignant tumour of fibrous tissue,QOF
+Xa0D9,Dermatofibrosarcoma protuberans,CTV3Map_Code_And_Term
+Xa0DF,Adenocarcinoma of oesophagus,CTV3_Children
+Xa0DG,Squamous cell carcinoma of oesophagus,CTV3_Children
+Xa0DO,Carcinoid tumour of stomach,CTV3_Children
+Xa0DP,Early gastric cancer,CTV3_Children
+Xa0DQ,Late gastric cancer,CTV3_Children
+Xa0Di,Malignant melanoma of anus,CTV3_Children
+Xa0Dj,Malignant melanoma of rectum,CTV3_Children
+Xa0Dp,Malignant glioma of brain,CTV3_Children
+Xa0Dq,Malignant glioma of spinal cord,QOF
+Xa0Dr,Glioblastoma multiforme of brain,CTV3_Children
+Xa0Ds,Glioblastoma multiforme of spinal cord,QOF
+Xa0EY,Squamous cell carcinoma of scrotum,CTV3_Children
+Xa0Ei,Carcinoma of fallopian tube,CTV3_Children
+Xa0Eq,Carcinoma of Bartholin's gland,CTV3_Children
+Xa0G9,Squamous cell carcinoma of tongue,CTV3_Children
+Xa0GA,Squamous cell carcinoma of gum,CTV3_Children
+Xa0GC,Squamous cell carcinoma of floor of mouth,CTV3_Children
+Xa0GN,Squamous cell carcinoma of palate,CTV3_Children
+Xa0Ge,Carcinoma of larynx,CTV3_Children
+Xa0KC,Malignant tumour of external ear,CTV3_Children
+Xa0LD,Malignant tumour of middle ear,CTV3_Children
+Xa0R4,Medulloblastoma of cerebellum,QOF
+Xa0RU,Malignant melanoma of meninges,QOF
+Xa0WG,Primary malignant tumour of peritoneum,CTV3_Children
+Xa0WH,Malignant peritoneal local recurrence,CTV3_Children
+Xa0aG,Nonteratoid medulloepithelioma,High_Level_SNOMED
+Xa0aO,Olfactory neuroendocrine carcinoma,High_Level_SNOMED
+Xa0aS,Meningeal sarcoma,High_Level_SNOMED
+Xa0ay,Rhabdomyosarcoma of bladder,CTV3_Children
+Xa0bJ,Malignant teratoma of mediastinum,CTV3_Children
+Xa0bK,Malignant seminoma of mediastinum,CTV3_Children
+Xa0bL,Malignant neuroma of mediastinum,CTV3_Children
+Xa0bM,Sarcoma of bladder,CTV3_Children
+Xa0bQ,Sarcoma of breast,CTV3_Children
+Xa0bT,Intraduct carcinoma of breast,CTV3_Children
+Xa0bU,Lobular carcinoma of breast,CTV3_Children
+Xa0bV,Malignant Leydig cell tumour of testis,CTV3_Children
+Xa0bb,Endometrioid carcinoma of prostate,CTV3_Children
+Xa0hk,Odontogenic carcinoma,CTV3_Children
+Xa0hl,Odontogenic sarcoma,CTV3_Children
+Xa0iA,Primary intra-osseous carcinoma,CTV3_Children
+Xa0iB,Odontogenic ghost cell carcinoma,CTV3_Children
+Xa0ik,Malignant infiltration of soft tissue,CTV3_Children
+Xa1aS,Malignant tumour of lacrimal drainage structure,QOF
+Xa1nX,Neuroblastoma of brain,QOF
+Xa1nZ,Adrenal neuroblastoma,CTV3_Children
+Xa1na,Thoracic neuroblastoma,CTV3_Children
+Xa1nb,Pelvic neuroblastoma,CTV3_Children
+Xa1nc,Paraspinal neuroblastoma,QOF
+Xa1ne,Abdominothoracic neuroblastoma,CTV3_Children
+Xa1oQ,Carcinoma of vocal cord,CTV3_Children
+Xa34F,Carcinoma of anal canal,CTV3_Children
+Xa34H,Carcinoma of sigmoid colon,CTV3_Children
+Xa36T,Metastasis to vertebral column,CTV3_Children
+Xa36r,Carcinoma of cervix,CTV3_Children
+Xa39z,Metastasis to trachea of unknown primary,CTV3_Children
+Xa3A4,Metastasis to bronchus of unknown primary,CTV3_Children
+Xa3A5,Metastasis to lung of unknown primary,CTV3_Children
+Xa3A6,Metastasis to pleura of unknown primary,CTV3_Children
+Xa3A7,Metastasis to heart of unknown primary,CTV3_Children
+Xa3A8,Metastasis to mediastinum of unknown primary,CTV3_Children
+Xa3A9,Metastasis to thymus of unknown primary,CTV3_Children
+Xa3AA,Metastasis to small intestine of unknown primary,CTV3_Children
+Xa3AB,Metastasis to large intestine of unknown primary,CTV3_Children
+Xa3AC,Metastasis to colon of unknown primary,CTV3_Children
+Xa3AD,Metastasis to rectum of unknown primary,CTV3_Children
+Xa3AE,Metastasis to liver of unknown primary,CTV3_Children
+Xa3AF,Metastasis to pancreas of unknown primary,CTV3_Children
+Xa3AG,Metastasis to spleen of unknown primary,CTV3_Children
+Xa3AH,Metastasis to peritoneum of unknown primary,CTV3_Children
+Xa3AI,Metastasis to retroperitoneum of unknown primary,CTV3_Children
+Xa3AJ,Metastasis to bone of unknown primary,CTV3_Children
+Xa3AK,Metastasis to vertebral column of unknown primary,CTV3_Children
+Xa3BF,Metastasis to skin of unknown primary,CTV3_Children
+Xa3BG,Metastasis to soft tissue of unknown primary,CTV3_Children
+Xa3BH,Metastasis to breast of unknown primary,CTV3_Children
+Xa3BI,Metastasis to uterus of unknown primary,CTV3_Children
+Xa3BL,Metastasis to ovary of unknown primary,CTV3_Children
+Xa3BM,Metastasis to vagina of unknown primary,CTV3_Children
+Xa3BN,Metastasis to kidney of unknown primary,CTV3_Children
+Xa3BX,Metastasis to bladder of unknown primary,CTV3_Children
+Xa3BZ,Metastasis to brain of unknown primary,CTV3_Children
+Xa3Ba,Metastasis to eye of unknown primary,CTV3_Children
+Xa3Bb,Metastasis to adrenal gland of unknown primary,CTV3_Children
+Xa3Bc,Metastasis to lymph node of unknown primary,CTV3_Children
+Xa3Bd,Disseminated malignancy of unknown primary,CTV3_Children
+Xa3eF,Carcinoma liver/biliary system,CTV3_Children
+Xa3eG,Carcinoma liver/biliary system NOS,CTV3_Children
+Xa3eH,Carcinoma of upper limb bones/scapula,CTV3_Children
+Xa3eI,Carcinoma of lower limb bones,CTV3_Children
+Xa3eJ,Carcinoma of skin of head/neck,CTV3_Children
+Xa3eK,Ca breast - nipple/central,CTV3_Children
+Xa3eL,"Carcinoma of breast - upper, inner quadrant",CTV3_Children
+Xa3eM,"Carcinoma of breast - lower, inner quadrant",CTV3_Children
+Xa3eN,"Carcinoma of breast - upper, outer quadrant",CTV3_Children
+Xa3eO,"Carcinoma breast - lower, outer quadrant",CTV3_Children
+Xa3eP,Carcinoma of breast - axillary tail,CTV3_Children
+Xa3eQ,Carcinoma of breast NOS,CTV3_Children
+Xa3eR,Carcinoma genital organs,CTV3_Children
+Xa3eS,Carcinoma of epididymis/spermatic cord,CTV3_Children
+Xa3eT,Carcinoma of genital organs NOS,CTV3_Children
+Xa3eU,Secondary carcinoma of gastrointestinal tract,CTV3_Children
+Xa3rj,Secondary carcinoma NOS,CTV3_Children
+Xa7n9,Transitional cell carcinoma of ureter,CTV3_Children
+Xa7o3,Disseminated adenocarcinoma,CTV3_Children
+Xa84V,Adenocarcinoma of sigmoid colon,CTV3_Children
+Xa97p,Malignant tumour of anterior two-thirds of tongue,CTV3_Children
+Xa97q,Malignant tumour of liver,CTV3_Children
+Xa97r,Intrahepatic bile duct carcinoma,CTV3_Children
+Xa97s,Malignant tumour of soft tissue,CTV3_Children
+Xa97t,"Malignant tumour of soft tissue of head, face and neck",CTV3_Children
+Xa97u,Malignant tumour of soft tissue of shoulder,CTV3_Children
+Xa97v,Malignant tumour of soft tissue of hip,CTV3_Children
+Xa97w,Malignant tumour of soft tissue of thorax,CTV3_Children
+Xa97x,Malignant tumour of soft tissue of pelvis,CTV3_Children
+Xa97y,Malignant tumour of vulva,CTV3_Children
+Xa97z,Malignant tumour of unknown origin or ill-defined site,CTV3_Children
+Xa980,Metastasis to lymph node,CTV3_Children
+Xa981,Metastasis to epididymis,CTV3_Children
+Xa982,Metastatic malignant disease,CTV3_Children
+Xa983,Disseminated malignancy,CTV3_Children
+Xa98L,Metastatic adenocarcinoma,CTV3_Children
+Xa98P,Follicular adenocarcinoma,CTV3_Children
+Xa98Q,Papillary carcinoma - follicular variant,CTV3_Children
+Xa98Y,Solid carcinoma,CTV3_Children
+Xa98Z,Goblet cell carcinoid,CTV3Map_Code_And_Term
+Xa98c,Papillary adenocarcinoma,CTV3_Children
+Xa98e,Clear cell adenocarcinoma,CTV3_Children
+Xa98k,Cystadenocarcinoma,High_Level_SNOMED
+Xa98m,Serous cystadenocarcinoma,High_Level_SNOMED
+Xa98o,Papillary cystadenocarcinoma,High_Level_SNOMED
+Xa98r,Mucinous cystadenocarcinoma,High_Level_SNOMED
+Xa98u,Comedocarcinoma,CTV3_Children
+Xa98x,Medullary carcinoma,High_Level_SNOMED
+Xa98y,Lobular carcinoma,High_Level_SNOMED
+Xa98z,Extramammary Paget's disease,High_Level_SNOMED
+Xa993,Choroid plexus carcinoma,High_Level_SNOMED
+Xa997,Polar spongioblastoma,High_Level_SNOMED
+Xa998,Oligodendroglioma,High_Level_SNOMED
+Xa999,Medulloblastoma,CTV3_Children
+Xa99A,Cerebellar sarcoma,High_Level_SNOMED
+Xa99D,Neuroblastoma,CTV3Map_Code_And_Term
+Xa99F,Medulloepithelioma,High_Level_SNOMED
+Xa99H,Neuroepithelioma,High_Level_SNOMED
+Xa99K,Olfactory neuroblastoma,CTV3Map_Code_And_Term
+Xa99L,Olfactory neuroepithelioma,High_Level_SNOMED
+Xa99S,Malignant melanoma,CTV3Map_Code_And_Term
+Xa99V,Malignant peripheral nerve sheath tumour,High_Level_SNOMED
+Xa99a,Spindle cell melanoma,CTV3_Children
+Xa99e,Sarcoma,High_Level_SNOMED
+Xa99f,Alveolar soft tissue sarcoma,High_Level_SNOMED
+Xa99h,Giant cell sarcoma,CTV3Map_Code_And_Term
+Xa99p,Dermatofibrosarcoma,QOF
+Xa99r,Liposarcoma morphology,High_Level_SNOMED
+Xa99v,Leiomyosarcoma,High_Level_SNOMED
+Xa99y,Rhabdomyosarcoma,CTV3_Children
+Xa9A0,Nephroblastoma,CTV3Map_Code_And_Term
+Xa9A1,Carcinosarcoma,High_Level_SNOMED
+Xa9A8,Malignant phyllodes tumour,QOF
+Xa9A9,Synovial sarcoma,QOF
+Xa9AI,Malignant teratoma,CTV3Map_Code_And_Term
+Xa9AJ,Teratoma with malignant transformation,CTV3_Children
+Xa9AQ,Choriocarcinoma combined with germ cell elements,CTV3_Children
+Xa9AV,Osteosarcoma - morphology,CTV3Map_Code_And_Term
+Xa9Aa,Chondrosarcoma of bone,CTV3_Children
+Xa9EA,Malignant tumour of posterior wall of hypopharynx,CTV3_Children
+Xa9Jc,Metastasis to head and neck lymph node,CTV3_Children
+Xa9Je,Metastasis to intrathoracic lymph node,CTV3_Children
+Xa9Jg,Metastasis to intra-abdominal lymph node,CTV3_Children
+Xa9Ji,Metastasis to upper limb lymph node,CTV3_Children
+Xa9Jk,Metastasis to lower limb lymph node,CTV3_Children
+Xa9Jm,Metastasis to intrapelvic lymph node,CTV3_Children
+Xa9Jo,Metastasis to multiple lymph nodes,CTV3_Children
+XaA0C,Adenocarcinoma of ileum,CTV3_Children
+XaAtd,Ca rectum + Ca anus NOS,CTV3_Children
+XaB1b,Perforated carcinoma of oesophagus,CTV3_Children
+XaB1e,Retroperitoneal sarcoma,CTV3_Children
+XaB1g,Carcinoma of head of pancreas,CTV3_Children
+XaB1h,Carcinoma of body of pancreas,CTV3_Children
+XaB1i,Carcinoma of tail of pancreas,CTV3_Children
+XaB1p,Metastatic adenocarcinoma of unknown origin,CTV3_Children
+XaB8h,Squamous cell carcinoma of mouth,CTV3_Children
+XaB9x,Chondrosarcoma morphology,High_Level_SNOMED
+XaBA5,Osteosarcoma of bone,CTV3_Children
+XaBAn,Carcinomatosis,CTV3Map_Code_And_Term
+XaBAo,Linitis plastica,CTV3_Children
+XaBAt,Sebaceous adenocarcinoma,QOF
+XaBAu,Pseudomyxoma peritonei,CTV3_Children
+XaBB1,Ewing's sarcoma of bone,CTV3_Children
+XaBB5,Retinoblastoma - morphology,High_Level_SNOMED
+XaBBF,Kaposi's sarcoma,CTV3_Children
+XaBDS,Anaemia in ovarian carcinoma,CTV3Map_Code_And_Term
+XaBLv,Malignant neoplasm of epiglottis NOS,CTV3Map_Code_And_Term
+XaBmX,Adenocarcinoma of uterus,CTV3_Children
+XaC0y,Secondary malignant neoplasm of tongue,CTV3_Children
+XaC1Q,"Malignant neoplasm, overlapping lesion of brain",CTV3Map_Code_And_Term
+XaCIv,Malignant melanoma of back,CTV3Map_Code_And_Term
+XaCJ1,Primary malignant neoplasm of unknown site,CTV3Map_Code_And_Term
+XaCJU,Malignant tumour of soft tissue of back,CTV3_Children
+XaDbr,Cholangiocarcinoma of biliary tract,CTV3_Children
+XaDc5,Carcinoma of ascending colon,CTV3_Children
+XaDc6,Carcinoma of transverse colon,CTV3_Children
+XaDc7,Carcinoma of descending colon,CTV3_Children
+XaDc8,Carcinoma of hepatic flexure,CTV3_Children
+XaDc9,Carcinoma of splenic flexure,CTV3_Children
+XaE6L,Retinal pigment epithelial adenocarcinoma,CTV3_Children
+XaEGU,Malignant melanoma of chest wall,CTV3Map_Code_And_Term
+XaEY9,Malignant neoplasm of mesentery,CTV3Map_Code_And_Term
+XaEfj,Cystadenocarcinoma of ovary,CTV3_Children
+XaF1E,Leukaemic infiltrate of choroid,CTV3_Children
+XaF26,Leukaemic infiltrate of retina,CTV3_Children
+XaFr4,Local recurrence of malignant tumour of tongue,CTV3_Children
+XaFr5,Local recurrence of malignant tumour of buccal cavity,CTV3_Children
+XaFr6,Local recurrence of malignant tumour of thyroid gland,CTV3_Children
+XaFr8,Local recurrence of malignant tumour of breast,CTV3Map_Code_And_Term
+XaFrD,Local recurrence of malignant tumour of oesophagus,CTV3_Children
+XaFrE,Local recurrence of malignant tumour of stomach,CTV3_Children
+XaFrF,Local recurrence of malignant tumour of gallbladder,CTV3_Children
+XaFrG,Local recurrence of malignant tumour of liver,CTV3_Children
+XaFrH,Local recurrence of malignant tumour of pancreas,CTV3_Children
+XaFrI,Local recurrence of malignant tumour of colon,CTV3_Children
+XaFrJ,Local recurrence of malignant tumour of rectum,CTV3_Children
+XaFrK,Local recurrence of malignant tumour of kidney,CTV3_Children
+XaFrL,Local recurrence of malignant tumour of urinary bladder,CTV3Map_Code_And_Term
+XaFrM,Local recurrence of malignant tumour of prostate,CTV3_Children
+XaFrN,Local recurrence of malignant tumour of cervix,CTV3_Children
+XaFrQ,Local recurrence of malignant tumour of bone,CTV3_Children
+XaFrR,Local recurrence of malignant tumour of soft tissue,CTV3_Children
+XaFrT,Local recurrence of malignant melanoma of skin,CTV3_Children
+XaFrc,Metastases by primary malignancy,CTV3_Children
+XaFrd,Metastasis from malignant melanoma of skin,CTV3_Children
+XaFrf,Metastasis from malignant tumour of soft tissues,CTV3_Children
+XaFrg,Metastasis from malignant tumour of bone,CTV3_Children
+XaFrh,Metastasis from malignant tumour of adrenal gland,CTV3_Children
+XaFri,Metastasis from malignant tumour of cervix,CTV3_Children
+XaFrj,Metastasis from malignant tumour of uterus,CTV3_Children
+XaFrk,Metastasis from malignant tumour of prostate,CTV3_Children
+XaFrl,Metastasis from malignant tumour of bladder,CTV3_Children
+XaFrm,Metastasis from malignant tumour of kidney,CTV3_Children
+XaFrn,Metastasis from malignant tumour of rectum,CTV3_Children
+XaFro,Metastasis from malignant tumour of colon,CTV3_Children
+XaFrp,Metastasis from malignant tumour of pancreas,CTV3_Children
+XaFrq,Metastasis from malignant tumour of liver,CTV3_Children
+XaFrr,Metastasis from malignant tumour of gallbladder,CTV3_Children
+XaFrs,Metastasis from malignant tumour of stomach,CTV3_Children
+XaFrt,Metastasis from malignant tumour of oesophagus,CTV3_Children
+XaFru,Metastasis from malignant tumour of breast,CTV3_Children
+XaFrv,Metastasis from malignant tumour of bronchus,CTV3_Children
+XaFrx,Metastasis from malignant tumour of thyroid,CTV3_Children
+XaFry,Metastasis from malignant tumour of buccal cavity,CTV3_Children
+XaFrz,Metastasis from malignant tumour of tongue,CTV3_Children
+XaFsw,Hereditary nonpolyposis colon cancer,CTV3Map_Code_And_Term
+XaFzu,Malignant neoplasm of bone,CTV3_Children
+XaIJA,Pathological fracture due to metastatic bone disease,QOF
+XaIma,Gleason grading of prostate cancer,CTV3Map_Code_And_Term
+XaImb,Gleason prostate grade 2-4 (low),CTV3Map_Code_And_Term
+XaImc,Gleason prostate grade 5-7 (medium),CTV3Map_Code_And_Term
+XaImd,Gleason prostate grade 8-10 (high),CTV3Map_Code_And_Term
+XaIn5,Squamous cell carcinoma antigen level,CTV3Map_Code_And_Term
+XaIph,Cancer confirmed,CTV3Map_Code_And_Term
+XaJM3,Osteosarcoma - disorder,CTV3Map_Code_And_Term
+XaJU6,Breast cancer detected by national screening programme,QOF
+XaKHe,Date cancer diagnosis received in primary care,CTV3Map_Code_And_Term
+XaKI4,Cancer hospital treatment completed,CTV3Map_Code_And_Term
+XaKI6,Cancer pain and symptom management,CTV3Map_Code_And_Term
+XaKI8,Cancer rehabilitation and readaption,CTV3Map_Code_And_Term
+XaKWz,Malignant sacral teratoma,CTV3Map_Code_And_Term
+XaMeL,Malignant neoplasm of descended testis NOS,CTV3Map_Code_And_Term
+XaN5C,Bowel cancer detected by national screening programme,CTV3Map_Code_And_Term
+XaOqX,Siewert type II adenocarcinoma,CTV3Map_Code_And_Term
+XaOrB,Siewert type III adenocarcinoma,CTV3Map_Code_And_Term
+XaOrV,Siewert type I adenocarcinoma,CTV3Map_Code_And_Term
+XaX42,Grade 1 (Stage pTa) papillary urothelial/transitionl cell ca,CTV3Map_Code_And_Term
+XaX43,Grade 2 (Stage pTa) papillary urothelial/transitionl cell ca,CTV3Map_Code_And_Term
+XaX44,Grade 3 (Stage pTa) papillary urothelial/transitionl cell ca,CTV3Map_Code_And_Term
+XaXQk,Secondary malignant neoplasm of large intestine and rectum,CTV3_Children
+XaYeq,Secondary malignant neoplasm of liver intrahepatic bile duct,CTV3_Children
+XaZzi,[M]Peripheral neuroectodermal tumour,CTV3Map_Code_And_Term
+XaabR,Bowel scope (flexible sigmoidoscopy) screen: cancer detected,CTV3Map_Code_And_Term
+Xaafk,Crv smr - hi grade dyskaryosis? invasive squamous carcinoma,CTV3Map_Code_And_Term
+XacIU,Malignant melanoma stage IA,CTV3Map_Code_And_Term
+XacIV,Malignant melanoma stage IB,CTV3Map_Code_And_Term
+XacIW,Malignant melanoma stage IIA,CTV3Map_Code_And_Term
+XacIX,Malignant melanoma stage IIB,CTV3Map_Code_And_Term
+XacIY,Malignant melanoma stage IIC,CTV3Map_Code_And_Term
+XacIZ,Malignant melanoma stage IIIA,CTV3Map_Code_And_Term
+XacIa,Malignant melanoma stage IIIB,CTV3Map_Code_And_Term
+XacIb,Malignant melanoma stage IIIC,CTV3Map_Code_And_Term
+XacId,Malignant melanoma stage IV M1a,CTV3Map_Code_And_Term
+XacIe,Malignant melanoma stage IV M1b,CTV3Map_Code_And_Term
+XacIf,Malignant melanoma stage IV M1c,CTV3Map_Code_And_Term
+XacY5,Active surveillance of prostate cancer,CTV3Map_Code_And_Term
+Y3491,Malignant neoplasm of eye and adnexa,CTV3_Children
+Y3656,H/O Carcinoma of breast,CTV3_Children
+ZV676,[V]Follow-up examination aft surgery for malignant neoplasm,CTV3Map_Code_And_Term
+ZV677,[V]Follow-up exam after radiotherapy for malignant neoplasm,QOF
+ZV679,[V]Follow-up exam aft combined treatment for malig neoplasm,CTV3Map_Code_And_Term
+ZV67A,[V]Folow-up exam aft other treatment for malignant neoplasm,CTV3Map_Code_And_Term
+ZV67B,[V]Folow-up exam aft unspec treatment for malignant neoplasm,CTV3Map_Code_And_Term
