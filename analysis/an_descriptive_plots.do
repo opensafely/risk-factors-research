@@ -40,7 +40,7 @@
 foreach outvar of varlist died hosp itu {
 
 	* Declare survival outcome
-	stset stime_`outvar', fail(`outvar') 	///
+	stset stime_`outvar', fail(`outvar') 			///
 		id(patient_id) enter(enter_date) origin(enter_date)
 
 	* KM plot for females by age		
@@ -102,10 +102,58 @@ erase both_hosp.gph
 *  KM plots for each factor, adjusted for sex and age  *
 ********************************************************
 
-* To be added
+* Loop over outcomes
+foreach outvar of varlist died hosp itu {
+					
+	* Declare survival outcome
+	stset stime_`outvar', fail(`outvar') 					///
+		id(patient_id) enter(enter_date) origin(enter_date)
+		
+	* Loop over risk factors
+	foreach rf of varlist 	imd 							///
+							ethnicity						///	
+							bmicat 							///
+							obese40 						///
+							smoking_status 					///
+							currentsmoke 					///
+							chronic_respiratory_disease 	///
+							asthma 							///
+							chronic_cardiac_disease 		///
+							diabetes 						///
+							lung_cancer 					///
+							cancer							///
+							chronic_liver_disease 			///
+							neurological_condition 			///
+							chronic_kidney_disease 			///
+							organ_transplant 				///	
+							spleen 							///
+							immuno_condition	 			///
+							ra_sle_psoriasis { 
+
+		* Kaplan-Meier graph, adjusted for age and sex
+		sts graph, by(`rf') adjustfor(c_age c_male) 		
+		graph save km_adj_`rf'_`outvar', replace
+	}
+}
+
+
+		
+************************************************************************
+*  KM plots for each factor, adjusted for sex, age, IMD and ethnicity  *
+************************************************************************
+
+* In subsample with ethnicity measured 
+* NB: this code assumes missing is a missing value code
+
+*stset stime_died, fail(died) 	///
+*		id(patient_id) enter(enter_date) origin(enter_date)
+
+*sts graph, adjustfor(c_age c_male c_imd c_ethnicity) 		
 
 
 
+
+		
 ****************************************************************
 *  KM plots for each factor, stratified by sex and binary age  *
 ****************************************************************

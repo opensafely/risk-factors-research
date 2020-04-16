@@ -6,7 +6,7 @@
 *
 *	Programmed by:	Elizabeth Williamson
 *
-*	Data used:		None
+*	Data used:		Data in memory (from input.csv)
 *
 *	Data created:	egdata.dta
 *
@@ -14,30 +14,10 @@
 *
 ********************************************************************************
 *
-*	Purpose:		This do-file creates a fake dataset to test first code
-*					draft on and creates the variables required for the 
-*					main analysis.
+*	Purpose:		This do-file creates the variables required for the 
+*					main analysis and saves into a Stata dataset.
 *  
 ********************************************************************************
-
-
-
-
-*************************************
-*  Assumed structure of input data  *
-*************************************
-
-* Variables: 
-* age (cts) 
-* sex (string, M/F/I/U)
-* chronic_cardiac_disease (string, date: YYYY-MM; NB numeric . if no obs) 
-* chronic_liver_disease (string, date: YYYY-MM; NB numeric . if no obs) 
-* bmi (cts)
-* bmi_date_measured (string, date: YYYY-MM)
-
-
-* Variables (fake) added below:
-
 
 
 
@@ -46,8 +26,9 @@
 *  Generate some extra variables  *
 ***********************************
 
-
 *** This section won't be needed once real data is fully available
+
+import delimited input.csv, clear
 
 set seed 123489
 
@@ -58,28 +39,25 @@ gen itu  = uniform()<0.05
 
 
 * Smoking status 
-gen smoke = uniform()<0.3
+gen    smoke  = "N" if uniform()<0.3
+replace smoke = "F" if uniform()<0.6 & smoke==""
+replace smoke = "C" if uniform()<0.6 & smoke==""
+
+* Ethnicity 
+gen     ethnicity = "W" if uniform()<0.3
+replace ethnicity = "B" if uniform()<0.2 & ethnicity==""
+replace ethnicity = "A" if uniform()<0.1 & ethnicity==""
+replace ethnicity = "M" if uniform()<0.1 & ethnicity==""
+replace ethnicity = "O" if uniform()<0.1 & ethnicity==""
+replace ethnicity = "U" if ethnicity==""
 
 
 * Additional risk factors
-forvalues i = 1 (1) 15 {
-	gen x`i' = uniform()<0.07
-}
-rename x1  resp
-rename x2  asthma
-rename x3  heart
-rename x4  diabetes
-rename x5  cancer
-rename x6  liver
-rename x7  neuro_dis
-rename x8  kidney_dis
-rename x9  transplant
-rename x10 spleen
-rename x11 immunosup
-rename x12 hypertension
-rename x13 autoimmune
-rename x14 sle
-rename x15 endocrine
+gen asthma = uniform()<0.07
+
+* SBP and DBP
+gen sbp = rnormal(110, 15)
+gen dbp = rnormal(80, 15)
 
 
 * IMD
@@ -94,14 +72,18 @@ egen stp = cut(stp_temp), group(40)
 drop stp_temp
 
 
-
-* Dates
+****** THIS NEXT LITTLE SECTION WILL BE NEEDED FOR THE REAL DATA ******
+* Dates   
 gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
 gen end_study_date = enter_date + 64
 format end_study_date %td
 
+****** END OF SECTION NEEDED FOR THE REAL DATA ******
+
+
+*** Generate fake outcome dates
 
 * Date of death
 gen death_date = enter_date + runiform()*42 if died==1
@@ -123,11 +105,50 @@ drop lag
 
 
 
+****************************
+*  Create required cohort  *
+****************************
+
+* Age: Exclude children
+drop if age<18
+
+* Age: Exclude those with implausible ages
+assert age<.
+drop if age>105
+
+* Sex: Exclude categories other than M and F
+assert inlist(sex, "M", "F", "I", "U")
+drop if inlist(sex, "I", "U")
+
+
+
+
+
 ******************************
 *  Convert strings to dates  *
 ******************************
 
-foreach var of varlist chronic_cardiac_disease chronic_liver_disease {
+* To be added: dates related to outcomes
+foreach var of varlist 	bmi_date_measured				///
+						chronic_respiratory_disease 	///
+						chronic_cardiac_disease 		///
+						diabetes 						///
+						lung_cancer 					///
+						haem_cancer						///
+						other_cancer 					///
+						bone_marrow_transplant 			///
+						chemo_radio_therapy 			///
+						chronic_liver_disease 			///
+						neurological_condition 			///
+						chronic_kidney_disease 			///
+						organ_transplant 				///	
+						spleen 							///
+						sickle_cell 					///
+						aplastic_anaemia 				///
+						hiv 							///
+						genetic_immunodeficiency 		///
+						immunosuppression_nos 			///
+						ra_sle_psoriasis  {
 	capture confirm string variable `var'
 	if _rc!=0 {
 		assert `var'==.
@@ -135,14 +156,17 @@ foreach var of varlist chronic_cardiac_disease chronic_liver_disease {
 	}
 	else {
 		replace `var' = `var' + "-15"
-		rename `var' `var'_date_str
-		replace `var'_date_str = " " if `var'_date_str == "-15"
-		gen `var'_date = date(`var'_date, "YMD") 
-		order `var'_date, after(`var'_date_str)
-		drop `var'_date_str
+		rename `var' `var'_dstr
+		replace `var'_dstr = " " if `var'_dstr == "-15"
+		gen `var'_date = date(`var'_dstr, "YMD") 
+		order `var'_date, after(`var'_dstr)
+		drop `var'_dstr
 	}
 	format `var'_date %td
 }
+rename bmi_date_measured_date bmi_date_measured
+
+* NB: Some BMI dates in future or after cohort entry
 
 
 
@@ -151,32 +175,49 @@ foreach var of varlist chronic_cardiac_disease chronic_liver_disease {
 **************************************************
 
 * Comorbidities ever before
-foreach var in chronic_cardiac_disease chronic_liver_disease {
-	assert `var'_date>=. | 	`var'_date<= date("1feb2020", "DMY")
-	gen `var' = (`var'_date<.)
-	order `var', after(`var'_date)
+foreach var of varlist	chronic_respiratory_disease_date 	///
+						chronic_cardiac_disease_date 		///
+						diabetes 							///
+						lung_cancer_date 					///
+						haem_cancer_date					///
+						other_cancer_date 					///
+						bone_marrow_transplant_date 		///
+						chemo_radio_therapy_date			///
+						chronic_liver_disease_date 			///
+						neurological_condition_date 		///
+						chronic_kidney_disease_date 		///
+						organ_transplant_date 				///	
+						spleen_date 						///
+						sickle_cell_date 					///
+						aplastic_anaemia_date 				///
+						hiv_date							///
+						genetic_immunodeficiency_date 		///
+						immunosuppression_nos_date 			///
+						ra_sle_psoriasis_date   {
+	local newvar =  substr("`var'", 1, length("`var'") - 5)
+	gen `newvar' = (`var'<date("1feb2020", "DMY"))
+	order `newvar', after(`var')
 }
 
+* Grouped comorbidities
+egen cancer = rowmax(lung_cancer haem_cancer other_cancer)
+order cancer, after(other_cancer)
 
-
-
-
+* Immunosuppressed conditions
+egen immuno_condition = rowmax(sickle_cell					///
+								aplastic_anaemia 			///
+								hiv							///
+								genetic_immunodeficiency 	///
+								immunosuppression_nos) 
+order immuno_condition, after(immunosuppression_nos)
+						
 
 
 ********************************
 *  Recode and check variables  *
 ********************************
 
-* Age
-assert age<.
-*assert inrange(age, 18, 130)
-* Exclude those with implausible ages/truncate? 
-drop if age>105
-drop if age<18
-
 * Sex
-assert inlist(sex, "M", "F", "I", "U")
-drop if inlist(sex, "I", "U")
 assert inlist(sex, "M", "F")
 gen male = sex=="M"
 drop sex
@@ -184,12 +225,36 @@ drop sex
 * BMI 
 * Only keep if within certain time period?
 drop bmi_date_measured
-* assert inrange(bmi, 10, 200) | bmi==.
+
 * Set implausible BMIs to missing? 
 * FOR NOW:
 replace bmi = rnormal(30, 15)
 replace bmi = . if bmi<= 15
 
+
+* Smoking 
+assert inlist(smoke, "N", "F", "C", "")
+gen     smoking_status = 1 if smoke=="N"
+replace smoking_status = 2 if smoke=="F"
+replace smoking_status = 3 if smoke=="C"
+replace smoking_status = .u if smoke==""
+label define smoking_status 1 "Never" 2 "Former" 3 "Current" .u "Unknown"
+label values smoking_status smoking_status
+drop smoke
+
+
+* Ethnicity
+rename ethnicity ethnicity_o
+assert inlist(ethnicity, "A", "B", "W", "M", "O", "U")
+gen     ethnicity = 1 if ethnicity_o=="W"
+replace ethnicity = 2 if ethnicity_o=="B"
+replace ethnicity = 3 if ethnicity_o=="A"
+replace ethnicity = 4 if ethnicity_o=="M"
+replace ethnicity = 5 if ethnicity_o=="O"
+replace ethnicity = .u if ethnicity_o=="U"
+label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other" .u "Unknown"
+label values ethnicity ethnicity
+drop ethnicity_o
 
 
 
@@ -247,14 +312,15 @@ label values bmicat bmicat
 
 * Create binary BMI (NB: watch for missingness; add 7=0)
 recode bmicat 6=1 . 1/5=0, gen(obese40)
+order obese40, after(bmicat)
 
 
 
 /*  Smoking  */
 
 * Create binary smoking
-*recode smoke 3=1 1/2 4=0, gen(currentsmoke)
-*rename smoking_status smoke
+recode smoking_status 3=1 1/2 .u=0, gen(currentsmoke)
+order currentsmoke, after(smoking_status)
 
 
 
@@ -264,14 +330,14 @@ recode bmicat 6=1 . 1/5=0, gen(obese40)
 summ age
 gen c_age = age-r(mean)
 
-* "centre" sex to be coded -1 +1 
+* "Centre" sex to be coded -1 +1 
 recode male 0=-1, gen(c_male)
 
+* "Centre" IMD
+gen c_imd = imd - 3
 
-
-
-
-
+* "Centre" ethnicity
+gen c_ethnicity = ethnicity - 3
 
 
 
@@ -280,6 +346,7 @@ recode male 0=-1, gen(c_male)
 ********************************
 *  Outcomes and survival time  *
 ********************************
+
 
 * Create composite outcome
 
@@ -312,8 +379,10 @@ label var male 				"Male"
 label var bmi 				"Body Mass Index (BMI, kg/m2)"
 label var bmicat 			"Grouped BMI"
 label var obese40 			"Severely obese (cat 3)"
-label var smoke			 	"Smoking status"
+label var smoking_status 	"Smoking status"
+label var currentsmoke	 	"Current smoker"
 label var imd 				"Index of Multiple Deprivation (IMD)"
+label var ethnicity			"Ethnicity"
 label var stp 				"Sustainability and Transformation Partnership"
 
 label var age1 				"Age spline 1"
@@ -321,27 +390,58 @@ label var age2 				"Age spline 2"
 label var age3 				"Age spline 3"
 label var c_age				"Centred age"
 label var c_male 			"Centred sex (code: -1/+1)"
+label var c_imd				"Centred Index of Multiple Deprivation (values: -2/+2)"
+label var c_ethnicity		"Centred ethnicity (values: -2/+2)"
 
 * Comorbidities
-label var resp				"Respiratory disease (excl. asthma)"
-label var asthma			"Asthma"
-label var heart				"Heart disease"
-label var diabetes			"Diabetes"
-label var cancer			"Cancer"
-label var liver				"Liver"
-label var neuro_dis			"Neurological disease"
-label var kidney_dis		"Kidney disease"
-label var transplant		"Organ transplant"
-label var spleen			"Spleen problems"
-label var immunosup			"Immunosuppressed"
-label var hypertension		"Hypertension"
-label var autoimmune		"Autoimmune disease"
-label var sle				"SLE"
-label var endocrine			"Endocrine disease"
-label var chronic_cardiac_disease_date 	"CHD, date"
-label var chronic_cardiac_disease  		"CHD"
-label var chronic_liver_disease_date 	"Liver disease, date"
-label var chronic_liver_disease			"Liver disease"
+label var chronic_respiratory_disease	"Respiratory disease (excl. asthma)"
+label var asthma						"Asthma"
+label var chronic_cardiac_disease		"Heart disease"
+label var diabetes						"Diabetes"
+label var lung_cancer					"Lung cancer"
+label var haem_cancer					"Haem. cancer"
+label var other_cancer					"Any cancer"
+label var cancer						"Cancer"
+label var bone_marrow_transplant		"Organ transplant"
+label var chronic_liver_disease			"Liver"
+label var neurological_condition		"Neurological disease"
+label var chronic_kidney_disease 		"Kidney disease"
+label var organ_transplant 				"Organ transplant recipient"
+label var spleen						"Spleen problems"
+label var ra_sle_psoriasis				"RA, SLE, Psoriasis (autoimmune disease)"
+label var chemo_radio_therapy			"Chemotherapy or radiotherapy"
+label var sickle_cell 					"Sickle cell"
+label var aplastic_anaemia				"Aplastic anaemia"
+label var hiv 							"HIV"
+label var genetic_immunodeficiency 		"Genetic immunodeficiency"
+label var immunosuppression_nos 		"Other immunosuppression"
+label var immuno_condition				"Any immunocondition"
+label var sbp							"Systolic blood pressure"
+label var dbp							"Diastolic blood pressure"
+ 
+label var chronic_respiratory_disease_date	"Respiratory disease (excl. asthma), date"
+*label var asthma_date					"Asthma, date"
+label var chronic_cardiac_disease_date	"Heart disease, date"
+label var diabetes_date					"Diabetes, date"
+label var lung_cancer_date				"Lung cancer, date"
+label var haem_cancer_date				"Haem. cancer, date"
+label var other_cancer_date				"Any cancer, date"
+label var bone_marrow_transplant_date	"Organ transplant, date"
+label var chronic_liver_disease_date	"Liver, date"
+label var neurological_condition_date	"Neurological disease, date"
+label var chronic_kidney_disease_date 	"Kidney disease, date"
+label var organ_transplant_date			"Organ transplant recipient, date"
+label var spleen_date					"Spleen problems, date"
+label var ra_sle_psoriasis_date			"RA, SLE, Psoriasis (autoimmune disease), date"
+label var chemo_radio_therapy_date		"Chemotherapy or radiotherapy, date"
+label var sickle_cell_date 				"Sickle cell, date"
+label var aplastic_anaemia_date			"Aplastic anaemia, date"
+label var hiv_date 						"HIV, date"
+label var genetic_immunodeficiency_date "Genetic immunodeficiency, date"
+label var immunosuppression_nos_date 	"Other immunosuppression, date"
+*label var sbp_date						"Systolic blood pressure, date"
+*label var dbp_date						"Diastolic blood pressure, date"
+
 
 * Outcomes and follow-up
 label var enter_date		"Date of study entry"

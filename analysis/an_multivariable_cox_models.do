@@ -2,8 +2,6 @@
 *
 *	Do-file:		an_multivariable_cox_models.do
 *
-*
-*
 *	Programmed by:	Elizabeth Williamson
 *
 *	Data used:		egdata.dta
