@@ -218,14 +218,14 @@ stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id)
 sort _t
 gen cum_died = sum(_d)
 line cum_died _t, sort(_t)
-graph export "output/events_died.png", replace as(png)
+graph export "output/events_died.eps", replace as(eps)
 
 * Hospitalised for Covid
 stset stime_hosp, fail(hosp) enter(enter_date) origin(enter_date) id(patient_id) 
 sort _t
 gen cum_hosp = sum(_d)
 line cum_hosp _t, sort(_t)
-graph export "output/events_hosp.png", replace as(png)
+graph export "output/events_hosp.eps", replace as(eps)
 
 
 * ITU admission for Covid
@@ -233,7 +233,7 @@ stset stime_itu, fail(itu) enter(enter_date) origin(enter_date) id(patient_id)
 sort _t
 gen cum_itu = sum(_d)
 line cum_itu _t, sort(_t)
-graph export "output/events_itu.png", replace as(png)
+graph export "output/events_itu.eps", replace as(eps)
 
 
 
