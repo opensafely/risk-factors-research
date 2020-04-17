@@ -34,7 +34,7 @@
 capture log close
 log using "output/an_checks", text replace
 
-
+use egdata, clear
 
 ******************************************
 *  Check variables take expected values  *

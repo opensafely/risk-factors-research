@@ -26,7 +26,7 @@
 capture log close
 log using "an_univariable_cox_models", text replace
 
-
+use egdata, clear
 
 *****************
 *  Age and sex  *

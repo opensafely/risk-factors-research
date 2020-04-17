@@ -25,7 +25,7 @@
 capture log close
 log using "output/an_descriptive_tables", text replace
 
-
+use egdata, clear
 
 **********************************
 *  Distribution in whole cohort  *

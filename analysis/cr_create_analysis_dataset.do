@@ -208,6 +208,12 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 egen cancer = rowmax(lung_cancer haem_cancer other_cancer)
 order cancer, after(other_cancer)
 
+gen haem_cancer_lastyr = haem_cancer_date>=d(1/2/2019) & haem_cancer_date<=d(1/2/2020)
+gen lung_cancer_lastyr = lung_cancer_date>=d(1/2/2019) & lung_cancer_date<=d(1/2/2020) 
+gen other_cancer_lastyr = other_cancer_date>=d(1/2/2019) & other_cancer_date<=d(1/2/2020)
+egen cancer_lastyr = rowmax(lung_cancer_lastyr haem_cancer_lastyr other_cancer_lastyr)
+
+
 * Spleen problems (dysplenia and sicke cell)   ************************************************
 egen spleen = rowmax(dysplenia sickle_cell) 
 order spleen, after(sickle_cell)
