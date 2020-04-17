@@ -26,7 +26,7 @@
 capture log close
 log using "an_univariable_cox_models", text replace
 
-
+use egdata, clear
 
 *****************
 *  Age and sex  *
@@ -66,7 +66,7 @@ estat ic
 *********************************
 *  Age, sex, IMD and ethnicity  *
 *********************************
-
+/*
 
 /* Death  */
 
@@ -94,7 +94,7 @@ estat ic
 stcox i.agegroup male, strata(stp) 
 estat ic
 
-
+*/
 
 
 
@@ -104,7 +104,7 @@ estat ic
 ************************
 
 * To be added
-
+/*
 
 
 chronic_respiratory_disease 	///
@@ -125,6 +125,7 @@ chronic_respiratory_disease 	///
 						genetic_immunodeficiency 		///
 						immunosuppression_nos 			///
 						ra_sle_psoriasis 
+*/
 
 
 * Close log file

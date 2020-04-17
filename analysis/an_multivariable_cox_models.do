@@ -28,6 +28,7 @@
 capture log close
 log using "an_multivariable_cox_models", text replace
 
+use egdata, clear
 
 ******************************
 *  Multivariable Cox models  *

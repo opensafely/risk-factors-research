@@ -28,6 +28,8 @@
 
 
 
+use egdata, clear
+
 
 ****************************
 *  KM plot by age and sex  *
@@ -87,7 +89,7 @@ grc1leg both_died.gph	///
 		, col(1) 
 graph display, xsize(3)
 * Export graph
-graph export "km_age_sex.png", as(png) replace
+graph export "output/km_age_sex.eps", as(eps) replace
 
 * Delete unneeded graphs
 erase both_died.gph
@@ -101,7 +103,7 @@ erase both_hosp.gph
 ********************************************************
 *  KM plots for each factor, adjusted for sex and age  *
 ********************************************************
-
+/*
 * Loop over outcomes
 foreach outvar of varlist died hosp itu {
 					
@@ -114,27 +116,39 @@ foreach outvar of varlist died hosp itu {
 							ethnicity						///	
 							bmicat 							///
 							obese40 						///
-							smoking_status 					///
+							smoke		 					///
 							currentsmoke 					///
 							chronic_respiratory_disease 	///
 							asthma 							///
 							chronic_cardiac_disease 		///
 							diabetes 						///
-							lung_cancer 					///
-							cancer							///
+							cancer_lastyr					///
 							chronic_liver_disease 			///
 							neurological_condition 			///
 							chronic_kidney_disease 			///
 							organ_transplant 				///	
 							spleen 							///
-							immuno_condition	 			///
+							immunosuppressed	 			///
 							ra_sle_psoriasis { 
 
 		* Kaplan-Meier graph, adjusted for age and sex
 		sts graph, by(`rf') adjustfor(c_age c_male) 		
-		graph save km_adj_`rf'_`outvar', replace
+		graph export "output/km_adj_`rf'_`outvar'.eps", replace as(eps)
 	}
 }
+
+*/
+
+	
+****************************************************************
+*  KM plots for each factor, stratified by sex and binary age  *
+****************************************************************
+
+* TO be added
+
+
+
+
 
 
 		
@@ -153,9 +167,4 @@ foreach outvar of varlist died hosp itu {
 
 
 
-		
-****************************************************************
-*  KM plots for each factor, stratified by sex and binary age  *
-****************************************************************
-
-* TO be added
+	
