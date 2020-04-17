@@ -8,6 +8,18 @@ chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
 )
 
+asthma_codes = codelist_from_csv(
+    "codelists/asthma_2020-04-16.csv", system="ctv3", column="CTV3ID"
+)
+
+salbutamol_codes = codelist_from_csv(
+    "codelists/sabutamol_asthma.csv", system="snomed", column="id"
+)
+
+ics_codes = codelist_from_csv(
+    "codelists/ics_asthma.csv", system="snomed", column="id"
+)
+
 chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
 )
@@ -127,7 +139,7 @@ study = StudyDefinition(
     #         between=['2018-02-01', '2020-02-01']
     #     ),
     #     asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
-    #     copd_code_ever=patients.with_these_clinical_events(copd_codes),
+    #     copd_code_ever=patients.with_these_clinical_events(chronic_respiratory_disease_codes),
     #     recent_salbutamol_count=patients.with_these_medications(
     #         salbutamol_codes,
     #         between=['2018-02-01', '2020-02-01'],
@@ -137,7 +149,7 @@ study = StudyDefinition(
     #         ics_codes,
     #         between=['2018-02-01', '2020-02-01'],
     #     )
-    # )
+    # ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
     chronic_cardiac_disease=patients.with_these_clinical_events(
