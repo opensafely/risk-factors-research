@@ -58,7 +58,9 @@ tab dysplenia
 tab sickle_cell
 tab spleen
 tab ra_sle_psoriasis
-tab immuno_condition
+tab immunosuppressed
+
+tab bpcat
 
 summ bp_sys,  detail
 summ bp_dias, detail
@@ -105,10 +107,8 @@ foreach outvar of varlist died hosp itu {
 	tab neurological_condition 				`outvar', row
 	tab chronic_kidney_disease 				`outvar', row
 	tab organ_transplant 					`outvar', row
-	tab dysplenia 							`outvar', row
-	tab sickle_cell 						`outvar', row
 	tab spleen 								`outvar', row
-	tab immuno_condition					`outvar', row
+	tab immunosuppressed					`outvar', row
 	tab ra_sle_psoriasis					`outvar', row
 	
 	* Adjustment variables 
