@@ -80,13 +80,17 @@ study = StudyDefinition(
     sex=patients.sex(),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/52
-    #imd= # still to be implemented
+    imd=patients.address_as_of(
+        "2020-02-01", returning="index_of_multiple_deprivation", round_to_nearest=100
+    ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/37
-    #urban_rural= # still to be implemented
+    rural_urban=patients.address_as_of(
+        "2020-02-01", returning="rural_urban_classification"
+    ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/54
-    #geographic_area= # still to be implemented
+    geographic_area=patients.registered_practice_as_of("2020-02-01", returning="stp_code"),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/10
     bmi=patients.most_recent_bmi(
@@ -109,8 +113,31 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
-    #asthma= # still to be implemented
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
+    # asthma=patients.satisfying(
+    #     """
+    #     recent_asthma_code OR (
+    #       asthma_code_ever
+    #       AND NOT copd_code_ever
+    #       AND (recent_salbutamol_count >= 3 OR recent_ics)
+    #     )
+    #     """,
+    #     recent_asthma_code=patients.with_these_clinical_events(
+    #         asthma_codes,
+    #         between=['2018-02-01', '2020-02-01']
+    #     ),
+    #     asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
+    #     copd_code_ever=patients.with_these_clinical_events(copd_codes),
+    #     recent_salbutamol_count=patients.with_these_medications(
+    #         salbutamol_codes,
+    #         between=['2018-02-01', '2020-02-01'],
+    #         returning="number_of_matches_in_period"
+    #     ),
+    #     recent_ics=patients.with_these_medications(
+    #         ics_codes,
+    #         between=['2018-02-01', '2020-02-01'],
+    #     )
+    # )
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
     chronic_cardiac_disease=patients.with_these_clinical_events(
@@ -167,8 +194,17 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
-    chronic_kidney_disease=patients.with_these_clinical_events(
+    # # Chronic kidney disease
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
+    # egfr=patients.with_these_clinical_events(
+    #     egfr_codes,
+    #     find_last_match_in_period=True,
+    #     on_or_before="2020-02-01",
+    #     returning="numeric_value",
+    #     include_date_of_match=True
+    #     include_month=True,
+    # ),
+    dialysis=patients.with_these_clinical_events(
         chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
         return_first_date_in_period=True,
         include_month=True,
@@ -182,7 +218,7 @@ study = StudyDefinition(
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/13
-    spleen=patients.with_these_clinical_events(
+    dysplenia=patients.with_these_clinical_events(
         spleen_codes,
         return_first_date_in_period=True,
         include_month=True,
@@ -218,8 +254,22 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/23
     #immunosuppressant_med=
 
+    # Blood pressure
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/35
-    #blood_pressure= #still to be implemented
+    bp_sys=patients.mean_recorded_value(
+        systolic_blood_pressure_codes,
+        on_most_recent_day_of_measurement=True,
+        on_or_before="2020-02-01",
+        include_measurement_date=True,
+        include_month=True,
+    ),
+    bp_dias=patients.mean_recorded_value(
+        diastolic_blood_pressure_codes,
+        on_most_recent_day_of_measurement=True,
+        on_or_before="2020-02-01",
+        include_measurement_date=True,
+        include_month=True,
+    ),
 
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/49
     ra_sle_psoriasis=patients.with_these_clinical_events(
@@ -239,70 +289,4 @@ study = StudyDefinition(
         return_first_date_in_period=True,
         include_month=True
     ),
-    # Blood pressure
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/35
-    bp_sys=patients.mean_recorded_value(
-        systolic_blood_pressure_codes,
-        on_most_recent_day_of_measurement=True,
-        on_or_before="2020-02-01",
-        include_measurement_date=True,
-        include_month=True,
-    ),
-    bp_dias=patients.mean_recorded_value(
-        diastolic_blood_pressure_codes,
-        on_most_recent_day_of_measurement=True,
-        on_or_before="2020-02-01",
-        include_measurement_date=True,
-        include_month=True,
-    ),
-
-    # Geographic covariates
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/54
-    stp=patients.registered_practice_as_of("2020-02-01", returning="stp_code"),
-    msoa=patients.registered_practice_as_of("2020-02-01", returning="msoa_code"),
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/52
-    imd=patients.address_as_of(
-        "2020-02-01", returning="index_of_multiple_deprivation", round_to_nearest=100
-    ),
-    rural_urban=patients.address_as_of(
-        "2020-02-01", returning="rural_urban_classification"
-    ),
-
-    # # Chronic kidney disease
-    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
-    # egfr=patients.with_these_clinical_events(
-    #     egfr_codes,
-    #     find_last_match_in_period=True,
-    #     on_or_before="2020-02-01",
-    #     returning="numeric_value",
-    #     include_date_of_match=True
-    #     include_month=True,
-    # ),
-
-    # # Asthma
-    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
-    # has_asthma=patients.satisfying(
-    #     """
-    #     recent_asthma_code OR (
-    #       asthma_code_ever
-    #       AND NOT copd_code_ever
-    #       AND (recent_salbutamol_count >= 3 OR recent_ics)
-    #     )
-    #     """,
-    #     recent_asthma_code=patients.with_these_clinical_events(
-    #         asthma_codes,
-    #         between=['2018-02-01', '2020-02-01']
-    #     ),
-    #     asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
-    #     copd_code_ever=patients.with_these_clinical_events(copd_codes),
-    #     recent_salbutamol_count=patients.with_these_medications(
-    #         salbutamol_codes,
-    #         between=['2018-02-01', '2020-02-01'],
-    #         returning="number_of_matches_in_period"
-    #     ),
-    #     recent_ics=patients.with_these_medications(
-    #         ics_codes,
-    #         between=['2018-02-01', '2020-02-01'],
-    #     )
-    # )
 )
