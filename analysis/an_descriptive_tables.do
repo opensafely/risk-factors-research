@@ -10,7 +10,7 @@
 *
 *	Data created:	None
 *
-*	Other output:	Log file: an_descriptive_tables.log
+*	Other output:	Log file: output/an_descriptive_tables.log
 *
 ********************************************************************************
 *
@@ -23,7 +23,7 @@
 
 * Open a log file
 capture log close
-log using "an_descriptive_tables", text replace
+log using "output/an_descriptive_tables", text replace
 
 
 
@@ -60,8 +60,8 @@ tab spleen
 tab ra_sle_psoriasis
 tab immuno_condition
 
-summ sbp, detail
-summ dbp, detail
+summ bp_sys,  detail
+summ bp_dias, detail
 
 * Adjustment variables 
 tab imd 

@@ -28,7 +28,6 @@
 
 *** This section won't be needed once real data is fully available
 
-import delimited input.csv, clear
 
 set seed 123489
 
@@ -181,6 +180,7 @@ rename bp_sys_date_measured_date   bp_sys_date
 
 * Comorbidities ever before
 foreach var of varlist	chronic_respiratory_disease_date 	///
+						asthma_date 						///
 						chronic_cardiac_disease_date 		///
 						diabetes 							///
 						lung_cancer_date 					///
@@ -319,7 +319,7 @@ label define bmicat 1 "Underweight (<18)" 		///
 label values bmicat bmicat
 
 * Create binary BMI (NB: watch for missingness; add 7=0)
-recode bmicat 6=1 . 1/5=0, gen(obese40)
+recode bmicat 6=1 .u 1/5=0, gen(obese40)
 order obese40, after(bmicat)
 
 
@@ -330,6 +330,10 @@ order obese40, after(bmicat)
 recode smoke 3=1 1/2 .u=0, gen(currentsmoke)
 order currentsmoke, after(smoke)
 
+
+/*  Blood pressure  */
+
+******* WHAT ARE SENSIBLE CATEGORISATIONS???***********************
 
 
 /*  IMD  */

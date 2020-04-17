@@ -87,7 +87,7 @@ grc1leg both_died.gph	///
 		, col(1) 
 graph display, xsize(3)
 * Export graph
-graph export "km_age_sex.png", as(png) replace
+graph export "output/km_age_sex.png", as(png) replace
 
 * Delete unneeded graphs
 erase both_died.gph
@@ -131,7 +131,7 @@ foreach outvar of varlist died hosp itu {
 
 		* Kaplan-Meier graph, adjusted for age and sex
 		sts graph, by(`rf') adjustfor(c_age c_male) 		
-		graph save km_adj_`rf'_`outvar', replace
+		graph export "output/km_adj_`rf'_`outvar'.png", replace as(png)
 	}
 }
 
