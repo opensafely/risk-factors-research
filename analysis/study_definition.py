@@ -125,31 +125,25 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
-    # asthma=patients.satisfying(
-    #     """
-    #     recent_asthma_code OR (
-    #       asthma_code_ever
-    #       AND NOT copd_code_ever
-    #       AND (recent_salbutamol_count >= 3 OR recent_ics)
-    #     )
-    #     """,
-    #     recent_asthma_code=patients.with_these_clinical_events(
-    #         asthma_codes,
-    #         between=['2018-02-01', '2020-02-01']
-    #     ),
-    #     asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
-    #     copd_code_ever=patients.with_these_clinical_events(chronic_respiratory_disease_codes),
-    #     recent_salbutamol_count=patients.with_these_medications(
-    #         salbutamol_codes,
-    #         between=['2018-02-01', '2020-02-01'],
-    #         returning="number_of_matches_in_period"
-    #     ),
-    #     recent_ics=patients.with_these_medications(
-    #         ics_codes,
-    #         between=['2018-02-01', '2020-02-01'],
-    #     )
-    # ),
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
+    asthma=patients.satisfying(
+        """recent_asthma_code OR (asthma_code_ever AND NOT copd_code_ever AND (recent_salbutamol_count >= 3 OR recent_ics))""",
+        recent_asthma_code=patients.with_these_clinical_events(
+            asthma_codes,
+            between=['2018-02-01', '2020-02-01']
+        ),
+        asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
+        copd_code_ever=patients.with_these_clinical_events(chronic_respiratory_disease_codes),
+        recent_salbutamol_count=patients.with_these_medications(
+            salbutamol_codes,
+            between=['2018-02-01', '2020-02-01'],
+            returning="number_of_matches_in_period"
+        ),
+        recent_ics=patients.with_these_medications(
+            ics_codes,
+            between=['2018-02-01', '2020-02-01'],
+        )
+    ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
     chronic_cardiac_disease=patients.with_these_clinical_events(
