@@ -34,7 +34,8 @@ set seed 123489
 * Death
 gen died = uniform()<0.1
 gen hosp = uniform()<0.20
-gen itu  = uniform()<0.05
+*gen itu  = uniform()<0.05
+rename icu itu
 
 
 * Smoking status (assuming input is called smoking_status)
@@ -96,7 +97,8 @@ gen hosp_date = enter_date + runiform()*lag
 replace hosp_date = . if hosp==0
 format hosp_date %td
 
-gen itu_date = enter_date + runiform()*lag
+*gen itu_date = enter_date + runiform()*lag
+rename icu_date_admitted itu_date
 replace itu_date = . if itu==0
 format itu_date %td
 drop lag
