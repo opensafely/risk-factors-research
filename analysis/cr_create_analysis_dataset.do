@@ -52,8 +52,9 @@ replace ethnicity = "U" if ethnicity==""
 
 
 * Additional risk factors
-gen asthma = .
 gen chronic_kidney_disease = .
+
+* ASTHMA - assume this comes as a binary rather than date **********************
 
 * BMI
 replace bmi = rnormal(30, 15)
@@ -131,7 +132,6 @@ foreach var of varlist 	bp_sys_date 					///
 						bp_dias_date 					///
 						bmi_date_measured				///
 						chronic_respiratory_disease 	///
-						asthma							///
 						chronic_cardiac_disease 		///
 						diabetes 						///
 						lung_cancer 					///
@@ -180,7 +180,6 @@ rename bp_sys_date_measured_date   bp_sys_date
 
 * Comorbidities ever before
 foreach var of varlist	chronic_respiratory_disease_date 	///
-						asthma_date 						///
 						chronic_cardiac_disease_date 		///
 						diabetes 							///
 						lung_cancer_date 					///
@@ -194,38 +193,48 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						organ_transplant_date 				///	
 						dysplenia_date 						///
 						sickle_cell_date 					///
-						aplastic_anaemia_date 				///
 						hiv_date							///
-						genetic_immunodeficiency_date 		///
-						immunosuppression_nos_date 			///
+						genetic_immunodeficiency_date		///
 						ra_sle_psoriasis_date   {
 	local newvar =  substr("`var'", 1, length("`var'") - 5)
-	gen `newvar' = (`var'<date("1feb2020", "DMY"))
+	gen `newvar' = (`var'< d(1/2/2020))
 	order `newvar', after(`var')
 }
 
-* Grouped comorbidities
+/* Grouped comorbidities  */
+
+* Cancer
 egen cancer = rowmax(lung_cancer haem_cancer other_cancer)
-order cancer, after(other_cancer)
 
-gen haem_cancer_lastyr = haem_cancer_date>=d(1/2/2019) & haem_cancer_date<=d(1/2/2020)
-gen lung_cancer_lastyr = lung_cancer_date>=d(1/2/2019) & lung_cancer_date<=d(1/2/2020) 
-gen other_cancer_lastyr = other_cancer_date>=d(1/2/2019) & other_cancer_date<=d(1/2/2020)
+gen haem_cancer_lastyr  = inrange(haem_cancer_date,  d(1/2/2019), d(1/2/2020))
+gen lung_cancer_lastyr  = inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020))
+gen other_cancer_lastyr = inrange(other_cancer_date, d(1/2/2019), d(1/2/2020))
 egen cancer_lastyr = rowmax(lung_cancer_lastyr haem_cancer_lastyr other_cancer_lastyr)
+order cancer *_lastyr, after(other_cancer)
 
 
-* Spleen problems (dysplenia and sicke cell)   ************************************************
+* Spleen problems (dysplenia/splenectomy/etc and sickle cell disease)   
 egen spleen = rowmax(dysplenia sickle_cell) 
 order spleen, after(sickle_cell)
 
 
-* Immunosuppressed conditions
-egen immuno_condition = rowmax(aplastic_anaemia 			///
-								hiv							///
-								genetic_immunodeficiency 	///
-								immunosuppression_nos) 
-order immuno_condition, after(immunosuppression_nos)
-						
+* Immunosuppressed:
+* HIV, dysplenia/sickle-cell, genetic conditions ever, OR
+* aplastic anaemia, haematological malignancies, bone marrow transplant, 
+*   chemo/radio in last year, OR
+* immunosuppression NOS in last 3 months
+gen temp1  = max(hiv, spleen, genetic_immunodeficiency)
+gen temp2  = inrange(immunosuppression_nos_date,    d(1/11/2019), d(1/2/2020))
+gen temp3  = max(inrange(aplastic_anaemia_date, 	 d(1/2/2019), d(1/2/2020)), ///
+				inrange(haem_cancer_date, 			 d(1/2/2019), d(1/2/2020)), ///			
+				inrange(bone_marrow_transplant_date, d(1/2/2019), d(1/2/2020)), ///
+				inrange(chemo_radio_therapy_date, 	 d(1/2/2019), d(1/2/2020))) 
+egen immunosuppressed = rowmax(temp1 temp2 temp3)
+drop temp1 temp2 temp3
+order immunosuppressed, after(immunosuppression_nos)
+
+
+
 
 						
 
@@ -241,8 +250,8 @@ drop sex
 * BMI 
 * Only keep if within certain time period?
 * bmi_date_measured
-* Set implausible BMIs to missing? 
-
+* Set implausible BMIs to missing:
+replace bmi = . if !inrange(bmi, 15, 50)
 
 * Smoking 
 assert inlist(smoking_status, "N", "E", "S", "")
@@ -339,7 +348,18 @@ order currentsmoke, after(smoke)
 
 /*  Blood pressure  */
 
-******* WHAT ARE SENSIBLE CATEGORISATIONS???***********************
+gen     bpcat = 1 if bp_sys < 120 &  bp_dias < 80
+replace bpcat = 2 if inrange(bp_sys, 120, 130) & bp_dias<80
+replace bpcat = 3 if inrange(bp_sys, 130, 140) | inrange(bp_dias, 80, 90)
+replace bpcat = 4 if (bp_sys>=140 & bp_sys<.) | (bp_dias>=90 & bp_dias<.) 
+replace bpcat = .u if bp_sys>=. | bp_dias>=.
+
+label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
+					4 "High, stage II" .u "Unknown"
+label values bpcat bpcat
+order bpcat, after(bp_dias_date)
+
+
 
 
 /*  IMD  */
@@ -348,9 +368,11 @@ order currentsmoke, after(smoke)
 rename imd imd_o
 egen imd = cut(imd), group(5) icodes
 replace imd = imd + 1
-drop imd_o
-*** Some IMD values are -1 ****************************************
 
+replace imd = .u if imd_o==-1
+drop imd_o
+label define imd 1 "1" 2 "2" 3 "3" 4 "4" 5 "5" .u "Unknown"
+label values imd imd 
 
 
 /*  Centred age, sex, IMD, ethnicity (for adjusted KM plots)  */ 
@@ -418,6 +440,7 @@ label var bp_sys 			"Systolic blood pressure"
 label var bp_sys_date 		"Systolic blood pressure, date"
 label var bp_dias 			"Diastolic blood pressure"
 label var bp_dias_date 		"Diastolic blood pressure, date"
+label var bpcat 			"Grouped blood pressure"
 
 label var age1 				"Age spline 1"
 label var age2 				"Age spline 2"
@@ -436,6 +459,10 @@ label var lung_cancer					"Lung cancer"
 label var haem_cancer					"Haem. cancer"
 label var other_cancer					"Any cancer"
 label var cancer						"Cancer"
+label var lung_cancer_lastyr			"Lung cancer in last year"
+label var haem_cancer_lastyr			"Haem. cancer in last year"
+label var other_cancer_lastyr			"Any cancer in last year"
+label var cancer_lastyr					"Cancer in last year"
 label var bone_marrow_transplant		"Organ transplant"
 label var chronic_liver_disease			"Liver"
 label var neurological_condition		"Neurological disease"
@@ -450,10 +477,9 @@ label var aplastic_anaemia				"Aplastic anaemia"
 label var hiv 							"HIV"
 label var genetic_immunodeficiency 		"Genetic immunodeficiency"
 label var immunosuppression_nos 		"Other immunosuppression"
-label var immuno_condition				"Any immunocondition"
+label var immunosuppressed				"Immunosuppressed (combination algorithm)"
  
 label var chronic_respiratory_disease_date	"Respiratory disease (excl. asthma), date"
-label var asthma_date					"Asthma, date"
 label var chronic_cardiac_disease_date	"Heart disease, date"
 label var diabetes_date					"Diabetes, date"
 label var lung_cancer_date				"Lung cancer, date"
@@ -464,7 +490,7 @@ label var chronic_liver_disease_date	"Liver, date"
 label var neurological_condition_date	"Neurological disease, date"
 label var chronic_kidney_disease_date 	"Kidney disease, date"
 label var organ_transplant_date			"Organ transplant recipient, date"
-label var dysplenia_date				"Dysplenia, date"
+label var dysplenia_date				"Splenectomy etc, date"
 label var sickle_cell_date 				"Sickle cell, date"
 label var ra_sle_psoriasis_date			"RA, SLE, Psoriasis (autoimmune disease), date"
 label var chemo_radio_therapy_date		"Chemotherapy or radiotherapy, date"
@@ -472,9 +498,6 @@ label var aplastic_anaemia_date			"Aplastic anaemia, date"
 label var hiv_date 						"HIV, date"
 label var genetic_immunodeficiency_date "Genetic immunodeficiency, date"
 label var immunosuppression_nos_date 	"Other immunosuppression, date"
-label var bp_sys_date					"Systolic blood pressure, date"
-label var bp_dias_date					"Diastolic blood pressure, date"
-
 
 * Outcomes and follow-up
 label var enter_date		"Date of study entry"

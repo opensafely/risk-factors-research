@@ -120,13 +120,13 @@ foreach outvar of varlist died hosp itu {
 							asthma 							///
 							chronic_cardiac_disease 		///
 							diabetes 						///
-							cancer							///
+							cancer_lastyr					///
 							chronic_liver_disease 			///
 							neurological_condition 			///
 							chronic_kidney_disease 			///
 							organ_transplant 				///	
 							spleen 							///
-							immuno_condition	 			///
+							immunosuppressed	 			///
 							ra_sle_psoriasis { 
 
 		* Kaplan-Meier graph, adjusted for age and sex

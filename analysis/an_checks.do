@@ -34,7 +34,10 @@
 capture log close
 log using "output/an_checks", text replace
 
+* Open Stata dataset
 use egdata, clear
+
+
 
 ******************************************
 *  Check variables take expected values  *
@@ -53,8 +56,9 @@ assert inlist(male, 0, 1)
 * assert inrange(bmi, 10, 200) | bmi==.
 assert inlist(obese40, 0, 1)
 assert inlist(bmicat, 1, 2, 3, 4, 5, 6, .u)
+
 * IMD
-assert inlist(imd, 1, 2, 3, 4, 5)
+assert inlist(imd, 1, 2, 3, 4, 5, .u)
 
 * Ethnicity
 assert inlist(ethnicity, 1, 2, 3, 4, 5, .u)
@@ -63,6 +67,8 @@ assert inlist(ethnicity, 1, 2, 3, 4, 5, .u)
 assert inlist(smoke, 1, 2, 3, .u)
 assert inlist(currentsmoke, 0, 1)
 
+* Blood pressure
+assert inlist(bpcat, 1, 2, 3, 4, .u)
 
 
 
@@ -93,7 +99,6 @@ summ bmi_date_measured, format
 
 * Dates of comorbidities  
 foreach var of varlist 	chronic_respiratory_disease 	///
-						asthma 							///
 						chronic_cardiac_disease 		///
 						diabetes 						///
 						lung_cancer 					///
@@ -107,10 +112,6 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						organ_transplant 				///	
 						dysplenia						///
 						sickle_cell 					///
-						aplastic_anaemia 				///
-						hiv 							///
-						genetic_immunodeficiency 		///
-						immunosuppression_nos 			///
 						ra_sle_psoriasis  {
 
 	summ `var'_date, format
@@ -153,12 +154,8 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
-						dysplenia						///
-						sickle_cell 					///
-						aplastic_anaemia 				///
-						hiv 							///
-						genetic_immunodeficiency 		///
-						immunosuppression_nos 			///
+						spleen							///
+						immunosuppressed 				///
 						ra_sle_psoriasis  				{
 	tab agegroup `var', r
 }
@@ -178,12 +175,8 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
-						dysplenia						///
-						sickle_cell 					///
-						aplastic_anaemia 				///
-						hiv 							///
-						genetic_immunodeficiency 		///
-						immunosuppression_nos 			///
+						spleen							///
+						immunosuppressed 				///
 						ra_sle_psoriasis  				{
 	tab male `var', r
 }
