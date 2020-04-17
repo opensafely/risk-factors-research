@@ -101,7 +101,7 @@ erase both_hosp.gph
 ********************************************************
 *  KM plots for each factor, adjusted for sex and age  *
 ********************************************************
-
+/*
 * Loop over outcomes
 foreach outvar of varlist died hosp itu {
 					
@@ -135,7 +135,7 @@ foreach outvar of varlist died hosp itu {
 	}
 }
 
-
+*/
 
 	
 ****************************************************************
