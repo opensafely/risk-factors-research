@@ -1,0 +1,29 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+7K1Q.,Bone marrow transplant,CTV3Map_Code_And_Term
+7K1Q0,Autologous bone marrow transplant,CTV3_Children
+7K1Q1,Allograft of bone marrow NEC,CTV3Map_Code_And_Term
+7K1Qy,Other specified graft of bone marrow,CTV3Map_Code_And_Term
+7K1Qz,Graft of bone marrow NOS,CTV3Map_Code_And_Term
+X20Bc,Marrow-treated bone marrow transplant,CTV3_Children
+X20Bd,Syngeneic bone marrow transplant,CTV3_Children
+X20Be,T-cell depleted allogeneic bone marrow graft,CTV3_Children
+X20Bf,Imperfect T-cell depleted allogeneic bone marrow graft,CTV3_Children
+X20Bg,Allogeneic related bone marrow transplant,CTV3_Children
+X20Bh,Allogeneic unrelated bone marrow transplant,CTV3_Children
+X20Bi,Haemopoietic stem cell transplant,CTV3_Children
+X20Fz,Bone marrow transplant disorder,High_Level_SNOMED
+X20G0,Bone marrow transplant rejection,CTV3Map_Code_And_Term
+X20G1,Bone marrow transplant failure,QOF
+X20G3,Disease relapse in transplant marrow,High_Level_SNOMED
+Xa0fK,Peripheral blood stem cell graft,CTV3Map_Code_And_Term
+Xa3wp,Injection of bone marrow - blood cells,CTV3_Children
+Xa8Ry,Allogeneic bone marrow transplant,CTV3_Children
+XaKK4,Acute graft-versus-host disease,CTV3Map_Code_And_Term
+XaKKM,Chronic graft-versus-host disease,CTV3Map_Code_And_Term
+XaM83,Allograft of bone marrow from sibling donor,CTV3Map_Code_And_Term
+XaM84,Allograft of bone marrow from matched unrelated donor,CTV3Map_Code_And_Term
+XaM85,Allograft of bone marrow from haploidentical donor,CTV3Map_Code_And_Term
+XaMuA,Autologous peripheral blood stem cell transplant,CTV3Map_Code_And_Term
+XaMuB,Syngeneic peripheral blood stem cell transplant,CTV3Map_Code_And_Term
+XaMuC,Allogeneic peripheral blood stem cell transplant,CTV3Map_Code_And_Term
+XaPt6,Allograft of bone marrow from unmatched unrelated donor,CTV3Map_Code_And_Term

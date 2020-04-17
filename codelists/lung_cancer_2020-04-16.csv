@@ -1,0 +1,85 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+B22..,"Malignant neoplasm of trachea, bronchus and lung",CTV3Map_Code_And_Term
+B220.,Malignant tumour of trachea,QOF
+B2200,Malignant neoplasm of cartilage of trachea,QOF
+B2201,Malignant neoplasm of mucosa of trachea,QOF
+B220z,Malignant neoplasm of trachea NOS,QOF
+B221.,Malignant neoplasm of main bronchus,CTV3Map_Code_And_Term
+B2210,Malignant neoplasm of carina of bronchus,CTV3Map_Code_And_Term
+B2211,Malignant neoplasm of hilus of lung,CTV3Map_Code_And_Term
+B221z,Malignant neoplasm of main bronchus NOS,CTV3Map_Code_And_Term
+B222.,Malig neopl of upper lobe/bronchus/lung: (& [Pancoast synd]),CTV3_Children
+B2220,Malignant neoplasm of upper lobe bronchus,CTV3Map_Code_And_Term
+B2221,Malignant neoplasm of upper lobe of lung,CTV3Map_Code_And_Term
+B222z,"Malignant neoplasm of upper lobe, bronchus or lung NOS",CTV3Map_Code_And_Term
+B223.,"Malignant neoplasm of middle lobe, bronchus or lung",CTV3Map_Code_And_Term
+B2230,Malignant neoplasm of middle lobe bronchus,CTV3Map_Code_And_Term
+B2231,Malignant neoplasm of middle lobe of lung,CTV3Map_Code_And_Term
+B223z,"Malignant neoplasm of middle lobe, bronchus or lung NOS",CTV3Map_Code_And_Term
+B224.,"Malignant neoplasm of lower lobe, bronchus or lung",CTV3Map_Code_And_Term
+B2240,Malignant neoplasm of lower lobe bronchus,CTV3Map_Code_And_Term
+B2241,Malignant neoplasm of lower lobe of lung,CTV3Map_Code_And_Term
+B224z,"Malignant neoplasm of lower lobe, bronchus or lung NOS",CTV3Map_Code_And_Term
+B225.,Malignant neoplasm of overlapping lesion of bronchus & lung,CTV3Map_Code_And_Term
+B22y.,Malignant neoplasm of other sites of bronchus or lung,CTV3Map_Code_And_Term
+B22z.,Malig neopl lung: [of bronchus or lung NOS] or [lung cancer],CTV3_Children
+B23..,Malignant tumour of pleura,QOF
+B230.,Malignant neoplasm of parietal pleura,QOF
+B231.,Malignant neoplasm of visceral pleura,QOF
+B232.,Malignant mesothelioma of pleura,QOF
+B23y.,Malignant neoplasm of other specified pleura,QOF
+B23z.,Malignant neoplasm of pleura NOS,QOF
+B2zy.,Malignant neoplasm of other site of respiratory tract,QOF
+B2zz.,Malignant neoplasm of respiratory tract NOS,QOF
+BB1K.,Oat cell carcinoma,CTV3Map_Code_And_Term
+BB1L.,Small cell carcinoma - fusiform cell,CTV3Map_Code_And_Term
+BB5S2,[M]Bronchiolo-alveolar adenocarcinoma,CTV3Map_Code_And_Term
+BB5S4,Alveolar adenocarcinoma,CTV3Map_Code_And_Term
+Byu20,"[X]Malignant neoplasm of bronchus or lung, unspecified",CTV3Map_Code_And_Term
+Byu5.,[X]Malignant neoplasm of mesothelial and soft tissue,QOF
+Byu50,(Mesothelioma of lung) or ([X]mesothelioma of other sites),QOF
+Byu51,"[X]Mesothelioma, unspecified",QOF
+X2032,Pulmonary tumour embolism,CTV3_Children
+X77mv,Small cell carcinoma - intermediate cell,CTV3Map_Code_And_Term
+X77mw,Small cell - large cell carcinoma,CTV3Map_Code_And_Term
+X77nT,Carcinoid bronchial adenoma,CTV3Map_Code_And_Term
+X77oo,Pulmonary blastoma,CTV3Map_Code_And_Term
+X78Q1,Adenoid cystic carcinoma of trachea,QOF
+X78Q2,Squamous cell carcinoma of trachea,QOF
+X78Q7,Malignant tumour of bronchus,CTV3_Children
+X78Q8,Squamous cell carcinoma of bronchus,CTV3_Children
+X78QF,Malignant tumour of lung parenchyma,CTV3_Children
+X78QG,Adenocarcinoma of lung,CTV3_Children
+X78QI,Carcinoid tumour of lung,CTV3_Children
+X78QJ,Carcinoma of lung parenchyma,CTV3_Children
+X78QK,Large cell carcinoma of lung,CTV3_Children
+X78QL,Clear cell carcinoma of lung,CTV3_Children
+X78QM,Giant cell carcinoma of lung,CTV3_Children
+X78QN,Small cell carcinoma of lung,CTV3_Children
+X78QO,Oat cell carcinoma of lung,CTV3_Children
+X78QP,Squamous cell carcinoma of lung,CTV3_Children
+X78QQ,Epithelioid haemangioendothelioma of lung,CTV3_Children
+X78QR,Lymphomatoid granulomatosis of lung,CTV3_Children
+X78QS,Non-small cell lung cancer,CTV3_Children
+X78QT,Pancoast tumour,CTV3_Children
+X78Qc,Malignant mesothelioma of pleura,QOF
+XE1vb,"Malignant neoplasm of upper lobe, bronchus or lung",CTV3Map_Code_And_Term
+XE1vc,Malignant neoplasm of bronchus or lung NOS,CTV3Map_Code_And_Term
+XE1yF,(Bronchus carc) or (lung carc) or (Ca trachea/bronchus/lung),QOF
+XE1yH,(Trachea carcinoma) or (Pancoast's tumour) or (Ca trachea),QOF
+XE1yJ,Ca main bronchus,CTV3_Children
+XE1yL,Ca upper lobe bronchus/lung,CTV3_Children
+XE1yN,Ca middle lobe bronchus/lung,CTV3_Children
+XE1yP,Ca lower lobe bronchus/lung,CTV3_Children
+XE1yR,Ca trachea/bronchus/lung NOS,CTV3_Children
+Xa0KG,Malignant tumour of lung,CTV3Map_Code_And_Term
+Xa0bg,Pancoast's syndrome,CTV3Map_Code_And_Term
+XaBAp,Bronchioloalveolar adenocarcinoma of lung,CTV3_Children
+XaEJe,Squamous cell carcinoma of bronchus in left lower lobe,CTV3_Children
+XaEJf,Squamous cell carcinoma of bronchus in left upper lobe,CTV3_Children
+XaEJg,Squamous cell carcinoma of bronchus in right lower lobe,CTV3_Children
+XaEJh,Squamous cell carcinoma of bronchus in right middle lobe,CTV3_Children
+XaEJi,Squamous cell carcinoma of bronchus in right upper lobe,CTV3_Children
+XaFr7,Local recurrence of malignant tumour of lung,CTV3_Children
+XaFrw,Metastasis from malignant tumour of lung,QOF
+XaZzj,Non-small cell carcinoma,CTV3Map_Code_And_Term

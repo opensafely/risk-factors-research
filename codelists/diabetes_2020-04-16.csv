@@ -1,0 +1,570 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+13B1.,Diabetic diet,High_Level_SNOMED
+1434,H/O: diabetes mellitus,High_Level_SNOMED
+14P3.,H/O: insulin therapy,CTV3Map_Code_And_Term
+42W1.,Hb. A1C < 7% - good control,CTV3_Children
+42W2.,Hb. A1C 7-10% - borderline,CTV3_Children
+42W3.,Hb. A1C > 10% - bad control,CTV3_Children
+42WZ.,Hb. A1C - diabetic control NOS,CTV3Map_Code_And_Term
+42c0.,HbA1 less than 7% - good control,CTV3_Children
+42c1.,HbA1 7-10% - borderline control,CTV3_Children
+44V3.,Glucose tol. test diabetic,High_Level_SNOMED
+66A3.,Diabetic on diet only,CTV3Map_Code_And_Term
+66A4.,Diabetic on oral treatment,CTV3Map_Code_And_Term
+66A5.,Diabetic on insulin,CTV3Map_Code_And_Term
+66A6.,Last hypoglycaemia attack,High_Level_SNOMED
+66A8.,Has seen dietitian - diabetes,High_Level_SNOMED
+66A9.,Understands diet - diabetes,High_Level_SNOMED
+66AA.,Injection sites (& diabetic),High_Level_SNOMED
+66AG.,Diabetic drug side effects,CTV3Map_Code_And_Term
+66AH.,Diabetic treatment changed,CTV3Map_Code_And_Term
+66AH0,Conversion to insulin,CTV3Map_Code_And_Term
+66AI.,Diabetic - good control,CTV3Map_Code_And_Term
+66AJ.,Diabetic - poor control (& unstable),CTV3_Children
+66AJ0,Chronic hyperglycaemia,CTV3_Children
+66AJ1,[Brittle] and/or [labile diabetes],CTV3_Children
+66AJ2,Loss of hypoglycaemic warning,QOF
+66AJ3,Recurrent severe hypos,CTV3_Children
+66AJz,Diabetic - poor control NOS,CTV3Map_Code_And_Term
+66AK.,Diabetic - cooperative patient,CTV3Map_Code_And_Term
+66AL.,Diabetic-uncooperative patient,CTV3Map_Code_And_Term
+66AM.,Diabetic - follow-up default,CTV3Map_Code_And_Term
+66AN.,Date diabetic treatment start,CTV3Map_Code_And_Term
+66AP.,Diabetes: practice programme,CTV3Map_Code_And_Term
+66AQ.,Diabetes: shared care programme,CTV3Map_Code_And_Term
+66AR.,Diabetes management plan given,CTV3Map_Code_And_Term
+66AS.,Diabetic annual review,CTV3Map_Code_And_Term
+66AT.,Annual diabetic blood test,CTV3Map_Code_And_Term
+7L100,Continuous subcutaneous infusion of insulin,CTV3Map_Code_And_Term
+8A12.,Diabetic crisis monitoring,CTV3Map_Code_And_Term
+8A13.,Diabetic stabilisation,CTV3Map_Code_And_Term
+8CA41,Patient advised about diabetic diet,High_Level_SNOMED
+8H2J.,Admit diabetic emergency,CTV3Map_Code_And_Term
+8H3O.,Non-urgent diabetic admission,CTV3Map_Code_And_Term
+8H7C.,"Refer, diabetic liaison nurse",High_Level_SNOMED
+8HKE.,Diabetology domiciliary visit requested,CTV3Map_Code_And_Term
+8HLE.,Diabetology D.V. done,CTV3Map_Code_And_Term
+8HME.,Listed for Diabetology admissn,CTV3Map_Code_And_Term
+9NM0.,Attending diabetes clinic,High_Level_SNOMED
+9OL..,Diabetes administration: [monitoring] or [clinic],High_Level_SNOMED
+9OL1.,Attends diabetes monitoring,High_Level_SNOMED
+9OL2.,Refuses diabetes monitoring,High_Level_SNOMED
+9OL3.,Diabetes monitoring default,High_Level_SNOMED
+9OL4.,Diabetes monitoring first letter,QOF
+9OL5.,Diabetes monitoring second letter,QOF
+9OL6.,Diabetes monitoring third letter,QOF
+9OL7.,Diabetes monitoring verbal invite,QOF
+9OL8.,Diabetes monitoring telephone invite,QOF
+9OL9.,Diabetes monitoring deleted,High_Level_SNOMED
+9OLA.,Diabetes monitored (& check done),High_Level_SNOMED
+9OLZ.,Diabetes monitoring admin.NOS,High_Level_SNOMED
+C10..,Diabetes mellitus,CTV3Map_Code_And_Term
+C100.,Diabetes mellitus with no mention of complication,CTV3Map_Code_And_Term
+C1000,"Diabetes mellit: [juv type, no mention compl] or [insul dep]",CTV3_Children
+C1001,"Diab mell: [adult ons, no ment comp][mat onset][non-ins dep]",CTV3_Children
+C100z,Diabetes mellitus NOS with no mention of complication,CTV3Map_Code_And_Term
+C101.,Diabetic ketoacidosis,CTV3Map_Code_And_Term
+C1010,Type 1 diabetes mellitus with ketoacidosis,CTV3Map_Code_And_Term
+C1011,Type 2 diabetes mellitus with ketoacidosis,CTV3Map_Code_And_Term
+C101y,Other specified diabetes mellitus with ketoacidosis,CTV3Map_Code_And_Term
+C101z,Diabetes mellitus NOS with ketoacidosis,CTV3Map_Code_And_Term
+C102.,Diabetes mellitus with hyperosmolar coma,CTV3Map_Code_And_Term
+C1020,"Diabetes mellitus, juvenile type, with hyperosmolar coma",CTV3Map_Code_And_Term
+C1021,"Diabetes mellitus, adult onset, with hyperosmolar coma",CTV3Map_Code_And_Term
+C102z,Diabetes mellitus NOS with hyperosmolar coma,CTV3Map_Code_And_Term
+C103.,Diabetes mellitus with ketoacidotic coma,CTV3Map_Code_And_Term
+C1030,Type 1 diabetes mellitus with ketoacidotic coma,CTV3Map_Code_And_Term
+C1031,Type II diabetes mellitus with ketoacidotic coma,CTV3Map_Code_And_Term
+C103y,Other specified diabetes mellitus with coma,CTV3Map_Code_And_Term
+C103z,Diabetes mellitus NOS with ketoacidotic coma,CTV3Map_Code_And_Term
+C104.,Diabetes mellitus: [with renal manifestatn] or [nephropathy],CTV3_Children
+C1040,"Diabetes mellitus, juvenile type, with renal manifestation",CTV3Map_Code_And_Term
+C1041,"Diabetes mellitus, adult onset, with renal manifestation",CTV3Map_Code_And_Term
+C104y,Other specified diabetes mellitus with renal complications,CTV3Map_Code_And_Term
+C104z,Diabetes mellitus with nephropathy NOS,CTV3Map_Code_And_Term
+C105.,Diabetes mellitus with ophthalmic manifestation,CTV3Map_Code_And_Term
+C1050,"Diabetes mellitus, juvenile type, + ophthalmic manifestation",CTV3Map_Code_And_Term
+C1051,"Diabetes mellitus, adult onset, + ophthalmic manifestation",CTV3Map_Code_And_Term
+C105y,Other specified diabetes mellitus with ophthalmic complicatn,CTV3Map_Code_And_Term
+C105z,Diabetes mellitus NOS with ophthalmic manifestation,CTV3Map_Code_And_Term
+C106.,Diab mell + neuro manif: (& [amyotroph][neurop][polyneurop]),QOF
+C1060,"Diabetes mellitus, juvenile, + neurological manifestation",CTV3Map_Code_And_Term
+C1061,"Diabetes mellitus, adult onset, + neurological manifestation",CTV3Map_Code_And_Term
+C106y,Other specified diabetes mellitus with neurological comps,CTV3Map_Code_And_Term
+C106z,Diabetes mellitus NOS with neurological manifestation,CTV3Map_Code_And_Term
+C107.,Diabetes mellitus with: [gangrene] or [periph circul disord],CTV3_Children
+C1070,"Diabetes mellitus, juvenile +peripheral circulatory disorder",CTV3Map_Code_And_Term
+C1071,"Diabetes mellitus, adult, + peripheral circulatory disorder",CTV3Map_Code_And_Term
+C1072,"Diabetes mellitus, adult with gangrene",CTV3Map_Code_And_Term
+C1073,IDDM with peripheral circulatory disorder,CTV3Map_Code_And_Term
+C1074,NIDDM with peripheral circulatory disorder,CTV3Map_Code_And_Term
+C107y,Other specified diabetes mellitus with periph circ comps,CTV3Map_Code_And_Term
+C107z,Diabetes mellitus NOS with peripheral circulatory disorder,CTV3Map_Code_And_Term
+C1080,Type I diabetes mellitus with renal complications,CTV3Map_Code_And_Term
+C1081,Type I diabetes mellitus with ophthalmic complications,CTV3Map_Code_And_Term
+C1082,Type I diabetes mellitus with neurological complications,CTV3Map_Code_And_Term
+C1083,Type I diabetes mellitus with multiple complications,CTV3Map_Code_And_Term
+C1085,Type I diabetes mellitus with ulcer,CTV3Map_Code_And_Term
+C1086,Type I diabetes mellitus with gangrene,CTV3Map_Code_And_Term
+C1087,Type I diabetes mellitus with retinopathy,CTV3Map_Code_And_Term
+C1088,Type I diabetes mellitus - poor control,CTV3Map_Code_And_Term
+C1089,Type I diabetes mellitus maturity onset,CTV3Map_Code_And_Term
+C108y,Other specified diabetes mellitus with multiple comps,CTV3Map_Code_And_Term
+C108z,Unspecified diabetes mellitus with multiple complications,CTV3Map_Code_And_Term
+C109.,Type II diabetes mellitus,CTV3_Children
+C1090,Type II diabetes mellitus with renal complications,CTV3Map_Code_And_Term
+C1091,Type II diabetes mellitus with ophthalmic complications,CTV3Map_Code_And_Term
+C1092,Type II diabetes mellitus with neurological complications,CTV3Map_Code_And_Term
+C1093,Type II diabetes mellitus with multiple complications,CTV3Map_Code_And_Term
+C1094,Type II diabetes mellitus with ulcer,CTV3Map_Code_And_Term
+C1095,Type II diabetes mellitus with gangrene,CTV3Map_Code_And_Term
+C1096,Type II diabetes mellitus with retinopathy,CTV3Map_Code_And_Term
+C1097,Type II diabetes mellitus - poor control,CTV3Map_Code_And_Term
+C10y.,Diabetes mellitus with other specified manifestation,CTV3Map_Code_And_Term
+C10y0,"Diabetes mellitus, juvenile, + other specified manifestation",CTV3Map_Code_And_Term
+C10y1,"Diabetes mellitus, adult, + other specified manifestation",CTV3Map_Code_And_Term
+C10yy,Other specified diabetes mellitus with other spec comps,CTV3Map_Code_And_Term
+C10yz,Diabetes mellitus NOS with other specified manifestation,CTV3Map_Code_And_Term
+C10z.,Diabetes mellitus with unspecified complication,CTV3Map_Code_And_Term
+C10z0,"Diabetes mellitus, juvenile type, + unspecified complication",CTV3Map_Code_And_Term
+C10z1,"Diabetes mellitus, adult onset, + unspecified complication",CTV3Map_Code_And_Term
+C10zy,Other specified diabetes mellitus with unspecified comps,CTV3Map_Code_And_Term
+C10zz,Diabetes mellitus NOS with unspecified complication,CTV3Map_Code_And_Term
+C110.,Coma: [hypoglycaemic] or [insulin],CTV3_Children
+C110z,Hypoglycaemic coma NOS,CTV3_Children
+Cyu20,[X]Other specified diabetes mellitus,CTV3Map_Code_And_Term
+Cyu21,[X]Malnutrit-relat diabetes mellitus with other spec comps,CTV3_Children
+Cyu22,[X]Malnutrit-related diabetes mellitus with unspec complics,CTV3_Children
+Cyu23,[X]Unspecified diabetes mellitus with renal complications,CTV3Map_Code_And_Term
+F1711,Diabetic autonomic neuropathy,CTV3Map_Code_And_Term
+F3450,Diabetic mononeuritis multiplex,CTV3Map_Code_And_Term
+F35z0,Diabetic mononeuritis NOS,CTV3Map_Code_And_Term
+F372.,Diabetic neuropathy &/or diabetic polyneuropathy,CTV3_Children
+F3720,Acute painful diabetic neuropathy,CTV3Map_Code_And_Term
+F3721,Chronic painful diabetic neuropathy,CTV3Map_Code_And_Term
+F3722,Asymptomatic diabetic neuropathy,CTV3Map_Code_And_Term
+F3813,(Myasth syndr due to diab amyotroph) or (diab amyotroph),QOF
+F3y0.,Diabetic mononeuropathy,CTV3_Children
+F420.,Diabetic retinopathy,CTV3Map_Code_And_Term
+F4200,Background diabetic retinopathy,CTV3Map_Code_And_Term
+F4201,Proliferative diabetic retinopathy,CTV3Map_Code_And_Term
+F4202,Preproliferative diabetic retinopathy,CTV3Map_Code_And_Term
+F4203,Advanced diabetic maculopathy,CTV3Map_Code_And_Term
+F420z,Diabetic retinopathy NOS,CTV3Map_Code_And_Term
+F4407,Diabetic iritis,CTV3Map_Code_And_Term
+F4640,Diabetic cataract,CTV3Map_Code_And_Term
+G73y0,Diabetic peripheral angiopathy,CTV3Map_Code_And_Term
+K01x1,Nephrotic syndrome in diabetes mellitus,CTV3Map_Code_And_Term
+Kyu03,[X]Glomerular disorders in diabetes mellitus,CTV3Map_Code_And_Term
+Lyu29,"[X]Pre-existing diabetes mellitus, unspecified",CTV3Map_Code_And_Term
+M0372,Cellulitis in diabetic foot,CTV3Map_Code_And_Term
+M2710,Ischaemic ulcer diabetic foot,CTV3Map_Code_And_Term
+M2711,Neuropathic diabetic ulcer - foot,CTV3Map_Code_And_Term
+M2712,Mixed diabetic ulcer - foot,CTV3Map_Code_And_Term
+N0300,Diabetic hand syndrome,CTV3Map_Code_And_Term
+N0301,Diabetic neuropathic arthropathy,CTV3Map_Code_And_Term
+Q441.,Neonatal diabetes mellitus,CTV3_Children
+R0542,[D]Gangrene of toe in diabetic,CTV3Map_Code_And_Term
+R0543,[D]Widespread diabetic foot gangrene,CTV3Map_Code_And_Term
+X00Ag,Diabetic neuropathy,CTV3Map_Code_And_Term
+X00Ah,Diabetic distal sensorimotor polyneuropathy,CTV3_Children
+X00Ai,Diabetic acute painful polyneuropathy,CTV3_Children
+X00Aj,Diabetic chronic painful polyneuropathy,CTV3_Children
+X00Ak,Diabetic asymmetric polyneuropathy,CTV3_Children
+X00Al,Diabetic mononeuropathy,CTV3Map_Code_And_Term
+X00Am,Diabetic truncal radiculopathy,CTV3_Children
+X00An,Diabetic thoracic radiculopathy,CTV3_Children
+X00dF,Visually threatening diabetic retinopathy,CTV3_Children
+X00dG,Diabetic maculopathy,CTV3Map_Code_And_Term
+X00dH,Proliferative diabetic retinopathy new vessels on disc,CTV3_Children
+X00dI,Proliferative diabet retinop new vessel elsewhere than disc,CTV3_Children
+X00dJ,Diabetic traction retinal detachment,CTV3_Children
+X30Kk,Diabetic nephropathy,CTV3Map_Code_And_Term
+X30Kl,Microalbuminuric diabetic nephropathy,CTV3_Children
+X30Km,Proteinuric diabetic nephropathy,CTV3Map_Code_And_Term
+X40J4,Type I diabetes mellitus,CTV3Map_Code_And_Term
+X40J5,Type II diabetes mellitus,CTV3Map_Code_And_Term
+X40J6,Insulin treated Type 2 diabetes mellitus,CTV3Map_Code_And_Term
+X40JG,Genetic syndromes of diabetes mellitus,CTV3_Children
+X40JI,Diabetes mellitus autosomal dominant,CTV3Map_Code_And_Term
+X40JJ,Diabetes mellitus autosomal dominant type 2,CTV3Map_Code_And_Term
+X40JV,"Hypogonadism,diab mell,alopec,ment retar electro abnorm",QOF
+X40JW,"Megaloblastic anaemia,diab mell and sensorineural deafness",QOF
+X40JX,"Pineal hyperplasia,ins res diab mell and somatic abnorm",QOF
+X40JY,Insulin-dependent diabetes mellitus secretory diarrhoea synd,CTV3_Children
+X40JZ,Diabetes-deafness syndrome maternally transmitted,CTV3_Children
+X40Ja,Abnormal metabolic state in diabetes mellitus,CTV3_Children
+X40Jb,Diabetic severe hyperglycaemia,CTV3_Children
+X40Jc,Poor glycaemic control,CTV3_Children
+X40Je,Acute hyperglycaemia,CTV3_Children
+X40Jj,Pregnancy and insulin-dependent diabetes mellitus,QOF
+X40Jk,Pregnancy and non-insulin-dependent diabetes mellitus,QOF
+X40Jo,Insulin coma,CTV3Map_Code_And_Term
+X40Jq,Hypoglycaemic event in diabetes,CTV3Map_Code_And_Term
+X40Jr,Hypoglycaemic state in diabetes,QOF
+X40Js,Somogyi phenomenon,QOF
+X40Jt,Nocturnal hypoglycaemia,QOF
+X40KG,Insulin resistance in diabetes,QOF
+X50E7,Insulin lipohypertrophy,CTV3Map_Code_And_Term
+X50GO,Soft tissue complication of diabetes mellitus,QOF
+X50GP,Diabetic dermopathy,QOF
+X50GQ,Diabetic bulla,QOF
+X50GR,Diabetic thick skin syndrome,QOF
+X50GT,Diabetic rubeosis,QOF
+X74WS,Diabetic monitoring status,High_Level_SNOMED
+XE10E,"Diabetes mellitus, juvenile type, no mention of complication",CTV3Map_Code_And_Term
+XE10F,"Diabetes mellitus, adult onset, no mention of complication",CTV3Map_Code_And_Term
+XE10G,Diabetes mellitus with renal manifestation,CTV3Map_Code_And_Term
+XE10H,Diabetes mellitus with neurological manifestation,CTV3Map_Code_And_Term
+XE10I,Diabetes mellitus with peripheral circulatory disorder,CTV3Map_Code_And_Term
+XE10J,Hypoglycaemic coma,CTV3Map_Code_Only
+XE128,Diabetes mellitus (& [ketoacidosis]),CTV3_Children
+XE12A,Diabetes mellitus: [adult onset] or [noninsulin dependent],CTV3_Children
+XE12C,Diabetes mellitus: [juvenile] or [insulin dependent],CTV3_Children
+XE12E,Diabetes + nephropathy (& [Kimmelstiel-Wilson syndrome]),CTV3_Children
+XE12G,Diabetes + eye manifestation (& [cataract] or [retinopathy]),CTV3_Children
+XE12I,Diabetes + neuropathy (& [amyotrophy]),CTV3_Children
+XE12K,Diabetes: [peripheral circulatory disease] or [gangrene],CTV3_Children
+XE12M,Diabetes with other complications,CTV3_Children
+XE12Q,Hypoglycaemic coma (& [insulin]),CTV3_Children
+XE15k,Diabetic polyneuropathy,CTV3Map_Code_And_Term
+XE15n,Myasthenic syndrome due to diabetic amyotrophy,CTV3Map_Code_And_Term
+XE18r,(Secondary cataract) or (diabetic cataract),High_Level_SNOMED
+XE1T2,Diabetic monitoring - injection sites,CTV3Map_Code_And_Term
+XE1T3,Diabetic - poor control,CTV3Map_Code_And_Term
+XE1V0,Diabetic treatment changed (& [date]),CTV3_Children
+XE1V2,Diabetic - poor control (& [unstable]),CTV3_Children
+XE24t,Hb. A1C - diabetic control,CTV3Map_Code_And_Term
+XE2Nd,Diabetes monitoring admin.,High_Level_SNOMED
+XE2Ne,Diabetes monitoring check done,High_Level_SNOMED
+XM0cY,Diabetes treatment satisfaction questionnaire,CTV3Map_Code_And_Term
+XM0cZ,Diabetes wellbeing questionnaire,CTV3Map_Code_And_Term
+XM0q4,Diabetic coma,QOF
+XM19i,[EDTA]Diabetes Type I associated with renal failure,CTV3_Children
+XM19j,[EDTA] Diabetes Type II associated with renal failure,CTV3_Children
+XM1Qx,Diabetes mellitus with gangrene,CTV3Map_Code_And_Term
+XM1Rs,Diabetes clinic administration,High_Level_SNOMED
+XM1Xk,Unstable diabetes,CTV3Map_Code_And_Term
+XSETH,Maturity onset diabetes mellitus in young,CTV3_Children
+XSETp,Diabetes mellitus due to insulin receptor antibodies,CTV3_Children
+Xa0lK,Diabetic (femoral mononeuropathy) & (Diabetic amyotrophy),QOF
+Xa1J5,Diabetic foot,QOF
+Xa2h7,Dietary advice for diabetes mellitus,High_Level_SNOMED
+Xa2h9,Dietary advice for type I diabetes,High_Level_SNOMED
+Xa2hA,Dietary advice for type II diabetes,High_Level_SNOMED
+Xa3ee,Diabetes with ketoacidosis - no coma,CTV3_Children
+Xa4g7,Unstable type I diabetes mellitus,CTV3Map_Code_And_Term
+Xa9FG,Postpancreatectomy hypoinsulinaemia,QOF
+XaA6b,Perceived control of insulin-dependent diabetes,High_Level_SNOMED
+XaBLf,O/E - Right diabetic foot at risk,CTV3Map_Code_And_Term
+XaBLg,O/E - Left diabetic foot at risk,CTV3Map_Code_And_Term
+XaBTC,Referral to diabetic liaison nurse,High_Level_SNOMED
+XaBU8,Diabetes monitoring call,High_Level_SNOMED
+XaBU9,Diabetes monitoring status,High_Level_SNOMED
+XaBZQ,Subcutaneous injection of insulin,CTV3Map_Code_And_Term
+XaBuj,Education score - diabetes,High_Level_SNOMED
+XaBul,Retinal abnormality - diabetes-related,CTV3Map_Code_And_Term
+XaBun,Foot abnormality - diabetes-related,CTV3Map_Code_And_Term
+XaBwj,H/O: Admission in last year for diabetes foot problem,CTV3Map_Code_And_Term
+XaCES,HbA1 - diabetic control,CTV3Map_Code_And_Term
+XaCET,HbA1 less than 7% - good control,CTV3_Children
+XaCEU,HbA1 7-10% - borderline control,CTV3_Children
+XaCEV,HbA1 greater than 10% - bad control,CTV3_Children
+XaCGh,Diabetes monitoring invitation,QOF
+XaCJ2,Diabetic hyperosmolar non-ketotic state,CTV3_Children
+XaD2T,Advanced diabetic retinal disease,CTV3Map_Code_And_Term
+XaE46,Referral to diabetes nurse,High_Level_SNOMED
+XaE4q,Attending diabetes clinic,CTV3Map_Code_And_Term
+XaE5T,Mild non proliferative diabetic retinopathy,CTV3_Children
+XaE5U,Moderate non proliferative diabetic retinopathy,CTV3_Children
+XaE5V,Severe non proliferative diabetic retinopathy,CTV3_Children
+XaE5W,Proliferative diabetic retinopathy - non high risk,CTV3_Children
+XaE5X,Proliferative diabetic retinopathy - high risk,CTV3Map_Code_And_Term
+XaE5Y,Proliferative diabetic retinopathy - quiescent,CTV3_Children
+XaE5Z,Proliferative diabetic retinopathy - iris neovascularisation,CTV3_Children
+XaE5a,Diabetic vitreous haemorrhage,QOF
+XaE5c,Diabetic macular oedema,QOF
+XaEHw,[V]Admitted for conversion to insulin,CTV3Map_Code_And_Term
+XaEHx,[V]Admitted for commencement of insulin,CTV3Map_Code_And_Term
+XaEJQ,Seen in diabetic eye clinic,CTV3Map_Code_And_Term
+XaELP,Type I diabetes mellitus without complication,CTV3Map_Code_And_Term
+XaELQ,Type II diabetes mellitus without complication,CTV3Map_Code_And_Term
+XaEVO,Diffuse diabetic maculopathy,CTV3_Children
+XaEVP,Focal diabetic maculopathy,CTV3_Children
+XaEVS,Ischaemic diabetic maculopathy,CTV3_Children
+XaEVT,Mixed diabetic maculopathy,CTV3_Children
+XaEgI,Diabetic on insulin and oral treatment,CTV3Map_Code_And_Term
+XaEnn,Type I diabetes mellitus with mononeuropathy,CTV3Map_Code_And_Term
+XaEno,Type I diabetes mellitus with polyneuropathy,CTV3Map_Code_And_Term
+XaEnp,Type II diabetes mellitus with mononeuropathy,CTV3Map_Code_And_Term
+XaEnq,Type II diabetes mellitus with polyneuropathy,CTV3Map_Code_And_Term
+XaF04,Type I diabetes mellitus with nephropathy,CTV3Map_Code_And_Term
+XaF05,Type II diabetes mellitus with nephropathy,CTV3Map_Code_And_Term
+XaFWG,Type I diabetes mellitus with hypoglycaemic coma,CTV3Map_Code_And_Term
+XaFWI,Type II diabetes mellitus with hypoglycaemic coma,CTV3Map_Code_And_Term
+XaFm8,Type I diabetes mellitus with diabetic cataract,CTV3Map_Code_And_Term
+XaFmA,Type II diabetes mellitus with diabetic cataract,CTV3Map_Code_And_Term
+XaFmK,Type I diabetes mellitus with peripheral angiopathy,CTV3Map_Code_And_Term
+XaFmL,Type I diabetes mellitus with arthropathy,CTV3Map_Code_And_Term
+XaFmM,Type I diabetes mellitus with neuropathic arthropathy,CTV3Map_Code_And_Term
+XaFn7,Type II diabetes mellitus with peripheral angiopathy,CTV3Map_Code_And_Term
+XaFn8,Type II diabetes mellitus with arthropathy,CTV3Map_Code_And_Term
+XaFn9,Type II diabetes mellitus with neuropathic arthropathy,CTV3Map_Code_And_Term
+XaFsp,Diabetes resolved,QOF
+XaFvj,Diabetic lipid lowering diet,High_Level_SNOMED
+XaFvk,Diabetic weight reducing diet,CTV3Map_Code_And_Term
+XaFx7,Diab mellit insulin-glucose infus acute myocardial infarct,CTV3Map_Code_And_Term
+XaIIe,Diabetes care by hospital only,CTV3Map_Code_And_Term
+XaIIj,Diabetic retinopathy screening,CTV3Map_Code_And_Term
+XaIP5,Non proliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaIPk,O/E - diabetic maculopathy present both eyes,CTV3Map_Code_And_Term
+XaIQS,Refer to diabetic foot screener,CTV3Map_Code_And_Term
+XaIW8,High risk non proliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaIeH,O/E - Right diabetic foot at low risk,CTV3Map_Code_And_Term
+XaIeI,O/E - Right diabetic foot at high risk,CTV3Map_Code_And_Term
+XaIeJ,O/E - Right diabetic foot - ulcerated,CTV3Map_Code_And_Term
+XaIeK,O/E - Left diabetic foot - ulcerated,CTV3Map_Code_And_Term
+XaIeL,O/E - Left diabetic foot at low risk,CTV3Map_Code_And_Term
+XaIeM,O/E - Left diabetic foot at high risk,CTV3Map_Code_And_Term
+XaIeR,O/E - Left diabetic foot at moderate risk,CTV3Map_Code_And_Term
+XaIeS,O/E - Right diabetic foot at moderate risk,CTV3Map_Code_And_Term
+XaIeT,Diabetic foot risk assessment,CTV3Map_Code_And_Term
+XaIeU,Diabetic pre-pregnancy counselling,CTV3Map_Code_And_Term
+XaIeo,Diabetes: shared care in pregnancy - diabetol and obstet,CTV3_Children
+XaIfG,Type II diabetes on insulin,CTV3_Children
+XaIfI,Type II diabetes on diet only,CTV3_Children
+XaIfM,Diabetes medication review,CTV3Map_Code_And_Term
+XaIok,Diabetic monitoring not required,High_Level_SNOMED
+XaIrL,Diabetic diet - good compliance,High_Level_SNOMED
+XaIrM,Diabetic diet - poor compliance,High_Level_SNOMED
+XaIrf,Hyperosmolar non-ketotic state in type II diabetes mellitus,CTV3Map_Code_And_Term
+XaIuE,Diabetic foot examination,CTV3Map_Code_And_Term
+XaIyt,Diabetic peripheral neuropathy screening,CTV3Map_Code_And_Term
+XaIyu,Hypoglycaemic attack requiring 3rd party assistance,High_Level_SNOMED
+XaIyz,Diabetes mellitus with persistent microalbuminuria,CTV3_Children
+XaIz0,Diabetes mellitus with persistent proteinuria,CTV3_Children
+XaIzM,Type 1 diabetes mellitus with persistent proteinuria,CTV3Map_Code_And_Term
+XaIzN,Type 1 diabetes mellitus with persistent microalbuminuria,CTV3Map_Code_And_Term
+XaIzQ,Type II diabetes mellitus with persistent proteinuria,CTV3Map_Code_And_Term
+XaIzR,Type II diabetes mellitus with persistent microalbuminuria,CTV3Map_Code_And_Term
+XaJ4Q,Exception reporting: diabetes quality indicators,QOF
+XaJ4h,Excepted from diabetes qual indicators: Patient unsuitable,QOF
+XaJ4i,Excepted from diabetes quality indicators: Informed dissent,QOF
+XaJ5j,Patient on maximal tolerated therapy for diabetes,CTV3Map_Code_And_Term
+XaJEN,Seen in diabetic foot clinic,CTV3Map_Code_And_Term
+XaJLa,Diabetic retinopathy 12 month review,CTV3Map_Code_And_Term
+XaJLb,Diabetic retinopathy 6 month review,CTV3Map_Code_And_Term
+XaJO3,Under care of diabetologist,CTV3Map_Code_And_Term
+XaJO4,Under care of diabetes specialist nurse,High_Level_SNOMED
+XaJO9,Under care of diabetic foot screener,CTV3Map_Code_And_Term
+XaJOD,Diabetic retinopathy screening not indicated,CTV3Map_Code_And_Term
+XaJOE,Diabetic foot examination not indicated,CTV3Map_Code_And_Term
+XaJOO,Patient held diabetic record issued,CTV3Map_Code_And_Term
+XaJOg,O/E - right eye background diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOh,O/E - left eye background diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOi,O/E - right eye preproliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOj,O/E - left eye preproliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOk,O/E - right eye proliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOl,O/E - left eye proliferative diabetic retinopathy,CTV3Map_Code_And_Term
+XaJOn,O/E - right eye diabetic maculopathy,CTV3Map_Code_And_Term
+XaJOo,O/E - left eye diabetic maculopathy,CTV3Map_Code_And_Term
+XaJQp,Type II diabetes mellitus with exudative maculopathy,CTV3Map_Code_And_Term
+XaJSr,Type 1 diabetes mellitus with exudative maculopathy,CTV3Map_Code_And_Term
+XaJUH,Insulin autoimmune syndrome,QOF
+XaJYg,Diabetes clinical management plan,CTV3Map_Code_And_Term
+XaJix,Diabetic foot examination declined,CTV3Map_Code_And_Term
+XaJkQ,Diabetic retinopathy screening refused,CTV3Map_Code_And_Term
+XaJlI,Pan retinal photocoagulation for diabetes,CTV3Map_Code_And_Term
+XaKDG,O/E - right eye stable treated prolif diabetic retinopathy,CTV3Map_Code_And_Term
+XaKDH,O/E - left eye stable treated prolif diabetic retinopathy,CTV3Map_Code_And_Term
+XaKGs,Patient diabetes education review,QOF
+XaKGy,Referral to diabetes structured education programme,QOF
+XaKH0,Attended diabetes structured education programme,QOF
+XaKHD,Transition of diabetes care options discussed,CTV3Map_Code_And_Term
+XaKHh,O/E - right chronic diabetic foot ulcer,CTV3Map_Code_And_Term
+XaKHi,O/E - left chronic diabetic foot ulcer,CTV3Map_Code_And_Term
+XaKOF,Patient held diabetic record declined,High_Level_SNOMED
+XaKSn,Diabetes care plan agreed,CTV3Map_Code_And_Term
+XaKSp,Patient offered diabetes structured education programme,QOF
+XaKT5,Diabetic patient unsuitable for digital retinal photography,CTV3Map_Code_And_Term
+XaKaW,Diabetic retinopathy screening offered,CTV3Map_Code_And_Term
+XaKbu,Discharged from care of diabetes specialist nurse,CTV3Map_Code_And_Term
+XaKcS,O/E - sight threatening diabetic retinopathy,CTV3Map_Code_And_Term
+XaKjW,Diabetic monitoring - injection site check declined,CTV3_Children
+XaKjX,Diabetic monitoring - injection site not checked,CTV3_Children
+XaKjY,Hypoglycaemic warning impaired,QOF
+XaKjZ,Hypoglycaemic warning good,QOF
+XaKtr,Insulin therapy declined,CTV3Map_Code_And_Term
+XaKvV,Insulin needles changed daily,CTV3Map_Code_And_Term
+XaKvW,Insulin needles changed for each injection,CTV3Map_Code_And_Term
+XaKwQ,Diabetic 6 month review,CTV3Map_Code_And_Term
+XaKyW,Type 1 diabetes mellitus with gastroparesis,CTV3Map_Code_And_Term
+XaKyX,Type II diabetes mellitus with gastroparesis,CTV3Map_Code_And_Term
+XaKzO,Referral to multidisciplinary diabetic clinic,High_Level_SNOMED
+XaL1R,Insulin needles changed less than once a day,CTV3Map_Code_And_Term
+XaL1S,Did not attend diabetic retinopathy clinic,CTV3Map_Code_And_Term
+XaL2E,Diabetic monitoring - lower risk albumin excretion,High_Level_SNOMED
+XaL2F,Diabetic monitoring - higher risk albumin excretion,High_Level_SNOMED
+XaLMa,Referral to diabetic register,CTV3Map_Code_And_Term
+XaLMy,Patient consent given for addition to diabetic register,CTV3Map_Code_And_Term
+XaLP3,Referral to diabetic eye clinic,CTV3Map_Code_And_Term
+XaLSk,Diabetic - adequate control,High_Level_SNOMED
+XaLsL,Diabetic digital retinopathy screening offered,CTV3Map_Code_And_Term
+XaMFF,Referral for diabetic retinopathy screening,CTV3Map_Code_And_Term
+XaMdq,Insulin dose changed,CTV3Map_Code_And_Term
+XaMhJ,Diabetes type 1 review,CTV3Map_Code_And_Term
+XaMhK,Diabetes type II review,CTV3Map_Code_And_Term
+XaMhQ,Referral to community diabetes specialist nurse,High_Level_SNOMED
+XaMzI,Cystic fibrosis related diabetes mellitus,CTV3Map_Code_And_Term
+XaN1z,Attend diabetes educ self manage ongo new diagn struct prog,QOF
+XaNHW,Di struc educ prog co ([Di struc ed prog co] SNO map type),QOF
+XaNT8,Attended XPERT diabetes structured education programme,CTV3Map_Code_And_Term
+XaNTA,Attended DAFNE diabetes structured education programme,CTV3Map_Code_And_Term
+XaNTB,DAFNE diabetes structured education programme completed,CTV3Map_Code_And_Term
+XaNTC,DESMOND structured programme completed,QOF
+XaNTD,XPERT diabetes structured education programme completed,CTV3Map_Code_And_Term
+XaNTH,Diabetes structured education programme declined,QOF
+XaNTQ,Referral to DAFNE diabetes structured education programme,CTV3Map_Code_And_Term
+XaNTS,Referral to DESMOND diabetes structured programme,QOF
+XaNTT,Referral to XPERT diabetes structured education programme,CTV3Map_Code_And_Term
+XaNTa,Did not attend diabetes structured education programme,QOF
+XaNTd,Did not complete diabetes structured education programme,QOF
+XaNTe,Did not complete DAFNE diabetes structured education program,CTV3Map_Code_And_Term
+XaNTf,Did not complete DESMOND structured programme,QOF
+XaNTg,Did not complet XPERT diabetes structured education programm,CTV3Map_Code_And_Term
+XaNU1,Did not attend DAFNE diabetes structured education programme,CTV3Map_Code_And_Term
+XaNU2,Did not attend DESMOND structured programme,QOF
+XaNU3,Did not attend XPERT diabetes structured education programme,CTV3Map_Code_And_Term
+XaON1,Referral to diabetes special interest general practitioner,High_Level_SNOMED
+XaOPt,Maternally inherited diabetes mellitus,CTV3Map_Code_And_Term
+XaOPu,Latent autoimmune diabetes mellitus in adult,CTV3Map_Code_And_Term
+XaP4P,Referral to children's diabetes nurse specialist,High_Level_SNOMED
+XaP5E,Insulin initiation enhanced services administration,CTV3Map_Code_And_Term
+XaP63,Insulin treatment initiated,CTV3Map_Code_And_Term
+XaPQH,Diabetic foot screen,CTV3Map_Code_And_Term
+XaPaa,Eligible for diabetic retinopathy screening,CTV3Map_Code_And_Term
+XaPab,Ineligible for diabetic retinopathy screening,CTV3_Children
+XaPac,Eligibility temporarily inactive for diabetic retinop screen,CTV3Map_Code_And_Term
+XaPad,Eligibility permanently inactive for diabetic retinop screen,CTV3_Children
+XaPbv,Does rotate site of insulin injection,High_Level_SNOMED
+XaPem,Diabetic retinopathy screening administrative status,CTV3Map_Code_And_Term
+XaPen,Impaired vision due to diabetic retinopathy,CTV3Map_Code_And_Term
+XaPjH,Excluded from diabetic retinopathy screening as moved away,CTV3Map_Code_And_Term
+XaPjI,Excluded from diabetic retinopathy screening as deceased,CTV3Map_Code_And_Term
+XaPjJ,Excluded diabetc retinop screen as under care ophthalmolgist,CTV3Map_Code_And_Term
+XaPjK,Excluded from diabetic retinopathy screening as blind,CTV3Map_Code_And_Term
+XaPjL,Excluded from diabetic retinop screen as no longer diabetic,CTV3_Children
+XaPjM,Declined diabetic retinopathy screening,CTV3Map_Code_And_Term
+XaPjN,Excluded frm diab retinop screen as no currnt contct details,CTV3_Children
+XaPjO,Excluded frm diabetic retinopathy screen as terminal illness,CTV3Map_Code_And_Term
+XaPjP,Excluded from diabetic retinopthy screen as learn disability,CTV3Map_Code_And_Term
+XaPjQ,Excluded from diabetic retinopathy screen physical disorder,CTV3Map_Code_And_Term
+XaPjR,Excluded from diabetic retinopathy screening,CTV3_Children
+XaPmW,Diabetic femoral mononeuropathy,CTV3_Children
+XaPmX,Diabetic amyotrophy,CTV3Map_Code_And_Term
+XaQGH,Discharged from diabetes shared care programme,High_Level_SNOMED
+XaQdT,Diabetes self management plan,CTV3_Children
+XaQjs,Unsuitable for diabetes year of care programme,CTV3_Children
+XaR8L,Education in self management of diabetes,QOF
+XaRGt,Diabetic on subcutaneous treatment,High_Level_SNOMED
+XaX0F,Excepted from diabetes qual indicators: service unavailable,QOF
+XaX1n,Diabetes monitor invitation by SMS (short message service),QOF
+XaX3o,Diabetic dietary review,QOF
+XaX3p,Type I diabetic dietary review,CTV3Map_Code_And_Term
+XaX3q,Type II diabetic dietary review,CTV3Map_Code_And_Term
+XaX3r,Diabetic dietary review declined,QOF
+XaX49,Referral to type I diabetes structured education programme,QOF
+XaX5D,Diabetes structured education programme completed,QOF
+XaX6J,O/E - Right diabetic foot at increased risk,CTV3Map_Code_And_Term
+XaX6K,O/E - Left diabetic foot at increased risk,CTV3Map_Code_And_Term
+XaX8e,Advised ([?AND/OR advice ?AND/OR eductn]) diabetes driving,High_Level_SNOMED
+XaXH5,Diabetic monitoring - injection sites normal,CTV3_Children
+XaXH6,Diabetic monitoring - injection sites abnormal,CTV3_Children
+XaXHD,Did not attend diabetes foot screening,CTV3Map_Code_And_Term
+XaXOw,Incretin mimetic dose changed,CTV3_Children
+XaXZB,H/O: autosomal dominant diabetes mellitus,QOF
+XaXZR,H/O: diabetes mellitus type 2,QOF
+XaXZv,H/O: diabetes mellitus type 1,QOF
+XaXbW,Symptomatic diabetic peripheral neuropathy,CTV3_Children
+XaXfs,Diabetic retinopathy detected by national screening program,CTV3_Children
+XaXgv,Diabetic erectile dysfunction review,CTV3Map_Code_And_Term
+XaXhE,Diabetic assessment of erectile dysfunction,CTV3Map_Code_And_Term
+XaXkZ,Referral to DESMOND structured programme declined,QOF
+XaXoT,No evidence of diabetic nephropathy,CTV3Map_Code_And_Term
+XaXv9,Diabetes care plan declined,CTV3Map_Code_And_Term
+XaYWU,Referral to diabetic clinic,High_Level_SNOMED
+XaYZP,Diabetes self-management plan review,CTV3Map_Code_And_Term
+XaYaB,Referral to community diabetes service,CTV3Map_Code_And_Term
+XaYbB,Diabetes self-management plan agreed,CTV3Map_Code_And_Term
+XaZCO,Provision of diabetes clinical summary,CTV3Map_Code_And_Term
+XaZKr,Insulin administration education,CTV3Map_Code_And_Term
+XaZMQ,Diabetes quality of life questionnaire,High_Level_SNOMED
+XaZNW,Referral to community diabetes specialist nurse declined,CTV3Map_Code_And_Term
+XaZRZ,Referral to community diabetes clinic,CTV3Map_Code_And_Term
+XaZS6,Date insulin pump therapy started,CTV3_Children
+XaZig,Diabetes clinical pathway,CTV3Map_Code_And_Term
+XaZlw,Does monitor blood glucose level before driving,High_Level_SNOMED
+XaZpJ,Provision of written information about diabetes and driving,CTV3Map_Code_And_Term
+XaZuQ,Referral to DAFNE diabetes structured educn prog declined,CTV3Map_Code_And_Term
+XaZw5,Diabetic foot screening invitation,CTV3Map_Code_And_Term
+XaZw7,Diabetic foot screening invitation first letter,CTV3Map_Code_And_Term
+XaZw8,Diabetic foot screening invitation second letter,CTV3Map_Code_And_Term
+XaZyM,Diabetic foot screening invitation third letter,CTV3Map_Code_And_Term
+Xaa8r,Erectile dysfunction due to diabetes mellitus,CTV3Map_Code_And_Term
+XaaCR,In-house diabetic foot screening,CTV3Map_Code_And_Term
+XaaCS,In-house diabetic foot screening first appointment,CTV3_Children
+XaaCU,In-house diabetic foot screening follow-up appointment,CTV3_Children
+XaaJJ,Conversion to insulin in secondary care,CTV3Map_Code_And_Term
+XaaJK,Conversion to insulin by diabetes specialist nurse,CTV3Map_Code_And_Term
+XaaNP,Insulin passport not checked,CTV3Map_Code_And_Term
+XaaaR,Education about diabetes and driving,CTV3Map_Code_And_Term
+XaadP,Diabetes structured education programme not available,CTV3Map_Code_And_Term
+XaaeP,Non-diabetic hyperglycaemia,QOF
+Xaag1,Diabetes Year of Care annual review,CTV3Map_Code_And_Term
+Xaaq3,Hypoglycaemic warning absent,QOF
+XabAX,Diabetes Distress Scale 17 item,High_Level_SNOMED
+XabQM,Conversion to non-insulin injectable medication,CTV3Map_Code_And_Term
+XabZd,Diabetic foot care education,CTV3Map_Code_And_Term
+Xabhn,Discharge from secondary care diabetes service,CTV3Map_Code_And_Term
+XabjM,Enquiry about diabetic erectile dysfunction declined,CTV3Map_Code_And_Term
+Xac0x,Diabetic peripheral neuropathic pain,CTV3Map_Code_And_Term
+XacIu,Joint consultn pracse nurse & comm diabetes specialist nurse,CTV3Map_Code_And_Term
+XacXh,Diabetic on non-insulin injectable medication,CTV3Map_Code_And_Term
+XacXr,Provision of diabetes identity card,High_Level_SNOMED
+XacY8,Has diabetes identity card,High_Level_SNOMED
+XaccX,Diabetic injection administration education,CTV3Map_Code_And_Term
+XaceC,Not suitable for DESMOND programme,QOF
+XacoB,Maturity onset diabetes of the young type 5,CTV3_Children
+XacsX,Diabetic on oral treatment and glucagon-like peptide 1,CTV3Map_Code_And_Term
+XacsY,Diabetic on insulin and glucagon-like peptide 1,CTV3Map_Code_And_Term
+Xacu2,Recommendation self-refer for diabetes structured education,High_Level_SNOMED
+Xad5D,Diabetic carbohydrate counting diet,CTV3Map_Code_And_Term
+XaeBz,Under care of hospital-based diabetes specialist nurse,High_Level_SNOMED
+XaeC0,Under care of community-based diabetes specialist nurse,High_Level_SNOMED
+XaeWH,X-PERT First Steps diabetes self-management programme complt,High_Level_SNOMED
+Xaes7,Hypoglycaemic attack - attendance by ambulance crew,High_Level_SNOMED
+Xaffg,Type 2 diabetes mellitus risk assessment invitation,QOF
+Xaffh,Type 2 diabetes mellitus risk assessment inv first letter,QOF
+Xaffi,Type 2 diabetes mellitus risk assessment inv second letter,QOF
+Xaffj,Type 2 diabetes mellitus risk assessment inv third letter,QOF
+Xaffk,Type 2 diabetes mellitus risk assessment verbal invitation,QOF
+Xaffl,Type 2 diabetes mellitus risk assessment telephone inv,QOF
+Xaffm,Type 2 diabetes mellitus risk assessment inv SMS text msg,QOF
+Xafj0,Diabetes monitoring short msg service text msg 1st invitaton,QOF
+Xafj1,Diabetes monitoring short msg service text msg 2nd invitaton,QOF
+Xafj2,Diabetes monitoring short msg service text msg 3rd invitaton,QOF
+XafjT,Eating disorder co-occurrent with diabetes mellitus type 1,QOF
+XagLc,Diabetes monitoring invitation email,QOF
+Xagk3,Skin ulcer associated with diabetes mellitus,CTV3Map_Code_And_Term
+Y0022,Age Diabetes Diagnosed,CTV3_Children
+Y0502,No Diabetic Retinopathy,CTV3_Children
+Y0505,Advanced Artificial Eye Disease,CTV3_Children
+Y0c48,Diabetic foot examined left,CTV3_Children
+Y0c49,Diabetic foot examined right,CTV3_Children
+Y1f9a,Quality and Outcomes Framework diabetes mellitus quality indicator-related care invitation (procedure),QOF
+Y204f,Remote diabetes structured education and support programme commenced,QOF
+Y205a,Remote diabetes structured education and support programme completed,QOF
+Y205b,Did not commence remote structured diabetes education and support programme,QOF
+Y20bf,Change in insulin dose,CTV3_Children
+Y9993,Unspecified diabetes mellitus,CTV3_Children
+YX128,Attending Diabetes satellite clinic,CTV3_Children

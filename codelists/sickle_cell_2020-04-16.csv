@@ -1,0 +1,26 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+D106.,Sickle cell anaemia,CTV3Map_Code_And_Term
+D106.,Sickle cell anaemia,QOF
+D1060,Sickle cell anaemia of unspecified type,CTV3Map_Code_And_Term
+D1060,Sickle cell anaemia of unspecified type,QOF
+D1061,Sickle cell anaemia with no crisis,CTV3Map_Code_And_Term
+D1061,Sickle cell anaemia with no crisis,QOF
+D1062,Sickle cell anaemia with crisis,CTV3Map_Code_And_Term
+D1062,Sickle cell anaemia with crisis,QOF
+D1063,Haemoglobin S/C disease,CTV3Map_Code_And_Term
+D1063,Haemoglobin S/C disease,QOF
+D1065,Haemoglobin S/E disease,CTV3Map_Code_And_Term
+D1065,Haemoglobin S/E disease,QOF
+D106z,Sickle cell anaemia NOS,CTV3Map_Code_And_Term
+D106z,Sickle cell anaemia NOS,QOF
+Dyu12,[X]Other sickle cell disorders,CTV3Map_Code_And_Term
+Dyu12,[X]Other sickle cell disorders,QOF
+F4221,Proliferative retinopathy due to sickle cell disease,CTV3Map_Code_And_Term
+X20Cw,Sickle cell syndrome,QOF
+X20Cx,Sickle cell anaemia with high haemoglobin F,CTV3_Children
+X20Cx,Sickle cell anaemia with high haemoglobin F,QOF
+X30Kx,Sickle cell nephropathy,CTV3Map_Code_And_Term
+Xa9Ax,Haemoglobin S/beta thalassaemia,CTV3Map_Code_And_Term
+Xa9Ax,Haemoglobin S/beta thalassaemia,CTV3Map_Code_Only
+XaDvR,Homozygous SS genotype,CTV3Map_Code_And_Term
+XabjN,Referral to sickle cell specialist nurse,CTV3Map_Code_And_Term

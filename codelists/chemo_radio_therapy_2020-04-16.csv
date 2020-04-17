@@ -1,0 +1,471 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+5135,Radiological tumour control,CTV3Map_Code_And_Term
+514..,Purpose of radiotherapy,CTV3Map_Code_And_Term
+5141,Radiotherapy for immunosuppression,CTV3Map_Code_And_Term
+5142,Radiotherapy for haemopoietic irradiation,CTV3Map_Code_And_Term
+5143,Radiotherapy for lymphatic irradiation,CTV3Map_Code_And_Term
+5144,Preoperative course of radiotherapy,CTV3Map_Code_And_Term
+5145,Radiotherapy - intraoperative control,CTV3Map_Code_And_Term
+5146,Postoperative course of radiotherapy,CTV3Map_Code_And_Term
+5147,Radiotherapy for analgesia,CTV3Map_Code_And_Term
+5148,Radiotherapy for inflammation,CTV3Map_Code_And_Term
+5149,Palliative course of radiotherapy,CTV3Map_Code_And_Term
+514Z.,Radiotherapy purpose - NOS,CTV3Map_Code_And_Term
+515..,Progress of radiotherapy,CTV3Map_Code_And_Term
+5151,Radiotherapy started,CTV3Map_Code_And_Term
+5152,Radiotherapy changed,CTV3Map_Code_And_Term
+5153,Radiotherapy stopped,CTV3_Children
+5154,Radiotherapy completed,CTV3_Children
+515Z.,Radiotherapy progress NOS,CTV3Map_Code_And_Term
+56B5.,Image: field control:radiother,CTV3Map_Code_And_Term
+591..,X-ray beam therapy,CTV3Map_Code_And_Term
+5911,Grenz ray therapy up to 10 kV,CTV3_Children
+5912,Superficial X-ray therapy 10-60 kV,CTV3Map_Code_And_Term
+5913,Half-deep therapy 60-150 kV,CTV3Map_Code_And_Term
+5914,Deep X-ray therapy 150-400 kV,CTV3Map_Code_And_Term
+5915,Ultrahard X-rays 400-2000 kV,CTV3_Children
+5916,Short distance X-ray therapy,CTV3_Children
+5917,Intracavitary X-ray therapy,CTV3Map_Code_And_Term
+5918,Combined X-ray therapy,CTV3_Children
+591Z.,X-ray beam therapy NOS,CTV3Map_Code_And_Term
+592..,High-energy beam therapy,CTV3Map_Code_And_Term
+5921,Linear accelerator photon therapy,CTV3Map_Code_And_Term
+5922,Betatron photon therapy,CTV3Map_Code_And_Term
+5923,Van der Graaff photon therapy,CTV3_Children
+5924,Combined photon therapy,CTV3_Children
+592Z.,High-energy beam therapy NOS,CTV3Map_Code_And_Term
+593..,Fast-electron therapy,CTV3Map_Code_And_Term
+5931,Linear accelerator electrons,CTV3_Children
+5932,Betatron electron therapy,CTV3Map_Code_And_Term
+5933,Positron therapy,CTV3Map_Code_And_Term
+5934,Combined fast-electron therapy,CTV3_Children
+593Z.,Fast-electron therapy NOS,CTV3Map_Code_And_Term
+594..,Heavy particle therapy,CTV3Map_Code_And_Term
+5941,Proton therapy,CTV3Map_Code_And_Term
+5942,Deuteron therapy,CTV3Map_Code_And_Term
+5943,Pi-meson therapy,CTV3_Children
+5944,Neutron capture therapy,CTV3_Children
+5945,Fast neutron therapy,CTV3_Children
+5946,Combined heavy particle therapy,CTV3_Children
+594Z.,Heavy particle therapy NOS,CTV3_Children
+595..,Gamma ray and intermediate distance curietherapy,CTV3Map_Code_And_Term
+5951,Gamma-ray telecurie therapy,CTV3_Children
+5952,Intermediate distance curietherapy,CTV3_Children
+5953,Combined teletherapy and intermediate distance curietherapy,CTV3Map_Code_And_Term
+595Z.,Distant gamma therapy NOS,CTV3_Children
+596..,Short distance and contact radiotherapy,CTV3Map_Code_And_Term
+5961,Radium contact therapy,CTV3Map_Code_And_Term
+5962,Beta source contact therapy,CTV3Map_Code_And_Term
+5963,Mould technique gamma/beta,CTV3Map_Code_And_Term
+596Z.,Short distance/contact radiotherapy NOS,CTV3Map_Code_And_Term
+597..,Combined radiotherapy,CTV3Map_Code_And_Term
+5971,External beam with internal radiotherapy,CTV3Map_Code_And_Term
+5972,External beam - surgery with preoperative radiotherapy,CTV3_Children
+5973,External beam - surgery with postoperative radiotherapy,CTV3Map_Code_And_Term
+5974,External beam - surgery with chemotherapy,CTV3Map_Code_And_Term
+5975,External beam with chemotherapy,CTV3Map_Code_And_Term
+597Z.,Combined radiotherapy NOS,CTV3Map_Code_And_Term
+59Z..,External radiotherapy NOS,CTV3Map_Code_And_Term
+5A...,(Radiotherapy - internal) or (other nuclear therapy),CTV3_Children
+5A1..,Internal metabolic radiotherapy,CTV3Map_Code_And_Term
+5A11.,Thyroid gland ablation - irradiation,CTV3Map_Code_And_Term
+5A12.,Thyroid tumour/metastasis irradiation,CTV3Map_Code_And_Term
+5A13.,Bone marrow suppression - irradiation,CTV3Map_Code_And_Term
+5A14.,Polycythaemia irradiation,CTV3Map_Code_And_Term
+5A15.,Bone tumour/metastasis irradiation,CTV3Map_Code_And_Term
+5A16.,Radioactive drug therapy,CTV3Map_Code_And_Term
+5A17.,Combined internal radiotherapy,CTV3Map_Code_And_Term
+5A1Z.,Internal metabolic radiotherapy NOS,CTV3Map_Code_And_Term
+5A2..,Internal radiotherapy - unsealed source,CTV3Map_Code_And_Term
+5A21.,Radiotherapy: infuse skull/brain,CTV3Map_Code_And_Term
+5A22.,Radiotherapy: infuse head/neck,CTV3Map_Code_And_Term
+5A23.,Radiotherapy: infuse pleural cavity,CTV3_Children
+5A24.,Radiotherapy: infuse peritoneal cavity,CTV3_Children
+5A25.,Radiotherapy: endolymphatic infusion,CTV3_Children
+5A26.,Radiotherapy: infuse urinary bladder,CTV3Map_Code_And_Term
+5A27.,Radiotherapy: infuse organ cavity,CTV3Map_Code_And_Term
+5A28.,Radiotherapy: infiltrate tissue,CTV3Map_Code_And_Term
+5A2Z.,Internal unsealed radiotherapy NOS,CTV3Map_Code_And_Term
+5A3..,Internal radiotherapy - permanent seeds,CTV3Map_Code_And_Term
+5A31.,Radiotherapy: seeds into hypophysis,CTV3_Children
+5A32.,Radiotherapy: seeds into brain,CTV3_Children
+5A33.,Radiotherapy: seeds into cavity,CTV3Map_Code_And_Term
+5A3Z.,Radiotherapy: permanent seeds NOS,CTV3Map_Code_And_Term
+5A4..,Radiotherapy implant: [needles] or [therapy],High_Level_SNOMED
+5A41.,Radiotherapy: temporary brain implant,CTV3_Children
+5A42.,Radiotherapy: temporary head/neck implant,CTV3Map_Code_And_Term
+5A43.,Radiotherapy: temporary tongue implant,CTV3_Children
+5A44.,Radiotherapy: temporary thorax implant,CTV3_Children
+5A45.,Radiotherapy: temporary abdominal implant,CTV3Map_Code_And_Term
+5A46.,Radiotherapy: temporary pelvic implant,CTV3Map_Code_And_Term
+5A47.,Radiotherapy: temporary limb implant,CTV3_Children
+5A48.,Radiotherapy: temporary lymphatic implant,CTV3_Children
+5A4Z.,Radiotherapy: temporary implant NOS,CTV3Map_Code_And_Term
+5A5..,Preload cavity radiotherapy - sealed,CTV3_Children
+5A51.,Preload radiotherapy - orbit,CTV3Map_Code_And_Term
+5A52.,Preload radiotherapy - paranasal sinus,CTV3_Children
+5A53.,Preload radiotherapy - nose,CTV3Map_Code_And_Term
+5A54.,Preload radiotherapy - mouth,CTV3_Children
+5A55.,Preload radiotherapy - ear,CTV3_Children
+5A56.,Preload radiotherapy - upper gastrointestinal tract,CTV3_Children
+5A57.,Preload radiotherapy - respiratory organs,CTV3Map_Code_And_Term
+5A58.,Preload radiotherapy - female genital,CTV3Map_Code_And_Term
+5A59.,Preload radiotherapy - urinary system,CTV3Map_Code_And_Term
+5A5A.,Preload radiotherapy - rectum,CTV3_Children
+5A5B.,Preload radioth.- OP cavity,CTV3_Children
+5A5Z.,Preload cavity radiotherapy NOS,CTV3_Children
+5A6..,Afterloading cavity radiotherapy,CTV3_Children
+5A61.,Afterload radiotherapy - head,CTV3_Children
+5A62.,Afterload radiotherapy - upper gastrointestinal tract,CTV3Map_Code_And_Term
+5A63.,Afterload radiotherapy - respiratory system,CTV3_Children
+5A64.,Afterload radiotherapy - female genital,CTV3Map_Code_And_Term
+5A65.,Afterload radiotherapy - urinary,CTV3_Children
+5A66.,Afterload radiotherapy - rectum,CTV3_Children
+5A67.,Afterload radioth.- OP cavity,CTV3_Children
+5A6Z.,Afterload cavity radiotherapy NOS,CTV3_Children
+5A7..,Radiomimetic chemotherapy,CTV3Map_Code_And_Term
+5A71.,Radiochemotherapy: local infiltration,CTV3_Children
+5A72.,Radiochemotherapy: to stop spread,CTV3_Children
+5A73.,Radiochemotherapy: oral route,CTV3Map_Code_And_Term
+5A74.,Radiochemotherapy: IV route,CTV3Map_Code_And_Term
+5A75.,Radiochemotherapy: for immunosuppression,CTV3_Children
+5A76.,Radiochemotherapy: local artery,CTV3_Children
+5A77.,Radiochemotherapy: into cavity,CTV3Map_Code_And_Term
+5A7Z.,Radiochemotherapy NOS,CTV3Map_Code_And_Term
+5A8..,Other radiotherapy misc.,CTV3Map_Code_And_Term
+5A81.,Give radiosensitising drug,CTV3Map_Code_And_Term
+5A82.,Radiosensitising measure,CTV3_Children
+5A83.,Radioprotective drug,CTV3_Children
+5A8Z.,Other radiotherapy NOS,CTV3Map_Code_And_Term
+5AZ..,Other nuclear therapy NOS,CTV3Map_Code_And_Term
+65NZ.,Prophylactic chemotherapy NOS,CTV3_Children
+70462,Intrathecal injection of chemotherapeutic agent,CTV3Map_Code_And_Term
+70522,Radiotherapy to lesion of peripheral nerve,CTV3Map_Code_And_Term
+71011,Implantation of radioactive substance into pituitary gland,CTV3Map_Code_And_Term
+72201,Radiotherapy to lacrimal gland,CTV3Map_Code_And_Term
+72444,Radiotherapy of corneal lesion,CTV3Map_Code_And_Term
+72722,Radiotherapy to lesion of retina,CTV3Map_Code_And_Term
+7D034,Implantation of radioactive substance into vulva,CTV3Map_Code_And_Term
+7D154,Implantation of radioactive substance into vagina,CTV3Map_Code_And_Term
+7E0C0,Introduction of radioactive substance into uterine cavity,CTV3Map_Code_And_Term
+7H2C0,Intraperitoneal administration of radioactive substance,CTV3Map_Code_And_Term
+7M0P.,Introduction removable radioactive material into organ NOC,CTV3Map_Code_And_Term
+7M0P0,Introduction of radioactive caesium into organ NOC,CTV3Map_Code_And_Term
+7M0P1,Introduction of iridium wire into organ NOC,CTV3_Children
+7M0P2,Introduction of radium into organ NOC,CTV3_Children
+7M0Py,Introduction removable radioactive material to organ NOC OS,CTV3Map_Code_And_Term
+7M0Pz,Introduction removable radioactive material to organ NOC NOS,CTV3Map_Code_And_Term
+7M371,Radiotherapy NEC,CTV3Map_Code_And_Term
+863..,Phototherapy &/or radiation therapy,High_Level_SNOMED
+863Z.,Radiation/phototherapy NOS,High_Level_SNOMED
+8BA5.,Oral chemotherapy (& cytotoxic),CTV3_Children
+8BAD0,Cancer chemotherapy,CTV3Map_Code_And_Term
+8BAD1,TB chemotherapy,CTV3_Children
+8H2G.,Admit radiotherapy emergency,CTV3Map_Code_And_Term
+8H3L.,Non-urgent radiotherapy admission,CTV3Map_Code_And_Term
+8H67.,Referred for radiotherapy,CTV3Map_Code_And_Term
+8HB5.,Combined therapy follow-up,High_Level_SNOMED
+8HB7.,Chemotherapy follow-up,High_Level_SNOMED
+8J...,Radiotherapy treatment groups,CTV3Map_Code_And_Term
+8J0..,Brachytherapy,CTV3_Children
+8J1..,Teletherapy,CTV3Map_Code_And_Term
+9N1yC,Seen in radiotherapy clinic,CTV3Map_Code_And_Term
+D2013,Aplastic anaemia due to radiation,CTV3Map_Code_And_Term
+SL07.,Antineoplastic antibiotic poisoning,CTV3Map_Code_And_Term
+SL070,Cactinomycin poisoning,CTV3_Children
+SL073,Daunorubicin poisoning,CTV3_Children
+SL07z,Antineoplastic antibiotic poisoning NOS,CTV3_Children
+TA32.,Overdose of radiation in therapy,CTV3Map_Code_And_Term
+TB121,"Radiotherapy procedure with complication, without blame",CTV3Map_Code_And_Term
+TJ07.,Adverse reaction to antineoplastic antibiotics,CTV3Map_Code_And_Term
+TJ070,Adverse reaction to actinomycin D,CTV3Map_Code_Only
+TJ071,Adverse reaction to bleomycin,CTV3Map_Code_And_Term
+TJ072,Adverse reaction to doxorubicin hydrochloride,CTV3Map_Code_Only
+TJ073,Adverse reaction to mitomycin,CTV3Map_Code_And_Term
+TJ074,Adverse reaction to plicamycin,CTV3Map_Code_Only
+TJ07z,Adverse reaction to antineoplastic antibiotics NOS,CTV3Map_Code_And_Term
+TJ310,Adverse reaction to busulfan,CTV3Map_Code_Only
+TJ311,Adverse reaction to carmustine,CTV3Map_Code_Only
+TJ312,Adverse reaction to chlorambucil,CTV3Map_Code_And_Term
+TJ313,Adverse reaction to cyclophosphamide,CTV3Map_Code_Only
+TJ314,Adverse reaction to estramustine phosphate,CTV3Map_Code_And_Term
+TJ315,Adverse reaction to lomustine,CTV3Map_Code_Only
+TJ316,Adverse reaction to melphalan,CTV3Map_Code_Only
+TJ317,Adverse reaction to chlormethine hydrochloride,CTV3Map_Code_Only
+TJ318,Adverse reaction to thiotepa,CTV3Map_Code_Only
+TJ319,Adverse reaction to treosulphan,CTV3Map_Code_Only
+TJ31A,Adverse reaction to cytarabine,CTV3Map_Code_Only
+TJ31B,Adverse reaction to fluorouracil,CTV3Map_Code_And_Term
+TJ31C,Adverse reaction to mercaptopurine,CTV3Map_Code_Only
+TJ31D,Adverse reaction to methotrexate,CTV3Map_Code_Only
+TJ31E,Adverse reaction to tioguanine,CTV3Map_Code_Only
+TJ31F,Adverse reaction to etoposide,CTV3Map_Code_Only
+TJ31G,Adverse reaction to vinblastine sulphate,CTV3Map_Code_Only
+TJ31H,Adverse reaction to vincristine sulphate,CTV3Map_Code_Only
+TJ31J,Adverse reaction to carboplatin,CTV3Map_Code_And_Term
+TJ31K,Adverse reaction to cisplatin,CTV3Map_Code_Only
+TJ31L,Adverse reaction to hydroxycarbamide,CTV3Map_Code_Only
+TJ31M,Adverse reaction to mitoxantrone,CTV3Map_Code_Only
+TJ31N,Adverse reaction to procarbazine,CTV3Map_Code_Only
+TJ31P,Adverse reaction to razoxane,CTV3Map_Code_Only
+TJ31z,Adverse reaction to antineoplastic/immunosuppress drugs NOS,CTV3Map_Code_Only
+U6031,[X]Antineoplast antimetabs caus adverse eff in therap use,CTV3Map_Code_And_Term
+U6032,[X]Antineoplast natural prod caus adverse eff in therap use,CTV3Map_Code_And_Term
+U6033,[X]Other antineoplast drugs caus adverse eff in therap use,CTV3Map_Code_And_Term
+U6132,[X]Overdose of radiation given during therapy,CTV3Map_Code_And_Term
+Ub0w0,Radiotherapy procedures,CTV3Map_Code_And_Term
+Ub0w2,Superficial X-ray therapy,CTV3_Children
+Ub0w4,Grenz ray therapy,CTV3_Children
+Ub0w5,Orthovoltage X-ray therapy,CTV3_Children
+Ub0w6,Megavoltage X-ray therapy,CTV3_Children
+Ub0w7,Linear accelerator X-ray therapy,CTV3_Children
+Ub0w8,Betatron X-ray therapy,CTV3_Children
+Ub0w9,Microtron X-ray therapy,CTV3_Children
+Ub0wA,Van der Graaff X-ray therapy,CTV3_Children
+Ub0wB,Gamma ray teletherapy,CTV3_Children
+Ub0wC,Caesium 137 teletherapy,CTV3_Children
+Ub0wD,Cobalt 60 teletherapy,CTV3_Children
+Ub0wE,Teletherapy with dual headed cobalt unit,CTV3_Children
+Ub0wF,Stereotactic cobalt teletherapy,CTV3_Children
+Ub0wG,Radium 226 teletherapy,CTV3_Children
+Ub0wH,Teletherapy with radium collar,CTV3_Children
+Ub0wI,Electron teletherapy,CTV3_Children
+Ub0wJ,Linear accelerator electron teletherapy,CTV3_Children
+Ub0wK,Betatron electron teletherapy,CTV3_Children
+Ub0wL,Microtron electron teletherapy,CTV3_Children
+Ub0wM,Strontium 90 electron teletherapy,CTV3_Children
+Ub0wN,Neutron teletherapy,CTV3_Children
+Ub0wO,Cyclotron neutron teletherapy,CTV3_Children
+Ub0wP,Deuterium on tritium neutron teletherapy,CTV3_Children
+Ub0wQ,Hiletron neutron teletherapy,CTV3_Children
+Ub0wR,Proton teletherapy,CTV3_Children
+Ub0wT,Caesium 137 brachytherapy,CTV3_Children
+Ub0wU,Caesium 137 brachytherapy manual loading,CTV3_Children
+Ub0wV,Caesium 137 brachytherapy manual loading Heyman's capsules,CTV3_Children
+Ub0wW,Curietron brachytherapy,CTV3_Children
+Ub0wX,Cobalt 60 brachytherapy,CTV3_Children
+Ub0wY,Cobalt 60 brachytherapy manual loading,CTV3_Children
+Ub0wZ,Cathetron brachytherapy,CTV3_Children
+Ub0wa,Iridium 192 brachytherapy,CTV3_Children
+Ub0wb,Gammamed brachytherapy,CTV3_Children
+Ub0wc,Microselectron brachytherapy,CTV3_Children
+Ub0wd,Selectron brachytherapy,CTV3_Children
+Ub0we,Californium 252 brachytherapy,CTV3_Children
+Ub0wf,Gold 198 brachytherapy,CTV3_Children
+Ub0wg,Iodine 125 brachytherapy,CTV3_Children
+Ub0wh,Phosphorus 32 brachytherapy,CTV3_Children
+Ub0wi,Radium 226 brachytherapy,CTV3_Children
+Ub0wj,Radon 222 brachytherapy,CTV3_Children
+Ub0wk,Ruthenium 106 brachytherapy,CTV3_Children
+Ub0wl,Strontium 90 brachytherapy,CTV3_Children
+Ub0wm,Tantalum 182 brachytherapy,CTV3_Children
+Ub0wn,Yttrium 90 brachytherapy,CTV3_Children
+Ub0wo,Radionuclide therapy,CTV3_Children
+Ub0wp,Yttrium 90 therapy,CTV3_Children
+Ub0wq,Iodine 131 therapy,CTV3Map_Code_Only
+Ub0wr,Phosphorus 32 therapy,CTV3_Children
+Ub0ws,Iodine 131 meta-iodobenzylguanidine therapy,CTV3_Children
+Ub0wt,Strontium 89 therapy,CTV3Map_Code_And_Term
+Ub0wu,Gold 198 therapy,CTV3_Children
+Ub0wv,Radiotherapy planning,CTV3_Children
+Ub0ww,Radiotherapy planning using a free set up,CTV3_Children
+Ub0wx,Radiotherapy planning using a simulator,CTV3_Children
+Ub0wy,Radiotherapy planning using simulator fluoroscopy,CTV3_Children
+Ub0wz,Radiotherapy planning using a simulator X-ray film,CTV3_Children
+Ub0x0,Radiotherapy planning using diagnostic radiology,CTV3_Children
+Ub0x4,Radiotherapy planning using computerised tomography,CTV3_Children
+Ub0x5,Radiotherapy planning using magnetic resonance imaging,CTV3_Children
+Ub0x6,Radiotherapy planning using mould room preparation,CTV3_Children
+Ub0x7,Making of beam direction shell for radiotherapy,CTV3_Children
+Ub0x8,Making of bite block for radiotherapy,CTV3_Children
+Ub0x9,Making of bolus block for radiotherapy,CTV3_Children
+Ub0xA,Making of compensator for radiotherapy,CTV3_Children
+Ub0xB,Making of cut-out for radiotherapy,CTV3_Children
+Ub0xC,Making of docking unit for radiotherapy,CTV3_Children
+Ub0xD,Making of template for radiotherapy,CTV3_Children
+Ub0xE,Making of shielding block for radiotherapy,CTV3_Children
+Ub0xF,Making of surface mould for brachytherapy,CTV3_Children
+Ub0xG,Radiotherapy calculation,CTV3_Children
+Ub0xH,Calculation of teletherapy,CTV3_Children
+Ub0xI,Calculation of teletherapy parameters,CTV3_Children
+Ub0xJ,Outlining for radiotherapy dose calculation,CTV3_Children
+Ub0xK,Calculation of radiotherapy isodose distribution,CTV3_Children
+Ub0xL,Calculation of radiotherapy dose corrections,CTV3_Children
+Ub0xM,Calculation of radiotherapy dose-volume histogram,CTV3_Children
+Ub0xN,Calculation of brachytherapy,CTV3_Children
+Ub0xO,Calculation of radionuclide therapy,CTV3_Children
+Ub1Pe,Pulsed electromagnetic energy therapy,High_Level_SNOMED
+X00Te,Radiotherapy to orbital lesion,High_Level_SNOMED
+X00U8,Radiotherapy to lesion of medial canthus,High_Level_SNOMED
+X00UQ,Radiotherapy to lesion of lateral canthus,High_Level_SNOMED
+X00X9,Radiotherapy to ciliary body,High_Level_SNOMED
+X00Xi,Radiotherapy to retina,High_Level_SNOMED
+X00Y8,Radiotherapy to lesion of choroid,High_Level_SNOMED
+X20by,Bile duct endoluminal radiotherapy,CTV3Map_Code_And_Term
+X71bL,Chemotherapy,CTV3Map_Code_And_Term
+XC0gO,Radioactive iodine therapy,CTV3_Children
+XE0Jb,Intravenous chemotherapy,CTV3Map_Code_And_Term
+XE0Jc,Intramuscular chemotherapy,CTV3Map_Code_And_Term
+XE0Je,Subcutaneous chemotherapy,CTV3Map_Code_And_Term
+XE0hv,Oral chemotherapy,CTV3Map_Code_And_Term
+XE14D,Neutropenia due to irradiation,CTV3Map_Code_And_Term
+XE1Rx,Radioactive drug therapy (& I131),CTV3_Children
+XE1Sk,Prophylactic chemotherapy,CTV3_Children
+XE2r3,Temporary implant radiotherapy,CTV3Map_Code_And_Term
+XE2rh,Other nuclear therapy,CTV3Map_Code_And_Term
+XS90X,Treatment planning for brachytherapy,CTV3_Children
+Xa3yl,Cytotoxic given orally,CTV3Map_Code_And_Term
+Xa3yn,Cytotoxic drug therapy NOS,High_Level_SNOMED
+Xa4sx,Accidental daunorubicin poisoning,CTV3_Children
+Xa4sy,Intentional daunorubicin poisoning,CTV3_Children
+Xa4sz,Daunorubicin poisoning of undetermined intent,CTV3_Children
+Xa7mv,Radiotherapy to lesion of canthus,High_Level_SNOMED
+Xa8SI,Radiotherapy,CTV3Map_Code_And_Term
+Xa97L,Radiotherapy - internal,CTV3Map_Code_And_Term
+XaC0F,Continuous infusion of chemotherapy,CTV3Map_Code_And_Term
+XaC0G,Intramuscular injection of Methotrexate,CTV3_Children
+XaC0H,Intravenous injection of Methotrexate,CTV3_Children
+XaC0n,Diagnostic intravenous injection of Camsilon,CTV3_Children
+XaDn1,X-ray teletherapy,CTV3_Children
+XaDn2,Radiolabelled antibody therapy,CTV3_Children
+XaDok,Caesium 137 brachytherapy remote afterloading,CTV3_Children
+XaDol,Cobalt 60 brachytherapy remote afterloading,CTV3_Children
+XaDor,Iridium 192 brachytherapy remote afterloading,CTV3_Children
+XaDot,Heavy ion teletherapy,CTV3_Children
+XaDp8,Radiotherapy mould room procedure,CTV3_Children
+XaDzO,Intramuscular injection of betamethasone,CTV3_Children
+XaECT,Electromagnetic energy therapy,High_Level_SNOMED
+XaFBN,Palliative course of deep X-ray therapy,CTV3_Children
+XaFBO,Preoperative course of deep X-ray therapy,CTV3_Children
+XaFBP,Postoperative course of deep X-ray therapy,CTV3_Children
+XaFz7,Treatment planning for teletherapy,CTV3_Children
+XaI8k,Ambulatory chemotherapy,CTV3Map_Code_And_Term
+XaIR9,Awaiting radiotherapy,CTV3Map_Code_And_Term
+XaIky,Pre-operative chemotherapy,CTV3Map_Code_And_Term
+XaIkz,Post-operartive chemotherapy,CTV3Map_Code_And_Term
+XaIl6,High dose brachytherapy,CTV3Map_Code_And_Term
+XaImG,Iodine seed radiotherapy,CTV3Map_Code_And_Term
+XaIme,Combined pre-operative chemotherapy and radiotherapy,CTV3Map_Code_And_Term
+XaImf,Combined post-operative chemotherapy and radiotherapy,CTV3Map_Code_And_Term
+XaIpD,Selectron therapy,CTV3Map_Code_And_Term
+XaIpE,Iridium wire therapy,CTV3Map_Code_And_Term
+XaIpe,Stereotactic radiotherapy,CTV3Map_Code_And_Term
+XaJr8,Intramuscular injection of methylprednisolone,CTV3_Children
+XaKwV,Chemotherapy started,CTV3Map_Code_And_Term
+XaL5K,Plaque radiotherapy to lesion of retina,CTV3_Children
+XaLbh,Stereotactic radiosurgery on tissue of brain,CTV3_Children
+XaLdq,Selective internal radiotherapy microspheres lesion of liver,CTV3Map_Code_And_Term
+XaLdr,Percutaneous radiofrequency ablation of lesion of liver,CTV3Map_Code_And_Term
+XaLuJ,External beam radiotherapy to lesion of retina,CTV3Map_Code_And_Term
+XaLyT,Radioactive seed implantation NOC,CTV3Map_Code_And_Term
+XaLyX,Intro radioactive substance org interstit brachytherapy NOC,CTV3Map_Code_And_Term
+XaLzs,Other specified radiotherapy procedures,CTV3Map_Code_And_Term
+XaLzt,Radiotherapy procedures NOS,CTV3_Children
+XaLzu,Delivery fraction complex radiotherapy megavoltage machine,CTV3Map_Code_And_Term
+XaLzv,Delivery fraction simple radiotherapy megavoltage machine,CTV3_Children
+XaLzw,Delivery fraction radiotherapy superficial orthovoltage mach,CTV3Map_Code_And_Term
+XaM2B,Radiotherapy delivery,CTV3Map_Code_And_Term
+XaM2C,Delivery of a fraction of total body irradiation (TBI),CTV3Map_Code_And_Term
+XaM2E,Delivery of a fraction of intracavitary radiotherapy,CTV3Map_Code_And_Term
+XaM2F,Delivery of a fraction of interstitial radiotherapy,CTV3Map_Code_And_Term
+XaM2G,Other specified radiotherapy delivery,CTV3Map_Code_And_Term
+XaM2H,Radiotherapy delivery NOS,CTV3Map_Code_And_Term
+XaM2M,Rad prep ([AND/OR] prep for ext beam rad AND/OR brachythera),CTV3_Children
+XaM2N,Preparation for total body irradiation,CTV3Map_Code_And_Term
+XaM2O,Prep for intracavitary radiotherapy ([AND/OR] brachytherapy),CTV3_Children
+XaM2P,Prep for interstitial radiotherapy ([AND/OR] brachytherapy),CTV3_Children
+XaM2Q,Other spec rad prep ([AND/OR] other spec prep ext beam rad),CTV3_Children
+XaM2R,Radiothp prep NOS ([AND/OR] prep for ext beam radiothp NOS),CTV3_Children
+XaM2S,Radio vol definition ([AND/OR] prep ex beam radio OR brachy),CTV3_Children
+XaM2T,Prep ([AND/OR] vol def radiotherapy imag and IMRT dosimetry),CTV3_Children
+XaM2U,"Prep ([AND/OR] vol def for radioth with imag, dos tech supp)",CTV3_Children
+XaM2V,Prep ([AND/OR] vol def mult phases complx radioth with dosim,CTV3_Children
+XaM2W,Vol def ([AND/OR] prep for simpl radioth with imag dosimtry),CTV3_Children
+XaM2X,Vol defin ([AND/OR] prep) for simp radio imag and simpl calc,CTV3_Children
+XaM2Y,"Prep ([AND/OR] vol de sup deep X-ray, ele megav rad si calc)",CTV3_Children
+XaM2Z,Oth spec rad vol definition ([AND/OR] prep for ext beam rad),CTV3_Children
+XaM2a,Rad vol defin ([AND/OR] prep for externl beam radiother) NOS,CTV3_Children
+XaM49,Chemotherapy delivery,CTV3_Children
+XaM4A,Delivery of chemotherapy for neoplasm,CTV3Map_Code_And_Term
+XaM4B,Del comp chemo neo inc prolong infusion treat first attend,CTV3Map_Code_And_Term
+XaM4C,Deliv complex parenteral chemotherapy neopl first attendance,CTV3_Children
+XaM4D,Deliver simple parenteral chemother neoplas first attendance,CTV3Map_Code_And_Term
+XaM4E,Delivery subsequent element cycle chemotherapy for neoplasm,CTV3_Children
+XaM4F,Other specified delivery of chemotherapy for neoplasm,CTV3Map_Code_And_Term
+XaM4G,Delivery of chemotherapy for neoplasm NOS,CTV3Map_Code_And_Term
+XaM4H,Delivery of oral chemotherapy for neoplasm,CTV3Map_Code_And_Term
+XaM4I,Delivery of exclusively oral chemotherapy for neoplasm,CTV3_Children
+XaM4J,Other specified delivery of oral chemotherapy for neoplasm,CTV3_Children
+XaM4L,Delivery of oral chemotherapy for neoplasm NOS,CTV3Map_Code_And_Term
+XaM4w,Percutaneous radiofrequency ablation of lesion of kidney,CTV3Map_Code_And_Term
+XaMAv,Endoscopic radiofrequency ablation of lesion of prostate,CTV3Map_Code_And_Term
+XaMB1,Transurethral radiofrequency needle ablation of prostate,CTV3Map_Code_And_Term
+XaMOH,Seed implantation into prostate,CTV3_Children
+XaMlE,Percutaneous radiofrequency ablation of lesion of lung,CTV3Map_Code_And_Term
+XaMtr,Delivery of a fraction of external beam radiotherapy NEC,CTV3Map_Code_And_Term
+XaMuE,Oral delivery of radiotherapy for thyroid ablation,CTV3Map_Code_And_Term
+XaMv7,Radioactive seed implantation into prostate,CTV3Map_Code_And_Term
+XaNS5,Radiotherapy to perineum,CTV3_Children
+XaNS6,Radiotherapy to abdomen,CTV3_Children
+XaNS7,Radiotherapy to neck,CTV3_Children
+XaNS8,Radiotherapy to chest wall,CTV3_Children
+XaNSA,Radiotherapy to axilla,CTV3_Children
+XaNSB,Radiotherapy to breast,CTV3_Children
+XaNSC,Radiotherapy to head,CTV3_Children
+XaNSD,Radiotherapy to pelvis,CTV3_Children
+XaNSR,Radiotherapy by body site,CTV3_Children
+XaPt9,Percutaneous radiofrequency ablation of lesion of bone,CTV3Map_Code_And_Term
+XaPuI,Preparation for external beam radiotherapy,CTV3_Children
+XaPuJ,Preparation for intensity modulated radiation therapy,CTV3Map_Code_And_Term
+XaPuL,Preparation for hemi body irradiation,CTV3_Children
+XaPuM,Preparation for simp radiotherapy with imaging and dosimetry,CTV3_Children
+XaPuN,Prep for simple radioth with imaging and simple calculation,CTV3Map_Code_And_Term
+XaPuO,Prepar for superficial radiotherapy with simple calculation,CTV3_Children
+XaPuP,Preparation for complex conformal radiotherapy,CTV3_Children
+XaPuQ,Other specified preparation for external beam radiotherapy,CTV3Map_Code_And_Term
+XaPuR,Preparation for external beam radiotherapy NOS,CTV3Map_Code_And_Term
+XaPuS,Preparation for brachytherapy,CTV3Map_Code_And_Term
+XaPuT,Preparation for intraluminal brachytherapy,CTV3_Children
+XaPuU,Preparation for intracavitary brachytherapy,CTV3Map_Code_And_Term
+XaPuV,Preparation for interstitial brachytherapy,CTV3_Children
+XaPuW,Other specified preparation for brachytherapy,CTV3_Children
+XaPuX,Preparation for brachytherapy NOS,CTV3Map_Code_And_Term
+XaPve,Megavoltage treatment for complex radiotherapy,CTV3Map_Code_And_Term
+XaPvf,Megavoltage treatment for simple radiotherapy,CTV3Map_Code_And_Term
+XaPvg,Superficial or orthovoltage treatment for radiotherapy,CTV3Map_Code_And_Term
+XaPvh,Megavoltage treatment for adaptive radiotherapy,CTV3_Children
+XaPvi,Technical support for preparation for radiotherapy,CTV3_Children
+XaPvj,Other specified support for preparation for radiotherapy,CTV3Map_Code_And_Term
+XaPvk,Support for preparation for radiotherapy NOS,CTV3_Children
+XaPvl,Support for preparation for radiotherapy,CTV3Map_Code_And_Term
+XaPvm,Intro radioactive substance into organ for brachytherapy NOC,CTV3Map_Code_And_Term
+XaPvn,Intro non-remov radioact subst into organ for brachyther NOC,CTV3Map_Code_And_Term
+XaPw8,Delivery of a fraction of intraluminal brachytherapy,CTV3Map_Code_And_Term
+XaVwB,Cancer chemotherapy management plan,CTV3Map_Code_And_Term
+XaZD3,Neoadjuvant chemotherapy,CTV3Map_Code_And_Term
+XaZWZ,Electrochemotherapy,CTV3Map_Code_And_Term
+Xaaqq,Hypofractionated SRT using megavoltage radiation,CTV3_Children
+Xaaw6,High cost chemotherapy drugs,CTV3Map_Code_And_Term
+Xaawm,Pulsed dose rate brachytherapy,CTV3_Children
+Y035e,Radiotherapy to head,CTV3_Children
+Y035f,Radiotherapy to neck,CTV3_Children
+Y036a,Radiotherapy to breast,CTV3_Children
+Y036b,Radiotherapy to axilla,CTV3_Children
+Y036c,Radiotherapy to subclavia,CTV3_Children
+Y036d,Radiotherapy to chest wall,CTV3_Children
+Y036e,Radiotherapy to pelvis,CTV3_Children
+Y036f,Radiotherapy to abdomen,CTV3_Children
+Y037a,Radiotherapy to perineum,CTV3_Children
+Y037b,Radiotherapy to bone,CTV3_Children
+ZV073,[V]Other prophylactic chemotherapy,High_Level_SNOMED
+ZV580,[V]Radiotherapy session,CTV3Map_Code_And_Term
+ZV581,[V]Maintenance chemotherapy,CTV3Map_Code_And_Term
+ZV588,[V]Chemotherapy session for neoplasm,CTV3Map_Code_And_Term
+ZV661,[V]Convalescence after radiotherapy,CTV3Map_Code_And_Term
+ZV672,[V]Chemotherapy follow-up,High_Level_SNOMED
+ZV678,[V]Follow-up examin after chemotherapy for malign neoplasm,High_Level_SNOMED
+ZV679,[V]Follow-up exam aft combined treatment for malig neoplasm,High_Level_SNOMED
+ZV6B1,[V]Follow-up exam after chemotherapy for other conditions,High_Level_SNOMED
+ZVu0C,[X]Follow-up examinat after radiother for other conditions,High_Level_SNOMED
+ZVu0D,[X]Follow-up examinat after chemother for other conditions,High_Level_SNOMED
+ZVu3L,[X]Other chemotherapy,CTV3Map_Code_And_Term
