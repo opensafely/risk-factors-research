@@ -37,28 +37,36 @@ summ age
 tab agegroup
 tab male
 tab bmicat
+tab bmicat, m
 tab smoke
+tab smoke, m
 
 * Comorbidities
-tab resp
+tab chronic_respiratory_disease
 tab asthma
-tab heart
+tab chronic_cardiac_disease
 tab diabetes
+tab lung_cancer
+tab haem_cancer
+tab other_cancer
 tab cancer
-tab liver
-tab neuro_dis
-tab kidney_dis
-tab transplant
+tab chronic_liver_disease
+tab neurological_condition
+tab chronic_kidney_disease
+tab organ_transplant
+tab dysplenia
+tab sickle_cell
 tab spleen
-tab immunosup
-tab hypertension
-tab autoimmune
-tab sle
-tab endocrine
+tab ra_sle_psoriasis
+tab immuno_condition
+
+summ sbp, detail
+summ dbp, detail
 
 * Adjustment variables 
 tab imd 
 *tab ethnicity
+tab ethnicity, m
 *tab urban
 
 
@@ -79,32 +87,34 @@ foreach outvar of varlist died hosp itu {
 *** Repeat for each outcome
 
 	* Demographics
-	tab agegroup 		`outvar', row
-	tab male 			`outvar', row
-	tab bmicat 			`outvar', row
-	tab smoke 			`outvar', row
+	tab agegroup 							`outvar', row
+	tab male 								`outvar', row
+	tab bmicat 								`outvar', row m 
+	tab smoke 								`outvar', row m
 
 	* Comorbidities
-	tab resp 			`outvar', row
-	tab asthma 			`outvar', row
-	tab heart 			`outvar', row
-	tab diabetes 		`outvar', row
-	tab cancer 			`outvar', row
-	tab liver 			`outvar', row
-	tab neuro_dis 		`outvar', row
-	tab kidney_dis 		`outvar', row
-	tab transplant 		`outvar', row
-	tab spleen 			`outvar', row
-	tab immunosup		`outvar', row
-	tab hypertension	`outvar', row
-	tab autoimmune		`outvar', row
-	tab sle				`outvar', row
-	tab endocrine		`outvar', row
-
+	tab chronic_respiratory_disease 		`outvar', row
+	tab asthma 								`outvar', row
+	tab chronic_cardiac_disease 			`outvar', row
+	tab diabetes 							`outvar', row
+	tab lung_cancer 						`outvar', row
+	tab haem_cancer 						`outvar', row
+	tab other_cancer 						`outvar', row
+	tab cancer 								`outvar', row
+	tab chronic_liver_disease 				`outvar', row
+	tab neurological_condition 				`outvar', row
+	tab chronic_kidney_disease 				`outvar', row
+	tab organ_transplant 					`outvar', row
+	tab dysplenia 							`outvar', row
+	tab sickle_cell 						`outvar', row
+	tab spleen 								`outvar', row
+	tab immuno_condition					`outvar', row
+	tab ra_sle_psoriasis					`outvar', row
+	
 	* Adjustment variables 
-	tab imd  			`outvar', row
-	*tab ethnicity 		`outvar', row
-	*tab urban 			`outvar', row
+	tab imd  								`outvar', row
+	*tab ethnicity 							`outvar', row m
+	*tab urban 								`outvar', row
 }
 
 

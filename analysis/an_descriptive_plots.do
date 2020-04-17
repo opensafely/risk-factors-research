@@ -114,13 +114,12 @@ foreach outvar of varlist died hosp itu {
 							ethnicity						///	
 							bmicat 							///
 							obese40 						///
-							smoking_status 					///
+							smoke		 					///
 							currentsmoke 					///
 							chronic_respiratory_disease 	///
 							asthma 							///
 							chronic_cardiac_disease 		///
 							diabetes 						///
-							lung_cancer 					///
 							cancer							///
 							chronic_liver_disease 			///
 							neurological_condition 			///
@@ -135,6 +134,19 @@ foreach outvar of varlist died hosp itu {
 		graph save km_adj_`rf'_`outvar', replace
 	}
 }
+
+
+
+	
+****************************************************************
+*  KM plots for each factor, stratified by sex and binary age  *
+****************************************************************
+
+* TO be added
+
+
+
+
 
 
 		
@@ -153,9 +165,4 @@ foreach outvar of varlist died hosp itu {
 
 
 
-		
-****************************************************************
-*  KM plots for each factor, stratified by sex and binary age  *
-****************************************************************
-
-* TO be added
+	

@@ -50,7 +50,7 @@ assert inlist(sex, "M", "F")
 * BMI 
 * assert inrange(bmi, 10, 200) | bmi==.
 assert inlist(obese40, 0, 1)
-assert inlist(bmicat, 1, 2, 3, 4, 5, 6, .)
+assert inlist(bmicat, 1, 2, 3, 4, 5, 6, .u)
 * IMD
 assert inlist(imd, 1, 2, 3, 4, 5)
 
@@ -68,10 +68,17 @@ assert inlist(currentsmoke, 0, 1)
 *  Cross-check logical relationships  *
 ***************************************
 
-* BMI cat vs bmi
-* Etc. 
 
+* BMI
+bysort bmicat: summ bmi
+tab bmicat obese40, m
 
+* Age
+bysort agegroup: summ age
+tab agegroup age70, m
+
+* Smoking
+tab smoke currentsmoke, m
 
 
 
@@ -85,7 +92,8 @@ summ bmi_date_measured, format
 * Dates of comorbidities  * Add asthma date
 foreach var of varlist 	chronic_respiratory_disease 	///
 						chronic_cardiac_disease 		///
-						diabetes lung_cancer 			///
+						diabetes 						///
+						lung_cancer 					///
 						haem_cancer						///
 						other_cancer 					///
 						bone_marrow_transplant 			///
@@ -94,7 +102,7 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
-						spleen 							///
+						dysplenia						///
 						sickle_cell 					///
 						aplastic_anaemia 				///
 						hiv 							///
@@ -128,8 +136,25 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 * ?any others you can think of where we’d expect certain relationships?
 
 
-
-
+tab chronic_respiratory_disease
+chronic_respiratory_disease 	///
+						chronic_cardiac_disease 		///
+						diabetes lung_cancer 			///
+						haem_cancer						///
+						other_cancer 					///
+						bone_marrow_transplant 			///
+						chemo_radio_therapy 			///
+						chronic_liver_disease 			///
+						neurological_condition 			///
+						chronic_kidney_disease 			///
+						organ_transplant 				///	
+						dysplenia						///
+						sickle_cell 					///
+						aplastic_anaemia 				///
+						hiv 							///
+						genetic_immunodeficiency 		///
+						immunosuppression_nos 			///
+						ra_sle_psoriasis  
 
 
 
