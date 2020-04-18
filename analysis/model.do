@@ -17,6 +17,9 @@ do "cr_create_analysis_dataset.do"
 do "an_checks.do"
 do "an_descriptive_tables.do"
 do "an_descriptive_plots.do"
+
+do "an_tablecontent_PublicationDescriptivesTable.do"
+
 do "an_univariable_cox_models.do"
 *do "an_multivariable_cox_models.do"
 

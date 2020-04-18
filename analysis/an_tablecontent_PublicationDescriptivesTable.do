@@ -62,13 +62,8 @@ cap file close tablecontent
 file open tablecontent using ./output/an_tablecontent_PublicationDescriptivesTable.txt, write text replace
 
 
-***********************************
 use egdata,clear
-*!!!!TEMPORARY
-*ADDING DUMMY BP VAR
-gen bpcat = floor(5*(uniform()))
-replace bpcat = .u if bpcat==0
-***********************************
+
 
 gen byte cons=1
 tabulatevariable, variable(cons) min(1) max(1) 
