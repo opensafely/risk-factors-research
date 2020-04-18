@@ -93,7 +93,20 @@ file write tablecontent _n _n
 file write tablecontent _n 
 
 **COMORBIDITIES
-foreach comorb of varlist chronic_respiratory_disease asthma chronic_cardiac_disease diabetes cancer chronic_liver_disease neurological_condition chronic_kidney_disease organ_transplant spleen ra_sle_psoriasis {
+foreach comorb of varlist 	chronic_respiratory_disease 	///
+							asthma 							///
+							chronic_cardiac_disease 		///
+							diabetes 						///
+							cancer /*nb update*/			///
+							chronic_liver_disease 			///
+							neurological_condition 			///
+							chronic_kidney_disease 			///
+							organ_transplant 				///
+							spleen 							///
+							ra_sle_psoriasis 				///
+							/*endocrine?*/					///
+							/*immunosuppression?*/			///
+							{
 generaterow, variable(`comorb') condition("==1")
 generaterow, variable(`comorb') condition("==0")
 file write tablecontent _n
