@@ -4,7 +4,7 @@
 *
 *	Project:		Risk factors for poor outcomes in Covid-19
 *
-*	Programmed by:	Elizabeth Williamson
+*	Programmed by:	Fizz & Krishnan
 *
 *	Data used:		egdata.dta
 *
@@ -27,105 +27,69 @@ capture log close
 log using "an_univariable_cox_models", text replace
 
 use egdata, clear
+************************************************************************************************************
+*!!!! TEMP FIX FOR DODGY DUMMY DATA 
+noi di in red _n "*************************************************************************************" ///
+	_n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE" ///
+	_n "*************************************************************************************"
+by patient_id: keep if _n==1
+replace chronic_kidney_disease=1 if uniform()<0.01
+replace neurological_condition=1 if uniform()<0.01
+************************************************************************************************************
+
+************************************
+*Get composite outcome (nb this may be better added to cr_...;)
+gen stime_composite = min(stime_itu, stime_died)
+gen composite = (died|itu)
+************************************
+
 
 *****************
 *  Age and sex  *
 *****************
 
 
-/* Death  */
+foreach outcome of any hosp died itu composite{
 
-stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id) 
+	stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
-* Cox model for age
-stcox age1 age2 age3 male, strata(stp) 
-est store base
-estat ic
+	* Cox model for age
+	stcox age1 age2 age3 i.male, strata(stp) 
+	estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_, replace
+	est store base
+	estat ic
 
-stcox i.agegroup male, strata(stp) 
-estat ic
+	stcox i.agegroup i.male, strata(stp) 
+	estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_`var', replace
+	estat ic
+	
+	foreach var of varlist 	bmicat 							///
+							smoke 							///
+							ethnicity 						///
+							imd 							///
+							bpcat 							///
+							chronic_respiratory_disease 	///
+							asthma 							///
+							chronic_cardiac_disease 		///
+							diabetes 						///
+							cancer 	/*NB UPDATE*/			///
+							chronic_liver_disease 			///
+							neurological_condition 			///
+							chronic_kidney_disease 			///
+							organ_transplant 				///
+							spleen ra_sle_psoriasis  		///
+							/*endocrine?*/					///
+							/*immunosuppression?*/			///
+							{
+		local b
+		if "`var'"=="bmicat" local b "b2"
+		stcox age1 age2 age3 male i`b'.`var', strata(stp) 
+		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`var', replace
+		} /*end of looping round vars for 1 var at a time models*/
 
-
-
-/* ITU  */
-
-stset stime_itu, fail(itu) enter(enter_date) origin(enter_date) id(patient_id) 
-
-* Cox model for age
-stcox age1 age2 age3 male, strata(stp) 
-est store base
-estat ic
-
-stcox i.agegroup male, strata(stp) 
-estat ic
-
-
-
-
-
-*********************************
-*  Age, sex, IMD and ethnicity  *
-*********************************
-/*
-
-/* Death  */
-
-stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id) 
-
-* Cox model for age
-stcox age1 age2 age3 male, strata(stp) 
-est store base
-estat ic
-
-stcox i.agegroup male, strata(stp) 
-estat ic
+} /*end of looping round outcomes*/
 
 
-
-/* ITU  */
-
-stset stime_itu, fail(itu) enter(enter_date) origin(enter_date) id(patient_id) 
-
-* Cox model for age
-stcox age1 age2 age3 male, strata(stp) 
-est store base
-estat ic
-
-stcox i.agegroup male, strata(stp) 
-estat ic
-
-*/
-
-
-
-
-************************
-*  Other risk factors  *
-************************
-
-* To be added
-/*
-
-
-chronic_respiratory_disease 	///
-						chronic_cardiac_disease 		///
-						diabetes lung_cancer 			///
-						haem_cancer						///
-						other_cancer 					///
-						bone_marrow_transplant 			///
-						chemo_radio_therapy 			///
-						chronic_liver_disease 			///
-						neurological_condition 			///
-						chronic_kidney_disease 			///
-						organ_transplant 				///	
-						spleen 							///
-						sickle_cell 					///
-						aplastic_anaemia 				///
-						hiv 							///
-						genetic_immunodeficiency 		///
-						immunosuppression_nos 			///
-						ra_sle_psoriasis 
-*/
 
 
 * Close log file
