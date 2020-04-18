@@ -1,5 +1,6 @@
 import delimited `c(pwd)'/analysis/input.csv
 
+
 set more off
 cd  `c(pwd)'/analysis
 
@@ -21,6 +22,8 @@ do "an_descriptive_plots.do"
 do "an_tablecontent_PublicationDescriptivesTable.do"
 
 do "an_univariable_cox_models.do"
-*do "an_multivariable_cox_models.do"
+do "an_multivariable_cox_models.do"
+
+do "an_tablecontent_HRtable.do"
 
 
