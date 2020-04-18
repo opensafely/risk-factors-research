@@ -50,7 +50,8 @@ gen composite = (died|itu)
 *  Multivariable Cox models  *
 ******************************
 
-*DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+*************************************************************************************
+*PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
 	syntax , age(string) bmi(string) [ethnicity(real 0)] 
@@ -80,19 +81,19 @@ prog define basecoxmodel
 			/*immunosuppression?*/			///
 			, strata(stp)
 end
-
+*************************************************************************************
 
 
 foreach outcome of any hosp died itu composite{
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
-*Age spline model
+*Age spline model (not adj ethnicity)
 basecoxmodel, age("age1 age2 age3")  bmi("ib2.bmicat") ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 estat concordance /*c-statistic*/
 	
-*Age group model
+*Age group model (not adj ethnicity)
 basecoxmodel, age("i.agegroup")  bmi("ib2.bmicat") ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
 estat concordance /*c-statistic*/

@@ -77,12 +77,13 @@ foreach outcome of any hosp died itu composite{
 							neurological_condition 			///
 							chronic_kidney_disease 			///
 							organ_transplant 				///
-							spleen ra_sle_psoriasis  		///
+							spleen							/// 
+							ra_sle_psoriasis  				///
 							/*endocrine?*/					///
 							/*immunosuppression?*/			///
 							{
 		local b
-		if "`var'"=="bmicat" local b "b2"
+		if "`var'"=="bmicat" local b "b2" /*group 2 is the baseline for BMI, baseline for all others is lowest level*/
 		stcox age1 age2 age3 male i`b'.`var', strata(stp) 
 		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`var', replace
 		} /*end of looping round vars for 1 var at a time models*/

@@ -14,7 +14,8 @@
 
 
 
-****************************************************
+***********************************************************************************************************************
+*Generic code to ouput the HRs across outcomes for all levels of a particular variables, in the right shape for table
 cap prog drop outputHRsforvar
 prog define outputHRsforvar
 syntax, variable(varname) min(real) max(real) 
@@ -60,12 +61,15 @@ local endwith "_tab"
 } /*variable levels*/
 
 end
-****************************************************
+***********************************************************************************************************************
+*Generic code to do a row of "ref category"
 cap prog drop refline
 prog define refline
 file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
 end
-****************************************************
+***********************************************************************************************************************
+
+*MAIN CODE TO PRODUCE TABLE CONTENTS
 
 cap file close tablecontents
 file open tablecontents using ./output/an_tablecontents_HRtable.txt, t w replace 
