@@ -82,7 +82,14 @@ diastolic_blood_pressure_codes = codelist(["246A."], system="ctv3")
 
 study = StudyDefinition(
     # This line defines the study population
-    population=patients.all(), ########################### CHANGE FOR REAL DATA ANALYSIS ###########################
+    population=patients.registered_with_one_practice_between(
+        "2019-02-01", "2020-02-01"
+    ),
+
+    # Outcomes
+    icu=patients.admitted_to_icu(
+        on_or_after="2020-02-01", include_day=True, include_admission_date=True
+    ),
 
     # The rest of the lines define the covariates with associated GitHub issues
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/33
