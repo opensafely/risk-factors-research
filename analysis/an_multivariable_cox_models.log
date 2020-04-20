@@ -1,22 +1,29 @@
-----------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Github\opencorona-risk-factors-research\analysis\an_multivariable_cox_models.log
+       log:  /home/app/notebook/analysis/an_multivariable_cox_models.log
   log type:  text
- opened on:  18 Apr 2020, 18:22:17
+ opened on:  19 Apr 2020, 17:39:21
 
 . 
 . use egdata, clear
 (Poor factors dummy analysis dataset)
 
-. ************************************************************************************************************
+. *****************************************************************************
+> *******************************
 . *!!!! TEMP FIX FOR DODGY DUMMY DATA 
-. noi di in red _n "*************************************************************************************" ///
->         _n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE" ///
->         _n "*************************************************************************************"
+. noi di in red _n "***********************************************************
+> **************************" ///
+>         _n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE
+>  BEFORE RUNNING LIVE" ///
+>         _n "*****************************************************************
+> ********************"
 
-*************************************************************************************
-NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE
-*************************************************************************************
+*******************************************************************************
+> ******
+NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNIN
+> G LIVE
+*******************************************************************************
+> ******
 
 . by patient_id: keep if _n==1
 (32,697 observations deleted)
@@ -27,7 +34,8 @@ NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING
 . replace neurological_condition=1 if uniform()<0.01
 (1,106 real changes made)
 
-. ************************************************************************************************************
+. *****************************************************************************
+> *******************************
 . 
 . ************************************
 . *Get composite outcome (nb this may be better added to cr_...;)
@@ -42,7 +50,10 @@ NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING
 . *  Multivariable Cox models  *
 . ******************************
 . 
-. *DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. *****************************************************************************
+> ********
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ET
+> HNICITY:
 . cap prog drop basecoxmodel
 
 . prog define basecoxmodel
@@ -52,48 +63,62 @@ NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING
   3.         else local ethnicity
   4. 
 .         stcox   `age'                                                   ///
->                         i.male                                                  ///
->                         `bmi'                                                   ///
->                         i.smoke                                                 ///
->                         `ethnicity'                                             ///
->                         i.imd                                                   ///
->                         i.bpcat                                                 ///
+>                         i.male                                               
+>    ///
+>                         `bmi'                                                
+>    ///
+>                         i.smoke                                              
+>    ///
+>                         `ethnicity'                                          
+>    ///
+>                         i.imd                                                
+>    ///
+>                         i.bpcat                                              
+>    ///
 >                         i.chronic_respiratory_disease   ///
->                         i.asthma                                                ///
+>                         i.asthma                                             
+>    ///
 >                         i.chronic_cardiac_disease               ///
->                         i.diabetes                                              ///
+>                         i.diabetes                                           
+>    ///
 >                         i.cancer        /*NB UPDATE*/           ///
 >                         i.chronic_liver_disease                 ///
 >                         i.neurological_condition                ///
 >                         i.chronic_kidney_disease                ///
 >                         i.organ_transplant                              ///
->                         i.spleen                                                ///
+>                         i.spleen                                             
+>    ///
 >                         i.ra_sle_psoriasis                      ///
 >                         /*endocrine?*/                                  ///
 >                         /*immunosuppression?*/                  ///
 >                         , strata(stp)
   5. end
 
-. 
+. *****************************************************************************
+> ********
 . 
 . 
 . foreach outcome of any hosp died itu composite{
   2. 
-. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) i
+> d(patient_id) 
   3. 
-. *Age spline model
+. *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  bmi("ib2.bmicat") ethnicity(0)
-  4. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+  4. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFU
+> LLYADJMODEL_agespline_bmicat_noeth, replace
   5. estat concordance /*c-statistic*/
   6.         
-. *Age group model
+. *Age group model (not adj ethnicity)
 . basecoxmodel, age("i.agegroup")  bmi("ib2.bmicat") ethnicity(0)
-  7. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
+  7. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFU
+> LLYADJMODEL_agegroup_bmicat_noeth, replace
   8. estat concordance /*c-statistic*/
   9. 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3")  bmi("ib2.bmicat") ethnicity(1)
- 10. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+ 10. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFU
+> LLYADJMODEL_agespline_bmicat_CCeth, replace
  11. estat concordance /*c-statistic*/
  12.  
 . 
@@ -105,21 +130,31 @@ NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING
 . *stbrier, bt(60) efron
 . 
 . /*
-> stbrier age1 age2 age3 male i.bmicat i.smoke                                                    ///
->                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
->                 transplant spleen immunosup hypertension autoimmune sle                 ///
->                 endocrine                                                                                                               ///
->                 , shared(stp) bt(60)                                                                                    ///
->                 ipcw(age1 age2 age3 male i.bmicat i.smoke                                               ///
->                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
->                 transplant spleen immunosup hypertension autoimmune sle                 ///
+> stbrier age1 age2 age3 male i.bmicat i.smoke                                 
+>                    ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis 
+>    ///
+>                 transplant spleen immunosup hypertension autoimmune sle      
+>            ///
+>                 endocrine                                                    
+>                                                            ///
+>                 , shared(stp) bt(60)                                         
+>                                            ///
+>                 ipcw(age1 age2 age3 male i.bmicat i.smoke                    
+>                            ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis 
+>    ///
+>                 transplant spleen immunosup hypertension autoimmune sle      
+>            ///
 >                 endocrine)
 > */
 . 
 . * Simple model just to try:
 . /*
-> stbrier age1 age2 age3 male                                                                                     ///
->                 , shared(stp) bt(60)                                                                                    ///
+> stbrier age1 age2 age3 male                                                  
+>                                    ///
+>                 , shared(stp) bt(60)                                         
+>                                            ///
 >                 ipcw(age1 age2 age3 male)
 > */
 . ************************************************************************
@@ -140,8 +175,8 @@ obs. time interval:  (stime_hosp[_n-1], stime_hosp]
 ------------------------------------------------------------------------------
     108,813  observations remaining, representing
     108,813  subjects
-     21,477  failures in single-failure-per-subject data
-  5,856,693  total analysis time at risk and under observation
+     21,575  failures in single-failure-per-subject data
+  5,857,018  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        64
@@ -152,67 +187,67 @@ obs. time interval:  (stime_hosp[_n-1], stime_hosp]
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -104223.81
-Iteration 1:   log likelihood = -104215.44
-Iteration 2:   log likelihood = -104215.34
-Iteration 3:   log likelihood = -104215.33
-Iteration 4:   log likelihood = -104215.33
+Iteration 0:   log likelihood = -104688.16
+Iteration 1:   log likelihood = -104677.93
+Iteration 2:   log likelihood = -104677.28
+Iteration 3:   log likelihood = -104677.26
+Iteration 4:   log likelihood = -104677.26
 Refining estimates:
-Iteration 0:   log likelihood = -104215.33
+Iteration 0:   log likelihood = -104677.26
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =       14,233
-Time at risk    =  3845898.016
-                                                LR chi2(29)      =       16.95
-Log likelihood  =   -104215.33                  Prob > chi2      =      0.9629
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =       14,297
+Time at risk    =  3841578.227
+                                                LR chi2(29)      =       21.80
+Log likelihood  =   -104677.26                  Prob > chi2      =      0.8286
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9976014   .0024674    -0.97   0.332     .9927771    1.002449
-                         age2 |    1.01111   .0074421     1.50   0.133     .9966288    1.025802
-                         age3 |   .9502215   .0279974    -1.73   0.083      .896902    1.006711
-                       1.male |    .984968   .0189948    -0.79   0.432     .9484336     1.02291
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.013928   .0348746     0.40   0.688     .9478286    1.084638
-        Overweight (25-29.9)  |   1.005575   .0278587     0.20   0.841      .952429    1.061687
-           Obese I (30-34.9)  |   1.029862   .0284028     1.07   0.286     .9756714    1.087063
-          Obese II (35-39.9)  |   1.019686   .0289992     0.69   0.493     .9644037    1.078137
-             Obese III (40+)  |   1.022323   .0267649     0.84   0.399     .9711874     1.07615
-                              |
-                        smoke |
-                      Former  |   .9873002   .0186033    -0.68   0.498     .9515035    1.024444
-                     Current  |   .9788442   .0236136    -0.89   0.375     .9336395    1.026237
-                              |
-                          imd |
-                           2  |   1.029078   .0330752     0.89   0.373     .9662511    1.095989
-                           3  |   1.025699   .0364798     0.71   0.476     .9566354    1.099749
-                           4  |   1.021109   .0339397     0.63   0.530     .9567084    1.089844
-                           5  |   .9978347   .0341834    -0.06   0.950     .9330363    1.067133
-                              |
-                        bpcat |
-                    Elevated  |   .9869432   .0324607    -0.40   0.689     .9253286     1.05266
-               High, stage I  |    1.01276   .0212913     0.60   0.546     .9718781    1.055362
-              High, stage II  |   1.029202   .0218113     1.36   0.174     .9873286    1.072852
-                              |
-1.chronic_respiratory_disease |    1.06934   .1340461     0.53   0.593     .8364008    1.367154
-                     1.asthma |   1.195783    .399912     0.53   0.593     .6208416    2.303161
-    1.chronic_cardiac_disease |   .9474512   .0524705    -0.97   0.330     .8499957     1.05608
-                   1.diabetes |   .9893835   .0332979    -0.32   0.751     .9262268    1.056847
-                     1.cancer |    .955861   .0941134    -0.46   0.647     .7881085     1.15932
-      1.chronic_liver_disease |   1.067806   .1251857     0.56   0.576     .8485951    1.343644
-     1.neurological_condition |   1.044997   .0852565     0.54   0.590     .8905725    1.226198
-     1.chronic_kidney_disease |   1.023134   .0840353     0.28   0.781     .8710014    1.201838
-           1.organ_transplant |   1.781177   .8930731     1.15   0.250     .6666822    4.758775
-                     1.spleen |   1.104963   .0787076     1.40   0.161     .9609827    1.270514
-           1.ra_sle_psoriasis |   .9648919   .1017525    -0.34   0.735     .7847212    1.186429
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9983197   .0024462    -0.69   0.493     .9935367    1.003126
+        age2 |   1.001688   .0073094     0.23   0.817     .9874634    1.016117
+        age3 |   1.002081   .0292625     0.07   0.943     .9463376    1.061107
+      1.male |   .9793112   .0188086    -1.09   0.276     .9431323    1.016878
+             |
+      bmicat |
+Underwei..)  |   1.038541   .0352872     1.11   0.266     .9716323    1.110058
+Overweig..)  |   .9928394   .0274367    -0.26   0.795     .9404948    1.048097
+Obese I ..)  |   1.007189   .0278044     0.26   0.795     .9541412    1.063186
+Obese II..)  |   1.030341   .0290865     1.06   0.290     .9748809    1.088956
+Obese II..)  |   1.004268   .0262801     0.16   0.871     .9540582    1.057119
+             |
+       smoke |
+     Former  |   .9991982   .0188244    -0.04   0.966      .962976    1.036783
+    Current  |   .9951168   .0239386    -0.20   0.839     .9492869    1.043159
+             |
+         imd |
+          2  |   1.002325   .0319857     0.07   0.942      .941554    1.067017
+          3  |   .9989034   .0353413    -0.03   0.975     .9319827    1.070629
+          4  |   .9931396   .0328092    -0.21   0.835     .9308724    1.059572
+          5  |   .9944916   .0337281    -0.16   0.871     .9305348    1.062844
+             |
+       bpcat |
+   Elevated  |    1.00346   .0328959     0.11   0.916     .9410129    1.070051
+High, sta..  |   1.017979   .0213472     0.85   0.395     .9769878    1.060691
+High, sta..  |   1.030626   .0218016     1.43   0.154     .9887696    1.074255
+             |
+1.chronic_.. |   1.042861   .1367409     0.32   0.749     .8065214    1.348456
+    1.asthma |   .7760197   .2750843    -0.72   0.474     .3873806     1.55456
+1.~c_disease |   .9665017   .0521478    -0.63   0.528     .8695125     1.07431
+  1.diabetes |   1.083073   .0354183     2.44   0.015     1.015833    1.154765
+    1.cancer |   1.016345    .098629     0.17   0.867     .8403068    1.229261
+1.~r_disease |   .9080084   .1050332    -0.83   0.404     .7238153    1.139074
+1.neurolog~n |   .9453612   .0811967    -0.65   0.513     .7988927    1.118683
+1.chronic_.. |   .9903561   .0863193    -0.11   0.911     .8348352    1.174849
+1.organ_tr~t |   2.308365   .9447396     2.04   0.041     1.034987    5.148419
+    1.spleen |   .9599108   .0671681    -0.58   0.559     .8368923    1.101012
+1.ra_sle_p~s |   1.145963   .1125745     1.39   0.165     .9452621    1.389278
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agesplin
+> e_bmicat_noeth.ster saved
 
          failure _d:  hosp
    analysis time _t:  (stime_hosp-origin)
@@ -222,8 +257,8 @@ file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5096
-                            Somers' D =   0.0193
+                          Harrell's C =   0.5095
+                            Somers' D =   0.0191
 
          failure _d:  hosp
    analysis time _t:  (stime_hosp-origin)
@@ -231,71 +266,71 @@ file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -104223.81
-Iteration 1:   log likelihood =  -104214.2
-Iteration 2:   log likelihood =  -104214.1
-Iteration 3:   log likelihood =  -104214.1
-Iteration 4:   log likelihood =  -104214.1
+Iteration 0:   log likelihood = -104688.16
+Iteration 1:   log likelihood = -104677.66
+Iteration 2:   log likelihood = -104677.02
+Iteration 3:   log likelihood =    -104677
+Iteration 4:   log likelihood =    -104677
 Refining estimates:
-Iteration 0:   log likelihood =  -104214.1
+Iteration 0:   log likelihood =    -104677
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =       14,233
-Time at risk    =  3845898.016
-                                                LR chi2(31)      =       19.43
-Log likelihood  =    -104214.1                  Prob > chi2      =      0.9473
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =       14,297
+Time at risk    =  3841578.227
+                                                LR chi2(31)      =       22.33
+Log likelihood  =      -104677                  Prob > chi2      =      0.8724
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                     agegroup |
-                      40-<50  |   .9980297   .0314429    -0.06   0.950     .9382669    1.061599
-                      50-<60  |   1.031278   .0318267     1.00   0.318     .9707481    1.095583
-                      60-<70  |   1.020061   .0342699     0.59   0.554     .9550566    1.089489
-                      70-<80  |   1.068115   .0366137     1.92   0.055     .9987106    1.142342
-                         80+  |   .9832265   .0281139    -0.59   0.554     .9296398    1.039902
-                              |
-                       1.male |   .9832297   .0190034    -0.88   0.382     .9466804     1.02119
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.013571   .0348648     0.39   0.695     .9474896    1.084261
-        Overweight (25-29.9)  |   1.005437   .0278554     0.20   0.845     .9522968    1.061542
-           Obese I (30-34.9)  |   1.029812   .0284016     1.07   0.287     .9756238     1.08701
-          Obese II (35-39.9)  |   1.019704   .0290004     0.69   0.493     .9644195    1.078158
-             Obese III (40+)  |    1.02226   .0267632     0.84   0.400     .9711278    1.076084
-                              |
-                        smoke |
-                      Former  |   .9872285   .0186023    -0.68   0.495     .9514338     1.02437
-                     Current  |   .9791087   .0236211    -0.88   0.382     .9338898    1.026517
-                              |
-                          imd |
-                           2  |   1.029069   .0330763     0.89   0.373     .9662409    1.095983
-                           3  |   1.024972   .0364522     0.69   0.488     .9559603    1.098966
-                           4  |   1.026556    .034403     0.78   0.434     .9612937    1.096248
-                           5  |   .9972411   .0341609    -0.08   0.936     .9324851    1.066494
-                              |
-                        bpcat |
-                    Elevated  |   .9870316   .0324648    -0.40   0.691     .9254094    1.052757
-               High, stage I  |   1.012605   .0212885     0.60   0.551     .9717284    1.055202
-              High, stage II  |   1.028959   .0218071     1.35   0.178     .9870933      1.0726
-                              |
-1.chronic_respiratory_disease |   1.069295   .1340343     0.53   0.593      .836375    1.367081
-                     1.asthma |   1.197521   .4005073     0.54   0.590     .6217292    2.306561
-    1.chronic_cardiac_disease |   .9486182   .0524961    -0.95   0.340     .8511113    1.057296
-                   1.diabetes |   .9863931   .0331874    -0.41   0.684     .9234453    1.053632
-                     1.cancer |   .9551462   .0938478    -0.47   0.640     .7878347    1.157989
-      1.chronic_liver_disease |   1.092783   .1256758     0.77   0.440     .8722508    1.369073
-     1.neurological_condition |    1.04443   .0852162     0.53   0.594     .8900799    1.225547
-     1.chronic_kidney_disease |   1.023169   .0840401     0.28   0.780     .8710284    1.201884
-           1.organ_transplant |   1.774789   .8898555     1.14   0.253     .6643018    4.741631
-                     1.spleen |   1.100779   .0811755     1.30   0.193     .9526412    1.271952
-           1.ra_sle_psoriasis |   .9635054   .1016075    -0.35   0.724     .7835915    1.184728
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     40-<50  |   .9472213   .0297087    -1.73   0.084      .890747    1.007276
+     50-<60  |    .974425   .0300718    -0.84   0.401     .9172325    1.035184
+     60-<70  |    .982994   .0326156    -0.52   0.605     .9211028    1.049044
+     70-<80  |   .9673312   .0335707    -0.96   0.339     .9037217    1.035418
+        80+  |   .9945737    .027993    -0.19   0.847     .9411944     1.05098
+             |
+      1.male |   .9786993   .0188455    -1.12   0.264     .9424512    1.016342
+             |
+      bmicat |
+Underwei..)  |   1.038823   .0352975     1.12   0.262     .9718945    1.110361
+Overweig..)  |   .9928824   .0274379    -0.26   0.796     .9405356    1.048143
+Obese I ..)  |   1.007344   .0278091     0.27   0.791     .9542875    1.063351
+Obese II..)  |   1.030361   .0290872     1.06   0.289        .9749    1.088978
+Obese II..)  |   1.004394   .0262837     0.17   0.867     .9541779    1.057253
+             |
+       smoke |
+     Former  |   .9993038   .0188267    -0.04   0.971     .9630771    1.036893
+    Current  |   .9952256    .023942    -0.20   0.842     .9493893    1.043275
+             |
+         imd |
+          2  |   1.002387   .0319883     0.07   0.940     .9416119    1.067086
+          3  |   .9993361   .0353606    -0.02   0.985     .9323792    1.071101
+          4  |    .996056   .0332042    -0.12   0.906     .9330575    1.063308
+          5  |   .9945786   .0337308    -0.16   0.873     .9306168    1.062936
+             |
+       bpcat |
+   Elevated  |   1.002941   .0328816     0.09   0.929     .9405207    1.069503
+High, sta..  |   1.017918   .0213464     0.85   0.397     .9769278    1.060628
+High, sta..  |   1.030363    .021797     1.41   0.157     .9885155    1.073983
+             |
+1.chronic_.. |    1.04219   .1366554     0.32   0.753     .8059989    1.347594
+    1.asthma |     .77416   .2744331    -0.72   0.470     .3864444    1.550867
+1.~c_disease |   .9659934   .0521187    -0.64   0.521     .8690583    1.073741
+  1.diabetes |   1.083482    .035407     2.45   0.014     1.016261    1.155149
+    1.cancer |   1.016184   .0986083     0.17   0.869     .8401822    1.229054
+1.~r_disease |   .9107798    .103614    -0.82   0.411     .7287478    1.138281
+1.neurolog~n |   .9462244   .0812725    -0.64   0.520     .7996193    1.119709
+1.chronic_.. |    .989828   .0862756    -0.12   0.907     .8343862    1.174228
+1.organ_tr~t |   2.294668   .9392649     2.03   0.042     1.028731    5.118444
+    1.spleen |    .949093   .0688247    -0.72   0.471     .8233468    1.094044
+1.ra_sle_p~s |   1.144489   .1124342     1.37   0.170     .9440387    1.387501
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agegroup
+> _bmicat_noeth.ster saved
 
          failure _d:  hosp
    analysis time _t:  (stime_hosp-origin)
@@ -305,8 +340,8 @@ file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agegroup_
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5100
-                            Somers' D =   0.0200
+                          Harrell's C =   0.5094
+                            Somers' D =   0.0187
 
          failure _d:  hosp
    analysis time _t:  (stime_hosp-origin)
@@ -314,72 +349,73 @@ file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agegroup_
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -57780.974
-Iteration 1:   log likelihood = -57767.197
-Iteration 2:   log likelihood = -57767.192
-Iteration 3:   log likelihood = -57767.192
+Iteration 0:   log likelihood = -57572.811
+Iteration 1:   log likelihood =  -57562.78
+Iteration 2:   log likelihood = -57562.327
+Iteration 3:   log likelihood = -57562.312
+Iteration 4:   log likelihood = -57562.312
 Refining estimates:
-Iteration 0:   log likelihood = -57767.192
+Iteration 0:   log likelihood = -57562.312
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       42,259                  Number of obs    =      42,259
-No. of failures =        8,501
-Time at risk    =  2271936.928
-                                                LR chi2(33)      =       27.57
-Log likelihood  =   -57767.192                  Prob > chi2      =      0.7345
+No. of subjects =       42,075                  Number of obs    =      42,075
+No. of failures =        8,474
+Time at risk    =  2264337.717
+                                                LR chi2(33)      =       21.00
+Log likelihood  =   -57562.312                  Prob > chi2      =      0.9477
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9991143   .0032063    -0.28   0.782     .9928499    1.005418
-                         age2 |    1.00932   .0096321     0.97   0.331     .9906169    1.028376
-                         age3 |    .951997   .0363671    -1.29   0.198     .8833219    1.026011
-                       1.male |   .9818406   .0245278    -0.73   0.463      .934925    1.031111
-                              |
-                       bmicat |
-         Underweight (<18.5)  |    1.03378   .0455032     0.75   0.450     .9483337    1.126924
-        Overweight (25-29.9)  |    .988689   .0354362    -0.32   0.751     .9216186     1.06064
-           Obese I (30-34.9)  |   1.005257    .036068     0.15   0.884     .9369937    1.078494
-          Obese II (35-39.9)  |   .9937436   .0366975    -0.17   0.865      .924359    1.068336
-             Obese III (40+)  |   1.049817   .0354214     1.44   0.150     .9826381    1.121589
-                              |
-                        smoke |
-                      Former  |   1.011407   .0246725     0.46   0.642     .9641879    1.060939
-                     Current  |   .9695783   .0304944    -0.98   0.326     .9116153    1.031227
-                              |
-                    ethnicity |
-                       Black  |   1.047652   .0279729     1.74   0.081     .9942358    1.103938
-                       Asian  |   .9754372   .0377095    -0.64   0.520     .9042585    1.052219
-                       Mixed  |   .9976227   .0402463    -0.06   0.953     .9217793    1.079706
-                       Other  |   .9776829   .0413291    -0.53   0.593     .8999442    1.062137
-                              |
-                          imd |
-                           2  |   1.025951    .042396     0.62   0.535     .9461324    1.112503
-                           3  |    1.00309   .0463139     0.07   0.947     .9163022    1.098097
-                           4  |   1.030824   .0440949     0.71   0.478     .9479237    1.120975
-                           5  |   .9636886   .0427525    -0.83   0.404     .8834349    1.051233
-                              |
-                        bpcat |
-                    Elevated  |   .9694941   .0416968    -0.72   0.471     .8911196    1.054762
-               High, stage I  |    1.01142   .0274962     0.42   0.676     .9589387    1.066773
-              High, stage II  |    1.04408   .0286098     1.57   0.115     .9894852    1.101688
-                              |
-1.chronic_respiratory_disease |   1.123988    .187332     0.70   0.483     .8107639    1.558221
-                     1.asthma |   1.125465   .5051171     0.26   0.792     .4669888    2.712424
-    1.chronic_cardiac_disease |   .9260924   .0682048    -1.04   0.297     .8016137    1.069901
-                   1.diabetes |   .9940783   .0431963    -0.14   0.891     .9129203    1.082451
-                     1.cancer |   .8475528   .1154266    -1.21   0.225     .6489978    1.106854
-      1.chronic_liver_disease |   1.285952   .2048552     1.58   0.114     .9410795    1.757208
-     1.neurological_condition |   .9491203   .1053959    -0.47   0.638      .763482    1.179896
-     1.chronic_kidney_disease |    1.01115   .1078626     0.10   0.917     .8203805    1.246281
-           1.organ_transplant |   .9740607   .9764023    -0.03   0.979     .1365646    6.947585
-                     1.spleen |   1.074858   .1002248     0.77   0.439     .8953258     1.29039
-           1.ra_sle_psoriasis |   1.096777   .1391196     0.73   0.466     .8553593    1.406333
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9960449   .0031489    -1.25   0.210     .9898923    1.002236
+        age2 |   1.009185    .009545     0.97   0.334     .9906497    1.028068
+        age3 |   .9720103   .0368477    -0.75   0.454     .9024078    1.046981
+      1.male |   .9872275   .0246193    -0.52   0.606     .9401349    1.036679
+             |
+      bmicat |
+Underwei..)  |   1.070413   .0467819     1.56   0.119     .9825393    1.166145
+Overweig..)  |   .9831707   .0353008    -0.47   0.636     .9163608    1.054851
+Obese I ..)  |   .9831285   .0354865    -0.47   0.637     .9159794      1.0552
+Obese II..)  |   1.013836    .037201     0.37   0.708     .9434832    1.089434
+Obese II..)  |   1.025032   .0347917     0.73   0.466     .9590601    1.095542
+             |
+       smoke |
+     Former  |   1.023394   .0250699     0.94   0.345     .9754184    1.073728
+    Current  |   .9903545   .0311092    -0.31   0.758     .9312207    1.053243
+             |
+   ethnicity |
+      Black  |   .9960823   .0268642    -0.15   0.884     .9447969    1.050152
+      Asian  |   .9597937   .0372088    -1.06   0.290     .8895675    1.035564
+      Mixed  |   1.019294   .0405037     0.48   0.631     .9429209    1.101853
+      Other  |    .977754   .0414797    -0.53   0.596     .8997434    1.062528
+             |
+         imd |
+          2  |   1.004542   .0415551     0.11   0.913     .9263095    1.089381
+          3  |   .9840862   .0451442    -0.35   0.727     .8994662    1.076667
+          4  |   .9974476    .042691    -0.06   0.952     .9171882     1.08473
+          5  |   .9959461    .043912    -0.09   0.927     .9134942     1.08584
+             |
+       bpcat |
+   Elevated  |   .9734434   .0417681    -0.63   0.530     .8949273    1.058848
+High, sta..  |   1.003134   .0273216     0.11   0.909     .9509885    1.058138
+High, sta..  |   1.031184   .0283009     1.12   0.263     .9771807    1.088172
+             |
+1.chronic_.. |   1.029111   .1759072     0.17   0.867     .7361485    1.438663
+    1.asthma |   1.027862   .4215843     0.07   0.947      .460054     2.29647
+1.~c_disease |   .9468975   .0672786    -0.77   0.443     .8238037    1.088384
+  1.diabetes |   1.034412   .0446006     0.78   0.433     .9505886    1.125628
+    1.cancer |   .9743764   .1216508    -0.21   0.835     .7628766    1.244512
+1.~r_disease |    .980376   .1476078    -0.13   0.895       .72985    1.316897
+1.neurolog~n |   .9424522   .1053133    -0.53   0.596     .7570817     1.17321
+1.chronic_.. |     1.0516   .1168035     0.45   0.651     .8458741    1.307361
+1.organ_tr~t |    2.28708   1.149989     1.65   0.100     .8536508    6.127487
+    1.spleen |   1.010917   .0928125     0.12   0.906     .8444355     1.21022
+1.ra_sle_p~s |   1.207476   .1507964     1.51   0.131     .9453133    1.542345
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster not found)
-file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agesplin
+> e_bmicat_CCeth.ster saved
 
          failure _d:  hosp
    analysis time _t:  (stime_hosp-origin)
@@ -389,8 +425,8 @@ file ./output/models/an_multivariate_cox_models_hosp_MAINFULLYADJMODEL_agespline
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5153
-                            Somers' D =   0.0307
+                          Harrell's C =   0.5123
+                            Somers' D =   0.0245
 
                 id:  patient_id
      failure event:  died != 0 & died < .
@@ -406,8 +442,8 @@ obs. time interval:  (stime_died[_n-1], stime_died]
 ------------------------------------------------------------------------------
     108,813  observations remaining, representing
     108,813  subjects
-     10,866  failures in single-failure-per-subject data
-  6,496,970  total analysis time at risk and under observation
+     10,824  failures in single-failure-per-subject data
+  6,499,164  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        64
@@ -418,67 +454,108 @@ obs. time interval:  (stime_died[_n-1], stime_died]
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -52808.947
-Iteration 1:   log likelihood = -52782.163
-Iteration 2:   log likelihood = -52781.912
-Iteration 3:   log likelihood = -52781.911
-Iteration 4:   log likelihood = -52781.911
+Iteration 0:   log likelihood = -52605.995
+Iteration 1:   log likelihood = -52587.535
+Iteration 2:   log likelihood =  -52587.16
+Iteration 3:   log likelihood = -52587.035
+Iteration 4:   log likelihood = -52586.989
+Iteration 5:   log likelihood = -52586.972
+Iteration 6:   log likelihood = -52586.966
+Iteration 7:   log likelihood = -52586.964
+Iteration 8:   log likelihood = -52586.963
+Iteration 9:   log likelihood = -52586.962
+Iteration 10:  log likelihood = -52586.962
+Iteration 11:  log likelihood = -52586.962
+Iteration 12:  log likelihood = -52586.962
+Iteration 13:  log likelihood = -52586.962
+Iteration 14:  log likelihood = -52586.962
+Iteration 15:  log likelihood = -52586.962
+Iteration 16:  log likelihood = -52586.962
+Iteration 17:  log likelihood = -52586.962
+Iteration 18:  log likelihood = -52586.962
+Iteration 19:  log likelihood = -52586.962
+Iteration 20:  log likelihood = -52586.962
+Iteration 21:  log likelihood = -52586.962
+Iteration 22:  log likelihood = -52586.962
+Iteration 23:  log likelihood = -52586.962
+Iteration 24:  log likelihood = -52586.962
+Iteration 25:  log likelihood = -52586.962
+Iteration 26:  log likelihood = -52586.962
+Iteration 27:  log likelihood = -52586.962
+Iteration 28:  log likelihood = -52586.962
+Iteration 29:  log likelihood = -52586.962
+Iteration 30:  log likelihood = -52586.962
+Iteration 31:  log likelihood = -52586.962
+Iteration 32:  log likelihood = -52586.962
+Iteration 33:  log likelihood = -52586.962
+Iteration 34:  log likelihood = -52586.962
+Iteration 35:  log likelihood = -52586.962
+Iteration 36:  log likelihood = -52586.962
+Iteration 37:  log likelihood = -52586.962
+Iteration 38:  log likelihood = -52586.962
+Iteration 39:  log likelihood = -52586.962
+Iteration 40:  log likelihood = -52586.962
+Iteration 41:  log likelihood = -52586.962
+Iteration 42:  log likelihood = -52586.962
+Iteration 43:  log likelihood = -52586.962
+Iteration 44:  log likelihood = -52586.962
+Iteration 45:  log likelihood = -52586.962
 Refining estimates:
-Iteration 0:   log likelihood = -52781.911
+Iteration 0:   log likelihood = -52586.962
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =        7,101
-Time at risk    =  4270502.344
-                                                LR chi2(29)      =       54.07
-Log likelihood  =   -52781.911                  Prob > chi2      =      0.0032
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =        7,074
+Time at risk    =  4269033.553
+                                                LR chi2(28)      =       38.07
+Log likelihood  =   -52586.962                  Prob > chi2      =      0.0972
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9974929   .0034573    -0.72   0.469     .9907397    1.004292
-                         age2 |   1.007409   .0104262     0.71   0.476       .98718    1.028053
-                         age3 |   .9697535   .0402389    -0.74   0.459     .8940085    1.051916
-                       1.male |    1.02748   .0279522     1.00   0.319     .9741297    1.083752
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   .9852905   .0488343    -0.30   0.765      .894079    1.085807
-        Overweight (25-29.9)  |   1.115944   .0429567     2.85   0.004     1.034848    1.203395
-           Obese I (30-34.9)  |   .9809269   .0390833    -0.48   0.629     .9072395    1.060599
-          Obese II (35-39.9)  |   1.068267   .0427874     1.65   0.099     .9876128    1.155509
-             Obese III (40+)  |   1.019776   .0381205     0.52   0.600     .9477324    1.097296
-                              |
-                        smoke |
-                      Former  |   .9635674   .0255774    -1.40   0.162     .9147184    1.015025
-                     Current  |   .9378869   .0321871    -1.87   0.062     .8768762    1.003143
-                              |
-                          imd |
-                           2  |   .8965897   .0392899    -2.49   0.013     .8227972    .9770003
-                           3  |    .902599   .0440294    -2.10   0.036     .8202999    .9931549
-                           4  |   .8891278   .0404563    -2.58   0.010     .8132678     .972064
-                           5  |   .8655204   .0407198    -3.07   0.002     .7892802     .949125
-                              |
-                        bpcat |
-                    Elevated  |   1.004626   .0456966     0.10   0.919     .9189389    1.098304
-               High, stage I  |   .9520331   .0283208    -1.65   0.098     .8981125    1.009191
-              High, stage II  |   .9512079   .0286499    -1.66   0.097     .8966804    1.009051
-                              |
-1.chronic_respiratory_disease |   1.403284   .2773886     1.71   0.087     .9525499      2.0673
-                     1.asthma |   1.696738   .6444674     1.39   0.164     .8059447    3.572106
-    1.chronic_cardiac_disease |   1.031185   .0778453     0.41   0.684     .8893615    1.195624
-                   1.diabetes |   1.035042    .048497     0.74   0.462      .944224    1.134596
-                     1.cancer |    1.16578   .1487995     1.20   0.229     .9077574    1.497144
-      1.chronic_liver_disease |    .831871   .1305157    -1.17   0.241     .6116562     1.13137
-     1.neurological_condition |   .7055343   .0991782    -2.48   0.013     .5356279    .9293367
-     1.chronic_kidney_disease |   .9879213   .1170817    -0.10   0.918     .7831478    1.246238
-           1.organ_transplant |   1.663493   1.178248     0.72   0.472     .4150663    6.666912
-                     1.spleen |   .7895374   .0777184    -2.40   0.016     .6510051    .9575491
-           1.ra_sle_psoriasis |   .7949736   .1295853    -1.41   0.159     .5775664    1.094217
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9995466   .0035057    -0.13   0.897     .9926992    1.006441
+        age2 |   1.007076    .010464     0.68   0.497     .9867747    1.027796
+        age3 |   .9611463   .0399288    -0.95   0.340     .8859886     1.04268
+      1.male |   1.023385   .0278333     0.85   0.395     .9702612    1.079417
+             |
+      bmicat |
+Underwei..)  |   .9443992   .0474855    -1.14   0.255     .8557682     1.04221
+Overweig..)  |    1.09232   .0422404     2.28   0.022      1.01259    1.178328
+Obese I ..)  |   1.000295   .0396822     0.01   0.994     .9254665    1.081175
+Obese II..)  |   1.055463     .04239     1.34   0.179     .9755661    1.141904
+Obese II..)  |   1.028379   .0383788     0.75   0.453      .955843    1.106419
+             |
+       smoke |
+     Former  |   .9415662   .0249943    -2.27   0.023     .8938307    .9918509
+    Current  |   .9195466   .0316173    -2.44   0.015     .8596197    .9836512
+             |
+         imd |
+          2  |   1.012398   .0458447     0.27   0.786     .9264159     1.10636
+          3  |   1.003708   .0504106     0.07   0.941     .9096126    1.107538
+          4  |   1.003344   .0471799     0.07   0.943     .9150061     1.10021
+          5  |   .9941736    .047895    -0.12   0.903     .9045966    1.092621
+             |
+       bpcat |
+   Elevated  |   1.036863   .0474042     0.79   0.428     .9479939    1.134064
+High, sta..  |   1.009715   .0299522     0.33   0.744     .9526841    1.070161
+High, sta..  |    .974441   .0295546    -0.85   0.393     .9182032    1.034123
+             |
+1.chronic_.. |   .9545163   .1723335    -0.26   0.797     .6700433    1.359765
+    1.asthma |   .8292767   .4157097    -0.37   0.709     .3104552    2.215134
+1.~c_disease |   .9859088    .075076    -0.19   0.852     .8492168    1.144603
+  1.diabetes |   1.047309   .0486999     0.99   0.320     .9560793    1.147244
+    1.cancer |   1.175734   .1525628     1.25   0.212     .9117113    1.516214
+1.~r_disease |   .7986235   .1277729    -1.41   0.160     .5836562    1.092766
+1.neurolog~n |    1.07102    .123573     0.59   0.552     .8542537     1.34279
+1.chronic_.. |   1.245907    .137643     1.99   0.047      1.00334    1.547117
+1.organ_tr~t |   2.98e-20          .        .       .            .           .
+    1.spleen |   .9401535    .092935    -0.62   0.532     .7745629    1.141145
+1.ra_sle_p~s |   1.008174   .1479288     0.06   0.956     .7562044    1.344101
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agesplin
+> e_bmicat_noeth.ster saved
 
          failure _d:  died
    analysis time _t:  (stime_died-origin)
@@ -488,8 +565,8 @@ file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5244
-                            Somers' D =   0.0487
+                          Harrell's C =   0.5217
+                            Somers' D =   0.0433
 
          failure _d:  died
    analysis time _t:  (stime_died-origin)
@@ -497,71 +574,98 @@ file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -52808.947
-Iteration 1:   log likelihood = -52780.945
-Iteration 2:   log likelihood = -52780.693
-Iteration 3:   log likelihood = -52780.692
-Iteration 4:   log likelihood = -52780.692
+Iteration 0:   log likelihood = -52605.995
+Iteration 1:   log likelihood = -52585.875
+Iteration 2:   log likelihood = -52585.497
+Iteration 3:   log likelihood = -52585.372
+Iteration 4:   log likelihood = -52585.326
+Iteration 5:   log likelihood =  -52585.31
+Iteration 6:   log likelihood = -52585.303
+Iteration 7:   log likelihood = -52585.301
+Iteration 8:   log likelihood =   -52585.3
+Iteration 9:   log likelihood =   -52585.3
+Iteration 10:  log likelihood =   -52585.3
+Iteration 11:  log likelihood =   -52585.3
+Iteration 12:  log likelihood =   -52585.3
+Iteration 13:  log likelihood =   -52585.3
+Iteration 14:  log likelihood =   -52585.3
+Iteration 15:  log likelihood =   -52585.3
+Iteration 16:  log likelihood =   -52585.3
+Iteration 17:  log likelihood =   -52585.3
+Iteration 18:  log likelihood =   -52585.3
+Iteration 19:  log likelihood =   -52585.3
+Iteration 20:  log likelihood =   -52585.3
+Iteration 21:  log likelihood =   -52585.3
+Iteration 22:  log likelihood =   -52585.3
+Iteration 23:  log likelihood =   -52585.3
+Iteration 24:  log likelihood =   -52585.3
+Iteration 25:  log likelihood =   -52585.3
+Iteration 26:  log likelihood =   -52585.3
+Iteration 27:  log likelihood =   -52585.3
+Iteration 28:  log likelihood =   -52585.3
+Iteration 29:  log likelihood =   -52585.3
 Refining estimates:
-Iteration 0:   log likelihood = -52780.692
+Iteration 0:   log likelihood =   -52585.3
+Iteration 1:   log likelihood =   -52585.3
+Iteration 2:   log likelihood =   -52585.3
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =        7,101
-Time at risk    =  4270502.344
-                                                LR chi2(31)      =       56.51
-Log likelihood  =   -52780.692                  Prob > chi2      =      0.0034
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =        7,074
+Time at risk    =  4269033.553
+                                                LR chi2(31)      =       41.39
+Log likelihood  =     -52585.3                  Prob > chi2      =      0.1006
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                     agegroup |
-                      40-<50  |   .9467654   .0421615    -1.23   0.219      .867634    1.033114
-                      50-<60  |   1.005935   .0435105     0.14   0.891     .9241705    1.094933
-                      60-<70  |   1.012756   .0474388     0.27   0.787     .9239181    1.110136
-                      70-<80  |   .9541122   .0472077    -0.95   0.342     .8659315    1.051273
-                         80+  |   .9662637   .0388108    -0.85   0.393      .893113    1.045406
-                              |
-                       1.male |   1.027626   .0280251     1.00   0.318     .9741401    1.084049
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   .9847536   .0488108    -0.31   0.757     .8935862    1.085222
-        Overweight (25-29.9)  |   1.115659   .0429462     2.84   0.004     1.034583    1.203089
-           Obese I (30-34.9)  |   .9809351   .0390842    -0.48   0.629     .9072462    1.060609
-          Obese II (35-39.9)  |   1.068223   .0427864     1.65   0.099     .9875709    1.155463
-             Obese III (40+)  |   1.019733   .0381188     0.52   0.601     .9476929     1.09725
-                              |
-                        smoke |
-                      Former  |   .9638299   .0255854    -1.39   0.165     .9149657    1.015304
-                     Current  |   .9376682   .0321809    -1.88   0.061     .8766694    1.002911
-                              |
-                          imd |
-                           2  |   .8961633    .039274    -2.50   0.012      .822401    .9765415
-                           3  |   .9025978    .044028    -2.10   0.036     .8203012    .9931508
-                           4  |   .8890643   .0408183    -2.56   0.010     .8125558    .9727768
-                           5  |    .865604   .0407183    -3.07   0.002      .789366    .9492051
-                              |
-                        bpcat |
-                    Elevated  |   1.005229   .0457261     0.11   0.909     .9194863    1.098967
-               High, stage I  |   .9520603   .0283222    -1.65   0.099     .8981372    1.009221
-              High, stage II  |   .9511403   .0286489    -1.66   0.096     .8966147    1.008982
-                              |
-1.chronic_respiratory_disease |   1.401865   .2771192     1.71   0.087     .9515719    2.065241
-                     1.asthma |   1.690676   .6421682     1.38   0.167     .8030624    3.559358
-    1.chronic_cardiac_disease |   1.030317    .077771     0.40   0.692     .8886278    1.194598
-                   1.diabetes |   1.036131   .0485312     0.76   0.449     .9452471    1.135753
-                     1.cancer |   1.166112   .1487542     1.20   0.228       .90815     1.49735
-      1.chronic_liver_disease |   .8411428   .1292856    -1.13   0.260     .6223548    1.136845
-     1.neurological_condition |   .7062832   .0992874    -2.47   0.013     .5361907    .9303332
-     1.chronic_kidney_disease |   .9874551   .1170301    -0.11   0.915     .7827726    1.245659
-           1.organ_transplant |   1.640521   1.161947     0.70   0.485     .4093484    6.574615
-                     1.spleen |   .7726219   .0788335    -2.53   0.011     .6325804     .943666
-           1.ra_sle_psoriasis |   .7955631   .1296846    -1.40   0.161     .5779902    1.095037
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     40-<50  |    .964273   .0432545    -0.81   0.417     .8831156    1.052889
+     50-<60  |   1.078793   .0464254     1.76   0.078     .9915329    1.173733
+     60-<70  |   1.022805   .0481479     0.48   0.632     .9326596    1.121664
+     70-<80  |   1.002909   .0493788     0.06   0.953     .9106511    1.104513
+        80+  |   .9886508   .0399727    -0.28   0.778     .9133296    1.070184
+             |
+      1.male |   1.023973   .0279227     0.87   0.385     .9706825    1.080189
+             |
+      bmicat |
+Underwei..)  |   .9450136   .0475173    -1.12   0.261     .8563234    1.042889
+Overweig..)  |   1.092339   .0422408     2.28   0.022     1.012609    1.178348
+Obese I ..)  |   1.000391   .0396866     0.01   0.992     .9255538    1.081279
+Obese II..)  |   1.055438   .0423893     1.34   0.179     .9755423    1.141877
+Obese II..)  |   1.028219   .0383726     0.75   0.456     .9556946    1.106247
+             |
+       smoke |
+     Former  |   .9417815   .0250006    -2.26   0.024     .8940343    .9920788
+    Current  |   .9199169   .0316313    -2.43   0.015     .8599635    .9840499
+             |
+         imd |
+          2  |   1.012299    .045843     0.27   0.787     .9263201    1.106258
+          3  |   1.004166   .0504415     0.08   0.934     .9100129     1.10806
+          4  |   1.002911   .0475472     0.06   0.951     .9139188    1.100569
+          5  |   .9953358   .0479536    -0.10   0.923     .9056496    1.093904
+             |
+       bpcat |
+   Elevated  |   1.035763   .0473578     0.77   0.442     .9469809    1.132869
+High, sta..  |   1.009432   .0299443     0.32   0.752     .9524163    1.069862
+High, sta..  |   .9743026   .0295516    -0.86   0.391     .9180705    1.033979
+             |
+1.chronic_.. |   .9524253   .1719577    -0.27   0.787      .668573    1.356791
+    1.asthma |   .8240028   .4130733    -0.39   0.699     .3084754    2.201085
+1.~c_disease |   .9827072   .0748501    -0.23   0.819     .8464288    1.140927
+  1.diabetes |   1.051365   .0488672     1.08   0.281     .9598203    1.151641
+    1.cancer |    1.17183   .1520737     1.22   0.222     .9086579    1.511224
+1.~r_disease |   .7958954   .1248553    -1.46   0.146     .5852273    1.082399
+1.neurolog~n |   1.072638   .1237637     0.61   0.543     .8555386    1.344829
+1.chronic_.. |   1.246057    .137663     1.99   0.046     1.003455    1.547311
+1.organ_tr~t |   3.52e-14   1.57e-07    -0.00   1.000            0           .
+    1.spleen |   .8978709    .091696    -1.05   0.291     .7349944    1.096841
+1.ra_sle_p~s |   1.008598   .1479943     0.06   0.953     .7565178    1.344675
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agegroup
+> _bmicat_noeth.ster saved
 
          failure _d:  died
    analysis time _t:  (stime_died-origin)
@@ -571,8 +675,8 @@ file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agegroup_
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5252
-                            Somers' D =   0.0504
+                          Harrell's C =   0.5216
+                            Somers' D =   0.0433
 
          failure _d:  died
    analysis time _t:  (stime_died-origin)
@@ -580,73 +684,99 @@ file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agegroup_
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -28945.566
-Iteration 1:   log likelihood =  -28921.77
-Iteration 2:   log likelihood = -28921.527
-Iteration 3:   log likelihood = -28921.522
-Iteration 4:   log likelihood = -28921.522
+Iteration 0:   log likelihood = -28249.924
+Iteration 1:   log likelihood = -28230.301
+Iteration 2:   log likelihood = -28230.082
+Iteration 3:   log likelihood = -28230.007
+Iteration 4:   log likelihood = -28229.979
+Iteration 5:   log likelihood = -28229.969
+Iteration 6:   log likelihood = -28229.965
+Iteration 7:   log likelihood = -28229.963
+Iteration 8:   log likelihood = -28229.963
+Iteration 9:   log likelihood = -28229.963
+Iteration 10:  log likelihood = -28229.963
+Iteration 11:  log likelihood = -28229.963
+Iteration 12:  log likelihood = -28229.963
+Iteration 13:  log likelihood = -28229.963
+Iteration 14:  log likelihood = -28229.963
+Iteration 15:  log likelihood = -28229.963
+Iteration 16:  log likelihood = -28229.963
+Iteration 17:  log likelihood = -28229.963
+Iteration 18:  log likelihood = -28229.963
+Iteration 19:  log likelihood = -28229.963
+Iteration 20:  log likelihood = -28229.963
+Iteration 21:  log likelihood = -28229.963
+Iteration 22:  log likelihood = -28229.963
+Iteration 23:  log likelihood = -28229.963
+Iteration 24:  log likelihood = -28229.963
+Iteration 25:  log likelihood = -28229.963
+Iteration 26:  log likelihood = -28229.963
+Iteration 27:  log likelihood = -28229.963
+Iteration 28:  log likelihood = -28229.963
 Refining estimates:
-Iteration 0:   log likelihood = -28921.522
+Iteration 0:   log likelihood = -28229.963
+Iteration 1:   log likelihood = -28229.963
+Iteration 2:   log likelihood = -28229.963
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       42,259                  Number of obs    =      42,259
-No. of failures =        4,188
-Time at risk    =  2526203.293
-                                                LR chi2(33)      =       48.09
-Log likelihood  =   -28921.522                  Prob > chi2      =      0.0435
+No. of subjects =       42,075                  Number of obs    =      42,075
+No. of failures =        4,089
+Time at risk    =  2517980.635
+                                                LR chi2(33)      =       39.92
+Log likelihood  =   -28229.963                  Prob > chi2      =      0.1895
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9982861   .0044687    -0.38   0.702      .989566    1.007083
-                         age2 |   1.002907   .0134434     0.22   0.829     .9769016    1.029605
-                         age3 |   .9890806   .0532273    -0.20   0.838     .8900704    1.099105
-                       1.male |   1.023115   .0361431     0.65   0.518     .9546724    1.096464
-                              |
-                       bmicat |
-         Underweight (<18.5)  |    .962358   .0624672    -0.59   0.554     .8473926    1.092921
-        Overweight (25-29.9)  |   1.127441   .0563055     2.40   0.016     1.022313    1.243379
-           Obese I (30-34.9)  |   .9341856   .0492144    -1.29   0.196       .84254      1.0358
-          Obese II (35-39.9)  |   1.098499   .0568487     1.82   0.069     .9925425    1.215767
-             Obese III (40+)  |   1.042706   .0506805     0.86   0.390     .9479591    1.146924
-                              |
-                        smoke |
-                      Former  |   .9881861   .0341895    -0.34   0.731     .9233975    1.057521
-                     Current  |   .9367435   .0421742    -1.45   0.147     .8576257     1.02316
-                              |
-                    ethnicity |
-                       Black  |   1.031579    .039277     0.82   0.414     .9573998    1.111506
-                       Asian  |   .9539246   .0531032    -0.85   0.397     .8553212    1.063895
-                       Mixed  |   1.013449   .0577927     0.23   0.815     .9062783    1.133293
-                       Other  |   .9781066   .0589047    -0.37   0.713     .8692087    1.100648
-                              |
-                          imd |
-                           2  |   .9481416   .0546655    -0.92   0.356     .8468312    1.061572
-                           3  |    .949188   .0611626    -0.81   0.418     .8365726    1.076963
-                           4  |   .9436825   .0565331    -0.97   0.333     .8391373    1.061253
-                           5  |    .935297   .0576125    -1.09   0.278     .8289287    1.055315
-                              |
-                        bpcat |
-                    Elevated  |   1.052729   .0613209     0.88   0.378     .9391492    1.180045
-               High, stage I  |   .9230922   .0359948    -2.05   0.040     .8551723    .9964066
-              High, stage II  |   .9652646   .0377652    -0.90   0.366     .8940128    1.042195
-                              |
-1.chronic_respiratory_disease |   1.426691   .3744879     1.35   0.176     .8529052    2.386489
-                     1.asthma |   1.344733   .7795531     0.51   0.609     .4317051    4.188754
-    1.chronic_cardiac_disease |   1.060272   .1052953     0.59   0.556     .8727399    1.288101
-                   1.diabetes |   1.018563   .0622854     0.30   0.764     .9035175    1.148257
-                     1.cancer |   1.177029   .1985831     0.97   0.334     .8456217    1.638317
-      1.chronic_liver_disease |   .7943141   .1650158    -1.11   0.268     .5286379    1.193511
-     1.neurological_condition |   .6708495   .1272632    -2.10   0.035      .462539    .9729755
-     1.chronic_kidney_disease |   1.127216   .1621364     0.83   0.405     .8502994    1.494315
-           1.organ_transplant |   2.344469   2.353606     0.85   0.396     .3277369    16.77117
-                     1.spleen |   .7755608   .1003887    -1.96   0.050     .6017778    .9995293
-           1.ra_sle_psoriasis |   .7049574   .1545261    -1.59   0.111     .4587544    1.083292
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9998217   .0046042    -0.04   0.969     .9908382    1.008887
+        age2 |   1.011797   .0138037     0.86   0.390     .9851012    1.039217
+        age3 |   .9333154   .0509205    -1.26   0.206     .8386639    1.038649
+      1.male |   .9968371   .0355413    -0.09   0.929     .9295557    1.068988
+             |
+      bmicat |
+Underwei..)  |   .9478538   .0629377    -0.81   0.420     .8321879    1.079596
+Overweig..)  |   1.108631   .0563562     2.03   0.042     1.003499    1.224777
+Obese I ..)  |   .9438098   .0503061    -1.08   0.278      .850187    1.047742
+Obese II..)  |   1.081542   .0568544     1.49   0.136     .9756575    1.198917
+Obese II..)  |   1.080467   .0528143     1.58   0.113     .9817566    1.189102
+             |
+       smoke |
+     Former  |   .9494191   .0331222    -1.49   0.137     .8866706    1.016608
+    Current  |   .9039967   .0411182    -2.22   0.026     .8268943    .9882884
+             |
+   ethnicity |
+      Black  |   1.009568   .0391932     0.25   0.806     .9356006    1.089383
+      Asian  |   1.004168    .055479     0.08   0.940     .9011113     1.11901
+      Mixed  |   1.006304   .0581178     0.11   0.913     .8986052     1.12691
+      Other  |    1.03149   .0619886     0.52   0.606     .9168766     1.16043
+             |
+         imd |
+          2  |   1.053992   .0624363     0.89   0.375     .9384558    1.183752
+          3  |   .9746706   .0646525    -0.39   0.699     .8558454    1.109993
+          4  |   1.020268   .0629409     0.33   0.745      .904072    1.151397
+          5  |    .992443   .0631357    -0.12   0.905      .876103    1.124232
+             |
+       bpcat |
+   Elevated  |   1.059187   .0631176     0.96   0.335     .9424296    1.190409
+High, sta..  |   .9936637   .0389593    -0.16   0.871     .9201651    1.073033
+High, sta..  |   .9937073   .0395375    -0.16   0.874     .9191598    1.074301
+             |
+1.chronic_.. |   .9746731   .2317953    -0.11   0.914     .6115437    1.553426
+    1.asthma |   .7505121   .5322867    -0.40   0.686     .1869213    3.013398
+1.~c_disease |    .980991   .0987541    -0.19   0.849      .805335     1.19496
+  1.diabetes |   .9838209    .061318    -0.26   0.794     .8706902    1.111651
+    1.cancer |   1.123017   .1892384     0.69   0.491     .8071446    1.562505
+1.~r_disease |    .878656   .1853648    -0.61   0.540     .5810934    1.328592
+1.neurolog~n |   1.053984   .1617102     0.34   0.732     .7802541    1.423743
+1.chronic_.. |   1.108402   .1720713     0.66   0.507     .8176252    1.502588
+1.organ_tr~t |   9.74e-14   3.39e-07    -0.00   1.000            0           .
+    1.spleen |   .9515788    .125085    -0.38   0.706      .735452    1.231219
+1.ra_sle_p~s |   .9600791   .1893222    -0.21   0.836     .6523113    1.413055
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster not found)
-file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agesplin
+> e_bmicat_CCeth.ster saved
 
          failure _d:  died
    analysis time _t:  (stime_died-origin)
@@ -656,8 +786,8 @@ file ./output/models/an_multivariate_cox_models_died_MAINFULLYADJMODEL_agespline
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5306
-                            Somers' D =   0.0612
+                          Harrell's C =   0.5276
+                            Somers' D =   0.0552
 
                 id:  patient_id
      failure event:  itu != 0 & itu < .
@@ -673,8 +803,8 @@ obs. time interval:  (stime_itu[_n-1], stime_itu]
 ------------------------------------------------------------------------------
     108,813  observations remaining, representing
     108,813  subjects
-      5,370  failures in single-failure-per-subject data
-  6,336,436  total analysis time at risk and under observation
+      5,336  failures in single-failure-per-subject data
+  6,339,963  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        64
@@ -685,101 +815,67 @@ obs. time interval:  (stime_itu[_n-1], stime_itu]
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -25995.344
-Iteration 1:   log likelihood = -25984.961
-Iteration 2:   log likelihood = -25984.684
-Iteration 3:   log likelihood =  -25984.63
-Iteration 4:   log likelihood = -25984.611
-Iteration 5:   log likelihood = -25984.603
-Iteration 6:   log likelihood = -25984.601
-Iteration 7:   log likelihood =   -25984.6
-Iteration 8:   log likelihood = -25984.599
-Iteration 9:   log likelihood = -25984.599
-Iteration 10:  log likelihood = -25984.599
-Iteration 11:  log likelihood = -25984.599
-Iteration 12:  log likelihood = -25984.599
-Iteration 13:  log likelihood = -25984.599
-Iteration 14:  log likelihood = -25984.599
-Iteration 15:  log likelihood = -25984.599
-Iteration 16:  log likelihood = -25984.599
-Iteration 17:  log likelihood = -25984.599
-Iteration 18:  log likelihood = -25984.599
-Iteration 19:  log likelihood = -25984.599
-Iteration 20:  log likelihood = -25984.599
-Iteration 21:  log likelihood = -25984.599
-Iteration 22:  log likelihood = -25984.599
-Iteration 23:  log likelihood = -25984.599
-Iteration 24:  log likelihood = -25984.599
-Iteration 25:  log likelihood = -25984.599
-Iteration 26:  log likelihood = -25984.599
-Iteration 27:  log likelihood = -25984.599
-Iteration 28:  log likelihood = -25984.599
-Iteration 29:  log likelihood = -25984.599
-Iteration 30:  log likelihood = -25984.599
-Iteration 31:  log likelihood = -25984.599
-Iteration 32:  log likelihood = -25984.599
-Iteration 33:  log likelihood = -25984.599
-Iteration 34:  log likelihood = -25984.599
-Iteration 35:  log likelihood = -25984.599
-Iteration 36:  log likelihood = -25984.599
+Iteration 0:   log likelihood = -25682.867
+Iteration 1:   log likelihood = -25670.118
+Iteration 2:   log likelihood = -25670.016
+Iteration 3:   log likelihood = -25670.015
+Iteration 4:   log likelihood = -25670.015
 Refining estimates:
-Iteration 0:   log likelihood = -25984.599
-Iteration 1:   log likelihood = -25984.599
-Iteration 2:   log likelihood = -25984.599
+Iteration 0:   log likelihood = -25670.015
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =        3,513
-Time at risk    =  4164566.166
-                                                LR chi2(29)      =       21.49
-Log likelihood  =   -25984.599                  Prob > chi2      =      0.8407
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =        3,471
+Time at risk    =  4165152.135
+                                                LR chi2(29)      =       25.70
+Log likelihood  =   -25670.015                  Prob > chi2      =      0.6413
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9950798   .0049159    -1.00   0.318     .9854914    1.004762
-                         age2 |   1.011736   .0149532     0.79   0.430     .9828491    1.041473
-                         age3 |   .9596281   .0568966    -0.70   0.487     .8543485    1.077881
-                       1.male |   1.020837   .0397611     0.53   0.596     .9458069    1.101819
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.051319   .0728243     0.72   0.470     .9178508    1.204195
-        Overweight (25-29.9)  |   1.060292   .0590791     1.05   0.293      .950598    1.182644
-           Obese I (30-34.9)  |   1.060569   .0591945     1.05   0.292      .950671    1.183172
-          Obese II (35-39.9)  |   1.026214   .0594071     0.45   0.655     .9161403    1.149512
-             Obese III (40+)  |   1.054962   .0559234     1.01   0.313      .950856    1.170466
-                              |
-                        smoke |
-                      Former  |   .9998775   .0378662    -0.00   0.997     .9283485    1.076918
-                     Current  |   .9603468   .0469956    -0.83   0.408     .8725164    1.057019
-                              |
-                          imd |
-                           2  |   .9533347    .061788    -0.74   0.461     .8396087    1.082465
-                           3  |   .9853077   .0704588    -0.21   0.836     .8564519     1.13355
-                           4  |   1.004536   .0668506     0.07   0.946     .8816962     1.14449
-                           5  |    .994949   .0679718    -0.07   0.941     .8702608    1.137502
-                              |
-                        bpcat |
-                    Elevated  |   .9400904   .0629138    -0.92   0.356     .8245264    1.071852
-               High, stage I  |   .9676829   .0410058    -0.78   0.438     .8905601    1.051485
-              High, stage II  |   1.004926   .0426566     0.12   0.908     .9247041    1.092108
-                              |
-1.chronic_respiratory_disease |    .858479    .219823    -0.60   0.551     .5197208    1.418042
-                     1.asthma |   1.398021   .8107386     0.58   0.563     .4486277    4.356537
-    1.chronic_cardiac_disease |   .8644918   .1003731    -1.25   0.210     .6885427    1.085403
-                   1.diabetes |   1.100529    .072306     1.46   0.145     .9675575    1.251776
-                     1.cancer |    1.51991   .2499368     2.55   0.011     1.101145     2.09793
-      1.chronic_liver_disease |   .7343366    .158039    -1.43   0.151     .4816209    1.119657
-     1.neurological_condition |   1.152612    .181151     0.90   0.366     .8470392    1.568421
-     1.chronic_kidney_disease |   .9713546   .1650983    -0.17   0.864      .696148    1.355358
-           1.organ_transplant |   3.45e-17   7.78e-09    -0.00   1.000            0           .
-                     1.spleen |   1.045109   .1530522     0.30   0.763     .7843436    1.392569
-           1.ra_sle_psoriasis |   1.133444   .2237949     0.63   0.526     .7697209    1.669042
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9964368   .0050351    -0.71   0.480     .9866168    1.006355
+        age2 |   1.017784   .0152319     1.18   0.239      .988364    1.048081
+        age3 |   .9255807   .0553131    -1.29   0.196     .8232773    1.040597
+      1.male |   1.047682   .0409366     1.19   0.233     .9704429    1.131068
+             |
+      bmicat |
+Underwei..)  |   1.012431   .0704902     0.18   0.859     .8832849     1.16046
+Overweig..)  |   .9979176   .0560598    -0.04   0.970     .8938752     1.11407
+Obese I ..)  |   1.033076   .0577537     0.58   0.561      .925862    1.152705
+Obese II..)  |   .9889631     .05743    -0.19   0.848     .8825718     1.10818
+Obese II..)  |   1.049565   .0554157     0.92   0.360     .9463833    1.163997
+             |
+       smoke |
+     Former  |    1.01034   .0384641     0.27   0.787      .937696    1.088613
+    Current  |   .9433358   .0467532    -1.18   0.239     .8560111    1.039569
+             |
+         imd |
+          2  |   1.020816   .0665333     0.32   0.752     .8983991    1.159915
+          3  |   .9370794   .0688021    -0.89   0.376     .8114833    1.082114
+          4  |   1.062228   .0713079     0.90   0.369     .9312711      1.2116
+          5  |   .9989127   .0692182    -0.02   0.987     .8720568    1.144222
+             |
+       bpcat |
+   Elevated  |   .9317997   .0628331    -1.05   0.295     .8164401    1.063459
+High, sta..  |    .959177   .0407474    -0.98   0.327      .882548    1.042459
+High, sta..  |   .9734101   .0416837    -0.63   0.529     .8950461    1.058635
+             |
+1.chronic_.. |   1.029599   .2484866     0.12   0.904     .6415585    1.652341
+    1.asthma |   1.554938   .7816046     0.88   0.380     .5805615    4.164643
+1.~c_disease |   .8722049   .0998346    -1.19   0.232     .6969282    1.091563
+  1.diabetes |   1.172654   .0757699     2.46   0.014     1.033167    1.330974
+    1.cancer |   .8927968   .1847356    -0.55   0.584     .5951464    1.339311
+1.~r_disease |   1.243948   .3021306     0.90   0.369     .7727911    2.002361
+1.neurolog~n |   1.212382   .1883163     1.24   0.215     .8941787    1.643821
+1.chronic_.. |   .7952094   .1566005    -1.16   0.245     .5405731    1.169792
+1.organ_tr~t |   1.300894   1.304213     0.26   0.793     .1823345     9.28143
+    1.spleen |   .9994873   .1442042    -0.00   0.997     .7532993    1.326133
+1.ra_sle_p~s |   .9403696   .2063124    -0.28   0.779     .6117152    1.445599
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline
+> _bmicat_noeth.ster saved
 
          failure _d:  itu
    analysis time _t:  (stime_itu-origin)
@@ -789,8 +885,8 @@ file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5180
-                            Somers' D =   0.0360
+                          Harrell's C =   0.5218
+                            Somers' D =   0.0435
 
          failure _d:  itu
    analysis time _t:  (stime_itu-origin)
@@ -798,98 +894,71 @@ file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -25995.344
-Iteration 1:   log likelihood = -25984.691
-Iteration 2:   log likelihood = -25984.409
-Iteration 3:   log likelihood = -25984.356
-Iteration 4:   log likelihood = -25984.336
-Iteration 5:   log likelihood = -25984.329
-Iteration 6:   log likelihood = -25984.326
-Iteration 7:   log likelihood = -25984.325
-Iteration 8:   log likelihood = -25984.325
-Iteration 9:   log likelihood = -25984.325
-Iteration 10:  log likelihood = -25984.325
-Iteration 11:  log likelihood = -25984.325
-Iteration 12:  log likelihood = -25984.324
-Iteration 13:  log likelihood = -25984.324
-Iteration 14:  log likelihood = -25984.324
-Iteration 15:  log likelihood = -25984.324
-Iteration 16:  log likelihood = -25984.324
-Iteration 17:  log likelihood = -25984.324
-Iteration 18:  log likelihood = -25984.324
-Iteration 19:  log likelihood = -25984.324
-Iteration 20:  log likelihood = -25984.324
-Iteration 21:  log likelihood = -25984.324
-Iteration 22:  log likelihood = -25984.324
-Iteration 23:  log likelihood = -25984.324
-Iteration 24:  log likelihood = -25984.324
-Iteration 25:  log likelihood = -25984.324
-Iteration 26:  log likelihood = -25984.324
-Iteration 27:  log likelihood = -25984.324
-Iteration 28:  log likelihood = -25984.324
-Iteration 29:  log likelihood = -25984.324
+Iteration 0:   log likelihood = -25682.867
+Iteration 1:   log likelihood = -25669.515
+Iteration 2:   log likelihood = -25669.411
+Iteration 3:   log likelihood = -25669.411
+Iteration 4:   log likelihood = -25669.411
 Refining estimates:
-Iteration 0:   log likelihood = -25984.324
-Iteration 1:   log likelihood = -25984.324
-Iteration 2:   log likelihood = -25984.324
+Iteration 0:   log likelihood = -25669.411
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =        3,513
-Time at risk    =  4164566.166
-                                                LR chi2(31)      =       22.04
-Log likelihood  =   -25984.324                  Prob > chi2      =      0.8818
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =        3,471
+Time at risk    =  4165152.135
+                                                LR chi2(31)      =       26.91
+Log likelihood  =   -25669.411                  Prob > chi2      =      0.6765
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                     agegroup |
-                      40-<50  |   .9361916    .059492    -1.04   0.299     .8265585    1.060366
-                      50-<60  |    .995707   .0615921    -0.07   0.945     .8820196    1.124048
-                      60-<70  |   .9373293   .0642355    -0.94   0.345      .819519    1.072076
-                      70-<80  |   .9705981   .0679925    -0.43   0.670      .846079    1.113443
-                         80+  |   .9672948   .0553816    -0.58   0.561     .8646175    1.082165
-                              |
-                       1.male |   1.021595   .0398992     0.55   0.584     .9463124    1.102867
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.051384   .0728342     0.72   0.469     .9178991    1.204282
-        Overweight (25-29.9)  |    1.06012   .0590702     1.05   0.295      .950442    1.182454
-           Obese I (30-34.9)  |   1.060518   .0591926     1.05   0.292     .9506227    1.183117
-          Obese II (35-39.9)  |    1.02629   .0594128     0.45   0.654     .9162064    1.149601
-             Obese III (40+)  |   1.054944   .0559224     1.01   0.313     .9508402    1.170447
-                              |
-                        smoke |
-                      Former  |   .9999972   .0378715    -0.00   1.000     .9284583    1.077048
-                     Current  |   .9606366   .0470117    -0.82   0.412     .8727764    1.057341
-                              |
-                          imd |
-                           2  |   .9527762   .0617593    -0.75   0.455     .8391038    1.081848
-                           3  |   .9845243   .0704023    -0.22   0.827     .8557717    1.132648
-                           4  |   1.002507   .0673012     0.04   0.970     .8789093    1.143487
-                           5  |   .9945131    .067937    -0.08   0.936     .8698881    1.136993
-                              |
-                        bpcat |
-                    Elevated  |   .9407999    .062964    -0.91   0.362     .8251439    1.072667
-               High, stage I  |   .9677247   .0410084    -0.77   0.439     .8905971    1.051532
-              High, stage II  |   1.004663   .0426469     0.11   0.913     .9244597    1.091825
-                              |
-1.chronic_respiratory_disease |   .8581281   .2197338    -0.60   0.550     .5195076    1.417465
-                     1.asthma |   1.397209   .8102906     0.58   0.564     .4483529    4.354147
-    1.chronic_cardiac_disease |   .8649962   .1004091    -1.25   0.212     .6889796     1.08598
-                   1.diabetes |   1.099844   .0722281     1.45   0.147     .9670114    1.250923
-                     1.cancer |   1.518461   .2494319     2.54   0.011     1.100474    2.095209
-      1.chronic_liver_disease |   .7600761     .15968    -1.31   0.192      .503539    1.147311
-     1.neurological_condition |   1.153963   .1813708     0.91   0.362     .8480211    1.570279
-     1.chronic_kidney_disease |   .9700878   .1648887    -0.18   0.858      .695232    1.353606
-           1.organ_transplant |   3.70e-14   2.52e-07    -0.00   1.000            0           .
-                     1.spleen |   1.007292   .1524792     0.05   0.962      .748694    1.355209
-           1.ra_sle_psoriasis |   1.134277   .2239647     0.64   0.523     .7702793    1.670284
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     40-<50  |   1.027045   .0657885     0.42   0.677     .9058682    1.164433
+     50-<60  |   1.007959    .064579     0.12   0.902      .889011    1.142822
+     60-<70  |   1.105624   .0741195     1.50   0.134      .969492    1.260872
+     70-<80  |   1.107483   .0771252     1.47   0.143     .9661825    1.269447
+        80+  |   1.034737   .0602386     0.59   0.557     .9231585    1.159802
+             |
+      1.male |   1.045301   .0409525     1.13   0.258     .9680397    1.128728
+             |
+      bmicat |
+Underwei..)  |   1.012079   .0704675     0.17   0.863     .8829743     1.16006
+Overweig..)  |   .9978091    .056054    -0.04   0.969     .8937775    1.113949
+Obese I ..)  |   1.032979   .0577486     0.58   0.562     .9257748    1.152598
+Obese II..)  |   .9889244    .057428    -0.19   0.848     .8825367    1.108137
+Obese II..)  |   1.049453   .0554099     0.91   0.361     .9462824    1.163873
+             |
+       smoke |
+     Former  |   1.010389   .0384667     0.27   0.786     .9377401    1.088667
+    Current  |   .9431615   .0467457    -1.18   0.238     .8558509    1.039379
+             |
+         imd |
+          2  |   1.020986    .066538     0.32   0.750     .8985588    1.160093
+          3  |   .9363071   .0687425    -0.90   0.370     .8108195    1.081216
+          4  |   1.067359    .072216     0.96   0.335     .9348014    1.218713
+          5  |   .9977208   .0691306    -0.03   0.974     .8710247    1.142846
+             |
+       bpcat |
+   Elevated  |   .9326525   .0628951    -1.03   0.301     .8171796    1.064443
+High, sta..  |   .9594178   .0407584    -0.98   0.329     .8827681    1.042723
+High, sta..  |   .9736291   .0416947    -0.62   0.533     .8952445    1.058877
+             |
+1.chronic_.. |   1.029729   .2485045     0.12   0.903     .6416559    1.652507
+    1.asthma |   1.561301   .7848393     0.89   0.375     .5829112    4.181876
+1.~c_disease |   .8755597   .1000911    -1.16   0.245     .6998084    1.095449
+  1.diabetes |   1.165774   .0752513     2.38   0.017     1.027233       1.323
+    1.cancer |   .8958677   .1848847    -0.53   0.594     .5978292    1.342489
+1.~r_disease |   1.281762   .3060102     1.04   0.298     .8027675    2.046561
+1.neurolog~n |   1.210972   .1881042     1.23   0.218     .8931293    1.641928
+1.chronic_.. |    .794721   .1565068    -1.17   0.243     .5402378     1.16908
+1.organ_tr~t |   1.305383   1.308819     0.27   0.790     .1829346    9.314938
+    1.spleen |   1.042013   .1557433     0.28   0.783      .777409    1.396681
+1.ra_sle_p~s |   .9408389   .2064185    -0.28   0.781     .6120163     1.44633
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agegroup_
+> bmicat_noeth.ster saved
 
          failure _d:  itu
    analysis time _t:  (stime_itu-origin)
@@ -899,8 +968,8 @@ file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agegroup_b
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5186
-                            Somers' D =   0.0372
+                          Harrell's C =   0.5213
+                            Somers' D =   0.0427
 
          failure _d:  itu
    analysis time _t:  (stime_itu-origin)
@@ -908,103 +977,110 @@ file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agegroup_b
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -14113.963
-Iteration 1:   log likelihood =  -14101.76
-Iteration 2:   log likelihood = -14100.633
-Iteration 3:   log likelihood = -14100.541
-Iteration 4:   log likelihood = -14100.533
-Iteration 5:   log likelihood =  -14100.53
-Iteration 6:   log likelihood = -14100.529
-Iteration 7:   log likelihood = -14100.528
-Iteration 8:   log likelihood = -14100.528
-Iteration 9:   log likelihood = -14100.528
-Iteration 10:  log likelihood = -14100.528
-Iteration 11:  log likelihood = -14100.528
-Iteration 12:  log likelihood = -14100.528
-Iteration 13:  log likelihood = -14100.528
-Iteration 14:  log likelihood = -14100.528
-Iteration 15:  log likelihood = -14100.528
-Iteration 16:  log likelihood = -14100.528
-Iteration 17:  log likelihood = -14100.528
-Iteration 18:  log likelihood = -14100.528
-Iteration 19:  log likelihood = -14100.528
-Iteration 20:  log likelihood = -14100.528
-Iteration 21:  log likelihood = -14100.528
-Iteration 22:  log likelihood = -14100.528
-Iteration 23:  log likelihood = -14100.528
-Iteration 24:  log likelihood = -14100.528
-Iteration 25:  log likelihood = -14100.528
-Iteration 26:  log likelihood = -14100.528
-Iteration 27:  log likelihood = -14100.528
-Iteration 28:  log likelihood = -14100.528
-Iteration 29:  log likelihood = -14100.528
-Iteration 30:  log likelihood = -14100.528
-Iteration 31:  log likelihood = -14100.528
-Iteration 32:  log likelihood = -14100.528
+Iteration 0:   log likelihood = -13810.151
+Iteration 1:   log likelihood = -13797.191
+Iteration 2:   log likelihood = -13796.993
+Iteration 3:   log likelihood = -13796.955
+Iteration 4:   log likelihood =  -13796.94
+Iteration 5:   log likelihood = -13796.935
+Iteration 6:   log likelihood = -13796.933
+Iteration 7:   log likelihood = -13796.933
+Iteration 8:   log likelihood = -13796.932
+Iteration 9:   log likelihood = -13796.932
+Iteration 10:  log likelihood = -13796.932
+Iteration 11:  log likelihood = -13796.932
+Iteration 12:  log likelihood = -13796.932
+Iteration 13:  log likelihood = -13796.932
+Iteration 14:  log likelihood = -13796.932
+Iteration 15:  log likelihood = -13796.932
+Iteration 16:  log likelihood = -13796.932
+Iteration 17:  log likelihood = -13796.932
+Iteration 18:  log likelihood = -13796.932
+Iteration 19:  log likelihood = -13796.932
+Iteration 20:  log likelihood = -13796.932
+Iteration 21:  log likelihood = -13796.932
+Iteration 22:  log likelihood = -13796.932
+Iteration 23:  log likelihood = -13796.932
+Iteration 24:  log likelihood = -13796.932
+Iteration 25:  log likelihood = -13796.932
+Iteration 26:  log likelihood = -13796.932
+Iteration 27:  log likelihood = -13796.932
+Iteration 28:  log likelihood = -13796.932
+Iteration 29:  log likelihood = -13796.932
+Iteration 30:  log likelihood = -13796.932
+Iteration 31:  log likelihood = -13796.932
+Iteration 32:  log likelihood = -13796.932
+Iteration 33:  log likelihood = -13796.932
+Iteration 34:  log likelihood = -13796.932
+Iteration 35:  log likelihood = -13796.932
+Iteration 36:  log likelihood = -13796.932
+Iteration 37:  log likelihood = -13796.932
+Iteration 38:  log likelihood = -13796.932
+Iteration 39:  log likelihood = -13796.932
 Refining estimates:
-Iteration 0:   log likelihood = -14100.528
-Iteration 1:   log likelihood = -14100.528
-Iteration 2:   log likelihood = -14100.528
+Iteration 0:   log likelihood = -13796.932
+Iteration 1:   log likelihood = -13796.932
+Iteration 2:   log likelihood = -13796.932
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       42,259                  Number of obs    =      42,259
-No. of failures =        2,053
-Time at risk    =  2464726.762
-                                                LR chi2(33)      =       26.87
-Log likelihood  =   -14100.528                  Prob > chi2      =      0.7654
+No. of subjects =       42,075                  Number of obs    =      42,075
+No. of failures =        2,010
+Time at risk    =  2458638.576
+                                                LR chi2(33)      =       26.44
+Log likelihood  =   -13796.932                  Prob > chi2      =      0.7837
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9930913   .0064725    -1.06   0.287     .9804862    1.005859
-                         age2 |   1.019557   .0198707     0.99   0.320     .9813453    1.059256
-                         age3 |   .9373615    .073118    -0.83   0.407     .8044701    1.092205
-                       1.male |   1.014046   .0519896     0.27   0.786     .9171007    1.121239
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.064584   .0946595     0.70   0.482      .894322    1.267261
-        Overweight (25-29.9)  |   1.057724   .0760128     0.78   0.435     .9187577    1.217709
-           Obese I (30-34.9)  |   .9904687    .072766    -0.13   0.896     .8576422    1.143867
-          Obese II (35-39.9)  |   .9768212   .0740256    -0.31   0.757     .8419944    1.133237
-             Obese III (40+)  |    1.02306   .0707356     0.33   0.742     .8934042    1.171532
-                              |
-                        smoke |
-                      Former  |   .9616356   .0476111    -0.79   0.429     .8727043    1.059629
-                     Current  |   .9577072   .0608324    -0.68   0.496     .8456009    1.084676
-                              |
-                    ethnicity |
-                       Black  |   1.037027   .0562338     0.67   0.503      .932466    1.153314
-                       Asian  |   1.041523   .0795138     0.53   0.594     .8967774     1.20963
-                       Mixed  |   .8746755   .0756027    -1.55   0.121     .7383686    1.036145
-                       Other  |   .9360445   .0818371    -0.76   0.450     .7886369    1.111005
-                              |
-                          imd |
-                           2  |    1.04996   .0906725     0.56   0.572     .8864713      1.2436
-                           3  |   1.089298   .1038006     0.90   0.369     .9037215    1.312982
-                           4  |   1.032267   .0923012     0.36   0.722     .8663256    1.229995
-                           5  |   1.071125    .097765     0.75   0.452     .8956707     1.28095
-                              |
-                        bpcat |
-                    Elevated  |   1.025781    .087506     0.30   0.765     .8678433    1.212461
-               High, stage I  |    .984237   .0545431    -0.29   0.774     .8829356    1.097161
-              High, stage II  |   1.010774   .0565194     0.19   0.848     .9058523    1.127848
-                              |
-1.chronic_respiratory_disease |    .696664   .2383571    -1.06   0.291     .3562811    1.362241
-                     1.asthma |   2.838769    1.65431     1.79   0.073     .9059144    8.895553
-    1.chronic_cardiac_disease |   .7585394   .1250924    -1.68   0.094     .5490408    1.047977
-                   1.diabetes |   1.016985   .0910279     0.19   0.851     .8533466    1.212003
-                     1.cancer |   1.509708   .3338641     1.86   0.063     .9787101    2.328798
-      1.chronic_liver_disease |   .9226435   .2691061    -0.28   0.783      .520913     1.63419
-     1.neurological_condition |   1.290174   .2548754     1.29   0.197     .8759764    1.900221
-     1.chronic_kidney_disease |   .7475669    .187749    -1.16   0.247     .4569551       1.223
-           1.organ_transplant |   2.00e-15   9.67e-08    -0.00   1.000            0           .
-                     1.spleen |   1.439539    .290248     1.81   0.071     .9696151    2.137211
-           1.ra_sle_psoriasis |   1.085016   .2820066     0.31   0.754     .6519294     1.80581
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.004071   .0067099     0.61   0.543     .9910061    1.017309
+        age2 |   .9908621    .019509    -0.47   0.641     .9533535    1.029846
+        age3 |   1.035389   .0812769     0.44   0.658     .8877391    1.207597
+      1.male |   1.049957   .0538345     0.95   0.342     .9495722    1.160955
+             |
+      bmicat |
+Underwei..)  |   1.102076   .0987568     1.08   0.278     .9245606    1.313673
+Overweig..)  |   1.065158   .0777358     0.86   0.387     .9231938    1.228953
+Obese I ..)  |   1.033331   .0764938     0.44   0.658     .8937749    1.194678
+Obese II..)  |    .982495   .0753751    -0.23   0.818     .8453329    1.141913
+Obese II..)  |   1.025043   .0721121     0.35   0.725     .8930175    1.176588
+             |
+       smoke |
+     Former  |   .9853371   .0494073    -0.29   0.768     .8931069    1.087092
+    Current  |   .9667371   .0621776    -0.53   0.599     .8522396    1.096617
+             |
+   ethnicity |
+      Black  |   1.045232   .0573768     0.81   0.420     .9386137    1.163961
+      Asian  |   1.082806     .08292     1.04   0.299     .9318942    1.258156
+      Mixed  |   .8954501   .0775558    -1.27   0.202     .7556454    1.061121
+      Other  |   .9976678   .0869216    -0.03   0.979     .8410565    1.183441
+             |
+         imd |
+          2  |   .9970381    .084527    -0.03   0.972     .8444006    1.177267
+          3  |   .9014823   .0861747    -1.08   0.278     .7474617     1.08724
+          4  |   1.008003   .0883581     0.09   0.928     .8488839    1.196948
+          5  |   .9877065   .0891163    -0.14   0.891      .827614    1.178767
+             |
+       bpcat |
+   Elevated  |   .9138943   .0805779    -1.02   0.307     .7688572    1.086291
+High, sta..  |   .9368753   .0519496    -1.18   0.240     .8403936    1.044433
+High, sta..  |   .9117253   .0517697    -1.63   0.104      .815701    1.019054
+             |
+1.chronic_.. |   1.052035   .3208062     0.17   0.868     .5787164    1.912469
+    1.asthma |   1.229396   .8745214     0.29   0.772     .3049272    4.956641
+1.~c_disease |   .8036857    .125922    -1.39   0.163     .5911796    1.092579
+  1.diabetes |   1.167569   .0991035     1.83   0.068     .9886265    1.378899
+    1.cancer |   .9475768   .2469293    -0.21   0.836     .5685906    1.579171
+1.~r_disease |   1.296311   .4127904     0.81   0.415     .6944755    2.419698
+1.neurolog~n |   1.318086   .2604758     1.40   0.162     .8948127     1.94158
+1.chronic_.. |   .6969513   .1940421    -1.30   0.195     .4038449    1.202791
+1.organ_tr~t |   1.42e-18   1.69e-09    -0.00   1.000            0           .
+    1.spleen |   1.069263   .2073134     0.35   0.730     .7312229    1.563577
+1.ra_sle_p~s |   .7596914    .241302    -0.87   0.387     .4076324    1.415812
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster not found)
-file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline
+> _bmicat_CCeth.ster saved
 
          failure _d:  itu
    analysis time _t:  (stime_itu-origin)
@@ -1014,8 +1090,8 @@ file ./output/models/an_multivariate_cox_models_itu_MAINFULLYADJMODEL_agespline_
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5301
-                            Somers' D =   0.0602
+                          Harrell's C =   0.5303
+                            Somers' D =   0.0605
 
                 id:  patient_id
      failure event:  composite != 0 & composite < .
@@ -1031,8 +1107,8 @@ obs. time interval:  (stime_composite[_n-1], stime_composite]
 ------------------------------------------------------------------------------
     108,813  observations remaining, representing
     108,813  subjects
-     15,704  failures in single-failure-per-subject data
-  6,336,436  total analysis time at risk and under observation
+     15,645  failures in single-failure-per-subject data
+  6,339,963  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        64
@@ -1043,67 +1119,67 @@ obs. time interval:  (stime_composite[_n-1], stime_composite]
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -76159.715
-Iteration 1:   log likelihood = -76136.832
-Iteration 2:   log likelihood = -76136.652
-Iteration 3:   log likelihood = -76136.651
-Iteration 4:   log likelihood = -76136.651
+Iteration 0:   log likelihood =  -75706.36
+Iteration 1:   log likelihood = -75690.557
+Iteration 2:   log likelihood = -75690.519
+Iteration 3:   log likelihood = -75690.519
+Iteration 4:   log likelihood = -75690.519
 Refining estimates:
-Iteration 0:   log likelihood = -76136.651
+Iteration 0:   log likelihood = -75690.519
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =       10,274
-Time at risk    =  4164566.166
-                                                LR chi2(29)      =       46.13
-Log likelihood  =   -76136.651                  Prob > chi2      =      0.0228
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =       10,213
+Time at risk    =  4165152.135
+                                                LR chi2(29)      =       31.68
+Log likelihood  =   -75690.519                  Prob > chi2      =      0.3340
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9966489   .0028754    -1.16   0.245     .9910292      1.0023
-                         age2 |   1.009423   .0087025     1.09   0.277     .9925095    1.026624
-                         age3 |   .9630305   .0332966    -1.09   0.276     .8999325    1.030553
-                       1.male |   1.021589   .0231711     0.94   0.346     .9771693    1.068028
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.004114    .041083     0.10   0.920     .9267366    1.087952
-        Overweight (25-29.9)  |   1.087542   .0350103     2.61   0.009     1.021043    1.158372
-           Obese I (30-34.9)  |   1.002263   .0330025     0.07   0.945     .9396228     1.06908
-          Obese II (35-39.9)  |    1.05186   .0351517     1.51   0.130     .9851714    1.123062
-             Obese III (40+)  |   1.025825   .0318241     0.82   0.411     .9653093    1.090134
-                              |
-                        smoke |
-                      Former  |    .976374   .0215696    -1.08   0.279     .9350005    1.019578
-                     Current  |   .9441363   .0269681    -2.01   0.044     .8927322    .9985004
-                              |
-                          imd |
-                           2  |   .9144441    .033773    -2.42   0.015     .8505893    .9830926
-                           3  |    .934808    .038253    -1.65   0.099     .8627614    1.012871
-                           4  |   .9269815   .0354029    -1.99   0.047     .8601266    .9990329
-                           5  |   .9005974   .0355251    -2.65   0.008     .8335931    .9729876
-                              |
-                        bpcat |
-                    Elevated  |   .9877253   .0377009    -0.32   0.746     .9165291    1.064452
-               High, stage I  |   .9580823   .0237058    -1.73   0.084     .9127283     1.00569
-              High, stage II  |   .9677479   .0241733    -1.31   0.189     .9215102    1.016306
-                              |
-1.chronic_respiratory_disease |   1.216391   .1907431     1.25   0.212     .8945314    1.654057
-                     1.asthma |   1.642822   .5220765     1.56   0.118      .881221     3.06264
-    1.chronic_cardiac_disease |    .973229   .0625892    -0.42   0.673     .8579729    1.103968
-                   1.diabetes |   1.050297   .0408359     1.26   0.207     .9732336    1.133462
-                     1.cancer |   1.242719   .1293392     2.09   0.037     1.013402    1.523926
-      1.chronic_liver_disease |   .8178603   .1060466    -1.55   0.121     .6343215    1.054505
-     1.neurological_condition |   .8431632   .0902996    -1.59   0.111     .6835199    1.040093
-     1.chronic_kidney_disease |   .9799865   .0970989    -0.20   0.838     .8070147    1.190032
-           1.organ_transplant |   1.145643   .8110115     0.19   0.848      .286072    4.587996
-                     1.spleen |   .8768411   .0727697    -1.58   0.113     .7452107    1.031722
-           1.ra_sle_psoriasis |   .9064404   .1157499    -0.77   0.442     .7057375    1.164221
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   .9991024   .0029282    -0.31   0.759     .9933797    1.004858
+        age2 |   1.008591    .008753     0.99   0.324     .9915801    1.025893
+        age3 |   .9572636   .0331963    -1.26   0.208     .8943619    1.024589
+      1.male |   1.027097   .0233075     1.18   0.239     .9824162     1.07381
+             |
+      bmicat |
+Underwei..)  |   .9610336   .0397782    -0.96   0.337     .8861484    1.042247
+Overweig..)  |   1.053428   .0340731     1.61   0.108     .9887186    1.122372
+Obese I ..)  |   1.002421   .0329627     0.07   0.941     .9398526    1.069154
+Obese II..)  |   1.033977   .0346133     1.00   0.318     .9683135    1.104093
+Obese II..)  |     1.0287    .031838     0.91   0.361     .9681533    1.093032
+             |
+       smoke |
+     Former  |   .9630835   .0213011    -1.70   0.089      .922226    1.005751
+    Current  |   .9236906   .0265259    -2.76   0.006     .8731368    .9771715
+             |
+         imd |
+          2  |   1.015969   .0383708     0.42   0.675     .9434791    1.094027
+          3  |   .9820347   .0413391    -0.43   0.667      .904264    1.066494
+          4  |   1.009744   .0395645     0.25   0.805      .935102    1.090344
+          5  |   .9975404   .0400661    -0.06   0.951     .9220237    1.079242
+             |
+       bpcat |
+   Elevated  |   1.011024   .0387446     0.29   0.775      .937868    1.089887
+High, sta..  |   .9933364   .0245645    -0.27   0.787      .946339    1.042668
+High, sta..  |   .9771087   .0245738    -0.92   0.357     .9301127    1.026479
+             |
+1.chronic_.. |   .9809489   .1436172    -0.13   0.895     .7362496    1.306976
+    1.asthma |   .9865591   .3740563    -0.04   0.972     .4692324    2.074236
+1.~c_disease |   .9564762   .0614683    -0.69   0.489     .8432792    1.084868
+  1.diabetes |   1.079639   .0415413     1.99   0.046     1.001214    1.164207
+    1.cancer |   1.080957   .1207195     0.70   0.486     .8684554    1.345455
+1.~r_disease |   .9227336   .1251407    -0.59   0.553      .707354    1.203693
+1.neurolog~n |   1.126452   .1056878     1.27   0.204     .9372383    1.353866
+1.chronic_.. |   1.077077   .1062118     0.75   0.451     .8877875    1.306727
+1.organ_tr~t |    .473225   .4734915    -0.75   0.455     .0665866    3.363168
+    1.spleen |   .9622518   .0795883    -0.47   0.642      .818249    1.131598
+1.ra_sle_p~s |   1.006679   .1237058     0.05   0.957     .7912089    1.280829
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_age
+> spline_bmicat_noeth.ster saved
 
          failure _d:  composite
    analysis time _t:  (stime_composite-origin)
@@ -1113,8 +1189,8 @@ file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_ages
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5187
-                            Somers' D =   0.0373
+                          Harrell's C =   0.5174
+                            Somers' D =   0.0348
 
          failure _d:  composite
    analysis time _t:  (stime_composite-origin)
@@ -1122,71 +1198,71 @@ file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_ages
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -76159.715
-Iteration 1:   log likelihood = -76135.783
-Iteration 2:   log likelihood =   -76135.6
-Iteration 3:   log likelihood =   -76135.6
-Iteration 4:   log likelihood =   -76135.6
+Iteration 0:   log likelihood =  -75706.36
+Iteration 1:   log likelihood = -75690.035
+Iteration 2:   log likelihood = -75689.996
+Iteration 3:   log likelihood = -75689.996
+Iteration 4:   log likelihood = -75689.996
 Refining estimates:
-Iteration 0:   log likelihood =   -76135.6
+Iteration 0:   log likelihood = -75689.996
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       71,478                  Number of obs    =      71,478
-No. of failures =       10,274
-Time at risk    =  4164566.166
-                                                LR chi2(31)      =       48.23
-Log likelihood  =     -76135.6                  Prob > chi2      =      0.0250
+No. of subjects =       71,443                  Number of obs    =      71,443
+No. of failures =       10,213
+Time at risk    =  4165152.135
+                                                LR chi2(31)      =       32.73
+Log likelihood  =   -75689.996                  Prob > chi2      =      0.3821
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                     agegroup |
-                      40-<50  |   .9401578   .0348803    -1.66   0.096       .87422    1.011069
-                      50-<60  |   1.003948   .0361609     0.11   0.913     .9355173    1.077383
-                      60-<70  |   .9824276   .0386675    -0.45   0.652     .9094902    1.061214
-                      70-<80  |   .9649036   .0395461    -0.87   0.383     .8904261    1.045611
-                         80+  |   .9614544   .0321569    -1.18   0.240     .9004495    1.026592
-                              |
-                       1.male |   1.021897   .0232369     0.95   0.341     .9773536    1.068471
-                              |
-                       bmicat |
-         Underweight (<18.5)  |   1.003825    .041074     0.09   0.926     .9264649    1.087645
-        Overweight (25-29.9)  |   1.087371   .0350052     2.60   0.009     1.020881     1.15819
-           Obese I (30-34.9)  |   1.002332   .0330053     0.07   0.944      .939686    1.069154
-          Obese II (35-39.9)  |    1.05187   .0351528     1.51   0.130     .9851794    1.123075
-             Obese III (40+)  |   1.025806   .0318234     0.82   0.411     .9652916    1.090114
-                              |
-                        smoke |
-                      Former  |   .9766125   .0215756    -1.07   0.284     .9352277    1.019829
-                     Current  |   .9441498   .0269696    -2.01   0.044     .8927427     .998517
-                              |
-                          imd |
-                           2  |   .9139256   .0337567    -2.44   0.015     .8501017    .9825413
-                           3  |   .9345657   .0382422    -1.65   0.098     .8625392    1.012607
-                           4  |   .9265227   .0357012    -1.98   0.048     .8591266    .9992058
-                           5  |   .9006025   .0355211    -2.65   0.008     .8336054    .9729842
-                              |
-                        bpcat |
-                    Elevated  |   .9883685   .0377273    -0.31   0.759     .9171228    1.065149
-               High, stage I  |   .9580869   .0237064    -1.73   0.084     .9127319    1.005696
-              High, stage II  |   .9675308   .0241687    -1.32   0.186     .9213019    1.016079
-                              |
-1.chronic_respiratory_disease |   1.215517   .1906105     1.24   0.213     .8938824    1.652881
-                     1.asthma |   1.637817   .5204937     1.55   0.121     .8785283    3.053338
-    1.chronic_cardiac_disease |   .9727852   .0625517    -0.43   0.668     .8575971    1.103445
-                   1.diabetes |   1.051515   .0408683     1.29   0.196     .9743897    1.134746
-                     1.cancer |   1.242176   .1291811     2.09   0.037     1.013122    1.523016
-      1.chronic_liver_disease |   .8318332   .1055653    -1.45   0.147     .6486538    1.066742
-     1.neurological_condition |   .8440486    .090398    -1.58   0.113      .684232    1.041194
-     1.chronic_kidney_disease |   .9791327   .0970178    -0.21   0.831      .806306    1.189004
-           1.organ_transplant |   1.128139    .798612     0.17   0.865     .2817053    4.517832
-                     1.spleen |     .85303   .0733089    -1.85   0.064     .7207964    1.009523
-           1.ra_sle_psoriasis |   .9068699   .1158081    -0.77   0.444     .7060668    1.164781
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     40-<50  |   .9838058    .036728    -0.44   0.662     .9143908     1.05849
+     50-<60  |   1.054678   .0382916     1.47   0.143     .9822356    1.132463
+     60-<70  |   1.049654   .0410806     1.24   0.216     .9721477    1.133339
+     70-<80  |   1.033656   .0422657     0.81   0.418     .9540495    1.119906
+        80+  |   1.004661   .0339062     0.14   0.890      .940356    1.073363
+             |
+      1.male |   1.026697    .023359     1.16   0.247     .9819197    1.073516
+             |
+      bmicat |
+Underwei..)  |   .9613504   .0397921    -0.95   0.341      .886439    1.042592
+Overweig..)  |   1.053471   .0340744     1.61   0.107     .9887591    1.122418
+Obese I ..)  |   1.002528   .0329666     0.08   0.939     .9399529    1.069269
+Obese II..)  |   1.033969   .0346133     1.00   0.318     .9683062    1.104085
+Obese II..)  |   1.028566   .0318337     0.91   0.363     .9680279     1.09289
+             |
+       smoke |
+     Former  |   .9631939   .0213039    -1.70   0.090      .922331    1.005867
+    Current  |   .9238495   .0265313    -2.76   0.006     .8732854    .9773412
+             |
+         imd |
+          2  |   1.015916   .0383695     0.42   0.676     .9434295    1.093972
+          3  |   .9820753   .0413452    -0.43   0.667     .9042934    1.066548
+          4  |   1.011426   .0399545     0.29   0.774     .9360715    1.092847
+          5  |   .9979448   .0400826    -0.05   0.959     .9223969     1.07968
+             |
+       bpcat |
+   Elevated  |   1.010563   .0387299     0.27   0.784     .9374347    1.089396
+High, sta..  |   .9932184    .024562    -0.28   0.783     .9462258    1.042545
+High, sta..  |   .9771122   .0245748    -0.92   0.357     .9301143    1.026485
+             |
+1.chronic_.. |   .9797468   .1434408    -0.14   0.889     .7353479    1.305374
+    1.asthma |   .9827339   .3726141    -0.05   0.963     .4674055    2.066227
+1.~c_disease |   .9551421   .0613809    -0.71   0.475     .8421059    1.083351
+  1.diabetes |   1.081006   .0415711     2.03   0.043     1.002523    1.165633
+    1.cancer |   1.079016   .1204826     0.68   0.496     .8669275     1.34299
+1.~r_disease |   .9253045   .1231959    -0.58   0.560      .712779    1.201198
+1.neurolog~n |   1.127261   .1057671     1.28   0.202     .9379058    1.354846
+1.chronic_.. |   1.076892    .106196     0.75   0.453     .8876306    1.306508
+1.organ_tr~t |   .4682036   .4684772    -0.76   0.448     .0658773     3.32762
+    1.spleen |   .9449597   .0808457    -0.66   0.508     .7990777    1.117474
+1.ra_sle_p~s |   1.006758   .1237178     0.05   0.956     .7912674    1.280935
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster not found)
-file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_age
+> group_bmicat_noeth.ster saved
 
          failure _d:  composite
    analysis time _t:  (stime_composite-origin)
@@ -1196,8 +1272,8 @@ file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_ageg
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5191
-                            Somers' D =   0.0381
+                          Harrell's C =   0.5171
+                            Somers' D =   0.0342
 
          failure _d:  composite
    analysis time _t:  (stime_composite-origin)
@@ -1205,73 +1281,98 @@ file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_ageg
   enter on or after:  time enter_date
                  id:  patient_id
 
-Iteration 0:   log likelihood = -41650.532
-Iteration 1:   log likelihood = -41632.607
-Iteration 2:   log likelihood = -41632.432
-Iteration 3:   log likelihood = -41632.431
-Iteration 4:   log likelihood = -41632.431
+Iteration 0:   log likelihood = -40719.053
+Iteration 1:   log likelihood = -40702.474
+Iteration 2:   log likelihood = -40702.158
+Iteration 3:   log likelihood = -40702.045
+Iteration 4:   log likelihood = -40702.004
+Iteration 5:   log likelihood = -40701.989
+Iteration 6:   log likelihood = -40701.983
+Iteration 7:   log likelihood = -40701.981
+Iteration 8:   log likelihood =  -40701.98
+Iteration 9:   log likelihood =  -40701.98
+Iteration 10:  log likelihood =  -40701.98
+Iteration 11:  log likelihood =  -40701.98
+Iteration 12:  log likelihood =  -40701.98
+Iteration 13:  log likelihood =  -40701.98
+Iteration 14:  log likelihood =  -40701.98
+Iteration 15:  log likelihood =  -40701.98
+Iteration 16:  log likelihood =  -40701.98
+Iteration 17:  log likelihood =  -40701.98
+Iteration 18:  log likelihood =  -40701.98
+Iteration 19:  log likelihood =  -40701.98
+Iteration 20:  log likelihood =  -40701.98
+Iteration 21:  log likelihood =  -40701.98
+Iteration 22:  log likelihood =  -40701.98
+Iteration 23:  log likelihood =  -40701.98
+Iteration 24:  log likelihood =  -40701.98
+Iteration 25:  log likelihood =  -40701.98
+Iteration 26:  log likelihood =  -40701.98
+Iteration 27:  log likelihood =  -40701.98
 Refining estimates:
-Iteration 0:   log likelihood = -41632.431
+Iteration 0:   log likelihood =  -40701.98
+Iteration 1:   log likelihood =  -40701.98
+Iteration 2:   log likelihood =  -40701.98
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =       42,259                  Number of obs    =      42,259
-No. of failures =        6,047
-Time at risk    =  2464726.762
-                                                LR chi2(33)      =       36.20
-Log likelihood  =   -41632.431                  Prob > chi2      =      0.3214
+No. of subjects =       42,075                  Number of obs    =      42,075
+No. of failures =        5,914
+Time at risk    =  2458638.576
+                                                LR chi2(33)      =       34.15
+Log likelihood  =    -40701.98                  Prob > chi2      =      0.4124
 
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   .9964373   .0037385    -0.95   0.341     .9891369    1.003792
-                         age2 |   1.009648   .0113373     0.86   0.393       .98767    1.032115
-                         age3 |   .9651928   .0434674    -0.79   0.431     .8836499     1.05426
-                       1.male |    1.01513   .0300202     0.51   0.612     .9579639    1.075707
-                              |
-                       bmicat |
-         Underweight (<18.5)  |    .994894   .0528458    -0.10   0.923     .8965273    1.104053
-        Overweight (25-29.9)  |   1.094905   .0455748     2.18   0.029     1.009126    1.187974
-           Obese I (30-34.9)  |   .9459522   .0411024    -1.28   0.201      .868728    1.030041
-          Obese II (35-39.9)  |   1.050315   .0455265     1.13   0.257     .9647703    1.143445
-             Obese III (40+)  |   1.027097   .0414471     0.66   0.508     .9489919    1.111631
-                              |
-                        smoke |
-                      Former  |   .9828399     .02831    -0.60   0.548     .9288905    1.039923
-                     Current  |   .9395496   .0351159    -1.67   0.095     .8731842    1.010959
-                              |
-                    ethnicity |
-                       Black  |   1.027662   .0325844     0.86   0.389     .9657415    1.093552
-                       Asian  |   .9762473   .0447234    -0.52   0.600     .8924111    1.067959
-                       Mixed  |   .9773593   .0470035    -0.48   0.634     .8894427    1.073966
-                       Other  |   .9651726   .0485536    -0.70   0.481     .8745503    1.065185
-                              |
-                          imd |
-                           2  |   .9738475   .0474187    -0.54   0.586     .8852056    1.071366
-                           3  |   .9944395   .0538025    -0.10   0.918     .8943871    1.105684
-                           4  |   .9670814   .0488538    -0.66   0.508     .8759172    1.067734
-                           5  |   .9659823   .0501205    -0.67   0.505     .8725778    1.069385
-                              |
-                        bpcat |
-                    Elevated  |   1.040361   .0508513     0.81   0.418     .9453199    1.144958
-               High, stage I  |   .9412149   .0304637    -1.87   0.061     .8833615    1.002857
-              High, stage II  |   .9728932    .031707    -0.84   0.399     .9126919    1.037065
-                              |
-1.chronic_respiratory_disease |   1.120918   .2313099     0.55   0.580     .7480354    1.679677
-                     1.asthma |   1.857839   .7629096     1.51   0.131     .8307445    4.154784
-    1.chronic_cardiac_disease |   .9597008   .0828883    -0.48   0.634     .8102491    1.136719
-                   1.diabetes |   1.017639   .0522172     0.34   0.733     .9202728    1.125306
-                     1.cancer |   1.203042   .1688174     1.32   0.188     .9137672    1.583894
-      1.chronic_liver_disease |   .8729645   .1518777    -0.78   0.435     .6207334    1.227688
-     1.neurological_condition |   .8690226   .1211076    -1.01   0.314     .6613129    1.141971
-     1.chronic_kidney_disease |   .9697402   .1248974    -0.24   0.811     .7533992    1.248204
-           1.organ_transplant |   1.581845   1.585743     0.46   0.647     .2217509    11.28399
-                     1.spleen |   .9506601   .1048364    -0.46   0.646     .7658732    1.180032
-           1.ra_sle_psoriasis |   .8300454   .1410421    -1.10   0.273     .5949286    1.158081
------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.000628   .0038464     0.16   0.870      .993118    1.008196
+        age2 |   1.005772   .0114488     0.51   0.613     .9835818    1.028464
+        age3 |   .9642315   .0438656    -0.80   0.423      .881978    1.054156
+      1.male |    1.00697   .0299625     0.23   0.815     .9499242    1.067442
+             |
+      bmicat |
+Underwei..)  |   .9912041   .0535935    -0.16   0.870      .891537    1.102013
+Overweig..)  |   1.084674   .0458573     1.92   0.055     .9984186    1.178382
+Obese I ..)  |   .9573868   .0420634    -0.99   0.322      .878394    1.043483
+Obese II..)  |   1.040876   .0457177     0.91   0.362      .955019    1.134451
+Obese II..)  |   1.050099   .0427313     1.20   0.230     .9695999    1.137281
+             |
+       smoke |
+     Former  |   .9636253   .0280098    -1.27   0.202     .9102616    1.020117
+    Current  |   .9175735   .0346709    -2.28   0.023     .8520751    .9881067
+             |
+   ethnicity |
+      Black  |   1.012762    .032662     0.39   0.694     .9507271    1.078845
+      Asian  |   1.024429   .0466637     0.53   0.596     .9369337    1.120095
+      Mixed  |   .9796749   .0475256    -0.42   0.672     .8908177    1.077395
+      Other  |   1.014746    .051048     0.29   0.771     .9194677    1.119896
+             |
+         imd |
+          2  |   1.038231   .0512245     0.76   0.447     .9425349    1.143644
+          3  |   .9549284   .0528416    -0.83   0.405     .8567794    1.064321
+          4  |   1.005283    .051618     0.10   0.918     .9090379    1.111718
+          5  |   .9927721    .052474    -0.14   0.891     .8950729    1.101135
+             |
+       bpcat |
+   Elevated  |   1.015582   .0507716     0.31   0.757     .9207917    1.120131
+High, sta..  |   .9727684   .0316454    -0.85   0.396     .9126804    1.036812
+High, sta..  |   .9672174   .0319937    -1.01   0.314     .9065005    1.032001
+             |
+1.chronic_.. |   .9912255   .1892822    -0.05   0.963     .6817559    1.441173
+    1.asthma |   .9643882   .4842075    -0.07   0.942     .3604741     2.58006
+1.~c_disease |   .9246225    .079546    -0.91   0.362     .7811508    1.094445
+  1.diabetes |   1.034008   .0530138     0.65   0.514     .9351531    1.143313
+    1.cancer |   1.091531   .1550288     0.62   0.537     .8263065    1.441887
+1.~r_disease |   .9697088   .1719404    -0.17   0.862     .6850363    1.372679
+1.neurolog~n |   1.144524   .1407471     1.10   0.272     .8993917    1.456468
+1.chronic_.. |   .9980652   .1353212    -0.01   0.989      .765156    1.301871
+1.organ_tr~t |   2.57e-13   4.44e-07    -0.00   1.000            0           .
+    1.spleen |   1.004213   .1108433     0.04   0.970     .8088574    1.246752
+1.ra_sle_p~s |   .9254316   .1550634    -0.46   0.644     .6663751    1.285197
+------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster not found)
-file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_age
+> spline_bmicat_CCeth.ster saved
 
          failure _d:  composite
    analysis time _t:  (stime_composite-origin)
@@ -1281,14 +1382,14 @@ file ./output/models/an_multivariate_cox_models_composite_MAINFULLYADJMODEL_ages
 
   Harrell's C concordance statistic
 
-                          Harrell's C =   0.5212
-                            Somers' D =   0.0424
+                          Harrell's C =   0.5215
+                            Somers' D =   0.0429
 
 . 
 . * Close log file  (bootstrapping likely to take a while)
 . log close
       name:  <unnamed>
-       log:  C:\Github\opencorona-risk-factors-research\analysis\an_multivariable_cox_models.log
+       log:  /home/app/notebook/analysis/an_multivariable_cox_models.log
   log type:  text
- closed on:  18 Apr 2020, 18:24:58
-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ closed on:  19 Apr 2020, 17:44:40
+-------------------------------------------------------------------------------
