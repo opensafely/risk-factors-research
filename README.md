@@ -27,6 +27,8 @@ for inspiration.
 
 ## Generating dummy data
 
+### Windows 
+
 On Windows, you'll want to install a couple of things:
 
 * [This ODBC driver from Microsoft]( https://www.microsoft.com/en-us/download/details.aspx?id=56567)
@@ -40,6 +42,12 @@ in `analysis/study_definition.py` to generate a data file at `analysis/input.csv
 
 You can now use Stata as you usually would, with your code entrypoint
 in `analysis/model.do`.
+
+### Mac
+
+On a Mac, you will need to run this from the command line (terminal). You will need to install the [Microsoft ODBC driver](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#microsoft-odbc-17). This can be installed via `brew`. 
+
+You will need to add the "database URL" when you run the command. This has been shared on slack. 
 
 ## Running the model against real data
 
