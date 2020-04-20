@@ -13,6 +13,7 @@ from tests.tpp_backend_setup import (
     RegistrationHistory,
     Organisation,
     PatientAddress,
+    ICNARC,
 )
 
 from datalab_cohorts import StudyDefinition
@@ -30,6 +31,7 @@ def setup_function(function):
     session = make_session()
     session.query(CovidStatus).delete()
     session.query(CodedEvent).delete()
+    session.query(ICNARC).delete()
     session.query(MedicationIssue).delete()
     session.query(MedicationDictionary).delete()
     session.query(RegistrationHistory).delete()
@@ -78,15 +80,11 @@ def test_patient_characteristics_for_covid_status():
         age=patients.age_as_of("2020-01-01"),
         sex=patients.sex(),
         died=patients.have_died_of_covid(),
-        admitted_itu=patients.admitted_to_itu(),
     )
     results = study.to_dicts()
 
     assert [x["sex"] for x in results] == ["M", "F"]
     assert [x["died"] for x in results] == ["0", "1"]
-    assert [x["admitted_itu"] for x in results] == ["1", "0"]
-    # XXX the current implementation fails because the first age
-    # is computed as 120
     assert [x["age"] for x in results] == ["120", "20"]
 
 
@@ -813,7 +811,11 @@ def test_patients_satisfying_with_hidden_columns():
         sex=patients.sex(),
         age=patients.age_as_of("2020-01-01"),
         at_risk=patients.satisfying(
-            "(age > 70 AND sex = M) OR has_asthma",
+            """
+            (age > 70 AND sex = M)
+            OR
+            has_asthma
+            """,
             has_asthma=patients.with_these_clinical_events(
                 codelist([condition_code], "ctv3")
             ),
@@ -829,12 +831,15 @@ def test_patients_registered_practice_as_of():
     org_1 = Organisation(STPCode="123", MSOACode="E0201")
     org_2 = Organisation(STPCode="456", MSOACode="E0202")
     org_3 = Organisation(STPCode="789", MSOACode="E0203")
+    org_4 = Organisation(STPCode="910", MSOACode="E0204")
     patient = Patient()
     patient.RegistrationHistory.append(
         RegistrationHistory(
             StartDate="1990-01-01", EndDate="2018-01-01", Organisation=org_1
         )
     )
+    # We deliberately create overlapping registration periods so we can check
+    # that we handle these correctly
     patient.RegistrationHistory.append(
         RegistrationHistory(
             StartDate="2018-01-01", EndDate="2022-01-01", Organisation=org_2
@@ -842,7 +847,12 @@ def test_patients_registered_practice_as_of():
     )
     patient.RegistrationHistory.append(
         RegistrationHistory(
-            StartDate="2022-01-01", EndDate="9999-12-31", Organisation=org_3
+            StartDate="2019-09-01", EndDate="2020-05-01", Organisation=org_3
+        )
+    )
+    patient.RegistrationHistory.append(
+        RegistrationHistory(
+            StartDate="2022-01-01", EndDate="9999-12-31", Organisation=org_4
         )
     )
     patient_2 = Patient()
@@ -851,7 +861,11 @@ def test_patients_registered_practice_as_of():
             StartDate="2010-01-01", EndDate="9999-12-31", Organisation=org_1
         )
     )
-    session.add_all([patient, patient_2])
+    patient_3 = Patient()
+    patient_3.RegistrationHistory.append(
+        RegistrationHistory(StartDate="2010-01-01", EndDate="9999-12-31")
+    )
+    session.add_all([patient, patient_2, patient_3])
     session.commit()
     study = StudyDefinition(
         population=patients.all(),
@@ -859,8 +873,8 @@ def test_patients_registered_practice_as_of():
         msoa=patients.registered_practice_as_of("2020-01-01", returning="msoa_code"),
     )
     results = study.to_dicts()
-    assert [i["stp"] for i in results] == ["456", "123"]
-    assert [i["msoa"] for i in results] == ["E0202", "E0201"]
+    assert [i["stp"] for i in results] == ["789", "123", ""]
+    assert [i["msoa"] for i in results] == ["E0203", "E0201", ""]
 
 
 def test_patients_address_as_of():
@@ -874,9 +888,19 @@ def test_patients_address_as_of():
             RuralUrbanClassificationCode=1,
         )
     )
+    # We deliberately create overlapping address periods here to check that we
+    # handle these correctly
     patient.Addresses.append(
         PatientAddress(
             StartDate="2018-01-01",
+            EndDate="2020-02-01",
+            ImdRankRounded=200,
+            RuralUrbanClassificationCode=1,
+        )
+    )
+    patient.Addresses.append(
+        PatientAddress(
+            StartDate="2019-01-01",
             EndDate="2022-01-01",
             ImdRankRounded=300,
             RuralUrbanClassificationCode=2,
@@ -916,3 +940,65 @@ def test_patients_address_as_of():
     results = study.to_dicts()
     assert [i["imd"] for i in results] == ["300", "0", "0"]
     assert [i["rural_urban"] for i in results] == ["2", "0", "0"]
+
+
+def test_patients_admitted_to_icu():
+    session = make_session()
+    patient_1 = Patient()
+    patient_1.ICNARC.append(
+        ICNARC(
+            IcuAdmissionDateTime="2020-03-01",
+            OriginalIcuAdmissionDate="2020-03-01",
+            BasicDays_RespiratorySupport=2,
+            AdvancedDays_RespiratorySupport=2,
+            Ventilator=0,
+        )
+    )
+    patient_2 = Patient()
+    patient_2.ICNARC.append(
+        ICNARC(
+            IcuAdmissionDateTime="2020-03-01",
+            OriginalIcuAdmissionDate="2020-02-01",
+            BasicDays_RespiratorySupport=1,
+            AdvancedDays_RespiratorySupport=0,
+            Ventilator=1,
+        )
+    )
+    patient_3 = Patient()
+    patient_3.ICNARC.append(
+        ICNARC(
+            IcuAdmissionDateTime="2020-03-01",
+            OriginalIcuAdmissionDate="2020-02-01",
+            BasicDays_RespiratorySupport=0,
+            AdvancedDays_RespiratorySupport=0,
+            Ventilator=0,
+        )
+    )
+    patient_4 = Patient()
+    patient_4.ICNARC.append(
+        ICNARC(
+            IcuAdmissionDateTime="2020-01-01",
+            OriginalIcuAdmissionDate="2020-01-01",
+            BasicDays_RespiratorySupport=1,
+            AdvancedDays_RespiratorySupport=0,
+            Ventilator=1,
+        )
+    )
+    session.add_all([patient_1, patient_2, patient_3, patient_4])
+    session.commit()
+
+    study = StudyDefinition(
+        population=patients.all(),
+        icu=patients.admitted_to_icu(
+            on_or_after="2020-02-01", include_day=True, include_admission_date=True
+        ),
+    )
+    results = study.to_dicts()
+    assert [i["icu"] for i in results] == ["1", "1", "0", "0"]
+    assert [i["icu_ventilated"] for i in results] == ["0", "1", "0", "0"]
+    assert [i["icu_date_admitted"] for i in results] == [
+        "2020-03-01",
+        "2020-02-01",
+        "",
+        "",
+    ]
