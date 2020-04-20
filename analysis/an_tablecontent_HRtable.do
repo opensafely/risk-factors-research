@@ -26,10 +26,11 @@ local endwith "_tab"
 	
 	foreach modeltype of any minadj fulladj {
 
-		di "`variable' `outcome' `modeltype'"
-	
 		if "`outcome'"=="composite" & "`modeltype'"=="fulladj" local endwith "_n"
 
+		***********************
+		*1) GET THE RIGHT ESTIMATES INTO MEMORY
+		
 		if "`modeltype'"=="minadj" & "`variable'"!="agegroup" & "`variable'"!="male" estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`variable'
 
 		*FOR AGEGROUP - need to use the separate univariate/multivariate model fitted with age group rather than spline
@@ -50,9 +51,10 @@ local endwith "_tab"
 			if "`modeltype'"=="fulladj" estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth  
 		}
 		
+		***********************
+		*2) WRITE THE HRs TO THE OUTPUT FILE
 		
 		lincom `i'.`variable', eform
-
 		file write tablecontents %4.2f (r(estimate)) (" (") %4.2f (r(lb)) ("-") %4.2f (r(ub)) (")") `endwith'
 		
 		} /*min adj, full adj*/
@@ -62,7 +64,7 @@ local endwith "_tab"
 
 end
 ***********************************************************************************************************************
-*Generic code to do a row of "ref category"
+*Generic code to write a full row of "ref category" to the output file
 cap prog drop refline
 prog define refline
 file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
