@@ -26,5 +26,4 @@ pyodbc
 
 # For running tests
 sqlalchemy
-
 sqlparse
