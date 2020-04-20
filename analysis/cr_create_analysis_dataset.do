@@ -98,9 +98,18 @@ replace hosp_date = . if hosp==0
 format hosp_date %td
 
 *gen itu_date = enter_date + runiform()*lag
-rename icu_date_admitted itu_date
-replace itu_date = . if itu==0
-format itu_date %td
+capture confirm string variable icu_date_admitted
+if !_rc {
+    gen itu_date = date(icu_date_admitted, "YMD")
+    replace itu_date = . if itu==0
+    format itu_date %td
+}
+else {
+	rename icu_date_admitted itu_date
+	replace itu_date = . if itu==0
+    format itu_date %td
+}
+
 drop lag
 
 
