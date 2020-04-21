@@ -19,8 +19,22 @@
 *  
 ********************************************************************************
 
-
-
+*******************************************************************************
+*!!!!!!NOTE ON CODE GENERATING FAKE DATA WHICH NEEDS TO BE REPLACED LATER!!!!!!
+*
+*1) 	chronic_kidney_disease
+*		stroke_dementia
+*		other_neuro
+*
+*	Remove "gen" commands under "generate some extra variables, additional risk factors" (around line 67)
+*
+*  	Remove the section TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
+*		Under "Create binary comorbidity indices from dates" (around line 248)
+*
+*
+*2) 	Fake hospitalisation outcome is generated under *FAKE OUTCOME DATA ~ line 110
+*
+*******************************************************************************
 
 ***********************************
 *  Generate some extra variables  *
@@ -30,12 +44,6 @@
 
 
 set seed 123489
-
-* Death
-gen died = uniform()<0.1
-gen hosp = uniform()<0.20
-*gen itu  = uniform()<0.05
-rename icu itu
 
 
 * Smoking status (assuming input is called smoking_status)
@@ -54,6 +62,8 @@ replace ethnicity = "U" if ethnicity==""
 
 * Additional risk factors
 gen chronic_kidney_disease = .
+gen stroke_dementia = .
+gen other_neuro = .
 
 * ASTHMA - assume this comes as a binary rather than date **********************
 
@@ -77,38 +87,40 @@ drop stp_temp
 gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
-gen end_study_date = enter_date + 64
+gen end_study_date = date("06/04/2020", "DMY")
 format end_study_date %td
+
+* Outcomes (real)
+* DEATH - defined as earliest of cpns, or ons<with covid cause>
+foreach var of varlist died_date_ons died_date_cpns{
+	confirm string variable `var'
+	rename `var' `var'_dstr
+	gen `var' = date(`var'_dstr, "YMD")
+	drop `var'_dstr
+	}
+gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
+
+gen death_date = min(died_date_cpns, died_date_onscovid)
+gen died = death_date<.
+
+* ITU
+confirm string variable icu_date_admitted
+assert icu == (icu_date_admitted!="")
+rename icu itu
+gen itu_date = date(icu_date_admitted, "YMD")
+
 
 ****** END OF SECTION NEEDED FOR THE REAL DATA ******
 
-
-*** Generate fake outcome dates
-
-* Date of death
-gen death_date = enter_date + runiform()*42 if died==1
-replace death_date = . if died==0
-format death_date %td
-
+*FAKE OUTCOME DATA
 * Hospitalisation
+gen hosp = uniform()<0.20
+
 gen lag = min(death_date, end_study_date) - enter_date
 
 gen hosp_date = enter_date + runiform()*lag
 replace hosp_date = . if hosp==0
 format hosp_date %td
-
-*gen itu_date = enter_date + runiform()*lag
-capture confirm string variable icu_date_admitted
-if !_rc {
-    gen itu_date = date(icu_date_admitted, "YMD")
-    replace itu_date = . if itu==0
-    format itu_date %td
-}
-else {
-	rename icu_date_admitted itu_date
-	replace itu_date = . if itu==0
-    format itu_date %td
-}
 
 drop lag
 
@@ -133,7 +145,6 @@ drop if inlist(sex, "I", "U")
 
 
 
-
 ******************************
 *  Convert strings to dates  *
 ******************************
@@ -151,7 +162,8 @@ foreach var of varlist 	bp_sys_date 					///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						neurological_condition 			///
+						stroke_dementia		 			///
+						other_neuro 					///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
 						dysplenia						///
@@ -199,7 +211,8 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						bone_marrow_transplant_date 		///
 						chemo_radio_therapy_date			///
 						chronic_liver_disease_date 			///
-						neurological_condition_date 		///
+						stroke_dementia_date				///
+						other_neuro_date					///
 						chronic_kidney_disease_date 		///
 						organ_transplant_date 				///	
 						dysplenia_date 						///
@@ -214,20 +227,25 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 
 /* Grouped comorbidities  */
 
-* Cancer
-egen cancer = rowmax(lung_cancer haem_cancer other_cancer)
-
-gen haem_cancer_lastyr  = inrange(haem_cancer_date,  d(1/2/2019), d(1/2/2020))
+* Cancer except haematological 
 gen lung_cancer_lastyr  = inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020))
 gen other_cancer_lastyr = inrange(other_cancer_date, d(1/2/2019), d(1/2/2020))
-egen cancer_lastyr = rowmax(lung_cancer_lastyr haem_cancer_lastyr other_cancer_lastyr)
-order cancer *_lastyr, after(other_cancer)
+egen cancer_exhaem_lastyr = rowmax(lung_cancer_lastyr other_cancer_lastyr)
 
+* Haem malig, aplastic anaemia, bone marrow transplant
+gen haem_cancer_lastyr  = inrange(haem_cancer_date,  d(1/2/2019), d(1/2/2020))
+gen aplanaemia_lastyr  = inrange(aplastic_anaemia_date,  d(1/2/2019), d(1/2/2020))
+gen bone_marrow_transplant_lastyr  = inrange(bone_marrow_transplant_date,  d(1/2/2019), d(1/2/2020))
+egen haemmalig_aanaem_bmtrans_lastyr = rowmax(haem_cancer_lastyr aplanaemia_lastyr bone_marrow_transplant_lastyr)
+ 
+order lung_cancer_lastyr other_cancer_lastyr haem_cancer_lastyr aplanaemia_lastyr bone_marrow_transplant_lastyr cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr, after(other_cancer)
 
 * Spleen problems (dysplenia/splenectomy/etc and sickle cell disease)   
 egen spleen = rowmax(dysplenia sickle_cell) 
 order spleen, after(sickle_cell)
 
+* TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
+for var chronic_kidney_disease stroke_dementia other_neuro: replace X = uniform()<0.05
 
 * Immunosuppressed:
 * HIV, dysplenia/sickle-cell, genetic conditions ever, OR
@@ -408,22 +426,25 @@ gen c_ethnicity = ethnicity - 3
 *  Outcomes and survival time  *
 ********************************
 
-
-* Create composite outcome
-
-
-
 /*  Create survival times  */
 
 * For looping later, name must be stime_binary_outcome_name)
 
-gen stime_died  = min(end_study_date, death_date)
-gen stime_hosp  = min(end_study_date, death_date, hosp_date)
-gen stime_itu   = min(end_study_date, death_date, itu_date)
+gen stime_died  = min(end_study_date, death_date, died_date_ons)
+replace died = 0 if death_date>end_study_date /*censored*/
 
 
+*** Look at death censoring (previously just censored at COVID death, now both)
 
+gen stime_hosp  = min(end_study_date, died_date_ons, death_date, hosp_date)
+replace hosp = 0 if (hosp_date>end_study_date)|(hosp_date>death_date) /*censored*/
 
+gen stime_itu   = min(end_study_date, died_date_ons, death_date, itu_date)
+replace itu = 0 if min(death_date, itu_date)>end_study_date
+
+* Create composite outcome
+gen stime_composite = min(end_study_date, died_date_ons, death_date, itu_date)
+gen composite = died|itu
 
 
 
@@ -469,14 +490,21 @@ label var diabetes						"Diabetes"
 label var lung_cancer					"Lung cancer"
 label var haem_cancer					"Haem. cancer"
 label var other_cancer					"Any cancer"
-label var cancer						"Cancer"
 label var lung_cancer_lastyr			"Lung cancer in last year"
+label var other_cancer_lastyr			"Cancer other than lung/haematological in last year"
+
+label var cancer_exhaem_lastyr 			"Cancer other than haematological in last year"
 label var haem_cancer_lastyr			"Haem. cancer in last year"
-label var other_cancer_lastyr			"Any cancer in last year"
-label var cancer_lastyr					"Cancer in last year"
+
+label var aplanaemia_lastyr 			"Aplastic anaemia in last year"
+label var bone_marrow_transplant_lastyr "Bone marrow transplant in last year"
+
+label var haemmalig_aanaem_bmtrans_lastyr	"Haematol malignancy, aplastic anaemia or bone marrow transplant in last year"
+
 label var bone_marrow_transplant		"Organ transplant"
 label var chronic_liver_disease			"Liver"
-label var neurological_condition		"Neurological disease"
+label var stroke_dementia				"Stroke or dementia"
+label var other_neuro					"Neuro condition other than stroke/dementia"	
 label var chronic_kidney_disease 		"Kidney disease"
 label var organ_transplant 				"Organ transplant recipient"
 label var dysplenia						"Dysplenia"
@@ -498,7 +526,10 @@ label var haem_cancer_date				"Haem. cancer, date"
 label var other_cancer_date				"Any cancer, date"
 label var bone_marrow_transplant_date	"Organ transplant, date"
 label var chronic_liver_disease_date	"Liver, date"
-label var neurological_condition_date	"Neurological disease, date"
+
+label var stroke_dementia_date			"Stroke or dementia, date"
+label var other_neuro_date				"Neuro condition other than stroke/dementia, date"	
+
 label var chronic_kidney_disease_date 	"Kidney disease, date"
 label var organ_transplant_date			"Organ transplant recipient, date"
 label var dysplenia_date				"Splenectomy etc, date"

@@ -27,27 +27,31 @@ capture log close
 log using "an_univariable_cox_models", text replace
 
 use egdata, clear
-************************************************************************************************************
-*!!!! TEMP FIX FOR DODGY DUMMY DATA 
-noi di in red _n "*************************************************************************************" ///
-	_n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE" ///
-	_n "*************************************************************************************"
-by patient_id: keep if _n==1
-replace chronic_kidney_disease=1 if uniform()<0.01
-replace neurological_condition=1 if uniform()<0.01
-************************************************************************************************************
 
-************************************
-*Get composite outcome (nb this may be better added to cr_...;)
-gen stime_composite = min(stime_itu, stime_died)
-gen composite = (died|itu)
-************************************
+
+
+**************************
+*  Age and sex - no STP  *
+**************************
+
+
+stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id) 
+
+timer on 1
+
+* Cox model for age and sex
+stcox age1 age2 age3 i.male
+timer off 1
+
+
+
+
 
 
 *****************
 *  Age and sex  *
 *****************
-
+/*
 
 foreach outcome of any hosp died itu composite{
 
@@ -72,9 +76,11 @@ foreach outcome of any hosp died itu composite{
 							asthma 							///
 							chronic_cardiac_disease 		///
 							diabetes 						///
-							cancer 	/*NB UPDATE*/			///
+							cancer_exhaem_lastyr 			///
+							haemmalig_aanaem_bmtrans_lastyr ///
 							chronic_liver_disease 			///
-							neurological_condition 			///
+							stroke_dementia		 			///
+							other_neuro					 	///
 							chronic_kidney_disease 			///
 							organ_transplant 				///
 							spleen							/// 
@@ -91,7 +97,7 @@ foreach outcome of any hosp died itu composite{
 } /*end of looping round outcomes*/
 
 
-
+*/
 
 * Close log file
 log close
