@@ -70,9 +70,11 @@ prog define basecoxmodel
 			i.asthma 						///
 			i.chronic_cardiac_disease 		///
 			i.diabetes 						///
-			i.cancer 	/*NB UPDATE*/		///
+			i.cancer_exhaem_lastyr 			///
+			i.haemmalig_aplasticanaemia_bonemarrowtrans_lastyr ///
 			i.chronic_liver_disease 		///
-			i.neurological_condition 		///
+			i.stroke_dementia		 			///
+			i.other_neurological_condition 	///
 			i.chronic_kidney_disease 		///
 			i.organ_transplant 				///
 			i.spleen 						///

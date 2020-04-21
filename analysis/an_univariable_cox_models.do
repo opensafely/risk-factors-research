@@ -27,15 +27,7 @@ capture log close
 log using "an_univariable_cox_models", text replace
 
 use egdata, clear
-************************************************************************************************************
-*!!!! TEMP FIX FOR DODGY DUMMY DATA 
-noi di in red _n "*************************************************************************************" ///
-	_n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE" ///
-	_n "*************************************************************************************"
-by patient_id: keep if _n==1
-replace chronic_kidney_disease=1 if uniform()<0.01
-replace neurological_condition=1 if uniform()<0.01
-************************************************************************************************************
+
 
 ************************************
 *Get composite outcome (nb this may be better added to cr_...;)
@@ -72,9 +64,11 @@ foreach outcome of any hosp died itu composite{
 							asthma 							///
 							chronic_cardiac_disease 		///
 							diabetes 						///
-							cancer 	/*NB UPDATE*/			///
+							cancer_exhaem_lastyr 			///
+							haemmalig_aplasticanaemia_bonemarrowtrans_lastyr ///
 							chronic_liver_disease 			///
-							neurological_condition 			///
+							stroke_dementia		 			///
+							other_neurological_condition 	///
 							chronic_kidney_disease 			///
 							organ_transplant 				///
 							spleen							/// 
