@@ -326,8 +326,8 @@ recode  bmicat . = 5 if bmi<40
 recode  bmicat . = 6 if bmi<.
 replace bmicat = .u if bmi>=.
 
-label define bmicat 1 "Underweight (<18)" 		///
-					2 "Normal (15.4-24.9)"		///
+label define bmicat 1 "Underweight (<18.5)" 		///
+					2 "Normal (18.5-24.9)"		///
 					3 "Overweight (25-29.9)"	///
 					4 "Obese I (30-34.9)"		///
 					5 "Obese II (35-39.9)"		///

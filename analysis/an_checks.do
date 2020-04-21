@@ -44,31 +44,31 @@ use egdata, clear
 ******************************************
 
 * Age
-assert age<.
+datacheck age<., nol
 *assert inrange(age, 18, 105)
-assert inlist(agegroup, 1, 2, 3, 4, 5, 6)
-assert inlist(age70, 0, 1)
+datacheck inlist(agegroup, 1, 2, 3, 4, 5, 6), nol
+datacheck inlist(age70, 0, 1), nol
 
 * Sex
-assert inlist(male, 0, 1)
+datacheck inlist(male, 0, 1), nol
 
 * BMI 
 * assert inrange(bmi, 10, 200) | bmi==.
-assert inlist(obese40, 0, 1)
-assert inlist(bmicat, 1, 2, 3, 4, 5, 6, .u)
+datacheck inlist(obese40, 0, 1), nol
+datacheck inlist(bmicat, 1, 2, 3, 4, 5, 6, .u), nol
 
 * IMD
-assert inlist(imd, 1, 2, 3, 4, 5, .u)
+datacheck inlist(imd, 1, 2, 3, 4, 5, .u), nol
 
 * Ethnicity
-assert inlist(ethnicity, 1, 2, 3, 4, 5, .u)
+datacheck inlist(ethnicity, 1, 2, 3, 4, 5, .u), nol
 
 * Smoking
-assert inlist(smoke, 1, 2, 3, .u)
-assert inlist(currentsmoke, 0, 1)
+datacheck inlist(smoke, 1, 2, 3, .u), nol
+datacheck inlist(currentsmoke, 0, 1), nol
 
 * Blood pressure
-assert inlist(bpcat, 1, 2, 3, 4, .u)
+datacheck inlist(bpcat, 1, 2, 3, 4, .u), nol
 
 
 
