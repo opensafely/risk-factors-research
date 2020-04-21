@@ -2841,3 +2841,532 @@ file egdata.dta saved
 . 
 end of do-file
 
+. do "C:\Github\opencorona-risk-factors-research\analysis\an_tablecontent_PublicationDescriptivesTable.do"
+
+. *an_tablecontent_PublicationDescriptivesTable
+. *************************************************************************
+. *Purpose: Create content that is ready to paste into a pre-formatted Word 
+. * shell "Table 1" (main cohort descriptives) for the Risk Factors paper
+. *
+. *Requires: final analysis dataset (cr_analysis_dataset.dta)
+. *
+. *Coding: Krishnan Bhaskaran
+. *
+. *Date drafted: 17/4/2020
+. *************************************************************************
+. 
+. 
+. *******************************************************************************
+. *Generic code to output one row of table
+. cap prog drop generaterow
+
+. program define generaterow
+  1. syntax, variable(varname) condition(string) 
+  2.         
+.         cou
+  3.         local overalldenom=r(N)
+  4.         
+.         cou if `variable' `condition'
+  5.         local rowdenom = r(N)
+  6.         local colpct = 100*(r(N)/`overalldenom')
+  7.         file write tablecontent (`rowdenom')  (" (") %3.1f (`colpct') (")") _tab
+  8. 
+.         cou if  hosp==1 & `variable' `condition'
+  9.         local pct = 100*(r(N)/`rowdenom') 
+ 10.         file write tablecontent (r(N)) (" (") %3.1f (`pct') (")") _tab
+ 11. 
+.         cou if itu==1<. & `variable' `condition'
+ 12.         local pct = 100*(r(N)/`rowdenom')
+ 13.         file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
+ 14. 
+.         cou if died==1 & `variable' `condition'
+ 15.         local pct = 100*(r(N)/`rowdenom')
+ 16.         file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
+ 17. 
+.         cou if (died==1|itu==1) & `variable' `condition'
+ 18.         local pct = 100*(r(N)/`rowdenom')
+ 19.         file write tablecontent (r(N)) (" (") %3.1f (`pct') (")") _n
+ 20. end
+
+. 
+. *******************************************************************************
+. *Generic code to output one section (varible) within table (calls above)
+. cap prog drop tabulatevariable
+
+. prog define tabulatevariable
+  1. syntax, variable(varname) min(real) max(real) [missing]
+  2. 
+.         forvalues varlevel = `min'/`max'{ 
+  3.                 generaterow, variable(`variable') condition("==`varlevel'")
+  4.         }
+  5.         if "`missing'"!="" generaterow, variable(`variable') condition(">=.")
+  6. 
+. end
+
+. 
+. *******************************************************************************
+. 
+. *Set up output file
+. cap file close tablecontent
+
+. file open tablecontent using ./output/an_tablecontent_PublicationDescriptivesTable.txt, write text replace
+
+. 
+. 
+. use egdata,clear
+(Poor factors dummy analysis dataset)
+
+. 
+. 
+. gen byte cons=1
+
+. tabulatevariable, variable(cons) min(1) max(1) 
+  100,570
+  100,570
+  20,040
+  5
+  5
+  10
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(agegroup) min(1) max(6) 
+  100,570
+  27,739
+  5,504
+  3
+  2
+  5
+  100,570
+  12,100
+  2,467
+  1
+  1
+  2
+  100,570
+  22,146
+  4,414
+  0
+  1
+  1
+  100,570
+  9,454
+  1,913
+  0
+  0
+  0
+  100,570
+  8,345
+  1,660
+  0
+  0
+  0
+  100,570
+  20,786
+  4,082
+  1
+  1
+  2
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(male) min(0) max(1) 
+  100,570
+  55,242
+  11,012
+  1
+  5
+  6
+  100,570
+  45,328
+  9,028
+  4
+  0
+  4
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(bmicat) min(1) max(6) missing
+  100,570
+  6,327
+  1,256
+  0
+  0
+  0
+  100,570
+  14,896
+  2,938
+  2
+  0
+  2
+  100,570
+  13,187
+  2,656
+  0
+  0
+  0
+  100,570
+  12,949
+  2,589
+  0
+  0
+  0
+  100,570
+  11,838
+  2,381
+  0
+  1
+  1
+  100,570
+  16,184
+  3,178
+  1
+  1
+  2
+  100,570
+  25,189
+  5,042
+  2
+  3
+  5
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(smoke) min(1) max(3) missing 
+  100,570
+  30,097
+  6,011
+  1
+  1
+  2
+  100,570
+  42,158
+  8,371
+  1
+  2
+  3
+  100,570
+  16,955
+  3,370
+  2
+  1
+  3
+  100,570
+  11,360
+  2,288
+  1
+  1
+  2
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(ethnicity) min(1) max(5) missing 
+  100,570
+  30,179
+  6,042
+  2
+  1
+  3
+  100,570
+  14,172
+  2,768
+  1
+  0
+  1
+  100,570
+  5,680
+  1,122
+  0
+  1
+  1
+  100,570
+  5,157
+  1,001
+  1
+  1
+  2
+  100,570
+  4,572
+  943
+  0
+  1
+  1
+  100,570
+  40,810
+  8,164
+  1
+  1
+  2
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(imd) min(1) max(5) missing
+  100,570
+  18,628
+  3,627
+  0
+  0
+  0
+  100,570
+  19,364
+  3,802
+  0
+  4
+  4
+  100,570
+  13,599
+  2,779
+  0
+  1
+  1
+  100,570
+  26,850
+  5,335
+  3
+  0
+  3
+  100,570
+  20,694
+  4,201
+  2
+  0
+  2
+  100,570
+  1,435
+  296
+  0
+  0
+  0
+
+. file write tablecontent _n _n
+
+. 
+. tabulatevariable, variable(bpcat) min(1) max(4) missing
+  100,570
+  37,674
+  7,616
+  1
+  2
+  3
+  100,570
+  8,306
+  1,636
+  0
+  1
+  1
+  100,570
+  27,594
+  5,460
+  2
+  0
+  2
+  100,570
+  26,996
+  5,328
+  2
+  2
+  4
+  100,570
+  0
+  0
+  0
+  0
+  0
+
+. file write tablecontent _n _n
+
+. 
+. file write tablecontent _n 
+
+. 
+. **COMORBIDITIES
+. foreach comorb of varlist       chronic_respiratory_disease     ///
+>                                                         asthma                                                  ///
+>                                                         chronic_cardiac_disease                 ///
+>                                                         diabetes                                                ///
+>                                                         cancer_exhaem_lastyr                    ///
+>                                                         haemmalig_aanaem_bmtrans_lastyr  ///
+>                                                         chronic_liver_disease                   ///
+>                                                         stroke_dementia                                 ///
+>                                                         other_neuro                                             ///
+>                                                         chronic_kidney_disease                  ///
+>                                                         organ_transplant                                ///
+>                                                         spleen                                                  ///
+>                                                         ra_sle_psoriasis                                ///
+>                                                         /*endocrine?*/                                  ///
+>                                                         /*immunosuppression?*/                  ///
+>                                                         {
+  2. generaterow, variable(`comorb') condition("==1")
+  3. generaterow, variable(`comorb') condition("==0")
+  4. file write tablecontent _n
+  5. }
+  100,570
+  657
+  131
+  0
+  0
+  0
+  100,570
+  99,913
+  19,909
+  5
+  5
+  10
+  100,570
+  49
+  10
+  0
+  0
+  0
+  100,570
+  100,521
+  20,030
+  5
+  5
+  10
+  100,570
+  22,271
+  4,383
+  2
+  0
+  2
+  100,570
+  78,299
+  15,657
+  3
+  5
+  8
+  100,570
+  27,878
+  5,503
+  1
+  0
+  1
+  100,570
+  72,692
+  14,537
+  4
+  5
+  9
+  100,570
+  4
+  1
+  0
+  0
+  0
+  100,570
+  100,566
+  20,039
+  5
+  5
+  10
+  100,570
+  3
+  0
+  0
+  0
+  0
+  100,570
+  100,567
+  20,040
+  5
+  5
+  10
+  100,570
+  10,061
+  2,016
+  0
+  0
+  0
+  100,570
+  90,509
+  18,024
+  5
+  5
+  10
+  100,570
+  5,024
+  1,001
+  1
+  1
+  2
+  100,570
+  95,546
+  19,039
+  4
+  4
+  8
+  100,570
+  4,978
+  1,005
+  0
+  1
+  1
+  100,570
+  95,592
+  19,035
+  5
+  4
+  9
+  100,570
+  5,097
+  1,016
+  1
+  1
+  2
+  100,570
+  95,473
+  19,024
+  4
+  4
+  8
+  100,570
+  19
+  3
+  0
+  0
+  0
+  100,570
+  100,551
+  20,037
+  5
+  5
+  10
+  100,570
+  10,040
+  1,940
+  0
+  0
+  0
+  100,570
+  90,530
+  18,100
+  5
+  5
+  10
+  100,570
+  651
+  127
+  0
+  0
+  0
+  100,570
+  99,919
+  19,913
+  5
+  5
+  10
+
+. 
+. 
+. file close tablecontent
+
+. 
+end of do-file
+
