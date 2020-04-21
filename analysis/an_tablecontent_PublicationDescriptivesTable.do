@@ -25,19 +25,19 @@ syntax, variable(varname) condition(string)
 	local colpct = 100*(r(N)/`overalldenom')
 	file write tablecontent (`rowdenom')  (" (") %3.1f (`colpct') (")") _tab
 
-	cou if  hosp==1 & `variable' `condition'
+	cou if  ecdsevent==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom') 
 	file write tablecontent (r(N)) (" (") %3.1f (`pct') (")") _tab
 
-	cou if itu==1<. & `variable' `condition'
+	cou if ituadmission==1<. & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
 
-	cou if died==1 & `variable' `condition'
+	cou if cpnsdeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
 
-	cou if (died==1|itu==1) & `variable' `condition'
+	cou if onscoviddeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %3.1f (`pct') (")") _n
 end

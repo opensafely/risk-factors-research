@@ -22,11 +22,11 @@ syntax, variable(varname) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
-	foreach outcome of any hosp itu died composite {
+	foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath {
 	
 	foreach modeltype of any minadj fulladj {
 
-		if "`outcome'"=="composite" & "`modeltype'"=="fulladj" local endwith "_n"
+		if "`outcome'"=="onscoviddeath" & "`modeltype'"=="fulladj" local endwith "_n"
 
 		***********************
 		*1) GET THE RIGHT ESTIMATES INTO MEMORY

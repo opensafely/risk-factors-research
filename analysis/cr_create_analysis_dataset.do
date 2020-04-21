@@ -65,16 +65,15 @@ gen chronic_kidney_disease = .
 gen stroke_dementia = .
 gen other_neuro = .
 
-* ASTHMA - assume this comes as a binary rather than date **********************
-
-* BMI
+/* BMI (?now present for real)
 replace bmi = rnormal(30, 15)
 replace bmi = . if bmi<= 15
 
 
-* SBP and DBP  **********
+* SBP and DBP  (?now present for real)
 replace bp_sys   = rnormal(110, 15)
 replace bp_dias  = rnormal(80, 15)
+*/
 
 * Gen STP
 gen stp_temp = runiform()
@@ -87,40 +86,45 @@ drop stp_temp
 gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
-gen end_study_date = date("06/04/2020", "DMY")
-format end_study_date %td
+gen ecdseventcensor_date = date("21/04/2020", "DMY")
+gen ituadmissioncensor_date = date("06/04/2020", "DMY") /*CHECK*/
+gen cpnsdeathcensor_date = date("16/04/2020", "DMY")
+gen onscoviddeathcensor_date = date("06/04/2020", "DMY")
+
+
+format ecdseventcensor_date cpnsdeathcensor_date onscoviddeathcensor_date ituadmissioncensor_date %td
 
 * Outcomes (real)
-* DEATH - defined as earliest of cpns, or ons<with covid cause>
+* ITU death, CPNS death, ONS-covid death
+
 foreach var of varlist died_date_ons died_date_cpns{
 	confirm string variable `var'
 	rename `var' `var'_dstr
 	gen `var' = date(`var'_dstr, "YMD")
 	drop `var'_dstr
 	}
+gen cpnsdeath = died_date_cpns<.
 gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
-
-gen death_date = min(died_date_cpns, died_date_onscovid)
-gen died = death_date<.
+gen onscoviddeath = died_date_onscovid<.
 
 * ITU
 confirm string variable icu_date_admitted
 assert icu == (icu_date_admitted!="")
-rename icu itu
+rename icu ituadmission
 gen itu_date = date(icu_date_admitted, "YMD")
 
 
 ****** END OF SECTION NEEDED FOR THE REAL DATA ******
 
 *FAKE OUTCOME DATA
-* Hospitalisation
-gen hosp = uniform()<0.20
+* ECDS event
+gen ecdsevent = uniform()<0.20
 
-gen lag = min(death_date, end_study_date) - enter_date
+gen lag = min(died_date_ons, died_date_cpns, ecdseventcensor_date) - enter_date
 
-gen hosp_date = enter_date + runiform()*lag
-replace hosp_date = . if hosp==0
-format hosp_date %td
+gen ecdsevent_date = enter_date + runiform()*lag
+replace ecdsevent_date = . if ecdsevent==0
+format ecdsevent_date %td
 
 drop lag
 
@@ -430,21 +434,18 @@ gen c_ethnicity = ethnicity - 3
 
 * For looping later, name must be stime_binary_outcome_name)
 
-gen stime_died  = min(end_study_date, death_date, died_date_ons)
-replace died = 0 if death_date>end_study_date /*censored*/
 
+gen stime_ecdsevent  = min(ecdseventcensor_date, ecdsevent_date)
+replace ecdsevent = 0 if (ecdsevent_date>ecdseventcensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
 
-*** Look at death censoring (previously just censored at COVID death, now both)
+gen stime_ituadmission = min(ituadmissioncensor_date, itu_date)
+replace ituadmission = 0 if (itu_date>ituadmissioncensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
 
-gen stime_hosp  = min(end_study_date, died_date_ons, death_date, hosp_date)
-replace hosp = 0 if (hosp_date>end_study_date)|(hosp_date>death_date) /*censored*/
+gen stime_cpnsdeath  = min(cpnsdeathcensor_date, died_date_cpns)
+replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
 
-gen stime_itu   = min(end_study_date, died_date_ons, death_date, itu_date)
-replace itu = 0 if min(death_date, itu_date)>end_study_date
-
-* Create composite outcome
-gen stime_composite = min(end_study_date, died_date_ons, death_date, itu_date)
-gen composite = died|itu
+gen stime_onscoviddeath = min(onscoviddeathcensor_date, died_date_ons)
+replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) /*censored at end of f-up or non-covid ons death*/
 
 
 
@@ -542,19 +543,22 @@ label var genetic_immunodeficiency_date "Genetic immunodeficiency, date"
 label var immunosuppression_nos_date 	"Other immunosuppression, date"
 
 * Outcomes and follow-up
-label var enter_date		"Date of study entry"
-label var end_study_date	"Date of end of study"
-label var death_date		"Date of death"
-label var died 				"Death from Covid-19"
-label var hosp_date			"Date of hospitalisation"
-label var hosp 				"Hospitalised for Covid-19"
-label var itu_date			"Date of hospitalisation"
-label var itu 				"Admitted to ITU for Covid-19"
+label var enter_date				"Date of study entry"
+label var ecdseventcensor_date		"Date of admin censoring for ecds"
+label var ituadmissioncensor_date 	"Date of admin censoring for itu admission (icnarc)"
+label var cpnsdeathcensor_date 		"Date of admin censoring for cpns deaths"
+label var onscoviddeathcensor_date 	"Date of admin censoring for ONS deaths"
+
+label var ecdsevent			"Failure/censoring indicator for outcome: ECDS event"
+label var ituadmission		"Failure/censoring indicator for outcome: ITU admission"
+label var cpnsdeath			"Failure/censoring indicator for outcome: CPNS covid death"
+label var onscoviddeath		"Failure/censoring indicator for outcome: ONS covid death"
 
 * Survival times
-label var  stime_died		"Survival time; outcome death"
-label var  stime_hosp  		"Survival time; outcome hospitalisation"
-label var  stime_itu   		"Survival time; outcome ITU admission"
+label var  stime_ecdsevent		"Survival time; outcome ECDS event"
+label var  stime_ituadmission	"Survival time; outcome ITU admission"
+label var  stime_cpnsdeath 		"Survival time; outcome CPNS covid death"
+label var  stime_onscoviddeath 	"Survival time; outcome ONS covid death"
 
 
 

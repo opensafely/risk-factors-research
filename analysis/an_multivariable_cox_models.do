@@ -71,7 +71,7 @@ end
 *************************************************************************************
 
 
-foreach outcome of any hosp died itu composite{
+foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
