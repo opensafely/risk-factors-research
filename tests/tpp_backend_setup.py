@@ -111,6 +111,12 @@ class Patient(Base):
     ICNARC = relationship(
         "ICNARC", back_populates="Patient", cascade="all, delete, delete-orphan"
     )
+    ONSDeath = relationship(
+        "ONSDeaths", back_populates="Patient", cascade="all, delete, delete-orphan"
+    )
+    CPNS = relationship(
+        "CPNS", back_populates="Patient", cascade="all, delete, delete-orphan"
+    )
     RegistrationHistory = relationship(
         "RegistrationHistory",
         back_populates="Patient",
@@ -179,3 +185,65 @@ class ICNARC(Base):
     BasicDays_RespiratorySupport = Column(Integer)
     AdvancedDays_RespiratorySupport = Column(Integer)
     Ventilator = Column(Integer)
+
+
+class ONSDeaths(Base):
+    __tablename__ = "ONS_Deaths"
+
+    # This column isn't in the actual database but SQLAlchemy gets a bit upset
+    # if we don't give it a primary key
+    id = Column(Integer, primary_key=True)
+    Patient_ID = Column(Integer, ForeignKey("Patient.Patient_ID"))
+    Patient = relationship("Patient", back_populates="ONSDeath", cascade="all, delete")
+    Sex = Column(String)
+    ageinyrs = Column(Integer)
+    dod = Column(Date)
+    icd10u = Column(String)
+    ICD10001 = Column(String)
+    ICD10002 = Column(String)
+    ICD10003 = Column(String)
+    ICD10004 = Column(String)
+    ICD10005 = Column(String)
+    ICD10006 = Column(String)
+    ICD10007 = Column(String)
+    ICD10008 = Column(String)
+    ICD10009 = Column(String)
+    ICD10010 = Column(String)
+    ICD10011 = Column(String)
+    ICD10012 = Column(String)
+    ICD10013 = Column(String)
+    ICD10014 = Column(String)
+    ICD10015 = Column(String)
+
+
+class CPNS(Base):
+    __tablename__ = "CPNS"
+
+    Patient_ID = Column(Integer, ForeignKey("Patient.Patient_ID"))
+    Patient = relationship("Patient", back_populates="CPNS", cascade="all, delete")
+    Id = Column(Integer, primary_key=True)
+    # LocationOfDeath                                                 ITU
+    # Sex                                                               M
+    # DateOfAdmission                                          2020-04-02
+    # DateOfSwabbed                                            2020-04-02
+    # DateOfResult                                             2020-04-03
+    # RelativesAware                                                    Y
+    # TravelHistory                                                 False
+    # RegionCode                                                      Y62
+    # RegionName                                               North West
+    # OrganisationCode                                                ABC
+    # OrganisationName                                Test Hospital Trust
+    # OrganisationTypeLot                                        Hospital
+    # RegionApproved                                                 True
+    # RegionalApprovedDate                                     2020-04-09
+    # NationalApproved                                               True
+    # NationalApprovedDate                                     2020-04-09
+    # PreExistingCondition                                          False
+    # Age                                                              57
+    DateOfDeath = Column(Date)
+    # snapDate                                                 2020-04-09
+    # HadLearningDisability                                            NK
+    # ReceivedTreatmentForMentalHealth                                 NK
+    # Der_Ethnic_Category_Description                                None
+    # Der_Latest_SUS_Attendance_Date_For_Ethnicity                   None
+    # Der_Source_Dataset_For_Ethnicty                                None
