@@ -87,7 +87,7 @@ drop stp_temp
 gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
-gen end_study_date = date("16/04/2020", "DMY")
+gen end_study_date = date("06/04/2020", "DMY")
 format end_study_date %td
 
 * Outcomes (real)
