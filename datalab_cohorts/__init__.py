@@ -618,7 +618,15 @@ class StudyDefinition:
         include_month=True,
         include_day=False,
     ):
-        date_expression = "CASE WHEN IcuAdmissionDateTime < OriginalIcuAdmissionDate THEN IcuAdmissionDateTime ELSE OriginalIcuAdmissionDate END"
+        date_expression = """
+        CASE
+        WHEN
+          COALESCE(IcuAdmissionDateTime, '9999-01-01') < COALESCE(OriginalIcuAdmissionDate, '9999-01-01')
+        THEN
+          IcuAdmissionDateTime
+        ELSE
+          OriginalIcuAdmissionDate
+        END"""
         date_condition, date_params = make_date_filter(
             date_expression, on_or_after, on_or_before, between
         )
@@ -668,6 +676,109 @@ class StudyDefinition:
             WHERE Died = 'true'
             """,
             [],
+        )
+
+    def patients_with_these_codes_on_death_certificate(
+        self,
+        codelist=None,
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Matching rules
+        match_only_underlying_cause=False,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        date_condition, date_params = make_date_filter(
+            "dod", on_or_after, on_or_before, between
+        )
+        if codelist is not None:
+            placeholders, code_params = placeholders_and_params(codelist)
+            code_columns = ["icd10u"]
+            if not match_only_underlying_cause:
+                code_columns.extend([f"ICD10{i:03d}" for i in range(1, 16)])
+            code_conditions = " OR ".join(
+                f"{column} IN ({placeholders})" for column in code_columns
+            )
+            params = code_params * len(code_conditions) + date_params
+        else:
+            code_conditions = "1 = 1"
+            params = date_params
+        if returning == "binary_flag":
+            column_definition = "1"
+            column_name = "died"
+        elif returning == "date_of_death":
+            column_definition = truncate_date("dod", include_month, include_day)
+            column_name = "date_of_death"
+        else:
+            raise ValueError(f"Unsupported `returning` value: {returning}")
+        return (
+            ["patient_id", column_name],
+            f"""
+            SELECT Patient_ID as patient_id, {column_definition} AS {column_name}
+            FROM ONS_Deaths
+            WHERE ({code_conditions}) AND {date_condition}
+            """,
+            params,
+        )
+
+    def patients_died_from_any_cause(
+        self,
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        return self.patients_with_these_codes_on_death_certificate(
+            codelist=None,
+            on_or_before=on_or_before,
+            on_or_after=on_or_after,
+            between=between,
+            returning=returning,
+            include_month=include_month,
+            include_day=include_day,
+        )
+
+    def patients_with_death_recorded_in_cpns(
+        self,
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        date_condition, params = make_date_filter(
+            "DateOfDeath", on_or_after, on_or_before, between
+        )
+        if returning == "binary_flag":
+            column_definition = "1"
+            column_name = "died"
+        elif returning == "date_of_death":
+            column_definition = truncate_date("DateOfDeath", include_month, include_day)
+            column_name = "date_of_death"
+        else:
+            raise ValueError(f"Unsupported `returning` value: {returning}")
+        return (
+            ["patient_id", column_name],
+            f"""
+            SELECT Patient_ID as patient_id, {column_definition} AS {column_name}
+            FROM CPNS
+            WHERE {date_condition}
+            """,
+            params,
         )
 
     def get_boolean_expression(self, covariates, expression, extra_columns=None):
@@ -910,6 +1021,55 @@ class patients:
     def random_sample(percent=None):
         assert percent, "Must specify a percentage greater than zero"
         return "random_sample", locals()
+
+    @staticmethod
+    def with_these_codes_on_death_certificate(
+        codelist,
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Matching rules
+        match_only_underlying_cause=False,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        assert codelist.system == "icd10"
+        validate_time_period_options(**locals())
+        return "with_these_codes_on_death_certificate", locals()
+
+    @staticmethod
+    def died_from_any_cause(
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        validate_time_period_options(**locals())
+        return "died_from_any_cause", locals()
+
+    @staticmethod
+    def with_death_recorded_in_cpns(
+        # Set date limits
+        on_or_before=None,
+        on_or_after=None,
+        between=None,
+        # Set return type
+        returning="binary_flag",
+        # If we're returning a date, how granular should it be?
+        include_month=False,
+        include_day=False,
+    ):
+        validate_time_period_options(**locals())
+        return "with_death_recorded_in_cpns", locals()
 
 
 def validate_time_period_options(

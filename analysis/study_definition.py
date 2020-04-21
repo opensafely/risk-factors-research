@@ -4,6 +4,8 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 ## CODE LISTS
 # All codelist are held within the codelist/ folder.
 
+covid_codelist = codelist(["U071", "U072"], system="icd10")
+
 chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
 )
@@ -89,6 +91,24 @@ study = StudyDefinition(
     # Outcomes
     icu=patients.admitted_to_icu(
         on_or_after="2020-02-01", include_day=True, include_admission_date=True
+    ),
+    died_date_cpns=patients.with_death_recorded_in_cpns(
+        on_or_before="2020-06-01",
+        returning="date_of_death",
+        include_month=True,
+        include_day=True,
+    ),
+    died_ons_covid_flag_any=patients.with_these_codes_on_death_certificate(
+        covid_codelist, on_or_before="2020-06-01", match_only_underlying_cause=False
+    ),
+    died_ons_covid_flag_underlying=patients.with_these_codes_on_death_certificate(
+        covid_codelist, on_or_before="2020-06-01", match_only_underlying_cause=True
+    ),
+    died_date_ons=patients.died_from_any_cause(
+        on_or_before="2020-06-01",
+        returning="date_of_death",
+        include_month=True,
+        include_day=True,
     ),
 
     # The rest of the lines define the covariates with associated GitHub issues
@@ -200,12 +220,12 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
-    neurological_condition=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-        return_first_date_in_period=True,
-        include_month=True,
-    ),
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
+    # neurological_condition=patients.with_these_clinical_events(
+    #     chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    #     return_first_date_in_period=True,
+    #     include_month=True,
+    # ),
 
     # # Chronic kidney disease
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
