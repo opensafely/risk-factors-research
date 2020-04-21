@@ -72,6 +72,8 @@ datacheck inlist(bpcat, 1, 2, 3, 4, .u), nol
 
 
 
+
+
 ***************************************
 *  Cross-check logical relationships  *
 ***************************************
@@ -107,7 +109,6 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
 						dysplenia						///
@@ -151,11 +152,9 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
 						spleen							///
-						immunosuppressed 				///
 						ra_sle_psoriasis  				{
 	tab agegroup `var', r
 }
@@ -172,11 +171,9 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						neurological_condition 			///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
 						spleen							///
-						immunosuppressed 				///
 						ra_sle_psoriasis  				{
 	tab male `var', r
 }

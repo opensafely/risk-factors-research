@@ -30,10 +30,28 @@ use egdata, clear
 
 
 
+**************************
+*  Age and sex - no STP  *
+**************************
+
+
+stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id) 
+
+timer on 1
+
+* Cox model for age and sex
+stcox age1 age2 age3 i.male
+timer off 1
+
+
+
+
+
+
 *****************
 *  Age and sex  *
 *****************
-
+/*
 
 foreach outcome of any hosp died itu composite{
 
@@ -79,7 +97,7 @@ foreach outcome of any hosp died itu composite{
 } /*end of looping round outcomes*/
 
 
-
+*/
 
 * Close log file
 log close

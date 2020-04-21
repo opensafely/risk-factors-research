@@ -51,7 +51,6 @@ tab haem_cancer
 tab other_cancer
 tab cancer
 tab chronic_liver_disease
-tab neurological_condition
 tab chronic_kidney_disease
 tab organ_transplant
 tab dysplenia
@@ -104,11 +103,9 @@ foreach outvar of varlist died hosp itu {
 	tab other_cancer 						`outvar', row
 	tab cancer 								`outvar', row
 	tab chronic_liver_disease 				`outvar', row
-	tab neurological_condition 				`outvar', row
 	tab chronic_kidney_disease 				`outvar', row
 	tab organ_transplant 					`outvar', row
 	tab spleen 								`outvar', row
-	tab immunosuppressed					`outvar', row
 	tab ra_sle_psoriasis					`outvar', row
 	
 	* Adjustment variables 

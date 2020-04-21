@@ -433,14 +433,17 @@ gen c_ethnicity = ethnicity - 3
 gen stime_died  = min(end_study_date, death_date, died_date_ons)
 replace died = 0 if death_date>end_study_date /*censored*/
 
-gen stime_hosp  = min(end_study_date, death_date, hosp_date)
+
+*** Look at death censoring (previously just censored at COVID death, now both)
+
+gen stime_hosp  = min(end_study_date, died_date_ons, death_date, hosp_date)
 replace hosp = 0 if (hosp_date>end_study_date)|(hosp_date>death_date) /*censored*/
 
-gen stime_itu   = min(end_study_date, death_date, itu_date)
+gen stime_itu   = min(end_study_date, died_date_ons, death_date, itu_date)
 replace itu = 0 if min(death_date, itu_date)>end_study_date
 
 * Create composite outcome
-gen stime_composite = min(end_study_date, death_date, itu_date)
+gen stime_composite = min(end_study_date, died_date_ons, death_date, itu_date)
 gen composite = died|itu
 
 
