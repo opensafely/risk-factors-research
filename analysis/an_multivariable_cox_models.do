@@ -29,21 +29,6 @@ capture log close
 log using "an_multivariable_cox_models", text replace
 
 use egdata, clear
-************************************************************************************************************
-*!!!! TEMP FIX FOR DODGY DUMMY DATA 
-noi di in red _n "*************************************************************************************" ///
-	_n "NOTE TEMPORARY DATA MANIP PRESENT FOR TESTING: DELETE FROM DOFILE BEFORE RUNNING LIVE" ///
-	_n "*************************************************************************************"
-by patient_id: keep if _n==1
-replace chronic_kidney_disease=1 if uniform()<0.01
-replace neurological_condition=1 if uniform()<0.01
-************************************************************************************************************
-
-************************************
-*Get composite outcome (nb this may be better added to cr_...;)
-gen stime_composite = min(stime_itu, stime_died)
-gen composite = (died|itu)
-************************************
 
 
 ******************************
@@ -71,10 +56,10 @@ prog define basecoxmodel
 			i.chronic_cardiac_disease 		///
 			i.diabetes 						///
 			i.cancer_exhaem_lastyr 			///
-			i.haemmalig_aplasticanaemia_bonemarrowtrans_lastyr ///
+			i.haemmalig_aanaem_bmtrans_lastyr  ///
 			i.chronic_liver_disease 		///
 			i.stroke_dementia		 			///
-			i.other_neurological_condition 	///
+			i.other_neuro					///
 			i.chronic_kidney_disease 		///
 			i.organ_transplant 				///
 			i.spleen 						///

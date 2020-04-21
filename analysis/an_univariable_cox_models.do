@@ -29,12 +29,6 @@ log using "an_univariable_cox_models", text replace
 use egdata, clear
 
 
-************************************
-*Get composite outcome (nb this may be better added to cr_...;)
-gen stime_composite = min(stime_itu, stime_died)
-gen composite = (died|itu)
-************************************
-
 
 *****************
 *  Age and sex  *
@@ -65,10 +59,10 @@ foreach outcome of any hosp died itu composite{
 							chronic_cardiac_disease 		///
 							diabetes 						///
 							cancer_exhaem_lastyr 			///
-							haemmalig_aplasticanaemia_bonemarrowtrans_lastyr ///
+							haemmalig_aanaem_bmtrans_lastyr ///
 							chronic_liver_disease 			///
 							stroke_dementia		 			///
-							other_neurological_condition 	///
+							other_neuro					 	///
 							chronic_kidney_disease 			///
 							organ_transplant 				///
 							spleen							/// 

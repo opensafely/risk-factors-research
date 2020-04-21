@@ -119,10 +119,10 @@ foreach comorb of varlist 	chronic_respiratory_disease 	///
 							chronic_cardiac_disease 		///
 							diabetes 						///
 							cancer_exhaem_lastyr 			///
-							haemmalig_aplasticanaemia_bonemarrowtrans_lastyr ///
+							haemmalig_aanaem_bmtrans_lastyr ///
 							chronic_liver_disease 			///
 							stroke_dementia		 			///
-							other_neurological_condition 	///
+							other_neuro					 	///
 							chronic_kidney_disease 			///
 							organ_transplant 				///
 							spleen ra_sle_psoriasis  		///
