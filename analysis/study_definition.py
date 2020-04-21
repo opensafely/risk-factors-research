@@ -220,12 +220,12 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
-    neurological_condition=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-        return_first_date_in_period=True,
-        include_month=True,
-    ),
+    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
+    # neurological_condition=patients.with_these_clinical_events(
+    #     chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    #     return_first_date_in_period=True,
+    #     include_month=True,
+    # ),
 
     # # Chronic kidney disease
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
