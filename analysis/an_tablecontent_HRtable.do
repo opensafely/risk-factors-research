@@ -87,16 +87,14 @@ outputHRsforvar, variable(male) min(1) max(1)
 file write tablecontents _n _n
 
 *BMI
-outputHRsforvar, variable(bmicat) min(1) max(1)
 refline
-outputHRsforvar, variable(bmicat) min(3) max(6)
+outputHRsforvar, variable(obese40) min(1) max(1)
 file write tablecontents _n _n
 
 *Smoking
 refline
-outputHRsforvar, variable(smoke) min(2) max(3)
+outputHRsforvar, variable(currentsmoke) min(1) max(1)
 file write tablecontents _n _n
-
 
 *Ethnicity
 refline
@@ -108,9 +106,9 @@ refline
 outputHRsforvar, variable(imd) min(2) max(5)
 file write tablecontents _n _n
 
-*BPCAT
+*BP
 refline
-outputHRsforvar, variable(bpcat) min(2) max(4)
+outputHRsforvar, variable(bphigh) min(1) max(1)
 file write tablecontents _n _n
 
 *COMORBIDITIES

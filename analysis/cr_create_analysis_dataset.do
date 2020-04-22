@@ -393,7 +393,10 @@ replace bpcat = .u if bp_sys>=. | bp_dias>=.
 label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
 					4 "High, stage II" .u "Unknown"
 label values bpcat bpcat
-order bpcat, after(bp_dias_date)
+
+gen bphigh = (bpcat==3|bpcat==4)
+
+order bpcat bphigh, after(bp_dias_date)
 
 
 
@@ -477,6 +480,7 @@ label var bp_sys_date 		"Systolic blood pressure, date"
 label var bp_dias 			"Diastolic blood pressure"
 label var bp_dias_date 		"Diastolic blood pressure, date"
 label var bpcat 			"Grouped blood pressure"
+label var bphigh			"Binary high (stage 1/2) blood pressure"
 
 label var age1 				"Age spline 1"
 label var age2 				"Age spline 2"
