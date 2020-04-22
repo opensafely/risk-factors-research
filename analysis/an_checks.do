@@ -11,9 +11,9 @@
 *	Data created:	None
 *
 *	Other output:	Graphs (cumulative events by time in study):
-*						output/events_died.png
-*						output/events_hosp.png
-*						output/events_itu.png
+*						output/events_died.svg
+*						output/events_cpns.svg
+*						output/events_itu.svg
 *
 *					Log file: output/an_checks
 *
@@ -90,6 +90,9 @@ tab agegroup age70, m
 * Smoking
 tab smoke currentsmoke, m
 
+* Blood pressure
+tab bpcat bphigh, m
+
 
 
 *********************
@@ -131,12 +134,29 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 *  Cross-check expected relationships  *
 ****************************************
 
-* everything vs each demographic/lifestyle
-* (i.e. vs age, sex, smoke, bmi cat, imd)
 
 /*  Relationships between demographic/lifestyle variables  */
 
-* agegroup, male, smoke, bmicat, imd, ethnicity
+tab agegroup bmicat, 	col
+tab agegroup smoke, 	col
+tab agegroup ethnicity, col
+tab agegroup imd, 		col
+tab agegroup bpcat, 	col
+
+tab bmicat smoke, 		col
+tab bmicat ethnicity, 	col
+tab bmicat imd, 		col
+tab bmicat bpcat, 		col
+
+tab smoke ethnicity, 	col
+tab smoke imd, 			col
+tab smoke bpcat, 		col
+
+tab ethnicity imd, 		col
+tab ethnicity bpcat, 	col
+
+tab imd bpcat, 			col
+
 
 
 /*  Relationships with demographic/lifestyle variables  */
@@ -146,35 +166,32 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						asthma 							///
 						chronic_cardiac_disease 		///
 						diabetes 						///
-						lung_cancer 					///
-						haem_cancer						///
-						other_cancer 					///
-						bone_marrow_transplant 			///
-						chemo_radio_therapy 			///
+						cancer_exhaem_lastyr 			///
+						haemmalig_aanaem_bmtrans_lastyr ///
 						chronic_liver_disease 			///
-						chronic_kidney_disease 			///
+						other_neuro			 			///
+						chronic_kidney_disease			///
 						organ_transplant 				///	
 						spleen							///
 						ra_sle_psoriasis  				{
 	tab agegroup `var', r
 }
 
+						
 
 * Relationships with sex
 foreach var of varlist 	chronic_respiratory_disease 	///
-						asthma							///
+						asthma 							///
 						chronic_cardiac_disease 		///
 						diabetes 						///
-						lung_cancer 					///
-						haem_cancer						///
-						other_cancer 					///
-						bone_marrow_transplant 			///
-						chemo_radio_therapy 			///
+						cancer_exhaem_lastyr 			///
+						haemmalig_aanaem_bmtrans_lastyr ///
 						chronic_liver_disease 			///
-						chronic_kidney_disease 			///
+						other_neuro			 			///
+						chronic_kidney_disease			///
 						organ_transplant 				///	
 						spleen							///
-						ra_sle_psoriasis  				{
+						ra_sle_psoriasis   				{
 	tab male `var', r
 }
 
@@ -187,7 +204,7 @@ tab chronic_respiratory_disease asthma
 
 * Cardiac
 tab diabetes chronic_cardiac_disease
-*tab chronic_cardiac_disease bpcat
+tab chronic_cardiac_disease bpcat
 
 
 
@@ -201,36 +218,6 @@ tab diabetes chronic_cardiac_disease
 
 * Cross check dates of hosp/itu/death??
 
-
-
-
-
-
-*****************************
-*  Check survival settings  *
-*****************************
-
-* Death
-stset stime_died, fail(died) enter(enter_date) origin(enter_date) id(patient_id) 
-sort _t
-gen cum_died = sum(_d)
-line cum_died _t, sort(_t)
-graph export "output/events_died.eps", replace as(eps)
-
-* Hospitalised for Covid
-stset stime_hosp, fail(hosp) enter(enter_date) origin(enter_date) id(patient_id) 
-sort _t
-gen cum_hosp = sum(_d)
-line cum_hosp _t, sort(_t)
-graph export "output/events_hosp.eps", replace as(eps)
-
-
-* ITU admission for Covid
-stset stime_itu, fail(itu) enter(enter_date) origin(enter_date) id(patient_id) 
-sort _t
-gen cum_itu = sum(_d)
-line cum_itu _t, sort(_t)
-graph export "output/events_itu.eps", replace as(eps)
 
 
 
