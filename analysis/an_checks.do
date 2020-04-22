@@ -126,6 +126,9 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 
 * Outcome dates
 *****??? 
+summ stime_ituadmission stime_cpnsdeath stime_onscoviddeath,   format
+summ itu_date died_date_ons died_date_cpns died_date_onscovid, format
+
 
 
 
