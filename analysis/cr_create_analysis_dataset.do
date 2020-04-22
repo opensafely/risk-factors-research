@@ -19,6 +19,9 @@
 *  
 ********************************************************************************
 
+cap log close
+log using ./output/cr_analysis_dataset, replace t
+
 *******************************************************************************
 *!!!!!!NOTE ON CODE GENERATING FAKE DATA WHICH NEEDS TO BE REPLACED LATER!!!!!!
 *
@@ -435,17 +438,17 @@ gen c_ethnicity = ethnicity - 3
 * For looping later, name must be stime_binary_outcome_name)
 
 
-gen stime_ecdsevent  = min(ecdseventcensor_date, ecdsevent_date)
-replace ecdsevent = 0 if (ecdsevent_date>ecdseventcensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
+gen stime_ecdsevent  = min(ecdseventcensor_date, ecdsevent_date, died_date_ons)
+replace ecdsevent = 0 if (ecdsevent_date>ecdseventcensor_date) 
 
-gen stime_ituadmission = min(ituadmissioncensor_date, itu_date)
-replace ituadmission = 0 if (itu_date>ituadmissioncensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
+gen stime_ituadmission = min(ituadmissioncensor_date, itu_date, died_date_ons)
+replace ituadmission = 0 if (itu_date>ituadmissioncensor_date) 
 
-gen stime_cpnsdeath  = min(cpnsdeathcensor_date, died_date_cpns)
-replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date) /*censored, NB CURRENTLY IGNORING DEATHS BEFORE ADMINISTRATIVE CENSORING DATE */
+gen stime_cpnsdeath  = min(cpnsdeathcensor_date, died_date_cpns, died_date_ons)
+replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date) 
 
 gen stime_onscoviddeath = min(onscoviddeathcensor_date, died_date_ons)
-replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) /*censored at end of f-up or non-covid ons death*/
+replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) 
 
 
 
@@ -572,3 +575,4 @@ label data "Poor factors dummy analysis dataset"
 save "egdata", replace
 
 
+log close

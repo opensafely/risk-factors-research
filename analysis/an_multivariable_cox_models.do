@@ -26,7 +26,7 @@
 
 * Open a log file
 capture log close
-log using "an_multivariable_cox_models", text replace
+log using "./output/an_multivariable_cox_models", text replace
 
 use egdata, clear
 
