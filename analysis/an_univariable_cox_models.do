@@ -68,10 +68,13 @@ foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 	estat ic
 	
 	foreach var of varlist 	bmicat 							///
+							obese40							///
 							smoke 							///
+							currentsmoke					///
 							ethnicity 						///
 							imd 							///
 							bpcat 							///
+							bphigh 							///
 							chronic_respiratory_disease 	///
 							asthma 							///
 							chronic_cardiac_disease 		///
