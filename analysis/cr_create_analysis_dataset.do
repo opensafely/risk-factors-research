@@ -57,12 +57,32 @@ replace smoking_status = "M" if smoking_status==""
 
 
 * Ethnicity 
-gen     ethnicity = "W" if uniform()<0.3
-replace ethnicity = "B" if uniform()<0.2 & ethnicity==""
-replace ethnicity = "A" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "M" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "O" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "U" if ethnicity==""
+label define ethnicity 1"White"  2"South Asian"  3"Black"  4"Other"  5"Mixed" 6"Not Stated"
+
+* Ethnicity - only make up if not there!! 
+capture confirm numeric variable ethnicity
+if _rc==0 {
+	noi di "USING REAL ETHNICITY"
+	label values ethnicity ethnicity
+}
+else {
+	capture confirm string variable ethnicity
+	if _rc==0 {
+		noi di "USING REAL ETHNICITY, not numeric"
+	}
+	else {
+	noi di "USING FAKE ETHNICITY"
+		
+	gen     ethnicity = 1 if uniform()<0.3
+	replace ethnicity = 2 if uniform()<0.2 & ethnicity==.
+	replace ethnicity = 3 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 4 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 5 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 6 if ethnicity==.
+	label values ethnicity ethnicity
+
+	}
+}
 
 
 * Additional risk factors
@@ -73,8 +93,6 @@ gen other_neuro = .
 /* BMI (?now present for real)
 replace bmi = rnormal(30, 15)
 replace bmi = . if bmi<= 15
-
-
 * SBP and DBP  (?now present for real)
 replace bp_sys   = rnormal(110, 15)
 replace bp_dias  = rnormal(80, 15)
@@ -303,7 +321,7 @@ label values smoke smoke
 drop smoking_status
 
 
-* Ethnicity
+/* Ethnicity
 rename ethnicity ethnicity_o
 assert inlist(ethnicity, "A", "B", "W", "M", "O", "U")
 gen     ethnicity = 1 if ethnicity_o=="W"
@@ -315,7 +333,7 @@ replace ethnicity = .u if ethnicity_o=="U"
 label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other" .u "Unknown (.u)"
 label values ethnicity ethnicity
 drop ethnicity_o
-
+*/
 
 
 

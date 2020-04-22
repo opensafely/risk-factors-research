@@ -43,7 +43,8 @@ prog define basecoxmodel
 
 	if `ethnicity'==1 local ethnicity "i.ethnicity"
 	else local ethnicity
-
+timer clear
+timer on 1
 	stcox 	`age' 							///
 			i.male 							///
 			`bmi'							///
@@ -67,6 +68,8 @@ prog define basecoxmodel
 			/*endocrine?*/					///
 			/*immunosuppression?*/			///
 			, strata(stp)
+timer off 1
+timer list
 end
 *************************************************************************************
 
