@@ -95,8 +95,10 @@ foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 		if "`var'"=="bmicat" local b "b2" /*group 2 is the baseline for BMI, baseline for all others is lowest level*/
 		timer clear
 		timer on 1
-		stcox age1 age2 age3 male i`b'.`var', strata(stp) 
+		capture stcox age1 age2 age3 male i`b'.`var', strata(stp) 
+		if _rc==0 {
 		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`var', replace
+		}
 		timer off 1
 		timer list
 		} /*end of looping round vars for 1 var at a time models*/
