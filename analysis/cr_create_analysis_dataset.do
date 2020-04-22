@@ -78,10 +78,11 @@ replace bp_sys   = rnormal(110, 15)
 replace bp_dias  = rnormal(80, 15)
 */
 
-* Gen STP
+/* Gen STP
 gen stp_temp = runiform()
 egen stp = cut(stp_temp), group(40)
 drop stp_temp
+*/
 
 
 ****** THIS NEXT LITTLE SECTION WILL BE NEEDED FOR THE REAL DATA ******
@@ -90,7 +91,7 @@ gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
 gen ecdseventcensor_date = date("21/04/2020", "DMY")
-gen ituadmissioncensor_date = date("20/04/2020", "DMY") /*CHECK*/
+gen ituadmissioncensor_date = date("20/04/2020", "DMY") 
 gen cpnsdeathcensor_date = date("16/04/2020", "DMY")
 gen onscoviddeathcensor_date = date("06/04/2020", "DMY")
 
@@ -430,6 +431,13 @@ gen c_imd = imd - 3
 gen c_ethnicity = ethnicity - 3
 
 
+************************
+*  Make numeric STP    *
+************************
+bysort geographic_area: gen stp = 1 if _n==1
+replace stp = sum(stp)
+
+
 
 
 ********************************
@@ -453,7 +461,8 @@ replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date)
 gen stime_onscoviddeath = min(onscoviddeathcensor_date, died_date_ons)
 replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) 
 
-
+format %d stime*
+format %d ecdsevent_date itu_date died_date_onscovid died_date_ons died_date_cpns 
 
 *********************
 *  Label variables  *
@@ -567,6 +576,14 @@ label var  stime_ituadmission	"Survival time; outcome ITU admission"
 label var  stime_cpnsdeath 		"Survival time; outcome CPNS covid death"
 label var  stime_onscoviddeath 	"Survival time; outcome ONS covid death"
 
+*REDUCE DATASET SIZE TO VARIABLES NEEDED
+keep patient_id ituadmission age bmi chronic_respiratory_disease chronic_cardiac_disease ///
+	diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr chronic_liver_disease ///
+	organ_transplant spleen bpcat ra_sle_psoriasis asthma chronic_kidney_disease stroke_dementia ///
+	other_neuro stp enter_date ecdseventcensor_date ituadmissioncensor_date cpnsdeathcensor_date ///
+	onscoviddeathcensor_date died_date_ons died_date_cpns cpnsdeath died_date_onscovid onscoviddeath ///
+	itu_date ecdsevent ecdsevent_date male smoke currentsmoke ethnicity agegroup age70 age1 age2 age3 ///
+	bmicat obese40 imd stime_ecdsevent stime_ituadmission stime_cpnsdeath stime_onscoviddeath
 
 
 
