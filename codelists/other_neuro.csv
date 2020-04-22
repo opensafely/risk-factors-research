@@ -1,0 +1,219 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+F390.,Congenital hereditary muscular dystrophy,CTV3Map_Code_And_Term
+F390z,Congenital hereditary muscular dystrophy NOS,CTV3Map_Code_And_Term
+F391.,Hereditary progressive muscular dystrophy,CTV3Map_Code_And_Term
+F3910,Duchenne muscular dystrophy,CTV3Map_Code_And_Term
+F3910,Duchenne muscular dystrophy,CTV3Map_Code_Only
+F3911,Erb's muscular dystrophy,CTV3Map_Code_And_Term
+F3912,Pelvic muscular dystrophy,CTV3Map_Code_And_Term
+F3913,Other limb girdle muscular dystrophy,CTV3Map_Code_And_Term
+F3914,Facioscapulohumeral muscular dystrophy,CTV3Map_Code_And_Term
+F3914,Facioscapulohumeral muscular dystrophy,CTV3Map_Code_Only
+F3915,Distal muscular dystrophy with juvenile onset,CTV3Map_Code_And_Term
+F3916,Ocular muscular dystrophy,CTV3Map_Code_And_Term
+F3917,Oculopharyngeal muscular dystrophy,CTV3Map_Code_And_Term
+F3918,Becker muscular dystrophy,CTV3Map_Code_And_Term
+F391y,(Oth specif hered progress musc dystrophy) or (distal dystr),CTV3_Children
+F391z,Hereditary progressive muscular dystrophy NOS,CTV3Map_Code_And_Term
+F39B.,Muscular dystrophy,High_Level_SNOMED
+X005Q,Neuraxonal leucodystrophy,High_Level_SNOMED
+X40VL,Late infantile metachromatic leucodystrophy,CTV3_Children
+X40VM,Juvenile metachromatic leucodystrophy,CTV3_Children
+X40VN,Adult metachromatic leucodystrophy,CTV3_Children
+X708H,Muscular dystrophy with predom proximl limb girdle distribut,CTV3_Children
+X708I,X-linked muscular dystrophy with limb girdle distribution,CTV3_Children
+X708J,X-linked muscular dystrophy with abnormal dystrophin,CTV3_Children
+X708K,Intermediate X-linked muscular dystrophy,CTV3_Children
+X708L,Manifesting female carrier of X-linked muscular dystrophy,CTV3_Children
+X708M,X-linked limb girdle muscul dystrophy with normal dystrophin,CTV3_Children
+X708N,Ji muscular dystrophy,CTV3_Children
+X708P,Autosomal recess muscular dystrophy with limb girdle distrib,CTV3_Children
+X708S,Fukuyama muscular dystrophy,CTV3_Children
+X708T,Autosomal recess muscular dystrophy with gene located at 15q,CTV3_Children
+X708U,Reunion-Indiana Amish type muscular dystrophy,CTV3_Children
+X708V,Congenital muscular dystrophy,CTV3_Children
+X708W,Western type of congenital muscular dystrophy,CTV3_Children
+X708Y,Ullrich congenital muscular dystrophy,CTV3_Children
+X708Z,Eichsfeld type congenital muscular dystrophy,CTV3_Children
+X708b,Hutterite type of muscular dystrophy,CTV3_Children
+X708d,Autosomal domin muscular dystrophy with limb girdle distrib,CTV3_Children
+X708e,Autosomal domin muscular dystrophy with gene located at 5q31,CTV3_Children
+X708f,Late onset proximal muscular dystrophy with dysarthria,CTV3_Children
+X708g,Muscular dystrophy not predom limb girdle in distribution,CTV3_Children
+X708h,X-linked muscular dystrophy not predominantly limb girdle,CTV3_Children
+X708i,Emery-Dreifuss muscular dystrophy,CTV3Map_Code_And_Term
+X708k,Autosom recessive muscular dystrophy not predom limb girdle,CTV3_Children
+X708l,Scapulohumeral muscular dystrophy,CTV3_Children
+X708m,Distal muscular dystrophy,CTV3Map_Code_And_Term
+X708m,Distal muscular dystrophy,CTV3Map_Code_Only
+X708n,Autosomal dominant muscular dystrophy not predom limb girdle,CTV3_Children
+X708o,Benign scapuloperoneal muscular dystrophy,CTV3_Children
+X708q,Benign congen muscular dystrophy wth finger flex contracture,CTV3_Children
+X708r,Distal muscular dystrophy with adult onset,CTV3_Children
+XE15p,Other specified hereditary progressive muscular dystrophy,CTV3Map_Code_And_Term
+XE15p,Other specified hereditary progressive muscular dystrophy,CTV3Map_Code_Only
+XE18Z,Muscular dystrophy (& [Duchenne muscular dystrophy]),CTV3_Children
+Xa0ON,Severe childhood autosomal recessive muscular dystrophy,CTV3_Children
+Xa0ZY,Cerebro-oculo-dysgenesis-muscular dystrophy syndrome,High_Level_SNOMED
+Xa0lL,Muscular dystrophy,CTV3Map_Code_And_Term
+XaB4V,Leucodystrophy without a known biochemical basis,High_Level_SNOMED
+XaXGu,Adult autosomal dominant leucodystrophy,CTV3_Children
+B516.,Malignant neoplasm of cerebellum,High_Level_SNOMED
+B517.,Malignant neoplasm of brainstem,High_Level_SNOMED
+B5170,Malignant neoplasm of cerebral peduncle,High_Level_SNOMED
+B5171,Malignant neoplasm of medulla oblongata,High_Level_SNOMED
+B5172,Malignant neoplasm of midbrain,High_Level_SNOMED
+B5173,Malignant neoplasm of pons,High_Level_SNOMED
+B517z,Malignant neoplasm of brainstem NOS,High_Level_SNOMED
+F3811,Myasthenic syndrome due to other malignancy,CTV3Map_Code_And_Term
+F3962,Myopathy associated with malignant disease,CTV3Map_Code_And_Term
+X704p,Polymyositis with malignant disease,CTV3_Children
+X704t,Dermatomyositis with malignant disease,CTV3Map_Code_And_Term
+F23..,Congenital cerebral palsy (& spastic),CTV3_Children
+F23y.,Other congenital cerebral palsy,CTV3_Children
+F23y0,Ataxic infantile cerebral palsy,CTV3Map_Code_And_Term
+F23y1,Hypotonic cerebral palsy,CTV3Map_Code_And_Term
+F23yz,Other infantile cerebral palsy NOS,CTV3_Children
+F23z.,Congenital cerebral palsy NOS,CTV3_Children
+Fyu90,[X]Other infantile cerebral palsy,CTV3_Children
+G669.,"Cerebral palsy, not congenital or infantile, acute",CTV3_Children
+X00Em,Infantile cerebral palsy,CTV3_Children
+X00En,Spastic cerebral palsy,CTV3_Children
+X00Eo,Cerebral palsy with spastic tetraparesis,CTV3_Children
+X00Eq,Cerebral palsy with spastic/ataxic diplegia,CTV3Map_Code_And_Term
+X00Er,Monoplegic cerebral palsy affecting upper limb,CTV3_Children
+X00Es,Monoplegic cerebral palsy affecting lower limb,CTV3_Children
+X00Eu,Dyskinetic cerebral palsy,CTV3_Children
+X00Ew,Dystonic/rigid cerebral palsy,CTV3_Children
+XE181,Cerebral palsy (&/or infantile) &/or infantile hemiplegia,CTV3_Children
+XE2Q7,Athetoid cerebral palsy,CTV3_Children
+XE2Q8,Cerebral palsy,CTV3Map_Code_And_Term
+XE2Q9,Cerebral palsy with spastic diplegia,CTV3Map_Code_And_Term
+XE2Q9,Cerebral palsy with spastic diplegia,CTV3Map_Code_Only
+XE2se,Cerebral palsy with spastic tetraplegia,CTV3_Children
+XM1Pu,Congenital cerebral palsy,CTV3_Children
+XM1Pv,Congenital spastic cerebral palsy,CTV3_Children
+Xa0lM,Ataxic cerebral palsy,CTV3_Children
+XaBE2,"Cerebral palsy, not congenital or infantile, acute",CTV3Map_Code_And_Term
+XaYfK,Spastic hemiplegic cerebral palsy,CTV3Map_Code_And_Term
+XaYgp,Spastic quadriplegic cerebral palsy,CTV3Map_Code_And_Term
+XaaVG,Gross Motor Function Classification System Cerebral Palsy,CTV3Map_Code_And_Term
+XaadE,Choreoathetoid cerebral palsy,CTV3Map_Code_And_Term
+XaadE,Choreoathetoid cerebral palsy,CTV3Map_Code_Only
+Xab3R,Bilateral spastic cerebral palsy,CTV3_Children
+A411.,Creutzfeldt-Jakob disease,CTV3Map_Code_And_Term
+F11x7,Cerebral degeneration due to Creutzfeldt-Jakob disease,CTV3Map_Code_And_Term
+XaA1S,New variant of Creutzfeldt-Jakob disease,CTV3_Children
+XabVp,Sporadic Creutzfeldt-Jakob disease,CTV3_Children
+F22..,(Hemiplegia) or (hemiparesis),High_Level_SNOMED
+F220.,Flaccid hemiplegia,CTV3Map_Code_And_Term
+F221.,(Spastic hemiplegia) or (spastic foot),High_Level_SNOMED
+F222.,Left: [hemiplegia] or [sided weakness],CTV3_Children
+F223.,Right: [hemiplegia] or [sided weakness],CTV3_Children
+F22z.,Hemiplegia NOS,CTV3Map_Code_And_Term
+F231.,Infantile hemiplegia,CTV3Map_Code_And_Term
+F234.,Infantile hemiplegia NOS,CTV3Map_Code_And_Term
+X007Q,Alternating hemiplegia of childhood,High_Level_SNOMED
+X00DE,Lacunar ataxic hemiparesis,CTV3_Children
+X76n9,Hemiparesis,CTV3Map_Code_Only
+XE15T,Hemiplegia,CTV3Map_Code_And_Term
+XE15U,Spastic hemiplegia,CTV3Map_Code_And_Term
+Xa0fr,Right hemiplegia,CTV3Map_Code_And_Term
+Xa0fs,Left hemiplegia,CTV3Map_Code_And_Term
+Xa0ft,Right hemiparesis,CTV3Map_Code_Only
+Xa0fu,Left hemiparesis,CTV3Map_Code_Only
+XaELO,Residual hemiplegia,CTV3_Children
+XaL3N,Hemiparesis NOS,CTV3_Children
+Y3466,Hemiplegic,CTV3_Children
+Eu022,[X]Dementia in Huntington's disease,CTV3Map_Code_And_Term
+F134.,Huntington's disease,CTV3Map_Code_And_Term
+X003p,Juvenile onset Huntington's disease,CTV3_Children
+X003q,Late onset Huntington's disease,CTV3_Children
+X003r,Akinetic-rigid form of Huntington's disease,CTV3_Children
+F1304,Progressive supranuclear palsy,CTV3Map_Code_And_Term
+F1304,Progressive supranuclear palsy,CTV3Map_Code_Only
+F152.,Motor neurone disease,CTV3Map_Code_And_Term
+F1522,Progressive bulbar palsy,CTV3Map_Code_And_Term
+F1524,Primary lateral sclerosis,CTV3Map_Code_And_Term
+F152z,Motor neurone disease NOS,CTV3Map_Code_And_Term
+X002i,Western Pacific motor neurone disease,CTV3_Children
+X002j,Madras-type motor neurone disease,CTV3_Children
+X002l,Paraneoplastic motor neurone disease,CTV3_Children
+F20..,Multiple sclerosis,CTV3Map_Code_And_Term
+F20..,Multiple sclerosis,CTV3Map_Code_Only
+F200.,Multiple sclerosis of the brainstem,CTV3Map_Code_And_Term
+F201.,Multiple sclerosis of the spinal cord,CTV3Map_Code_And_Term
+F202.,Generalised multiple sclerosis,CTV3Map_Code_And_Term
+F203.,Exacerbation of multiple sclerosis,CTV3Map_Code_And_Term
+F20z.,Multiple sclerosis NOS,CTV3Map_Code_And_Term
+X005c,Acute relapsing multiple sclerosis,CTV3_Children
+X005d,Chronic progressive multiple sclerosis,CTV3_Children
+X005e,Remittent-progressive multiple sclerosis,CTV3_Children
+X00AX,Chr inflamm demyelinat polyradiculoneuropathy with cns demye,High_Level_SNOMED
+XaKA8,Specialised services for pts with multiple sclerosis ESA,CTV3Map_Code_And_Term
+XaKvm,Multiple sclerosis review,CTV3Map_Code_And_Term
+XaKvn,Multiple sclerosis multidisciplinary review,CTV3Map_Code_And_Term
+XaKzg,Multiple sclerosis care plan agreed,CTV3Map_Code_And_Term
+XaOzZ,Benign multiple sclerosis,CTV3Map_Code_And_Term
+XaP0X,Malignant multiple sclerosis,CTV3_Children
+XaP0r,Primary progressive multiple sclerosis,CTV3Map_Code_And_Term
+XaP1B,Relapsing and remitting multiple sclerosis,CTV3Map_Code_And_Term
+XaP1V,Secondary progressive multiple sclerosis,CTV3Map_Code_And_Term
+XaPSY,Management of multiple sclerosis in onset phase,CTV3Map_Code_And_Term
+XaPSZ,Management of multiple sclerosis in early disease phase,CTV3Map_Code_And_Term
+XaPSa,Management of multiple sclerosis in stable disability phase,CTV3Map_Code_And_Term
+XaPSb,Management of MS in progressive disability phase,CTV3Map_Code_And_Term
+XaPSc,Management of multiple sclerosis in palliative phase,CTV3Map_Code_And_Term
+XaX9A,Multiple sclerosis monitoring administration,CTV3Map_Code_And_Term
+XaX9F,Multiple sclerosis monitoring first letter,CTV3Map_Code_And_Term
+XaX9H,Multiple sclerosis monitoring second letter,CTV3Map_Code_And_Term
+XaX9J,Multiple sclerosis monitoring telephone invitation,CTV3Map_Code_And_Term
+XaX9L,Multiple sclerosis monitoring third letter,CTV3_Children
+XaXsg,Referral to community multiple sclerosis team,CTV3Map_Code_And_Term
+F380.,Myasthenia gravis,CTV3Map_Code_And_Term
+F3800,Persistent neonatal myasthenia gravis,CTV3_Children
+F3801,Juvenile or adult myasthenia gravis,CTV3Map_Code_And_Term
+F380z,Myasthenia gravis NOS,CTV3Map_Code_And_Term
+F381.,Myasthenic syndrome due to disease EC,CTV3Map_Code_And_Term
+F3810,Eaton Lambert myasthenic syndrome,CTV3Map_Code_And_Term
+F3810,Eaton Lambert myasthenic syndrome,CTV3Map_Code_Only
+F3813,(Myasth syndr due to diab amyotroph) or (diab amyotroph),High_Level_SNOMED
+F383.,Congenital and developmental myasthenia,CTV3Map_Code_And_Term
+Fyu84,[X]Other myasthenic syndromes in neoplastic disease CE,CTV3_Children
+Fyu85,[X]Myasthenic syndromes/other diseases classified elsewhere,CTV3_Children
+X00Cb,Genetically determined myasthenia,CTV3_Children
+X00Ce,Congenital myasthenia,CTV3_Children
+X00Cu,Myasthenia gravis associated with thymoma,CTV3_Children
+X00Cv,Generalised myasthenia,CTV3_Children
+X00Cw,Myopathy in myasthenia gravis,CTV3_Children
+XE15n,Myasthenic syndrome due to diabetic amyotrophy,CTV3Map_Code_And_Term
+XE15n,Myasthenic syndrome due to diabetic amyotrophy,CTV3Map_Code_Only
+Eu023,[X]Dementia in Parkinson's disease,CTV3Map_Code_And_Term
+F12..,Parkinson's disease,CTV3Map_Code_And_Term
+F12z.,Parkinson's disease NOS,CTV3Map_Code_And_Term
+X003a,Juvenile Parkinson's disease,CTV3_Children
+XaOfZ,Cerebral degeneration in Parkinson's disease,CTV3Map_Code_And_Term
+XaQwf,History of Parkinson's disease,CTV3Map_Code_And_Term
+XaZYZ,Lindop Parkinson's assessment scale,CTV3Map_Code_And_Term
+XaZxQ,Referral to Parkinson's service,CTV3Map_Code_And_Term
+XaaRV,Referral to community Parkinson's service,CTV3Map_Code_And_Term
+Xab7w,Seen by Parkinson's disease service,CTV3Map_Code_And_Term
+XabbC,Referral to community Parkinson disease clin nurse spcialist,CTV3Map_Code_And_Term
+XaeUN,"Multiple system atrophy, Parkinson variant",CTV3_Children
+F140.,Friedreich ataxia,CTV3Map_Code_And_Term
+F142.,Primary cerebellar degeneration,CTV3Map_Code_And_Term
+F142z,Primary cerebellar degeneration NOS,CTV3Map_Code_And_Term
+F1440,Alcoholic cerebellar degeneration,CTV3Map_Code_And_Term
+X002R,Prog spinocerebellar ataxia with retained tendon reflexes,High_Level_SNOMED
+X002U,Secondary cerebellar degeneration,High_Level_SNOMED
+XaeUM,"Multiple system atrophy, cerebellar variant",CTV3_Children
+F240.,Quadriplegia,CTV3Map_Code_And_Term
+F240.,Quadriplegia,CTV3Map_Code_Only
+X76je,Spastic quadriplegia,CTV3_Children
+XM1Pw,Congenital quadriplegia,CTV3Map_Code_And_Term
+XM1Pw,Congenital quadriplegia,CTV3Map_Code_Only
+A413.,Progressive multifocal leucoencephalopathy,CTV3Map_Code_And_Term
+A413.,Progressive multifocal leucoencephalopathy,CTV3Map_Code_Only
+F0301,Subacute sclerosing panencephalitis,CTV3Map_Code_And_Term
+F0301,Subacute sclerosing panencephalitis,CTV3Map_Code_Only
+F11x8,Cerebral degeneration due to multifocal leucoencephalopathy,CTV3Map_Code_And_Term
