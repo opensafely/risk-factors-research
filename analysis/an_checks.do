@@ -100,28 +100,20 @@ tab bpcat bphigh, m
 *********************
 
 * BMI
-summ bmi_date_measured, format
-
+*summ bmi_date_measured, format
+/*
 * Dates of comorbidities  
 foreach var of varlist 	chronic_respiratory_disease 	///
 						chronic_cardiac_disease 		///
 						diabetes 						///
-						lung_cancer 					///
-						haem_cancer						///
-						other_cancer 					///
-						bone_marrow_transplant 			///
-						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						chronic_kidney_disease 			///
 						organ_transplant 				///	
-						dysplenia						///
-						sickle_cell 					///
 						ra_sle_psoriasis  {
 
 	summ `var'_date, format
 	bysort `var': summ `var'_date
 }
-
+*/
 
 
 * Outcome dates
@@ -180,7 +172,6 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 	tab agegroup `var', r
 }
 
-						
 
 * Relationships with sex
 foreach var of varlist 	chronic_respiratory_disease 	///
