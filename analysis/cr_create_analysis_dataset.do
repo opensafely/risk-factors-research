@@ -49,12 +49,12 @@ log using ./output/cr_analysis_dataset, replace t
 set seed 123489
 
 
-* Smoking status (assuming input is called smoking_status)
+/* Smoking status (assuming input is called smoking_status)
 gen     smoking_status = "N" if uniform()<0.3
 replace smoking_status = "E" if uniform()<0.6 & smoking_status==""
 replace smoking_status = "S" if uniform()<0.6 & smoking_status==""
 replace smoking_status = "M" if smoking_status==""
-
+*/
 
 * Ethnicity 
 label define ethnicity 1"White"  2"South Asian"  3"Black"  4"Other"  5"Mixed" 6"Not Stated"
