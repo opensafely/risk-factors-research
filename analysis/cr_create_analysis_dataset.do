@@ -293,11 +293,11 @@ drop sex
 replace bmi = . if !inrange(bmi, 15, 50)
 
 * Smoking 
-assert inlist(smoking_status, "N", "E", "S", "")
+assert inlist(smoking_status, "N", "E", "S", "M")
 gen     smoke = 1 if smoking_status=="N"
 replace smoke = 2 if smoking_status=="E"
 replace smoke = 3 if smoking_status=="S"
-replace smoke = .u if smoking_status=="M"
+replace smoke = .u if smoking_status==""
 label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 label values smoke smoke
 drop smoking_status

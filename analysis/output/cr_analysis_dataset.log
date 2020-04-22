@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  22 Apr 2020, 16:50:28
+ opened on:  22 Apr 2020, 16:59:15
 
 . 
 . *******************************************************************************
@@ -43,6 +43,10 @@
 . replace smoking_status = "S" if uniform()<0.6 & smoking_status==""
 (17,662 real changes made)
 
+. replace smoking_status = "M" if smoking_status==""
+(11,857 real changes made)
+
+. 
 . 
 . * Ethnicity 
 . gen     ethnicity = "W" if uniform()<0.3
@@ -450,7 +454,7 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . * Smoking 
-. assert inlist(smoking_status, "N", "E", "S", "")
+. assert inlist(smoking_status, "N", "E", "S", "M")
 
 . gen     smoke = 1 if smoking_status=="N"
 (70,415 missing values generated)
@@ -462,7 +466,7 @@ variable ra_sle_psoriasis was str7 now str10
 (16,914 real changes made)
 
 . replace smoke = .u if smoking_status==""
-(11,370 real changes made, 11,370 to missing)
+(0 real changes made)
 
 . label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 
@@ -599,7 +603,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Create binary smoking
 . recode smoke 3=1 1/2 .u=0, gen(currentsmoke)
-(100570 differences between smoke and currentsmoke)
+(89200 differences between smoke and currentsmoke)
 
 . order currentsmoke, after(smoke)
 
@@ -970,5 +974,5 @@ file egdata.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  22 Apr 2020, 16:50:33
+ closed on:  22 Apr 2020, 16:59:20
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
