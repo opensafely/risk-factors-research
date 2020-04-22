@@ -53,6 +53,8 @@ set seed 123489
 gen     smoking_status = "N" if uniform()<0.3
 replace smoking_status = "E" if uniform()<0.6 & smoking_status==""
 replace smoking_status = "S" if uniform()<0.6 & smoking_status==""
+replace smoking_status = "M" if smoking_status==""
+
 
 * Ethnicity 
 gen     ethnicity = "W" if uniform()<0.3
@@ -295,7 +297,7 @@ assert inlist(smoking_status, "N", "E", "S", "")
 gen     smoke = 1 if smoking_status=="N"
 replace smoke = 2 if smoking_status=="E"
 replace smoke = 3 if smoking_status=="S"
-replace smoke = .u if smoking_status==""
+replace smoke = .u if smoking_status=="M"
 label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 label values smoke smoke
 drop smoking_status
