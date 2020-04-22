@@ -20,43 +20,39 @@ class StudyDefinition:
     def __init__(self, population, **kwargs):
         self.population_definition = population
         self.covariate_definitions = kwargs
-        if self.population_definition[0] == "satisfying":
+        if self.population_definition[0] == "categorised_as":
             raise ValueError(
-                "`satisfying` queries can't yet be used in the population definition"
+                "Expression queries can't yet be used in the population definition"
             )
+        self.codelist_tables = []
+        self.sql, self.params = self.build_full_query()
 
     def to_csv(self, filename):
-        sql, params = self.to_sql()
-        conn = self.get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute(sql, params)
+        result = self.execute_query()
         with open(filename, "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow([x[0] for x in cursor.description])
-            for row in cursor:
+            writer.writerow([x[0] for x in result.description])
+            for row in result:
                 writer.writerow(row)
 
     def to_dicts(self):
-        sql, params = self.to_sql()
-        conn = self.get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute(sql, params)
-        keys = [x[0] for x in cursor.description]
+        result = self.execute_query()
+        keys = [x[0] for x in result.description]
         # Convert all values to str as that's what will end in the CSV
-        return [dict(zip(keys, map(str, row))) for row in cursor]
+        return [dict(zip(keys, map(str, row))) for row in result]
 
-    def to_sql(self):
+    def build_full_query(self):
         self.covariates = {}
         population_cols, population_sql, population_params = self.get_query(
             *self.population_definition
         )
         hidden_columns = set()
         for name, (query_type, query_args) in self.covariate_definitions.items():
-            if query_type != "satisfying":
+            if query_type != "categorised_as":
                 self.covariates[name] = self.get_query(query_type, query_args)
-            # Special case for boolean expressions which can define extra
-            # hidden columns which they use for their logic but which don't
-            # appear in the output
+            # Special case for expression queries which can define extra hidden
+            # columns which they use for their logic but which don't appear in
+            # the output
             else:
                 extra_columns = query_args["extra_columns"].items()
                 for hidden_name, (hidden_query_type, hidden_args) in extra_columns:
@@ -84,23 +80,25 @@ class StudyDefinition:
                 # output column. The rest are added as suffixes to the name of
                 # the output column
                 output_column = column_name if n == 0 else f"{column_name}_{col}"
-                is_date_col = (
-                    col == "date" or col.startswith("date_") or col.endswith("_date")
+                is_str_col = (
+                    col == "date"
+                    or col.startswith("date_")
+                    or col.endswith("_date")
+                    or col.endswith("_code")
+                    or col == "category"
                 )
-                is_code_col = col.endswith("_code")
-                if is_date_col or is_code_col:
-                    default_value = "''"
-                else:
-                    default_value = 0
+                default_value = "''" if is_str_col else 0
                 cte_cols.append(
                     f"ISNULL({column_name}.{col}, {default_value}) AS {output_column}"
                 )
         # Add column defintions for covariates which are boolean expressions
         # over other covariates
         for name, (query_type, query_args) in self.covariate_definitions.items():
-            if query_type == "satisfying":
-                expression = self.get_boolean_expression(self.covariates, **query_args)
-                cte_cols.append(f"CASE WHEN ({expression}) THEN 1 ELSE 0 END AS {name}")
+            if query_type == "categorised_as":
+                case_expression = self.get_case_expression(
+                    self.covariates, **query_args
+                )
+                cte_cols.append(f"{case_expression} AS {name}")
         cte_sql = ", ".join(ctes)
         sql = f"""
         {cte_sql}
@@ -111,10 +109,45 @@ class StudyDefinition:
         """
         return sql, cte_params
 
+    def execute_query(self):
+        conn = self.get_db_connection()
+        cursor = conn.cursor()
+        for create_sql, insert_sql, values in self.codelist_tables:
+            cursor.execute(create_sql)
+            cursor.executemany(insert_sql, values)
+        cursor.execute(self.sql, self.params)
+        return cursor
+
     def get_query(self, query_type, query_args):
         method_name = f"patients_{query_type}"
         method = getattr(self, method_name)
         return method(**query_args)
+
+    def create_codelist_table(self, codelist, case_sensitive=True):
+        table_number = len(self.codelist_tables) + 1
+        # The hash prefix indicates a temporary table
+        table_name = f"#codelist_{table_number}"
+        if codelist.has_categories:
+            values = list(codelist)
+        else:
+            values = [(code, "") for code in codelist]
+        collation = "Latin1_General_BIN" if case_sensitive else "Latin1_General_CI_AS"
+        max_code_len = max(len(code) for (code, category) in values)
+        self.codelist_tables.append(
+            (
+                f"""
+                CREATE TABLE {table_name} (
+                  -- Because some code systems are case-sensitive we need to
+                  -- use a case-sensitive collation here
+                  code VARCHAR({max_code_len}) COLLATE {collation},
+                  category VARCHAR(MAX)
+                )
+                """,
+                f"INSERT INTO {table_name} (code, category) VALUES(?, ?)",
+                values,
+            )
+        )
+        return table_name
 
     def patients_age_as_of(self, reference_date):
         return (
@@ -431,6 +464,7 @@ class StudyDefinition:
             ON MedicationIssue.MultilexDrug_ID = MedicationDictionary.MultilexDrug_ID
             """,
             "DMD_ID",
+            codes_are_case_sensitive=False,
             **kwargs,
         )
 
@@ -439,12 +473,15 @@ class StudyDefinition:
         Patients who have had at least one of these clinical events in the
         defined period
         """
-        return self._patients_with_events("CodedEvent", "CTV3Code", **kwargs)
+        return self._patients_with_events(
+            "CodedEvent", "CTV3Code", codes_are_case_sensitive=True, **kwargs
+        )
 
     def _patients_with_events(
         self,
         from_table,
         code_column,
+        codes_are_case_sensitive,
         codelist,
         # Set date limits
         on_or_before=None,
@@ -460,11 +497,10 @@ class StudyDefinition:
         include_month=False,
         include_day=False,
     ):
-        placeholders, params = placeholders_and_params(codelist)
-        date_condition, date_params = make_date_filter(
+        codelist_table = self.create_codelist_table(codelist, codes_are_case_sensitive)
+        date_condition, params = make_date_filter(
             "ConsultationDate", on_or_after, on_or_before, between
         )
-        params.extend(date_params)
 
         # Result ordering
         if find_first_match_in_period:
@@ -492,6 +528,15 @@ class StudyDefinition:
             column_name = "value"
             column_definition = code_column
             use_partition_query = True
+        elif returning == "category":
+            if not codelist.has_categories:
+                raise ValueError(
+                    "Cannot return categories because the supplied codelist does "
+                    "not have any categories defined"
+                )
+            column_name = "category"
+            column_definition = "category"
+            use_partition_query = True
         else:
             raise ValueError(f"Unsupported `returning` value: {returning}")
 
@@ -514,7 +559,9 @@ class StudyDefinition:
                 PARTITION BY Patient_ID ORDER BY ConsultationDate {ordering}
               ) AS rownum
               FROM {from_table}
-              WHERE {code_column} IN ({placeholders}) AND {date_condition}
+              INNER JOIN {codelist_table}
+              ON {code_column} = {codelist_table}.code
+              WHERE {date_condition}
             ) t
             WHERE rownum = 1
             """
@@ -528,7 +575,9 @@ class StudyDefinition:
               {column_definition} AS {column_name},
               {date_column_definition} AS {date_column_name}
             FROM {from_table}
-            WHERE {code_column} IN ({placeholders}) AND {date_condition}
+            INNER JOIN {codelist_table}
+            ON {code_column} = {codelist_table}.code
+            WHERE {date_condition}
             GROUP BY Patient_ID
             """
 
@@ -781,7 +830,22 @@ class StudyDefinition:
             params,
         )
 
-    def get_boolean_expression(self, covariates, expression, extra_columns=None):
+    def get_case_expression(self, covariates, category_definitions, extra_columns=None):
+        defaults = [k for (k, v) in category_definitions.items() if v == "DEFAULT"]
+        if len(defaults) > 1:
+            raise ValueError("At most one default category can be defined")
+        if len(defaults) == 1:
+            default_value = defaults[0]
+            category_definitions.pop(default_value)
+        else:
+            default_value = ""
+        clauses = []
+        for category, expression in category_definitions.items():
+            formatted_expression = self.get_boolean_expression(covariates, expression)
+            clauses.append(f"WHEN ({formatted_expression}) THEN {quote(category)}")
+        return f"CASE {' '.join(clauses)} ELSE {quote(default_value)} END"
+
+    def get_boolean_expression(self, covariates, expression):
         # The column references in the supplied expression need to be rewritten
         # to ensure they refer to the correct CTE. The formatting function also
         # ensures that the expression matches the very limited subset of SQL we
@@ -984,8 +1048,15 @@ class patients:
         return "with_these_clinical_events", locals()
 
     @staticmethod
+    def categorised_as(category_definitions, **extra_columns):
+        return "categorised_as", locals()
+
+    @staticmethod
     def satisfying(expression, **extra_columns):
-        return "satisfying", locals()
+        category_definitions = {1: expression, 0: "DEFAULT"}
+        # Remove from local namespace
+        del expression
+        return "categorised_as", locals()
 
     @staticmethod
     def registered_practice_as_of(date, returning=None):
@@ -1113,6 +1184,8 @@ def placeholders_and_params(values, as_ints=False):
     """
     if as_ints:
         raise NotImplementedError("TODO")
+    if getattr(values, "has_categories", False):
+        values = [v[0] for v in values]
     values = list(map(str, values))
     for value in values:
         if not SAFE_CHARS_RE.match(value):
@@ -1121,6 +1194,16 @@ def placeholders_and_params(values, as_ints=False):
     placeholders = ",".join(quoted_values)
     params = []
     return placeholders, params
+
+
+def quote(value):
+    if isinstance(value, (int, float)):
+        return str(value)
+    else:
+        value = str(value)
+        if not SAFE_CHARS_RE.match(value):
+            raise ValueError(f"Value contains disallowed characters: {value}")
+        return f"'{value}'"
 
 
 def make_date_filter(column, min_date, max_date, between=None, upper_bound_only=False):
@@ -1153,20 +1236,38 @@ def truncate_date(column, include_month, include_day):
 # Quick and dirty hack until we have a proper library for codelists
 class Codelist(list):
     system = None
+    has_categories = False
 
 
-def codelist_from_csv(filename, system, column="code"):
+def codelist_from_csv(filename, system, column="code", category_column=None):
     codes = []
     with open(filename, "r") as f:
         for row in csv.DictReader(f):
-            codes.append(row[column])
-
+            if category_column:
+                codes.append((row[column], row[category_column]))
+            else:
+                codes.append(row[column])
     codes = Codelist(codes)
     codes.system = system
+    codes.has_categories = bool(category_column)
     return codes
 
 
 def codelist(codes, system):
     codes = Codelist(codes)
     codes.system = system
+    first_code = codes[0]
+    if isinstance(first_code, tuple):
+        codes.has_categories = True
     return codes
+
+
+def filter_codes_by_category(codes, include):
+    assert codes.has_categories
+    new_codes = Codelist()
+    new_codes.system = codes.system
+    new_codes.has_categories = True
+    for code, category in codes:
+        if category in include:
+            new_codes.append((code, category))
+    return new_codes
