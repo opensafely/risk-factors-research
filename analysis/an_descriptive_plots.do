@@ -60,8 +60,6 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	* KM plot for females by age		
 	sts graph if male==0, title("Female") 			///
 		failure by(agegroup) 						///
-		yscale(range(0, 0.1)) 						///
-		ylabel(0 (0.025) 0.1, angle(0))				///
 		xtitle("Days since 1 Feb 2020")				///
 		legend(order(1 2 3 4 5 6)					///
 		subtitle("Age group", size(small)) 			///
@@ -74,8 +72,6 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	sts graph if male==1, title("Male") 			///
 		failure by(agegroup)						///
 		yscale(range(0, 0.1)) 						///
-		ylabel(0 (0.025) 0.1, angle(0))				///
-		xtitle("Days since 1 Feb 2020")				///
 		legend(order(1 2 3 4 5 6)					///
 		subtitle("Age group", size(small)) 			///
 		label(1 "18-<40") label(2 "40-<50") 		///
@@ -102,6 +98,8 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 }
 
 
+*		yscale(range(0, 0.1)) 						///
+*		ylabel(0 (0.025) 0.1, angle(0))				///
 
 
 
