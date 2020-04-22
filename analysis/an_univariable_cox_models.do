@@ -58,13 +58,17 @@ foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 	stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 	* Cox model for age
-	stcox age1 age2 age3 i.male, strata(stp) 
+	capture stcox age1 age2 age3 i.male, strata(stp) 
+	if _rc==0 {
 	estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_, replace
+	}
 	est store base
 	estat ic
 
-	stcox i.agegroup i.male, strata(stp) 
+	capture stcox i.agegroup i.male, strata(stp) 
+	if _rc==0 {
 	estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_`var', replace
+	}
 	estat ic
 	
 	foreach var of varlist 	bmicat 							///
