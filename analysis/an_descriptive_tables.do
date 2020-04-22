@@ -57,12 +57,15 @@ tab chronic_kidney_disease
 tab organ_transplant
 tab spleen
 tab ra_sle_psoriasis
+tab dementia
+tab stroke
+tab stroke_dementia
 * tab immunosuppressed
 						    
 tab bpcat
 
-summ bp_sys,  detail
-summ bp_dias, detail
+*summ bp_sys,  detail
+*summ bp_dias, detail
 
 tab imd 
 tab imd, m
