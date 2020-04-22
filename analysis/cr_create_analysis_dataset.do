@@ -313,7 +313,7 @@ egen spleen = rowmax(dysplenia sickle_cell)
 order spleen, after(sickle_cell)
 
 * TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
-for var chronic_kidney_disease stroke_dementia other_neuro: replace X = uniform()<0.05
+for var chronic_kidney_disease : replace X = uniform()<0.05
 
 * Immunosuppressed:
 * HIV, dysplenia/sickle-cell, genetic conditions ever, OR
