@@ -10,8 +10,14 @@
 *
 *	Data created:	None
 *
-*	Other output:	Kaplan-Meier plots 
-*							km_age_sex.png (intended for publication)
+*	Other output:	Kaplan-Meier plots (intended for publication)
+*							output/km_age_sex_onscoviddeath.svg 
+*							output/km_age_sex_cpnsdeath.svg 	
+*							output/km_age_sex_ituadmission.svg	 
+*					Line plots of cumulative deaths
+*							utput/events_onscoviddeath.svg
+*							utput/events_cpnsdeath.svg
+*							utput/events_ituadmission.svg
 *
 *							(others later)   (for data checking)
 *
@@ -32,6 +38,7 @@ use egdata, clear
 
 
 
+
 ****************************
 *  KM plot by age and sex  *
 ****************************
@@ -40,8 +47,11 @@ use egdata, clear
 
 * Set max/gap for ylabels eventually
 
+local t_onscoviddeath = "ONS Covid-19 death"
+local t_cpnsdeath     = "CPNS Covid-19 death"
+local t_ituadmission  = "ITU admission"
 
-foreach outvar of varlist died {
+foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 
 	* Declare survival outcome
 	stset stime_`outvar', fail(`outvar') 			///
@@ -75,20 +85,22 @@ foreach outvar of varlist died {
 		saving(male, replace)
 	* KM plot for males and females 
 	grc1leg female.gph male.gph, 					///
-		t1("Composite: ITU admission or death") 	///
-		saving(both_`outvar', replace)
+		t1(`"`t_`outvar''"'') 	
+	graph export "output/km_age_sex_`outvar'.svg", as(svg) replace
+
 	* Delete unneeded graphs
 	erase female.gph
 	erase male.gph
+	
+	* Line graph of events 
+	sort _t
+	gen cum_`outvar' = sum(_d)
+	line cum_`outvar' _t if 	///
+		!(_t==_t[_n-1] & cum_`outvar'==cum_`outvar'[_n-1]), sort(_t) 
+	graph export "output/events_`outvar'.svg", replace as(svg)
+	
 }
 
-* Combine graphs  (change to grc1leg eventually)
-graph use both_died.gph	 
-* Export graph
-graph export "output/km_age_sex.eps", as(eps) replace
-
-* Delete unneeded graphs
-erase both_died.gph
 
 
 
