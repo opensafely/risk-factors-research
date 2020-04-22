@@ -14,6 +14,9 @@ dementia = codelist_from_csv(
 
 other_neuro = codelist_from_csv(
     "codelists/other_neuro.csv", system="ctv3", column="CTV3ID")
+ethnicity_codes  = codelist_from_csv(
+    "codelists/ethnicity_codes_2020_04_22.csv", system="ctv3", column="Code", category_column="Grouping_6"
+)
 
 chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
@@ -153,6 +156,12 @@ study = StudyDefinition(
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27
     #ethnicity= # still to be implemented - this will be just the Read code for now then can be categorised with the list we're making.
+    ethnicity=patients.with_these_clinical_events(
+        ethnicity_codes,
+        returning="category",
+        find_last_match_in_period=True,
+        include_date_of_match=True,
+        ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/21
     chronic_respiratory_disease=patients.with_these_clinical_events(
