@@ -49,6 +49,41 @@ log using ./output/cr_analysis_dataset, replace t
 set seed 123489
 
 
+* Smoking - only make up if not there!! 
+label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
+
+
+
+capture confirm string variable smoke
+if _rc==0 {
+	noi di "USING REAL Smoking"
+	rename smoke smoke_old
+	gen     smoke = 1 if smoke_old=="N"
+	replace smoke = 2 if smoke_old=="E"
+	replace smoke = 3 if smoke_old=="S"
+	replace smoke = .u if smoke_old=="M"
+	label values smoke smoke
+}
+else {
+	capture confirm numeric variable smoke
+	if _rc==0 {
+		noi di "USING REAL Smoking, already numeric"
+		label values smoke smoke
+	}
+	else {
+	noi di "USING FAKE Smoking"
+		
+	gen     smoke = 1 if uniform()<0.3
+	replace smoke = 2 if uniform()<0.6 & smoking_status==""
+	replace smoke = 3 if uniform()<0.6 & smoking_status==""
+	replace smoke = .u if smoking_status==""
+	label values smoke smoke
+
+	}
+}
+
+
+
 /* Smoking status (assuming input is called smoking_status)
 gen     smoking_status = "N" if uniform()<0.3
 replace smoking_status = "E" if uniform()<0.6 & smoking_status==""
@@ -87,8 +122,8 @@ else {
 
 * Additional risk factors
 gen chronic_kidney_disease = .
-gen stroke_dementia = .
-gen other_neuro = .
+*gen stroke_dementia = .
+*gen other_neuro = .
 
 /* BMI (?now present for real)
 replace bmi = rnormal(30, 15)
@@ -190,7 +225,8 @@ foreach var of varlist 	bp_sys_date 					///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						stroke_dementia		 			///
+						stroke							///
+						dementia		 				///
 						other_neuro 					///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
@@ -239,7 +275,8 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						bone_marrow_transplant_date 		///
 						chemo_radio_therapy_date			///
 						chronic_liver_disease_date 			///
-						stroke_dementia_date				///
+						stroke_date							///
+						dementia_date						///
 						other_neuro_date					///
 						chronic_kidney_disease_date 		///
 						organ_transplant_date 				///	
@@ -254,6 +291,9 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 }
 
 /* Grouped comorbidities  */
+
+* Stroke and dementia
+gen stroke_dementia = 1 if stroke==1 | dementia==1
 
 * Cancer except haematological 
 gen lung_cancer_lastyr  = inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020))
@@ -309,7 +349,7 @@ drop sex
 * bmi_date_measured
 * Set implausible BMIs to missing:
 replace bmi = . if !inrange(bmi, 15, 50)
-
+/*
 * Smoking 
 assert inlist(smoking_status, "N", "E", "S", "M")
 gen     smoke = 1 if smoking_status=="N"
@@ -319,7 +359,7 @@ replace smoke = .u if smoking_status==""
 label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 label values smoke smoke
 drop smoking_status
-
+*/
 
 /* Ethnicity
 rename ethnicity ethnicity_o
@@ -564,7 +604,8 @@ label var other_cancer_date				"Any cancer, date"
 label var bone_marrow_transplant_date	"Organ transplant, date"
 label var chronic_liver_disease_date	"Liver, date"
 
-label var stroke_dementia_date			"Stroke or dementia, date"
+label var stroke_date					"Stroke, date"
+label var dementia_date				"Dementia, date"
 label var other_neuro_date				"Neuro condition other than stroke/dementia, date"	
 
 label var chronic_kidney_disease_date 	"Kidney disease, date"
@@ -599,7 +640,7 @@ label var  stime_onscoviddeath 	"Survival time; outcome ONS covid death"
 *REDUCE DATASET SIZE TO VARIABLES NEEDED
 keep patient_id ituadmission age bmi chronic_respiratory_disease chronic_cardiac_disease ///
 	diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr chronic_liver_disease ///
-	organ_transplant spleen bpcat bphigh ra_sle_psoriasis asthma chronic_kidney_disease stroke_dementia ///
+	organ_transplant spleen bpcat bphigh ra_sle_psoriasis asthma chronic_kidney_disease stroke dementia stroke_dementia ///
 	other_neuro stp enter_date ecdseventcensor_date ituadmissioncensor_date cpnsdeathcensor_date ///
 	onscoviddeathcensor_date died_date_ons died_date_cpns cpnsdeath died_date_onscovid onscoviddeath ///
 	itu_date ecdsevent ecdsevent_date male smoke currentsmoke ethnicity agegroup age70 age1 age2 age3 ///
