@@ -27,6 +27,7 @@ log using "output/an_descriptive_tables", text replace
 
 use egdata, clear
 
+
 **********************************
 *  Distribution in whole cohort  *
 **********************************
@@ -46,36 +47,39 @@ tab chronic_respiratory_disease
 tab asthma
 tab chronic_cardiac_disease
 tab diabetes
-tab lung_cancer
-tab haem_cancer
-tab other_cancer
-tab cancer
+tab cancer_exhaem_lastyr
+tab haemmalig_aanaem_bmtrans_lastyr
 tab chronic_liver_disease
+tab other_neuro
 tab chronic_kidney_disease
 tab organ_transplant
-tab dysplenia
-tab sickle_cell
+tab chronic_kidney_disease
+tab organ_transplant
 tab spleen
 tab ra_sle_psoriasis
-tab immunosuppressed
-
+tab dementia
+tab stroke
+tab stroke_dementia
+* tab immunosuppressed
+						    
 tab bpcat
 
-summ bp_sys,  detail
-summ bp_dias, detail
+*summ bp_sys,  detail
+*summ bp_dias, detail
 
-* Adjustment variables 
 tab imd 
-*tab ethnicity
+tab imd, m
+tab ethnicity
 tab ethnicity, m
 *tab urban
 
 
 * Outcomes
-tab died
-tab itu
-tab hosp
-* tab compoutcome
+tab onscoviddeath
+tab cpnsdeath
+tab ituadmission
+* tab ecds
+
 
 
 
@@ -83,35 +87,36 @@ tab hosp
 *  Number (%) with each outcome  *
 **********************************
 
-foreach outvar of varlist died hosp itu {
+foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 
 *** Repeat for each outcome
 
 	* Demographics
-	tab agegroup 							`outvar', row
-	tab male 								`outvar', row
-	tab bmicat 								`outvar', row m 
-	tab smoke 								`outvar', row m
+	tab agegroup 							`outvar', col
+	tab male 								`outvar', col
+	tab bmicat 								`outvar', col m 
+	tab smoke 								`outvar', col m
+	tab obese 								`outvar', col m 
+	tab current								`outvar', col m
 
 	* Comorbidities
-	tab chronic_respiratory_disease 		`outvar', row
-	tab asthma 								`outvar', row
-	tab chronic_cardiac_disease 			`outvar', row
-	tab diabetes 							`outvar', row
-	tab lung_cancer 						`outvar', row
-	tab haem_cancer 						`outvar', row
-	tab other_cancer 						`outvar', row
-	tab cancer 								`outvar', row
-	tab chronic_liver_disease 				`outvar', row
-	tab chronic_kidney_disease 				`outvar', row
-	tab organ_transplant 					`outvar', row
-	tab spleen 								`outvar', row
-	tab ra_sle_psoriasis					`outvar', row
+	tab chronic_respiratory_disease 		`outvar', col
+	tab asthma 								`outvar', col
+	tab chronic_cardiac_disease 			`outvar', col
+	tab diabetes 							`outvar', col
+	tab cancer_exhaem_lastyr				`outvar', col
+
+	tab haemmalig_aanaem_bmtrans_lastyr 	`outvar', col
+	tab chronic_liver_disease 				`outvar', col
+	tab other_neuro 						`outvar', col
+	tab chronic_kidney_disease 				`outvar', col
+	tab organ_transplant 					`outvar', col
+	tab spleen 								`outvar', col
+	tab ra_sle_psoriasis					`outvar', col
 	
-	* Adjustment variables 
-	tab imd  								`outvar', row
-	*tab ethnicity 							`outvar', row m
-	*tab urban 								`outvar', row
+	tab imd  								`outvar', col
+	tab ethnicity 							`outvar', col m
+	*tab urban 								`outvar', col
 }
 
 

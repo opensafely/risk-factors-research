@@ -1,10 +1,25 @@
-from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codelist
+from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codelist, filter_codes_by_category
 
 
 ## CODE LISTS
 # All codelist are held within the codelist/ folder.
 
 covid_codelist = codelist(["U071", "U072"], system="icd10")
+
+stroke = codelist_from_csv(
+    "codelists/stroke.csv", system="ctv3", column="CTV3ID")
+
+dementia = codelist_from_csv(
+    "codelists/dementia.csv", system="ctv3", column="CTV3ID")
+smoking_codes  = codelist_from_csv(
+    "codelists/smoking_codes_2020_04_22.csv", system="ctv3", column="CTV3Code", category_column="Category"
+)
+
+other_neuro = codelist_from_csv(
+    "codelists/other_neuro.csv", system="ctv3", column="CTV3ID")
+ethnicity_codes  = codelist_from_csv(
+    "codelists/ethnicity_codes_2020_04_22.csv", system="ctv3", column="Code", category_column="Grouping_6"
+)
 
 chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
@@ -140,10 +155,36 @@ study = StudyDefinition(
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
-    #smoking_status= # still to be implemented
+    smoking_status=patients.categorised_as(
+        {
+            "S": "most_recent_smoking_code = 'S'",
+            "E": """
+                 most_recent_smoking_code = 'E' OR (
+                   most_recent_smoking_code = 'N' AND ever_smoked
+                 )
+            """,
+            "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
+            "M": "DEFAULT"
+        },
+        most_recent_smoking_code=patients.with_these_clinical_events(
+            smoking_codes,
+            find_last_match_in_period=True,
+            on_or_before='2020-02-01',
+            returning="category",
+        ),
+        ever_smoked=patients.with_these_clinical_events(
+            filter_codes_by_category(smoking_codes, include=['S', 'E']),
+            on_or_before='2020-02-01'
+        ),
+    ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27
-    #ethnicity= # still to be implemented - this will be just the Read code for now then can be categorised with the list we're making.
+    ethnicity=patients.with_these_clinical_events(
+        ethnicity_codes,
+        returning="category",
+        find_last_match_in_period=True,
+        include_date_of_match=True,
+        ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/21
     chronic_respiratory_disease=patients.with_these_clinical_events(
@@ -221,12 +262,23 @@ study = StudyDefinition(
     ),
 
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
-    # neurological_condition=patients.with_these_clinical_events(
-    #     chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-    #     return_first_date_in_period=True,
-    #     include_month=True,
-    # ),
+    other_neuro=patients.with_these_clinical_events(
+        other_neuro, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
 
+    stroke=patients.with_these_clinical_events(
+        stroke, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
+
+    dementia=patients.with_these_clinical_events(
+        dementia, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
     # # Chronic kidney disease
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
     # egfr=patients.with_these_clinical_events(

@@ -1,0 +1,19 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+E004.,Arteriosclerotic dementia (including [multi infarct dement]),CTV3_Children
+E0040,Uncomplicated arteriosclerotic dementia,CTV3_Children
+E0041,Arteriosclerotic dementia with delirium,CTV3_Children
+E0042,Arteriosclerotic dementia with paranoia,CTV3_Children
+E0043,Arteriosclerotic dementia with depression,CTV3_Children
+E004z,Arteriosclerotic dementia NOS,CTV3_Children
+Eu01.,Vascular dementia,CTV3_Children
+Eu011,[X]Dementia: [multi-infarct] or [predominantly cortical],CTV3_Children
+Eu01y,[X]Other vascular dementia,CTV3_Children
+Eu01z,"[X]Vascular dementia, unspecified",CTV3_Children
+Eu021,[X]Dementia in Creutzfeldt-Jakob disease,CTV3Map_Code_And_Term
+X002m,Amyotrophic lateral sclerosis with dementia,CTV3_Children
+X003R,Vascular dementia of acute onset,CTV3_Children
+X003T,Subcortical vascular dementia,CTV3_Children
+X003V,Mixed cortical and subcortical vascular dementia,CTV3_Children
+XE1Xs,Vascular dementia,CTV3Map_Code_Only
+XaE74,Senile dementia of the Lewy body type,CTV3_Children
+XaKyY,[X]Lewy body dementia,CTV3Map_Code_And_Term

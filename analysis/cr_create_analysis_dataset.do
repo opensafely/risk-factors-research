@@ -19,6 +19,9 @@
 *  
 ********************************************************************************
 
+cap log close
+log using ./output/cr_analysis_dataset, replace t
+
 *******************************************************************************
 *!!!!!!NOTE ON CODE GENERATING FAKE DATA WHICH NEEDS TO BE REPLACED LATER!!!!!!
 *
@@ -46,40 +49,95 @@
 set seed 123489
 
 
-* Smoking status (assuming input is called smoking_status)
+* Smoking - only make up if not there!! 
+label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
+
+
+
+capture confirm string variable smoke
+if _rc==0 {
+	noi di "USING REAL Smoking"
+	rename smoke smoke_old
+	gen     smoke = 1 if smoke_old=="N"
+	replace smoke = 2 if smoke_old=="E"
+	replace smoke = 3 if smoke_old=="S"
+	replace smoke = .u if smoke_old=="M"
+	label values smoke smoke
+}
+else {
+	capture confirm numeric variable smoke
+	if _rc==0 {
+		noi di "USING REAL Smoking, already numeric"
+		label values smoke smoke
+	}
+	else {
+	noi di "USING FAKE Smoking"
+		
+	gen     smoke = 1 if uniform()<0.3
+	replace smoke = 2 if uniform()<0.6 & smoking_status==""
+	replace smoke = 3 if uniform()<0.6 & smoking_status==""
+	replace smoke = .u if smoking_status==""
+	label values smoke smoke
+
+	}
+}
+
+
+
+/* Smoking status (assuming input is called smoking_status)
 gen     smoking_status = "N" if uniform()<0.3
 replace smoking_status = "E" if uniform()<0.6 & smoking_status==""
 replace smoking_status = "S" if uniform()<0.6 & smoking_status==""
+replace smoking_status = "M" if smoking_status==""
+*/
 
 * Ethnicity 
-gen     ethnicity = "W" if uniform()<0.3
-replace ethnicity = "B" if uniform()<0.2 & ethnicity==""
-replace ethnicity = "A" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "M" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "O" if uniform()<0.1 & ethnicity==""
-replace ethnicity = "U" if ethnicity==""
+label define ethnicity 1"White"  2"South Asian"  3"Black"  4"Other"  5"Mixed" 6"Not Stated"
+
+* Ethnicity - only make up if not there!! 
+capture confirm numeric variable ethnicity
+if _rc==0 {
+	noi di "USING REAL ETHNICITY"
+	label values ethnicity ethnicity
+}
+else {
+	capture confirm string variable ethnicity
+	if _rc==0 {
+		noi di "USING REAL ETHNICITY, not numeric"
+	}
+	else {
+	noi di "USING FAKE ETHNICITY"
+		
+	gen     ethnicity = 1 if uniform()<0.3
+	replace ethnicity = 2 if uniform()<0.2 & ethnicity==.
+	replace ethnicity = 3 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 4 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 5 if uniform()<0.1 & ethnicity==.
+	replace ethnicity = 6 if ethnicity==.
+	label values ethnicity ethnicity
+
+	}
+}
 
 
 * Additional risk factors
 gen chronic_kidney_disease = .
-gen stroke_dementia = .
-gen other_neuro = .
+*gen stroke_dementia = .
+*gen other_neuro = .
 
-* ASTHMA - assume this comes as a binary rather than date **********************
-
-* BMI
+/* BMI (?now present for real)
 replace bmi = rnormal(30, 15)
 replace bmi = . if bmi<= 15
-
-
-* SBP and DBP  **********
+* SBP and DBP  (?now present for real)
 replace bp_sys   = rnormal(110, 15)
 replace bp_dias  = rnormal(80, 15)
+*/
 
-* Gen STP
+/* Gen STP
 gen stp_temp = runiform()
 egen stp = cut(stp_temp), group(40)
 drop stp_temp
+*/
 
 
 ****** THIS NEXT LITTLE SECTION WILL BE NEEDED FOR THE REAL DATA ******
@@ -87,40 +145,45 @@ drop stp_temp
 gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
-gen end_study_date = date("06/04/2020", "DMY")
-format end_study_date %td
+gen ecdseventcensor_date = date("21/04/2020", "DMY")
+gen ituadmissioncensor_date = date("20/04/2020", "DMY") 
+gen cpnsdeathcensor_date = date("16/04/2020", "DMY")
+gen onscoviddeathcensor_date = date("06/04/2020", "DMY")
+
+
+format ecdseventcensor_date cpnsdeathcensor_date onscoviddeathcensor_date ituadmissioncensor_date %td
 
 * Outcomes (real)
-* DEATH - defined as earliest of cpns, or ons<with covid cause>
+* ITU death, CPNS death, ONS-covid death
+
 foreach var of varlist died_date_ons died_date_cpns{
 	confirm string variable `var'
 	rename `var' `var'_dstr
 	gen `var' = date(`var'_dstr, "YMD")
 	drop `var'_dstr
 	}
+gen cpnsdeath = died_date_cpns<.
 gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
-
-gen death_date = min(died_date_cpns, died_date_onscovid)
-gen died = death_date<.
+gen onscoviddeath = died_date_onscovid<.
 
 * ITU
 confirm string variable icu_date_admitted
 assert icu == (icu_date_admitted!="")
-rename icu itu
+rename icu ituadmission
 gen itu_date = date(icu_date_admitted, "YMD")
 
 
 ****** END OF SECTION NEEDED FOR THE REAL DATA ******
 
 *FAKE OUTCOME DATA
-* Hospitalisation
-gen hosp = uniform()<0.20
+* ECDS event
+gen ecdsevent = uniform()<0.20
 
-gen lag = min(death_date, end_study_date) - enter_date
+gen lag = min(died_date_ons, died_date_cpns, ecdseventcensor_date) - enter_date
 
-gen hosp_date = enter_date + runiform()*lag
-replace hosp_date = . if hosp==0
-format hosp_date %td
+gen ecdsevent_date = enter_date + runiform()*lag
+replace ecdsevent_date = . if ecdsevent==0
+format ecdsevent_date %td
 
 drop lag
 
@@ -162,7 +225,8 @@ foreach var of varlist 	bp_sys_date 					///
 						bone_marrow_transplant 			///
 						chemo_radio_therapy 			///
 						chronic_liver_disease 			///
-						stroke_dementia		 			///
+						stroke							///
+						dementia		 				///
 						other_neuro 					///
 						chronic_kidney_disease 			///
 						organ_transplant 				///	
@@ -211,7 +275,8 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						bone_marrow_transplant_date 		///
 						chemo_radio_therapy_date			///
 						chronic_liver_disease_date 			///
-						stroke_dementia_date				///
+						stroke_date							///
+						dementia_date						///
 						other_neuro_date					///
 						chronic_kidney_disease_date 		///
 						organ_transplant_date 				///	
@@ -226,6 +291,9 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 }
 
 /* Grouped comorbidities  */
+
+* Stroke and dementia
+gen stroke_dementia = 1 if stroke==1 | dementia==1
 
 * Cancer except haematological 
 gen lung_cancer_lastyr  = inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020))
@@ -245,7 +313,7 @@ egen spleen = rowmax(dysplenia sickle_cell)
 order spleen, after(sickle_cell)
 
 * TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
-for var chronic_kidney_disease stroke_dementia other_neuro: replace X = uniform()<0.05
+for var chronic_kidney_disease : replace X = uniform()<0.05
 
 * Immunosuppressed:
 * HIV, dysplenia/sickle-cell, genetic conditions ever, OR
@@ -281,9 +349,9 @@ drop sex
 * bmi_date_measured
 * Set implausible BMIs to missing:
 replace bmi = . if !inrange(bmi, 15, 50)
-
+/*
 * Smoking 
-assert inlist(smoking_status, "N", "E", "S", "")
+assert inlist(smoking_status, "N", "E", "S", "M")
 gen     smoke = 1 if smoking_status=="N"
 replace smoke = 2 if smoking_status=="E"
 replace smoke = 3 if smoking_status=="S"
@@ -291,9 +359,9 @@ replace smoke = .u if smoking_status==""
 label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 label values smoke smoke
 drop smoking_status
+*/
 
-
-* Ethnicity
+/* Ethnicity
 rename ethnicity ethnicity_o
 assert inlist(ethnicity, "A", "B", "W", "M", "O", "U")
 gen     ethnicity = 1 if ethnicity_o=="W"
@@ -305,7 +373,7 @@ replace ethnicity = .u if ethnicity_o=="U"
 label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other" .u "Unknown (.u)"
 label values ethnicity ethnicity
 drop ethnicity_o
-
+*/
 
 
 
@@ -386,7 +454,10 @@ replace bpcat = .u if bp_sys>=. | bp_dias>=.
 label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
 					4 "High, stage II" .u "Unknown"
 label values bpcat bpcat
-order bpcat, after(bp_dias_date)
+
+gen bphigh = (bpcat==3|bpcat==4)
+
+order bpcat bphigh, after(bp_dias_date)
 
 
 
@@ -420,6 +491,13 @@ gen c_imd = imd - 3
 gen c_ethnicity = ethnicity - 3
 
 
+************************
+*  Make numeric STP    *
+************************
+bysort geographic_area: gen stp = 1 if _n==1
+replace stp = sum(stp)
+
+
 
 
 ********************************
@@ -430,23 +508,21 @@ gen c_ethnicity = ethnicity - 3
 
 * For looping later, name must be stime_binary_outcome_name)
 
-gen stime_died  = min(end_study_date, death_date, died_date_ons)
-replace died = 0 if death_date>end_study_date /*censored*/
 
+gen stime_ecdsevent  = min(ecdseventcensor_date, ecdsevent_date, died_date_ons)
+replace ecdsevent = 0 if (ecdsevent_date>ecdseventcensor_date) 
 
-*** Look at death censoring (previously just censored at COVID death, now both)
+gen stime_ituadmission = min(ituadmissioncensor_date, itu_date, died_date_ons)
+replace ituadmission = 0 if (itu_date>ituadmissioncensor_date) 
 
-gen stime_hosp  = min(end_study_date, died_date_ons, death_date, hosp_date)
-replace hosp = 0 if (hosp_date>end_study_date)|(hosp_date>death_date) /*censored*/
+gen stime_cpnsdeath  = min(cpnsdeathcensor_date, died_date_cpns, died_date_ons)
+replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date) 
 
-gen stime_itu   = min(end_study_date, died_date_ons, death_date, itu_date)
-replace itu = 0 if min(death_date, itu_date)>end_study_date
+gen stime_onscoviddeath = min(onscoviddeathcensor_date, died_date_ons)
+replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) 
 
-* Create composite outcome
-gen stime_composite = min(end_study_date, died_date_ons, death_date, itu_date)
-gen composite = died|itu
-
-
+format %d stime*
+format %d ecdsevent_date itu_date died_date_onscovid died_date_ons died_date_cpns 
 
 *********************
 *  Label variables  *
@@ -473,6 +549,7 @@ label var bp_sys_date 		"Systolic blood pressure, date"
 label var bp_dias 			"Diastolic blood pressure"
 label var bp_dias_date 		"Diastolic blood pressure, date"
 label var bpcat 			"Grouped blood pressure"
+label var bphigh			"Binary high (stage 1/2) blood pressure"
 
 label var age1 				"Age spline 1"
 label var age2 				"Age spline 2"
@@ -527,7 +604,8 @@ label var other_cancer_date				"Any cancer, date"
 label var bone_marrow_transplant_date	"Organ transplant, date"
 label var chronic_liver_disease_date	"Liver, date"
 
-label var stroke_dementia_date			"Stroke or dementia, date"
+label var stroke_date					"Stroke, date"
+label var dementia_date				"Dementia, date"
 label var other_neuro_date				"Neuro condition other than stroke/dementia, date"	
 
 label var chronic_kidney_disease_date 	"Kidney disease, date"
@@ -542,20 +620,31 @@ label var genetic_immunodeficiency_date "Genetic immunodeficiency, date"
 label var immunosuppression_nos_date 	"Other immunosuppression, date"
 
 * Outcomes and follow-up
-label var enter_date		"Date of study entry"
-label var end_study_date	"Date of end of study"
-label var death_date		"Date of death"
-label var died 				"Death from Covid-19"
-label var hosp_date			"Date of hospitalisation"
-label var hosp 				"Hospitalised for Covid-19"
-label var itu_date			"Date of hospitalisation"
-label var itu 				"Admitted to ITU for Covid-19"
+label var enter_date				"Date of study entry"
+label var ecdseventcensor_date		"Date of admin censoring for ecds"
+label var ituadmissioncensor_date 	"Date of admin censoring for itu admission (icnarc)"
+label var cpnsdeathcensor_date 		"Date of admin censoring for cpns deaths"
+label var onscoviddeathcensor_date 	"Date of admin censoring for ONS deaths"
+
+label var ecdsevent			"Failure/censoring indicator for outcome: ECDS event"
+label var ituadmission		"Failure/censoring indicator for outcome: ITU admission"
+label var cpnsdeath			"Failure/censoring indicator for outcome: CPNS covid death"
+label var onscoviddeath		"Failure/censoring indicator for outcome: ONS covid death"
 
 * Survival times
-label var  stime_died		"Survival time; outcome death"
-label var  stime_hosp  		"Survival time; outcome hospitalisation"
-label var  stime_itu   		"Survival time; outcome ITU admission"
+label var  stime_ecdsevent		"Survival time; outcome ECDS event"
+label var  stime_ituadmission	"Survival time; outcome ITU admission"
+label var  stime_cpnsdeath 		"Survival time; outcome CPNS covid death"
+label var  stime_onscoviddeath 	"Survival time; outcome ONS covid death"
 
+*REDUCE DATASET SIZE TO VARIABLES NEEDED
+keep patient_id ituadmission age bmi chronic_respiratory_disease chronic_cardiac_disease ///
+	diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr chronic_liver_disease ///
+	organ_transplant spleen bpcat bphigh ra_sle_psoriasis asthma chronic_kidney_disease stroke dementia stroke_dementia ///
+	other_neuro stp enter_date ecdseventcensor_date ituadmissioncensor_date cpnsdeathcensor_date ///
+	onscoviddeathcensor_date died_date_ons died_date_cpns cpnsdeath died_date_onscovid onscoviddeath ///
+	itu_date ecdsevent ecdsevent_date male smoke currentsmoke ethnicity agegroup age70 age1 age2 age3 ///
+	bmicat obese40 imd stime_ecdsevent stime_ituadmission stime_cpnsdeath stime_onscoviddeath
 
 
 
@@ -568,3 +657,4 @@ label data "Poor factors dummy analysis dataset"
 save "egdata", replace
 
 
+log close

@@ -26,7 +26,7 @@
 
 * Open a log file
 capture log close
-log using "an_multivariable_cox_models", text replace
+log using "./output/an_multivariable_cox_models", text replace
 
 use egdata, clear
 
@@ -39,18 +39,19 @@ use egdata, clear
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
-	syntax , age(string) bmi(string) [ethnicity(real 0)] 
+	syntax , age(string) bmi(string) smoke(string) bp(string) [ethnicity(real 0)] 
 
 	if `ethnicity'==1 local ethnicity "i.ethnicity"
 	else local ethnicity
-
+timer clear
+timer on 1
 	stcox 	`age' 							///
 			i.male 							///
 			`bmi'							///
-			i.smoke 						///
+			`smoke'							///
 			`ethnicity'						///
 			i.imd 							///
-			i.bpcat 						///
+			`bp'							///
 			i.chronic_respiratory_disease 	///
 			i.asthma 						///
 			i.chronic_cardiac_disease 		///
@@ -67,26 +68,28 @@ prog define basecoxmodel
 			/*endocrine?*/					///
 			/*immunosuppression?*/			///
 			, strata(stp)
+timer off 1
+timer list
 end
 *************************************************************************************
 
 
-foreach outcome of any hosp died itu composite{
+foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 *Age spline model (not adj ethnicity)
-basecoxmodel, age("age1 age2 age3")  bmi("ib2.bmicat") ethnicity(0)
+basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 estat concordance /*c-statistic*/
 	
 *Age group model (not adj ethnicity)
-basecoxmodel, age("i.agegroup")  bmi("ib2.bmicat") ethnicity(0)
+basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
 estat concordance /*c-statistic*/
 
 *Complete case ethnicity model
-basecoxmodel, age("age1 age2 age3")  bmi("ib2.bmicat") ethnicity(1)
+basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 estat concordance /*c-statistic*/
  
