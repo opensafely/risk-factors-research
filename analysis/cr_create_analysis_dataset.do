@@ -599,7 +599,7 @@ label var  stime_onscoviddeath 	"Survival time; outcome ONS covid death"
 *REDUCE DATASET SIZE TO VARIABLES NEEDED
 keep patient_id ituadmission age bmi chronic_respiratory_disease chronic_cardiac_disease ///
 	diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr chronic_liver_disease ///
-	organ_transplant spleen bpcat ra_sle_psoriasis asthma chronic_kidney_disease stroke_dementia ///
+	organ_transplant spleen bpcat bphigh ra_sle_psoriasis asthma chronic_kidney_disease stroke_dementia ///
 	other_neuro stp enter_date ecdseventcensor_date ituadmissioncensor_date cpnsdeathcensor_date ///
 	onscoviddeathcensor_date died_date_ons died_date_cpns cpnsdeath died_date_onscovid onscoviddeath ///
 	itu_date ecdsevent ecdsevent_date male smoke currentsmoke ethnicity agegroup age70 age1 age2 age3 ///
