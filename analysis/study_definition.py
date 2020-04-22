@@ -6,6 +6,15 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
+stroke = codelist_from_csv(
+    "codelists/stroke.csv", system="ctv3", column="CTV3ID")
+
+dementia = codelist_from_csv(
+    "codelists/dementia.csv", system="ctv3", column="CTV3ID")
+
+other_neuro = codelist_from_csv(
+    "codelists/other_neuro.csv", system="ctv3", column="CTV3ID")
+
 chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
 )
@@ -221,12 +230,23 @@ study = StudyDefinition(
     ),
 
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
-    # neurological_condition=patients.with_these_clinical_events(
-    #     chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-    #     return_first_date_in_period=True,
-    #     include_month=True,
-    # ),
+    other_neuro=patients.with_these_clinical_events(
+        other_neuro, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
 
+    stroke=patients.with_these_clinical_events(
+        stroke, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
+
+    dementia=patients.with_these_clinical_events(
+        dementia, 
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
     # # Chronic kidney disease
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
     # egfr=patients.with_these_clinical_events(
