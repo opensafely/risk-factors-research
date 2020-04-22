@@ -66,7 +66,7 @@ summ bp_dias, detail
 
 tab imd 
 tab imd, m
-*tab ethnicity
+tab ethnicity
 tab ethnicity, m
 *tab urban
 
@@ -89,29 +89,31 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 *** Repeat for each outcome
 
 	* Demographics
-	tab agegroup 							`outvar', row
-	tab male 								`outvar', row
-	tab bmicat 								`outvar', row m 
-	tab smoke 								`outvar', row m
+	tab agegroup 							`outvar', col
+	tab male 								`outvar', col
+	tab bmicat 								`outvar', col m 
+	tab smoke 								`outvar', col m
+	tab obese 								`outvar', col m 
+	tab current								`outvar', col m
 
 	* Comorbidities
-	tab chronic_respiratory_disease 		`outvar', row
-	tab asthma 								`outvar', row
-	tab chronic_cardiac_disease 			`outvar', row
-	tab diabetes 							`outvar', row
-	tab cancer_exhaem_lastyr				`outvar', row
+	tab chronic_respiratory_disease 		`outvar', col
+	tab asthma 								`outvar', col
+	tab chronic_cardiac_disease 			`outvar', col
+	tab diabetes 							`outvar', col
+	tab cancer_exhaem_lastyr				`outvar', col
 
-	tab haemmalig_aanaem_bmtrans_lastyr 	`outvar', row
-	tab chronic_liver_disease 				`outvar', row
-	tab other_neuro 						`outvar', row
-	tab chronic_kidney_disease 				`outvar', row
-	tab organ_transplant 					`outvar', row
-	tab spleen 								`outvar', row
-	tab ra_sle_psoriasis					`outvar', row
+	tab haemmalig_aanaem_bmtrans_lastyr 	`outvar', col
+	tab chronic_liver_disease 				`outvar', col
+	tab other_neuro 						`outvar', col
+	tab chronic_kidney_disease 				`outvar', col
+	tab organ_transplant 					`outvar', col
+	tab spleen 								`outvar', col
+	tab ra_sle_psoriasis					`outvar', col
 	
-	tab imd  								`outvar', row
-	*tab ethnicity 							`outvar', row m
-	*tab urban 								`outvar', row
+	tab imd  								`outvar', col
+	tab ethnicity 							`outvar', col m
+	*tab urban 								`outvar', col
 }
 
 
