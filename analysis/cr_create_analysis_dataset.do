@@ -90,7 +90,7 @@ gen enter_date = date("01/02/2020", "DMY")
 format enter_date %td
 
 gen ecdseventcensor_date = date("21/04/2020", "DMY")
-gen ituadmissioncensor_date = date("06/04/2020", "DMY") /*CHECK*/
+gen ituadmissioncensor_date = date("20/04/2020", "DMY") /*CHECK*/
 gen cpnsdeathcensor_date = date("16/04/2020", "DMY")
 gen onscoviddeathcensor_date = date("06/04/2020", "DMY")
 
