@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
   log type:  text
- opened on:  23 Apr 2020, 12:25:35
+ opened on:  23 Apr 2020, 13:08:20
 
 . 
 . use egdata, clear
@@ -25,7 +25,7 @@
   3.         else local ethnicity
   4. timer clear
   5. timer on 1
-  6.         stcox   `age'                                                   ///
+  6.         capture stcox   `age'                                                   ///
 >                         i.male                                                  ///
 >                         `bmi'                                                   ///
 >                         `smoke'                                                 ///
@@ -61,19 +61,30 @@
   3. 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
-  4. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
-  5. *estat concordance /*c-statistic*/
-.  
+  4. if _rc==0{
+  5. estimates
+  6. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+  7. *estat concordance /*c-statistic*/
+. }
+  8. else di "WARNING AGE SPLINE MODEL DID NOT FIT"
+  9.  
 . *Age group model (not adj ethnicity)
 . basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
-  6. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
-  7. *estat concordance /*c-statistic*/
-. 
+ 10. if _rc==0{
+ 11. estimates
+ 12. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
+ 13. *estat concordance /*c-statistic*/
+. }
+ 14. else di "WARNING GROUP MODEL DID NOT FIT"
+ 15. 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
-  8. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
-  9. *estat concordance /*c-statistic*/
-.  
+ 16. if _rc==0{
+ 17. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+ 18. *estat concordance /*c-statistic*/
+.  }
+ 19.  else di "WARNING CC ETHNICITY MODEL DID NOT FIT"
+ 20.  
 . 
 . ************************************************************************
 . * Add IBS 
@@ -118,200 +129,110 @@ obs. time interval:  (stime_ituadmission[_n-1], stime_ituadmission]
 ------------------------------------------------------------------------------
     100,567  observations remaining, representing
     100,567  subjects
-     20,202  failures in single-failure-per-subject data
+          5  failures in single-failure-per-subject data
   7,944,253  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        79
+   1:     17.45 /        1 =      17.4530
 
-         failure _d:  ituadmission
-   analysis time _t:  (stime_ituadmission-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-Iteration 0:   log likelihood = -229115.19
-Iteration 1:   log likelihood = -229111.33
-Iteration 2:   log likelihood = -229111.33
-Iteration 3:   log likelihood = -229111.33
-Refining estimates:
-Iteration 0:   log likelihood = -229111.33
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,916
+No. of failures =            5
 Time at risk    =      7830888
-                                                LR chi2(24)      =        7.71
-Log likelihood  =   -229111.33                  Prob > chi2      =      0.9993
+                                                LR chi2(9)       =       33.40
+Log likelihood  =   -40.822786                  Prob > chi2      =      0.0001
 
 ---------------------------------------------------------------------------------------------------
                                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------------+----------------------------------------------------------------
-                             age1 |   .9983053   .0020192    -0.84   0.402     .9943556    1.002271
-                             age2 |   1.003474   .0059369     0.59   0.558     .9919048    1.015177
-                             age3 |   .9913637   .0199874    -0.43   0.667     .9529531    1.031322
-                           1.male |   1.002315   .0167619     0.14   0.890      .969995    1.035712
-                        1.obese40 |   .8869185   .2465906    -0.43   0.666     .5143083     1.52948
-                   1.currentsmoke |   1.006125   .0231413     0.27   0.791     .9617756    1.052519
+                             age1 |   1.057531   .1035764     0.57   0.568     .8728206    1.281331
+                             age2 |   .5711125     .24747    -1.29   0.196     .2442787    1.335235
+                             age3 |   9.888353   16.77408     1.35   0.177     .3557878    274.8254
+                           1.male |   6.448928   8.829686     1.36   0.173     .4406024    94.39047
+                        1.obese40 |   2.20e-17          .        .       .            .           .
+                   1.currentsmoke |   5.038134   5.477613     1.49   0.137     .5981603    42.43478
                                   |
                               imd |
-                               2  |    .989122   .0284966    -0.38   0.704     .9348174    1.046581
-                               3  |   .9875001   .0303215    -0.41   0.682     .9298239    1.048754
-                               4  |   .9712086   .0315657    -0.90   0.369     .9112703    1.035089
-                               5  |   1.012126   .0287915     0.42   0.672     .9572402    1.070159
+                               2  |   3.46e-10          .        .       .            .           .
+                               3  |   4.28e-10          .        .       .            .           .
+                               4  |   3.44e+10   3.29e+10    25.36   0.000     5.27e+09    2.24e+11
+                               5  |   7.96e+09          .        .       .            .           .
                                   |
-                         1.bphigh |    .989986   .0184254    -0.54   0.589     .9545237    1.026766
-    1.chronic_respiratory_disease |   .9411581   .0862116    -0.66   0.508     .7864863    1.126248
-                         1.asthma |   .7898352    .279763    -0.67   0.505     .3944912    1.581378
-        1.chronic_cardiac_disease |   1.023163   .0494594     0.47   0.636     .9306751    1.124843
-                       1.diabetes |    1.03341   .0302846     1.12   0.262     .9757262    1.094505
-           1.cancer_exhaem_lastyr |   .9925369   .0175734    -0.42   0.672     .9586844    1.027585
-1.haemmalig_aanaem_bmtrans_lastyr |   1.015017    .017924     0.84   0.399     .9804876    1.050763
-          1.chronic_liver_disease |   .9795411   .1137414    -0.18   0.859     .7801599    1.229877
-                1.stroke_dementia |    .970475   .1030556    -0.28   0.778     .7881239    1.195017
-                    1.other_neuro |   .9517582   .1328912    -0.35   0.723     .7238956    1.251346
-         1.chronic_kidney_disease |   .9989809   .0325095    -0.03   0.975     .9372531    1.064774
-               1.organ_transplant |   1.003126   .0325218     0.10   0.923      .941367    1.068936
-                         1.spleen |   .9588516   .0588814    -0.68   0.494     .8501207    1.081489
-               1.ra_sle_psoriasis |   .9632639   .0877961    -0.41   0.681     .8056809    1.151669
+                         1.bphigh |   .2342123   .2790234    -1.22   0.223     .0226752    2.419184
+    1.chronic_respiratory_disease |   2.64e-19          .        .       .            .           .
+                         1.asthma |   3.08e-17          .        .       .            .           .
+        1.chronic_cardiac_disease |    53.1321   54.39712     3.88   0.000     7.143143     395.207
+                       1.diabetes |   1.019685   1.332207     0.01   0.988     .0787735    13.19931
+           1.cancer_exhaem_lastyr |   2.95e-14          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   7.61e-16          .        .       .            .           .
+          1.chronic_liver_disease |   2.94e-17          .        .       .            .           .
+                1.stroke_dementia |   1.05e-18          .        .       .            .           .
+                    1.other_neuro |   1.42e-18          .        .       .            .           .
+         1.chronic_kidney_disease |   2.35e-19          .        .       .            .           .
+               1.organ_transplant |   2.83e-17          .        .       .            .           .
+                         1.spleen |   2.97e-17          .        .       .            .           .
+               1.ra_sle_psoriasis |   8.28e-19          .        .       .            .           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
-   1:      3.75 /        1 =       3.7470
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+   1:     19.79 /        1 =      19.7880
 
-         failure _d:  ituadmission
-   analysis time _t:  (stime_ituadmission-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-Iteration 0:   log likelihood = -229115.19
-Iteration 1:   log likelihood = -229109.84
-Iteration 2:   log likelihood = -229109.84
-Iteration 3:   log likelihood = -229109.84
-Refining estimates:
-Iteration 0:   log likelihood = -229109.84
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,916
+No. of failures =            5
 Time at risk    =      7830888
-                                                LR chi2(26)      =       10.70
-Log likelihood  =   -229109.84                  Prob > chi2      =      0.9964
+                                                LR chi2(8)       =       34.34
+Log likelihood  =   -40.353236                  Prob > chi2      =      0.0000
 
 ---------------------------------------------------------------------------------------------------
                                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------------+----------------------------------------------------------------
                          agegroup |
-                          40-<50  |   .9627798   .0259501    -1.41   0.159     .9132386    1.015009
-                          50-<60  |   .9543689    .025521    -1.75   0.081      .905637    1.005723
-                          60-<70  |   .9737025   .0279558    -0.93   0.353     .9204232    1.030066
-                          70-<80  |   .9860914    .029286    -0.47   0.637     .9303306    1.045194
-                             80+  |   .9880046    .025206    -0.47   0.636     .9398166    1.038663
+                          40-<50  |     .43585    .514248    -0.70   0.482     .0431546    4.401973
+                          50-<60  |   2.68e-20          .        .       .            .           .
+                          60-<70  |   2.84e-20          .        .       .            .           .
+                          70-<80  |   2.88e-20          .        .       .            .           .
+                             80+  |   .1648752    .258781    -1.15   0.251     .0076058    3.574082
                                   |
-                           1.male |   1.002717   .0167832     0.16   0.871     .9703564    1.036157
-                        1.obese40 |   .8887927   .2471121    -0.42   0.672     .5153947    1.532714
-                   1.currentsmoke |   1.005941   .0234282     0.25   0.799     .9610552    1.052924
+                           1.male |   10.25382   16.24338     1.47   0.142     .4596981    228.7172
+                        1.obese40 |   3.15e-17          .        .       .            .           .
+                   1.currentsmoke |   4.284422   4.811051     1.30   0.195     .4743112    38.70091
                                   |
                               imd |
-                               2  |   .9890489   .0284939    -0.38   0.702     .9347494    1.046503
-                               3  |   .9877877   .0303289    -0.40   0.689     .9300974    1.049056
-                               4  |   .9694655   .0317649    -0.95   0.344     .9091645    1.033766
-                               5  |   1.012196   .0287924     0.43   0.670      .957308    1.070231
+                               2  |   3.56e-10          .        .       .            .           .
+                               3  |   4.49e-10          .        .       .            .           .
+                               4  |   3.16e+10   3.08e+10    24.86   0.000     4.70e+09    2.13e+11
+                               5  |   8.05e+09          .        .       .            .           .
                                   |
-                         1.bphigh |   .9911972   .0184967    -0.47   0.636     .9555994    1.028121
-    1.chronic_respiratory_disease |   .9407755   .0861753    -0.67   0.505     .7861686    1.125787
-                         1.asthma |    .786241   .2784995    -0.68   0.497     .3926866    1.574219
-        1.chronic_cardiac_disease |   1.022558    .049423     0.46   0.644     .9301373    1.124162
-                       1.diabetes |   1.037077   .0304316     1.24   0.215     .9791151     1.09847
-           1.cancer_exhaem_lastyr |   .9924809   .0175728    -0.43   0.670     .9586295    1.027528
-1.haemmalig_aanaem_bmtrans_lastyr |   1.015007    .017924     0.84   0.399     .9804776    1.050752
-          1.chronic_liver_disease |   .9793441   .1125631    -0.18   0.856     .7818088     1.22679
-                1.stroke_dementia |   .9700389   .1029578    -0.29   0.774     .7878517    1.194356
-                    1.other_neuro |   .9514315   .1328518    -0.36   0.721     .7236376    1.250932
-         1.chronic_kidney_disease |   .9989943   .0325097    -0.03   0.975      .937266    1.064788
-               1.organ_transplant |   1.002824   .0325123     0.09   0.931     .9410833    1.068615
-                         1.spleen |   .9716389   .0618124    -0.45   0.651     .8577373    1.100666
-               1.ra_sle_psoriasis |   .9624199   .0877209    -0.42   0.674     .8049721    1.150663
+                         1.bphigh |   .2562783   .3096574    -1.13   0.260     .0240003     2.73657
+    1.chronic_respiratory_disease |   2.82e-19          .        .       .            .           .
+                         1.asthma |   3.18e-17          .        .       .            .           .
+        1.chronic_cardiac_disease |   49.33615   51.26044     3.75   0.000     6.438191    378.0652
+                       1.diabetes |   1.266935   1.663019     0.18   0.857     .0967029     16.5985
+           1.cancer_exhaem_lastyr |   8.56e-14          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   6.91e-16          .        .       .            .           .
+          1.chronic_liver_disease |   7.33e-17          .        .       .            .           .
+                1.stroke_dementia |   1.13e-18          .        .       .            .           .
+                    1.other_neuro |   1.75e-18          .        .       .            .           .
+         1.chronic_kidney_disease |   2.54e-19          .        .       .            .           .
+               1.organ_transplant |   1.97e-16          .        .       .            .           .
+                         1.spleen |   2.31e-17          .        .       .            .           .
+               1.ra_sle_psoriasis |   8.01e-19          .        .       .            .           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
-   1:      4.63 /        1 =       4.6320
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-
-         failure _d:  ituadmission
-   analysis time _t:  (stime_ituadmission-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-note: 0.spleen omitted because of collinearity
-Iteration 0:   log likelihood = -39513.978
-Iteration 1:   log likelihood = -39506.136
-Iteration 2:   log likelihood = -39505.811
-Iteration 3:   log likelihood = -39505.757
-Iteration 4:   log likelihood = -39505.737
-Iteration 5:   log likelihood =  -39505.73
-Iteration 6:   log likelihood = -39505.728
-Iteration 7:   log likelihood = -39505.727
-Iteration 8:   log likelihood = -39505.726
-Iteration 9:   log likelihood = -39505.726
-Iteration 10:  log likelihood = -39505.726
-Iteration 11:  log likelihood = -39505.726
-Iteration 12:  log likelihood = -39505.726
-Iteration 13:  log likelihood = -39505.726
-Iteration 14:  log likelihood = -39505.726
-Refining estimates:
-Iteration 0:   log likelihood = -39505.726
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       19,749                  Number of obs    =      19,749
-No. of failures =        3,995
-Time at risk    =      1560171
-                                                LR chi2(26)      =       16.50
-Log likelihood  =   -39505.726                  Prob > chi2      =      0.9233
-
----------------------------------------------------------------------------------------------------
-                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------------------+----------------------------------------------------------------
-                             age1 |   1.020418   .0155038     1.33   0.183     .9904793    1.051262
-                             age2 |   .9569657   .0332299    -1.27   0.205     .8940032    1.024363
-                             age3 |   1.132249   .1319978     1.07   0.287     .9009663    1.422902
-                           1.male |   .9447786   .0427603    -1.26   0.209     .8645796    1.032417
-                        1.obese40 |    .886607   .2574568    -0.41   0.679     .5018288    1.566415
-                   1.currentsmoke |   .9801369   .0446625    -0.44   0.660     .8963951    1.071702
-                                  |
-                        ethnicity |
-                     South Asian  |   .9631755   .1776689    -0.20   0.839     .6709519    1.382673
-                           Black  |   1.233839   .2605569     1.00   0.320     .8156526     1.86643
-                           Other  |    1.35056   .5571633     0.73   0.466     .6016685    3.031591
-                           Mixed  |   1.545023   .6494048     1.04   0.301     .6778875    3.521376
-                                  |
-                              imd |
-                               2  |   1.041516   .0917735     0.46   0.644     .8763184    1.237855
-                               3  |   1.005224   .0905444     0.06   0.954     .8425428    1.199317
-                               4  |   1.039474   .1068821     0.38   0.707     .8497488    1.271561
-                               5  |   .9960487   .0860713    -0.05   0.963     .8408643    1.179873
-                                  |
-                         1.bphigh |   1.075229   .0526084     1.48   0.138      .976908    1.183445
-    1.chronic_respiratory_disease |   1.106567   .3984929     0.28   0.779      .546319    2.241348
-                         1.asthma |   1.860101    1.35486     0.85   0.394     .4462095    7.754152
-        1.chronic_cardiac_disease |   1.096789   .2565756     0.39   0.693     .6934239    1.734793
-                       1.diabetes |    1.02051   .0467326     0.44   0.658     .9329059     1.11634
-           1.cancer_exhaem_lastyr |   .9444809   .0379392    -1.42   0.155     .8729733    1.021846
-1.haemmalig_aanaem_bmtrans_lastyr |     .96602   .0385259    -0.87   0.386     .8933863    1.044559
-          1.chronic_liver_disease |   990183.1          .        .       .            .           .
-                1.stroke_dementia |   7.51e-07   3.87e-07   -27.32   0.000     2.73e-07    2.06e-06
-                    1.other_neuro |   1.336175   .5103657     0.76   0.448     .6320304    2.824805
-         1.chronic_kidney_disease |    .971474   .0713698    -0.39   0.694     .8411961    1.121928
-               1.organ_transplant |   .9914785   .0711411    -0.12   0.905     .8614051    1.141193
-                         0.spleen |          1  (omitted)
-               1.ra_sle_psoriasis |   .6294126   .2237328    -1.30   0.193      .313592    1.263298
----------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-   1:      2.42 /        1 =       2.4210
+   1:      0.76 /        1 =       0.7550
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
 
                 id:  patient_id
@@ -328,200 +249,65 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 ------------------------------------------------------------------------------
     100,567  observations remaining, representing
     100,567  subjects
-     20,266  failures in single-failure-per-subject data
+          1  failure in single-failure-per-subject data
   7,542,261  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        75
+   1:      7.44 /        1 =       7.4360
+WARNING AGE SPLINE MODEL DID NOT FIT
+   1:     14.56 /        1 =      14.5610
 
-         failure _d:  cpnsdeath
-   analysis time _t:  (stime_cpnsdeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Iteration 0:   log likelihood = -229668.39
-Iteration 1:   log likelihood =  -229654.7
-Iteration 2:   log likelihood = -229654.61
-Iteration 3:   log likelihood = -229654.61
-Refining estimates:
-Iteration 0:   log likelihood = -229654.61
-
-Stratified Cox regr. -- Breslow method for ties
+Stratified Cox regr. -- no ties
 
 No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,964
+No. of failures =            1
 Time at risk    =      7434636
-                                                LR chi2(24)      =       27.55
-Log likelihood  =   -229654.61                  Prob > chi2      =      0.2794
-
----------------------------------------------------------------------------------------------------
-                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------------------+----------------------------------------------------------------
-                             age1 |   1.001633   .0020485     0.80   0.425     .9976266    1.005656
-                             age2 |   .9962097   .0059201    -0.64   0.523     .9846739    1.007881
-                             age3 |   1.013943    .020476     0.69   0.493     .9745949     1.05488
-                           1.male |   1.004034   .0167662     0.24   0.810     .9717042    1.037438
-                        1.obese40 |   1.439153   .3152609     1.66   0.097     .9367908     2.21091
-                   1.currentsmoke |   .9957069   .0228054    -0.19   0.851     .9519974    1.041423
-                                  |
-                              imd |
-                               2  |   .9831097    .027991    -0.60   0.550      .929751    1.039531
-                               3  |   .9694926   .0294909    -1.02   0.308     .9133807    1.029052
-                               4  |   .9618071   .0309272    -1.21   0.226     .9030616    1.024374
-                               5  |   .9519987    .026975    -1.74   0.083       .90057    1.006364
-                                  |
-                         1.bphigh |   1.001587   .0185797     0.09   0.932     .9658255    1.038673
-    1.chronic_respiratory_disease |    .918896   .0851635    -0.91   0.361     .7662611    1.101935
-                         1.asthma |   .9957473   .3155991    -0.01   0.989     .5350119    1.853254
-        1.chronic_cardiac_disease |   .9863948   .0482686    -0.28   0.780     .8961851    1.085685
-                       1.diabetes |   1.029564   .0301283     1.00   0.319      .972175    1.090341
-           1.cancer_exhaem_lastyr |   .9625409   .0171809    -2.14   0.032     .9294492    .9968108
-1.haemmalig_aanaem_bmtrans_lastyr |   .9848278   .0175309    -0.86   0.390     .9510604    1.019794
-          1.chronic_liver_disease |    .984172   .1130902    -0.14   0.890     .7857064    1.232769
-                1.stroke_dementia |   1.016457   .1061583     0.16   0.876     .8283044    1.247349
-                    1.other_neuro |   .8760834   .1272456    -0.91   0.362     .6590431    1.164601
-         1.chronic_kidney_disease |   .9674533   .0319109    -1.00   0.316     .9068878    1.032064
-               1.organ_transplant |   1.056173   .0334152     1.73   0.084       .99267    1.123739
-                         1.spleen |    .957843   .0591083    -0.70   0.485     .8487247     1.08099
-               1.ra_sle_psoriasis |   .8147938   .0803555    -2.08   0.038     .6715861    .9885388
----------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-   1:      3.61 /        1 =       3.6140
-file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
-
-         failure _d:  cpnsdeath
-   analysis time _t:  (stime_cpnsdeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-Iteration 0:   log likelihood = -229668.39
-Iteration 1:   log likelihood = -229650.37
-Iteration 2:   log likelihood = -229650.28
-Iteration 3:   log likelihood = -229650.28
-Refining estimates:
-Iteration 0:   log likelihood = -229650.28
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,964
-Time at risk    =      7434636
-                                                LR chi2(26)      =       36.21
-Log likelihood  =   -229650.28                  Prob > chi2      =      0.0878
+                                                LR chi2(22)      =        8.41
+Log likelihood  =   -7.2977683                  Prob > chi2      =      0.9959
 
 ---------------------------------------------------------------------------------------------------
                                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------------+----------------------------------------------------------------
                          agegroup |
-                          40-<50  |   1.039454   .0280083     1.44   0.151      .985983    1.095824
-                          50-<60  |   1.053029   .0279724     1.95   0.052      .999607    1.109307
-                          60-<70  |     .98028   .0287166    -0.68   0.497     .9255817    1.038211
-                          70-<80  |   1.025348   .0307318     0.84   0.404     .9668498    1.087386
-                             80+  |   1.064998   .0272245     2.46   0.014     1.012954    1.119716
+                          40-<50  |   3.64e-18   2.69e-09    -0.00   1.000            0           .
+                          50-<60  |   3.43e-18   2.51e-09    -0.00   1.000            0           .
+                          60-<70  |   7.90e-33   1.54e-23    -0.00   1.000            0           .
+                          70-<80  |   2.31e-18   2.26e-09    -0.00   1.000            0           .
+                             80+  |   2.34e-18   1.95e-09    -0.00   1.000            0           .
                                   |
-                           1.male |   1.004958   .0167982     0.30   0.767     .9725674    1.038427
-                        1.obese40 |   1.437787   .3149598     1.66   0.097     .9359042    2.208806
-                   1.currentsmoke |   .9893939   .0229585    -0.46   0.646      .945404    1.035431
+                           1.male |   3.12e-17   5.33e-09    -0.00   1.000            0           .
+                        1.obese40 |   53.18319   1.35e+11     0.00   1.000            0           .
+                   1.currentsmoke |   4.18e-16   7.60e-08    -0.00   1.000            0           .
                                   |
                               imd |
-                               2  |   .9829337   .0279888    -0.60   0.545     .9295794     1.03935
-                               3  |   .9689122   .0294754    -1.04   0.299       .91283     1.02844
-                               4  |   .9566116   .0310211    -1.37   0.171     .8977033    1.019386
-                               5  |   .9519931   .0269768    -1.74   0.083      .900561    1.006363
+                               2  |   1.73e+15   8.31e+22     0.00   1.000            0           .
+                               3  |    .008216    4845406    -0.00   1.000            0           .
+                               4  |    .008346    6828993    -0.00   1.000            0           .
+                               5  |   .0062645    3096883    -0.00   1.000            0           .
                                   |
-                         1.bphigh |   1.003143   .0186555     0.17   0.866     .9672373    1.040382
-    1.chronic_respiratory_disease |   .9186351   .0851408    -0.92   0.360     .7660412    1.101625
-                         1.asthma |    .998477   .3164816    -0.00   0.996     .5364602    1.858397
-        1.chronic_cardiac_disease |   .9854202   .0482338    -0.30   0.764     .8952768     1.08464
-                       1.diabetes |   1.030208   .0301869     1.02   0.310     .9727098    1.091105
-           1.cancer_exhaem_lastyr |   .9623966   .0171787    -2.15   0.032     .9293091    .9966621
-1.haemmalig_aanaem_bmtrans_lastyr |   .9848981   .0175322    -0.85   0.393     .9511281    1.019867
-          1.chronic_liver_disease |   .9917719   .1126729    -0.07   0.942     .7937957    1.239124
-                1.stroke_dementia |   1.017602   .1061439     0.17   0.867     .8294512    1.248432
-                    1.other_neuro |   .8778476   .1275086    -0.90   0.370     .6603603    1.166964
-         1.chronic_kidney_disease |   .9673804   .0319083    -1.01   0.315     .9068198    1.031985
-               1.organ_transplant |   1.056519   .0334265     1.74   0.082     .9929937    1.124107
-                         1.spleen |   .9305867   .0593749    -1.13   0.260     .8211964    1.054549
-               1.ra_sle_psoriasis |   .8154404   .0804199    -2.07   0.039      .672118    .9893248
+                         1.bphigh |   1.31e-16   2.04e-08    -0.00   1.000            0           .
+    1.chronic_respiratory_disease |   1.57e-15   1.08e-06    -0.00   1.000            0           .
+                         1.asthma |   .0493743          .        .       .            .           .
+        1.chronic_cardiac_disease |   7.17e-16   2.50e-07    -0.00   1.000            0           .
+                       1.diabetes |   1.25e-15   2.48e-07    -0.00   1.000            0           .
+           1.cancer_exhaem_lastyr |   4.02e+25          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   3.46e+11          .        .       .            .           .
+          1.chronic_liver_disease |   2.34e-16   3.90e-07    -0.00   1.000            0           .
+                1.stroke_dementia |   4.13e-15   2.47e-06    -0.00   1.000            0           .
+                    1.other_neuro |   4.58e-16   4.75e-07    -0.00   1.000            0           .
+         1.chronic_kidney_disease |   2.02e-16   6.04e-08    -0.00   1.000            0           .
+               1.organ_transplant |   .2649566          .        .       .            .           .
+                         1.spleen |   2.27e+17   4.18e+26     0.00   1.000            0           .
+               1.ra_sle_psoriasis |   2.06e-16   1.74e-07    -0.00   1.000            0           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
-   1:      3.82 /        1 =       3.8220
 file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-
-         failure _d:  cpnsdeath
-   analysis time _t:  (stime_cpnsdeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-note: 0.spleen omitted because of collinearity
-Iteration 0:   log likelihood = -39237.034
-Iteration 1:   log likelihood = -39228.691
-Iteration 2:   log likelihood = -39228.475
-Iteration 3:   log likelihood = -39228.423
-Iteration 4:   log likelihood = -39228.404
-Iteration 5:   log likelihood = -39228.397
-Iteration 6:   log likelihood = -39228.394
-Iteration 7:   log likelihood = -39228.393
-Iteration 8:   log likelihood = -39228.393
-Iteration 9:   log likelihood = -39228.393
-Iteration 10:  log likelihood = -39228.393
-Iteration 11:  log likelihood = -39228.393
-Iteration 12:  log likelihood = -39228.393
-Iteration 13:  log likelihood = -39228.393
-Iteration 14:  log likelihood = -39228.393
-Refining estimates:
-Iteration 0:   log likelihood = -39228.393
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       19,749                  Number of obs    =      19,749
-No. of failures =        3,967
-Time at risk    =      1481175
-                                                LR chi2(26)      =       17.28
-Log likelihood  =   -39228.393                  Prob > chi2      =      0.9003
-
----------------------------------------------------------------------------------------------------
-                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------------------+----------------------------------------------------------------
-                             age1 |   1.007925   .0150986     0.53   0.598     .9787628    1.037957
-                             age2 |   .9843078    .033903    -0.46   0.646     .9200525    1.053051
-                             age3 |   1.037369   .1211239     0.31   0.753     .8251759    1.304128
-                           1.male |   .9991739   .0450407    -0.02   0.985     .9146832    1.091469
-                        1.obese40 |   1.366623   .3165387     1.35   0.177     .8679459    2.151815
-                   1.currentsmoke |   .9741545    .044098    -0.58   0.563     .8914473    1.064535
-                                  |
-                        ethnicity |
-                     South Asian  |   1.121658   .1918464     0.67   0.502     .8021813     1.56837
-                           Black  |   1.120169   .2472351     0.51   0.607     .7267962     1.72645
-                           Other  |   .6825309   .3960351    -0.66   0.510     .2188855    2.128275
-                           Mixed  |   .9894321   .5030847    -0.02   0.983     .3652462    2.680318
-                                  |
-                              imd |
-                               2  |   .9407818   .0802277    -0.72   0.474     .7959768     1.11193
-                               3  |   .9706794   .0838703    -0.34   0.731     .8194621    1.149801
-                               4  |   .8698126   .0890016    -1.36   0.173     .7117515    1.062975
-                               5  |   .8957902   .0747804    -1.32   0.187     .7605857    1.055029
-                                  |
-                         1.bphigh |   1.077692   .0525285     1.54   0.125     .9795026    1.185724
-    1.chronic_respiratory_disease |   .7262831   .3279824    -0.71   0.479     .2997172     1.75995
-                         1.asthma |    1.10299   1.115764     0.10   0.923     .1518838    8.009977
-        1.chronic_cardiac_disease |   .9142949    .235084    -0.35   0.727     .5523634    1.513379
-                       1.diabetes |    1.04335    .047574     0.93   0.352     .9541513    1.140886
-           1.cancer_exhaem_lastyr |   .9535954   .0383356    -1.18   0.237     .8813429    1.031771
-1.haemmalig_aanaem_bmtrans_lastyr |    .988084   .0392499    -0.30   0.763      .914074    1.068086
-          1.chronic_liver_disease |    1282441          .        .       .            .           .
-                1.stroke_dementia |   9.69e-07   5.80e-07   -23.13   0.000     3.00e-07    3.13e-06
-                    1.other_neuro |    .946932   .4266312    -0.12   0.904     .3915778    2.289916
-         1.chronic_kidney_disease |   1.056555   .0751181     0.77   0.439     .9191237    1.214535
-               1.organ_transplant |   1.007059   .0719406     0.10   0.922     .8754839    1.158408
-                         0.spleen |          1  (omitted)
-               1.ra_sle_psoriasis |   1.017536   .2848194     0.06   0.950      .587881    1.761207
----------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-   1:      2.07 /        1 =       2.0710
+   1:      0.80 /        1 =       0.8010
 file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
 
                 id:  patient_id
@@ -538,232 +324,65 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 ------------------------------------------------------------------------------
     100,567  observations remaining, representing
     100,567  subjects
-     20,040  failures in single-failure-per-subject data
+          1  failure in single-failure-per-subject data
   6,536,671  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        65
+   1:     12.94 /        1 =      12.9410
+WARNING AGE SPLINE MODEL DID NOT FIT
+   1:     14.09 /        1 =      14.0890
 
-         failure _d:  onscoviddeath
-   analysis time _t:  (stime_onscoviddeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Iteration 0:   log likelihood = -227356.06
-Iteration 1:   log likelihood = -227348.08
-Iteration 2:   log likelihood = -227347.88
-Iteration 3:   log likelihood = -227347.87
-Iteration 4:   log likelihood = -227347.87
-Refining estimates:
-Iteration 0:   log likelihood = -227347.87
-
-Stratified Cox regr. -- Breslow method for ties
+Stratified Cox regr. -- no ties
 
 No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,763
+No. of failures =            1
 Time at risk    =      6443396
-                                                LR chi2(24)      =       16.37
-Log likelihood  =   -227347.87                  Prob > chi2      =      0.8742
-
----------------------------------------------------------------------------------------------------
-                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------------------+----------------------------------------------------------------
-                             age1 |   1.001886   .0020621     0.92   0.360     .9978531    1.005936
-                             age2 |   .9985562   .0059727    -0.24   0.809     .9869184    1.010331
-                             age3 |    .998829   .0203206    -0.06   0.954      .959785    1.039461
-                           1.male |   .9892825   .0166257    -0.64   0.521     .9572276    1.022411
-                        1.obese40 |   .7641605   .2308886    -0.89   0.373     .4226655    1.381568
-                   1.currentsmoke |   .9855361   .0228546    -0.63   0.530     .9417447    1.031364
-                                  |
-                              imd |
-                               2  |   .9952378   .0287092    -0.17   0.869     .9405299    1.053128
-                               3  |   .9819693    .030238    -0.59   0.555     .9244569     1.04306
-                               4  |    .971914   .0316802    -0.87   0.382     .9117639    1.036032
-                               5  |   .9890418   .0282929    -0.39   0.700     .9351147    1.046079
-                                  |
-                         1.bphigh |   1.018133   .0189473     0.97   0.334     .9816657    1.055954
-    1.chronic_respiratory_disease |   .9486073   .0865538    -0.58   0.563     .7932686    1.134364
-                         1.asthma |   .4151071   .2077465    -1.76   0.079     .1556552    1.107023
-        1.chronic_cardiac_disease |   .9915288   .0484467    -0.17   0.862     .9009799    1.091178
-                       1.diabetes |   .9836239   .0293141    -0.55   0.580     .9278152     1.04279
-           1.cancer_exhaem_lastyr |    1.00008   .0177358     0.00   0.996     .9659154    1.035452
-1.haemmalig_aanaem_bmtrans_lastyr |   .9932335   .0177213    -0.38   0.704     .9591008    1.028581
-          1.chronic_liver_disease |   1.032304   .1165205     0.28   0.778     .8274256    1.287913
-                1.stroke_dementia |   1.063722   .1084999     0.61   0.545     .8709748    1.299125
-                    1.other_neuro |   1.040739   .1389107     0.30   0.765     .8011783     1.35193
-         1.chronic_kidney_disease |    .980286   .0323107    -0.60   0.546     .9189603    1.045704
-               1.organ_transplant |   .9725348   .0321036    -0.84   0.399     .9116051    1.037537
-                         1.spleen |   .9974704   .0618704    -0.04   0.967     .8832879    1.126413
-               1.ra_sle_psoriasis |   1.020558    .090499     0.23   0.818     .8577418     1.21428
----------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-   1:      5.48 /        1 =       5.4820
-file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
-
-         failure _d:  onscoviddeath
-   analysis time _t:  (stime_onscoviddeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-Iteration 0:   log likelihood = -227356.06
-Iteration 1:   log likelihood = -227346.28
-Iteration 2:   log likelihood = -227346.07
-Iteration 3:   log likelihood = -227346.07
-Iteration 4:   log likelihood = -227346.07
-Refining estimates:
-Iteration 0:   log likelihood = -227346.07
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       99,132                  Number of obs    =      99,132
-No. of failures =       19,763
-Time at risk    =      6443396
-                                                LR chi2(26)      =       19.98
-Log likelihood  =   -227346.07                  Prob > chi2      =      0.7926
+                                                LR chi2(21)      =        9.45
+Log likelihood  =   -6.7776466                  Prob > chi2      =      0.9852
 
 ---------------------------------------------------------------------------------------------------
                                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------------+----------------------------------------------------------------
                          agegroup |
-                          40-<50  |   1.030729    .027978     1.12   0.265     .9773258    1.087049
-                          50-<60  |   1.011154   .0272892     0.41   0.681      .959058     1.06608
-                          60-<70  |    1.07719    .030733     2.61   0.009     1.018607    1.139141
-                          70-<80  |   1.024387   .0308182     0.80   0.423     .9657305    1.086606
-                             80+  |   1.019937   .0264283     0.76   0.446     .9694316    1.073073
+                          40-<50  |    1.01792   5.82e+08     0.00   1.000            0           .
+                          50-<60  |   .6123898   4.41e+08    -0.00   1.000            0           .
+                          60-<70  |   .6823236   6.50e+08    -0.00   1.000            0           .
+                          70-<80  |   .5761755   6.22e+08    -0.00   1.000            0           .
+                             80+  |   4.73e+17          .        .       .            .           .
                                   |
-                           1.male |   .9892481    .016637    -0.64   0.520     .9571717    1.022399
-                        1.obese40 |   .7647271    .231061    -0.89   0.375     .4229776    1.382597
-                   1.currentsmoke |    .986411   .0231503    -0.58   0.560      .942065    1.032845
+                           1.male |   1.21e-16   1.03e-08    -0.00   1.000            0           .
+                        1.obese40 |   1.655999   3.47e+09     0.00   1.000            0           .
+                   1.currentsmoke |   3.33e-17   8.31e-09    -0.00   1.000            0           .
                                   |
                               imd |
-                               2  |   .9952172   .0287068    -0.17   0.868     .9405138    1.053102
-                               3  |   .9823288   .0302462    -0.58   0.563     .9248006    1.043436
-                               4  |   .9719331   .0319197    -0.87   0.386     .9113426    1.036552
-                               5  |   .9889349   .0282878    -0.39   0.697     .9350174    1.045962
+                               2  |   7.24e+15          .        .       .            .           .
+                               3  |   .0689356   1.81e+07    -0.00   1.000            0           .
+                               4  |   .0106118   1.41e+07    -0.00   1.000            0           .
+                               5  |   .0691869   2.09e+07    -0.00   1.000            0           .
                                   |
-                         1.bphigh |   1.017744   .0189891     0.94   0.346     .9811984    1.055651
-    1.chronic_respiratory_disease |   .9486211   .0865547    -0.58   0.563     .7932806     1.13438
-                         1.asthma |   .4147245   .2075576    -1.76   0.079     .1555099    1.106016
-        1.chronic_cardiac_disease |   .9912619   .0484288    -0.18   0.857     .9007461    1.090874
-                       1.diabetes |   .9843856   .0293764    -0.53   0.598     .9284605    1.043679
-           1.cancer_exhaem_lastyr |   1.000402   .0177419     0.02   0.982     .9662262    1.035787
-1.haemmalig_aanaem_bmtrans_lastyr |   .9932631   .0177219    -0.38   0.705     .9591291    1.028612
-          1.chronic_liver_disease |   1.019555   .1139478     0.17   0.862     .8189893    1.269237
-                1.stroke_dementia |   1.061347   .1083606     0.58   0.560     .8688648    1.296471
-                    1.other_neuro |   1.038755   .1386491     0.28   0.776     .7996462    1.349361
-         1.chronic_kidney_disease |    .980193   .0323075    -0.61   0.544     .9188734    1.045605
-               1.organ_transplant |   .9725957    .032106    -0.84   0.400     .9116615    1.037603
-                         1.spleen |   1.023531   .0657147     0.36   0.717     .9025067    1.160784
-               1.ra_sle_psoriasis |    1.02003    .090455     0.22   0.823     .8572937    1.213659
+                         1.bphigh |   5.33e-16   3.69e-08    -0.00   1.000            0           .
+    1.chronic_respiratory_disease |    .270714   1.56e+08    -0.00   1.000            0           .
+                         1.asthma |   234.3066   4.39e+11     0.00   1.000            0           .
+        1.chronic_cardiac_disease |   4.48e-15   7.42e-07    -0.00   1.000            0           .
+                       1.diabetes |   1.14e-14   9.99e-07    -0.00   1.000            0           .
+           1.cancer_exhaem_lastyr |   3.70e+12          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   4.31e+11          .        .       .            .           .
+          1.chronic_liver_disease |   515.6992   6.95e+10     0.00   1.000            0           .
+                1.stroke_dementia |   7.89e-15   2.63e-06    -0.00   1.000            0           .
+                    1.other_neuro |   9.04e-16   8.91e-07    -0.00   1.000            0           .
+         1.chronic_kidney_disease |   5.18e-16   1.04e-07    -0.00   1.000            0           .
+               1.organ_transplant |   .0489854          .        .       .            .           .
+                         1.spleen |   4.092998   2.58e+09     0.00   1.000            0           .
+               1.ra_sle_psoriasis |   7.19e-16   3.00e-07    -0.00   1.000            0           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
-   1:      4.00 /        1 =       4.0030
 file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-
-         failure _d:  onscoviddeath
-   analysis time _t:  (stime_onscoviddeath-origin)
-             origin:  time enter_date
-  enter on or after:  time enter_date
-                 id:  patient_id
-
-note: 0.spleen omitted because of collinearity
-Iteration 0:   log likelihood = -39424.961
-Iteration 1:   log likelihood = -39415.454
-Iteration 2:   log likelihood = -39413.318
-Iteration 3:   log likelihood = -39412.995
-Iteration 4:   log likelihood = -39412.954
-Iteration 5:   log likelihood = -39412.942
-Iteration 6:   log likelihood = -39412.938
-Iteration 7:   log likelihood = -39412.936
-Iteration 8:   log likelihood = -39412.936
-Iteration 9:   log likelihood = -39412.935
-Iteration 10:  log likelihood = -39412.935
-Iteration 11:  log likelihood = -39412.935
-Iteration 12:  log likelihood = -39412.935
-Iteration 13:  log likelihood = -39412.935
-Iteration 14:  log likelihood = -39412.935
-Iteration 15:  log likelihood = -39412.935
-Iteration 16:  log likelihood = -39412.935
-Iteration 17:  log likelihood = -39412.935
-Iteration 18:  log likelihood = -39412.935
-Iteration 19:  log likelihood = -39412.935
-Iteration 20:  log likelihood = -39412.935
-Iteration 21:  log likelihood = -39412.935
-Iteration 22:  log likelihood = -39412.935
-Iteration 23:  log likelihood = -39412.935
-Iteration 24:  log likelihood = -39412.935
-Iteration 25:  log likelihood = -39412.935
-Iteration 26:  log likelihood = -39412.935
-Iteration 27:  log likelihood = -39412.935
-Iteration 28:  log likelihood = -39412.935
-Iteration 29:  log likelihood = -39412.935
-Iteration 30:  log likelihood = -39412.935
-Iteration 31:  log likelihood = -39412.935
-Iteration 32:  log likelihood = -39412.935
-Iteration 33:  log likelihood = -39412.935
-Iteration 34:  log likelihood = -39412.935
-Iteration 35:  log likelihood = -39412.935
-Iteration 36:  log likelihood = -39412.935
-Iteration 37:  log likelihood = -39412.935
-Iteration 38:  log likelihood = -39412.935
-Iteration 39:  log likelihood = -39412.935
-Iteration 40:  log likelihood = -39412.935
-Iteration 41:  log likelihood = -39412.935
-Iteration 42:  log likelihood = -39412.935
-Iteration 43:  log likelihood = -39412.935
-Iteration 44:  log likelihood = -39412.935
-Refining estimates:
-Iteration 0:   log likelihood = -39412.935
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       19,749                  Number of obs    =      19,749
-No. of failures =        3,986
-Time at risk    =      1283685
-                                                LR chi2(26)      =       24.05
-Log likelihood  =   -39412.935                  Prob > chi2      =      0.5731
-
----------------------------------------------------------------------------------------------------
-                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------------------+----------------------------------------------------------------
-                             age1 |   .9831676   .0135937    -1.23   0.220     .9568822    1.010175
-                             age2 |    1.03337   .0332157     1.02   0.307     .9702768    1.100566
-                             age3 |   .9141305   .1004917    -0.82   0.414     .7369438    1.133919
-                           1.male |   .9884727   .0451041    -0.25   0.799     .9039081    1.080949
-                        1.obese40 |   .7622852    .242128    -0.85   0.393     .4090219    1.420654
-                   1.currentsmoke |   1.005378   .0462088     0.12   0.907     .9187694     1.10015
-                                  |
-                        ethnicity |
-                     South Asian  |   .9389736   .1761347    -0.34   0.737     .6501045      1.3562
-                           Black  |   1.137848   .2510546     0.59   0.558     .7383722    1.753449
-                           Other  |   1.057821   .4769864     0.12   0.901     .4371124    2.559947
-                           Mixed  |   1.146883   .5216462     0.30   0.763     .4702838    2.796908
-                                  |
-                              imd |
-                               2  |   .9416004   .0813582    -0.70   0.486     .7949123    1.115357
-                               3  |   .9483204   .0833531    -0.60   0.546     .7982488    1.126606
-                               4  |   .8776426    .090757    -1.26   0.207       .71663    1.074832
-                               5  |   .9158126    .077318    -1.04   0.298     .7761461    1.080612
-                                  |
-                         1.bphigh |   1.091728   .0539209     1.78   0.076     .9909995    1.202696
-    1.chronic_respiratory_disease |   .8747827   .3647865    -0.32   0.748     .3863199    1.980858
-                         1.asthma |   9.22e-20          .        .       .            .           .
-        1.chronic_cardiac_disease |   .6195858   .1875559    -1.58   0.114     .3423204    1.121425
-                       1.diabetes |   .9271316   .0424889    -1.65   0.099     .8474854    1.014263
-           1.cancer_exhaem_lastyr |   1.008226   .0397594     0.21   0.835      .933235    1.089244
-1.haemmalig_aanaem_bmtrans_lastyr |   .9725434   .0387181    -0.70   0.484     .8995424    1.051469
-          1.chronic_liver_disease |   .2427607   .2190764    -1.57   0.117      .041402    1.423426
-                1.stroke_dementia |   4.566927   3.390933     2.05   0.041     1.065636    19.57219
-                    1.other_neuro |   .4267692   .3025695    -1.20   0.230     .1063435    1.712676
-         1.chronic_kidney_disease |   .9096487   .0690476    -1.25   0.212     .7839034    1.055565
-               1.organ_transplant |   .9748403   .0705997    -0.35   0.725     .8458394    1.123515
-                         0.spleen |          1  (omitted)
-               1.ra_sle_psoriasis |   .6621362   .2352339    -1.16   0.246     .3300237    1.328463
----------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-   1:      4.65 /        1 =       4.6510
+   1:      0.73 /        1 =       0.7290
 file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
 
 . 
@@ -772,5 +391,5 @@ file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
   log type:  text
- closed on:  23 Apr 2020, 12:26:12
+ closed on:  23 Apr 2020, 13:09:51
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

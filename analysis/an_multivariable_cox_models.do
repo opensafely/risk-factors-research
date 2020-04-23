@@ -45,7 +45,7 @@ prog define basecoxmodel
 	else local ethnicity
 timer clear
 timer on 1
-	stcox 	`age' 							///
+	capture stcox 	`age' 							///
 			i.male 							///
 			`bmi'							///
 			`smoke'							///
@@ -80,18 +80,29 @@ stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(p
 
 *Age spline model (not adj ethnicity)
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+if _rc==0{
+estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 *estat concordance /*c-statistic*/
+}
+else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
  
 *Age group model (not adj ethnicity)
 basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+if _rc==0{
+estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
 *estat concordance /*c-statistic*/
+}
+else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
 
 *Complete case ethnicity model
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
+if _rc==0{
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
+ }
+ else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
  
 
 ************************************************************************
