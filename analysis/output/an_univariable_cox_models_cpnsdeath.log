@@ -1,0 +1,258 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath.log
+  log type:  text
+ opened on:  24 Apr 2020, 00:01:54
+
+. 
+. use egdata, clear
+(Poor factors dummy analysis dataset)
+
+. 
+. ***************************
+. *  Run Age and sex  models*
+. ***************************
+. 
+.         stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+          1  failure in single-failure-per-subject data
+  7,542,261  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        75
+
+. 
+.         * Cox model for age
+.         capture stcox age1 age2 age3 i.male, strata(stp) 
+
+.         if _rc==0 {
+.                 estimates
+.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_, replace
+.                 est store base
+.                 estat ic
+.         }       
+
+.         else di "WARNING - AGESPL SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+WARNING - AGESPL SEX vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+
+. 
+. 
+.         capture stcox ib3.agegroup i.male, strata(stp) 
+
+.         if _rc==0 {
+.                 estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      7542261
+                                                LR chi2(6)       =        3.35
+Log likelihood  =   -9.8435783                  Prob > chi2      =      0.7638
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     18-<40  |   3.99e+14   1.51e+22     0.00   1.000            0           .
+     40-<50  |   .0260511    5890529    -0.00   1.000            0           .
+     60-<70  |   .0245052    6289598    -0.00   1.000            0           .
+     70-<80  |   .0238532    6527509    -0.00   1.000            0           .
+        80+  |   .0142476    2690243    -0.00   1.000            0           .
+             |
+      1.male |   3.73e-16   2.81e-08    -0.00   1.000            0           .
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_, replace
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGEGROUPSEX_.ster saved
+.                 estat ic
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |    100,567 -11.51858  -9.843578       6    31.68716   88.79863
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+.         }
+
+.         else di "WARNING - AGEGROUP SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+
+. 
+. 
+. *****************************************
+. *  Loop through Age, sex  + 1 VAR models*
+. *****************************************
+. 
+.         foreach var of any `listofvars' {               
+  2.                 local b
+  3.                 if "`var'"=="bmicat" local b "b2" /*group 2 is the baseline for BMI, baseline for all others is lowest level*/
+  4.                 timer clear
+  5.                 timer on 1
+  6.                 capture stcox age1 age2 age3 male i`b'.`var', strata(stp) 
+  7.                 if _rc==0 {
+  8.                         estimates
+  9.                         estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`var', replace
+ 10.                 }
+ 11.                 else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 12.                 timer off 1
+ 13.                 timer list
+ 14.                 } /*end of looping round vars for 1 var at a time models*/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       10,382                  Number of obs    =      10,382
+No. of failures =            0
+Time at risk    =       778650
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+---------------------------------------------------------------------------------------
+                   _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------+----------------------------------------------------------------
+                 age1 |          1  (omitted)
+                 age2 |          1  (omitted)
+                 age3 |          1  (omitted)
+                 male |          1  (omitted)
+                      |
+               bmicat |
+ Underweight (<18.5)  |          1  (omitted)
+Overweight (25-29.9)  |          1  (omitted)
+   Obese I (30-34.9)  |          1  (omitted)
+  Obese II (35-39.9)  |          1  (omitted)
+     Obese III (40+)  |          1  (omitted)
+---------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_bmicat.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_bmicat.ster saved
+   1:      0.35 /        1 =       0.3470
+WARNING - obese40 vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.78 /        1 =       1.7830
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       42,017                  Number of obs    =      42,017
+No. of failures =            0
+Time at risk    =      3151275
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+       smoke |
+    Current  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_smoke.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_smoke.ster saved
+   1:      0.66 /        1 =       0.6590
+WARNING - currentsmoke vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.54 /        1 =       2.5420
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       20,585                  Number of obs    =      20,585
+No. of failures =            0
+Time at risk    =      1543875
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+   ethnicity |
+South Asian  |          1  (omitted)
+      Black  |          1  (omitted)
+      Other  |          1  (omitted)
+      Mixed  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_ethnicity.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_ethnicity.ster saved
+   1:      0.47 /        1 =       0.4730
+WARNING - imd vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.37 /        1 =       2.3650
+WARNING - bpcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.12 /        1 =       2.1190
+WARNING - bphigh vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.89 /        1 =       1.8850
+WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      3.03 /        1 =       3.0320
+WARNING - asthma vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.67 /        1 =       1.6740
+WARNING - chronic_cardiac_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.10 /        1 =       2.1030
+WARNING - diabetes vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.57 /        1 =       2.5740
+WARNING - cancer_exhaem_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.81 /        1 =       1.8120
+WARNING - haemmalig_aanaem_bmtrans_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.60 /        1 =       1.6000
+WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.73 /        1 =       1.7310
+WARNING - stroke_dementia vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.04 /        1 =       2.0430
+WARNING - other_neuro vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.98 /        1 =       2.9780
+WARNING - chronic_kidney_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.40 /        1 =       1.3980
+WARNING - organ_transplant vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.37 /        1 =       1.3660
+WARNING - spleen vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.54 /        1 =       2.5440
+WARNING - ra_sle_psoriasis vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.88 /        1 =       1.8810
+
+. 
+. 
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath.log
+  log type:  text
+ closed on:  24 Apr 2020, 00:02:39
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
