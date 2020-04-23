@@ -45,8 +45,15 @@ use egdata, clear
 
 *** Intended for publication
 
-* Set max/gap for ylabels eventually
+* Set max/gap for ylabels 
+foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
+	qui summ `outvar'
+	local max_`outvar' = r(mean) + 0.05
+}
 
+
+
+* Titles for graphs
 local t_onscoviddeath = "ONS Covid-19 death"
 local t_cpnsdeath     = "CPNS Covid-19 death"
 local t_ituadmission  = "ITU admission"
@@ -61,6 +68,8 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	sts graph if male==0, title("Female") 			///
 		failure by(agegroup) 						///
 		xtitle("Days since 1 Feb 2020")				///
+		yscale(range(0, `max_outvar')) 				///
+		ylabel(#4, angle(0))						///
 		legend(order(1 2 3 4 5 6)					///
 		subtitle("Age group", size(small)) 			///
 		label(1 "18-<40") label(2 "40-<50") 		///
@@ -71,7 +80,9 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	* KM plot for males by age		
 	sts graph if male==1, title("Male") 			///
 		failure by(agegroup)						///
-		yscale(range(0, 0.1)) 						///
+		xtitle("Days since 1 Feb 2020")				///
+		yscale(range(0, `max_outvar')) 				///
+		ylabel(#4, angle(0))						///
 		legend(order(1 2 3 4 5 6)					///
 		subtitle("Age group", size(small)) 			///
 		label(1 "18-<40") label(2 "40-<50") 		///
@@ -97,9 +108,6 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	
 }
 
-
-*		yscale(range(0, 0.1)) 						///
-*		ylabel(0 (0.025) 0.1, angle(0))				///
 
 
 
