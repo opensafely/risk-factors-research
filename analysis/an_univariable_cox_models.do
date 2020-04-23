@@ -60,17 +60,22 @@ foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 	* Cox model for age
 	capture stcox age1 age2 age3 i.male, strata(stp) 
 	if _rc==0 {
+		estimates
 		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_, replace
 		est store base
 		estat ic
 	}	
+	else di "WARNING - AGESPL SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
 
 
 	capture stcox i.agegroup i.male, strata(stp) 
 	if _rc==0 {
+		estimates
 		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_`var', replace
 		estat ic
 	}
+	else di "WARNING - AGEGROUP SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+
 	
 	foreach var of varlist 	bmicat 							///
 							obese40							///
@@ -102,8 +107,10 @@ foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
 		timer on 1
 		capture stcox age1 age2 age3 male i`b'.`var', strata(stp) 
 		if _rc==0 {
+			estimates
 			estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`var', replace
 		}
+		else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
 		timer off 1
 		timer list
 		} /*end of looping round vars for 1 var at a time models*/
