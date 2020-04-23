@@ -2,23 +2,21 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  23 Apr 2020, 11:04:58
+ opened on:  23 Apr 2020, 12:23:31
 
 . 
 . *******************************************************************************
 . *!!!!!!NOTE ON CODE GENERATING FAKE DATA WHICH NEEDS TO BE REPLACED LATER!!!!!!
 . *
 . *1)     chronic_kidney_disease
-. *               stroke_dementia
-. *               other_neuro
+. *               
+. *       Remove "gen" commands under "generate some extra variables, additional risk factors" (around line 112)
 . *
-. *       Remove "gen" commands under "generate some extra variables, additional risk factors" (around line 67)
-. *
-. *       Remove the section TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
-. *               Under "Create binary comorbidity indices from dates" (around line 248)
+. *       Remove the section TEMPORARY - generate fake data for chronic_kidney_disease
+. *               Under "Create binary comorbidity indices from dates" (around line 317)
 . *
 . *
-. *2)     Fake hospitalisation outcome is generated under *FAKE OUTCOME DATA ~ line 110
+. *2)     Fake ecds outcome is generated under *FAKE OUTCOME DATA ~ line 171
 . *
 . *******************************************************************************
 . 
@@ -37,38 +35,36 @@
 . label define smoke 1 "Never" 2 "Former" 3 "Current" .u "Unknown (.u)"
 
 . 
-. 
-. 
-. capture confirm string variable smoke
+. capture confirm string variable smoking_status
 
 . if _rc==0 {
 .         noi di "USING REAL Smoking"
-.         rename smoke smoke_old
-.         gen     smoke = 1 if smoke_old=="N"
-.         replace smoke = 2 if smoke_old=="E"
-.         replace smoke = 3 if smoke_old=="S"
-.         replace smoke = .u if smoke_old=="M"
+USING REAL Smoking
+.         gen     smoke = 1  if smoking_status=="N"
+(104,662 missing values generated)
+.         replace smoke = 2  if smoking_status=="E"
+(12,897 real changes made)
+.         replace smoke = 3  if smoking_status=="S"
+(29,230 real changes made)
+.         replace smoke = .u if smoking_status=="M"
+(62,535 real changes made, 62,535 to missing)
 .         label values smoke smoke
 . }
 
 . else {
-.         capture confirm numeric variable smoke
+.         capture confirm numeric variable smoking_status
 .         if _rc==0 {
 .                 noi di "USING REAL Smoking, already numeric"
+.                 rename smoking_status smoke
 .                 label values smoke smoke
 .         }
 .         else {
 .         noi di "USING FAKE Smoking"
-USING FAKE Smoking
 .                 
 .         gen     smoke = 1 if uniform()<0.3
-(73,335 missing values generated)
-.         replace smoke = 2 if uniform()<0.6 & smoking_status==""
-(0 real changes made)
-.         replace smoke = 3 if uniform()<0.6 & smoking_status==""
-(0 real changes made)
-.         replace smoke = .u if smoking_status==""
-(0 real changes made)
+.         replace smoke = 2 if uniform()<0.6 & smoke==.
+.         replace smoke = 3 if uniform()<0.6 & smoke==.
+.         replace smoke = .u if smoke==.
 .         label values smoke smoke
 . 
 .         }
@@ -76,16 +72,8 @@ USING FAKE Smoking
 
 . 
 . 
-. 
-. /* Smoking status (assuming input is called smoking_status)
-> gen     smoking_status = "N" if uniform()<0.3
-> replace smoking_status = "E" if uniform()<0.6 & smoking_status==""
-> replace smoking_status = "S" if uniform()<0.6 & smoking_status==""
-> replace smoking_status = "M" if smoking_status==""
-> */
-. 
 . * Ethnicity 
-. label define ethnicity 1"White"  2"South Asian"  3"Black"  4"Other"  5"Mixed" 6"Not Stated"
+. label define ethnicity 1 "White"  2 "South Asian"  3 "Black"  4 "Other"  5 "Mixed" 6 "Not Stated"
 
 . 
 . * Ethnicity - only make up if not there!! 
@@ -141,46 +129,51 @@ USING REAL ETHNICITY
 . 
 . 
 . ****** THIS NEXT LITTLE SECTION WILL BE NEEDED FOR THE REAL DATA ******
-. * Dates   
+. 
+. *** Dates   
+. 
+. * Date of cohort entry, 1 Feb 2020
 . gen enter_date = date("01/02/2020", "DMY")
 
 . format enter_date %td
 
 . 
-. gen ecdseventcensor_date = date("21/04/2020", "DMY")
+. * Date of study end (typically: last date of outcome data available)
+. gen ecdseventcensor_date                = date("21/04/2020", "DMY")
 
-. gen ituadmissioncensor_date = date("20/04/2020", "DMY") 
+. gen ituadmissioncensor_date     = date("20/04/2020", "DMY") 
 
-. gen cpnsdeathcensor_date = date("16/04/2020", "DMY")
+. gen cpnsdeathcensor_date                = date("16/04/2020", "DMY")
 
-. gen onscoviddeathcensor_date = date("06/04/2020", "DMY")
+. gen onscoviddeathcensor_date    = date("06/04/2020", "DMY")
+
+. 
+. format ecdseventcensor_date cpnsdeathcensor_date        ///
+>         onscoviddeathcensor_date ituadmissioncensor_date %td
 
 . 
 . 
-. format ecdseventcensor_date cpnsdeathcensor_date onscoviddeathcensor_date ituadmissioncensor_date %td
-
+. ***** Outcomes (real)
 . 
-. * Outcomes (real)
-. * ITU death, CPNS death, ONS-covid death
-. 
-. foreach var of varlist died_date_ons died_date_cpns{
+. * ITU admission, CPNS death, ONS-covid death
+. foreach var of varlist died_date_ons died_date_cpns {
   2.         confirm string variable `var'
   3.         rename `var' `var'_dstr
   4.         gen `var' = date(`var'_dstr, "YMD")
   5.         drop `var'_dstr
-  6.         }
+  6. }
 (104,651 missing values generated)
 (104,658 missing values generated)
 
-. gen cpnsdeath = died_date_cpns<.
+. gen cpnsdeath = (died_date_cpns < .)
 
 . gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
 (104,661 missing values generated)
 
-. gen onscoviddeath = died_date_onscovid<.
+. gen onscoviddeath = (died_date_onscovid < .)
 
 . 
-. * ITU
+. * ITU admission
 . confirm string variable icu_date_admitted
 
 . assert icu == (icu_date_admitted!="")
@@ -205,7 +198,7 @@ USING REAL ETHNICITY
 . gen ecdsevent_date = enter_date + runiform()*lag
 
 . replace ecdsevent_date = . if ecdsevent==0
-(83,646 real changes made, 83,646 to missing)
+(83,705 real changes made, 83,705 to missing)
 
 . format ecdsevent_date %td
 
@@ -409,7 +402,7 @@ variable ra_sle_psoriasis was str7 now str10
 >                                                 dementia_date                                           ///
 >                                                 other_neuro_date                                        ///
 >                                                 chronic_kidney_disease_date             ///
->                                                 organ_transplant_date                           ///     
+>                                                 organ_transplant_date                           ///
 >                                                 dysplenia_date                                          ///
 >                                                 sickle_cell_date                                        ///
 >                                                 hiv_date                                                        ///
@@ -421,11 +414,13 @@ variable ra_sle_psoriasis was str7 now str10
   5. }
 
 . 
+. 
 . /* Grouped comorbidities  */
 . 
 . * Stroke and dementia
-. gen stroke_dementia = 1 if stroke==1 | dementia==1
-(90,143 missing values generated)
+. egen stroke_dementia = rowmax(stroke dementia)
+
+. order stroke_dementia, after(dementia_date)
 
 . 
 . * Cancer except haematological 
@@ -437,17 +432,23 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . * Haem malig, aplastic anaemia, bone marrow transplant
-. gen haem_cancer_lastyr  = inrange(haem_cancer_date,  d(1/2/2019), d(1/2/2020))
+. gen haem_cancer_lastyr                          = inrange(haem_cancer_date,                             d(1/2/2019), d(1/2/2020))
 
-. gen aplanaemia_lastyr  = inrange(aplastic_anaemia_date,  d(1/2/2019), d(1/2/2020))
+. gen aplanaemia_lastyr                           = inrange(aplastic_anaemia_date,                d(1/2/2019), d(1/2/2020))
 
-. gen bone_marrow_transplant_lastyr  = inrange(bone_marrow_transplant_date,  d(1/2/2019), d(1/2/2020))
+. gen bone_marrow_transplant_lastyr       = inrange(bone_marrow_transplant_date,  d(1/2/2019), d(1/2/2020))
 
-. egen haemmalig_aanaem_bmtrans_lastyr = rowmax(haem_cancer_lastyr aplanaemia_lastyr bone_marrow_transplant_lastyr)
+. egen haemmalig_aanaem_bmtrans_lastyr = ///
+>         rowmax(haem_cancer_lastyr aplanaemia_lastyr bone_marrow_transplant_lastyr)
 
 .  
-. order lung_cancer_lastyr other_cancer_lastyr haem_cancer_lastyr aplanaemia_lastyr bone_marrow_transplant_lastyr cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr, after(oth
-> er_cancer)
+. order   lung_cancer_lastyr                              ///
+>                 other_cancer_lastyr                     ///
+>                 haem_cancer_lastyr                              ///
+>                 aplanaemia_lastyr                               ///
+>                 bone_marrow_transplant_lastyr   ///
+>                 cancer_exhaem_lastyr                    ///
+>                 haemmalig_aanaem_bmtrans_lastyr, after(other_cancer)
 
 . 
 . * Spleen problems (dysplenia/splenectomy/etc and sickle cell disease)   
@@ -456,12 +457,17 @@ variable ra_sle_psoriasis was str7 now str10
 . order spleen, after(sickle_cell)
 
 . 
-. * TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
+. *********************   TO BE REMOVED FOR REAL DATA     *******************************************
+. 
+. * TEMPORARY - generate fake data for chronic_kidney_disease
 . for var chronic_kidney_disease : replace X = uniform()<0.05
 
 ->  replace chronic_kidney_disease = uniform()<0.05
-(5,102 real changes made)
+(5,014 real changes made)
 
+. 
+. ***************************************************************************************************
+. 
 . 
 . * Immunosuppressed:
 . * HIV, dysplenia/sickle-cell, genetic conditions ever, OR
@@ -487,7 +493,6 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . 
 . 
-.                                                 
 . 
 . ********************************
 . *  Recode and check variables  *
@@ -508,6 +513,8 @@ variable ra_sle_psoriasis was str7 now str10
 . replace bmi = . if !inrange(bmi, 15, 50)
 (90,188 real changes made, 90,188 to missing)
 
+. 
+. 
 . /*
 > * Smoking 
 > assert inlist(smoking_status, "N", "E", "S", "M")
@@ -606,7 +613,7 @@ variable ra_sle_psoriasis was str7 now str10
 (90,188 real changes made, 90,188 to missing)
 
 . 
-. label define bmicat 1 "Underweight (<18.5)"             ///
+. label define bmicat 1 "Underweight (<18.5)"     ///
 >                                         2 "Normal (18.5-24.9)"          ///
 >                                         3 "Overweight (25-29.9)"        ///
 >                                         4 "Obese I (30-34.9)"           ///
@@ -628,9 +635,9 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . /*  Smoking  */
 . 
-. * Create binary smoking
+. * Create non-missing binary variable for current smoking
 . recode smoke 3=1 1/2 .u=0, gen(currentsmoke)
-(30090 differences between smoke and currentsmoke)
+(100570 differences between smoke and currentsmoke)
 
 . order currentsmoke, after(smoke)
 
@@ -638,6 +645,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . /*  Blood pressure  */
 . 
+. * Categorise
 . gen     bpcat = 1 if bp_sys < 120 &  bp_dias < 80
 (48,664 missing values generated)
 
@@ -660,9 +668,9 @@ variable ra_sle_psoriasis was str7 now str10
 . label values bpcat bpcat
 
 . 
-. gen bphigh = (bpcat==3|bpcat==4)
+. * Create non-missing indicator of known high blood pressure
+. gen bphigh = (bpcat==3 | bpcat==4)
 
-. 
 . order bpcat bphigh, after(bp_dias_date)
 
 . 
@@ -689,6 +697,8 @@ variable ra_sle_psoriasis was str7 now str10
 
 . label values imd imd 
 
+. 
+. 
 . 
 . 
 . /*  Centred age, sex, IMD, ethnicity (for adjusted KM plots)  */ 
@@ -719,9 +729,12 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . 
+. 
+. 
 . ************************
 . *  Make numeric STP    *
 . ************************
+. 
 . bysort geographic_area: gen stp = 1 if _n==1
 (100,569 missing values generated)
 
@@ -738,30 +751,32 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . /*  Create survival times  */
 . 
-. * For looping later, name must be stime_binary_outcome_name)
+. * For looping later, name must be stime_binary_outcome_name
 . 
-. 
-. gen stime_ecdsevent  = min(ecdseventcensor_date, ecdsevent_date, died_date_ons)
+. * Survival time = last followup date (first: end study, death, or that outcome)
+. gen stime_ecdsevent     = min(ecdseventcensor_date,     ecdsevent_date, died_date_ons)
 
-. replace ecdsevent = 0 if (ecdsevent_date>ecdseventcensor_date) 
+. gen stime_ituadmission  = min(ituadmissioncensor_date,  itu_date,               died_date_ons)
+
+. gen stime_cpnsdeath     = min(cpnsdeathcensor_date,     died_date_cpns, died_date_ons)
+
+. gen stime_onscoviddeath = min(onscoviddeathcensor_date,                                 died_date_ons)
+
+. 
+. * If outcome was after censoring occurred, set to zero
+. 
+. ********** NB MIGHT WANT TO REVISIT THIS ****************************************
+. 
+. replace ecdsevent               = 0 if (ecdsevent_date          > ecdseventcensor_date) 
 (0 real changes made)
 
-. 
-. gen stime_ituadmission = min(ituadmissioncensor_date, itu_date, died_date_ons)
-
-. replace ituadmission = 0 if (itu_date>ituadmissioncensor_date) 
+. replace ituadmission    = 0 if (itu_date                        > ituadmissioncensor_date) 
 (0 real changes made)
 
-. 
-. gen stime_cpnsdeath  = min(cpnsdeathcensor_date, died_date_cpns, died_date_ons)
-
-. replace cpnsdeath = 0 if (died_date_cpns>cpnsdeathcensor_date) 
+. replace cpnsdeath               = 0 if (died_date_cpns          > cpnsdeathcensor_date) 
 (0 real changes made)
 
-. 
-. gen stime_onscoviddeath = min(onscoviddeathcensor_date, died_date_ons)
-
-. replace onscoviddeath = 0 if (died_date_onscovid>onscoviddeathcensor_date) 
+. replace onscoviddeath   = 0 if (died_date_onscovid      > onscoviddeathcensor_date) 
 (0 real changes made)
 
 . 
@@ -769,6 +784,8 @@ variable ra_sle_psoriasis was str7 now str10
 
 . format %d ecdsevent_date itu_date died_date_onscovid died_date_ons died_date_cpns 
 
+. 
+. 
 . 
 . *********************
 . *  Label variables  *
@@ -851,23 +868,19 @@ variable ra_sle_psoriasis was str7 now str10
 
 . label var other_cancer_lastyr                   "Cancer other than lung/haematological in last year"
 
-. 
 . label var cancer_exhaem_lastyr                  "Cancer other than haematological in last year"
 
 . label var haem_cancer_lastyr                    "Haem. cancer in last year"
 
-. 
 . label var aplanaemia_lastyr                     "Aplastic anaemia in last year"
 
 . label var bone_marrow_transplant_lastyr "Bone marrow transplant in last year"
 
-. 
-. label var haemmalig_aanaem_bmtrans_lastyr       "Haematol malignancy, aplastic anaemia or bone marrow transplant in last year"
+. label var haemmalig_aanaem_bmtrans_lastyr "Haematol malignancy, aplastic anaemia or bone marrow transplant in last year"
 
-. 
-. label var bone_marrow_transplant                "Organ transplant"
+. label var bone_marrow_transplant                "Bone marrow transplant"
 
-. label var chronic_liver_disease                 "Liver"
+. label var chronic_liver_disease                 "Chronic liver disease"
 
 . label var stroke_dementia                               "Stroke or dementia"
 
@@ -877,7 +890,7 @@ variable ra_sle_psoriasis was str7 now str10
 
 . label var organ_transplant                              "Organ transplant recipient"
 
-. label var dysplenia                                             "Dysplenia"
+. label var dysplenia                                             "Dysplenia (splenectomy, other, not sickle cell)"
 
 . label var sickle_cell                                   "Sickle cell"
 
@@ -897,8 +910,7 @@ variable ra_sle_psoriasis was str7 now str10
 
 . label var immunosuppressed                              "Immunosuppressed (combination algorithm)"
 
-.  
-. label var chronic_respiratory_disease_date      "Respiratory disease (excl. asthma), date"
+.  label var chronic_respiratory_disease_date     "Respiratory disease (excl. asthma), date"
 
 . label var chronic_cardiac_disease_date  "Heart disease, date"
 
@@ -914,14 +926,12 @@ variable ra_sle_psoriasis was str7 now str10
 
 . label var chronic_liver_disease_date    "Liver, date"
 
-. 
 . label var stroke_date                                   "Stroke, date"
 
-. label var dementia_date                         "Dementia, date"
+. label var dementia_date                                 "Dementia, date"
 
 . label var other_neuro_date                              "Neuro condition other than stroke/dementia, date"      
 
-. 
 . label var chronic_kidney_disease_date   "Kidney disease, date"
 
 . label var organ_transplant_date                 "Organ transplant recipient, date"
@@ -975,15 +985,19 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . *REDUCE DATASET SIZE TO VARIABLES NEEDED
-. keep patient_id ituadmission age bmi chronic_respiratory_disease chronic_cardiac_disease ///
->         diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr chronic_liver_disease ///
->         organ_transplant spleen bpcat bphigh ra_sle_psoriasis asthma chronic_kidney_disease stroke dementia stroke_dementia ///
->         other_neuro stp enter_date ecdseventcensor_date ituadmissioncensor_date cpnsdeathcensor_date ///
->         onscoviddeathcensor_date died_date_ons died_date_cpns cpnsdeath died_date_onscovid onscoviddeath ///
->         itu_date ecdsevent ecdsevent_date male smoke currentsmoke ethnicity agegroup age70 age1 age2 age3 ///
->         bmicat obese40 imd stime_ecdsevent stime_ituadmission stime_cpnsdeath stime_onscoviddeath
+. keep patient_id imd stp enter_date                                                                              ///
+>         ituadmission itu_date ituadmissioncensor_date stime_ituadmission                ///
+>         ecdsevent ecdsevent_date ecdseventcensor_date stime_ecdsevent                   ///
+>         cpnsdeath died_date_cpns cpnsdeathcensor_date stime_cpnsdeath                   ///
+>         onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
+>         stime_onscoviddeath                                                                                                             ///
+>         age agegroup age70 age1 age2 age3 male bmi smoke currentsmoke                   ///
+>         bpcat bphigh bmicat obese40 ethnicity                                                                   ///
+>         chronic_respiratory_disease asthma chronic_cardiac_disease                              ///
+>         diabetes cancer_exhaem_lastyr haemmalig_aanaem_bmtrans_lastyr                   ///
+>         chronic_liver_disease organ_transplant spleen ra_sle_psoriasis                  ///
+>         chronic_kidney_disease stroke dementia stroke_dementia other_neuro      
 
-. 
 . 
 . 
 . ***************
@@ -995,7 +1009,6 @@ variable ra_sle_psoriasis was str7 now str10
 . label data "Poor factors dummy analysis dataset"
 
 . save "egdata", replace
-(note: file egdata.dta not found)
 file egdata.dta saved
 
 . 
@@ -1004,5 +1017,5 @@ file egdata.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  23 Apr 2020, 11:05:02
+ closed on:  23 Apr 2020, 12:23:36
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

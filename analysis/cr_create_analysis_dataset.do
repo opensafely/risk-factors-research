@@ -26,16 +26,14 @@ log using ./output/cr_analysis_dataset, replace t
 *!!!!!!NOTE ON CODE GENERATING FAKE DATA WHICH NEEDS TO BE REPLACED LATER!!!!!!
 *
 *1) 	chronic_kidney_disease
-*		stroke_dementia
-*		other_neuro
+*		
+*	Remove "gen" commands under "generate some extra variables, additional risk factors" (around line 112)
 *
-*	Remove "gen" commands under "generate some extra variables, additional risk factors" (around line 67)
-*
-*  	Remove the section TEMPORARY - generate fake data for chronic_kidney_disease, stroke_dementia, other_neuro
-*		Under "Create binary comorbidity indices from dates" (around line 248)
+*  	Remove the section TEMPORARY - generate fake data for chronic_kidney_disease
+*		Under "Create binary comorbidity indices from dates" (around line 317)
 *
 *
-*2) 	Fake hospitalisation outcome is generated under *FAKE OUTCOME DATA ~ line 110
+*2) 	Fake ecds outcome is generated under *FAKE OUTCOME DATA ~ line 171
 *
 *******************************************************************************
 

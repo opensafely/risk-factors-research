@@ -74,24 +74,24 @@ end
 *************************************************************************************
 
 
-foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
+foreach outcome of any /*ecdsevent*/ ituadmission cpnsdeath onscoviddeath{
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 *Age spline model (not adj ethnicity)
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
-estat concordance /*c-statistic*/
-	
+*estat concordance /*c-statistic*/
+ 
 *Age group model (not adj ethnicity)
 basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
-estat concordance /*c-statistic*/
+*estat concordance /*c-statistic*/
 
 *Complete case ethnicity model
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
-estat concordance /*c-statistic*/
+*estat concordance /*c-statistic*/
  
 
 ************************************************************************
