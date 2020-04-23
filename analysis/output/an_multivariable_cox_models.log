@@ -1,0 +1,1553 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
+  log type:  text
+ opened on:  23 Apr 2020, 11:07:24
+
+. 
+. use egdata, clear
+(Poor factors dummy analysis dataset)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) bmi(string) smoke(string) bp(string) [ethnicity(real 0)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         stcox   `age'                                                   ///
+>                         i.male                                                  ///
+>                         `bmi'                                                   ///
+>                         `smoke'                                                 ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         `bp'                                                    ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthma                                                ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabetes                                              ///
+>                         i.cancer_exhaem_lastyr                  ///
+>                         i.haemmalig_aanaem_bmtrans_lastyr  ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                                       ///
+>                         i.other_neuro                                   ///
+>                         i.chronic_kidney_disease                ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         /*endocrine?*/                                  ///
+>                         /*immunosuppression?*/                  ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath{
+  2. 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+  3. 
+. *Age spline model (not adj ethnicity)
+. basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+  4. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+  5. estat concordance /*c-statistic*/
+  6.         
+. *Age group model (not adj ethnicity)
+. basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+  7. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
+  8. estat concordance /*c-statistic*/
+  9. 
+. *Complete case ethnicity model
+. basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
+ 10. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+ 11. estat concordance /*c-statistic*/
+ 12.  
+. 
+. ************************************************************************
+. * Add IBS 
+. 
+. * Calculate at 60 days
+. *
+. *stbrier, bt(60) efron
+. 
+. /*
+> stbrier age1 age2 age3 male i.bmicat i.smoke                                                    ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
+>                 transplant spleen immunosup hypertension autoimmune sle                 ///
+>                 endocrine                                                                                                               ///
+>                 , shared(stp) bt(60)                                                                                    ///
+>                 ipcw(age1 age2 age3 male i.bmicat i.smoke                                               ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
+>                 transplant spleen immunosup hypertension autoimmune sle                 ///
+>                 endocrine)
+> */
+. 
+. * Simple model just to try:
+. /*
+> stbrier age1 age2 age3 male                                                                                     ///
+>                 , shared(stp) bt(60)                                                                                    ///
+>                 ipcw(age1 age2 age3 male)
+> */
+. ************************************************************************
+. 
+. } /*end of looping round outcomes*/
+
+                id:  patient_id
+     failure event:  ecdsevent != 0 & ecdsevent < .
+obs. time interval:  (stime_ecdsevent[_n-1], stime_ecdsevent]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          4  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,566  observations remaining, representing
+    100,566  subjects
+     20,134  failures in single-failure-per-subject data
+  7,242,126  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        80
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -4866.3578
+Iteration 1:   log likelihood =  -4862.369
+Iteration 2:   log likelihood = -4855.5186
+Iteration 3:   log likelihood = -4853.8033
+Iteration 4:   log likelihood =  -4853.361
+Iteration 5:   log likelihood = -4853.2037
+Iteration 6:   log likelihood = -4853.1447
+Iteration 7:   log likelihood = -4853.1229
+Iteration 8:   log likelihood = -4853.1148
+Iteration 9:   log likelihood = -4853.1119
+Iteration 10:  log likelihood = -4853.1108
+Iteration 11:  log likelihood = -4853.1104
+Iteration 12:  log likelihood = -4853.1102
+Iteration 13:  log likelihood = -4853.1102
+Iteration 14:  log likelihood = -4853.1101
+Iteration 15:  log likelihood = -4853.1101
+Iteration 16:  log likelihood = -4853.1101
+Iteration 17:  log likelihood = -4853.1101
+Iteration 18:  log likelihood = -4853.1101
+Iteration 19:  log likelihood = -4853.1101
+Iteration 20:  log likelihood = -4853.1101
+Iteration 21:  log likelihood = -4853.1101
+Iteration 22:  log likelihood = -4853.1101
+Iteration 23:  log likelihood = -4853.1101
+Iteration 24:  log likelihood = -4853.1101
+Iteration 25:  log likelihood = -4853.1101
+Iteration 26:  log likelihood = -4853.1101
+Iteration 27:  log likelihood = -4853.1101
+Iteration 28:  log likelihood = -4853.1101
+Iteration 29:  log likelihood = -4853.1101
+Iteration 30:  log likelihood = -4853.1101
+Iteration 31:  log likelihood = -4853.1101
+Iteration 32:  log likelihood = -4853.1101
+Iteration 33:  log likelihood = -4853.1101
+Iteration 34:  log likelihood = -4853.1101
+Iteration 35:  log likelihood = -4853.1101
+Iteration 36:  log likelihood = -4853.1101
+Iteration 37:  log likelihood = -4853.1101
+Iteration 38:  log likelihood = -4853.1101
+Iteration 39:  log likelihood = -4853.1101
+Iteration 40:  log likelihood = -4853.1101
+Iteration 41:  log likelihood = -4853.1101
+Iteration 42:  log likelihood = -4853.1101
+Iteration 43:  log likelihood = -4853.1101
+Iteration 44:  log likelihood = -4853.1101
+Iteration 45:  log likelihood = -4853.1101
+Iteration 46:  log likelihood = -4853.1101
+Refining estimates:
+Iteration 0:   log likelihood = -4853.1101
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          613
+Time at risk    =  224758.6953
+                                                LR chi2(15)      =       26.50
+Log likelihood  =   -4853.1101                  Prob > chi2      =      0.0331
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   1.084648   .0694989     1.27   0.205     .9566391    1.229786
+                             age2 |    .746802   .1447602    -1.51   0.132       .51075    1.091949
+                             age3 |   2.851877    1.87016     1.60   0.110      .788756    10.31143
+                           1.male |   .5737592   .3041664    -1.05   0.295      .202994    1.621721
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   1.743717   1.900693     0.51   0.610     .2058951    14.76746
+                               3  |   .6129026   .7239216    -0.41   0.679      .060535    6.205497
+                               4  |   1.857473   2.324385     0.49   0.621     .1598655    21.58193
+                               5  |   .7240543   .8571429    -0.27   0.785     .0711394    7.369403
+                                  |
+                         1.bphigh |   .9073186   .5408645    -0.16   0.870     .2820639    2.918584
+    1.chronic_respiratory_disease |   3.54e-20          .        .       .            .           .
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   .6471299   .3954034    -0.71   0.476     .1953881     2.14331
+                       1.diabetes |   2.173938   1.302088     1.30   0.195     .6720736    7.031976
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   1.021425   1.148598     0.02   0.985     .1127263    9.255237
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   6.33e-20          .        .       .            .           .
+         1.chronic_kidney_disease |   .9636533   .1831734    -0.19   0.846     .6639304    1.398682
+               1.organ_transplant |   59.95938   100.3408     2.45   0.014     2.256256    1593.404
+                         1.spleen |   1.86e-19          .        .       .            .           .
+               1.ra_sle_psoriasis |   2.224867   2.620747     0.68   0.497     .2211285    22.38532
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      1.14 /        1 =       1.1390
+file ./output/models/an_multivariate_cox_models_ecdsevent_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5172
+                            Somers' D =   0.0343
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -4866.3578
+Iteration 1:   log likelihood = -4862.2483
+Iteration 2:   log likelihood = -4855.1903
+Iteration 3:   log likelihood = -4853.4973
+Iteration 4:   log likelihood = -4853.0525
+Iteration 5:   log likelihood = -4852.8926
+Iteration 6:   log likelihood = -4852.8326
+Iteration 7:   log likelihood = -4852.8103
+Iteration 8:   log likelihood = -4852.8021
+Iteration 9:   log likelihood = -4852.7991
+Iteration 10:  log likelihood = -4852.7979
+Iteration 11:  log likelihood = -4852.7975
+Iteration 12:  log likelihood = -4852.7974
+Iteration 13:  log likelihood = -4852.7973
+Iteration 14:  log likelihood = -4852.7973
+Iteration 15:  log likelihood = -4852.7973
+Iteration 16:  log likelihood = -4852.7973
+Iteration 17:  log likelihood = -4852.7973
+Iteration 18:  log likelihood = -4852.7973
+Iteration 19:  log likelihood = -4852.7973
+Iteration 20:  log likelihood = -4852.7973
+Iteration 21:  log likelihood = -4852.7973
+Iteration 22:  log likelihood = -4852.7973
+Iteration 23:  log likelihood = -4852.7973
+Iteration 24:  log likelihood = -4852.7973
+Iteration 25:  log likelihood = -4852.7973
+Iteration 26:  log likelihood = -4852.7973
+Iteration 27:  log likelihood = -4852.7973
+Iteration 28:  log likelihood = -4852.7973
+Refining estimates:
+Iteration 0:   log likelihood = -4852.7973
+Iteration 1:   log likelihood = -4852.7973
+Iteration 2:   log likelihood = -4852.7973
+Iteration 3:   log likelihood = -4852.7973
+Iteration 4:   log likelihood = -4852.7973
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          613
+Time at risk    =  224758.6953
+                                                LR chi2(20)      =       27.12
+Log likelihood  =   -4852.7973                  Prob > chi2      =      0.1319
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                         agegroup |
+                          40-<50  |   3.414755   2.773628     1.51   0.131     .6949808    16.77824
+                          50-<60  |   .7146277   .6803204    -0.35   0.724     .1105967    4.617614
+                          60-<70  |   1.291915   1.250652     0.26   0.791     .1937399     8.61487
+                          70-<80  |   1.697531    1.62103     0.55   0.579      .261202    11.03212
+                             80+  |   1.715917   1.366032     0.68   0.498     .3604619    8.168326
+                                  |
+                           1.male |   .6219255   .3239768    -0.91   0.362     .2240401    1.726438
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   1.911539   2.082723     0.59   0.552     .2259197    16.17381
+                               3  |   .7930413   .9551433    -0.19   0.847     .0748349    8.404031
+                               4  |   2.382398   3.020173     0.68   0.493     .1985838    28.58149
+                               5  |    .729981   .8757076    -0.26   0.793     .0695319    7.663708
+                                  |
+                         1.bphigh |   .8392401   .5149627    -0.29   0.775     .2521064    2.793757
+    1.chronic_respiratory_disease |   4.19e-14   1.41e-07    -0.00   1.000            0           .
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |     .65808   .4149292    -0.66   0.507     .1912421    2.264508
+                       1.diabetes |   2.148399   1.286599     1.28   0.202     .6642946    6.948149
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   .7117434   .7143928    -0.34   0.735     .0995299    5.089715
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   5.89e-14   2.01e-07    -0.00   1.000            0           .
+         1.chronic_kidney_disease |   .9767673   .1855334    -0.12   0.902     .6731448    1.417339
+               1.organ_transplant |   32.87555   58.53103     1.96   0.050     1.003251      1077.3
+                         1.spleen |   3.69e-14   4.55e-07    -0.00   1.000            0           .
+               1.ra_sle_psoriasis |   2.761208   3.359676     0.83   0.404     .2543356    29.97721
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      1.01 /        1 =       1.0130
+file ./output/models/an_multivariate_cox_models_ecdsevent_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5150
+                            Somers' D =   0.0299
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 1.male omitted because of collinearity
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 5.ethnicity omitted because of collinearity
+note: 4.imd omitted because of collinearity
+note: 5.imd omitted because of collinearity
+note: 1.bphigh omitted because of collinearity
+note: 1.chronic_respiratory_disease omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 1.chronic_cardiac_disease omitted because of collinearity
+note: 1.diabetes omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.chronic_liver_disease omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+note: 0.other_neuro omitted because of collinearity
+note: 0.organ_transplant omitted because of collinearity
+note: 0.spleen omitted because of collinearity
+note: 0.ra_sle_psoriasis omitted because of collinearity
+Iteration 0:   log likelihood = -4695.6724
+Iteration 1:   log likelihood = -4694.7757
+Iteration 2:   log likelihood = -4694.5431
+Iteration 3:   log likelihood = -4694.4791
+Iteration 4:   log likelihood =  -4694.456
+Iteration 5:   log likelihood = -4694.4475
+Iteration 6:   log likelihood = -4694.4444
+Iteration 7:   log likelihood = -4694.4432
+Iteration 8:   log likelihood = -4694.4428
+Iteration 9:   log likelihood = -4694.4426
+Iteration 10:  log likelihood = -4694.4426
+Iteration 11:  log likelihood = -4694.4426
+Iteration 12:  log likelihood = -4694.4426
+Iteration 13:  log likelihood = -4694.4426
+Iteration 14:  log likelihood = -4694.4426
+Iteration 15:  log likelihood = -4694.4426
+Refining estimates:
+Iteration 0:   log likelihood = -4694.4426
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        2,978                  Number of obs    =       2,978
+No. of failures =          595
+Time at risk    =  214364.0742
+                                                LR chi2(3)       =        2.46
+Log likelihood  =   -4694.4426                  Prob > chi2      =      0.4826
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   .0000165    .000674    -0.27   0.788     2.20e-40    1.23e+30
+                             age2 |   1.71e+15   1.09e+17     0.55   0.581     1.57e-39    1.86e+69
+                             age3 |   1.53e-48          .        .       .            .           .
+                           1.male |          1  (omitted)
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                        ethnicity |
+                           Mixed  |          1  (omitted)
+                                  |
+                              imd |
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    0.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |   .9776399   .1892715    -0.12   0.907     .6689381    1.428802
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               0.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.52 /        1 =       0.5230
+file ./output/models/an_multivariate_cox_models_ecdsevent_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+
+         failure _d:  ecdsevent
+   analysis time _t:  (stime_ecdsevent-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5016
+                            Somers' D =   0.0033
+
+                id:  patient_id
+     failure event:  ituadmission != 0 & ituadmission < .
+obs. time interval:  (stime_ituadmission[_n-1], stime_ituadmission]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+      5,014  failures in single-failure-per-subject data
+  7,944,253  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        79
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1391.6093
+Iteration 1:   log likelihood = -1385.6811
+Iteration 2:   log likelihood = -1382.6034
+Iteration 3:   log likelihood = -1381.0059
+Iteration 4:   log likelihood = -1379.9977
+Iteration 5:   log likelihood = -1379.4236
+Iteration 6:   log likelihood = -1379.1388
+Iteration 7:   log likelihood = -1379.0299
+Iteration 8:   log likelihood = -1378.9861
+Iteration 9:   log likelihood = -1378.9686
+Iteration 10:  log likelihood = -1378.9618
+Iteration 11:  log likelihood = -1378.9592
+Iteration 12:  log likelihood = -1378.9583
+Iteration 13:  log likelihood = -1378.9579
+Iteration 14:  log likelihood = -1378.9578
+Iteration 15:  log likelihood = -1378.9577
+Iteration 16:  log likelihood = -1378.9577
+Iteration 17:  log likelihood = -1378.9577
+Iteration 18:  log likelihood = -1378.9577
+Iteration 19:  log likelihood = -1378.9577
+Iteration 20:  log likelihood = -1378.9577
+Iteration 21:  log likelihood = -1378.9577
+Iteration 22:  log likelihood = -1378.9577
+Iteration 23:  log likelihood = -1378.9577
+Iteration 24:  log likelihood = -1378.9577
+Iteration 25:  log likelihood = -1378.9577
+Iteration 26:  log likelihood = -1378.9577
+Iteration 27:  log likelihood = -1378.9577
+Iteration 28:  log likelihood = -1378.9577
+Iteration 29:  log likelihood = -1378.9577
+Iteration 30:  log likelihood = -1378.9577
+Iteration 31:  log likelihood = -1378.9577
+Iteration 32:  log likelihood = -1378.9577
+Iteration 33:  log likelihood = -1378.9577
+Iteration 34:  log likelihood = -1378.9577
+Iteration 35:  log likelihood = -1378.9577
+Iteration 36:  log likelihood = -1378.9577
+Iteration 37:  log likelihood = -1378.9577
+Iteration 38:  log likelihood = -1378.9577
+Iteration 39:  log likelihood = -1378.9577
+Iteration 40:  log likelihood = -1378.9577
+Iteration 41:  log likelihood = -1378.9577
+Iteration 42:  log likelihood = -1378.9577
+Iteration 43:  log likelihood = -1378.9577
+Iteration 44:  log likelihood = -1378.9577
+Iteration 45:  log likelihood = -1378.9577
+Iteration 46:  log likelihood = -1378.9577
+Refining estimates:
+Iteration 0:   log likelihood = -1378.9577
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          173
+Time at risk    =       246085
+                                                LR chi2(11)      =       25.30
+Log likelihood  =   -1378.9577                  Prob > chi2      =      0.0082
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   2.795431   3.534733     0.81   0.416     .2344938    33.32469
+                             age2 |   .1677695   .4011628    -0.75   0.455     .0015465    18.19985
+                             age3 |   73.29732   490.8977     0.64   0.521      .000146    3.68e+07
+                           1.male |   5.81e+23   3.94e+27     0.01   0.994            0           .
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   6.023443   9.194832     1.18   0.239     .3023284    120.0081
+                               3  |   5.80e-34          .        .       .            .           .
+                               4  |   10.91079   19.70289     1.32   0.186     .3167677    375.8124
+                               5  |   5.398849          .        .       .            .           .
+                                  |
+                         1.bphigh |   1.24e-16   1.19e-12    -0.00   0.997            0           .
+    1.chronic_respiratory_disease |   6.23e+07   4.23e+11     0.00   0.998            0           .
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   5.40e+15   5.19e+19     0.00   0.997            0           .
+                       1.diabetes |   1.73e-07   .0011714    -0.00   0.998            0           .
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   2.82e+38          .        .       .            .           .
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   .0018375          .        .       .            .           .
+         1.chronic_kidney_disease |   1.340247   .4223453     0.93   0.353     .7226864    2.485534
+               1.organ_transplant |   349313.3          .        .       .            .           .
+                         1.spleen |   4.30e+27          .        .       .            .           .
+               1.ra_sle_psoriasis |   2.315716          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.90 /        1 =       0.9000
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5381
+                            Somers' D =   0.0763
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1391.6093
+Iteration 1:   log likelihood = -1385.1194
+Iteration 2:   log likelihood = -1381.8548
+Iteration 3:   log likelihood =  -1380.175
+Iteration 4:   log likelihood = -1379.1788
+Iteration 5:   log likelihood = -1378.6569
+Iteration 6:   log likelihood = -1378.4235
+Iteration 7:   log likelihood =  -1378.322
+Iteration 8:   log likelihood = -1378.2795
+Iteration 9:   log likelihood = -1378.2625
+Iteration 10:  log likelihood = -1378.2559
+Iteration 11:  log likelihood = -1378.2534
+Iteration 12:  log likelihood = -1378.2525
+Iteration 13:  log likelihood = -1378.2522
+Iteration 14:  log likelihood =  -1378.252
+Iteration 15:  log likelihood =  -1378.252
+Iteration 16:  log likelihood =  -1378.252
+Iteration 17:  log likelihood =  -1378.252
+Iteration 18:  log likelihood =  -1378.252
+Iteration 19:  log likelihood =  -1378.252
+Iteration 20:  log likelihood =  -1378.252
+Iteration 21:  log likelihood =  -1378.252
+Iteration 22:  log likelihood =  -1378.252
+Iteration 23:  log likelihood =  -1378.252
+Iteration 24:  log likelihood =  -1378.252
+Iteration 25:  log likelihood =  -1378.252
+Iteration 26:  log likelihood =  -1378.252
+Iteration 27:  log likelihood =  -1378.252
+Iteration 28:  log likelihood =  -1378.252
+Iteration 29:  log likelihood =  -1378.252
+Iteration 30:  log likelihood =  -1378.252
+Iteration 31:  log likelihood =  -1378.252
+Iteration 32:  log likelihood =  -1378.252
+Iteration 33:  log likelihood =  -1378.252
+Iteration 34:  log likelihood =  -1378.252
+Iteration 35:  log likelihood =  -1378.252
+Iteration 36:  log likelihood =  -1378.252
+Iteration 37:  log likelihood =  -1378.252
+Iteration 38:  log likelihood =  -1378.252
+Iteration 39:  log likelihood =  -1378.252
+Iteration 40:  log likelihood =  -1378.252
+Iteration 41:  log likelihood =  -1378.252
+Iteration 42:  log likelihood =  -1378.252
+Iteration 43:  log likelihood =  -1378.252
+Iteration 44:  log likelihood =  -1378.252
+Iteration 45:  log likelihood =  -1378.252
+Iteration 46:  log likelihood =  -1378.252
+Refining estimates:
+Iteration 0:   log likelihood =  -1378.252
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          173
+Time at risk    =       246085
+                                                LR chi2(9)       =       26.71
+Log likelihood  =    -1378.252                  Prob > chi2      =      0.0016
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                         agegroup |
+                          40-<50  |   2.95e-18          .        .       .            .           .
+                          50-<60  |   9.51e+12   9.59e+16     0.00   0.998            0           .
+                          60-<70  |   5.58e+12   5.64e+16     0.00   0.998            0           .
+                          70-<80  |    44.9635          .        .       .            .           .
+                             80+  |   1.50e-07          .        .       .            .           .
+                                  |
+                           1.male |   5.74e+23          .        .       .            .           .
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   .0157854   .0244289    -2.68   0.007     .0007603    .3277473
+                               3  |   3.13e-26          .        .       .            .           .
+                               4  |   .0132004   .0201055    -2.84   0.004      .000667     .261246
+                               5  |   .0092723          .        .       .            .           .
+                                  |
+                         1.bphigh |   1.10e-16   1.11e-12    -0.00   0.997            0           .
+    1.chronic_respiratory_disease |   1.61e+08   1.63e+12     0.00   0.999            0           .
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   1.02e+16   1.02e+20     0.00   0.997            0           .
+                       1.diabetes |    1867.28          .        .       .            .           .
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   2.78e+32   2.81e+36     0.01   0.994            0           .
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |    .000017          .        .       .            .           .
+         1.chronic_kidney_disease |   1.333391   .4209956     0.91   0.362     .7181337    2.475769
+               1.organ_transplant |   2123.081          .        .       .            .           .
+                         1.spleen |   6.48e+33          .        .       .            .           .
+               1.ra_sle_psoriasis |   3.66e+19          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      1.02 /        1 =       1.0160
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5385
+                            Somers' D =   0.0769
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 1.male omitted because of collinearity
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 5.ethnicity omitted because of collinearity
+note: 4.imd omitted because of collinearity
+note: 5.imd omitted because of collinearity
+note: 1.bphigh omitted because of collinearity
+note: 1.chronic_respiratory_disease omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 1.chronic_cardiac_disease omitted because of collinearity
+note: 1.diabetes omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.chronic_liver_disease omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+note: 0.other_neuro omitted because of collinearity
+note: 0.organ_transplant omitted because of collinearity
+note: 0.spleen omitted because of collinearity
+note: 0.ra_sle_psoriasis omitted because of collinearity
+Iteration 0:   log likelihood = -1359.8312
+Iteration 1:   log likelihood = -1359.0292
+Iteration 2:   log likelihood = -1357.7709
+Iteration 3:   log likelihood = -1357.5869
+Iteration 4:   log likelihood = -1357.5723
+Iteration 5:   log likelihood = -1357.5695
+Iteration 6:   log likelihood = -1357.5685
+Iteration 7:   log likelihood = -1357.5681
+Iteration 8:   log likelihood =  -1357.568
+Iteration 9:   log likelihood =  -1357.568
+Iteration 10:  log likelihood = -1357.5679
+Iteration 11:  log likelihood = -1357.5679
+Iteration 12:  log likelihood = -1357.5679
+Iteration 13:  log likelihood = -1357.5679
+Iteration 14:  log likelihood = -1357.5679
+Iteration 15:  log likelihood = -1357.5679
+Iteration 16:  log likelihood = -1357.5679
+Iteration 17:  log likelihood = -1357.5679
+Iteration 18:  log likelihood = -1357.5679
+Iteration 19:  log likelihood = -1357.5679
+Iteration 20:  log likelihood = -1357.5679
+Iteration 21:  log likelihood = -1357.5679
+Refining estimates:
+Iteration 0:   log likelihood = -1357.5679
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        2,978                  Number of obs    =       2,978
+No. of failures =          170
+Time at risk    =       235262
+                                                LR chi2(2)       =        4.53
+Log likelihood  =   -1357.5679                  Prob > chi2      =      0.1040
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   9810.603   205.0293   439.80   0.000     9416.872     10220.8
+                             age2 |   2.22e-13          .        .       .            .           .
+                             age3 |   2.09e+38          .        .       .            .           .
+                           1.male |          1  (omitted)
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                        ethnicity |
+                           Mixed  |          1  (omitted)
+                                  |
+                              imd |
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    0.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |   1.254761   .4090778     0.70   0.486     .6622958    2.377224
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               0.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.53 /        1 =       0.5290
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+
+         failure _d:  ituadmission
+   analysis time _t:  (stime_ituadmission-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5093
+                            Somers' D =   0.0186
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+      5,009  failures in single-failure-per-subject data
+  7,542,261  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        75
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1238.7736
+Iteration 1:   log likelihood = -1237.1342
+Iteration 2:   log likelihood = -1231.0069
+Iteration 3:   log likelihood = -1229.3354
+Iteration 4:   log likelihood = -1228.7109
+Iteration 5:   log likelihood = -1228.1479
+Iteration 6:   log likelihood = -1227.7326
+Iteration 7:   log likelihood = -1227.5114
+Iteration 8:   log likelihood = -1227.4479
+Iteration 9:   log likelihood = -1227.4407
+Iteration 10:  log likelihood = -1227.4401
+Iteration 11:  log likelihood = -1227.4398
+Iteration 12:  log likelihood = -1227.4398
+Iteration 13:  log likelihood = -1227.4397
+Iteration 14:  log likelihood = -1227.4397
+Iteration 15:  log likelihood = -1227.4397
+Iteration 16:  log likelihood = -1227.4397
+Iteration 17:  log likelihood = -1227.4397
+Iteration 18:  log likelihood = -1227.4397
+Iteration 19:  log likelihood = -1227.4397
+Iteration 20:  log likelihood = -1227.4397
+Iteration 21:  log likelihood = -1227.4397
+Iteration 22:  log likelihood = -1227.4397
+Iteration 23:  log likelihood = -1227.4397
+Iteration 24:  log likelihood = -1227.4397
+Iteration 25:  log likelihood = -1227.4397
+Iteration 26:  log likelihood = -1227.4397
+Iteration 27:  log likelihood = -1227.4397
+Iteration 28:  log likelihood = -1227.4397
+Iteration 29:  log likelihood = -1227.4397
+Iteration 30:  log likelihood = -1227.4397
+Iteration 31:  log likelihood = -1227.4397
+Iteration 32:  log likelihood = -1227.4397
+Iteration 33:  log likelihood = -1227.4397
+Iteration 34:  log likelihood = -1227.4397
+Iteration 35:  log likelihood = -1227.4397
+Iteration 36:  log likelihood = -1227.4397
+Iteration 37:  log likelihood = -1227.4397
+Iteration 38:  log likelihood = -1227.4397
+Iteration 39:  log likelihood = -1227.4397
+Iteration 40:  log likelihood = -1227.4397
+Iteration 41:  log likelihood = -1227.4397
+Iteration 42:  log likelihood = -1227.4397
+Iteration 43:  log likelihood = -1227.4397
+Iteration 44:  log likelihood = -1227.4397
+Iteration 45:  log likelihood = -1227.4397
+Iteration 46:  log likelihood = -1227.4397
+Refining estimates:
+Iteration 0:   log likelihood = -1227.4397
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          154
+Time at risk    =       233625
+                                                LR chi2(14)      =       22.67
+Log likelihood  =   -1227.4397                  Prob > chi2      =      0.0659
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |    15.9361   38.06329     1.16   0.246     .1476696    1719.779
+                             age2 |   .0076889   .0315018    -1.19   0.235     2.50e-06    23.61914
+                             age3 |   281513.5    2957174     1.19   0.232     .0003221    2.46e+14
+                           1.male |   2.268617   2.284864     0.81   0.416     .3151112    16.33272
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   5.70e+09   1.03e+10    12.46   0.000     1.66e+08    1.95e+11
+                               3  |   3.59e-10          .        .       .            .           .
+                               4  |   5.42e+09   1.30e+10     9.37   0.000     4.98e+07    5.90e+11
+                               5  |   5.72e+09   1.16e+10    11.08   0.000     1.07e+08    3.05e+11
+                                  |
+                         1.bphigh |   .6598564   .8899077    -0.31   0.758     .0469339    9.277107
+    1.chronic_respiratory_disease |   5.073149   5.214769     1.58   0.114     .6765722    38.04004
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   2.313906   2.280141     0.85   0.395     .3354018    15.96343
+                       1.diabetes |   2.007102   3.254189     0.43   0.667     .0836537    48.15637
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   2.63e+23   1.27e+25     1.12   0.263     2.76e-18    2.51e+64
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   14.32444   25.12122     1.52   0.129     .4605736     445.509
+         1.chronic_kidney_disease |   .5370538   .2727197    -1.22   0.221     .1985051    1.452994
+               1.organ_transplant |   2.48e+11          .        .       .            .           .
+                         1.spleen |   1.413683          .        .       .            .           .
+               1.ra_sle_psoriasis |   5.42e-20          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.95 /        1 =       0.9550
+file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5398
+                            Somers' D =   0.0796
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1238.7736
+Iteration 1:   log likelihood = -1235.7391
+Iteration 2:   log likelihood = -1228.6602
+Iteration 3:   log likelihood = -1226.2301
+Iteration 4:   log likelihood = -1225.4118
+Iteration 5:   log likelihood = -1225.0751
+Iteration 6:   log likelihood = -1224.9337
+Iteration 7:   log likelihood = -1224.8735
+Iteration 8:   log likelihood = -1224.8493
+Iteration 9:   log likelihood =   -1224.84
+Iteration 10:  log likelihood = -1224.8365
+Iteration 11:  log likelihood = -1224.8353
+Iteration 12:  log likelihood = -1224.8348
+Iteration 13:  log likelihood = -1224.8346
+Iteration 14:  log likelihood = -1224.8345
+Iteration 15:  log likelihood = -1224.8345
+Iteration 16:  log likelihood = -1224.8345
+Iteration 17:  log likelihood = -1224.8345
+Iteration 18:  log likelihood = -1224.8345
+Iteration 19:  log likelihood = -1224.8345
+Iteration 20:  log likelihood = -1224.8345
+Iteration 21:  log likelihood = -1224.8345
+Iteration 22:  log likelihood = -1224.8345
+Iteration 23:  log likelihood = -1224.8345
+Iteration 24:  log likelihood = -1224.8345
+Iteration 25:  log likelihood = -1224.8345
+Iteration 26:  log likelihood = -1224.8345
+Iteration 27:  log likelihood = -1224.8345
+Iteration 28:  log likelihood = -1224.8345
+Iteration 29:  log likelihood = -1224.8345
+Iteration 30:  log likelihood = -1224.8345
+Iteration 31:  log likelihood = -1224.8345
+Iteration 32:  log likelihood = -1224.8345
+Iteration 33:  log likelihood = -1224.8345
+Iteration 34:  log likelihood = -1224.8345
+Iteration 35:  log likelihood = -1224.8345
+Iteration 36:  log likelihood = -1224.8345
+Iteration 37:  log likelihood = -1224.8345
+Refining estimates:
+Iteration 0:   log likelihood = -1224.8345
+Iteration 1:   log likelihood = -1224.8345
+Iteration 2:   log likelihood = -1224.8345
+Iteration 3:   log likelihood = -1224.8345
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          154
+Time at risk    =       233625
+                                                LR chi2(17)      =       27.88
+Log likelihood  =   -1224.8345                  Prob > chi2      =      0.0464
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                         agegroup |
+                          40-<50  |   1.56e-08   4.318653    -0.00   1.000            0           .
+                          50-<60  |   5.92e+18   1.68e+23     0.00   0.999            0           .
+                          60-<70  |   1.52e-08   3.807066    -0.00   1.000            0           .
+                          70-<80  |   5.05e+08          .        .       .            .           .
+                             80+  |   1.65e+18   4.70e+22     0.00   0.999            0           .
+                                  |
+                           1.male |   3.550613   4.039401     1.11   0.265     .3818765    33.01291
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   1.78e+08   5.06e+12     0.00   0.999            0           .
+                               3  |   1.43e-17   2.44e-09    -0.00   1.000            0           .
+                               4  |   3.00e+08   8.53e+12     0.00   0.999            0           .
+                               5  |   1.61e+08   4.58e+12     0.00   0.999            0           .
+                                  |
+                         1.bphigh |   .5842677   .8302965    -0.38   0.705     .0360561    9.467716
+    1.chronic_respiratory_disease |   7.412518    8.56615     1.73   0.083     .7696429     71.3908
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   2.389276   2.385348     0.87   0.383     .3376478    16.90708
+                       1.diabetes |   2.539042   5.083352     0.47   0.642     .0501766     128.481
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   8.31e+17   2.36e+22     0.00   0.999            0           .
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   4.37e+10   1.24e+15     0.00   0.999            0           .
+         1.chronic_kidney_disease |   .5237918   .2670377    -1.27   0.205     .1928422    1.422706
+               1.organ_transplant |   6.58e+18          .        .       .            .           .
+                         1.spleen |   67.89873   1.07e+11     0.00   1.000            0           .
+               1.ra_sle_psoriasis |   2.88e-28   1.50e-19    -0.00   1.000            0           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      1.00 /        1 =       1.0050
+file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5471
+                            Somers' D =   0.0942
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 1.male omitted because of collinearity
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 5.ethnicity omitted because of collinearity
+note: 4.imd omitted because of collinearity
+note: 5.imd omitted because of collinearity
+note: 1.bphigh omitted because of collinearity
+note: 1.chronic_respiratory_disease omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 1.chronic_cardiac_disease omitted because of collinearity
+note: 1.diabetes omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.chronic_liver_disease omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+note: 0.other_neuro omitted because of collinearity
+note: 0.organ_transplant omitted because of collinearity
+note: 0.spleen omitted because of collinearity
+note: 0.ra_sle_psoriasis omitted because of collinearity
+Iteration 0:   log likelihood = -1175.8541
+Iteration 1:   log likelihood = -1174.9943
+Iteration 2:   log likelihood = -1174.9251
+Iteration 3:   log likelihood = -1174.9124
+Iteration 4:   log likelihood = -1174.9077
+Iteration 5:   log likelihood =  -1174.906
+Iteration 6:   log likelihood = -1174.9054
+Iteration 7:   log likelihood = -1174.9052
+Iteration 8:   log likelihood = -1174.9051
+Iteration 9:   log likelihood =  -1174.905
+Iteration 10:  log likelihood =  -1174.905
+Iteration 11:  log likelihood =  -1174.905
+Iteration 12:  log likelihood =  -1174.905
+Iteration 13:  log likelihood =  -1174.905
+Iteration 14:  log likelihood =  -1174.905
+Iteration 15:  log likelihood =  -1174.905
+Iteration 16:  log likelihood =  -1174.905
+Iteration 17:  log likelihood =  -1174.905
+Iteration 18:  log likelihood =  -1174.905
+Iteration 19:  log likelihood =  -1174.905
+Iteration 20:  log likelihood =  -1174.905
+Iteration 21:  log likelihood =  -1174.905
+Iteration 22:  log likelihood =  -1174.905
+Iteration 23:  log likelihood =  -1174.905
+Iteration 24:  log likelihood =  -1174.905
+Iteration 25:  log likelihood =  -1174.905
+Iteration 26:  log likelihood =  -1174.905
+Iteration 27:  log likelihood =  -1174.905
+Iteration 28:  log likelihood =  -1174.905
+Refining estimates:
+Iteration 0:   log likelihood =  -1174.905
+Iteration 1:   log likelihood =  -1174.905
+Iteration 2:   log likelihood =  -1174.905
+Iteration 3:   log likelihood =  -1174.905
+Iteration 4:   log likelihood =  -1174.905
+Iteration 5:   log likelihood =  -1174.905
+Iteration 6:   log likelihood =  -1174.905
+Iteration 7:   log likelihood =  -1174.905
+Iteration 8:   log likelihood =  -1174.905
+Iteration 9:   log likelihood =  -1174.905
+Iteration 10:  log likelihood =  -1174.905
+Iteration 11:  log likelihood =  -1174.905
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        2,978                  Number of obs    =       2,978
+No. of failures =          147
+Time at risk    =       223350
+                                                LR chi2(3)       =        1.90
+Log likelihood  =    -1174.905                  Prob > chi2      =      0.5938
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   .4019068          .        .       .            .           .
+                             age2 |   .8373188   1.45e+08    -0.00   1.000            0           .
+                             age3 |   16.84924   1.37e+10     0.00   1.000            0           .
+                           1.male |          1  (omitted)
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                        ethnicity |
+                           Mixed  |          1  (omitted)
+                                  |
+                              imd |
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    0.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |   .5580617   .2829064    -1.15   0.250     .2066189    1.507281
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               0.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.93 /        1 =       0.9280
+file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5113
+                            Somers' D =   0.0226
+
+                id:  patient_id
+     failure event:  onscoviddeath != 0 & onscoviddeath < .
+obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+      4,959  failures in single-failure-per-subject data
+  6,536,671  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        65
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1343.3454
+Iteration 1:   log likelihood = -1339.1248
+Iteration 2:   log likelihood = -1337.5681
+Iteration 3:   log likelihood = -1337.0579
+Iteration 4:   log likelihood =  -1336.896
+Iteration 5:   log likelihood = -1336.8412
+Iteration 6:   log likelihood = -1336.8247
+Iteration 7:   log likelihood = -1336.8197
+Iteration 8:   log likelihood = -1336.8179
+Iteration 9:   log likelihood = -1336.8173
+Iteration 10:  log likelihood =  -1336.817
+Iteration 11:  log likelihood = -1336.8169
+Iteration 12:  log likelihood = -1336.8169
+Iteration 13:  log likelihood = -1336.8169
+Iteration 14:  log likelihood = -1336.8169
+Iteration 15:  log likelihood = -1336.8169
+Iteration 16:  log likelihood = -1336.8169
+Iteration 17:  log likelihood = -1336.8169
+Iteration 18:  log likelihood = -1336.8169
+Iteration 19:  log likelihood = -1336.8169
+Iteration 20:  log likelihood = -1336.8169
+Iteration 21:  log likelihood = -1336.8169
+Iteration 22:  log likelihood = -1336.8169
+Iteration 23:  log likelihood = -1336.8169
+Iteration 24:  log likelihood = -1336.8169
+Iteration 25:  log likelihood = -1336.8169
+Iteration 26:  log likelihood = -1336.8169
+Iteration 27:  log likelihood = -1336.8169
+Iteration 28:  log likelihood = -1336.8169
+Iteration 29:  log likelihood = -1336.8169
+Iteration 30:  log likelihood = -1336.8169
+Iteration 31:  log likelihood = -1336.8169
+Iteration 32:  log likelihood = -1336.8169
+Iteration 33:  log likelihood = -1336.8169
+Iteration 34:  log likelihood = -1336.8169
+Iteration 35:  log likelihood = -1336.8169
+Iteration 36:  log likelihood = -1336.8169
+Iteration 37:  log likelihood = -1336.8169
+Iteration 38:  log likelihood = -1336.8169
+Iteration 39:  log likelihood = -1336.8169
+Iteration 40:  log likelihood = -1336.8169
+Iteration 41:  log likelihood = -1336.8169
+Iteration 42:  log likelihood = -1336.8169
+Iteration 43:  log likelihood = -1336.8169
+Iteration 44:  log likelihood = -1336.8169
+Refining estimates:
+Iteration 0:   log likelihood = -1336.8169
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          167
+Time at risk    =       202475
+                                                LR chi2(12)      =       13.06
+Log likelihood  =   -1336.8169                  Prob > chi2      =      0.3649
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   .9874939   .1078901    -0.12   0.908      .797141    1.223302
+                             age2 |   .9507949   .4191972    -0.11   0.909     .4006817    2.256183
+                             age3 |   .9119741   1.864896    -0.05   0.964     .0165714    50.18853
+                           1.male |   .3560729   .4482969    -0.82   0.412     .0301907    4.199567
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   7.91e+07   1.31e+08    10.98   0.000      3073341    2.03e+09
+                               3  |   5.19e+08   1.05e+09     9.89   0.000      9711123    2.77e+10
+                               4  |   .4653678          .        .       .            .           .
+                               5  |   1.80e+08   3.52e+08     9.70   0.000      3855027    8.38e+09
+                                  |
+                         1.bphigh |   .4513797   .6034603    -0.59   0.552     .0328511    6.202026
+    1.chronic_respiratory_disease |   5.855027   8.377971     1.24   0.217       .35444    96.71972
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |    1.24024    1.86858     0.14   0.886     .0647234    23.76565
+                       1.diabetes |   6.435231   8.029846     1.49   0.136     .5577499    74.24868
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   8.13e+07          .        .       .            .           .
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   3.75e-19          .        .       .            .           .
+         1.chronic_kidney_disease |   1.154986   .3961355     0.42   0.674     .5897022    2.262146
+               1.organ_transplant |   3.26e-09          .        .       .            .           .
+                         1.spleen |   6.10e-18          .        .       .            .           .
+               1.ra_sle_psoriasis |   9.17e-17          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.88 /        1 =       0.8770
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5274
+                            Somers' D =   0.0548
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+Iteration 0:   log likelihood = -1343.3454
+Iteration 1:   log likelihood = -1338.5626
+Iteration 2:   log likelihood = -1336.5893
+Iteration 3:   log likelihood = -1335.8807
+Iteration 4:   log likelihood = -1335.6162
+Iteration 5:   log likelihood = -1335.5182
+Iteration 6:   log likelihood = -1335.4818
+Iteration 7:   log likelihood = -1335.4682
+Iteration 8:   log likelihood = -1335.4632
+Iteration 9:   log likelihood = -1335.4614
+Iteration 10:  log likelihood = -1335.4607
+Iteration 11:  log likelihood = -1335.4605
+Iteration 12:  log likelihood = -1335.4604
+Iteration 13:  log likelihood = -1335.4604
+Iteration 14:  log likelihood = -1335.4603
+Iteration 15:  log likelihood = -1335.4603
+Iteration 16:  log likelihood = -1335.4603
+Iteration 17:  log likelihood = -1335.4603
+Iteration 18:  log likelihood = -1335.4603
+Iteration 19:  log likelihood = -1335.4603
+Iteration 20:  log likelihood = -1335.4603
+Iteration 21:  log likelihood = -1335.4603
+Iteration 22:  log likelihood = -1335.4603
+Iteration 23:  log likelihood = -1335.4603
+Iteration 24:  log likelihood = -1335.4603
+Iteration 25:  log likelihood = -1335.4603
+Iteration 26:  log likelihood = -1335.4603
+Iteration 27:  log likelihood = -1335.4603
+Iteration 28:  log likelihood = -1335.4603
+Iteration 29:  log likelihood = -1335.4603
+Iteration 30:  log likelihood = -1335.4603
+Iteration 31:  log likelihood = -1335.4603
+Iteration 32:  log likelihood = -1335.4603
+Iteration 33:  log likelihood = -1335.4603
+Iteration 34:  log likelihood = -1335.4603
+Refining estimates:
+Iteration 0:   log likelihood = -1335.4603
+Iteration 1:   log likelihood = -1335.4603
+Iteration 2:   log likelihood = -1335.4603
+Iteration 3:   log likelihood = -1335.4603
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        3,115                  Number of obs    =       3,115
+No. of failures =          167
+Time at risk    =       202475
+                                                LR chi2(18)      =       15.77
+Log likelihood  =   -1335.4603                  Prob > chi2      =      0.6086
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                         agegroup |
+                          40-<50  |   1.022133   1.448565     0.02   0.988     .0635604    16.43722
+                          50-<60  |   1.04e-16   7.94e-09    -0.00   1.000            0           .
+                          60-<70  |    .771423   1.195869    -0.17   0.867     .0369616    16.10033
+                          70-<80  |   8.12e-17   8.01e-09    -0.00   1.000            0           .
+                             80+  |   1.07e-16   7.56e-09    -0.00   1.000            0           .
+                                  |
+                           1.male |    .324513   .4114573    -0.89   0.375      .027038    3.894841
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |   3.15e+08          .        .       .            .           .
+                               3  |   1.64e+09   2.83e+09    12.28   0.000     5.55e+07    4.84e+10
+                               4  |   .5058888          .        .       .            .           .
+                               5  |   5.39e+08   9.47e+08    11.44   0.000     1.72e+07    1.69e+10
+                                  |
+                         1.bphigh |   .6089025   .7926263    -0.38   0.703     .0474803    7.808755
+    1.chronic_respiratory_disease |   5.104442   7.370621     1.13   0.259     .3011934    86.50696
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |   1.364298   2.178457     0.19   0.846     .0596684    31.19421
+                       1.diabetes |   5.273638   6.754125     1.30   0.194      .428497    64.90419
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |   2.38e+08   3.41e+08    13.47   0.000     1.44e+07    3.94e+09
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |   3.82e-16   4.52e-08    -0.00   1.000            0           .
+         1.chronic_kidney_disease |   1.156406   .3966867     0.42   0.672     .5903633    2.265174
+               1.organ_transplant |   5.06e+08   2.46e+17     0.00   1.000            0           .
+                         1.spleen |   2.23e-16   1.06e-07    -0.00   1.000            0           .
+               1.ra_sle_psoriasis |    1.27163   3.21e+08     0.00   1.000            0           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.93 /        1 =       0.9310
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5326
+                            Somers' D =   0.0651
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+note: 1.male omitted because of collinearity
+note: 0.obese40 omitted because of collinearity
+note: 0.currentsmoke omitted because of collinearity
+note: 5.ethnicity omitted because of collinearity
+note: 4.imd omitted because of collinearity
+note: 5.imd omitted because of collinearity
+note: 1.bphigh omitted because of collinearity
+note: 1.chronic_respiratory_disease omitted because of collinearity
+note: 0.asthma omitted because of collinearity
+note: 1.chronic_cardiac_disease omitted because of collinearity
+note: 1.diabetes omitted because of collinearity
+note: 0.cancer_exhaem_lastyr omitted because of collinearity
+note: 0.haemmalig_aanaem_bmtrans_lastyr omitted because of collinearity
+note: 1.chronic_liver_disease omitted because of collinearity
+note: 1.stroke_dementia omitted because of collinearity
+note: 0.other_neuro omitted because of collinearity
+note: 0.organ_transplant omitted because of collinearity
+note: 0.spleen omitted because of collinearity
+note: 0.ra_sle_psoriasis omitted because of collinearity
+Iteration 0:   log likelihood = -1303.8382
+Iteration 1:   log likelihood =  -1303.639
+Iteration 2:   log likelihood = -1303.6003
+Iteration 3:   log likelihood = -1303.5863
+Iteration 4:   log likelihood = -1303.5811
+Iteration 5:   log likelihood = -1303.5792
+Iteration 6:   log likelihood = -1303.5785
+Iteration 7:   log likelihood = -1303.5782
+Iteration 8:   log likelihood = -1303.5782
+Iteration 9:   log likelihood = -1303.5781
+Iteration 10:  log likelihood = -1303.5781
+Iteration 11:  log likelihood = -1303.5781
+Iteration 12:  log likelihood = -1303.5781
+Iteration 13:  log likelihood = -1303.5781
+Iteration 14:  log likelihood = -1303.5781
+Iteration 15:  log likelihood = -1303.5781
+Iteration 16:  log likelihood = -1303.5781
+Iteration 17:  log likelihood = -1303.5781
+Iteration 18:  log likelihood = -1303.5781
+Iteration 19:  log likelihood = -1303.5781
+Iteration 20:  log likelihood = -1303.5781
+Iteration 21:  log likelihood = -1303.5781
+Iteration 22:  log likelihood = -1303.5781
+Iteration 23:  log likelihood = -1303.5781
+Iteration 24:  log likelihood = -1303.5781
+Iteration 25:  log likelihood = -1303.5781
+Iteration 26:  log likelihood = -1303.5781
+Iteration 27:  log likelihood = -1303.5781
+Iteration 28:  log likelihood = -1303.5781
+Iteration 29:  log likelihood = -1303.5781
+Iteration 30:  log likelihood = -1303.5781
+Iteration 31:  log likelihood = -1303.5781
+Iteration 32:  log likelihood = -1303.5781
+Iteration 33:  log likelihood = -1303.5781
+Refining estimates:
+Iteration 0:   log likelihood = -1303.5781
+Iteration 1:   log likelihood = -1303.5781
+Iteration 2:   log likelihood = -1303.5781
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =        2,978                  Number of obs    =       2,978
+No. of failures =          163
+Time at risk    =       193570
+                                                LR chi2(3)       =        0.52
+Log likelihood  =   -1303.5781                  Prob > chi2      =      0.9144
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   .5665212          .        .       .            .           .
+                             age2 |   .3905036    9441351    -0.00   1.000            0           .
+                             age3 |   122.7377   1.50e+10     0.00   1.000            0           .
+                           1.male |          1  (omitted)
+                        0.obese40 |          1  (omitted)
+                   0.currentsmoke |          1  (omitted)
+                                  |
+                        ethnicity |
+                           Mixed  |          1  (omitted)
+                                  |
+                              imd |
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         0.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           0.cancer_exhaem_lastyr |          1  (omitted)
+0.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    0.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |    1.16595   .3998455     0.45   0.654     .5953508    2.283427
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               0.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+   1:      0.80 /        1 =       0.8030
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+
+                          Harrell's C =   0.5045
+                            Somers' D =   0.0090
+
+. 
+. * Close log file  (bootstrapping likely to take a while)
+. log close
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
+  log type:  text
+ closed on:  23 Apr 2020, 11:08:18
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
