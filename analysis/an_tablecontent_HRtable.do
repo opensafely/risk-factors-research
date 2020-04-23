@@ -54,9 +54,9 @@ local endwith "_tab"
 		***********************
 		*2) WRITE THE HRs TO THE OUTPUT FILE
 		
-		lincom `i'.`variable', eform
-		file write tablecontents %4.2f (r(estimate)) (" (") %4.2f (r(lb)) ("-") %4.2f (r(ub)) (")") `endwith'
-		
+		cap lincom `i'.`variable', eform
+		if _rc==0 file write tablecontents %4.2f (r(estimate)) (" (") %4.2f (r(lb)) ("-") %4.2f (r(ub)) (")") `endwith'
+			else file write tablecontents %4.2f ("ERROR") `endwith'
 		} /*min adj, full adj*/
 		
 	} /*outcomes*/
@@ -77,8 +77,9 @@ cap file close tablecontents
 file open tablecontents using ./output/an_tablecontents_HRtable.txt, t w replace 
 
 *Age group
+outputHRsforvar, variable(agegroup) min(1) max(2)
 refline
-outputHRsforvar, variable(agegroup) min(2) max(6)
+outputHRsforvar, variable(agegroup) min(4) max(6)
 file write tablecontents _n _n
 
 *Sex 

@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models.log
   log type:  text
- opened on:  23 Apr 2020, 13:04:41
+ opened on:  23 Apr 2020, 19:25:50
 
 . 
 . use egdata, clear
@@ -34,7 +34,7 @@
 . *****************
 . 
 . 
-. foreach outcome of any /*ecdsevent*/ ituadmission cpnsdeath onscoviddeath{
+. foreach outcome of any /*ecdsevent*/ cpnsdeath onscoviddeath ituadmission {
   2. 
 .         stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
   3. 
@@ -49,7 +49,7 @@
  10.         else di "WARNING - AGESPL SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
  11. 
 . 
-.         capture stcox i.agegroup i.male, strata(stp) 
+.         capture stcox ib3.agegroup i.male, strata(stp) 
  12.         if _rc==0 {
  13.                 estimates
  14.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_`var', replace
@@ -97,6 +97,460 @@
  31.                 } /*end of looping round vars for 1 var at a time models*/
  32. 
 . } /*end of looping round outcomes*/
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+          1  failure in single-failure-per-subject data
+  7,542,261  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        75
+WARNING - AGESPL SEX vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      7542261
+                                                LR chi2(6)       =        3.35
+Log likelihood  =   -9.8435783                  Prob > chi2      =      0.7638
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     18-<40  |   3.99e+14   1.51e+22     0.00   1.000            0           .
+     40-<50  |   .0260511    5890529    -0.00   1.000            0           .
+     60-<70  |   .0245052    6289598    -0.00   1.000            0           .
+     70-<80  |   .0238532    6527509    -0.00   1.000            0           .
+        80+  |   .0142476    2690243    -0.00   1.000            0           .
+             |
+      1.male |   3.73e-16   2.81e-08    -0.00   1.000            0           .
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGEGROUPSEX_.ster saved
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |    100,567 -11.51858  -9.843578       6    31.68716   88.79863
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       10,382                  Number of obs    =      10,382
+No. of failures =            0
+Time at risk    =       778650
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+---------------------------------------------------------------------------------------
+                   _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------+----------------------------------------------------------------
+                 age1 |          1  (omitted)
+                 age2 |          1  (omitted)
+                 age3 |          1  (omitted)
+                 male |          1  (omitted)
+                      |
+               bmicat |
+ Underweight (<18.5)  |          1  (omitted)
+Overweight (25-29.9)  |          1  (omitted)
+   Obese I (30-34.9)  |          1  (omitted)
+  Obese II (35-39.9)  |          1  (omitted)
+     Obese III (40+)  |          1  (omitted)
+---------------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_bmicat.ster saved
+   1:      0.39 /        1 =       0.3870
+WARNING - obese40 vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.46 /        1 =       2.4650
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       42,017                  Number of obs    =      42,017
+No. of failures =            0
+Time at risk    =      3151275
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+       smoke |
+    Current  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_smoke.ster saved
+   1:      0.74 /        1 =       0.7360
+WARNING - currentsmoke vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.81 /        1 =       2.8070
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       20,585                  Number of obs    =      20,585
+No. of failures =            0
+Time at risk    =      1543875
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+   ethnicity |
+South Asian  |          1  (omitted)
+      Black  |          1  (omitted)
+      Other  |          1  (omitted)
+      Mixed  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_ethnicity.ster saved
+   1:      0.65 /        1 =       0.6530
+WARNING - imd vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.33 /        1 =       2.3290
+WARNING - bpcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.96 /        1 =       1.9590
+WARNING - bphigh vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.17 /        1 =       2.1700
+WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      3.15 /        1 =       3.1540
+WARNING - asthma vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.83 /        1 =       1.8320
+WARNING - chronic_cardiac_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.43 /        1 =       2.4320
+WARNING - diabetes vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.76 /        1 =       2.7580
+WARNING - cancer_exhaem_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.69 /        1 =       1.6880
+WARNING - haemmalig_aanaem_bmtrans_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.46 /        1 =       1.4590
+WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.54 /        1 =       1.5410
+WARNING - stroke_dementia vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.68 /        1 =       1.6800
+WARNING - other_neuro vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.63 /        1 =       2.6270
+WARNING - chronic_kidney_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.45 /        1 =       1.4510
+WARNING - organ_transplant vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.39 /        1 =       1.3930
+WARNING - spleen vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.73 /        1 =       2.7290
+WARNING - ra_sle_psoriasis vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      1.90 /        1 =       1.9010
+
+                id:  patient_id
+     failure event:  onscoviddeath != 0 & onscoviddeath < .
+obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+          1  failure in single-failure-per-subject data
+  6,536,671  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        65
+WARNING - AGESPL SEX vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      6536671
+                                                LR chi2(6)       =        3.75
+Log likelihood  =   -9.6438745                  Prob > chi2      =      0.7105
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     18-<40  |   .0060373    1439351    -0.00   1.000            0           .
+     40-<50  |   .0095391    3244011    -0.00   1.000            0           .
+     60-<70  |   .0089799    3473052    -0.00   1.000            0           .
+     70-<80  |   .0087446    3608611    -0.00   1.000            0           .
+        80+  |   4.12e+14   1.26e+22     0.00   1.000            0           .
+             |
+      1.male |   4.80e-16   3.72e-08    -0.00   1.000            0           .
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGEGROUPSEX_.ster saved
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |    100,567 -11.51858  -9.643875       6    31.28775   88.39923
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       10,382                  Number of obs    =      10,382
+No. of failures =            0
+Time at risk    =       674830
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+---------------------------------------------------------------------------------------
+                   _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------+----------------------------------------------------------------
+                 age1 |          1  (omitted)
+                 age2 |          1  (omitted)
+                 age3 |          1  (omitted)
+                 male |          1  (omitted)
+                      |
+               bmicat |
+ Underweight (<18.5)  |          1  (omitted)
+Overweight (25-29.9)  |          1  (omitted)
+   Obese I (30-34.9)  |          1  (omitted)
+  Obese II (35-39.9)  |          1  (omitted)
+     Obese III (40+)  |          1  (omitted)
+---------------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_bmicat.ster saved
+   1:      0.38 /        1 =       0.3840
+WARNING - obese40 vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.29 /        1 =       2.2880
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       42,017                  Number of obs    =      42,017
+No. of failures =            0
+Time at risk    =      2731105
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+       smoke |
+    Current  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_smoke.ster saved
+   1:      0.59 /        1 =       0.5930
+WARNING - currentsmoke vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.68 /        1 =       2.6800
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       20,585                  Number of obs    =      20,585
+No. of failures =            0
+Time at risk    =      1338025
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+        male |          1  (omitted)
+             |
+   ethnicity |
+South Asian  |          1  (omitted)
+      Black  |          1  (omitted)
+      Other  |          1  (omitted)
+      Mixed  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ethnicity.ster saved
+   1:      0.42 /        1 =       0.4170
+WARNING - imd vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.37 /        1 =       2.3650
+WARNING - bpcat vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.99 /        1 =       2.9900
+WARNING - bphigh vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.44 /        1 =       2.4390
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      6536671
+                                                LR chi2(0)       =       11.39
+Log likelihood  =   -5.8257957                  Prob > chi2      =           .
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   5.37e-18          .        .       .            .           .
+                         age2 |   6.01e+58          .        .       .            .           .
+                         age3 |   1.4e-185          .        .       .            .           .
+                         male |   .0001861          .        .       .            .           .
+1.chronic_respiratory_disease |   .0002695          .        .       .            .           .
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_respiratory_disease.ster saved
+   1:     12.66 /        1 =      12.6620
+WARNING - asthma vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.27 /        1 =       2.2650
+WARNING - chronic_cardiac_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.48 /        1 =       2.4780
+WARNING - diabetes vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      3.59 /        1 =       3.5920
+WARNING - cancer_exhaem_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.32 /        1 =       2.3170
+WARNING - haemmalig_aanaem_bmtrans_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.38 /        1 =       2.3830
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      6536671
+                                                LR chi2(0)       =       11.49
+Log likelihood  =   -5.7737484                  Prob > chi2      =           .
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |   5.02e-18          .        .       .            .           .
+                   age2 |   7.53e+58          .        .       .            .           .
+                   age3 |   8.1e-186          .        .       .            .           .
+                   male |   .0001727          .        .       .            .           .
+1.chronic_liver_disease |   .4158238          .        .       .            .           .
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_liver_disease.ster saved
+   1:     19.98 /        1 =      19.9790
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      6536671
+                                                LR chi2(0)       =       11.40
+Log likelihood  =   -5.8197689                  Prob > chi2      =           .
+
+-----------------------------------------------------------------------------------
+               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             age1 |   5.29e-18          .        .       .            .           .
+             age2 |   6.36e+58          .        .       .            .           .
+             age3 |   1.2e-185          .        .       .            .           .
+             male |   .0001687          .        .       .            .           .
+1.stroke_dementia |   .0040918          .        .       .            .           .
+-----------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_stroke_dementia.ster saved
+   1:     18.06 /        1 =      18.0600
+WARNING - other_neuro vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.20 /        1 =       2.2030
+WARNING - chronic_kidney_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      2.20 /        1 =       2.2030
+WARNING - organ_transplant vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      3.36 /        1 =       3.3630
+WARNING - spleen vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
+   1:      3.20 /        1 =       3.1960
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =      100,567                  Number of obs    =     100,567
+No. of failures =            1
+Time at risk    =      6536671
+                                                LR chi2(0)       =       11.45
+Log likelihood  =   -5.7955207                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   4.95e-18          .        .       .            .           .
+              age2 |   8.24e+58          .        .       .            .           .
+              age3 |   5.6e-186          .        .       .            .           .
+              male |   .0001813          .        .       .            .           .
+1.ra_sle_psoriasis |   .0002009          .        .       .            .           .
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ra_sle_psoriasis.ster saved
+   1:     17.74 /        1 =      17.7370
 
                 id:  patient_id
      failure event:  ituadmission != 0 & ituadmission < .
@@ -166,11 +620,11 @@ Log likelihood  =   -52.566254                  Prob > chi2      =      0.0181
           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
     agegroup |
-     40-<50  |   .5351198   .6212102    -0.54   0.590      .054993    5.207082
-     50-<60  |   9.99e-21          .        .       .            .           .
-     60-<70  |   4.36e-20          .        .       .            .           .
-     70-<80  |   4.45e-20          .        .       .            .           .
-        80+  |   .5146748     .59517    -0.57   0.566     .0533585    4.964351
+     18-<40  |   2.79e+10   3.23e+10    20.80   0.000     2.90e+09    2.69e+11
+     40-<50  |   1.49e+10   2.13e+10    16.43   0.000     9.14e+08    2.44e+11
+     60-<70  |   1.22e-09          .        .       .            .           .
+     70-<80  |   1.24e-09          .        .       .            .           .
+        80+  |   1.44e+10          .        .       .            .           .
              |
       1.male |   7.956822   8.973897     1.84   0.066     .8724367    72.56803
 ------------------------------------------------------------------------------
@@ -186,7 +640,7 @@ Akaike's information criterion and Bayesian information criterion
 -----------------------------------------------------------------------------
                Note: N=Obs used in calculating BIC; see [R] BIC note.
 WARNING - bmicat vs ituadmission MODEL DID NOT SUCCESSFULLY FIT
-   1:      0.39 /        1 =       0.3900
+   1:      0.29 /        1 =       0.2880
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -211,7 +665,7 @@ Log likelihood  =   -53.802105                  Prob > chi2      =      0.1082
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_obese40.ster saved
-   1:      3.43 /        1 =       3.4320
+   1:      2.33 /        1 =       2.3270
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -238,7 +692,7 @@ Log likelihood  =   -19.203432                  Prob > chi2      =      0.5243
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_smoke.ster saved
-   1:      1.67 /        1 =       1.6730
+   1:      1.26 /        1 =       1.2640
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -263,7 +717,7 @@ Log likelihood  =    -53.04174                  Prob > chi2      =      0.1051
 --------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_currentsmoke.ster saved
-   1:      1.36 /        1 =       1.3560
+   1:      1.18 /        1 =       1.1830
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -293,7 +747,7 @@ South Asian  |          1  (omitted)
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_ethnicity.ster saved
-   1:      0.57 /        1 =       0.5680
+   1:      0.42 /        1 =       0.4200
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -323,7 +777,7 @@ Log likelihood  =   -48.240878                  Prob > chi2      =      0.0023
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_imd.ster saved
-   1:      3.93 /        1 =       3.9260
+   1:      3.05 /        1 =       3.0510
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -352,7 +806,7 @@ High, stage II  |   3.26e-20          .        .       .            .           
 ---------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_bpcat.ster saved
-   1:      3.65 /        1 =       3.6460
+   1:      2.86 /        1 =       2.8610
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -377,7 +831,7 @@ Log likelihood  =   -53.435187                  Prob > chi2      =      0.1397
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_bphigh.ster saved
-   1:      1.75 /        1 =       1.7540
+   1:      1.14 /        1 =       1.1430
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -402,7 +856,7 @@ Log likelihood  =   -53.759243                  Prob > chi2      =      0.1046
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_respiratory_disease.ster saved
-   1:      3.13 /        1 =       3.1320
+   1:      2.40 /        1 =       2.3990
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -427,7 +881,7 @@ Log likelihood  =   -53.801222                  Prob > chi2      =      0.1081
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_asthma.ster saved
-   1:      2.98 /        1 =       2.9780
+   1:      2.34 /        1 =       2.3400
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -452,7 +906,7 @@ Log likelihood  =   -52.427458                  Prob > chi2      =      0.0664
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_cardiac_disease.ster saved
-   1:      1.55 /        1 =       1.5510
+   1:      1.19 /        1 =       1.1860
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -477,7 +931,7 @@ Log likelihood  =   -53.804498                  Prob > chi2      =      0.1812
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_diabetes.ster saved
-   1:      1.45 /        1 =       1.4500
+   1:      1.28 /        1 =       1.2780
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -502,7 +956,7 @@ Log likelihood  =   -53.805785                  Prob > chi2      =      0.1085
 ----------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_cancer_exhaem_lastyr.ster saved
-   1:      2.90 /        1 =       2.8980
+   1:      2.22 /        1 =       2.2160
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -527,7 +981,7 @@ Log likelihood  =   -53.805803                  Prob > chi2      =      0.1085
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_haemmalig_aanaem_bmtrans_lastyr.ster saved
-   1:      2.67 /        1 =       2.6690
+   1:      2.17 /        1 =       2.1650
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -552,7 +1006,7 @@ Log likelihood  =   -53.439832                  Prob > chi2      =      0.0810
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_liver_disease.ster saved
-   1:      2.69 /        1 =       2.6930
+   1:      2.49 /        1 =       2.4920
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -577,7 +1031,7 @@ Log likelihood  =   -53.416085                  Prob > chi2      =      0.0795
 -----------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_stroke_dementia.ster saved
-   1:      2.75 /        1 =       2.7470
+   1:      2.38 /        1 =       2.3850
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -602,7 +1056,7 @@ Log likelihood  =   -53.790296                  Prob > chi2      =      0.1072
 -------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_other_neuro.ster saved
-   1:      2.71 /        1 =       2.7100
+   1:      2.25 /        1 =       2.2500
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -627,7 +1081,7 @@ Log likelihood  =   -53.548219                  Prob > chi2      =      0.0884
 ------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_kidney_disease.ster saved
-   1:      2.57 /        1 =       2.5690
+   1:      2.47 /        1 =       2.4670
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -652,7 +1106,7 @@ Log likelihood  =   -53.805015                  Prob > chi2      =      0.1084
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_organ_transplant.ster saved
-   1:      2.31 /        1 =       2.3150
+   1:      2.20 /        1 =       2.2020
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -677,7 +1131,7 @@ Log likelihood  =   -53.472692                  Prob > chi2      =      0.0832
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_spleen.ster saved
-   1:      2.53 /        1 =       2.5260
+   1:      2.43 /        1 =       2.4330
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -702,461 +1156,7 @@ Log likelihood  =   -53.769841                  Prob > chi2      =      0.1054
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_ra_sle_psoriasis.ster saved
-   1:      2.63 /        1 =       2.6340
-
-                id:  patient_id
-     failure event:  cpnsdeath != 0 & cpnsdeath < .
-obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
- enter on or after:  time enter_date
- exit on or before:  failure
-    t for analysis:  (time-origin)
-            origin:  time enter_date
-
-------------------------------------------------------------------------------
-    100,570  total observations
-          3  observations end on or before enter()
-------------------------------------------------------------------------------
-    100,567  observations remaining, representing
-    100,567  subjects
-          1  failure in single-failure-per-subject data
-  7,542,261  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        75
-WARNING - AGESPL SEX vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      7542261
-                                                LR chi2(6)       =        3.35
-Log likelihood  =   -9.8435783                  Prob > chi2      =      0.7638
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-    agegroup |
-     40-<50  |   6.52e-17   1.45e-08    -0.00   1.000            0           .
-     50-<60  |   1.25e-16   1.96e-08    -0.00   1.000            0           .
-     60-<70  |   6.14e-17   1.56e-08    -0.00   1.000            0           .
-     70-<80  |   5.97e-17   1.62e-08    -0.00   1.000            0           .
-        80+  |   3.57e-17   6.60e-09    -0.00   1.000            0           .
-             |
-      1.male |   3.73e-16   2.81e-08    -0.00   1.000            0           .
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGEGROUPSEX_.ster saved
-
-Akaike's information criterion and Bayesian information criterion
-
------------------------------------------------------------------------------
-       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
--------------+---------------------------------------------------------------
-           . |    100,567 -11.51858  -9.843578       6    31.68716   88.79863
------------------------------------------------------------------------------
-               Note: N=Obs used in calculating BIC; see [R] BIC note.
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       10,382                  Number of obs    =      10,382
-No. of failures =            0
-Time at risk    =       778650
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
----------------------------------------------------------------------------------------
-                   _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------+----------------------------------------------------------------
-                 age1 |          1  (omitted)
-                 age2 |          1  (omitted)
-                 age3 |          1  (omitted)
-                 male |          1  (omitted)
-                      |
-               bmicat |
- Underweight (<18.5)  |          1  (omitted)
-Overweight (25-29.9)  |          1  (omitted)
-   Obese I (30-34.9)  |          1  (omitted)
-  Obese II (35-39.9)  |          1  (omitted)
-     Obese III (40+)  |          1  (omitted)
----------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_bmicat.ster saved
-   1:      0.35 /        1 =       0.3510
-WARNING - obese40 vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.39 /        1 =       1.3940
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       42,017                  Number of obs    =      42,017
-No. of failures =            0
-Time at risk    =      3151275
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        age1 |          1  (omitted)
-        age2 |          1  (omitted)
-        age3 |          1  (omitted)
-        male |          1  (omitted)
-             |
-       smoke |
-    Current  |          1  (omitted)
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_smoke.ster saved
-   1:      0.67 /        1 =       0.6650
-WARNING - currentsmoke vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.13 /        1 =       2.1280
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       20,585                  Number of obs    =      20,585
-No. of failures =            0
-Time at risk    =      1543875
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        age1 |          1  (omitted)
-        age2 |          1  (omitted)
-        age3 |          1  (omitted)
-        male |          1  (omitted)
-             |
-   ethnicity |
-South Asian  |          1  (omitted)
-      Black  |          1  (omitted)
-      Other  |          1  (omitted)
-      Mixed  |          1  (omitted)
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_ethnicity.ster saved
-   1:      0.46 /        1 =       0.4570
-WARNING - imd vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.88 /        1 =       1.8770
-WARNING - bpcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.67 /        1 =       1.6720
-WARNING - bphigh vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.73 /        1 =       1.7320
-WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.79 /        1 =       2.7920
-WARNING - asthma vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.45 /        1 =       1.4520
-WARNING - chronic_cardiac_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.91 /        1 =       1.9060
-WARNING - diabetes vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.24 /        1 =       2.2360
-WARNING - cancer_exhaem_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.36 /        1 =       1.3650
-WARNING - haemmalig_aanaem_bmtrans_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.68 /        1 =       1.6770
-WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.77 /        1 =       1.7690
-WARNING - stroke_dementia vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.70 /        1 =       1.7040
-WARNING - other_neuro vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.77 /        1 =       2.7750
-WARNING - chronic_kidney_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.55 /        1 =       1.5480
-WARNING - organ_transplant vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.41 /        1 =       1.4110
-WARNING - spleen vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.69 /        1 =       2.6860
-WARNING - ra_sle_psoriasis vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.05 /        1 =       2.0530
-
-                id:  patient_id
-     failure event:  onscoviddeath != 0 & onscoviddeath < .
-obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
- enter on or after:  time enter_date
- exit on or before:  failure
-    t for analysis:  (time-origin)
-            origin:  time enter_date
-
-------------------------------------------------------------------------------
-    100,570  total observations
-          3  observations end on or before enter()
-------------------------------------------------------------------------------
-    100,567  observations remaining, representing
-    100,567  subjects
-          1  failure in single-failure-per-subject data
-  6,536,671  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        65
-WARNING - AGESPL SEX vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      6536671
-                                                LR chi2(6)       =        3.75
-Log likelihood  =   -9.6438745                  Prob > chi2      =      0.7105
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-    agegroup |
-     40-<50  |   .0289395    9851939    -0.00   1.000            0           .
-     50-<60  |   .0555654   1.34e+07    -0.00   1.000            0           .
-     60-<70  |   .0272429   1.05e+07    -0.00   1.000            0           .
-     70-<80  |   .0265292   1.10e+07    -0.00   1.000            0           .
-        80+  |   1.25e+15   4.29e+22     0.00   1.000            0           .
-             |
-      1.male |   4.80e-16   3.72e-08    -0.00   1.000            0           .
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGEGROUPSEX_.ster saved
-
-Akaike's information criterion and Bayesian information criterion
-
------------------------------------------------------------------------------
-       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
--------------+---------------------------------------------------------------
-           . |    100,567 -11.51858  -9.643875       6    31.28775   88.39923
------------------------------------------------------------------------------
-               Note: N=Obs used in calculating BIC; see [R] BIC note.
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       10,382                  Number of obs    =      10,382
-No. of failures =            0
-Time at risk    =       674830
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
----------------------------------------------------------------------------------------
-                   _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-----------------------+----------------------------------------------------------------
-                 age1 |          1  (omitted)
-                 age2 |          1  (omitted)
-                 age3 |          1  (omitted)
-                 male |          1  (omitted)
-                      |
-               bmicat |
- Underweight (<18.5)  |          1  (omitted)
-Overweight (25-29.9)  |          1  (omitted)
-   Obese I (30-34.9)  |          1  (omitted)
-  Obese II (35-39.9)  |          1  (omitted)
-     Obese III (40+)  |          1  (omitted)
----------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_bmicat.ster saved
-   1:      0.37 /        1 =       0.3680
-WARNING - obese40 vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.25 /        1 =       2.2500
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       42,017                  Number of obs    =      42,017
-No. of failures =            0
-Time at risk    =      2731105
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        age1 |          1  (omitted)
-        age2 |          1  (omitted)
-        age3 |          1  (omitted)
-        male |          1  (omitted)
-             |
-       smoke |
-    Current  |          1  (omitted)
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_smoke.ster saved
-   1:      0.65 /        1 =       0.6540
-WARNING - currentsmoke vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.80 /        1 =       2.8000
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =       20,585                  Number of obs    =      20,585
-No. of failures =            0
-Time at risk    =      1338025
-                                                LR chi2(0)       =        0.00
-Log likelihood  =            0                  Prob > chi2      =           .
-
-------------------------------------------------------------------------------
-          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        age1 |          1  (omitted)
-        age2 |          1  (omitted)
-        age3 |          1  (omitted)
-        male |          1  (omitted)
-             |
-   ethnicity |
-South Asian  |          1  (omitted)
-      Black  |          1  (omitted)
-      Other  |          1  (omitted)
-      Mixed  |          1  (omitted)
-------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ethnicity.ster saved
-   1:      0.57 /        1 =       0.5720
-WARNING - imd vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.84 /        1 =       2.8400
-WARNING - bpcat vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.12 /        1 =       3.1180
-WARNING - bphigh vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.65 /        1 =       2.6510
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      6536671
-                                                LR chi2(0)       =       11.39
-Log likelihood  =   -5.8257957                  Prob > chi2      =           .
-
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   5.37e-18          .        .       .            .           .
-                         age2 |   6.01e+58          .        .       .            .           .
-                         age3 |   1.4e-185          .        .       .            .           .
-                         male |   .0001861          .        .       .            .           .
-1.chronic_respiratory_disease |   .0002695          .        .       .            .           .
------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_respiratory_disease.ster saved
-   1:     13.38 /        1 =      13.3750
-WARNING - asthma vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.45 /        1 =       2.4500
-WARNING - chronic_cardiac_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.06 /        1 =       3.0550
-WARNING - diabetes vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.67 /        1 =       3.6730
-WARNING - cancer_exhaem_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.74 /        1 =       2.7380
-WARNING - haemmalig_aanaem_bmtrans_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.44 /        1 =       2.4440
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      6536671
-                                                LR chi2(0)       =       11.49
-Log likelihood  =   -5.7737484                  Prob > chi2      =           .
-
------------------------------------------------------------------------------------------
-                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------+----------------------------------------------------------------
-                   age1 |   5.02e-18          .        .       .            .           .
-                   age2 |   7.53e+58          .        .       .            .           .
-                   age3 |   8.1e-186          .        .       .            .           .
-                   male |   .0001727          .        .       .            .           .
-1.chronic_liver_disease |   .4158238          .        .       .            .           .
------------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_liver_disease.ster saved
-   1:     20.88 /        1 =      20.8750
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      6536671
-                                                LR chi2(0)       =       11.40
-Log likelihood  =   -5.8197689                  Prob > chi2      =           .
-
------------------------------------------------------------------------------------
-               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------+----------------------------------------------------------------
-             age1 |   5.29e-18          .        .       .            .           .
-             age2 |   6.36e+58          .        .       .            .           .
-             age3 |   1.2e-185          .        .       .            .           .
-             male |   .0001687          .        .       .            .           .
-1.stroke_dementia |   .0040918          .        .       .            .           .
------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_stroke_dementia.ster saved
-   1:     19.94 /        1 =      19.9360
-WARNING - other_neuro vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.50 /        1 =       2.4970
-WARNING - chronic_kidney_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.58 /        1 =       2.5850
-WARNING - organ_transplant vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.92 /        1 =       3.9250
-WARNING - spleen vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.95 /        1 =       3.9500
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- no ties
-
-No. of subjects =      100,567                  Number of obs    =     100,567
-No. of failures =            1
-Time at risk    =      6536671
-                                                LR chi2(0)       =       11.45
-Log likelihood  =   -5.7955207                  Prob > chi2      =           .
-
-------------------------------------------------------------------------------------
-                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------------+----------------------------------------------------------------
-              age1 |   4.95e-18          .        .       .            .           .
-              age2 |   8.24e+58          .        .       .            .           .
-              age3 |   5.6e-186          .        .       .            .           .
-              male |   .0001813          .        .       .            .           .
-1.ra_sle_psoriasis |   .0002009          .        .       .            .           .
-------------------------------------------------------------------------------------
-                                                             Stratified by stp
-file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ra_sle_psoriasis.ster saved
-   1:     18.62 /        1 =      18.6160
+   1:      2.34 /        1 =       2.3420
 
 . 
 . 
@@ -1167,5 +1167,5 @@ file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ra_sle_ps
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models.log
   log type:  text
- closed on:  23 Apr 2020, 13:08:20
+ closed on:  23 Apr 2020, 19:29:14
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

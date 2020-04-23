@@ -53,7 +53,7 @@ timer off 1
 *****************
 
 
-foreach outcome of any /*ecdsevent*/ ituadmission cpnsdeath onscoviddeath{
+foreach outcome of any /*ecdsevent*/ cpnsdeath onscoviddeath ituadmission {
 
 	stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
@@ -68,7 +68,7 @@ foreach outcome of any /*ecdsevent*/ ituadmission cpnsdeath onscoviddeath{
 	else di "WARNING - AGESPL SEX vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
 
 
-	capture stcox i.agegroup i.male, strata(stp) 
+	capture stcox ib3.agegroup i.male, strata(stp) 
 	if _rc==0 {
 		estimates
 		estimates save ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_`var', replace
