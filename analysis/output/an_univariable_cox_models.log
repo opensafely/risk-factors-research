@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models.log
   log type:  text
- opened on:  23 Apr 2020, 19:25:50
+ opened on:  23 Apr 2020, 19:50:25
 
 . 
 . use egdata, clear
@@ -184,9 +184,9 @@ Overweight (25-29.9)  |          1  (omitted)
 ---------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_bmicat.ster saved
-   1:      0.39 /        1 =       0.3870
+   1:      0.40 /        1 =       0.4030
 WARNING - obese40 vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.46 /        1 =       2.4650
+   1:      1.71 /        1 =       1.7070
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -213,9 +213,9 @@ Log likelihood  =            0                  Prob > chi2      =           .
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_smoke.ster saved
-   1:      0.74 /        1 =       0.7360
+   1:      0.76 /        1 =       0.7560
 WARNING - currentsmoke vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.81 /        1 =       2.8070
+   1:      2.51 /        1 =       2.5060
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -245,39 +245,39 @@ South Asian  |          1  (omitted)
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESPLSEX_ethnicity.ster saved
-   1:      0.65 /        1 =       0.6530
+   1:      0.51 /        1 =       0.5120
 WARNING - imd vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.33 /        1 =       2.3290
+   1:      2.35 /        1 =       2.3510
 WARNING - bpcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.96 /        1 =       1.9590
+   1:      1.99 /        1 =       1.9890
 WARNING - bphigh vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.17 /        1 =       2.1700
+   1:      2.04 /        1 =       2.0450
 WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.15 /        1 =       3.1540
+   1:      3.15 /        1 =       3.1450
 WARNING - asthma vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.83 /        1 =       1.8320
+   1:      1.69 /        1 =       1.6910
 WARNING - chronic_cardiac_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.43 /        1 =       2.4320
+   1:      2.14 /        1 =       2.1380
 WARNING - diabetes vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.76 /        1 =       2.7580
+   1:      2.83 /        1 =       2.8350
 WARNING - cancer_exhaem_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.69 /        1 =       1.6880
+   1:      1.82 /        1 =       1.8200
 WARNING - haemmalig_aanaem_bmtrans_lastyr vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.46 /        1 =       1.4590
+   1:      1.72 /        1 =       1.7230
 WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.54 /        1 =       1.5410
+   1:      2.00 /        1 =       1.9980
 WARNING - stroke_dementia vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.68 /        1 =       1.6800
+   1:      2.23 /        1 =       2.2250
 WARNING - other_neuro vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.63 /        1 =       2.6270
+   1:      2.54 /        1 =       2.5360
 WARNING - chronic_kidney_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.45 /        1 =       1.4510
+   1:      1.36 /        1 =       1.3560
 WARNING - organ_transplant vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.39 /        1 =       1.3930
+   1:      1.32 /        1 =       1.3230
 WARNING - spleen vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.73 /        1 =       2.7290
+   1:      2.47 /        1 =       2.4660
 WARNING - ra_sle_psoriasis vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      1.90 /        1 =       1.9010
+   1:      1.74 /        1 =       1.7410
 
                 id:  patient_id
      failure event:  onscoviddeath != 0 & onscoviddeath < .
@@ -365,9 +365,9 @@ Overweight (25-29.9)  |          1  (omitted)
 ---------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_bmicat.ster saved
-   1:      0.38 /        1 =       0.3840
+   1:      0.36 /        1 =       0.3560
 WARNING - obese40 vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.29 /        1 =       2.2880
+   1:      2.19 /        1 =       2.1950
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -394,9 +394,9 @@ Log likelihood  =            0                  Prob > chi2      =           .
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_smoke.ster saved
-   1:      0.59 /        1 =       0.5930
+   1:      0.66 /        1 =       0.6550
 WARNING - currentsmoke vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.68 /        1 =       2.6800
+   1:      2.61 /        1 =       2.6140
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -426,13 +426,13 @@ South Asian  |          1  (omitted)
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ethnicity.ster saved
-   1:      0.42 /        1 =       0.4170
+   1:      0.47 /        1 =       0.4730
 WARNING - imd vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.37 /        1 =       2.3650
+   1:      2.69 /        1 =       2.6860
 WARNING - bpcat vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.99 /        1 =       2.9900
+   1:      3.55 /        1 =       3.5490
 WARNING - bphigh vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.44 /        1 =       2.4390
+   1:      2.49 /        1 =       2.4860
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -457,17 +457,17 @@ Log likelihood  =   -5.8257957                  Prob > chi2      =           .
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_respiratory_disease.ster saved
-   1:     12.66 /        1 =      12.6620
+   1:     12.57 /        1 =      12.5750
 WARNING - asthma vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.27 /        1 =       2.2650
+   1:      2.50 /        1 =       2.5020
 WARNING - chronic_cardiac_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.48 /        1 =       2.4780
+   1:      3.15 /        1 =       3.1490
 WARNING - diabetes vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.59 /        1 =       3.5920
+   1:      4.16 /        1 =       4.1590
 WARNING - cancer_exhaem_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.32 /        1 =       2.3170
+   1:      2.26 /        1 =       2.2560
 WARNING - haemmalig_aanaem_bmtrans_lastyr vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.38 /        1 =       2.3830
+   1:      2.65 /        1 =       2.6470
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -492,7 +492,7 @@ Log likelihood  =   -5.7737484                  Prob > chi2      =           .
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_chronic_liver_disease.ster saved
-   1:     19.98 /        1 =      19.9790
+   1:     18.90 /        1 =      18.9040
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -517,15 +517,15 @@ Log likelihood  =   -5.8197689                  Prob > chi2      =           .
 -----------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_stroke_dementia.ster saved
-   1:     18.06 /        1 =      18.0600
+   1:     17.96 /        1 =      17.9590
 WARNING - other_neuro vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.20 /        1 =       2.2030
+   1:      2.26 /        1 =       2.2580
 WARNING - chronic_kidney_disease vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      2.20 /        1 =       2.2030
+   1:      2.23 /        1 =       2.2270
 WARNING - organ_transplant vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.36 /        1 =       3.3630
+   1:      3.19 /        1 =       3.1890
 WARNING - spleen vs onscoviddeath MODEL DID NOT SUCCESSFULLY FIT
-   1:      3.20 /        1 =       3.1960
+   1:      3.16 /        1 =       3.1640
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -550,7 +550,7 @@ Log likelihood  =   -5.7955207                  Prob > chi2      =           .
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESPLSEX_ra_sle_psoriasis.ster saved
-   1:     17.74 /        1 =      17.7370
+   1:     16.68 /        1 =      16.6800
 
                 id:  patient_id
      failure event:  ituadmission != 0 & ituadmission < .
@@ -640,7 +640,7 @@ Akaike's information criterion and Bayesian information criterion
 -----------------------------------------------------------------------------
                Note: N=Obs used in calculating BIC; see [R] BIC note.
 WARNING - bmicat vs ituadmission MODEL DID NOT SUCCESSFULLY FIT
-   1:      0.29 /        1 =       0.2880
+   1:      0.30 /        1 =       0.3040
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -665,7 +665,7 @@ Log likelihood  =   -53.802105                  Prob > chi2      =      0.1082
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_obese40.ster saved
-   1:      2.33 /        1 =       2.3270
+   1:      2.42 /        1 =       2.4160
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -692,7 +692,7 @@ Log likelihood  =   -19.203432                  Prob > chi2      =      0.5243
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_smoke.ster saved
-   1:      1.26 /        1 =       1.2640
+   1:      1.21 /        1 =       1.2120
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -717,7 +717,7 @@ Log likelihood  =    -53.04174                  Prob > chi2      =      0.1051
 --------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_currentsmoke.ster saved
-   1:      1.18 /        1 =       1.1830
+   1:      1.27 /        1 =       1.2730
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -747,7 +747,7 @@ South Asian  |          1  (omitted)
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_ethnicity.ster saved
-   1:      0.42 /        1 =       0.4200
+   1:      0.52 /        1 =       0.5190
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -777,7 +777,7 @@ Log likelihood  =   -48.240878                  Prob > chi2      =      0.0023
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_imd.ster saved
-   1:      3.05 /        1 =       3.0510
+   1:      3.10 /        1 =       3.1030
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -806,7 +806,7 @@ High, stage II  |   3.26e-20          .        .       .            .           
 ---------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_bpcat.ster saved
-   1:      2.86 /        1 =       2.8610
+   1:      2.83 /        1 =       2.8290
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -831,7 +831,7 @@ Log likelihood  =   -53.435187                  Prob > chi2      =      0.1397
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_bphigh.ster saved
-   1:      1.14 /        1 =       1.1430
+   1:      1.15 /        1 =       1.1510
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -856,7 +856,7 @@ Log likelihood  =   -53.759243                  Prob > chi2      =      0.1046
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_respiratory_disease.ster saved
-   1:      2.40 /        1 =       2.3990
+   1:      2.32 /        1 =       2.3200
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -881,7 +881,7 @@ Log likelihood  =   -53.801222                  Prob > chi2      =      0.1081
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_asthma.ster saved
-   1:      2.34 /        1 =       2.3400
+   1:      2.29 /        1 =       2.2880
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -906,7 +906,7 @@ Log likelihood  =   -52.427458                  Prob > chi2      =      0.0664
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_cardiac_disease.ster saved
-   1:      1.19 /        1 =       1.1860
+   1:      1.13 /        1 =       1.1270
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -931,7 +931,7 @@ Log likelihood  =   -53.804498                  Prob > chi2      =      0.1812
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_diabetes.ster saved
-   1:      1.28 /        1 =       1.2780
+   1:      1.24 /        1 =       1.2390
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -956,7 +956,7 @@ Log likelihood  =   -53.805785                  Prob > chi2      =      0.1085
 ----------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_cancer_exhaem_lastyr.ster saved
-   1:      2.22 /        1 =       2.2160
+   1:      2.17 /        1 =       2.1720
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -981,7 +981,7 @@ Log likelihood  =   -53.805803                  Prob > chi2      =      0.1085
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_haemmalig_aanaem_bmtrans_lastyr.ster saved
-   1:      2.17 /        1 =       2.1650
+   1:      2.16 /        1 =       2.1620
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1006,7 +1006,7 @@ Log likelihood  =   -53.439832                  Prob > chi2      =      0.0810
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_liver_disease.ster saved
-   1:      2.49 /        1 =       2.4920
+   1:      2.38 /        1 =       2.3810
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1031,7 +1031,7 @@ Log likelihood  =   -53.416085                  Prob > chi2      =      0.0795
 -----------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_stroke_dementia.ster saved
-   1:      2.38 /        1 =       2.3850
+   1:      2.37 /        1 =       2.3680
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1056,7 +1056,7 @@ Log likelihood  =   -53.790296                  Prob > chi2      =      0.1072
 -------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_other_neuro.ster saved
-   1:      2.25 /        1 =       2.2500
+   1:      2.33 /        1 =       2.3340
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1081,7 +1081,7 @@ Log likelihood  =   -53.548219                  Prob > chi2      =      0.0884
 ------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_chronic_kidney_disease.ster saved
-   1:      2.47 /        1 =       2.4670
+   1:      2.44 /        1 =       2.4400
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1106,7 +1106,7 @@ Log likelihood  =   -53.805015                  Prob > chi2      =      0.1084
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_organ_transplant.ster saved
-   1:      2.20 /        1 =       2.2020
+   1:      2.24 /        1 =       2.2390
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1131,7 +1131,7 @@ Log likelihood  =   -53.472692                  Prob > chi2      =      0.0832
 ------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_spleen.ster saved
-   1:      2.43 /        1 =       2.4330
+   1:      2.57 /        1 =       2.5700
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -1156,7 +1156,7 @@ Log likelihood  =   -53.769841                  Prob > chi2      =      0.1054
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_ra_sle_psoriasis.ster saved
-   1:      2.34 /        1 =       2.3420
+   1:      2.29 /        1 =       2.2950
 
 . 
 . 
@@ -1167,5 +1167,5 @@ file ./output/models/an_univariable_cox_models_ituadmission_AGESPLSEX_ra_sle_pso
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models.log
   log type:  text
- closed on:  23 Apr 2020, 19:29:14
+ closed on:  23 Apr 2020, 19:53:48
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

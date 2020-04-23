@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
   log type:  text
- opened on:  23 Apr 2020, 19:29:14
+ opened on:  23 Apr 2020, 19:53:48
 
 . 
 . use egdata, clear
@@ -147,9 +147,9 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        75
-   1:      6.94 /        1 =       6.9390
+   1:      6.86 /        1 =       6.8630
 WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
-   1:     14.27 /        1 =      14.2650
+   1:     12.83 /        1 =      12.8280
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -200,7 +200,7 @@ Log likelihood  =   -7.2977683                  Prob > chi2      =      0.9976
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-   1:      0.74 /        1 =       0.7440
+   1:      0.76 /        1 =       0.7580
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -253,7 +253,7 @@ Log likelihood  =            0                  Prob > chi2      =           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
-   1:      0.67 /        1 =       0.6740
+   1:      0.69 /        1 =       0.6890
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -320,9 +320,9 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        65
-   1:     12.92 /        1 =      12.9180
+   1:     12.65 /        1 =      12.6490
 WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME onscoviddeath)
-   1:     14.69 /        1 =      14.6860
+   1:     13.96 /        1 =      13.9610
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -373,7 +373,7 @@ Log likelihood  =   -6.7776466                  Prob > chi2      =      0.9852
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-   1:      0.71 /        1 =       0.7110
+   1:      0.77 /        1 =       0.7690
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -426,7 +426,7 @@ Log likelihood  =            0                  Prob > chi2      =           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
-   1:      0.69 /        1 =       0.6920
+   1:      0.70 /        1 =       0.6970
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -493,7 +493,7 @@ obs. time interval:  (stime_ituadmission[_n-1], stime_ituadmission]
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        79
-   1:     17.14 /        1 =      17.1390
+   1:     16.65 /        1 =      16.6520
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -540,7 +540,7 @@ Log likelihood  =   -40.822786                  Prob > chi2      =      0.0001
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
-   1:     19.84 /        1 =      19.8410
+   1:     18.26 /        1 =      18.2640
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -591,7 +591,7 @@ Log likelihood  =   -40.353236                  Prob > chi2      =      0.0000
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
-   1:      0.76 /        1 =       0.7580
+   1:      0.74 /        1 =       0.7430
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -644,7 +644,7 @@ Log likelihood  =            0                  Prob > chi2      =           .
 ---------------------------------------------------------------------------------------------------
                                                              Stratified by stp
 file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
-   1:      0.70 /        1 =       0.6970
+   1:      0.69 /        1 =       0.6940
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 active results
@@ -698,5 +698,5 @@ file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_a
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models.log
   log type:  text
- closed on:  23 Apr 2020, 19:30:47
+ closed on:  23 Apr 2020, 19:55:16
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
