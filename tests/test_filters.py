@@ -1,4 +1,5 @@
 import csv
+import subprocess
 import tempfile
 
 import pytest
@@ -798,12 +799,10 @@ def test_patient_random_sample():
     session.commit()
 
     study = StudyDefinition(population=patients.random_sample(percent=20))
-    with tempfile.NamedTemporaryFile(mode="w+") as f:
-        study.to_csv(f.name)
-        results = study.to_dicts()
-        # The method is approximate!
-        expected = sample_size * 0.2
-        assert abs(len(results) - expected) < (expected * 0.1)
+    results = study.to_dicts()
+    # The method is approximate!
+    expected = sample_size * 0.2
+    assert abs(len(results) - expected) < (expected * 0.1)
 
 
 def test_patients_satisfying():
@@ -833,6 +832,7 @@ def test_patients_satisfying():
 
 def test_patients_satisfying_with_hidden_columns():
     condition_code = "ASTHMA"
+    condition_code2 = "COPD"
     session = make_session()
     patient_1 = Patient(DateOfBirth="1940-01-01", Sex="M")
     patient_2 = Patient(DateOfBirth="1940-01-01", Sex="F")
@@ -841,7 +841,14 @@ def test_patients_satisfying_with_hidden_columns():
     patient_4.CodedEvents.append(
         CodedEvent(CTV3Code=condition_code, ConsultationDate="2010-01-01")
     )
-    session.add_all([patient_1, patient_2, patient_3, patient_4])
+    patient_5 = Patient(DateOfBirth="1940-01-01", Sex="F")
+    patient_5.CodedEvents.append(
+        CodedEvent(CTV3Code=condition_code, ConsultationDate="2010-01-01")
+    )
+    patient_5.CodedEvents.append(
+        CodedEvent(CTV3Code=condition_code2, ConsultationDate="2010-01-01")
+    )
+    session.add_all([patient_1, patient_2, patient_3, patient_4, patient_5])
     session.commit()
     study = StudyDefinition(
         population=patients.all(),
@@ -851,15 +858,18 @@ def test_patients_satisfying_with_hidden_columns():
             """
             (age > 70 AND sex = "M")
             OR
-            has_asthma
+            (has_asthma AND NOT copd)
             """,
             has_asthma=patients.with_these_clinical_events(
                 codelist([condition_code], "ctv3")
             ),
+            copd=patients.with_these_clinical_events(
+                codelist([condition_code2], "ctv3")
+            ),
         ),
     )
     results = study.to_dicts()
-    assert [i["at_risk"] for i in results] == ["1", "0", "0", "1"]
+    assert [i["at_risk"] for i in results] == ["1", "0", "0", "1", "0"]
     assert "has_asthma" not in results[0].keys()
 
 
@@ -1185,3 +1195,39 @@ def test_filter_codes_by_category():
     filtered = filter_codes_by_category(codes, include=["B", "C"])
     assert filtered.system == codes.system
     assert filtered == [("2", "B"), ("4", "C")]
+
+
+def test_to_sql_passes():
+    session = make_session()
+    patient = Patient(DateOfBirth="1950-01-01")
+    patient.CodedEvents.append(
+        CodedEvent(CTV3Code="XYZ", NumericValue=50, ConsultationDate="2002-06-01")
+    )
+    session.add(patient)
+    session.commit()
+
+    study = StudyDefinition(
+        population=patients.with_these_clinical_events(codelist(["XYZ"], "ctv3"))
+    )
+    sql = "SET NOCOUNT ON; "  # don't output count after table output
+    sql += study.to_sql()
+    db_dict = study.get_db_dict()
+    cmd = [
+        "sqlcmd",
+        "-S",
+        db_dict["hostname"] + "," + str(db_dict["port"]),
+        "-d",
+        db_dict["database"],
+        "-U",
+        db_dict["username"],
+        "-P",
+        db_dict["password"],
+        "-Q",
+        sql,
+        "-W",  # strip whitespace
+    ]
+    result = subprocess.run(
+        cmd, capture_output=True, check=True, encoding="utf8"
+    ).stdout
+    patient_id = result.splitlines()[-1]
+    assert patient_id == str(patient.Patient_ID)
