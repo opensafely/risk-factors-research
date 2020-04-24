@@ -6,6 +6,18 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
+aplastic_codes = codelist_from_csv(
+    "codelists/aplastic.csv", system="ctv3", column="CTV3ID")
+
+hiv_codes = codelist_from_csv(
+    "codelists/hiv.csv", system="ctv3", column="CTV3ID")
+
+permanent_immune_codes = codelist_from_csv(
+    "codelists/permanent-immune.csv", system="ctv3", column="CTV3ID")
+
+temp_immune_codes = codelist_from_csv(
+    "codelists/temporary-immune.csv", system="ctv3", column="CTV3ID")
+
 stroke = codelist_from_csv(
     "codelists/stroke.csv", system="ctv3", column="CTV3ID")
 
@@ -235,7 +247,7 @@ study = StudyDefinition(
     ),
     haem_cancer=patients.with_these_clinical_events(
         haem_cancer_codes,
-        return_first_date_in_period=True,
+        between=['2019-02-01', '2020-02-01'],
         include_month=True,
     ),
     other_cancer=patients.with_these_clinical_events(
@@ -245,12 +257,12 @@ study = StudyDefinition(
     ),
     bone_marrow_transplant=patients.with_these_clinical_events(
         bone_marrow_transplant_codes,
-        return_first_date_in_period=True,
+        between=['2019-02-01', '2020-02-01'],
         include_month=True,
     ),
     chemo_radio_therapy=patients.with_these_clinical_events(
         chemo_radio_therapy_codes,
-        return_first_date_in_period=True,
+        between=['2019-02-01', '2020-02-01'],
         include_month=True,
     ),
 
@@ -316,23 +328,23 @@ study = StudyDefinition(
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-        return_first_date_in_period=True,
+        aplastic_codes, 
+        between=['2019-02-01', '2020-02-01'],
         include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        hiv_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    genetic_immunodeficiency=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    permanent_immunodeficiency=patients.with_these_clinical_events(
+        permanent_immune_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    immunosuppression_nos=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
-        return_first_date_in_period=True,
+    temporary_immunodeficiency=patients.with_these_clinical_events(
+        temp_immune_codes,
+        between=['2019-02-01', '2020-02-01'],
         include_month=True,
     ),
 

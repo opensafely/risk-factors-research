@@ -1,0 +1,191 @@
+CTV3ID,CTV3PreferredTermDesc
+C390y,Other specified deficiency of humoral immunity
+C390z,Deficiency of humoral immunity NOS
+C391.,Deficiencies of cell-mediated immunity
+C391z,Deficiency of cell-mediated immunity NOS
+C393.,Unspecified immunity deficiency
+Cyu00,[X]Other immunodeficiencies+predominantly antibody defects
+Cyu05,[X]Other specified immunodeficiency disorders
+D401z,Polymorphonuclear neutrophil disorder NOS
+X20GZ,Immunodeficiency disorder
+X20HE,T-lymphocyte deficiency
+XaYgn,Immune reconstitution syndrome
+XE11u,Deficiencies of humoral immunity
+XE11w,Predominantly T-cell immuno-deficiency NOS
+C30yy,(Adenosine deamin def) or (oth sp disturb amino acid metab)
+C3760,C1 esterase inhibitor deficiency
+C390.,(Deficiencies of humoral immunity) or (agammaglobulinaemia)
+C3901,Selective immunoglobulin A deficiency
+C3902,Selective immunoglobulin M deficiency
+C3903,Selective immunoglobulin G deficiency
+C3904,Other selective immunoglobulin deficiency
+C3905,Hypogammaglob:[cong][agammaglob:(Brut)(cong sex-link & [X])]
+C3906,Hyperimmunoglobulin M syndrome
+C3907,Common variable immunodeficiency
+C3909,Agammaglobulinaemia NEC
+C390A,Dysimmunoglobulinaemia NEC
+C3910,Cellular immunity syndr (& T-lymphocyte deficiency [& NOS])
+C3911,DiGeorge syndrome
+C3912,Wiskott-Aldrich syndrome
+C3913,Nezelof's syndrome
+C392.,Combined T-cell and B-cell immunodeficiency
+C3920,Autosomal recessive severe combined immunodeficiency
+C3921,(Severe combined immunodefic) or (Swiss agammaglobulinaemia)
+C3922,Thymic aplasia or dysplasia with immunodeficiency
+C3923,Severe combined immunodefiency with reticular dysgenesis
+C3924,Severe combined immunodef with low T- and B-cell numbers
+C3925,Severe combined immunodef with low or normal B-cell numbers
+C3928,Major histocompatibility complex class I deficiency
+C3929,Major histocompatibility complex class II deficiency
+C392z,Combined immunity deficiency NOS
+C396.,Immunodef follow hereditary defect respon Epstein-Barr vir
+C3980,Com var immunodef with predom abn B-cell numbers and functns
+C3981,Common var immunodef predom immunoregulatory T-cell disorder
+C3982,Common variable immunodef wth autoantibod to B- or T-cells
+C39y0,Lymphocyte function antigen-1 defect
+Cyu01,[X]Other combined immunodeficiency disorders
+Cyu02,[X]Immunodeficiency associatd+other specified major defects
+Cyu03,"[X]Immunodeficiency associated+major defect, unspecified"
+Cyu04,[X]Other common variable immunodeficiencies
+D2016,Pancytopenia: [with malformation]/[with pancreatitis]/[NOS]
+D4001,Primary splenic neutropenia
+D4005,Congenital: [neutropenia] or [agranulocytosis NEC]
+D4009,Cyclical neutropenia
+D401.,(Funct dis polymorph neutroph)(Job's)(fam lipochr histiocyt)
+D4010,Congenital dysphagocytosis
+D402.,(Anomaly: [genet leucocyt][epon vars]) or (Ched-Higash synd)
+F14y0,Ataxia telangiectasia
+M15y3,Complement 5 dysfunction
+X20CO,Pancytopenia with pancreatitis
+X20Da,Congenital agranulocytosis NEC
+X20Db,X-linked hypogammaglobulinaemia
+X20De,Chronic idiopathic neutropenia
+X20Df,Severe congenital neutropenia
+X20Dk,Myelokathexis
+X20Dl,Metabolic neutropenia
+X20Dn,Autoimmune neutropenia
+X20Dv,Chediak-Higashi syndrome
+X20Dw,Hyperimmunoglobulin E syndrome
+X20Dx,CR3-receptor deficiency
+X20Dy,Specific granule deficiency
+X20E0,Chronic granulomatous disease
+X20E1,Myeloperoxidase deficiency
+X20E4,Hereditary hypersegmentation
+X20Ga,Primary immunodeficiency
+X20Gb,Agammaglobulinaemia
+X20Gc,X-linked agammaglobulinaemia
+X20Gd,X-linked agammaglobulinaemia with growth hormone deficiency
+X20Ge,Autosomal agammaglobulinaemia with absent B-cells
+X20Gf,Selective immunoglobulin dysfunction
+X20Gg,X-linked hyperimmunoglobulin M syndrome
+X20Gh,Autosomal recessive hyperimmunoglobulin M syndrome
+X20Gj,Hyperimmunoglobulin D with periodic fever
+X20Gk,Immunoglobulin heavy chain deficiency
+X20Gn,Selective immunoglobulin M and immunoglobulin A deficiency
+X20Go,Immunoglobulin light chain deficiency
+X20Gp,Kappa light chain deficiency
+X20Gq,Lambda light chain deficiency
+X20Gr,Immunoglobulin subclass deficiency
+X20Gt,Immunoglobulin G2 deficiency
+X20Gu,Combined immunoglobulin G2 and G4 deficiency
+X20Gv,Immunoglobulin G3 deficiency
+X20Gw,Immunoglobulin G4 deficiency
+X20Gx,Immunoglobulin G1 deficiency
+X20Gy,Immunoglobulin A1 deficiency
+X20Gz,Immunoglobulin A2 deficiency
+X20H0,Immunoglobulin-associated molecule deficiency
+X20H1,Secretory piece deficiency
+X20H2,Defective immunoglobulin glycosylation
+X20Ha,Schwachman's syndrome
+X20Hb,Defective phagocytic cell adhesion
+X20Hc,Leucocyte adhesion deficiency - type 1
+X20Hd,Leucocyte adhesion deficiency - type 2
+X20Hf,Tuftsin deficiency
+X20HF,Chronic mucocutaneous candidiasis
+X20Hg,Defective phagocytic cell killing
+X20HH,Combined immunodeficiency with maturation pathway defect
+X20HI,Reticular dysgenesis
+X20Hi,Leucocyte glucose-6-phosphate dehydrogenase deficiency
+X20HJ,X-linked severe combined immunodeficiency
+X20HK,Severe combined immunodeficiency with short-limbed dwarfism
+X20Hk,Neutrophil lactoferrin deficiency
+X20HL,Bare lymphocyte syndrome
+X20Hl,Neutrophil secondary granule deficiency
+X20HM,Familial erythrophagocytic lymphohistiocytosis
+X20Hm,Gluthathione synthetase deficiency
+X20HN,Severe comb immunodeficiency with maternofetal engraftment
+X20Hn,Gluthathione peroxidase deficiency
+X20HO,"Warts, hypogammaglobulinaemia, infections, and myelokathexis"
+X20Hp,Combined phagocytic defect
+X20Ht,Classical complement pathway abnormality
+X20HU,Chronic familial neutropaenia
+X20Hu,Complement 1q deficiency
+X20HV,Lipochrome histiocytosis - familial
+X20Hv,Complement 1q beta chain deficiency
+X20HW,Defective phagocytic cell opsonisation
+X20Hw,Complement 1q dysfunction
+X20HX,Mannan-binding protein deficiency
+X20Hx,Complement 1r deficiency
+X20HY,Defective phagocytic cell chemotaxis
+X20Hy,Complement 1s deficiency
+X20HZ,Lazy leucocyte syndrome
+X20Hz,Complement 2 deficiency
+X20I0,Complement 4 deficiency
+X20I1,Complement 4A deficiency
+X20I2,Complement 4B deficiency
+X20I3,Complement 3 deficiency
+X20I4,Alternative pathway deficiency
+X20I5,Properdin deficiency
+X20I6,Factor B deficiency
+X20I7,Factor D deficiency
+X20I8,Terminal component deficiency
+X20I9,Complement 5 deficiency
+X20Ia,Chromosome 18 syndromes and antibody deficiency
+X20IB,Complement 6 deficiency
+X20Ib,Chromosome 22 abnormalities with hypogammaglobulinaemia
+X20IC,Complement 7 deficiency
+X20Ic,Monosomy 22 and absence of immunoglobulin A
+X20ID,Combined complement 6 and 7 deficiencies
+X20Id,Deletion of X-chromosome and hypogammaglobulinaemia
+X20IE,Complement 8 beta chain deficiency
+X20Ie,"Microcephaly, normal intelligence and immunodeficiency"
+X20IF,Complement 8 beta chain dysfunction
+X20If,"Triple X syndrome, epilepsy, and hypogammaglobulinaemia"
+X20IG,Complement 8 alpha-gamma deficiency
+X20Ig,18-p syndrome with associated immunodeficiency
+X20IH,Complement 9 deficiency
+X20Ih,Immunodeficiency with multiple organ system abnormalities
+X20II,Complement regulatory factor defect
+X20IJ,Hereditary C1 esterase inhibitor defic - deficient factor
+X20Ij,Partial albinism with immunodeficiency
+X20IK,Hereditary C1 esterase inhib defic - dysfunctional factor
+X20Ik,X-linked lymphoproliferative syndrome
+X20IL,Factor I deficiency
+X20IM,Factor H deficiency
+X20IN,Complement 4 binding protein deficiency
+X20IO,Decay accelerating factor deficiency
+X20IP,Homologous restriction factor deficiency
+X20IQ,Complement 5a inhibitor deficiency
+X20IR,Anaphylotoxin inactivator deficiency
+X20IS,Complement receptor deficiency
+X20IT,Complement receptor 1 deficiency
+X20IU,Complement receptor 3 deficiency
+X20IV,Immunodeficiency with major anomalies
+X20IW,Immunodeficiency associated with chromosomal abnormality
+X20IY,Bloom syndrome
+X20IZ,"Centromeric instability of chromosomes 1,9+16 + immunodefic"
+X20RX,Familial chronic mucocutaneous candidiasis
+X40Ua,Adenosine deaminase deficiency
+X40Uc,Purine nucleoside phosphorylase deficiency
+X70Qz,Familial chronic mucocutaneous candidiasis - late onset type
+X70R0,Chronic localised mucocutaneous candidiasis
+X70R1,Chronic diffuse mucocutaneous candidiasis
+X789w,Immuno-osseous dysplasia
+Xa9Az,Phagocytic cell dysfunction
+XaA0r,"Metaphys chondrodysplas, McKusick type with assoc immunodef"
+XE11v,Congenital hypogammaglobulinaemia
+XE13a,Agammaglobulinaemia &/or hypo-gammaglobulinaemia
+XE14B,Chronic idiopathic neutropaenia
+XE14F,Congenital neutropenia
+XE14H,Functional disorders of polymorphonuclear neutrophils
+8C31.,Transplant immunosuppression
