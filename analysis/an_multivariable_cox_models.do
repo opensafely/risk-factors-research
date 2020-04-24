@@ -21,12 +21,22 @@
 *
 ********************************************************************************
 
+local outcome `1' 
 
+
+************************************************************************************
+*First clean up all old saved estimates for this outcome
+*This is to guard against accidentally displaying left-behind results from old runs
+************************************************************************************
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth.ster
 
 
 * Open a log file
 capture log close
-log using "./output/an_multivariable_cox_models", text replace
+log using "./output/an_multivariable_cox_models_`outcome'", text replace
 
 use egdata, clear
 
@@ -75,7 +85,6 @@ end
 *************************************************************************************
 
 
-foreach outcome of any /*ecdsevent*/ cpnsdeath onscoviddeath ituadmission {
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
@@ -111,7 +120,7 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0) if("if ethnicity<.")
 if _rc==0{
 estimates
-estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
@@ -145,7 +154,6 @@ stbrier age1 age2 age3 male 											///
 */
 ************************************************************************
 
-} /*end of looping round outcomes*/
 
 * Close log file  (bootstrapping likely to take a while)
 log close
