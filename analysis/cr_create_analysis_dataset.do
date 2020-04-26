@@ -161,9 +161,8 @@ gen onscoviddeath = (died_date_onscovid < .)
 
 * ITU admission
 confirm string variable icu_date_admitted
-assert icu == (icu_date_admitted!="")
-rename icu ituadmission
 gen itu_date = date(icu_date_admitted, "YMD")
+gen ituadmission = (itu_date < .)
 
 
 ****** END OF SECTION NEEDED FOR THE REAL DATA ******
