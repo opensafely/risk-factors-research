@@ -247,7 +247,7 @@ study = StudyDefinition(
     ),
     haem_cancer=patients.with_these_clinical_events(
         haem_cancer_codes,
-        between=['2019-02-01', '2020-02-01'],
+        return_first_date_in_period=True,
         include_month=True,
     ),
     other_cancer=patients.with_these_clinical_events(
@@ -257,12 +257,12 @@ study = StudyDefinition(
     ),
     bone_marrow_transplant=patients.with_these_clinical_events(
         bone_marrow_transplant_codes,
-        between=['2019-02-01', '2020-02-01'],
+        return_first_date_in_period=True,
         include_month=True,
     ),
     chemo_radio_therapy=patients.with_these_clinical_events(
         chemo_radio_therapy_codes,
-        between=['2019-02-01', '2020-02-01'],
+        return_first_date_in_period=True,
         include_month=True,
     ),
 
@@ -329,7 +329,7 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
         aplastic_codes, 
-        between=['2019-02-01', '2020-02-01'],
+        return_first_date_in_period=True,
         include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
@@ -344,7 +344,7 @@ study = StudyDefinition(
     ),
     temporary_immunodeficiency=patients.with_these_clinical_events(
         temp_immune_codes,
-        between=['2019-02-01', '2020-02-01'],
+        return_first_date_in_period=True,
         include_month=True,
     ),
 
