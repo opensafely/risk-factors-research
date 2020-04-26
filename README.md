@@ -1,4 +1,4 @@
-# For statisticians
+# For researchers
 
 This repository contains everything needed to:
 
