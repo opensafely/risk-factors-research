@@ -27,7 +27,7 @@ for inspiration.
 
 ## Generating dummy data
 
-### Windows 
+### Windows
 
 On Windows, you'll want to install a couple of things:
 
@@ -45,9 +45,9 @@ in `analysis/model.do`.
 
 ### Mac
 
-On a Mac, you will need to run this from the command line (terminal). You will need to install the [Microsoft ODBC driver](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#microsoft-odbc-17). This can be installed via `brew`. 
+On a Mac, you will need to run this from the command line (terminal). You will need to install the [Microsoft ODBC driver](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#microsoft-odbc-17). This can be installed via `brew`.
 
-You will need to add the "database URL" when you run the command. This has been shared on slack. 
+You will need to add the "database URL" when you run the command. This has been shared on slack.
 
 ## Running the model against real data
 
