@@ -20,7 +20,7 @@ The development process for each covariate is documented in Git issues. This inc
 - [Diabetes Mellitus](https://github.com/ebmdatalab/tpp-sql-notebook/issues/30)
 - [Cancer](https://github.com/ebmdatalab/tpp-sql-notebook/issues/32)
 - [Chronic Liver Disease](https://github.com/ebmdatalab/tpp-sql-notebook/issues/12#issuecomment-610345584)
-- Chronic Neurological Condition
+- [Chronic Neurological Condition](https://github.com/ebmdatalab/tpp-sql-notebook/issues/14#issuecomment-617501605)
 - Chronic Kidney Disease
 - [Organ Transplant Status](https://github.com/ebmdatalab/tpp-sql-notebook/issues/31#issuecomment-612122743)
 - Splenectomy or Sickle Cell
