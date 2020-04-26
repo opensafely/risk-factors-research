@@ -6,6 +6,18 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
+aplastic_codes = codelist_from_csv(
+    "codelists/aplastic.csv", system="ctv3", column="CTV3ID")
+
+hiv_codes = codelist_from_csv(
+    "codelists/hiv.csv", system="ctv3", column="CTV3ID")
+
+permanent_immune_codes = codelist_from_csv(
+    "codelists/permanent-immune.csv", system="ctv3", column="CTV3ID")
+
+temp_immune_codes = codelist_from_csv(
+    "codelists/temporary-immune.csv", system="ctv3", column="CTV3ID")
+
 stroke = codelist_from_csv(
     "codelists/stroke.csv", system="ctv3", column="CTV3ID")
 
@@ -110,6 +122,7 @@ study = StudyDefinition(
 
     # Outcomes
     icu_date_admitted=patients.admitted_to_icu(
+        immune-conditions-added
         on_or_after="2020-02-01",
         include_day=True,
         returning="date_admitted",
@@ -340,22 +353,22 @@ study = StudyDefinition(
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        aplastic_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        hiv_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    genetic_immunodeficiency=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    permanent_immunodeficiency=patients.with_these_clinical_events(
+        permanent_immune_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    immunosuppression_nos=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    temporary_immunodeficiency=patients.with_these_clinical_events(
+        temp_immune_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),

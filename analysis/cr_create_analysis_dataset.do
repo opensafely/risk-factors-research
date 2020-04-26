@@ -226,8 +226,8 @@ foreach var of varlist 	bp_sys_date 					///
 						sickle_cell 					///
 						aplastic_anaemia 				///
 						hiv 							///
-						genetic_immunodeficiency 		///
-						immunosuppression_nos 			///
+						permanent_immunodeficiency 		///
+						temporary_immunodeficiency		///
 						ra_sle_psoriasis  {
 	capture confirm string variable `var'
 	if _rc!=0 {
@@ -275,7 +275,7 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						dysplenia_date 						///
 						sickle_cell_date 					///
 						hiv_date							///
-						genetic_immunodeficiency_date		///
+						permanent_immunodeficiency_date		///
 						ra_sle_psoriasis_date   {
 	local newvar =  substr("`var'", 1, length("`var'") - 5)
 	gen `newvar' = (`var'< d(1/2/2020))
@@ -322,19 +322,19 @@ for var chronic_kidney_disease : replace X = uniform()<0.05
 
 
 * Immunosuppressed:
-* HIV, dysplenia/sickle-cell, genetic conditions ever, OR
+* HIV, dysplenia/sickle-cell, permanent immunodeficiency ever, OR
 * aplastic anaemia, haematological malignancies, bone marrow transplant, 
 *   chemo/radio in last year, OR
-* immunosuppression NOS in last 3 months
-gen temp1  = max(hiv, spleen, genetic_immunodeficiency)
-gen temp2  = inrange(immunosuppression_nos_date,    d(1/11/2019), d(1/2/2020))
+* temporary immunodeficiency in last 3 months
+gen temp1  = max(hiv, spleen, permanent_immunodeficiency)
+gen temp2  = inrange(temporary_immunodeficiency_date,    d(1/11/2019), d(1/2/2020))
 gen temp3  = max(inrange(aplastic_anaemia_date, 	 d(1/2/2019), d(1/2/2020)), ///
 				inrange(haem_cancer_date, 			 d(1/2/2019), d(1/2/2020)), ///			
 				inrange(bone_marrow_transplant_date, d(1/2/2019), d(1/2/2020)), ///
 				inrange(chemo_radio_therapy_date, 	 d(1/2/2019), d(1/2/2020))) 
 egen immunosuppressed = rowmax(temp1 temp2 temp3)
 drop temp1 temp2 temp3
-order immunosuppressed, after(immunosuppression_nos)
+order immunosuppressed, after(temporary_immunodeficiency)
 
 
 
@@ -604,8 +604,8 @@ label var ra_sle_psoriasis				"RA, SLE, Psoriasis (autoimmune disease)"
 label var chemo_radio_therapy			"Chemotherapy or radiotherapy"
 label var aplastic_anaemia				"Aplastic anaemia"
 label var hiv 							"HIV"
-label var genetic_immunodeficiency 		"Genetic immunodeficiency"
-label var immunosuppression_nos 		"Other immunosuppression"
+label var permanent_immunodeficiency 	"Permanent immunodeficiency"
+label var temporary_immunodeficiency 	"Temporary immunosuppression"
 label var immunosuppressed				"Immunosuppressed (combination algorithm)"
  label var chronic_respiratory_disease_date	"Respiratory disease (excl. asthma), date"
 label var chronic_cardiac_disease_date	"Heart disease, date"
@@ -626,8 +626,8 @@ label var ra_sle_psoriasis_date			"RA, SLE, Psoriasis (autoimmune disease), date
 label var chemo_radio_therapy_date		"Chemotherapy or radiotherapy, date"
 label var aplastic_anaemia_date			"Aplastic anaemia, date"
 label var hiv_date 						"HIV, date"
-label var genetic_immunodeficiency_date "Genetic immunodeficiency, date"
-label var immunosuppression_nos_date 	"Other immunosuppression, date"
+label var permanent_immunodeficiency_date "Permanent immunodeficiency, date"
+label var temporary_immunodeficiency_date 	"Temporary immunosuppression, date"
 
 * Outcomes and follow-up
 label var enter_date				"Date of study entry"
