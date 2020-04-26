@@ -117,7 +117,10 @@ study = StudyDefinition(
 
     # Outcomes
     icu=patients.admitted_to_icu(
-        on_or_after="2020-02-01", include_day=True, include_admission_date=True
+        on_or_after="2020-02-01",
+        include_day=True,
+        returning="date_admitted",
+        find_first_match_in_period=True,
     ),
     died_date_cpns=patients.with_death_recorded_in_cpns(
         on_or_before="2020-06-01",
