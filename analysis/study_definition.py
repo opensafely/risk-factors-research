@@ -122,7 +122,6 @@ study = StudyDefinition(
 
     # Outcomes
     icu_date_admitted=patients.admitted_to_icu(
-        immune-conditions-added
         on_or_after="2020-02-01",
         include_day=True,
         returning="date_admitted",
