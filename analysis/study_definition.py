@@ -6,13 +6,25 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
+aplastic_codes = codelist_from_csv(
+    "codelists/aplastic.csv", system="ctv3", column="CTV3ID")
+
+hiv_codes = codelist_from_csv(
+    "codelists/hiv.csv", system="ctv3", column="CTV3ID")
+
+permanent_immune_codes = codelist_from_csv(
+    "codelists/permanent-immune.csv", system="ctv3", column="CTV3ID")
+
+temp_immune_codes = codelist_from_csv(
+    "codelists/temporary-immune.csv", system="ctv3", column="CTV3ID")
+
 stroke = codelist_from_csv(
     "codelists/stroke.csv", system="ctv3", column="CTV3ID")
 
 dementia = codelist_from_csv(
     "codelists/dementia.csv", system="ctv3", column="CTV3ID")
 smoking_codes  = codelist_from_csv(
-    "codelists/smoking_codes_2020_04_22.csv", system="ctv3", column="CTV3Code", category_column="Category"
+    "codelists/smoking.csv", system="ctv3", column="CTV3Code", category_column="Category"
 )
 
 other_neuro = codelist_from_csv(
@@ -75,6 +87,11 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
     "codelists/inflammatory_bowel_disease.csv", system="ctv3", column="CTV3ID"
 )
 
+creatinine_codes = codelist(["XE2q5"], system="ctv3")
+dialysis_codes = codelist_from_csv(
+    "codelists/dialysis_codes.csv", system="ctv3", column="CTV3ID"
+)
+
 organ_transplant_codes = codelist_from_csv(
     "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
 )
@@ -104,8 +121,11 @@ study = StudyDefinition(
     ),
 
     # Outcomes
-    icu=patients.admitted_to_icu(
-        on_or_after="2020-02-01", include_day=True, include_admission_date=True
+    icu_date_admitted=patients.admitted_to_icu(
+        on_or_after="2020-02-01",
+        include_day=True,
+        returning="date_admitted",
+        find_first_match_in_period=True,
     ),
     died_date_cpns=patients.with_death_recorded_in_cpns(
         on_or_before="2020-06-01",
@@ -157,13 +177,23 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
     smoking_status=patients.categorised_as(
         {
-            "S": "most_recent_smoking_code = 'S'",
+            "S": """
+                most_recent_smoking_code = 'S' OR (
+                  most_recent_smoking_code = 'X' AND most_recent_smoking_numeric > 0
+                )
+            """,
             "E": """
                  most_recent_smoking_code = 'E' OR (
                    most_recent_smoking_code = 'N' AND ever_smoked
                  )
             """,
-            "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
+            "N": """
+                (
+                  most_recent_smoking_code = 'N' OR (
+                    most_recent_smoking_code = 'X' AND most_recent_smoking_numeric = 0
+                  )
+                ) AND NOT ever_smoked
+            """,
             "M": "DEFAULT"
         },
         most_recent_smoking_code=patients.with_these_clinical_events(
@@ -171,6 +201,12 @@ study = StudyDefinition(
             find_last_match_in_period=True,
             on_or_before='2020-02-01',
             returning="category",
+        ),
+        most_recent_smoking_numeric=patients.with_these_clinical_events(
+            smoking_codes,
+            find_last_match_in_period=True,
+            on_or_before="2020-02-01",
+            returning="numeric_value",
         ),
         ever_smoked=patients.with_these_clinical_events(
             filter_codes_by_category(smoking_codes, include=['S', 'E']),
@@ -280,17 +316,17 @@ study = StudyDefinition(
         include_month=True,
     ),
     # # Chronic kidney disease
-    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
-    # egfr=patients.with_these_clinical_events(
-    #     egfr_codes,
-    #     find_last_match_in_period=True,
-    #     on_or_before="2020-02-01",
-    #     returning="numeric_value",
-    #     include_date_of_match=True
-    #     include_month=True,
-    # ),
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
+    serum_creatinine=patients.with_these_clinical_events(
+        creatinine_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+        include_date_of_match=True,
+        include_month=True,
+    ),
     dialysis=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        dialysis_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
@@ -316,22 +352,22 @@ study = StudyDefinition(
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        aplastic_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        hiv_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    genetic_immunodeficiency=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    permanent_immunodeficiency=patients.with_these_clinical_events(
+        permanent_immune_codes, 
         return_first_date_in_period=True,
         include_month=True,
     ),
-    immunosuppression_nos=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+    temporary_immunodeficiency=patients.with_these_clinical_events(
+        temp_immune_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
