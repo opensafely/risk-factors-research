@@ -157,13 +157,21 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
     smoking_status=patients.categorised_as(
         {
-            "S": "most_recent_smoking_code = 'S'",
+            "S": """
+                most_recent_smoking_code = 'S' OR (
+                  most_recent_smoking_code = 'X' AND most_recent_smoking_numeric > 0
+                )
+            """,
             "E": """
                  most_recent_smoking_code = 'E' OR (
                    most_recent_smoking_code = 'N' AND ever_smoked
                  )
             """,
-            "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
+            "N": """
+                most_recent_smoking_code = 'N' OR (
+                  most_recent_smoking_numeric = 'X' AND most_recent_smoking_numeric = 0
+                ) AND NOT ever_smoked
+            """,
             "M": "DEFAULT"
         },
         most_recent_smoking_code=patients.with_these_clinical_events(
@@ -171,6 +179,12 @@ study = StudyDefinition(
             find_last_match_in_period=True,
             on_or_before='2020-02-01',
             returning="category",
+        ),
+        most_recent_smoking_numeric=patients.with_these_clinical_events(
+            smoking_codes,
+            find_last_match_in_period=True,
+            on_or_before="2020-02-01",
+            returning="numeric_value",
         ),
         ever_smoked=patients.with_these_clinical_events(
             filter_codes_by_category(smoking_codes, include=['S', 'E']),
