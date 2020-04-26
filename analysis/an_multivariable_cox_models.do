@@ -21,12 +21,22 @@
 *
 ********************************************************************************
 
+local outcome `1' 
 
+
+************************************************************************************
+*First clean up all old saved estimates for this outcome
+*This is to guard against accidentally displaying left-behind results from old runs
+************************************************************************************
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster
+cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth.ster
 
 
 * Open a log file
 capture log close
-log using "./output/an_multivariable_cox_models", text replace
+log using "./output/an_multivariable_cox_models_`outcome'", text replace
 
 use egdata, clear
 
@@ -39,7 +49,7 @@ use egdata, clear
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
-	syntax , age(string) bmi(string) smoke(string) bp(string) [ethnicity(real 0)] 
+	syntax , age(string) bmi(string) smoke(string) bp(string) [ethnicity(real 0) if(string)] 
 
 	if `ethnicity'==1 local ethnicity "i.ethnicity"
 	else local ethnicity
@@ -67,6 +77,7 @@ timer on 1
 			i.ra_sle_psoriasis  			///
 			/*endocrine?*/					///
 			/*immunosuppression?*/			///
+			`if'							///
 			, strata(stp)
 timer off 1
 timer list
@@ -74,7 +85,6 @@ end
 *************************************************************************************
 
 
-foreach outcome of any /*ecdsevent*/ ituadmission cpnsdeath onscoviddeath{
 
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
@@ -88,7 +98,7 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
  
 *Age group model (not adj ethnicity)
-basecoxmodel, age("i.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+basecoxmodel, age("ib3.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
 if _rc==0{
 estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
@@ -99,10 +109,22 @@ else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
 *Complete case ethnicity model
 basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
 if _rc==0{
+estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
+
+ 
+*Model without ethnicity among ethnicity complete cases 
+basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0) if("if ethnicity<.")
+if _rc==0{
+estimates
+estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
+*estat concordance /*c-statistic*/
+ }
+ else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+ 
  
 
 ************************************************************************
@@ -132,7 +154,6 @@ stbrier age1 age2 age3 male 											///
 */
 ************************************************************************
 
-} /*end of looping round outcomes*/
 
 * Close log file  (bootstrapping likely to take a while)
 log close

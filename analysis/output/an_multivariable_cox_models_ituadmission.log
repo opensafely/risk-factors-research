@@ -1,0 +1,370 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_ituadmission.log
+  log type:  text
+ opened on:  24 Apr 2020, 00:06:11
+
+. 
+. use egdata, clear
+(Poor factors dummy analysis dataset)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) bmi(string) smoke(string) bp(string) [ethnicity(real 0) if(string)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         capture stcox   `age'                                                   ///
+>                         i.male                                                  ///
+>                         `bmi'                                                   ///
+>                         `smoke'                                                 ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         `bp'                                                    ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthma                                                ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabetes                                              ///
+>                         i.cancer_exhaem_lastyr                  ///
+>                         i.haemmalig_aanaem_bmtrans_lastyr  ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                                       ///
+>                         i.other_neuro                                   ///
+>                         i.chronic_kidney_disease                ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         /*endocrine?*/                                  ///
+>                         /*immunosuppression?*/                  ///
+>                         `if'                                                    ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+
+                id:  patient_id
+     failure event:  ituadmission != 0 & ituadmission < .
+obs. time interval:  (stime_ituadmission[_n-1], stime_ituadmission]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,570  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,567  observations remaining, representing
+    100,567  subjects
+          5  failures in single-failure-per-subject data
+  7,944,253  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        79
+
+. 
+. *Age spline model (not adj ethnicity)
+. basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+   1:     16.52 /        1 =      16.5250
+
+. if _rc==0{
+. estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =       99,132                  Number of obs    =      99,132
+No. of failures =            5
+Time at risk    =      7830888
+                                                LR chi2(9)       =       33.40
+Log likelihood  =   -40.822786                  Prob > chi2      =      0.0001
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |   1.057531   .1035764     0.57   0.568     .8728206    1.281331
+                             age2 |   .5711125     .24747    -1.29   0.196     .2442787    1.335235
+                             age3 |   9.888353   16.77408     1.35   0.177     .3557878    274.8254
+                           1.male |   6.448928   8.829686     1.36   0.173     .4406024    94.39047
+                        1.obese40 |   2.20e-17          .        .       .            .           .
+                   1.currentsmoke |   5.038134   5.477613     1.49   0.137     .5981603    42.43478
+                                  |
+                              imd |
+                               2  |   3.46e-10          .        .       .            .           .
+                               3  |   4.28e-10          .        .       .            .           .
+                               4  |   3.44e+10   3.29e+10    25.36   0.000     5.27e+09    2.24e+11
+                               5  |   7.96e+09          .        .       .            .           .
+                                  |
+                         1.bphigh |   .2342123   .2790234    -1.22   0.223     .0226752    2.419184
+    1.chronic_respiratory_disease |   2.64e-19          .        .       .            .           .
+                         1.asthma |   3.08e-17          .        .       .            .           .
+        1.chronic_cardiac_disease |    53.1321   54.39712     3.88   0.000     7.143143     395.207
+                       1.diabetes |   1.019685   1.332207     0.01   0.988     .0787735    13.19931
+           1.cancer_exhaem_lastyr |   2.95e-14          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   7.61e-16          .        .       .            .           .
+          1.chronic_liver_disease |   2.94e-17          .        .       .            .           .
+                1.stroke_dementia |   1.05e-18          .        .       .            .           .
+                    1.other_neuro |   1.42e-18          .        .       .            .           .
+         1.chronic_kidney_disease |   2.35e-19          .        .       .            .           .
+               1.organ_transplant |   2.83e-17          .        .       .            .           .
+                         1.spleen |   2.97e-17          .        .       .            .           .
+               1.ra_sle_psoriasis |   8.28e-19          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+(note: file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+. *estat concordance /*c-statistic*/
+. }
+
+. else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
+
+.  
+. *Age group model (not adj ethnicity)
+. basecoxmodel, age("ib3.agegroup")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0)
+   1:     18.09 /        1 =      18.0880
+
+. if _rc==0{
+. estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =       99,132                  Number of obs    =      99,132
+No. of failures =            5
+Time at risk    =      7830888
+                                                LR chi2(8)       =       34.34
+Log likelihood  =   -40.353236                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                         agegroup |
+                          18-<40  |   1.04e+10   1.63e+10    14.69   0.000     4.78e+08    2.25e+11
+                          40-<50  |   4.52e+09   8.01e+09    12.54   0.000     1.40e+08    1.46e+11
+                          60-<70  |   2.94e-10          .        .       .            .           .
+                          70-<80  |   2.98e-10          .        .       .            .           .
+                             80+  |   1.71e+09          .        .       .            .           .
+                                  |
+                           1.male |   10.25382   16.24338     1.47   0.142     .4596981    228.7172
+                        1.obese40 |   3.15e-17          .        .       .            .           .
+                   1.currentsmoke |   4.284422   4.811051     1.30   0.195     .4743112    38.70091
+                                  |
+                              imd |
+                               2  |   3.53e-10          .        .       .            .           .
+                               3  |   4.47e-10          .        .       .            .           .
+                               4  |   3.14e+10   3.06e+10    24.85   0.000     4.67e+09    2.12e+11
+                               5  |   8.00e+09          .        .       .            .           .
+                                  |
+                         1.bphigh |   .2562783   .3096574    -1.13   0.260     .0240003     2.73657
+    1.chronic_respiratory_disease |   2.82e-19          .        .       .            .           .
+                         1.asthma |   3.18e-17          .        .       .            .           .
+        1.chronic_cardiac_disease |   49.33615   51.26044     3.75   0.000     6.438191    378.0652
+                       1.diabetes |   1.266935   1.663019     0.18   0.857     .0967029     16.5985
+           1.cancer_exhaem_lastyr |   8.56e-14          .        .       .            .           .
+1.haemmalig_aanaem_bmtrans_lastyr |   6.91e-16          .        .       .            .           .
+          1.chronic_liver_disease |   7.33e-17          .        .       .            .           .
+                1.stroke_dementia |   1.13e-18          .        .       .            .           .
+                    1.other_neuro |   1.75e-18          .        .       .            .           .
+         1.chronic_kidney_disease |   2.54e-19          .        .       .            .           .
+               1.organ_transplant |   1.97e-16          .        .       .            .           .
+                         1.spleen |   2.31e-17          .        .       .            .           .
+               1.ra_sle_psoriasis |   8.01e-19          .        .       .            .           .
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
+(note: file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster not found)
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+. *estat concordance /*c-statistic*/
+. }
+
+. else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
+
+. 
+. *Complete case ethnicity model
+. basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(1)
+   1:      0.79 /        1 =       0.7850
+
+. if _rc==0{
+. estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       19,749                  Number of obs    =      19,749
+No. of failures =            0
+Time at risk    =      1560171
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |          1  (omitted)
+                             age2 |          1  (omitted)
+                             age3 |          1  (omitted)
+                           1.male |          1  (omitted)
+                        1.obese40 |          1  (omitted)
+                   1.currentsmoke |          1  (omitted)
+                                  |
+                        ethnicity |
+                     South Asian  |          1  (omitted)
+                           Black  |          1  (omitted)
+                           Other  |          1  (omitted)
+                           Mixed  |          1  (omitted)
+                                  |
+                              imd |
+                               2  |          1  (omitted)
+                               3  |          1  (omitted)
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         1.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           1.cancer_exhaem_lastyr |          1  (omitted)
+1.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |          1  (omitted)
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               1.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+(note: file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster not found)
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+. *estat concordance /*c-statistic*/
+.  }
+
+.  else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
+
+. 
+.  
+. *Model without ethnicity among ethnicity complete cases 
+. basecoxmodel, age("age1 age2 age3")  bmi("i.obese40") smoke(i.currentsmoke) bp(i.bphigh) ethnicity(0) if("if ethnicity<.")
+   1:      0.77 /        1 =       0.7720
+
+. if _rc==0{
+. estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       19,749                  Number of obs    =      19,749
+No. of failures =            0
+Time at risk    =      1560171
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+---------------------------------------------------------------------------------------------------
+                               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------------+----------------------------------------------------------------
+                             age1 |          1  (omitted)
+                             age2 |          1  (omitted)
+                             age3 |          1  (omitted)
+                           1.male |          1  (omitted)
+                        1.obese40 |          1  (omitted)
+                   1.currentsmoke |          1  (omitted)
+                                  |
+                              imd |
+                               2  |          1  (omitted)
+                               3  |          1  (omitted)
+                               4  |          1  (omitted)
+                               5  |          1  (omitted)
+                                  |
+                         1.bphigh |          1  (omitted)
+    1.chronic_respiratory_disease |          1  (omitted)
+                         1.asthma |          1  (omitted)
+        1.chronic_cardiac_disease |          1  (omitted)
+                       1.diabetes |          1  (omitted)
+           1.cancer_exhaem_lastyr |          1  (omitted)
+1.haemmalig_aanaem_bmtrans_lastyr |          1  (omitted)
+          1.chronic_liver_disease |          1  (omitted)
+                1.stroke_dementia |          1  (omitted)
+                    1.other_neuro |          1  (omitted)
+         1.chronic_kidney_disease |          1  (omitted)
+               0.organ_transplant |          1  (omitted)
+                         0.spleen |          1  (omitted)
+               1.ra_sle_psoriasis |          1  (omitted)
+---------------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
+(note: file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth.ster not found)
+file ./output/models/an_multivariate_cox_models_ituadmission_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth.ster saved
+. *estat concordance /*c-statistic*/
+.  }
+
+.  else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+
+.  
+.  
+. 
+. ************************************************************************
+. * Add IBS 
+. 
+. * Calculate at 60 days
+. *
+. *stbrier, bt(60) efron
+. 
+. /*
+> stbrier age1 age2 age3 male i.bmicat i.smoke                                                    ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
+>                 transplant spleen immunosup hypertension autoimmune sle                 ///
+>                 endocrine                                                                                                               ///
+>                 , shared(stp) bt(60)                                                                                    ///
+>                 ipcw(age1 age2 age3 male i.bmicat i.smoke                                               ///
+>                 resp asthma heart diabetes cancer liver neuro_dis kidney_dis    ///
+>                 transplant spleen immunosup hypertension autoimmune sle                 ///
+>                 endocrine)
+> */
+. 
+. * Simple model just to try:
+. /*
+> stbrier age1 age2 age3 male                                                                                     ///
+>                 , shared(stp) bt(60)                                                                                    ///
+>                 ipcw(age1 age2 age3 male)
+> */
+. ************************************************************************
+. 
+. 
+. * Close log file  (bootstrapping likely to take a while)
+. log close
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_ituadmission.log
+  log type:  text
+ closed on:  24 Apr 2020, 00:06:48
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
