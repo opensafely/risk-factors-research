@@ -12,7 +12,7 @@ stroke = codelist_from_csv(
 dementia = codelist_from_csv(
     "codelists/dementia.csv", system="ctv3", column="CTV3ID")
 smoking_codes  = codelist_from_csv(
-    "codelists/smoking_codes_2020_04_22.csv", system="ctv3", column="CTV3Code", category_column="Category"
+    "codelists/smoking.csv", system="ctv3", column="CTV3Code", category_column="Category"
 )
 
 other_neuro = codelist_from_csv(
