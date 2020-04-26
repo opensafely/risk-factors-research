@@ -177,7 +177,7 @@ study = StudyDefinition(
             """,
             "N": """
                 most_recent_smoking_code = 'N' OR (
-                  most_recent_smoking_numeric = 'X' AND most_recent_smoking_numeric = 0
+                  most_recent_smoking_code = 'X' AND most_recent_smoking_numeric = 0
                 ) AND NOT ever_smoked
             """,
             "M": "DEFAULT"
