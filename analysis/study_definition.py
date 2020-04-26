@@ -75,6 +75,11 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
     "codelists/inflammatory_bowel_disease.csv", system="ctv3", column="CTV3ID"
 )
 
+creatinine_codes = codelist(["XE2q5"], system="ctv3")
+dialysis_codes = codelist_from_csv(
+    "codelists/dialysis_codes.csv", system="ctv3", column="CTV3ID"
+)
+
 organ_transplant_codes = codelist_from_csv(
     "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
 )
@@ -294,17 +299,17 @@ study = StudyDefinition(
         include_month=True,
     ),
     # # Chronic kidney disease
-    # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
-    # egfr=patients.with_these_clinical_events(
-    #     egfr_codes,
-    #     find_last_match_in_period=True,
-    #     on_or_before="2020-02-01",
-    #     returning="numeric_value",
-    #     include_date_of_match=True
-    #     include_month=True,
-    # ),
+    # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
+    serum_creatinine=patients.with_these_clinical_events(
+        creatinine_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+        include_date_of_match=True,
+        include_month=True,
+    ),
     dialysis=patients.with_these_clinical_events(
-        chronic_respiratory_disease_codes, #################################### CHANGE TO CORRECT CODELIST WHEN READY ####################################
+        dialysis_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
