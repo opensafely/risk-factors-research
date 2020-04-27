@@ -431,7 +431,7 @@ replace creatinine = . if !inrange(creatinine, 20, 3000)
 	
 * Multiply by 0.95 (for assay-fudge factor) and 
 * divide by 88.4 (to convert umol/l to mg/dl)
-gen SCr_adj = (creatinine*0.95)/88.4
+gen SCr_adj = creatinine/88.4
 
 * NB: I have guessed which way round sex is...
 gen min=.
