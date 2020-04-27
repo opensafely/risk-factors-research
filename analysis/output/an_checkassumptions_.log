@@ -1,0 +1,82 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_.log
+  log type:  text
+ opened on:  27 Apr 2020, 23:19:21
+
+. 
+. use cr_create_analysis_dataset, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) [ethnicity(real 0) if(string)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         capture stcox   `age'                                   ///
+>                         i.male                                                  ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         i.htdiag_or_highbp                              ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.ckd                                                   ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         other_immunosuppression                 ///
+>                         `if'                                                    ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+stime_ ambiguous abbreviation
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\Krish\AppData\Local\Temp\STD1080_000000.tmp"
+
+. do "an_checkassumptions.do" cpnsdeath
+
+. ****************************************************
+. *Assumption checks - ph test
+. *KB and Fizz
+. *27/4
+. *EXPERIMENTAL - PLACING AT END OF RUN IN CASE V SLOW
+. *Later, incorporate into main modelling do-files
+. *****************************************************
+. 
+. local outcome `1' 
+
+. 
+. * Open a log file
+. capture log close

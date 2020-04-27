@@ -1,0 +1,125 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_liver_diseaseTOethnicity.log
+  log type:  text
+ opened on:  27 Apr 2020, 23:15:10
+
+. 
+. * Open dataset and fit specified model(s)
+. use cr_create_analysis_dataset, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    100,575  total observations
+          3  observations end on or before enter()
+------------------------------------------------------------------------------
+    100,572  observations remaining, representing
+    100,572  subjects
+          1  failure in single-failure-per-subject data
+  7,542,636  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        75
+
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *Special cases
+.         if "`var'"=="agesplsex" local model "age1 age2 age3 i.male"
+  3.         else if "`var'"=="agegroupsex" local model "ib3.agegroup i.male"
+  4.         else if "`var'"=="bmicat" local model "age1 age2 age3 i.male ib2.bmicat"
+  5.         *General form of model
+.         else local model "age1 age2 age3 i.`var'"
+  6. 
+.         *Fit and save model
+.         cap erase ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var'.ster
+  7.         capture stcox `model' , strata(stp) 
+  8.         if _rc==0 {
+  9.                 estimates
+ 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var', replace
+ 11.                 }
+ 12.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 13. 
+. }
+WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       23,242                  Number of obs    =      23,242
+No. of failures =            0
+Time at risk    =      1743150
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+             |
+         ckd |
+          2  |          1  (omitted)
+          3  |          1  (omitted)
+          4  |          1  (omitted)
+          5  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ckd.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ckd.ster saved
+WARNING - diabcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       20,585                  Number of obs    =      20,585
+No. of failures =            0
+Time at risk    =      1543875
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |          1  (omitted)
+                   age2 |          1  (omitted)
+                   age3 |          1  (omitted)
+                        |
+              ethnicity |
+                 Mixed  |          1  (omitted)
+Asian or Asian British  |          1  (omitted)
+                 Black  |          1  (omitted)
+                 Other  |          1  (omitted)
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_liver_diseaseTOethnicity.log
+  log type:  text
+ closed on:  27 Apr 2020, 23:15:23
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

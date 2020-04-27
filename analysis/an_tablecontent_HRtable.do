@@ -22,7 +22,7 @@ syntax, variable(string) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
-	foreach outcome of any ecdsevent ituadmission cpnsdeath onscoviddeath {
+	foreach outcome of any ituadmission cpnsdeath onscoviddeath {
 	
 	foreach modeltype of any minadj fulladj {
 	
@@ -34,7 +34,7 @@ local endwith "_tab"
 		*1) GET THE RIGHT ESTIMATES INTO MEMORY
 		
 		if "`modeltype'"=="minadj" & "`variable'"!="agegroup" & "`variable'"!="male" {
-			cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_`variable'
+			cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`variable'
 			if _rc!=0 local noestimatesflag 1
 			}
 
@@ -43,7 +43,7 @@ local endwith "_tab"
 		*FOR REST - use the "main" multivariate model
 		if "`variable'"=="agegroup" {
 			if "`modeltype'"=="minadj" {
-				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGEGROUPSEX_
+				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_agegroupsex
 				if _rc!=0 local noestimatesflag 1
 				}
 			if "`modeltype'"=="fulladj" {
@@ -53,7 +53,7 @@ local endwith "_tab"
 			}
 		else if "`variable'"=="male" {
 			if "`modeltype'"=="minadj" {
-				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESPLSEX_
+				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_agesplsex
 				if _rc!=0 local noestimatesflag 1			
 				}
 			if "`modeltype'"=="fulladj" {
@@ -94,7 +94,7 @@ end
 *Generic code to write a full row of "ref category" to the output file
 cap prog drop refline
 prog define refline
-file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
+file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
 end
 ***********************************************************************************************************************
 
@@ -116,12 +116,12 @@ file write tablecontents _n _n
 
 *BMI
 refline
-outputHRsforvar, variable("obese40") min(1) max(1)
+outputHRsforvar, variable("obese4cat") min(2) max(4)
 file write tablecontents _n _n
 
 *Smoking
 refline
-outputHRsforvar, variable("currentsmoke") min(1) max(1)
+outputHRsforvar, variable("smoke_nomiss") min(2) max(3)
 file write tablecontents _n _n
 
 *Ethnicity
@@ -134,28 +134,39 @@ refline
 outputHRsforvar, variable("imd") min(2) max(5)
 file write tablecontents _n _n
 
-*BP
+*BP/hypertension
 refline
-outputHRsforvar, variable("bphigh") min(1) max(1)
+outputHRsforvar, variable("htdiag_or_highbp") min(1) max(1)
 file write tablecontents _n _n
 
-*COMORBIDITIES
-foreach comorb of any	 	chronic_respiratory_disease 	///
-							asthma 							///
-							chronic_cardiac_disease 		///
-							diabetes 						///
-							cancer_exhaem_lastyr 			///
-							haemmalig_aanaem_bmtrans_lastyr ///
-							chronic_liver_disease 			///
-							stroke_dementia		 			///
-							other_neuro					 	///
-							chronic_kidney_disease 			///
-							organ_transplant 				///
-							spleen ra_sle_psoriasis  		///
-							/*endocrine?*/					///
-							/*immunosuppression?*/			///
-							{
-	outputHRsforvar, variable("`comorb'") min(1) max(1)							
-	}
+outputHRsforvar, variable("chronic_respiratory_disease") min(1) max(1)
+file write tablecontents _n	_n		
+outputHRsforvar, variable("asthmacat") min(2) max(3)			
+file write tablecontents _n	
+outputHRsforvar, variable("chronic_cardiac_disease") min(1) max(1)
+file write tablecontents _n	_n		
+outputHRsforvar, variable("diabcat") min(2) max(4)
+file write tablecontents _n	_n		
+outputHRsforvar, variable("cancer_exhaem_cat") min(2) max(4)
+file write tablecontents _n	_n		
+outputHRsforvar, variable("cancer_haem_cat") min(2) max(4)			
+file write tablecontents _n				
+outputHRsforvar, variable("chronic_liver_disease") min(1) max(1)			
+file write tablecontents _n	
+outputHRsforvar, variable("stroke_dementia") min(1) max(1)			
+file write tablecontents _n	
+outputHRsforvar, variable("other_neuro") min(1) max(1)			
+file write tablecontents _n	
+outputHRsforvar, variable("ckd") min(1) max(1)			
+file write tablecontents _n	
+outputHRsforvar, variable("organ_transplant") min(1) max(1)			
+file write tablecontents _n	
+outputHRsforvar, variable("spleen") min(1) max(1)
+file write tablecontents _n	
+outputHRsforvar, variable("ra_sle_psoriasis") min(1) max(1)
+file write tablecontents _n	
+outputHRsforvar, variable("other_immunosuppression") min(1) max(1)			
+
+
 
 file close tablecontents
