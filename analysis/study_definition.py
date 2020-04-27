@@ -353,7 +353,7 @@ study = StudyDefinition(
     ),
     # # Chronic kidney disease
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
-    serum_creatinine=patients.with_these_clinical_events(
+    creatinine=patients.with_these_clinical_events(
         creatinine_codes,
         find_last_match_in_period=True,
         on_or_before="2020-02-01",
