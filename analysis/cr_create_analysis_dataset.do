@@ -256,7 +256,7 @@ rename asthma asthmacat
 label define asthmacat 0 "No" 1 "Yes, no ICS" 2 "Yes with ICS"
 label values asthmacat asthmacat
 
-recode asthmacat 3=2, gen(asthma)
+recode asthmacat 2=1, gen(asthma)
 
 
 
@@ -431,7 +431,7 @@ replace creatinine = . if !inrange(creatinine, 20, 3000)
 	
 * Multiply by 0.95 (for assay-fudge factor) and 
 * divide by 88.4 (to convert umol/l to mg/dl)
-gen SCr_adj = (creatinine*0.95)/88.4
+gen SCr_adj = creatinine/88.4
 
 * NB: I have guessed which way round sex is...
 gen min=.
@@ -702,7 +702,7 @@ label var  stime_onscoviddeath 			"Survival time (date); outcome ONS covid death
 ***************
 
 * REDUCE DATASET SIZE TO VARIABLES NEEDED
-keep patient_id imd stp enter_date  										///
+keep patient_id imd stp region enter_date  									///
 	ituadmission itu_date ituadmissioncensor_date stime_ituadmission		///
 	cpnsdeath died_date_cpns cpnsdeathcensor_date stime_cpnsdeath			///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
