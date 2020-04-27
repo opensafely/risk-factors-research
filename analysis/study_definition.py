@@ -49,6 +49,10 @@ ics_codes = codelist_from_csv(
     "codelists/ics_asthma.csv", system="snomed", column="id"
 )
 
+pred_codes = codelist_from_csv(
+    "codelists/pred_codelist.csv", system="snomed", column="snomed_id"
+)
+
 chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
 )
@@ -242,23 +246,43 @@ study = StudyDefinition(
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
-    asthma=patients.satisfying(
-        """recent_asthma_code OR (asthma_code_ever AND NOT copd_code_ever AND (recent_salbutamol_count >= 3 OR recent_ics))""",
+    asthma=patients.categorised_as(
+        {
+            "0": "DEFAULT",
+            "1": """
+                (
+                  recent_asthma_code OR (
+                    asthma_code_ever AND NOT
+                    copd_code_ever
+                  )
+                ) AND (
+                  prednisolone_last_year = 0 OR 
+                  prednisolone_last_year > 4
+                )
+            """,
+            "2": """
+                (
+                  recent_asthma_code OR (
+                    asthma_code_ever AND NOT
+                    copd_code_ever
+                  )
+                ) AND
+                prednisolone_last_year > 0 AND
+                prednisolone_last_year < 5
+                
+            """,
+        },
         recent_asthma_code=patients.with_these_clinical_events(
             asthma_codes,
-            between=['2018-02-01', '2020-02-01']
+            between=['2017-02-01', '2020-02-01'],
         ),
         asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
         copd_code_ever=patients.with_these_clinical_events(chronic_respiratory_disease_codes),
-        recent_salbutamol_count=patients.with_these_medications(
-            salbutamol_codes,
-            between=['2018-02-01', '2020-02-01'],
-            returning="number_of_matches_in_period"
+        prednisolone_last_year=patients.with_these_medications(
+            pred_codes,
+            between=['2019-02-01', '2020-02-01'],
+            returning="number_of_matches_in_period",
         ),
-        recent_ics=patients.with_these_medications(
-            ics_codes,
-            between=['2018-02-01', '2020-02-01'],
-        )
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
