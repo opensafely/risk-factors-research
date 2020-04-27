@@ -179,8 +179,8 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/54
     stp=patients.registered_practice_as_of("2020-02-01", returning="stp_code"),
 
-    # region - one of NHS England 9 regions 
-    # region=patients.registered_practice_as_of("2020-02-01", returning="nhse_region_name"),
+    # region - one of NHS England 9 regions
+    region=patients.registered_practice_as_of("2020-02-01", returning="nhse_region_name"),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/10
     bmi=patients.most_recent_bmi(
