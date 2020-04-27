@@ -246,7 +246,7 @@ order obese4cat, after(bmicat)
 * Create non-missing 3-category variable for current smoking
 recode smoke .u=1, gen(smoke_nomiss)
 order smoke_nomiss, after(smoke)
-
+label values smoke_nomiss smoke
 
 /*  Asthma  */
 

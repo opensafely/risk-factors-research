@@ -43,9 +43,9 @@ do "an_univariable_cox_models.do" cpnsdeath ///
 
 *UNIVARIATE MODELS BATCH 2
 do "an_univariable_cox_models.do" cpnsdeath ///
+	chronic_kidney_disease				///
 	chronic_liver_disease 				///
 	chronic_respiratory_disease 		///
-	ckd									///
 	diabcat								///
 	ethnicity 
 

@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  27 Apr 2020, 23:20:08
+ opened on:  28 Apr 2020, 00:38:50
 
 . 
 . 
@@ -409,7 +409,8 @@ variable ra_sle_psoriasis was str7 now str10
 
 . order smoke_nomiss, after(smoke)
 
-. 
+. label values smoke_nomiss smoke
+
 . 
 . /*  Asthma  */
 . 
@@ -1179,5 +1180,5 @@ file cr_create_analysis_dataset.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  27 Apr 2020, 23:20:22
+ closed on:  28 Apr 2020, 00:38:59
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

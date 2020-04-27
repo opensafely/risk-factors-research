@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_cpnsdeath.log
   log type:  text
- opened on:  27 Apr 2020, 23:19:28
+ opened on:  28 Apr 2020, 00:41:50
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -41,7 +41,7 @@
 >                         i.chronic_liver_disease                 ///
 >                         i.stroke_dementia                               ///
 >                         i.other_neuro                                   ///
->                         i.ckd                                                   ///
+>                         i.chronic_kidney_disease                ///
 >                         i.organ_transplant                              ///
 >                         i.spleen                                                ///
 >                         i.ra_sle_psoriasis                      ///
@@ -71,7 +71,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 ------------------------------------------------------------------------------
     100,572  observations remaining, representing
     100,572  subjects
-     20,145  failures in single-failure-per-subject data
+          1  failure in single-failure-per-subject data
   7,542,636  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
@@ -80,158 +80,26 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:      5.45 /        1 =       5.4520
+   1:     13.90 /        1 =      13.8970
 
 . if _rc==0{
 . estimates
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-active results
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Stratified Cox regr. -- Breslow method for ties
-
-No. of subjects =       99,184                  Number of obs    =      99,184
-No. of failures =       19,874
-Time at risk    =      7438536
-                                                LR chi2(33)      =       20.71
-Log likelihood  =   -216104.68                  Prob > chi2      =      0.9527
-
------------------------------------------------------------------------------------------------
-                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-------------------------------+----------------------------------------------------------------
-                         age1 |   1.000099   .0020404     0.05   0.961      .996108    1.004106
-                         age2 |   .9984076   .0059351    -0.27   0.789     .9868426    1.010108
-                         age3 |   1.007055   .0203651     0.35   0.728     .9679211    1.047772
-                       1.male |   1.017646   .0170493     1.04   0.296     .9847729    1.051617
-                              |
-                    obese4cat |
-           Obese I (30-34.9)  |   1.014625   .0202343     0.73   0.467     .9757316    1.055069
-          Obese II (35-39.9)  |   1.029068   .0212608     1.39   0.165       .98823    1.071594
-             Obese III (40+)  |   .9985173   .0208877    -0.07   0.943     .9584059    1.040307
-                              |
-                 smoke_nomiss |
-                           2  |   1.036636   .0473894     0.79   0.431     .9477943    1.133806
-                           3  |   .9923908   .0216555    -0.35   0.726     .9508416    1.035756
-                              |
-                          imd |
-                           2  |   1.025166   .0282779     0.90   0.368     .9712137    1.082115
-                           3  |   1.008642   .0251627     0.34   0.730     .9605098    1.059185
-                           4  |   1.018553   .0230642     0.81   0.417     .9743364    1.064776
-             5 most deprived  |   1.024019   .0294627     0.82   0.409     .9678715    1.083425
-                              |
-           1.htdiag_or_highbp |   .9940368   .0189465    -0.31   0.754     .9575874    1.031874
-1.chronic_respiratory_disease |   1.019772   .0913354     0.22   0.827     .8555898     1.21546
-                              |
-                    asthmacat |
-                 Yes, no OCS  |   .9773595   .0216719    -1.03   0.302     .9357932    1.020772
-                Yes with OCS  |   1.006536   .0243199     0.27   0.787     .9599812    1.055349
-                              |
-    1.chronic_cardiac_disease |   .9618122   .0478256    -0.78   0.434     .8724987    1.060268
-                              |
-                      diabcat |
-         Controlled diabetes  |   1.001452   .0314681     0.05   0.963     .9416362    1.065067
-                              |
-            cancer_exhaem_cat |
-                   Last year  |   .9782212    .023634    -0.91   0.362      .932979    1.025657
-               2-5 years ago  |   .9802482   .0235323    -0.83   0.406      .935194    1.027473
-                    5+ years  |   .9563195   .0253998    -1.68   0.093     .9078103    1.007421
-                              |
-              cancer_haem_cat |
-                   Last year  |   .9718644   .0241362    -1.15   0.250     .9256913    1.020341
-               2-5 years ago  |   .9922887   .0243434    -0.32   0.752     .9457053    1.041167
-                    5+ years  |   .9140851   .0518386    -1.58   0.113     .8179265    1.021549
-                              |
-      1.chronic_liver_disease |   1.156774   .1407488     1.20   0.231     .9113391    1.468309
-            1.stroke_dementia |   .9757543   .1030513    -0.23   0.816     .7933108    1.200156
-                1.other_neuro |   1.065579   .1410055     0.48   0.631     .8221445    1.381093
-                              |
-                          ckd |
-                         CKD  |   1.029335   .0239295     1.24   0.214     .9834868    1.077321
-           1.organ_transplant |   1.001815   .0327314     0.06   0.956     .9396738    1.068066
-                     1.spleen |   .9831213    .071881    -0.23   0.816     .8518663      1.1346
-           1.ra_sle_psoriasis |    .970043     .08812    -0.33   0.738      .811833    1.159085
-      other_immunosuppression |   1.046479   .0242953     1.96   0.050     .9999284    1.095197
------------------------------------------------------------------------------------------------
-                                                             Stratified by stp
 . estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
-file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
 . *estat concordance /*c-statistic*/
 . timer clear 
 . timer on 1
 . if e(N_fail)>0 estat phtest, d
-
-      Test of proportional-hazards assumption
-
-      Time:  Time
-      ----------------------------------------------------------------
-                  |       rho            chi2       df       Prob>chi2
-      ------------+---------------------------------------------------
-      age1        |      0.01589         5.06        1         0.0245
-      age2        |     -0.00931         1.74        1         0.1873
-      age3        |      0.00664         0.88        1         0.3480
-      0b.male     |            .            .        1             .
-      1.male      |      0.01325         3.47        1         0.0625
-      1b.obese4cat|            .            .        1             .
-      2.obese4cat |     -0.00761         1.15        1         0.2835
-      3.obese4cat |      0.00283         0.16        1         0.6904
-      4.obese4cat |      0.00308         0.19        1         0.6648
-      1b.smoke_n~s|            .            .        1             .
-      2.smoke_no~s|      0.00339         0.23        1         0.6325
-      3.smoke_no~s|      0.00379         0.28        1         0.5975
-      1b.imd      |            .            .        1             .
-      2.imd       |     -0.00419         0.34        1         0.5575
-      3.imd       |     -0.01333         3.53        1         0.0601
-      4.imd       |     -0.01091         2.37        1         0.1238
-      5.imd       |     -0.00237         0.11        1         0.7380
-      0b.htdiag_~p|            .            .        1             .
-      1.htdiag_o~p|      0.00381         0.29        1         0.5916
-      0b.c~respi~e|            .            .        1             .
-      1.c~respir~e|      0.00000         0.00        1         0.9996
-      1b.asthmacat|            .            .        1             .
-      2.asthmacat |      0.00408         0.34        1         0.5625
-      3.asthmacat |      0.00428         0.36        1         0.5473
-      0b.c~cardi~e|            .            .        1             .
-      1.c~cardia~e|     -0.00110         0.02        1         0.8770
-      1b.diabcat  |            .            .        1             .
-      2.diabcat   |      0.00568         0.65        1         0.4218
-      1b.c~exhae~t|            .            .        1             .
-      2.cancer_e~t|     -0.01332         3.53        1         0.0603
-      3.cancer_e~t|      0.00200         0.08        1         0.7782
-      4.cancer_e~t|      0.00176         0.06        1         0.8037
-      1b.cancer_h~|            .            .        1             .
-      2.cancer_h~t|      0.00375         0.28        1         0.5963
-      3.cancer_h~t|      0.00386         0.29        1         0.5874
-      4.cancer_h~t|      0.00163         0.05        1         0.8169
-      0b.c~liver~e|            .            .        1             .
-      1.c~liver_~e|      0.00160         0.05        1         0.8173
-      0b.stroke_~a|            .            .        1             .
-      1.stroke_d~a|      0.00008         0.00        1         0.9912
-      0b.other_n~o|            .            .        1             .
-      1.other_ne~o|      0.00021         0.00        1         0.9766
-      0b.ckd      |            .            .        1             .
-      1.ckd       |      0.00339         0.23        1         0.6325
-      0b.organ_t~t|            .            .        1             .
-      1.organ_tr~t|      0.00218         0.09        1         0.7582
-      0b.spleen   |            .            .        1             .
-      1.spleen    |     -0.00908         1.64        1         0.2008
-      0b.ra_sle_~s|            .            .        1             .
-      1.ra_sle_p~s|      0.00054         0.01        1         0.9390
-      other_immu~n|      0.00354         0.25        1         0.6174
-      ------------+---------------------------------------------------
-      global test |                     28.10       33         0.7099
-      ----------------------------------------------------------------
 . timer off 1
 . timer list
-   1:     12.05 /        1 =      12.0460
 . }
 
 . else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
+WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
 
 .  
 . log close
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_cpnsdeath.log
   log type:  text
- closed on:  27 Apr 2020, 23:19:47
+ closed on:  28 Apr 2020, 00:42:05
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

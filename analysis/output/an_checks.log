@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checks.log
   log type:  text
- opened on:  27 Apr 2020, 23:14:17
+ opened on:  28 Apr 2020, 00:39:30
 
 . 
 . * Open Stata dataset
@@ -198,7 +198,7 @@ Overweight (25-29.9) |     3,969          0          0          0 |     3,969
 
              |  Smoking status (missing set to
      Smoking |               non)
-      status |         1          2          3 |     Total
+      status |     Never     Former    Current |     Total
 -------------+---------------------------------+----------
        Never |     5,987          0          0 |     5,987 
       Former |         0     12,819          0 |    12,819 
@@ -2474,5 +2474,5 @@ Failure/ce |
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checks.log
   log type:  text
- closed on:  27 Apr 2020, 23:14:20
+ closed on:  28 Apr 2020, 00:39:33
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
