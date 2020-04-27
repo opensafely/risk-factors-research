@@ -1,7 +1,7 @@
 CTV3ID,CTV3PreferredTermDesc,CTV3Source
 23E5.,O/E - fibrosis of lung present,High_Level_SNOMED
 663K.,Airways obstructn irreversible,CTV3Map_Code_And_Term
-7450,Lung transplant,CTV3Map_Code_And_Term
+7450.,Lung transplant,CTV3Map_Code_And_Term
 7450y,Other specified transplantation of lung,CTV3Map_Code_And_Term
 7450z,Transplantation of lung NOS,CTV3Map_Code_And_Term
 A114.,Tuberculous fibrosis of lung,High_Level_SNOMED
@@ -207,10 +207,6 @@ X101o,Pulmonary emphysema in alpha-1 PI deficiency,CTV3_Children
 X101p,Toxic emphysema,CTV3_Children
 X101q,Congenital lobar emphysema,CTV3_Children
 X101r,Scar emphysema,CTV3_Children
-X1025,Occupational asthma,High_Level_SNOMED
-X1026,Baker's asthma,High_Level_SNOMED
-X1027,Colophony asthma,High_Level_SNOMED
-X1028,Grain worker's asthma,High_Level_SNOMED
 X102B,Mill fever,CTV3_Children
 X102H,Cryptogenic pulmonary eosinophilia,High_Level_SNOMED
 X102J,Animal handlers' lung,CTV3_Children

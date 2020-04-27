@@ -30,17 +30,25 @@ class StudyDefinition:
 
     def to_csv(self, filename):
         result = self.execute_query()
+        unique_check = UniqueCheck()
         with open(filename, "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([x[0] for x in result.description])
             for row in result:
+                unique_check.add(row[0])
                 writer.writerow(row)
+        unique_check.assert_unique_ids()
 
     def to_dicts(self):
         result = self.execute_query()
         keys = [x[0] for x in result.description]
         # Convert all values to str as that's what will end in the CSV
-        return [dict(zip(keys, map(str, row))) for row in result]
+        output = [dict(zip(keys, map(str, row))) for row in result]
+        unique_check = UniqueCheck()
+        for item in output:
+            unique_check.add(item["patient_id"])
+        unique_check.assert_unique_ids()
+        return output
 
     def to_sql(self):
         """
@@ -148,8 +156,8 @@ class StudyDefinition:
         for name, sql in queries:
             self.log(f"Running query: {name}")
             cursor.execute(sql)
-        if "TEMP_DATABASE_NAME" in os.environ:
-            output_table = self.get_output_table_name(os.environ["TEMP_DATABASE_NAME"])
+        output_table = self.get_output_table_name(os.environ.get("TEMP_DATABASE_NAME"))
+        if output_table:
             self.log(f"Running final query and writing output to '{output_table}'")
             sql = f"SELECT * INTO {output_table} FROM ({final_query}) t"
             cursor.execute(sql)
@@ -164,11 +172,7 @@ class StudyDefinition:
         return cursor
 
     def get_output_table_name(self, temporary_database):
-        # Check that the temporary database exists
-        cursor = self.get_db_connection().cursor()
-        cursor.execute("SELECT DB_ID(?)", [temporary_database])
-        result = list(cursor)[0][0]
-        if result is None:
+        if not temporary_database:
             return
         timestamp = datetime.datetime.now(datetime.timezone.utc).strftime(
             "%Y%m%d_%H%M%S"
@@ -873,16 +877,23 @@ class StudyDefinition:
             column_definition = "1"
             column_name = "died"
         elif returning == "date_of_death":
-            column_definition = truncate_date("DateOfDeath", include_month, include_day)
+            column_definition = truncate_date(
+                "MAX(DateOfDeath)", include_month, include_day
+            )
             column_name = "date_of_death"
         else:
             raise ValueError(f"Unsupported `returning` value: {returning}")
         return (
             ["patient_id", column_name],
             f"""
-            SELECT Patient_ID as patient_id, {column_definition} AS {column_name}
+            SELECT
+              Patient_ID as patient_id,
+              {column_definition} AS {column_name},
+              -- Crude error check so we blow up in the case of inconsistent dates
+              1 / CASE WHEN MAX(DateOfDeath) = MIN(DateOfDeath) THEN 1 ELSE 0 END AS _e
             FROM CPNS
             WHERE {date_condition}
+            GROUP BY Patient_ID
             """,
         )
 
@@ -1311,3 +1322,18 @@ def filter_codes_by_category(codes, include):
         if category in include:
             new_codes.append((code, category))
     return new_codes
+
+
+class UniqueCheck:
+    def __init__(self):
+        self.count = 0
+        self.ids = set()
+
+    def add(self, item):
+        self.count += 1
+        self.ids.add(item)
+
+    def assert_unique_ids(self):
+        duplicates = self.count - len(self.ids)
+        if duplicates != 0:
+            raise RuntimeError(f"Duplicate IDs found ({duplicates} rows)")

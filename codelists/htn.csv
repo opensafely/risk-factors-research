@@ -1,0 +1,293 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14A2.,H/O: hypertension,CTV3Map_Code_And_Term
+21261,Hypertension resolved,QOF
+2466.,O/E - BP reading raised,QOF
+2467.,O/E - BP reading very high,QOF
+662..,Cardiac disease monitoring (& [hypertension]),CTV3_Children
+6624.,Borderline hyperten:yearly obs,CTV3Map_Code_And_Term
+6627.,Good hypertension control,CTV3Map_Code_And_Term
+6628.,Poor hypertension control,CTV3Map_Code_And_Term
+6629.,Hypertension:follow-up default,CTV3Map_Code_And_Term
+662F.,Hypertension treatm. started,CTV3Map_Code_And_Term
+662G.,Hypertensive treatm.changed,CTV3Map_Code_And_Term
+662H.,Hypertension treatm.stopped,CTV3Map_Code_And_Term
+662O.,On treatment for hypertension,CTV3_Children
+662P.,Hypertension monitoring,CTV3_Children
+8HT5.,Referral to hypertension clinic,CTV3Map_Code_And_Term
+9N03.,Seen in hypertension clinic,High_Level_SNOMED
+9N1y2,Seen in hypertension clinic,CTV3Map_Code_And_Term
+9OI..,Hypertension admin: [monitoring] or [clinic],High_Level_SNOMED
+9OI1.,Attends hypertension monitoring,CTV3Map_Code_And_Term
+9OI2.,Refuses hypertension monitoring,CTV3Map_Code_And_Term
+9OI3.,Hypertension monitoring offer default,CTV3Map_Code_And_Term
+9OI4.,Hypertension monitoring first letter,CTV3Map_Code_And_Term
+9OI4.,Hypertension monitoring first letter,QOF
+9OI5.,Hypertension monitoring second letter,CTV3Map_Code_And_Term
+9OI5.,Hypertension monitoring second letter,QOF
+9OI6.,Hypertension monitoring third letter,CTV3Map_Code_And_Term
+9OI6.,Hypertension monitoring third letter,QOF
+9OI7.,Hypertension monitoring verbal invite,CTV3Map_Code_And_Term
+9OI7.,Hypertension monitoring verbal invite,QOF
+9OI8.,Hypertension monitoring telephone invite,CTV3Map_Code_And_Term
+9OI8.,Hypertension monitoring telephone invite,QOF
+9OI9.,Hypertension monitoring deleted,CTV3Map_Code_And_Term
+9OIA.,Hypertension monitor (& check done),High_Level_SNOMED
+9OIZ.,Hypertens.monitoring admin.NOS,CTV3Map_Code_And_Term
+9h31.,Excepted from hypertension qual indicators: Patient unsuit,CTV3_Children
+F4211,Hypertensive retinopathy,CTV3Map_Code_And_Term
+G2...,Hypertensive disease,CTV3Map_Code_And_Term
+G2...,Hypertensive disease,CTV3Map_Code_Only
+G2...,Hypertensive disease,QOF
+G20..,High blood pressure (& [essential hypertension]),CTV3_Children
+G20..,High blood pressure (& [essential hypertension]),QOF
+G200.,Malignant essential hypertension,CTV3Map_Code_And_Term
+G200.,Malignant essential hypertension,QOF
+G201.,Benign essential hypertension,CTV3Map_Code_And_Term
+G201.,Benign essential hypertension,QOF
+G202.,Systolic hypertension,CTV3Map_Code_And_Term
+G202.,Systolic hypertension,QOF
+G20z.,Hypertension NOS (& [essential]),CTV3_Children
+G20z.,Hypertension NOS (& [essential]),QOF
+G21..,Hypertensive heart disease,CTV3Map_Code_And_Term
+G21..,Hypertensive heart disease,QOF
+G210.,Malignant hypertensive heart disease,CTV3Map_Code_And_Term
+G210.,Malignant hypertensive heart disease,QOF
+G2100,Malignant hypertensive heart disease without CCF,CTV3Map_Code_And_Term
+G2100,Malignant hypertensive heart disease without CCF,QOF
+G2101,Malignant hypertensive heart disease with CCF,CTV3Map_Code_And_Term
+G2101,Malignant hypertensive heart disease with CCF,QOF
+G210z,Malignant hypertensive heart disease NOS,CTV3Map_Code_And_Term
+G210z,Malignant hypertensive heart disease NOS,QOF
+G211.,Benign hypertensive heart disease,CTV3Map_Code_And_Term
+G211.,Benign hypertensive heart disease,QOF
+G2110,Benign hypertensive heart disease without CCF,CTV3Map_Code_And_Term
+G2110,Benign hypertensive heart disease without CCF,QOF
+G2111,Benign hypertensive heart disease with CCF,CTV3Map_Code_And_Term
+G2111,Benign hypertensive heart disease with CCF,QOF
+G211z,Benign hypertensive heart disease NOS,CTV3Map_Code_And_Term
+G211z,Benign hypertensive heart disease NOS,QOF
+G21z.,Hypertensive heart disease NOS,CTV3Map_Code_And_Term
+G21z.,Hypertensive heart disease NOS,QOF
+G21z0,"Hypertensiv:[cardiomeg][heart dis NOS, no congest card fail]",CTV3_Children
+G21z0,"Hypertensiv:[cardiomeg][heart dis NOS, no congest card fail]",QOF
+G21z1,Hypertensive heart disease NOS with CCF,CTV3Map_Code_And_Term
+G21z1,Hypertensive heart disease NOS with CCF,QOF
+G22..,Hypertensive renal disease (& [nephrosclerosis]),CTV3_Children
+G220.,Malignant hypertensive renal disease,CTV3Map_Code_And_Term
+G221.,Benign hypertensive renal disease,CTV3Map_Code_And_Term
+G222.,Hypertensive renal disease with renal failure,CTV3Map_Code_And_Term
+G22z.,(Renal hypertension) or (hypertensive renal disease NOS),CTV3_Children
+G23..,Hypertensive heart and renal disease,CTV3Map_Code_And_Term
+G23..,Hypertensive heart and renal disease,QOF
+G230.,Malignant hypertensive heart and renal disease,CTV3Map_Code_And_Term
+G230.,Malignant hypertensive heart and renal disease,QOF
+G231.,Benign hypertensive heart and renal disease,CTV3Map_Code_And_Term
+G231.,Benign hypertensive heart and renal disease,QOF
+G232.,Hypertensive heart&renal dis wth (congestive) heart failure,CTV3Map_Code_And_Term
+G232.,Hypertensive heart&renal dis wth (congestive) heart failure,QOF
+G233.,Hypertensive heart and renal disease with renal failure,CTV3Map_Code_And_Term
+G233.,Hypertensive heart and renal disease with renal failure,QOF
+G234.,Hyperten heart&renal dis+both(congestv)heart and renal fail,CTV3Map_Code_And_Term
+G234.,Hyperten heart&renal dis+both(congestv)heart and renal fail,QOF
+G23z.,Hypertensive heart and renal disease NOS,CTV3Map_Code_And_Term
+G23z.,Hypertensive heart and renal disease NOS,QOF
+G24..,Secondary hypertension,CTV3Map_Code_And_Term
+G24..,Secondary hypertension,QOF
+G240.,Malignant secondary hypertension,CTV3Map_Code_And_Term
+G240.,Malignant secondary hypertension,QOF
+G2400,Secondary malignant renovascular hypertension,CTV3Map_Code_And_Term
+G2400,Secondary malignant renovascular hypertension,QOF
+G240z,Secondary malignant hypertension NOS,CTV3Map_Code_And_Term
+G240z,Secondary malignant hypertension NOS,QOF
+G241.,Secondary benign hypertension,CTV3Map_Code_And_Term
+G241.,Secondary benign hypertension,QOF
+G2410,Secondary benign renovascular hypertension,CTV3Map_Code_And_Term
+G2410,Secondary benign renovascular hypertension,QOF
+G241z,Secondary benign hypertension NOS,CTV3Map_Code_And_Term
+G241z,Secondary benign hypertension NOS,QOF
+G244.,Hypertension secondary to endocrine disorders,CTV3Map_Code_And_Term
+G244.,Hypertension secondary to endocrine disorders,QOF
+G24z.,Secondary hypertension NOS,CTV3Map_Code_And_Term
+G24z.,Secondary hypertension NOS,QOF
+G24z0,Secondary renovascular hypertension NOS,CTV3Map_Code_And_Term
+G24z0,Secondary renovascular hypertension NOS,QOF
+G24z1,Hypertension secondary to drug,CTV3Map_Code_And_Term
+G24z1,Hypertension secondary to drug,QOF
+G24zz,Secondary hypertension NOS,CTV3_Children
+G24zz,Secondary hypertension NOS,QOF
+G2y..,Other specified hypertensive disease,CTV3Map_Code_And_Term
+G2y..,Other specified hypertensive disease,QOF
+G2z..,Hypertensive disease NOS,CTV3Map_Code_And_Term
+G2z..,Hypertensive disease NOS,QOF
+G672.,Hypertensive: [encephalopathy] or [crisis],High_Level_SNOMED
+Gyu2.,[X]Hypertensive diseases,CTV3Map_Code_And_Term
+Gyu2.,[X]Hypertensive diseases,QOF
+Gyu20,[X]Other secondary hypertension,CTV3Map_Code_And_Term
+Gyu20,[X]Other secondary hypertension,QOF
+Gyu21,[X]Hypertension secondary to other renal disorders,CTV3Map_Code_And_Term
+Gyu21,[X]Hypertension secondary to other renal disorders,QOF
+L12..,Hypertension complicating pregnancy/childbirth/puerperium,CTV3_Children
+L120.,Benign essential hypertension in pregnancy/childbirth/puerp,CTV3_Children
+L120.,Benign essential hypertension in pregnancy/childbirth/puerp,QOF
+L1200,Benign essential hypertension in preg/childb/puerp unspec,CTV3_Children
+L1200,Benign essential hypertension in preg/childb/puerp unspec,QOF
+L1201,Benign essential hypertension in preg/childb/puerp - deliv,CTV3_Children
+L1201,Benign essential hypertension in preg/childb/puerp - deliv,QOF
+L1202,Benign ess hypert in preg/childb/puerp - deliv with p/n comp,CTV3_Children
+L1202,Benign ess hypert in preg/childb/puerp - deliv with p/n comp,QOF
+L1203,Benign essential hypertension in preg/childb/puerp-not deliv,CTV3_Children
+L1203,Benign essential hypertension in preg/childb/puerp-not deliv,QOF
+L1204,Benign essential hypertension in preg/childb/puerp +p/n comp,CTV3_Children
+L1204,Benign essential hypertension in preg/childb/puerp +p/n comp,QOF
+L120z,Benign essential hypertension in preg/childb/puerp NOS,CTV3_Children
+L120z,Benign essential hypertension in preg/childb/puerp NOS,QOF
+L121.,Renal hypertension in pregnancy/childbirth/puerperium,CTV3_Children
+L121.,Renal hypertension in pregnancy/childbirth/puerperium,QOF
+L1210,Renal hypertension in pregnancy/childbirth/puerp unspecified,CTV3_Children
+L1210,Renal hypertension in pregnancy/childbirth/puerp unspecified,QOF
+L1211,Renal hypertension in pregnancy/childbirth/puerp - delivered,CTV3_Children
+L1211,Renal hypertension in pregnancy/childbirth/puerp - delivered,QOF
+L1212,Renal hypertension in preg/childb/puerp -deliv with p/n comp,CTV3_Children
+L1212,Renal hypertension in preg/childb/puerp -deliv with p/n comp,QOF
+L1213,Renal hypertension in preg/childbirth/puerp - not delivered,CTV3_Children
+L1213,Renal hypertension in preg/childbirth/puerp - not delivered,QOF
+L1214,Renal hypertension in preg/childb/puerp + p/n complication,CTV3_Children
+L1214,Renal hypertension in preg/childb/puerp + p/n complication,QOF
+L121z,Renal hypertension in pregnancy/childbirth/puerperium NOS,CTV3_Children
+L121z,Renal hypertension in pregnancy/childbirth/puerperium NOS,QOF
+L122.,Other pre-existing hypertension in preg/childbirth/puerp,CTV3Map_Code_And_Term
+L122.,Other pre-existing hypertension in preg/childbirth/puerp,QOF
+L1220,Other pre-existing hypertension in preg/childb/puerp unspec,CTV3Map_Code_And_Term
+L1220,Other pre-existing hypertension in preg/childb/puerp unspec,QOF
+L1221,Other pre-existing hypertension in preg/childb/puerp - deliv,CTV3Map_Code_And_Term
+L1221,Other pre-existing hypertension in preg/childb/puerp - deliv,QOF
+L1222,Oth pre-exist hypert in preg/childb/puerp -del with p/n comp,CTV3_Children
+L1222,Oth pre-exist hypert in preg/childb/puerp -del with p/n comp,QOF
+L1223,Other pre-exist hypertension in preg/childb/puerp-not deliv,CTV3Map_Code_And_Term
+L1223,Other pre-exist hypertension in preg/childb/puerp-not deliv,QOF
+L1224,Other pre-exist hypertension in preg/childb/puerp + p/n comp,CTV3_Children
+L1224,Other pre-exist hypertension in preg/childb/puerp + p/n comp,QOF
+L122z,Other pre-existing hypertension in preg/childb/puerp NOS,CTV3Map_Code_And_Term
+L122z,Other pre-existing hypertension in preg/childb/puerp NOS,QOF
+L127.,Pre-eclampsia or eclampsia with pre-existing hypertension,CTV3Map_Code_And_Term
+L127.,Pre-eclampsia or eclampsia with pre-existing hypertension,QOF
+L127z,Pre-eclampsia or eclampsia + pre-existing hypertension NOS,CTV3Map_Code_And_Term
+L127z,Pre-eclampsia or eclampsia + pre-existing hypertension NOS,QOF
+L128.,Pre-exist hypertension compl preg childbirth and puerperium,CTV3Map_Code_And_Term
+L128.,Pre-exist hypertension compl preg childbirth and puerperium,QOF
+L1280,Pre-exist hyperten heart dis compl preg childbth+puerperium,CTV3Map_Code_And_Term
+L1281,Pre-exist hyperten heart renal dis comp preg chldbirth/puerp,CTV3_Children
+L1281,Pre-exist hyperten heart renal dis comp preg chldbirth/puerp,QOF
+L1282,Pre-exist 2ndry hypertens comp preg childbth and puerprum,CTV3Map_Code_And_Term
+L1282,Pre-exist 2ndry hypertens comp preg childbth and puerprum,QOF
+Q492.,Neonatal hypertension,High_Level_SNOMED
+X40Bw,Superimposed pre-eclampsia,CTV3_Children
+X40Bw,Superimposed pre-eclampsia,QOF
+X50Bh,Hypertensive leg ulcer,High_Level_SNOMED
+XE0Ub,Hypertension,CTV3Map_Code_And_Term
+XE0Ub,Hypertension,CTV3Map_Code_Only
+XE0Ub,Hypertension,QOF
+XE0Uc,Essential hypertension,CTV3Map_Code_And_Term
+XE0Uc,Essential hypertension,CTV3Map_Code_Only
+XE0Uc,Essential hypertension,QOF
+XE0Ud,Essential hypertension NOS,CTV3Map_Code_And_Term
+XE0Ud,Essential hypertension NOS,CTV3Map_Code_Only
+XE0Ud,Essential hypertension NOS,QOF
+XE0Ue,Hypertensive heart disease NOS without CCF,CTV3Map_Code_And_Term
+XE0Ue,Hypertensive heart disease NOS without CCF,CTV3Map_Code_Only
+XE0Ue,Hypertensive heart disease NOS without CCF,QOF
+XE0Uf,Hypertensive renal disease,CTV3Map_Code_And_Term
+XE0Uf,Hypertensive renal disease,CTV3Map_Code_Only
+XE0Ug,Hypertensive renal disease NOS,CTV3Map_Code_And_Term
+XE0Ug,Hypertensive renal disease NOS,CTV3Map_Code_Only
+XE0VM,Hypertensive encephalopathy,CTV3Map_Code_And_Term
+XE0VM,Hypertensive encephalopathy,CTV3Map_Code_Only
+XE0W8,(Hypertensive disease) or (hypertension),CTV3_Children
+XE0W8,(Hypertensive disease) or (hypertension),QOF
+XE0vr,Hypertension induced by pregnancy,CTV3_Children
+XE0vs,Mild or unspecified pre-eclampsia,CTV3_Children
+XE0xu,Pregnancy with hypertension (& [pre-existing]),CTV3_Children
+XE0xw,Hypertension of pregnancy (& [pre-eclampsia]),CTV3_Children
+XE0xy,Hypertension of pregnancy NOS,CTV3_Children
+XE15r,Blind hypertensive eye,CTV3Map_Code_And_Term
+XE2NY,Hypertension monitoring admin.,CTV3Map_Code_And_Term
+XE2NY,Hypertension monitoring admin.,CTV3Map_Code_Only
+XE2NZ,Hypertension monitoring check done,CTV3Map_Code_And_Term
+XE2NZ,Hypertension monitoring check done,CTV3Map_Code_Only
+XM19D,[EDTA]Renal vascular dis due to hypertension+renal failure,QOF
+XM19E,[EDTA]Renal vasc dis due to malig hypertension+renal failure,QOF
+XM1C1,Elevated blood-pressure reading w/out diagn of hypertension,CTV3_Children
+XM1Qp,Cardiomegaly - hypertensive,CTV3Map_Code_And_Term
+XM1Qp,Cardiomegaly - hypertensive,CTV3Map_Code_Only
+XM1Qp,Cardiomegaly - hypertensive,QOF
+XM1U2,Hypertension clinic admin.,CTV3Map_Code_And_Term
+XM1U2,Hypertension clinic admin.,CTV3Map_Code_Only
+XM1YA,Hypertension monitoring,CTV3Map_Code_And_Term
+XSDSb,Diastolic hypertension,CTV3Map_Code_And_Term
+XSDSb,Diastolic hypertension,QOF
+Xa0Cs,Labile hypertension,CTV3_Children
+Xa0Cs,Labile hypertension,QOF
+Xa0kX,Renovascular hypertension,CTV3_Children
+Xa0kX,Renovascular hypertension,QOF
+Xa0lt,Pre-existing hypertension complicating pregnancy,CTV3_Children
+Xa0lt,Pre-existing hypertension complicating pregnancy,QOF
+Xa3fQ,Malignant hypertension,CTV3_Children
+Xa3fQ,Malignant hypertension,QOF
+Xa40P,Pre-eclampsia NOS,CTV3_Children
+Xa8HD,On treatment for hypertension,CTV3Map_Code_And_Term
+XaBLq,Antihypertensive therapy,CTV3Map_Code_And_Term
+XaBSX,Hypertension screening recall,High_Level_SNOMED
+XaBU4,Hypertension monitoring status,High_Level_SNOMED
+XaBU5,Hypertension monitoring call,High_Level_SNOMED
+XaCGj,Hypertension monitoring invitation,QOF
+XaIR7,Did not attend hypertension clinic,CTV3Map_Code_And_Term
+XaIy8,Moderate hypertension control,CTV3Map_Code_And_Term
+XaIyC,Hypertension treatment refused,CTV3Map_Code_And_Term
+XaIyD,Hypertension six month review,CTV3Map_Code_And_Term
+XaIyE,Hypertension annual review,CTV3Map_Code_And_Term
+XaJ4P,Exception reporting: hypertension quality indicators,CTV3Map_Code_And_Term
+XaJ4P,Exception reporting: hypertension quality indicators,QOF
+XaJ4e,Excepted from hypertension qual indicators: Patient unsuit,CTV3Map_Code_And_Term
+XaJ4e,Excepted from hypertension qual indicators: Patient unsuit,QOF
+XaJ4f,Excepted from hypertension qual indicators: Informed dissent,CTV3Map_Code_And_Term
+XaJ4f,Excepted from hypertension qual indicators: Informed dissent,QOF
+XaJ5h,Patient on maximal tolerated antihypertensive therapy,CTV3Map_Code_And_Term
+XaJ5h,Patient on maximal tolerated antihypertensive therapy,QOF
+XaJYi,Hypertension clinical management plan,CTV3Map_Code_And_Term
+XaM5f,High cost hypertension drugs,CTV3Map_Code_And_Term
+XaM5n,Other specified high cost hypertension drugs,CTV3Map_Code_And_Term
+XaM5p,High cost hypertension drugs NOS,CTV3_Children
+XaNFr,Trial reduction of antihypertensive therapy,CTV3Map_Code_And_Term
+XaNFs,Trial withdrawal of antihypertensive therapy,CTV3Map_Code_And_Term
+XaNK1,Trial withdrawal of antihypertensive therapy declined,CTV3_Children
+XaNK2,Trial reduction of antihypertensive therapy declined,CTV3_Children
+XaQaV,Lifestyle advice regarding hypertension,CTV3Map_Code_And_Term
+XaQaV,Lifestyle advice regarding hypertension,QOF
+XaXOi,Hypertension 9 month review,CTV3Map_Code_And_Term
+XaYZS,Hypertension self-management plan review,High_Level_SNOMED
+XaZWm,Stage 1 hypertension (NICE - Nat Ins for Hth Clin Excl 2011),CTV3Map_Code_And_Term
+XaZWm,Stage 1 hypertension (NICE - Nat Ins for Hth Clin Excl 2011),CTV3Map_Code_Only
+XaZWm,Stage 1 hypertension (NICE - Nat Ins for Hth Clin Excl 2011),QOF
+XaZWn,Severe hypertension (Nat Inst for Health Clinical Ex 2011),CTV3Map_Code_And_Term
+XaZWn,Severe hypertension (Nat Inst for Health Clinical Ex 2011),CTV3Map_Code_Only
+XaZWn,Severe hypertension (Nat Inst for Health Clinical Ex 2011),QOF
+XaZbT,Hypertension resistant to drug therapy,CTV3Map_Code_And_Term
+XaZbT,Hypertension resistant to drug therapy,QOF
+XaZbz,Stage 2 hypertension (NICE - Nat Ins for Hth Clin Excl 2011),CTV3Map_Code_And_Term
+XaZbz,Stage 2 hypertension (NICE - Nat Ins for Hth Clin Excl 2011),QOF
+XaZzo,Nocturnal hypertension,CTV3_Children
+XaZzo,Nocturnal hypertension,QOF
+Xab9L,Stage 1 hyperten (NICE 2011) without evidnce end organ damge,CTV3_Children
+Xab9L,Stage 1 hyperten (NICE 2011) without evidnce end organ damge,QOF
+Xab9M,Stage 1 hyperten (NICE 2011) with evidnce end organ damge,CTV3_Children
+Xab9M,Stage 1 hyperten (NICE 2011) with evidnce end organ damge,QOF
+XabtR,Borderline hypertension monitoring first letter,High_Level_SNOMED
+XabtT,Borderline hypertension monitoring second letter,High_Level_SNOMED
+XabtU,Borderline hypertension monitoring third letter,High_Level_SNOMED
+Xac8u,Telehealth hypertension monitoring,CTV3_Children
+Xafj3,Hypertension monitoring invitation short msg service txt msg,QOF
+Xafj4,Hypertension mnitoring short msg service text msg 1st invitn,QOF
+Xafj5,Hypertension mnitoring short msg service text msg 2nd invitn,QOF
+Xafj6,Hypertension mnitoring short msg service text msg 3rd invitn,QOF
+XagLb,Hypertension monitoring invitation email,QOF
+Y1328,Refractory Hypertension,CTV3_Children
