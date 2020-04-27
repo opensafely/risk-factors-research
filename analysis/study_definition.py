@@ -281,12 +281,12 @@ study = StudyDefinition(
     ),
     bone_marrow_transplant=patients.with_these_clinical_events(
         bone_marrow_transplant_codes,
-        return_first_date_in_period=True,
+        return_last_date_in_period=True,
         include_month=True,
     ),
     chemo_radio_therapy=patients.with_these_clinical_events(
         chemo_radio_therapy_codes,
-        return_first_date_in_period=True,
+        return_last_date_in_period=True,
         include_month=True,
     ),
 
@@ -353,7 +353,7 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
         aplastic_codes, 
-        return_first_date_in_period=True,
+        return_last_date_in_period=True,
         include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
