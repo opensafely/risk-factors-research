@@ -89,7 +89,7 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
 
-hba1c_new_codes = codelist(['Xaeze'], system="ctv3")
+hba1c_new_codes = codelist(['Xaeze', 'Xaezd'], system="ctv3")
 hba1c_old_codes = codelist(['XaERp'], system="ctv3")
 
 
