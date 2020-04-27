@@ -368,7 +368,7 @@ study = StudyDefinition(
     ),
     temporary_immunodeficiency=patients.with_these_clinical_events(
         temp_immune_codes,
-        return_first_date_in_period=True,
+        return_last_date_in_period=True,
         include_month=True,
     ),
 
