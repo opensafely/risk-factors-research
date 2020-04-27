@@ -88,6 +88,11 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
 )
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
+
+hba1c_new_codes = codelist(['Xaeze'], system="ctv3")
+hba1c_old_codes = codelist(['XaERp'], system="ctv3")
+
+
 dialysis_codes = codelist_from_csv(
     "codelists/dialysis_codes.csv", system="ctv3", column="CTV3ID"
 )
@@ -167,7 +172,7 @@ study = StudyDefinition(
     stp=patients.registered_practice_as_of("2020-02-01", returning="stp_code"),
 
     # region - one of NHS England 9 regions 
-    region=patients.registered_practice_as_of("2020-02-01", returning="nhse_region_name"),
+    # region=patients.registered_practice_as_of("2020-02-01", returning="nhse_region_name"),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/10
     bmi=patients.most_recent_bmi(
@@ -392,6 +397,23 @@ study = StudyDefinition(
         on_most_recent_day_of_measurement=True,
         on_or_before="2020-02-01",
         include_measurement_date=True,
+        include_month=True,
+    ),
+
+    hba1c_new=patients.with_these_clinical_events(
+        hba1c_new_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+        include_date_of_match=True,
+        include_month=True,
+    ),
+    hba1c_old=patients.with_these_clinical_events(
+        hba1c_old_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+        include_date_of_match=True,
         include_month=True,
     ),
 
