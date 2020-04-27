@@ -61,17 +61,3 @@ replace region = "South East" if uniform()<0.8 & region==""
 replace region = "South West" if region==""
 
 
-
-
-* ECDS
-gen ecdsevent_date_temp = 1960 + rnormal(0, 1000) 
-replace ecdsevent_date_temp = . if uniform()<0.8
-gen ecdsevent_date = string(day(ecdsevent_date_temp)) 			///
-					+ "/" + string(month(ecdsevent_date_temp)) 	///
-					+ "/" + string(year(ecdsevent_date_temp))
-replace ecdsevent_date = " " if ecdsevent_date=="././." 
-drop ecdsevent_date_temp
-
-
-
-
