@@ -25,22 +25,68 @@ do "an_checks.do"
 do "an_descriptive_tables.do"
 do "an_descriptive_plots.do"
 
+*Univariate models can be run in parallel Stata instances for speed
+*Command is "do an_univariable_cox_models <OUTCOME> <VARIABLE(s) TO RUN>
+*The following breaks down into 4 batches, 
+*  which can be done in separate Stata instances
+*Can be broken down further but recommend keeping in alphabetical order
+*   because of the ways the resulting log files are named
 
-*do "an_univariable_cox_models.do" ecdsevent /*not currently avail*/
-do "an_univariable_cox_models.do" cpnsdeath
-do "an_univariable_cox_models.do" onscoviddeath 
-do "an_univariable_cox_models.do" ituadmission 
+*UNIVARIATE MODELS BATCH 1
+do "an_univariable_cox_models.do" cpnsdeath ///
+	agegroupsex							///
+	agesplsex							///
+	asthmacat							///
+	cancer_exhaem_cat					///
+	cancer_haem_cat						///
+	chronic_cardiac_disease 			
 
-*do "an_multivariable_cox_models.do" ecdsevent /*not currently avail*/
+*UNIVARIATE MODELS BATCH 2
+do "an_univariable_cox_models.do" cpnsdeath ///
+	chronic_liver_disease 				///
+	chronic_respiratory_disease 		///
+	ckd									///
+	diabcat								///
+	ethnicity 
+
+*UNIVARIATE MODELS BATCH 3
+do "an_univariable_cox_models.do" cpnsdeath ///
+	htdiag_or_highbp					///
+	 bpcat 								///
+	 hypertension						///
+	imd 								///
+	obese4cat							///
+	 bmicat 							///
+	organ_transplant 					
+	
+
+*UNIVARIATE MODELS BATCH 4
+do "an_univariable_cox_models.do" cpnsdeath ///
+	other_immunosuppression				///
+	other_neuro 						///
+	ra_sle_psoriasis 					///  
+	smoke  								///
+	smoke_nomiss 						///
+	spleen 								///
+	stroke_dementia
+
+*do "an_univariable_cox_models.do" onscoviddeath <VARLIST> 
+*do "an_univariable_cox_models.do" ituadmission <VARLIST>
+
+*MULTIVARIATE MODELS
 do "an_multivariable_cox_models.do" cpnsdeath
-do "an_multivariable_cox_models.do" onscoviddeath 
-do "an_multivariable_cox_models.do" ituadmission 
+*do "an_multivariable_cox_models.do" onscoviddeath 
+*do "an_multivariable_cox_models.do" ituadmission 
 
 
 ************************************************************
 *PARALLEL WORKING - THIS MUST BE RUN LAST (IT's VERY QUICK)*
 ************************************************************
 do "an_tablecontent_HRtable.do"
+
+
+**Experimental, to do at end (in case slow)
+do "an_checkassumptions.do" cpnsdeath
 
 
 

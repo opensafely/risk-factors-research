@@ -157,10 +157,10 @@ drop smoking_status
 replace ethnicity = .u if ethnicity==.
 
 label define ethnicity 	1 "White"  		///
-						2 "South Asian" ///
-						3 "Black" 		///
-						4 "Other"  		///
-						5 "Mixed"		///
+						2 "Mixed" ///
+						3 "Asian or Asian British" 		///
+						4 "Black"  		///
+						5 "Other"		///
 						.u "Unknown"
 label values ethnicity ethnicity
 
@@ -251,12 +251,14 @@ order smoke_nomiss, after(smoke)
 /*  Asthma  */
 
 
-* Asthma  (coded: 0 No, 1 Yes no ICS, 2 Yes with ICS)
+* Asthma  (coded: 0 No, 1 Yes no OCS, 2 Yes with OCS)
 rename asthma asthmacat
-label define asthmacat 0 "No" 1 "Yes, no ICS" 2 "Yes with ICS"
+recode asthmacat 0=1 1=2 2=3
+label define asthmacat 1 "No" 2 "Yes, no OCS" 3 "Yes with OCS"
 label values asthmacat asthmacat
 
-recode asthmacat 2=1, gen(asthma)
+gen asthma = (asthmacat==2|asthmacat==3)
+
 
 
 
@@ -372,24 +374,24 @@ order spleen, after(sickle_cell)
 
 /*  Cancer  */
 
-label define cancer 0 "Never" 1 "Last year" 2 "2-5 years ago" 3 "5+ years"
+label define cancer 1 "Never" 2 "Last year" 3 "2-5 years ago" 4 "5+ years"
 
 * Haematological malignancies
-gen     cancer_haem_cat = 3 if inrange(haem_cancer_date, d(1/1/1900), d(1/2/2015))
-replace cancer_haem_cat = 2 if inrange(haem_cancer_date, d(1/2/2015), d(1/2/2019))
-replace cancer_haem_cat = 1 if inrange(haem_cancer_date, d(1/2/2019), d(1/2/2020))
-recode  cancer_haem_cat . = 0
+gen     cancer_haem_cat = 4 if inrange(haem_cancer_date, d(1/1/1900), d(1/2/2015))
+replace cancer_haem_cat = 3 if inrange(haem_cancer_date, d(1/2/2015), d(1/2/2019))
+replace cancer_haem_cat = 2 if inrange(haem_cancer_date, d(1/2/2019), d(1/2/2020))
+recode  cancer_haem_cat . = 1
 label values cancer_haem_cat cancer
 
 
 * All other cancers
-gen     cancer_exhaem_cat = 3 if inrange(lung_cancer_date,  d(1/1/1900), d(1/2/2015)) | ///
+gen     cancer_exhaem_cat = 4 if inrange(lung_cancer_date,  d(1/1/1900), d(1/2/2015)) | ///
 								 inrange(other_cancer_date, d(1/1/1900), d(1/2/2015)) 
-replace cancer_exhaem_cat = 2 if inrange(lung_cancer_date,  d(1/2/2015), d(1/2/2019)) | ///
+replace cancer_exhaem_cat = 3 if inrange(lung_cancer_date,  d(1/2/2015), d(1/2/2019)) | ///
 								 inrange(other_cancer_date, d(1/2/2015), d(1/2/2019)) 
-replace cancer_exhaem_cat = 1 if inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020)) | ///
+replace cancer_exhaem_cat = 2 if inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020)) | ///
 								 inrange(other_cancer_date, d(1/2/2019), d(1/2/2020))
-recode  cancer_exhaem_cat . = 0
+recode  cancer_exhaem_cat . = 1
 label values cancer_exhaem_cat cancer
 
 
@@ -455,11 +457,8 @@ label var egfr "egfr calculated using CKD-EPI formula with no eth + fudge"
 * Categorise into ckd stages
 egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
 recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
-label define ckd 0 "No CKD" 	///
-				 2 "stage 3a" 	///
-				 3 "stage 3b" 	///
-				 4 "stage 4" 	///
-				 5 "stage 5"
+* 0 = "No CKD" 	2 "stage 3a" 3 "stage 3b" 4 "stage 4" 5 "stage 5"
+label define ckd 0 "No CKD" 1 "CKD"
 label values ckd ckd
 label var ckd "CKD stage calc without eth + DN fudge factor"
 
@@ -636,7 +635,7 @@ label var c_ethnicity					"Centred ethnicity (values: -2/+2)"
 
 * Comorbidities
 label var chronic_respiratory_disease	"Respiratory disease (excl. asthma)"
-label var asthmacat						"Asthma, grouped by severity (ICS use)"
+label var asthmacat						"Asthma, grouped by severity (OCS use)"
 label var asthma						"Asthma"
 label var chronic_cardiac_disease		"Heart disease"
 label var diabetes						"Diabetes"
