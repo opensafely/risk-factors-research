@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_agegroupsexTOchronic_cardiac_disease.log
   log type:  text
- opened on:  27 Apr 2020, 22:20:37
+ opened on:  27 Apr 2020, 23:14:44
 
 . 
 . * Open dataset and fit specified model(s)
@@ -93,5 +93,5 @@ WARNING - chronic_cardiac_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_agegroupsexTOchronic_cardiac_disease.log
   log type:  text
- closed on:  27 Apr 2020, 22:20:55
+ closed on:  27 Apr 2020, 23:15:10
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

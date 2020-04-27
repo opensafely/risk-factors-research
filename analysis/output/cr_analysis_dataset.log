@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  27 Apr 2020, 22:20:19
+ opened on:  27 Apr 2020, 23:20:08
 
 . 
 . 
@@ -107,24 +107,24 @@ variable bp_dias_date_measured was str7 now str10
 (45,520 missing values generated)
 variable hba1c_old_date was str7 now str10
 (100,575 real changes made)
-(95,621 real changes made)
-(100,371 missing values generated)
+(100,539 real changes made)
+(100,539 missing values generated)
 variable hba1c_new_date was str7 now str10
 (100,575 real changes made)
-(20,292 real changes made)
-(84,358 missing values generated)
+(100,573 real changes made)
+(100,573 missing values generated)
 variable hypertension was str7 now str10
 (100,575 real changes made)
-(0 real changes made)
-(80,615 missing values generated)
+(86,809 real changes made)
+(86,809 missing values generated)
 variable bmi_date_measured was str7 now str10
 (100,575 real changes made)
 (90,131 real changes made)
 (90,131 missing values generated)
 variable chronic_respiratory_disease was str7 now str10
 (100,575 real changes made)
-(99,918 real changes made)
-(99,918 missing values generated)
+(99,932 real changes made)
+(99,932 missing values generated)
 variable chronic_cardiac_disease was str7 now str10
 (100,575 real changes made)
 (78,304 real changes made)
@@ -256,13 +256,13 @@ variable ra_sle_psoriasis was str7 now str10
 (94,588 missing values generated)
 
 . replace smoke = 2  if smoking_status=="E"
-(12,826 real changes made)
+(12,819 real changes made)
 
 . replace smoke = 3  if smoking_status=="S"
-(26,096 real changes made)
+(26,466 real changes made)
 
 . replace smoke = .u if smoking_status=="M"
-(55,666 real changes made, 55,666 to missing)
+(55,303 real changes made, 55,303 to missing)
 
 . label values smoke smoke
 
@@ -405,7 +405,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Create non-missing 3-category variable for current smoking
 . recode smoke .u=1, gen(smoke_nomiss)
-(55666 differences between smoke and smoke_nomiss)
+(55303 differences between smoke and smoke_nomiss)
 
 . order smoke_nomiss, after(smoke)
 
@@ -658,7 +658,7 @@ variable ra_sle_psoriasis was str7 now str10
 . gen htdiag_or_highbp = bphigh
 
 . recode htdiag_or_highbp 0 = 1 if hypertension==1 
-(htdiag_or_highbp: 11429 changes made)
+(htdiag_or_highbp: 357 changes made)
 
 . 
 . 
@@ -670,13 +670,13 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Set implausible creatinine values to missing 
 . replace creatinine = . if !inrange(creatinine, 20, 3000) 
-(57,684 real changes made, 57,684 to missing)
+(77,333 real changes made, 77,333 to missing)
 
 .         
 . * Multiply by 0.95 (for assay-fudge factor) and 
 . * divide by 88.4 (to convert umol/l to mg/dl)
 . gen SCr_adj = creatinine/88.4
-(57,684 missing values generated)
+(77,333 missing values generated)
 
 . 
 . * NB: I have guessed which way round sex is...
@@ -684,55 +684,55 @@ variable ra_sle_psoriasis was str7 now str10
 (100,575 missing values generated)
 
 . replace min = SCr_adj/0.7 if male==0
-(23,581 real changes made)
+(11,664 real changes made)
 
 . replace min = SCr_adj/0.9 if male==1
-(19,310 real changes made)
+(11,578 real changes made)
 
 . replace min = min^-0.329  if male==0
-(23,581 real changes made)
+(11,664 real changes made)
 
 . replace min = min^-0.411  if male==1
-(19,310 real changes made)
+(11,578 real changes made)
 
 . replace min = 1 if min<1
-(0 real changes made)
+(2,698 real changes made)
 
 . 
 . gen max=.
 (100,575 missing values generated)
 
 . replace max=SCr_adj/0.7 if male==0
-(23,581 real changes made)
+(11,664 real changes made)
 
 . replace max=SCr_adj/0.9 if male==1
-(19,310 real changes made)
+(11,578 real changes made)
 
 . replace max=max^-1.209
-(42,891 real changes made)
+(23,242 real changes made)
 
 . replace max=1 if max>1
-(100,575 real changes made)
+(97,877 real changes made)
 
 . 
 . gen egfr=min*max*141
-(57,684 missing values generated)
+(77,333 missing values generated)
 
 . replace egfr=egfr*(0.993^age)
-(42,891 real changes made)
+(23,242 real changes made)
 
 . replace egfr=egfr*1.018 if male==0
-(23,581 real changes made)
+(11,664 real changes made)
 
 . label var egfr "egfr calculated using CKD-EPI formula with no eth + fudge"
 
 . 
 . * Categorise into ckd stages
 . egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
-(57684 missing values generated)
+(77333 missing values generated)
 
 . recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
-(42891 differences between egfr_cat and ckd)
+(23242 differences between egfr_cat and ckd)
 
 . * 0 = "No CKD"  2 "stage 3a" 3 "stage 3b" 4 "stage 4" 5 "stage 5"
 . label define ckd 0 "No CKD" 1 "CKD"
@@ -744,10 +744,10 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Convert into CKD group
 . recode ckd 2/5=1, gen(chronic_kidney_disease)
-(0 differences between ckd and chronic_kidney_disease)
+(765 differences between ckd and chronic_kidney_disease)
 
 . replace chronic_kidney_disease = 0 if creatinine==. 
-(57,684 real changes made)
+(77,333 real changes made)
 
 .         
 .         
@@ -761,10 +761,10 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Only consider measurements in last 15 months
 . replace hba1c_old = . if hba1c_old_date<d(1/11/2018)
-(204 real changes made, 204 to missing)
+(36 real changes made, 36 to missing)
 
 . replace hba1c_new = . if hba1c_new_date<d(1/11/2018)
-(16,217 real changes made, 16,217 to missing)
+(2 real changes made, 2 to missing)
 
 . 
 . 
@@ -777,22 +777,22 @@ variable ra_sle_psoriasis was str7 now str10
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-   hba1c_old |      4,750    2.261548    9.851807  -37.46149   35.21639
-   hba1c_new |     64,066    15.02339    89.97383  -339.9258   447.4856
+   hba1c_old |    100,539           0           0          0          0
+   hba1c_new |    100,573           0           0          0          0
 
 . gen     hba1c_pct = hba1c_old 
-(95,825 missing values generated)
+(36 missing values generated)
 
 . replace hba1c_pct = (hba1c_new/10.929)+2.15 if hba1c_new<. 
-(64,066 real changes made)
+(100,573 real changes made)
 
 . 
 . * Valid % range between 0-20  
 . replace hba1c_pct = . if !inrange(hba1c_pct, 0, 20) 
-(23,439 real changes made, 23,439 to missing)
+(0 real changes made)
 
 . replace hba1c_pct = round(hba1c_pct, 0.1)
-(42,238 real changes made)
+(100,573 real changes made)
 
 . 
 . 
@@ -800,19 +800,19 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Group hba1c
 . gen     hba1ccat = 0 if hba1c_pct <  6.5
-(80,570 missing values generated)
+(1 missing value generated)
 
 . replace hba1ccat = 1 if hba1c_pct >= 6.5  & hba1c_pct < 7.5
-(2,869 real changes made)
+(0 real changes made)
 
 . replace hba1ccat = 2 if hba1c_pct >= 7.5  & hba1c_pct < 8
-(1,391 real changes made)
+(0 real changes made)
 
 . replace hba1ccat = 3 if hba1c_pct >= 8    & hba1c_pct < 9
-(2,774 real changes made)
+(0 real changes made)
 
 . replace hba1ccat = 4 if hba1c_pct >= 9    & hba1c_pct !=.
-(15,199 real changes made)
+(0 real changes made)
 
 . label define hba1ccat 0 "<6.5%" 1">=6.5-7.4" 2">=7.5-7.9" 3">=8-8.9" 4">=9"
 
@@ -822,13 +822,9 @@ variable ra_sle_psoriasis was str7 now str10
 
    hba1ccat |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-      <6.5% |     20,005       47.36       47.36
-  >=6.5-7.4 |      2,869        6.79       54.16
-  >=7.5-7.9 |      1,391        3.29       57.45
-    >=8-8.9 |      2,774        6.57       64.02
-        >=9 |     15,199       35.98      100.00
+      <6.5% |    100,574      100.00      100.00
 ------------+-----------------------------------
-      Total |     42,238      100.00
+      Total |    100,574      100.00
 
 . 
 . * Create diabetes, split by control/not
@@ -836,13 +832,13 @@ variable ra_sle_psoriasis was str7 now str10
 (27,879 missing values generated)
 
 . replace diabcat = 2 if diabetes==1 & inlist(hba1ccat, 0, 1)
-(6,321 real changes made)
+(27,879 real changes made)
 
 . replace diabcat = 3 if diabetes==1 & inlist(hba1ccat, 2, 3, 4)
-(5,384 real changes made)
+(0 real changes made)
 
 . replace diabcat = 4 if diabetes==1 & !inlist(hba1ccat, 0, 1, 2, 3, 4)
-(16,174 real changes made)
+(0 real changes made)
 
 . 
 . label define diabcat    1 "No diabetes"                         ///
@@ -1183,5 +1179,5 @@ file cr_create_analysis_dataset.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  27 Apr 2020, 22:20:25
+ closed on:  27 Apr 2020, 23:20:22
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

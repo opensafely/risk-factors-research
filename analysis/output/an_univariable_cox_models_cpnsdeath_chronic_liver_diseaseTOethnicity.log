@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_liver_diseaseTOethnicity.log
   log type:  text
- opened on:  27 Apr 2020, 22:20:55
+ opened on:  27 Apr 2020, 23:15:10
 
 . 
 . * Open dataset and fit specified model(s)
@@ -54,7 +54,35 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . }
 WARNING - chronic_liver_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
 WARNING - chronic_respiratory_disease vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
-WARNING - ckd vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       23,242                  Number of obs    =      23,242
+No. of failures =            0
+Time at risk    =      1743150
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |          1  (omitted)
+        age2 |          1  (omitted)
+        age3 |          1  (omitted)
+             |
+         ckd |
+          2  |          1  (omitted)
+          3  |          1  (omitted)
+          4  |          1  (omitted)
+          5  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ckd.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ckd.ster saved
 WARNING - diabcat vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,5 +121,5 @@ file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster s
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_liver_diseaseTOethnicity.log
   log type:  text
- closed on:  27 Apr 2020, 22:21:03
+ closed on:  27 Apr 2020, 23:15:23
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

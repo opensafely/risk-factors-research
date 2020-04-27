@@ -68,7 +68,7 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
 *estat concordance /*c-statistic*/
 timer clear 
 timer on 1
-estat phtest, d
+if e(N_fail)>0 estat phtest, d
 timer off 1
 timer list
 }

@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- opened on:  27 Apr 2020, 22:21:33
+ opened on:  27 Apr 2020, 23:16:14
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -81,21 +81,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:      4.99 /        1 =       4.9850
-
-. if _rc==0{
-. estimates
-. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
-. *estat concordance /*c-statistic*/
-. }
-
-. else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
-WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
-
-.  
-. *Age group model (not adj ethnicity)
-. basecoxmodel, age("ib3.agegroup")  ethnicity(0)
-   1:      7.96 /        1 =       7.9610
+   1:      1.08 /        1 =       1.0800
 
 . if _rc==0{
 . estimates
@@ -106,69 +92,152 @@ active results
 
 Stratified Cox regr. -- no ties
 
-No. of subjects =       42,280                  Number of obs    =      42,280
-No. of failures =            1
-Time at risk    =      3170901
-                                                LR chi2(25)      =        8.44
-Log likelihood  =   -5.0434251                  Prob > chi2      =      0.9992
+No. of subjects =       23,215                  Number of obs    =      23,215
+No. of failures =            0
+Time at risk    =      1741125
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |          1  (omitted)
+                         age2 |          1  (omitted)
+                         age3 |          1  (omitted)
+                       1.male |          1  (omitted)
+                              |
+                    obese4cat |
+             Obese III (40+)  |          1  (omitted)
+                              |
+                 smoke_nomiss |
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                              |
+                          imd |
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+             5 most deprived  |          1  (omitted)
+                              |
+           1.htdiag_or_highbp |          1  (omitted)
+1.chronic_respiratory_disease |          1  (omitted)
+                              |
+                    asthmacat |
+                 Yes, no OCS  |          1  (omitted)
+    1.chronic_cardiac_disease |          1  (omitted)
+                              |
+                      diabcat |
+         Controlled diabetes  |          1  (omitted)
+                              |
+            cancer_exhaem_cat |
+                   Last year  |          1  (omitted)
+                    5+ years  |          1  (omitted)
+                              |
+              cancer_haem_cat |
+                   Last year  |          1  (omitted)
+                    5+ years  |          1  (omitted)
+                              |
+      1.chronic_liver_disease |          1  (omitted)
+            1.stroke_dementia |          1  (omitted)
+                1.other_neuro |          1  (omitted)
+                              |
+                          ckd |
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+                           5  |          1  (omitted)
+                              |
+           1.organ_transplant |          1  (omitted)
+                     1.spleen |          1  (omitted)
+           1.ra_sle_psoriasis |          1  (omitted)
+    1.other_immunosuppression |          1  (omitted)
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+(note: file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster not found)
+file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+. *estat concordance /*c-statistic*/
+. }
+
+. else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
+
+.  
+. *Age group model (not adj ethnicity)
+. basecoxmodel, age("ib3.agegroup")  ethnicity(0)
+   1:      1.13 /        1 =       1.1340
+
+. if _rc==0{
+. estimates
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- no ties
+
+No. of subjects =       23,215                  Number of obs    =      23,215
+No. of failures =            0
+Time at risk    =      1741125
+                                                LR chi2(0)       =        0.00
+Log likelihood  =            0                  Prob > chi2      =           .
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
                      agegroup |
-                      18-<40  |   4.89e+15   7.06e+23     0.00   1.000            0           .
-                      40-<50  |   .0288704   1.84e+07    -0.00   1.000            0           .
-                      60-<70  |   .1216279   3.88e+07    -0.00   1.000            0           .
-                      70-<80  |   .0855388   3.01e+07    -0.00   1.000            0           .
-                         80+  |   .0566481   2.43e+07    -0.00   1.000            0           .
+                      18-<40  |          1  (omitted)
+                      40-<50  |          1  (omitted)
+                      60-<70  |          1  (omitted)
+                      70-<80  |          1  (omitted)
+                         80+  |          1  (omitted)
                               |
-                       1.male |   2.23e-16   1.65e-08    -0.00   1.000            0           .
+                       1.male |          1  (omitted)
                               |
                     obese4cat |
-           Obese I (30-34.9)  |   602.8128   3.95e+11     0.00   1.000            0           .
-          Obese II (35-39.9)  |   43.75522   4.34e+10     0.00   1.000            0           .
-             Obese III (40+)  |   9.43e+13   7.13e+22     0.00   1.000            0           .
+             Obese III (40+)  |          1  (omitted)
                               |
                  smoke_nomiss |
-                           2  |   3.18e-15   4.96e-07    -0.00   1.000            0           .
-                           3  |   1.58e-15   1.20e-07    -0.00   1.000            0           .
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
                               |
                           imd |
-                           2  |   .0650075   2.25e+07    -0.00   1.000            0           .
-                           3  |   .0801625   2.01e+07    -0.00   1.000            0           .
-                           4  |   3.31e+15   1.56e+23     0.00   1.000            0           .
-             5 most deprived  |   .0591841   2.06e+07    -0.00   1.000            0           .
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+             5 most deprived  |          1  (omitted)
                               |
-           1.htdiag_or_highbp |   6.51e-16   4.68e-08    -0.00   1.000            0           .
-1.chronic_respiratory_disease |   6.34e+13   5.94e+22     0.00   1.000            0           .
+           1.htdiag_or_highbp |          1  (omitted)
+1.chronic_respiratory_disease |          1  (omitted)
                               |
                     asthmacat |
-                 Yes, no OCS  |   .0571904   6.49e+07    -0.00   1.000            0           .
-    1.chronic_cardiac_disease |   1.05e-15   4.04e-07    -0.00   1.000            0           .
+                 Yes, no OCS  |          1  (omitted)
+    1.chronic_cardiac_disease |          1  (omitted)
                               |
                       diabcat |
-         Controlled diabetes  |   2.14e-15   3.32e-07    -0.00   1.000            0           .
-       Uncontrolled diabetes  |   4.78e-15   8.61e-07    -0.00   1.000            0           .
-  Diabetes, no hba1c measure  |   4.55e-15   4.84e-07    -0.00   1.000            0           .
+         Controlled diabetes  |          1  (omitted)
                               |
             cancer_exhaem_cat |
                    Last year  |          1  (omitted)
-                    5+ years  |   2.99e+14   5.64e+23     0.00   1.000            0           .
+                    5+ years  |          1  (omitted)
                               |
               cancer_haem_cat |
-                   Last year  |   4.41e+25          .        .       .            .           .
-                    5+ years  |   3.08e+24          .        .       .            .           .
+                   Last year  |          1  (omitted)
+                    5+ years  |          1  (omitted)
                               |
-      1.chronic_liver_disease |   2.69e+29          .        .       .            .           .
-            1.stroke_dementia |   2.012393   5.25e+09     0.00   1.000            0           .
-                1.other_neuro |   1.22e+15          .        .       .            .           .
+      1.chronic_liver_disease |          1  (omitted)
+            1.stroke_dementia |          1  (omitted)
+                1.other_neuro |          1  (omitted)
                               |
                           ckd |
-                      No CKD  |          1  (omitted)
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+                           5  |          1  (omitted)
+                              |
            1.organ_transplant |          1  (omitted)
-                     1.spleen |   1.32e+22          .        .       .            .           .
-           1.ra_sle_psoriasis |    .356079   4.98e+08    -0.00   1.000            0           .
-    1.other_immunosuppression |   .0062274          .        .       .            .           .
+                     1.spleen |          1  (omitted)
+           1.ra_sle_psoriasis |          1  (omitted)
+    1.other_immunosuppression |          1  (omitted)
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
@@ -182,7 +251,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ageg
 . 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3")  ethnicity(1)
-   1:      0.59 /        1 =       0.5910
+   1:      0.48 /        1 =       0.4820
 
 . if _rc==0{
 . estimates
@@ -193,9 +262,9 @@ active results
 
 Stratified Cox regr. -- no ties
 
-No. of subjects =        8,533                  Number of obs    =       8,533
+No. of subjects =           87                  Number of obs    =          87
 No. of failures =            0
-Time at risk    =       639975
+Time at risk    =         6525
                                                 LR chi2(0)       =        0.00
 Log likelihood  =            0                  Prob > chi2      =           .
 
@@ -208,8 +277,6 @@ Log likelihood  =            0                  Prob > chi2      =           .
                        1.male |          1  (omitted)
                               |
                     obese4cat |
-           Obese I (30-34.9)  |          1  (omitted)
-          Obese II (35-39.9)  |          1  (omitted)
              Obese III (40+)  |          1  (omitted)
                               |
                  smoke_nomiss |
@@ -237,21 +304,21 @@ Log likelihood  =            0                  Prob > chi2      =           .
                               |
                       diabcat |
          Controlled diabetes  |          1  (omitted)
-       Uncontrolled diabetes  |          1  (omitted)
-  Diabetes, no hba1c measure  |          1  (omitted)
                               |
             cancer_exhaem_cat |
-                   Last year  |          1  (omitted)
                     5+ years  |          1  (omitted)
                               |
               cancer_haem_cat |
                     5+ years  |          1  (omitted)
-      1.chronic_liver_disease |          1  (omitted)
+      0.chronic_liver_disease |          1  (omitted)
             1.stroke_dementia |          1  (omitted)
                 1.other_neuro |          1  (omitted)
                               |
                           ckd |
-                      No CKD  |          1  (omitted)
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+                              |
            0.organ_transplant |          1  (omitted)
                      0.spleen |          1  (omitted)
            1.ra_sle_psoriasis |          1  (omitted)
@@ -270,7 +337,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
 .  
 . *Model without ethnicity among ethnicity complete cases 
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0) if("if ethnicity<.")
-   1:      0.69 /        1 =       0.6900
+   1:      0.54 /        1 =       0.5350
 
 . if _rc==0{
 . estimates
@@ -281,9 +348,9 @@ active results
 
 Stratified Cox regr. -- no ties
 
-No. of subjects =        8,533                  Number of obs    =       8,533
+No. of subjects =           87                  Number of obs    =          87
 No. of failures =            0
-Time at risk    =       639975
+Time at risk    =         6525
                                                 LR chi2(0)       =        0.00
 Log likelihood  =            0                  Prob > chi2      =           .
 
@@ -296,8 +363,6 @@ Log likelihood  =            0                  Prob > chi2      =           .
                        1.male |          1  (omitted)
                               |
                     obese4cat |
-           Obese I (30-34.9)  |          1  (omitted)
-          Obese II (35-39.9)  |          1  (omitted)
              Obese III (40+)  |          1  (omitted)
                               |
                  smoke_nomiss |
@@ -319,21 +384,21 @@ Log likelihood  =            0                  Prob > chi2      =           .
                               |
                       diabcat |
          Controlled diabetes  |          1  (omitted)
-       Uncontrolled diabetes  |          1  (omitted)
-  Diabetes, no hba1c measure  |          1  (omitted)
                               |
             cancer_exhaem_cat |
-                   Last year  |          1  (omitted)
                     5+ years  |          1  (omitted)
                               |
               cancer_haem_cat |
                     5+ years  |          1  (omitted)
-      1.chronic_liver_disease |          1  (omitted)
+      0.chronic_liver_disease |          1  (omitted)
             1.stroke_dementia |          1  (omitted)
                 1.other_neuro |          1  (omitted)
                               |
                           ckd |
-                      No CKD  |          1  (omitted)
+                           2  |          1  (omitted)
+                           3  |          1  (omitted)
+                           4  |          1  (omitted)
+                              |
            0.organ_transplant |          1  (omitted)
                      0.spleen |          1  (omitted)
            1.ra_sle_psoriasis |          1  (omitted)
@@ -387,5 +452,5 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- closed on:  27 Apr 2020, 22:21:48
+ closed on:  27 Apr 2020, 23:16:18
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

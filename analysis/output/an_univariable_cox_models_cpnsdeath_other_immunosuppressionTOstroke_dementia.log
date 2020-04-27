@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_other_immunosuppressionTOstroke_dementia.log
   log type:  text
- opened on:  27 Apr 2020, 22:21:17
+ opened on:  27 Apr 2020, 23:15:51
 
 . 
 . * Open dataset and fit specified model(s)
@@ -62,9 +62,9 @@ active results
 
 Stratified Cox regr. -- no ties
 
-No. of subjects =       44,909                  Number of obs    =      44,909
+No. of subjects =       45,272                  Number of obs    =      45,272
 No. of failures =            0
-Time at risk    =      3368175
+Time at risk    =      3395400
                                                 LR chi2(0)       =        0.00
 Log likelihood  =            0                  Prob > chi2      =           .
 
@@ -93,5 +93,5 @@ WARNING - stroke_dementia vs cpnsdeath MODEL DID NOT SUCCESSFULLY FIT
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_other_immunosuppressionTOstroke_dementia.log
   log type:  text
- closed on:  27 Apr 2020, 22:21:33
+ closed on:  27 Apr 2020, 23:16:14
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
