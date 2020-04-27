@@ -1,0 +1,154 @@
+obj_type,vpid,snomed_id,bnf_code,dmd_name,bnf_name,form_route
+amp,325426006,52911000001107,0603020T0AAAAAA,Prednisolone 1mg tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,238511000001107,0603020T0AAAAAA,Prednisolone 1mg tablets (Teva UK Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,646211000001106,0603020T0AAAAAA,Prednisolone 1mg tablets (Accord Healthcare Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,649711000001109,0603020T0AAAAAA,Prednisolone 1mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,707911000001100,0603020T0AAAAAA,Prednisolone 1mg tablets (Kent Pharmaceuticals Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,798611000001108,0603020T0AAAAAA,Prednisolone 1mg tablets (The Boots Company Plc),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,844111000001103,0603020T0AAAAAA,Prednisolone 1mg tablets (Wockhardt UK Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,9807711000001108,0603020T0AAAAAA,Prednisolone 1mg tablets (Almus Pharmaceuticals Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,10409611000001103,0603020T0AAAAAA,Prednisolone 1mg tablets (Arrow Generics Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,14786411000001103,0603020T0AAAAAA,Prednisolone 1mg tablets (Boston Healthcare Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,15175511000001102,0603020T0AAAAAA,Prednisolone 1mg tablets (Sigma Pharmaceuticals Plc),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,18285011000001109,0603020T0AAAAAA,Prednisolone 1mg tablets (Strides Pharma UK Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,21851211000001107,0603020T0AAAAAA,Prednisolone 1mg tablets (Waymade Healthcare Plc),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,30114811000001104,0603020T0AAAAAA,Prednisolone 1mg tablets (DE Pharmaceuticals),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,30858911000001100,0603020T0AAAAAA,Prednisolone 1mg tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,325426006,32807911000001101,0603020T0AAAAAA,Prednisolone 1mg tablets (Genesis Pharmaceuticals Ltd),Prednisolone 1mg tablets,tablet.oral
+amp,28808611000001100,32772911000001108,0603020T0AAABAB,Prednisolone 2.5mg tablets (Accord Healthcare Ltd),Prednisolone 2.5mg tablets,tablet.oral
+amp,28808611000001100,32776111000001109,0603020T0AAABAB,Prednisolone 2.5mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 2.5mg tablets,tablet.oral
+amp,325427002,85511000001101,0603020T0AAACAC,Prednisolone 5mg tablets (Actavis UK Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,86711000001103,0603020T0AAACAC,Prednisolone 5mg tablets (The Boots Company Plc),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,110811000001100,0603020T0AAACAC,Prednisolone 5mg tablets (Teva UK Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,350611000001104,0603020T0AAACAC,Prednisolone 5mg tablets (Kent Pharmaceuticals Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,772111000001107,0603020T0AAACAC,Prednisolone 5mg tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,876911000001107,0603020T0AAACAC,Prednisolone 5mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,940311000001100,0603020T0AAACAC,Prednisolone 5mg tablets (Wockhardt UK Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,9807911000001105,0603020T0AAACAC,Prednisolone 5mg tablets (Almus Pharmaceuticals Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,10410111000001103,0603020T0AAACAC,Prednisolone 5mg tablets (Arrow Generics Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,14786811000001101,0603020T0AAACAC,Prednisolone 5mg tablets (Boston Healthcare Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,18285211000001104,0603020T0AAACAC,Prednisolone 5mg tablets (Strides Pharma UK Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,18625211000001107,0603020T0AAACAC,Prednisolone 5mg tablets (Phoenix Healthcare Distribution Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,21851411000001106,0603020T0AAACAC,Prednisolone 5mg tablets (Waymade Healthcare Plc),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,30115011000001109,0603020T0AAACAC,Prednisolone 5mg tablets (DE Pharmaceuticals),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,30859111000001105,0603020T0AAACAC,Prednisolone 5mg tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325427002,32808311000001101,0603020T0AAACAC,Prednisolone 5mg tablets (Genesis Pharmaceuticals Ltd),Prednisolone 5mg tablets,tablet.oral
+amp,325442004,380011000001100,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Accord Healthcare Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,685311000001104,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Kent Pharmaceuticals Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,779211000001109,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,858811000001104,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (A A H Pharmaceuticals Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,4208511000001105,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Approved Prescription Services Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,15175711000001107,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Sigma Pharmaceuticals Plc),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,17916411000001100,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Phoenix Healthcare Distribution Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,17999311000001104,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Alliance Pharmaceuticals Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,18307011000001109,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Teva UK Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,19743011000001109,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Almus Pharmaceuticals Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,22452711000001102,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Waymade Healthcare Plc),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,30114011000001105,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (DE Pharmaceuticals),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,36568211000001107,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Bristol Laboratories Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,37130211000001109,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,255211000001101,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,447211000001105,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Kent Pharmaceuticals Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,512811000001108,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Accord Healthcare Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,662011000001105,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (A A H Pharmaceuticals Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,4208911000001103,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Approved Prescription Services Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,15176111000001100,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Sigma Pharmaceuticals Plc),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,17916811000001103,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Phoenix Healthcare Distribution Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,17999611000001109,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Alliance Pharmaceuticals Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,18307211000001104,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Teva UK Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,19743211000001104,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Almus Pharmaceuticals Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,22453011000001108,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Waymade Healthcare Plc),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,30114311000001108,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (DE Pharmaceuticals),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,34444511000001106,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Bristol Laboratories Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,37130611000001106,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325450008,313911000001107,0603020T0AAARAR,Prednisolone 25mg tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,716111000001103,0603020T0AAARAR,Prednisolone 25mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,4852811000001108,0603020T0AAARAR,Prednisolone 25mg tablets (Zentiva),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,17917211000001102,0603020T0AAARAR,Prednisolone 25mg tablets (Phoenix Healthcare Distribution Ltd),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,30991311000001108,0603020T0AAARAR,Prednisolone 25mg tablets (Accord Healthcare Ltd),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,37131011000001108,0603020T0AAARAR,Prednisolone 25mg tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 25mg tablets,tablet.oral
+amp,325450008,37778711000001106,0603020T0AAARAR,Prednisolone 25mg tablets (DE Pharmaceuticals),Prednisolone 25mg tablets,tablet.oral
+amp,32611811000001105,32584711000001105,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets (Alliance Pharmaceuticals Ltd),Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,32611811000001105,33425811000001105,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets (A A H Pharmaceuticals Ltd),Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,32611811000001105,33428411000001103,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,32611811000001105,37130011000001104,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets (Mawdsley-Brooks & Company Ltd),Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,32611811000001105,37778311000001107,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets (DE Pharmaceuticals),Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,28808711000001109,32773211000001105,0603020T0AAAXAX,Prednisolone 20mg tablets (Accord Healthcare Ltd),Prednisolone 20mg tablets,tablet.oral
+amp,28808711000001109,32776511000001100,0603020T0AAAXAX,Prednisolone 20mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 20mg tablets,tablet.oral
+amp,432225008,13055311000001107,0603020T0AAAYAY,Prednisolone 15mg/5ml oral suspension (Special Order),Prednisolone 15mg/5ml oral liquid,suspension.oral
+amp,416533002,13055911000001108,0603020T0AAAYAY,Prednisolone 15mg/5ml oral solution (Special Order),Prednisolone 15mg/5ml oral liquid,solution.oral
+amp,432224007,13120111000001109,0603020T0AAAZAZ,Prednisolone 5mg/5ml oral suspension (Special Order),Prednisolone 5mg/5ml oral liquid,suspension.oral
+amp,13133111000001100,13120411000001104,0603020T0AAAZAZ,Prednisolone 5mg/5ml oral solution (Special Order),Prednisolone 5mg/5ml oral liquid,solution.oral
+amp,13078611000001106,13054411000001101,0603020T0AABCBC,Prednisolone 10mg/5ml oral suspension (Special Order),Prednisolone 10mg/5ml oral liquid,suspension.oral
+amp,429995001,13054711000001107,0603020T0AABCBC,Prednisolone 10mg/5ml oral solution (Special Order),Prednisolone 10mg/5ml oral liquid,solution.oral
+amp,13079011000001109,13056211000001105,0603020T0AABFBF,Prednisolone 1mg/5ml oral suspension (Special Order),Prednisolone 1mg/5ml oral liquid,suspension.oral
+amp,13078911000001100,13056511000001108,0603020T0AABFBF,Prednisolone 1mg/5ml oral solution (Special Order),Prednisolone 1mg/5ml oral liquid,solution.oral
+amp,13079411000001100,13058011000001101,0603020T0AABGBG,Prednisolone 20mg/5ml oral suspension (Special Order),Prednisolone 20mg/5ml oral liquid,suspension.oral
+amp,13079311000001107,13058311000001103,0603020T0AABGBG,Prednisolone 20mg/5ml oral solution (Special Order),Prednisolone 20mg/5ml oral liquid,solution.oral
+amp,325444003,157711000001100,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,157711000001100,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Alliance Healthcare (Distribution) Ltd),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,245011000001108,0603020T0AABHBH,Prednisolone 5mg soluble tablets (A A H Pharmaceuticals Ltd),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,245011000001108,0603020T0AABHBH,Prednisolone 5mg soluble tablets (A A H Pharmaceuticals Ltd),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,392511000001108,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Advanz Pharma),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,392511000001108,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Advanz Pharma),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,15172311000001102,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Sigma Pharmaceuticals Plc),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,15172311000001102,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Sigma Pharmaceuticals Plc),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,28937511000001104,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Focus Pharmaceuticals Ltd),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,28937511000001104,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Focus Pharmaceuticals Ltd),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,30114611000001103,0603020T0AABHBH,Prednisolone 5mg soluble tablets (DE Pharmaceuticals),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,30114611000001103,0603020T0AABHBH,Prednisolone 5mg soluble tablets (DE Pharmaceuticals),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,34035411000001102,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Actavis UK Ltd),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,34035411000001102,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Actavis UK Ltd),Prednisolone 5mg soluble tablets,suspension.oral
+amp,325444003,34172711000001106,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Phoenix Labs Ltd),Prednisolone 5mg soluble tablets,tablet.oral
+amp,325444003,34172711000001106,0603020T0AABHBH,Prednisolone 5mg soluble tablets (Phoenix Labs Ltd),Prednisolone 5mg soluble tablets,suspension.oral
+amp,13079211000001104,13056811000001106,0603020T0AABIBI,Prednisolone 2.5mg/5ml oral suspension (Special Order),Prednisolone 2.5mg/5ml oral liquid,suspension.oral
+amp,13079111000001105,13057411000001106,0603020T0AABIBI,Prednisolone 2.5mg/5ml oral solution (Special Order),Prednisolone 2.5mg/5ml oral liquid,solution.oral
+amp,28808411000001103,32771211000001106,0603020T0AABKBK,Prednisolone 10mg tablets (Accord Healthcare Ltd),Prednisolone 10mg tablets,tablet.oral
+amp,28808411000001103,32776311000001106,0603020T0AABKBK,Prednisolone 10mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 10mg tablets,tablet.oral
+amp,29424511000001109,29361211000001105,0603020T0AABLBL,Prednisolone 5mg/5ml oral solution unit dose (Logixx Pharma Solutions Ltd),Prednisolone 5mg/5ml oral solution unit dose,solution.oral
+amp,29424511000001109,29559211000001100,0603020T0AABLBL,Prednisolone 5mg/5ml oral solution unit dose (A A H Pharmaceuticals Ltd),Prednisolone 5mg/5ml oral solution unit dose,solution.oral
+amp,29424511000001109,32688311000001106,0603020T0AABLBL,Prednisolone 5mg/5ml oral solution unit dose (Alliance Healthcare (Distribution) Ltd),Prednisolone 5mg/5ml oral solution unit dose,solution.oral
+amp,29904211000001102,29879111000001105,0603020T0AABMBM,Prednisolone 10mg/ml oral solution sugar free (Advanz Pharma),Prednisolone 10mg/ml oral solution sugar free,solution.oral
+amp,29904211000001102,30129111000001103,0603020T0AABMBM,Prednisolone 10mg/ml oral solution sugar free (A A H Pharmaceuticals Ltd),Prednisolone 10mg/ml oral solution sugar free,solution.oral
+amp,29904211000001102,37778511000001101,0603020T0AABMBM,Prednisolone 10mg/ml oral solution sugar free (DE Pharmaceuticals),Prednisolone 10mg/ml oral solution sugar free,solution.oral
+amp,29904211000001102,37941611000001100,0603020T0AABMBM,Prednisolone 10mg/ml oral solution sugar free (Alliance Healthcare (Distribution) Ltd),Prednisolone 10mg/ml oral solution sugar free,solution.oral
+amp,32781411000001102,32774411000001107,0603020T0AABNBN,Prednisolone 30mg tablets (Actavis UK Ltd),Prednisolone 30mg tablets,tablet.oral
+amp,32781411000001102,32776711000001105,0603020T0AABNBN,Prednisolone 30mg tablets (A A H Pharmaceuticals Ltd),Prednisolone 30mg tablets,tablet.oral
+amp,325442004,459611000001100,0603020T0BCAAAF,Deltacortril 2.5mg gastro-resistant tablets (Alliance Pharmaceuticals Ltd),Deltacortril 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325443009,331111000001100,0603020T0BCABAG,Deltacortril 5mg gastro-resistant tablets (Alliance Pharmaceuticals Ltd),Deltacortril 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+amp,325442004,22519711000001105,0603020T0BKAAAF,Dilacort 2.5mg gastro-resistant tablets (Auden McKenzie (Pharma Division) Ltd),Dilacort 2.5mg gastro-resistant tablets (Auden McKenzie),tabletgastro-resistant.oral
+amp,325443009,22520311000001107,0603020T0BKABAG,Dilacort 5mg gastro-resistant tablets (Auden McKenzie (Pharma Division) Ltd),Dilacort 5mg gastro-resistant tablets (Auden McKenzie),tabletgastro-resistant.oral
+amp,28808611000001100,28798211000001102,0603020T0BLAAAB,Pevanti 2.5mg tablets (Advanz Pharma),Pevanti 2.5mg tablets,tablet.oral
+amp,325427002,28799011000001102,0603020T0BLABAC,Pevanti 5mg tablets (Advanz Pharma),Pevanti 5mg tablets,tablet.oral
+amp,28808411000001103,28799311000001104,0603020T0BLACBK,Pevanti 10mg tablets (Advanz Pharma),Pevanti 10mg tablets,tablet.oral
+amp,28808711000001109,28799611000001109,0603020T0BLADAX,Pevanti 20mg tablets (Advanz Pharma),Pevanti 20mg tablets,tablet.oral
+amp,325450008,28799811000001108,0603020T0BLAEAR,Pevanti 25mg tablets (Advanz Pharma),Pevanti 25mg tablets,tablet.oral
+amp,325442004,32652311000001103,0603020T0BNAAAF,Dilacort 2.5mg gastro-resistant tablets (Crescent Pharma Ltd),Dilacort 2.5mg gastro-resistant tablets (Cresent Pharma),tabletgastro-resistant.oral
+amp,325443009,32652511000001109,0603020T0BNABAG,Dilacort 5mg gastro-resistant tablets (Crescent Pharma Ltd),Dilacort 5mg gastro-resistant tablets (Cresent Pharma),tabletgastro-resistant.oral
+amp,325443009,33577911000001102,0603020T0BPABAG,Dilacort 5mg gastro-resistant tablets (Teva UK Ltd),Dilacort 5mg gastro-resistant tablets (Teva),tabletgastro-resistant.oral
+vmp,325426006,325426006,0603020T0AAAAAA,Prednisolone 1mg tablets,Prednisolone 1mg tablets,tablet.oral
+vmp,28808611000001100,28808611000001100,0603020T0AAABAB,Prednisolone 2.5mg tablets,Prednisolone 2.5mg tablets,tablet.oral
+vmp,325427002,325427002,0603020T0AAACAC,Prednisolone 5mg tablets,Prednisolone 5mg tablets,tablet.oral
+vmp,325442004,325442004,0603020T0AAAFAF,Prednisolone 2.5mg gastro-resistant tablets,Prednisolone 2.5mg gastro-resistant tablets,tabletgastro-resistant.oral
+vmp,325443009,325443009,0603020T0AAAGAG,Prednisolone 5mg gastro-resistant tablets,Prednisolone 5mg gastro-resistant tablets,tabletgastro-resistant.oral
+vmp,325450008,325450008,0603020T0AAARAR,Prednisolone 25mg tablets,Prednisolone 25mg tablets,tablet.oral
+vmp,32611811000001105,32611811000001105,0603020T0AAATAT,Prednisolone 1mg gastro-resistant tablets,Prednisolone 1mg gastro-resistant tablets,tabletgastro-resistant.oral
+vmp,28808711000001109,28808711000001109,0603020T0AAAXAX,Prednisolone 20mg tablets,Prednisolone 20mg tablets,tablet.oral
+vmp,416533002,416533002,0603020T0AAAYAY,Prednisolone 15mg/5ml oral solution,Prednisolone 15mg/5ml oral liquid,solution.oral
+vmp,432225008,432225008,0603020T0AAAYAY,Prednisolone 15mg/5ml oral suspension,Prednisolone 15mg/5ml oral liquid,suspension.oral
+vmp,432224007,432224007,0603020T0AAAZAZ,Prednisolone 5mg/5ml oral suspension,Prednisolone 5mg/5ml oral liquid,suspension.oral
+vmp,13133111000001100,13133111000001100,0603020T0AAAZAZ,Prednisolone 5mg/5ml oral solution,Prednisolone 5mg/5ml oral liquid,solution.oral
+vmp,429995001,429995001,0603020T0AABCBC,Prednisolone 10mg/5ml oral solution,Prednisolone 10mg/5ml oral liquid,solution.oral
+vmp,13078611000001106,13078611000001106,0603020T0AABCBC,Prednisolone 10mg/5ml oral suspension,Prednisolone 10mg/5ml oral liquid,suspension.oral
+vmp,13078911000001100,13078911000001100,0603020T0AABFBF,Prednisolone 1mg/5ml oral solution,Prednisolone 1mg/5ml oral liquid,solution.oral
+vmp,13079011000001109,13079011000001109,0603020T0AABFBF,Prednisolone 1mg/5ml oral suspension,Prednisolone 1mg/5ml oral liquid,suspension.oral
+vmp,13079311000001107,13079311000001107,0603020T0AABGBG,Prednisolone 20mg/5ml oral solution,Prednisolone 20mg/5ml oral liquid,solution.oral
+vmp,13079411000001100,13079411000001100,0603020T0AABGBG,Prednisolone 20mg/5ml oral suspension,Prednisolone 20mg/5ml oral liquid,suspension.oral
+vmp,325444003,325444003,0603020T0AABHBH,Prednisolone 5mg soluble tablets,Prednisolone 5mg soluble tablets,tablet.oral
+vmp,325444003,325444003,0603020T0AABHBH,Prednisolone 5mg soluble tablets,Prednisolone 5mg soluble tablets,suspension.oral
+vmp,13079111000001105,13079111000001105,0603020T0AABIBI,Prednisolone 2.5mg/5ml oral solution,Prednisolone 2.5mg/5ml oral liquid,solution.oral
+vmp,13079211000001104,13079211000001104,0603020T0AABIBI,Prednisolone 2.5mg/5ml oral suspension,Prednisolone 2.5mg/5ml oral liquid,suspension.oral
+vmp,28808411000001103,28808411000001103,0603020T0AABKBK,Prednisolone 10mg tablets,Prednisolone 10mg tablets,tablet.oral
+vmp,29424511000001109,29424511000001109,0603020T0AABLBL,Prednisolone 5mg/5ml oral solution unit dose,Prednisolone 5mg/5ml oral solution unit dose,solution.oral
+vmp,29904211000001102,29904211000001102,0603020T0AABMBM,Prednisolone 10mg/ml oral solution sugar free,Prednisolone 10mg/ml oral solution sugar free,solution.oral
+vmp,32781411000001102,32781411000001102,0603020T0AABNBN,Prednisolone 30mg tablets,Prednisolone 30mg tablets,tablet.oral

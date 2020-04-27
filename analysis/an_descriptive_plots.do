@@ -34,7 +34,60 @@
 
 
 
-use egdata, clear
+use cr_create_analysis_dataset, clear
+
+
+
+****************************
+*  KM plot by age and sex  *
+****************************
+
+*** Intended for publication
+
+
+
+* Declare survival outcome
+stset stime_cpnsdeath, fail(cpnsdeath) 			///
+	id(patient_id) enter(enter_date) origin(enter_date)
+
+* KM plot for females by age		
+sts graph if male==0, title("Female") 			///
+	failure by(agegroup) 						///
+	xtitle("Days since 1 Feb 2020")				///
+	yscale(range(0, 0.025)) 					///
+	ylabel(0 (0.005) 0.02, angle(0))			///
+	legend(order(1 2 3 4 5 6)					///
+	subtitle("Age group", size(small)) 			///
+	label(1 "18-<40") label(2 "40-<50") 		///
+	label(3 "50-<60") label(4 "60-<70")			///
+	label(5 "70-<80") label(6 "80+")			///
+	col(2) size(small))							///
+	saving(female, replace)
+* KM plot for males by age		
+sts graph if male==1, title("Male") 			///
+	failure by(agegroup)						///
+	xtitle("Days since 1 Feb 2020")				///
+	yscale(range(0, 0.025)) 					///
+	ylabel(0 (0.005) 0.02, angle(0))			///
+	legend(order(1 2 3 4 5 6)					///
+	subtitle("Age group", size(small)) 			///
+	label(1 "18-<40") label(2 "40-<50") 		///
+	label(3 "50-<60") label(4 "60-<70")			///
+	label(5 "70-<80") label(6 "80+") 			///
+	col(2) size(small))							///
+	saving(male, replace)
+* KM plot for males and females 
+grc1leg female.gph male.gph, 					///
+	t1(" ") 	
+graph export "output/km_age_sex_cpnsdeath.svg", as(svg) replace
+
+* Delete unneeded graphs
+erase female.gph
+erase male.gph
+
+	
+
+
 
 
 
@@ -43,6 +96,7 @@ use egdata, clear
 *  KM plot by age and sex  *
 ****************************
 
+/*
 *** Intended for publication
 
 * Set max/gap for ylabels 
@@ -99,6 +153,8 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	erase female.gph
 	erase male.gph
 	
+	
+
 	* Line graph of events 
 	sort _t
 	gen cum_`outvar' = sum(_d)
@@ -108,7 +164,7 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	
 }
 
-
+*/
 
 
 
