@@ -30,7 +30,7 @@ log using ./output/cr_analysis_dataset, replace t
 **************************   INPUT REQUIRED   *********************************
 
 * Censoring dates for each outcome (largely, last date outcome data available)
-global ecdseventcensor 		= "21/04/2020"
+*global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
 global cpnsdeathcensor 		= "16/04/2020"
 global onscoviddeathcensor 	= "06/04/2020"
@@ -413,15 +413,6 @@ order other_immunosuppression, after(temporary_immunodeficiency)
 
 
 
-		
-/*  Chronic kidney disease  */
-
-* Estimate eGFR from creatinine
-* Convert eGFR to ckd
-
-gen chronic_kidney_disease   = .
-
-
 
 /*  Hypertension  */
 
@@ -431,6 +422,52 @@ recode htdiag_or_highbp 0 = 1 if hypertension==1
 
 
 
+************
+*   eGFR   *
+************
+
+* Set implausible creatinine values to missing 
+replace creatinine = . if !inrange(creatinine, 20, 3000) 
+	
+* Multiply by 0.95 (for assay-fudge factor) and 
+* divide by 88.4 (to convert umol/l to mg/dl)
+gen SCr_adj = (creatinine*0.95)/88.4
+
+* NB: I have guessed which way round sex is...
+gen min=.
+replace min = SCr_adj/0.7 if male==0
+replace min = SCr_adj/0.9 if male==1
+replace min = min^-0.329  if male==0
+replace min = min^-0.411  if male==1
+replace min = 1 if min<1
+
+gen max=.
+replace max=SCr_adj/0.7 if male==0
+replace max=SCr_adj/0.9 if male==1
+replace max=max^-1.209
+replace max=1 if max>1
+
+gen egfr=min*max*141
+replace egfr=egfr*(0.993^age)
+replace egfr=egfr*1.018 if male==0
+label var egfr "egfr calculated using CKD-EPI formula with no eth + fudge"
+
+* Categorise into ckd stages
+egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
+recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
+label define ckd 0 "No CKD" 	///
+				 2 "stage 3a" 	///
+				 3 "stage 3b" 	///
+				 4 "stage 4" 	///
+				 5 "stage 5"
+label values ckd ckd
+label var ckd "CKD stage calc without eth + DN fudge factor"
+
+* Convert into CKD group
+recode ckd 2/5=1, gen(chronic_kidney_disease)
+replace chronic_kidney_disease = 0 if creatinine==. 
+	
+	
 	
 ************
 *   Hba1c  *
@@ -498,14 +535,12 @@ drop hba1c_pct hba1c_new hba1c_old
 gen enter_date = date("01/02/2020", "DMY")
 
 * Date of study end (typically: last date of outcome data available)
-gen ecdseventcensor_date 		= date("$ecdseventcensor", 		"DMY")
 gen ituadmissioncensor_date 	= date("$ituadmissioncensor", 	"DMY") 
 gen cpnsdeathcensor_date		= date("$cpnsdeathcensor", 		"DMY")
 gen onscoviddeathcensor_date 	= date("$onscoviddeathcensor", 	"DMY")
 
 * Format the dates
 format 	enter_date					///
-		ecdseventcensor_date 		///
 		cpnsdeathcensor_date 		///
 		onscoviddeathcensor_date 	///
 		ituadmissioncensor_date  %td
@@ -515,7 +550,7 @@ format 	enter_date					///
 
 * Dates of: ITU admission, CPNS death, ONS-covid death
 foreach var of varlist 	died_date_ons died_date_cpns		///
-						icu_date_admitted ecdsevent_date {
+						icu_date_admitted  {
 	confirm string variable `var'
 	rename `var' `var'_dstr
 	gen `var' = date(`var'_dstr, "YMD")
@@ -527,7 +562,6 @@ rename icu_date_admitted itu_date
 gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
 
 * Binary indicators for outcomes
-gen ecdsevent 		= (ecdsevent_date		< .)
 gen cpnsdeath 		= (died_date_cpns		< .)
 gen onscoviddeath 	= (died_date_onscovid 	< .)
 gen ituadmission 	= (itu_date 			< .)
@@ -539,13 +573,11 @@ gen ituadmission 	= (itu_date 			< .)
 * For looping later, name must be stime_binary_outcome_name
 
 * Survival time = last followup date (first: end study, death, or that outcome)
-gen stime_ecdsevent  	= min(ecdseventcensor_date, 	ecdsevent_date, died_date_ons)
 gen stime_ituadmission 	= min(ituadmissioncensor_date, 	itu_date, 		died_date_ons)
 gen stime_cpnsdeath  	= min(cpnsdeathcensor_date, 	died_date_cpns, died_date_ons)
 gen stime_onscoviddeath = min(onscoviddeathcensor_date, 				died_date_ons)
 
 * If outcome was after censoring occurred, set to zero
-replace ecdsevent 		= 0 if (ecdsevent_date		> ecdseventcensor_date) 
 replace ituadmission 	= 0 if (itu_date			> ituadmissioncensor_date) 
 replace cpnsdeath 		= 0 if (died_date_cpns		> cpnsdeathcensor_date) 
 replace onscoviddeath 	= 0 if (died_date_onscovid	> onscoviddeathcensor_date) 
@@ -553,7 +585,6 @@ replace onscoviddeath 	= 0 if (died_date_onscovid	> onscoviddeathcensor_date)
 * Format date variables
 format stime* %td 
 format	stime* 				///
-		ecdsevent_date 		///
 		itu_date 			///
 		died_date_onscovid 	///
 		died_date_ons 		///
@@ -584,6 +615,9 @@ label var region 						"Geographical region"
 
 label var hba1ccat						"Categorised hba1c"
 
+label var chronic_kidney_disease      	"Chronic kidney disease" 
+label var egfr_cat						"Calculated eGFR"
+	
 label var bp_sys 						"Systolic blood pressure"
 label var bp_sys_date 					"Systolic blood pressure, date"
 label var bp_dias 						"Diastolic blood pressure"
@@ -647,18 +681,15 @@ label var temporary_immunodeficiency_date "Temporary immunosuppression, date"
 
 * Outcomes and follow-up
 label var enter_date					"Date of study entry"
-label var ecdseventcensor_date			"Date of admin censoring for ecds"
 label var ituadmissioncensor_date 		"Date of admin censoring for itu admission (icnarc)"
 label var cpnsdeathcensor_date 			"Date of admin censoring for cpns deaths"
 label var onscoviddeathcensor_date 		"Date of admin censoring for ONS deaths"
 
-label var ecdsevent						"Failure/censoring indicator for outcome: ECDS event"
 label var ituadmission					"Failure/censoring indicator for outcome: ITU admission"
 label var cpnsdeath						"Failure/censoring indicator for outcome: CPNS covid death"
 label var onscoviddeath					"Failure/censoring indicator for outcome: ONS covid death"
 
 * Survival times
-label var  stime_ecdsevent				"Survival time (date); outcome ECDS event"
 label var  stime_ituadmission			"Survival time (date); outcome ITU admission"
 label var  stime_cpnsdeath 				"Survival time (date); outcome CPNS covid death"
 label var  stime_onscoviddeath 			"Survival time (date); outcome ONS covid death"
@@ -673,7 +704,6 @@ label var  stime_onscoviddeath 			"Survival time (date); outcome ONS covid death
 * REDUCE DATASET SIZE TO VARIABLES NEEDED
 keep patient_id imd stp enter_date  										///
 	ituadmission itu_date ituadmissioncensor_date stime_ituadmission		///
-	ecdsevent ecdsevent_date ecdseventcensor_date stime_ecdsevent			///
 	cpnsdeath died_date_cpns cpnsdeathcensor_date stime_cpnsdeath			///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
 	stime_onscoviddeath														///
@@ -684,7 +714,8 @@ keep patient_id imd stp enter_date  										///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
 	chronic_kidney_disease stroke dementia stroke_dementia other_neuro		///
-	other_immunosuppression   	
+	other_immunosuppression   												///
+	creatinine egfr egfr_cat ckd  chronic_kidney_disease
 
 
 
