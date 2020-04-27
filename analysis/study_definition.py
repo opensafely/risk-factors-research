@@ -116,6 +116,10 @@ ra_sle_psoriasis_codes = codelist_from_csv(
 systolic_blood_pressure_codes = codelist(["2469."], system="ctv3")
 diastolic_blood_pressure_codes = codelist(["246A."], system="ctv3")
 
+hypertension_codes = codelist_from_csv(
+    "codelists/htn.csv", system="ctv3", column="CTV3ID"
+)
+
 ## STUDY POPULATION
 # Defines both the study population and points to the important covariates
 
@@ -383,6 +387,12 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/23
     #immunosuppressant_med=
 
+    # hypertension 
+    hypertension = patients.with_these_clinical_events(
+        hypertension_codes,
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
     # Blood pressure
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/35
     bp_sys=patients.mean_recorded_value(
