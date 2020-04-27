@@ -133,6 +133,7 @@ class StudyDefinition:
             or column_name.endswith("_date")
             or column_name.endswith("_code")
             or column_name == "category"
+            or column_name.endswith("_name")
         )
         return "" if is_str_col else 0
 
@@ -646,6 +647,8 @@ class StudyDefinition:
             column = "STPCode"
         elif returning == "msoa_code":
             column = "MSOACode"
+        elif returning == "nhse_region_name":
+            column = "Region"
         else:
             raise ValueError(f"Unsupported `returning` value: {returning}")
         # Note that current registrations are recorded with an EndDate of
@@ -1263,8 +1266,8 @@ def truncate_date(column, include_month, include_day):
     date_length = 4
     if include_month:
         date_length = 7
-        if include_day:
-            date_length = 10
+    if include_day:
+        date_length = 10
     # Style 23 below means YYYY-MM-DD format, see:
     # https://docs.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver15#date-and-time-styles
     return f"CONVERT(VARCHAR({date_length}), {column}, 23)"
