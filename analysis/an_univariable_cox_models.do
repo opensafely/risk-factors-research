@@ -6,7 +6,7 @@
 *
 *	Programmed by:	Fizz & Krishnan
 *
-*	Data used:		egdata.dta
+*	Data used:		cr_create_analysis_dataset.dta
 *
 *	Data created:	None
 *

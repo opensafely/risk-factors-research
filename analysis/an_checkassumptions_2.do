@@ -10,7 +10,7 @@
 *
 *	Data created:	imputed.dta  (imputed data)
 *
-*	Other output:	Log file an_checkassumptions_2
+*	Other output:	Log file output/an_checkassumptions_2
 *
 ********************************************************************************
 *
@@ -33,7 +33,7 @@
 
 * Open a log file
 capture log close
-log using "an_checkassumptions_2", text replace
+log using "output/an_checkassumptions_2", text replace
 
 * Load user written functions
 do Calibration_parameter_nlsolution.do  

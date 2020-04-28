@@ -8,7 +8,7 @@
 *
 *	Data used:		Data in memory (from input.csv)
 *
-*	Data created:	egdata.dta
+*	Data created:	cr_create_analysis_dataset.dta
 *
 *	Other output:	None
 *
@@ -156,11 +156,11 @@ drop smoking_status
 * Ethnicity 
 replace ethnicity = .u if ethnicity==.
 
-label define ethnicity 	1 "White"  		///
-						2 "Mixed" ///
-						3 "Asian or Asian British" 	    ///
-						4 "Black"  		///
-						5 "Other"		///
+label define ethnicity 	1 "White"  					///
+						2 "Mixed" 					///
+						3 "Asian or Asian British"	///
+						4 "Black"  					///
+						5 "Other"					///
 						.u "Unknown"
 label values ethnicity ethnicity
 
