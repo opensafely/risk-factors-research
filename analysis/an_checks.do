@@ -231,7 +231,8 @@ tab chronic_respiratory_disease asthmacat, row col
 tab diabetes chronic_cardiac_disease, row col
 tab chronic_cardiac_disease bpcat, row col
 
-
+* Liver
+tab chronic_liver_disease organ_transplant, row col
 
 
 
