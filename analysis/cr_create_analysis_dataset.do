@@ -158,7 +158,7 @@ replace ethnicity = .u if ethnicity==.
 
 label define ethnicity 	1 "White"  		///
 						2 "Mixed" ///
-						3 "Asian or Asian British" 		///
+						3 "Asian or Asian British" 	    ///
 						4 "Black"  		///
 						5 "Other"		///
 						.u "Unknown"
