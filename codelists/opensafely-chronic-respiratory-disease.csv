@@ -1,0 +1,413 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+23E5.,O/E - fibrosis of lung present,High_Level_SNOMED
+663K.,Airways obstructn irreversible,CTV3Map_Code_And_Term
+7450.,Lung transplant,CTV3Map_Code_And_Term
+7450y,Other specified transplantation of lung,CTV3Map_Code_And_Term
+7450z,Transplantation of lung NOS,CTV3Map_Code_And_Term
+A114.,Tuberculous fibrosis of lung,High_Level_SNOMED
+A115.,Tuberculous bronchiectasis,CTV3Map_Code_And_Term
+A7899,HIV disease resulting in lymphoid interstitial pneumonitis,CTV3_Children
+AD52.,Sarcoidosis of lung with sarcoidosis of lymph nodes,CTV3Map_Code_And_Term
+C370.,Cystic fibrosis,CTV3Map_Code_And_Term
+C370.,Cystic fibrosis,CTV3Map_Code_Only
+C3700,Cystic fibrosis with no meconium ileus,CTV3Map_Code_And_Term
+C3701,Meconium ileus in cystic fibrosis,CTV3Map_Code_And_Term
+C3701,Meconium ileus in cystic fibrosis,CTV3Map_Code_Only
+C3702,Cystic fibrosis with pulmonary manifestations,CTV3Map_Code_And_Term
+C3703,Cystic fibrosis with intestinal manifestations,CTV3Map_Code_And_Term
+C370z,Cystic fibrosis NOS,CTV3Map_Code_And_Term
+H0614,Obliterating fibrous bronchiolitis,QOF
+H3...,Chronic obstructive lung disease,CTV3Map_Code_And_Term
+H3...,Chronic obstructive lung disease,CTV3Map_Code_Only
+H31..,Chronic bronchitis,CTV3Map_Code_And_Term
+H310.,Simple chronic bronchitis,CTV3Map_Code_And_Term
+H3100,Simple chronic bronchitis,CTV3_Children
+H310z,Simple chronic bronchitis NOS,CTV3Map_Code_And_Term
+H311.,Mucopurulent chronic bronchitis,CTV3Map_Code_And_Term
+H3110,Purulent chronic bronchitis,CTV3_Children
+H311z,Mucopurulent chronic bronchitis NOS,CTV3Map_Code_And_Term
+H3121,Emphysematous bronchitis,CTV3Map_Code_And_Term
+H3122,Acute exacerbation of chronic obstructive airways disease,CTV3Map_Code_And_Term
+H312z,Obstructive chronic bronchitis NOS,CTV3Map_Code_And_Term
+H313.,Mixed simple and mucopurulent chronic bronchitis,CTV3Map_Code_And_Term
+H31y.,Other chronic bronchitis,CTV3Map_Code_And_Term
+H31y0,Chronic tracheitis,QOF
+H31y1,Chronic tracheobronchitis,CTV3Map_Code_And_Term
+H31yz,Other chronic bronchitis NOS,CTV3Map_Code_And_Term
+H31z.,Chronic bronchitis NOS,CTV3Map_Code_And_Term
+H32..,Emphysema,CTV3Map_Code_And_Term
+H320.,Chronic bullous emphysema,CTV3Map_Code_And_Term
+H3200,Segmental bullous emphysema,CTV3Map_Code_And_Term
+H3201,Zonal bullous emphysema,CTV3Map_Code_And_Term
+H3202,Giant bullous emphysema,CTV3Map_Code_And_Term
+H3203,(Bullous emphysema with collapse) or (tension pneumatocoele),High_Level_SNOMED
+H320z,Chronic bullous emphysema NOS,CTV3Map_Code_And_Term
+H321.,Panlobular emphysema,CTV3Map_Code_And_Term
+H322.,Centrilobular emphysema,CTV3Map_Code_And_Term
+H32y.,Other emphysema,CTV3Map_Code_And_Term
+H32y0,Acute vesicular emphysema,CTV3Map_Code_And_Term
+H32y1,Emphysema: [acute interstitial] or [atrophic - senile],QOF
+H32y2,MacLeods syndrome,CTV3Map_Code_And_Term
+H32y2,MacLeods syndrome,CTV3Map_Code_Only
+H32yz,(Sawyer-Jones syndrome) or (other emphysema NOS),CTV3_Children
+H32z.,Emphysema NOS,CTV3Map_Code_And_Term
+H34..,Bronchiectasis,CTV3Map_Code_And_Term
+H340.,Recurrent bronchiectasis,CTV3Map_Code_And_Term
+H341.,Post-infective bronchiectasis,CTV3Map_Code_And_Term
+H34z.,Bronchiectasis NOS,CTV3Map_Code_And_Term
+H35..,Extrinsic allergic alveolitis,CTV3Map_Code_And_Term
+H35..,Extrinsic allergic alveolitis,CTV3Map_Code_Only
+H350.,Farmers' lung,CTV3Map_Code_And_Term
+H351.,Bagassosis,CTV3Map_Code_And_Term
+H352.,Bird-fancier's lung,CTV3Map_Code_And_Term
+H3520,Budgerigar-fanciers' lung,CTV3Map_Code_And_Term
+H3521,Pigeon-fanciers' lung,CTV3Map_Code_And_Term
+H352z,Bird-fancier's lung NOS,CTV3Map_Code_And_Term
+H353.,Cork-handlers' lung,CTV3Map_Code_And_Term
+H354.,Malt workers' lung,CTV3Map_Code_And_Term
+H355.,Mushroom workers' lung,CTV3Map_Code_And_Term
+H356.,Maple bark strippers' lung,CTV3Map_Code_And_Term
+H357.,Ventilation pneumonitis,CTV3Map_Code_And_Term
+H35y.,Other allergic alveolitis,CTV3Map_Code_And_Term
+H35y0,Cheese-washers' lung,CTV3Map_Code_And_Term
+H35y1,Coffee-workers' lung,CTV3Map_Code_And_Term
+H35y2,Fish-meal workers' lung,CTV3Map_Code_And_Term
+H35y3,Furriers' lung,CTV3_Children
+H35y4,Grain-handlers' disease,CTV3_Children
+H35y5,Pituitary snuff-takers' disease,CTV3Map_Code_And_Term
+H35y6,Sequoiosis,CTV3Map_Code_And_Term
+H35y7,Wood pulp workers' lung,CTV3_Children
+H35y8,Air-conditioner and humidifier lung,CTV3Map_Code_And_Term
+H35yz,Other allergic alveolitis NOS,CTV3Map_Code_And_Term
+H35z.,Allergic alveolitis and pneumonitis NOS,CTV3Map_Code_And_Term
+H35z0,Allergic extrinsic alveolitis NOS,CTV3Map_Code_And_Term
+H35z1,Hypersensitivity pneumonitis NOS,CTV3Map_Code_And_Term
+H3y..,Other specified chronic obstructive airways disease,CTV3Map_Code_And_Term
+H3y..,Other specified chronic obstructive airways disease,CTV3Map_Code_Only
+H3y0.,Chronic obstruct pulmonary dis with acute lower resp infectn,CTV3Map_Code_And_Term
+H3y1.,"Chron obstruct pulmonary dis wth acute exacerbation, unspec",CTV3_Children
+H3z..,Chronic obstructive airways disease NOS,CTV3Map_Code_And_Term
+H3z..,Chronic obstructive airways disease NOS,CTV3Map_Code_Only
+H4...,Lung dis: [pneumoconioses] or [occup] or [due extern agent],CTV3_Children
+H40..,Coal workers' pneumoconiosis,CTV3Map_Code_And_Term
+H41..,Asbestos pneumoconiosis,CTV3Map_Code_And_Term
+H41z.,Asbestosis NOS,CTV3Map_Code_And_Term
+H42..,Silicosis,CTV3Map_Code_And_Term
+H420.,Talc pneumoconiosis,CTV3Map_Code_And_Term
+H421.,Simple silicosis,CTV3Map_Code_And_Term
+H422.,Complicated silicosis,CTV3Map_Code_And_Term
+H423.,Massive silicotic fibrosis,CTV3Map_Code_And_Term
+H42z.,Silica pneumoconiosis NOS,CTV3Map_Code_And_Term
+H43..,Pneumoconiosis due to other inorganic dust,CTV3Map_Code_And_Term
+H430.,Aluminium lung,CTV3_Children
+H431.,Bauxite pneumoconiosis,CTV3Map_Code_And_Term
+H432.,Berylliosis,CTV3Map_Code_And_Term
+H433.,Graphite pneumoconiosis,CTV3Map_Code_And_Term
+H434.,Iron pneumoconiosis,CTV3Map_Code_And_Term
+H435.,Tin pneumoconiosis,CTV3Map_Code_And_Term
+H43z.,Pneumoconiosis due to inorganic dust NOS,CTV3Map_Code_And_Term
+H44..,Pneumopathy due to inhalation of other dust,CTV3Map_Code_And_Term
+H440.,Byssinosis,CTV3Map_Code_And_Term
+H441.,Cannabinosis,CTV3Map_Code_And_Term
+H44z.,Pneumopathy due to inhalation of other dust NOS,CTV3Map_Code_And_Term
+H45..,Pneumoconiosis NOS,CTV3Map_Code_And_Term
+H450.,Pneumoconiosis associated with tuberculosis,CTV3Map_Code_And_Term
+H460.,Bronchitis and pneumonitis due to chemical fumes,High_Level_SNOMED
+H4601,Acute pneumonitis due to chemical fumes,High_Level_SNOMED
+H460z,Bronchitis and pneumonitis due to chemical fumes NOS,High_Level_SNOMED
+H464.,Chronic respiratory conditions due to chemical fumes,CTV3Map_Code_And_Term
+H4640,Chronic emphysema due to chemical fumes,CTV3Map_Code_And_Term
+H4641,Toxic bronchiolitis obliterans,CTV3Map_Code_And_Term
+H4642,Chronic pulmonary fibrosis due to chemical fumes,CTV3Map_Code_And_Term
+H464z,Chronic respiratory conditions due to chemical fumes NOS,CTV3Map_Code_And_Term
+H46z0,Silo-fillers' disease,High_Level_SNOMED
+H47..,Aspiration pneumonitis,High_Level_SNOMED
+H4y0.,Acute pulmonary radiation disease,High_Level_SNOMED
+H4y00,Acute radiation pneumonitis,High_Level_SNOMED
+H4y0z,Acute pulmonary radiation disease NOS,High_Level_SNOMED
+H4y1.,Chronic pulmonary radiation disease,CTV3Map_Code_And_Term
+H4y10,Radiation-induced diffuse interstitial pulmonary fibrosis,CTV3Map_Code_And_Term
+H4y1z,Chronic pulmonary radiation disease NOS,CTV3Map_Code_And_Term
+H4y2.,Drug-induced interstitial lung disorders,CTV3Map_Code_And_Term
+H4y20,Acute drug-induced interstitial lung disorders,CTV3_Children
+H4y21,Chronic drug-induced interstitial lung disorders,CTV3Map_Code_And_Term
+H52y1,Persistent pneumothorax,QOF
+H5302,Gangrenous pneumonia,High_Level_SNOMED
+H5410,Chronic pulmonary oedema,CTV3Map_Code_And_Term
+H55..,Lung: [cirrhosis of] or [postinflamm pulmonary fibrosis],CTV3_Children
+H561.,Idiopathic pulmonary haemosiderosis,CTV3Map_Code_And_Term
+H563.,(Fibros alveolitis: [idiopath][cryptog]) or (Hamm-Rich synd),CTV3_Children
+H5631,Diffuse interstitial pulmonary fibrosis,CTV3Map_Code_And_Term
+H563z,Idiopathic fibrosing alveolitis NOS,CTV3Map_Code_And_Term
+H56y0,Endogenous lipoid pneumonia,High_Level_SNOMED
+H571.,Rheumatic pneumonia,CTV3Map_Code_And_Term
+H572.,Lung disease with systemic sclerosis,CTV3Map_Code_And_Term
+H57y0,Pulmonary amyloidosis,CTV3Map_Code_And_Term
+H57y1,Lung disease with polymyositis,CTV3Map_Code_And_Term
+H57y2,Pulmonary sarcoidosis,CTV3Map_Code_And_Term
+H57y3,Lung disease with Sjogren's disease,CTV3Map_Code_And_Term
+H57y4,Lung disease with systemic lupus erythematosus,CTV3Map_Code_And_Term
+H581.,(Emphysema [interstitial]/[mediastinal])/(pneumomediastinum),High_Level_SNOMED
+H582.,Compensatory emphysema,CTV3Map_Code_And_Term
+H583.,Pulmonary eosinophilia,High_Level_SNOMED
+H591.,Chronic respiratory failure,CTV3Map_Code_And_Term
+Hy02.,Chronic pulmonary insufficiency following surgery,CTV3Map_Code_And_Term
+Hyu30,[X]Other emphysema,CTV3Map_Code_And_Term
+Hyu31,[X]Other specified chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+Hyu40,[X]Pneumoconiosis due to other dust containing silica,CTV3Map_Code_And_Term
+Hyu41,[X]Pneumoconiosis due to other specified inorganic dusts,CTV3_Children
+Hyu43,[X]Hypersensitivity pneumonitis due to other organic dusts,CTV3_Children
+Hyu47,[X]Pneumonitis due to inhalation of other solids and liquids,High_Level_SNOMED
+Hyu50,[X]Other interstitial pulmonary diseases with fibrosis,CTV3Map_Code_And_Term
+K260.,(Azoospermia) or (Young's syndrome),High_Level_SNOMED
+L380.,(Obstet anaesth + pulm complications) or (Mendelson's syndr),High_Level_SNOMED
+N0421,Rheumatoid lung,CTV3Map_Code_And_Term
+N0421,Rheumatoid lung,CTV3Map_Code_Only
+N04y0,(Rheum lung) or (Caplan synd) or (fibr alveolit assoc arthr),High_Level_SNOMED
+P851.,Pulmonary hypoplasia,CTV3_Children
+P861.,Congenital bronchiectasis,CTV3Map_Code_And_Term
+PK35.,Kartageners syndrome,High_Level_SNOMED
+Q317.,Neonatal chronic respiratory disease,CTV3Map_Code_And_Term
+Q3170,Bronchopulmonary dysplasia,CTV3Map_Code_And_Term
+Q3171,Prematurity with interstitial pulmonary fibrosis,CTV3Map_Code_And_Term
+Q3172,Pulmonary dysmaturity,CTV3Map_Code_And_Term
+Q317z,Perinatal chronic respiratory disease NOS,CTV3Map_Code_And_Term
+Qyu36,[X]Other chronic resp diseases originating/perinatal period,CTV3_Children
+SP130,Mendelson's syndrome as a complication of care,High_Level_SNOMED
+SP131,Other aspiration pneumonia as a complication of care,High_Level_SNOMED
+X00s1,Single lung transplant,CTV3Map_Code_And_Term
+X00s2,Double lung transplant,CTV3Map_Code_And_Term
+X00s3,Double lung transplant as a block,CTV3_Children
+X00s4,Bilateral sequential single lung transplant,CTV3_Children
+X100V,Chronic pulmonary coccidioidomycosis,QOF
+X100l,Congenital cystic bronchiectasis,CTV3_Children
+X100m,Acquired bronchiectasis,CTV3_Children
+X100n,Idiopathic bronchiectasis,CTV3_Children
+X100o,Obstructive bronchiectasis,CTV3_Children
+X100p,Toxin-induced bronchiectasis,CTV3_Children
+X100q,Bronchiectasis due to toxic aspiration,CTV3_Children
+X100r,Bronchiectasis due to toxic inhalation,CTV3_Children
+X100t,Post-lung transplantation bronchiectasis,CTV3_Children
+X101U,Asbestos-induced pleural plaque,CTV3Map_Code_And_Term
+X101U,Asbestos-induced pleural plaque,CTV3Map_Code_Only
+X101X,Inherited mucociliary clearance defect,High_Level_SNOMED
+X101Z,Primary ciliary dyskinesia,High_Level_SNOMED
+X101a,Primary ciliary dyskinesia - transposn ciliary microtubules,High_Level_SNOMED
+X101b,Immotile cilia syndrome due to defective radial spokes,High_Level_SNOMED
+X101c,Immotile cilia syndrome due to excessively long cilia,High_Level_SNOMED
+X101d,Young's syndrome,QOF
+X101e,Rutland ciliary disorientation syndrome,High_Level_SNOMED
+X101i,"Chron obstruct pulmonary dis wth acute exacerbation, unspec",CTV3Map_Code_And_Term
+X101j,Occupational chronic bronchitis,CTV3_Children
+X101k,Byssinosis grade 3,CTV3_Children
+X101l,Bronchiolitis obliterans,CTV3Map_Code_And_Term
+X101m,Drug-induced bronchiolitis obliterans,CTV3_Children
+X101n,Pulmonary emphysema,CTV3_Children
+X101o,Pulmonary emphysema in alpha-1 PI deficiency,CTV3_Children
+X101p,Toxic emphysema,CTV3_Children
+X101q,Congenital lobar emphysema,CTV3_Children
+X101r,Scar emphysema,CTV3_Children
+X102B,Mill fever,CTV3_Children
+X102H,Cryptogenic pulmonary eosinophilia,High_Level_SNOMED
+X102J,Animal handlers' lung,CTV3_Children
+X102K,Dog house disease,CTV3_Children
+X102L,Dry rot lung,CTV3_Children
+X102M,Lycoperdonosis,CTV3_Children
+X102N,Wheat weevil disease,CTV3_Children
+X102O,New Guinea lung,CTV3_Children
+X102P,Paprika splitters' lung,CTV3_Children
+X102Q,Pyrethrum alveolitis,CTV3_Children
+X102R,Rodent handlers' lung,CTV3_Children
+X102S,Sewage workers' lung,CTV3_Children
+X102T,Summer-type hypersensitivity pneumonitis,CTV3_Children
+X102U,Vineyard sprayers' lung,CTV3_Children
+X102j,Cryptogenic organising pneumonitis,CTV3Map_Code_And_Term
+X102j,Cryptogenic organising pneumonitis,CTV3Map_Code_Only
+X102k,"Seasonal crypt organising pneumonia, biochemical cholestasis",CTV3_Children
+X102u,Pulmonary fibrosis,CTV3Map_Code_And_Term
+X102v,Usual interstitial pneumonitis,CTV3Map_Code_And_Term
+X102v,Usual interstitial pneumonitis,CTV3Map_Code_Only
+X102w,Desquamative interstitial pneumonitis,CTV3_Children
+X102x,Lymphoid interstitial pneumonitis,CTV3_Children
+X102y,Giant cell interstitial pneumonitis,CTV3_Children
+X102z,Bronchiolitis obliterans with usual interstitial pneumonitis,CTV3_Children
+X1030,Toxic diffuse interstitial pulmonary fibrosis,CTV3_Children
+X1031,Drug-induced diffuse interstitial pulmonary fibrosis,CTV3_Children
+X1032,Localised pulmonary fibrosis,CTV3_Children
+X1033,Mediastinal radiation fibrosis,CTV3_Children
+X1034,Pneumonitis of non-infectious cause,High_Level_SNOMED
+X1035,Cholesterol pneumonia,High_Level_SNOMED
+X1038,Lupus pneumonia,High_Level_SNOMED
+X103A,Toxic pneumonitis,High_Level_SNOMED
+X103G,Radiation-induced fibrous mediastinitis,CTV3_Children
+X103W,Simple pneumoconiosis,CTV3_Children
+X103X,Complicated pneumoconiosis,CTV3Map_Code_And_Term
+X103Y,Rheumatoid pneumoconiosis,CTV3Map_Code_And_Term
+X103Y,Rheumatoid pneumoconiosis,CTV3Map_Code_Only
+X103Z,Bentonite pneumoconiosis,CTV3_Children
+X103a,Erionite pneumoconiosis,CTV3_Children
+X103b,Kaolin pneumoconiosis,CTV3_Children
+X103c,Metal pneumoconiosis,CTV3_Children
+X103d,Antimony pneumoconiosis,CTV3_Children
+X103e,Argyro-siderosis,CTV3_Children
+X103f,Barium pneumoconiosis,CTV3_Children
+X103h,Subacute berylliosis,CTV3_Children
+X103i,Chronic berylliosis,CTV3_Children
+X103j,Cerium pneumoconiosis,CTV3_Children
+X103k,Hard metal pneumoconiosis,CTV3_Children
+X103l,Nickel pneumoconiosis,CTV3_Children
+X103m,Thorium pneumoconiosis,CTV3_Children
+X103n,Zirconium pneumoconiosis,CTV3_Children
+X103o,Mica pneumoconiosis,CTV3_Children
+X103p,Mixed mineral dust pneumoconiosis,CTV3_Children
+X103q,Liparosis,CTV3_Children
+X103r,Slate pneumoconiosis,CTV3_Children
+X103s,Diatomite pneumoconiosis,CTV3_Children
+X103u,Subacute silicosis,CTV3_Children
+X103v,Chronic silicosis,CTV3_Children
+X103w,Silicotuberculosis,CTV3_Children
+X103x,Wollastonite pneumoconiosis,CTV3_Children
+X1043,Stage 1 pulmonary sarcoidosis,CTV3_Children
+X1044,Stage 2 pulmonary sarcoidosis,CTV3_Children
+X1045,Stage 3 pulmonary sarcoidosis,CTV3_Children
+X1046,Stage 4 pulmonary sarcoidosis,CTV3_Children
+X1047,Endobronchial sarcoidosis,CTV3_Children
+X1048,Necrotising sarcoid granulomatosis,CTV3_Children
+X1049,Sarcoid pulmonary calcification,CTV3_Children
+X104B,Grain fever,High_Level_SNOMED
+X104C,Humidifier fever,High_Level_SNOMED
+X309R,Cystic fibrosis of pancreas,High_Level_SNOMED
+X701k,Fibrosing alveolitis associated with rheumatoid arthritis,CTV3Map_Code_And_Term
+X701k,Fibrosing alveolitis associated with rheumatoid arthritis,CTV3Map_Code_Only
+X70Eg,Pneumonitis due to fetal aspiration,High_Level_SNOMED
+X70RL,Chronic pulmonary histoplasmosis capsulati,QOF
+XE0YM,Purulent chronic bronchitis,CTV3Map_Code_And_Term
+XE0YN,Bullous emphysema with collapse,CTV3Map_Code_And_Term
+XE0YO,Atrophic (senile) emphysema,CTV3Map_Code_And_Term
+XE0YO,Atrophic (senile) emphysema,CTV3Map_Code_Only
+XE0YP,Other emphysema NOS,CTV3Map_Code_And_Term
+XE0YY,Lung disease due to external agents,CTV3Map_Code_Only
+XE0Ya,Post-inflammatory pulmonary fibrosis,CTV3Map_Code_And_Term
+XE0Ya,Post-inflammatory pulmonary fibrosis,CTV3Map_Code_Only
+XE0Yb,Cryptogenic fibrosing alveolitis,CTV3Map_Code_And_Term
+XE0Yb,Cryptogenic fibrosing alveolitis,CTV3Map_Code_Only
+XE0ZN,Chronic: [bronchitis NOS] or [tracheobronchitis],CTV3_Children
+XE0ZV,"(Extrin allerg alveol)/(farm lung)/(pneumonitis, allerg NOS)",CTV3_Children
+XE0ZX,(Asbestosis) or (byssinosis) or (pleural plaque disease),High_Level_SNOMED
+XE0ZZ,(Pneumoconiosis NOS) or (siderosis),CTV3_Children
+XE0Zf,Chronic chemical resp. disease,High_Level_SNOMED
+XE0Zh,Chemical resp. disease NOS,High_Level_SNOMED
+XE0Zr,Idiopath. fibrosing alveolitis (& Hamman-Rich syndrome),CTV3_Children
+XE1NO,(Congenital resp anomalies NOS) or (bronchiectasis - congen),High_Level_SNOMED
+XE1ep,Other specified perinatal chronic respiratory disease,CTV3Map_Code_And_Term
+XE2Pp,History of chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XE2Pp,History of chronic obstructive pulmonary disease,CTV3Map_Code_Only
+XM1Qc,Tension pneumatocele,CTV3Map_Code_Only
+XSC3p,Complication of transplanted lung,CTV3Map_Code_And_Term
+Xa08A,Chronic pulmonary insufficiency of prematurity,CTV3_Children
+Xa0BC,Pulmonary fibroplasia,CTV3Map_Code_Only
+Xa0Qe,Congenital hypoplasia of lung,CTV3_Children
+Xa0Qi,Secondary pulmonary hypoplasia,CTV3_Children
+Xa0Qj,Pulmonary hypoplasia associated with short gestation,CTV3_Children
+Xa0Tw,Primary pulmonary hypoplasia,CTV3_Children
+Xa35l,Acute infective exacerbation chronic obstruct airway disease,CTV3_Children
+Xa9Bw,Pneumoconiosis,CTV3Map_Code_And_Term
+Xa9Bw,Pneumoconiosis,CTV3Map_Code_Only
+Xa9Bx,Radiation pneumonitis,High_Level_SNOMED
+XaBDb,Cystic fibrosis with other manifestations,CTV3Map_Code_And_Term
+XaBDb,Cystic fibrosis with other manifestations,CTV3Map_Code_Only
+XaEIV,Mild chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XaEIW,Moderate chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XaEIY,Severe chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XaEKI,Flax-dressers' disease,CTV3_Children
+XaIND,End stage chronic obstructive airways disease,CTV3Map_Code_And_Term
+XaIQT,Chronic obstructive pulmonary disease monitoring,CTV3Map_Code_And_Term
+XaIQg,Interstitial pulmonary emphysema,CTV3Map_Code_And_Term
+XaIQg,Interstitial pulmonary emphysema,CTV3Map_Code_Only
+XaIQh,Mediastinal emphysema,QOF
+XaIRO,Chronic obstructive pulmonary disease monitoring due,CTV3Map_Code_And_Term
+XaIUt,COPD self-management plan given,CTV3Map_Code_And_Term
+XaIes,Chronic obstructive pulmonary disease follow-up,CTV3Map_Code_And_Term
+XaIes,Chronic obstructive pulmonary disease follow-up,CTV3Map_Code_Only
+XaIet,Chronic obstructive pulmonary disease annual review,CTV3Map_Code_And_Term
+XaIu7,Chronic obstructive pulmonary disease monitoring by nurse,CTV3Map_Code_And_Term
+XaIu8,Chronic obstructive pulmonary disease monitoring by doctor,CTV3Map_Code_And_Term
+XaJ4k,Excepted from COPD quality indicators: Patient unsuitable,QOF
+XaJFu,Admit COPD emergency,CTV3Map_Code_And_Term
+XaJYf,Chronic obstructive pulmonary disease clini management plan,CTV3Map_Code_And_Term
+XaJlS,Chronic obstructive pulmonary disease monitoring admin,CTV3Map_Code_And_Term
+XaJlT,Chronic obstructive pulmonary disease monitoring 1st letter,CTV3Map_Code_And_Term
+XaJlU,Chronic obstructive pulmonary disease monitoring 2nd letter,CTV3Map_Code_And_Term
+XaJlV,Chronic obstructive pulmonary disease monitoring 3rd letter,CTV3Map_Code_And_Term
+XaJlW,Chronic obstructive pulmonary disease monitoring verb invite,CTV3Map_Code_And_Term
+XaJlY,Chronic obstructive pulmonary disease monitor phone invite,CTV3Map_Code_And_Term
+XaK8Q,Chronic obstructive pulmonary disease finding,QOF
+XaK8R,COPD accident and emergency attendance since last visit,CTV3Map_Code_And_Term
+XaK8S,Emergency COPD admission since last appointment,CTV3Map_Code_And_Term
+XaK8U,Number of COPD exacerbations in past year,CTV3Map_Code_And_Term
+XaKv8,Chronic obstructive pulmonary disease disturbs sleep,CTV3Map_Code_And_Term
+XaKv9,Chronic obstructive pulmonary disease does not disturb sleep,CTV3Map_Code_And_Term
+XaKzy,Multiple COPD emergency hospital admissions,CTV3Map_Code_And_Term
+XaL2O,"Pneumonitis, unspecified",High_Level_SNOMED
+XaLcH,Single lobe lung transplant,CTV3_Children
+XaLqj,Health education - chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XaMzI,Cystic fibrosis related diabetes mellitus,QOF
+XaN4a,Very severe chronic obstructive pulmonary disease,CTV3Map_Code_And_Term
+XaO5l,Chronic type 1 respiratory failure,CTV3Map_Code_And_Term
+XaO5m,Chronic type 2 respiratory failure,CTV3Map_Code_And_Term
+XaOYV,Recurrent pulmonary embolism,QOF
+XaPZH,COPD patient unsuitable for pulmonary rehabilitation,CTV3Map_Code_And_Term
+XaPZH,COPD patient unsuitable for pulmonary rehabilitation,CTV3Map_Code_Only
+XaPls,Referred for COPD structured smoking assessment,CTV3Map_Code_And_Term
+XaPls,Referred for COPD structured smoking assessment,CTV3Map_Code_Only
+XaPlu,COPD structured smoking assessment declined,CTV3Map_Code_And_Term
+XaPlu,COPD structured smoking assessment declined,CTV3Map_Code_Only
+XaPzu,At risk of chronic obstructive pulmonary diseas exacerbation,CTV3Map_Code_And_Term
+XaQvd,Cystic fibrosis annual review,CTV3Map_Code_And_Term
+XaRCG,Step down change in COPD management plan,CTV3_Children
+XaRCH,Step up change in COPD management plan,CTV3_Children
+XaREX,Arthropathy in cystic fibrosis,CTV3Map_Code_And_Term
+XaREZ,Cystic fibrosis with distal intestinal obstruction syndrome,CTV3Map_Code_And_Term
+XaREa,Liver disease due to cystic fibrosis,CTV3Map_Code_And_Term
+XaREd,Fibrosing colonopathy,CTV3Map_Code_And_Term
+XaW9D,Issue of chronic obstructive pulmonary disease rescue pack,CTV3Map_Code_And_Term
+XaXCa,Chronic obstructive pulmonary disease 3 monthly review,CTV3Map_Code_And_Term
+XaXCb,Chronic obstructive pulmonary disease 6 monthly review,CTV3Map_Code_And_Term
+XaXi9,Cystic fibrosis related cirrhosis,CTV3Map_Code_And_Term
+XaXlE,Respiratory bronchiolitis associated interstitial lung dis,High_Level_SNOMED
+XaXlF,Interstitial lung disease due to collagen vascular disease,CTV3Map_Code_And_Term
+XaXlJ,Interstitial lung disease due to connective tissue disease,CTV3Map_Code_And_Term
+XaXnt,GP OOH service notified of COPD care plan,CTV3Map_Code_And_Term
+XaXzy,Preferred place of care for next exacerbation of COPD,CTV3Map_Code_And_Term
+XaY05,Chronic obstructiv pulmonary disease medication optimisation,CTV3Map_Code_And_Term
+XaY0w,Referral to COPD community nursing team,CTV3Map_Code_And_Term
+XaYR1,Bronchiolitis obliterans syndrome after lung transplantation,CTV3Map_Code_And_Term
+XaYZO,COPD self-management plan review,CTV3Map_Code_And_Term
+XaYbA,COPD self-management plan agreed,CTV3Map_Code_And_Term
+XaYby,Hantavirus pulmonary syndrome,High_Level_SNOMED
+XaYuZ,Chronic obstructve pulmonry disease rescue pack not indicatd,CTV3Map_Code_And_Term
+XaZ6U,On chronic obstructive pulmonary disease supprtv cre pathway,CTV3Map_Code_And_Term
+XaZ6U,On chronic obstructive pulmonary disease supprtv cre pathway,CTV3Map_Code_Only
+XaZ8t,Has chronic obstructive pulmonary disease care plan,CTV3Map_Code_And_Term
+XaZd1,Acute non-infective exacerbation of COPD,CTV3_Children
+XaZee,Chronic obstructive pulmonary disease care pathway,CTV3Map_Code_And_Term
+XaZoz,Seen in chronic obstructive pulmonary disease clinic,CTV3Map_Code_And_Term
+XaZp7,Chronic obstructive pulmonary disease rescue pack declined,CTV3Map_Code_And_Term
+XaZp8,Chronic obstructive pulmon dis wr self managem plan declined,CTV3Map_Code_And_Term
+XaZr7,Exacerbation of cystic fibrosis,CTV3Map_Code_And_Term
+Xaa7C,Eosinophilic bronchitis,QOF
+Xaam4,Chronic obstruct pulmonary disease management plan declined,CTV3Map_Code_And_Term
+XaavA,Shared care chronic obstructive pulmonary disease monitoring,CTV3_Children
+Xabud,H/O: bronchiectasis,CTV3Map_Code_And_Term
+Xac33,Asthma-chronic obstructive pulmonary disease overlap syndrom,CTV3Map_Code_And_Term
+Xac8s,Telehealth chronic obstructive pulmonary disease monitoring,CTV3Map_Code_And_Term
+XafhZ,COPD monitoring email invitation,QOF
+Xafhe,COPD monitring short message service text message invitation,QOF
+Xafir,COPD monitoring SMS text message first invitation,QOF
+Xafit,COPD monitoring SMS text message second invitation,QOF
+Xafiu,COPD monitoring SMS text message third invitation,QOF
+Y1f1b,Chronic obstructive pulmonary disease monitoring invitation,QOF
+Y1f94,Quality and Outcomes Framework chronic obstructive pulmonary disease quality indicator-related care invitation (procedure),QOF
+Y1f95,Excepted from chronic obstructive pulmonary disease quality indicators - service unavailable (finding),QOF
+Y2708,Cystic fibrosis screening test,CTV3_Children
+Y2710,Cystic fibrosis positive,CTV3_Children
