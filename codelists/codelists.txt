@@ -16,7 +16,7 @@ opensafely/ethnicity/2020-04-27
 opensafely/gi-bleed-or-ulcer/2020-04-08
 opensafely/haematological-cancer/2020-04-15
 opensafely/hiv/2020-04-24
-opensafely/hypertension/2020-04-27
+opensafely/hypertension/2020-04-28
 opensafely/inflammatory-bowel-disease/2020-04-07
 opensafely/lung-cancer/2020-04-15
 opensafely/other-neurological-conditions/2020-04-22
