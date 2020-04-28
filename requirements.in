@@ -27,3 +27,6 @@ pyodbc
 # For running tests
 sqlalchemy
 sqlparse
+
+# For fetching codelists
+requests

@@ -1,0 +1,240 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+14S2.,H/O: kidney recipient,QOF
+7A600,Insertion of arteriovenous prosthesis,CTV3Map_Code_And_Term
+7A602,Attention to arteriovenous shunt,CTV3Map_Code_And_Term
+7A603,Removal of infected arteriovenous shunt,CTV3Map_Code_And_Term
+7A60y,Other specified arteriovenous shunt,CTV3Map_Code_And_Term
+7A60z,Arteriovenous shunt NOS,CTV3Map_Code_And_Term
+7A614,Ligation of acquired arteriovenous fistula,CTV3Map_Code_And_Term
+7A614,Ligation of acquired arteriovenous fistula,CTV3Map_Code_Only
+7A6E2,Declotting of thigh vein loop,CTV3_Children
+7B00.,Renal transplant,QOF
+7B001,Live donor renal transplant,QOF
+7B002,Cadaveric renal transplant,QOF
+7B00y,Other specified transplantation of kidney,QOF
+7B00z,Transplantation of kidney NOS,QOF
+7L1A.,Compensation for renal failure (& dialysis),CTV3_Children
+7L1A0,(Renal dialysis) or (Thomas intravascular dialysis shunt),High_Level_SNOMED
+7L1A1,Peritoneal dialysis,CTV3Map_Code_And_Term
+7L1A2,Haemodialysis NEC,CTV3Map_Code_And_Term
+7L1Ay,Other specified compensation for renal failure,CTV3Map_Code_And_Term
+7L1Az,Compensation for renal failure NOS,CTV3Map_Code_And_Term
+7L1B.,Chronic ambulatory peritoneal dialysis catheter procedure ++,CTV3_Children
+7L1B0,Insertion of chronic ambulatory peritoneal dialysis catheter,CTV3Map_Code_And_Term
+7L1B0,Insertion of chronic ambulatory peritoneal dialysis catheter,CTV3Map_Code_Only
+7L1B1,Removal of chronic ambulatory peritoneal dialysis catheter,CTV3Map_Code_And_Term
+7L1By,Placement ambulatory apparatus- compensate renal failure OS,CTV3Map_Code_And_Term
+7L1Bz,Placement ambulatory apparatus- compensate renal failure NOS,CTV3_Children
+7L1C.,Placement other apparatus for compensation for renal failure,CTV3Map_Code_And_Term
+7L1C0,Insertion of temporary peritoneal dialysis catheter,CTV3Map_Code_And_Term
+7L1Cy,Placement other apparatus- compensate for renal failure OS,CTV3Map_Code_And_Term
+7L1Cz,Placement other apparatus- compensate for renal failure NOS,CTV3Map_Code_And_Term
+8877.,Ultrafiltration,CTV3_Children
+8882.,Intestinal dialysis,High_Level_SNOMED
+G760.,Acquired arteriovenous fistula,CTV3Map_Code_And_Term
+TA020,"Accid cut,puncture,perf,h'ge - kidney dialysis",CTV3Map_Code_And_Term
+TA020,"Accid cut,puncture,perf,h'ge - kidney dialysis",CTV3Map_Code_Only
+TA02z,"Accid cut,puncture,perf,h'ge - perfusion NOS",CTV3Map_Code_And_Term
+TA22.,Failure of sterile precautions during perfusion,CTV3Map_Code_And_Term
+TA220,Failure of sterile precautions during kidney dialysis,CTV3Map_Code_And_Term
+TA220,Failure of sterile precautions during kidney dialysis,CTV3Map_Code_Only
+TA22y,Failure of sterile precautions during other perfusion,CTV3_Children
+TA22z,Failure of sterile precautions during perfusion NOS,CTV3_Children
+TA420,Mech failure of instrument &/or apparatus during kidney dial,CTV3_Children
+TB11.,"Kidney dialysis with complication, without blame",CTV3Map_Code_And_Term
+TB11.,"Kidney dialysis with complication, without blame",CTV3Map_Code_Only
+U6122,[X]Failure sterile precautions dur kidney dialys/other perf,CTV3Map_Code_And_Term
+Ua1IM,Chronic peritoneal dialysis,CTV3_Children
+Ua1IN,Stab peritoneal dialysis,CTV3_Children
+X018M,Creation of Cimino fistula,CTV3Map_Code_And_Term
+X018M,Creation of Cimino fistula,CTV3Map_Code_Only
+X018N,Creation brachiocephalic fistula,CTV3Map_Code_And_Term
+X018N,Creation brachiocephalic fistula,CTV3Map_Code_Only
+X018T,Angioplasty of arteriovenous fistula,CTV3_Children
+X018U,Thrombolysis of arteriovenous fistula,CTV3_Children
+X018V,Thrombolysis of arteriovenous graft,CTV3_Children
+X018Y,Embolectomy of arteriovenous fistula,CTV3_Children
+X018Z,Embolectomy of arteriovenous graft,CTV3_Children
+X018a,Procedure on intraluminal device of arteriovenous fistula,CTV3_Children
+X018b,Insertion of intraluminal device into arteriovenous fistula,CTV3_Children
+X018c,Insertion of stent into arteriovenous fistula,CTV3_Children
+X018d,Removal of intraluminal device from arteriovenous fistula,CTV3_Children
+X018e,Removal of stent from arteriovenous fistula,CTV3_Children
+X018f,Adjustment of intraluminal device of arteriovenous fistula,CTV3_Children
+X018g,Adjustment of arteriovenous fistula stent,CTV3_Children
+X018j,Banding of arteriovenous fistula,CTV3Map_Code_And_Term
+X018n,Exploration of arteriovenous fistula,CTV3_Children
+X018o,Exploration of arteriovenous graft,CTV3_Children
+X01AF,Intermittent haemodialysis,CTV3_Children
+X01AG,Intermittent haemodialysis with sequential ultrafiltration,CTV3_Children
+X01AH,Intermittent haemodialysis with continuous ultrafiltration,CTV3_Children
+X01AI,Continuous haemodialysis,CTV3_Children
+X01AJ,Continuous arteriovenous haemodialysis,CTV3_Children
+X01AK,Continuous venovenous haemodialysis,CTV3_Children
+X01AL,Haemofiltration,CTV3Map_Code_And_Term
+X01AM,Intermittent haemofiltration,CTV3_Children
+X01AN,Continuous haemofiltration,CTV3_Children
+X01AO,Continuous arteriovenous haemofiltration,CTV3_Children
+X01AP,Continuous venovenous haemofiltration,CTV3_Children
+X01AQ,Haemodiafiltration,CTV3_Children
+X01AR,Intermittent haemodiafiltration,CTV3_Children
+X01AS,Continuous haemodiafiltration,CTV3_Children
+X01AT,Continuous arteriovenous haemodiafiltration,CTV3_Children
+X01AU,Continuous venovenous haemodiafiltration,CTV3_Children
+X01AY,Plasma filtration,High_Level_SNOMED
+X30D2,Xenograft renal transplant,QOF
+X30J0,End stage renal failure,QOF
+X30J1,"End stage renal failure, untreated by RRT",QOF
+X30J2,End stage renal failure on dialysis,QOF
+X30J3,End stage renal failure with renal transplant,QOF
+X30Lp,Disorder associated with dialysis,CTV3Map_Code_And_Term
+X30Lq,Acute disorder of haemodialysis,CTV3_Children
+X30Lr,Dialysis disequilibrium,CTV3_Children
+X30Ls,First use syndrome of dialysis,CTV3Map_Code_And_Term
+X30Lt,Anaphylactoid reaction to dialysis,CTV3_Children
+X30Lu,Hyperchloraemic acidosis associated with dialysis,CTV3_Children
+X30Lv,Hard water syndrome,CTV3_Children
+X30Lw,Long-term disorder of dialysis,CTV3_Children
+X30Lx,Beta-2 microglobulin amyloidosis,CTV3_Children
+X30Ly,Beta-2 microglobulin arthropathy,CTV3_Children
+X30Lz,Matrix stone formation of dialysis,CTV3_Children
+X30M0,Aluminium intoxication,CTV3_Children
+X30M1,Aluminium bone disease,CTV3_Children
+X30M2,Aluminium-related osteomalacia,CTV3_Children
+X30M3,Aluminium-related fracturing osteodystrophy,CTV3_Children
+X30M4,Polyserositis syndrome of dialysis,CTV3_Children
+X30M5,Underdialysis,CTV3_Children
+X30M6,Adynamic bone disease,CTV3_Children
+X30M7,Disorders associated with peritoneal dialysis,CTV3Map_Code_And_Term
+X30M8,Pain during inflow of dialysate,CTV3_Children
+X30M9,Pain during outflow of dialysate,CTV3_Children
+X30MB,Bloodstained peritoneal dialysis effluent,CTV3_Children
+X30MC,Peritoneal dialysis catheter exit site infection,CTV3_Children
+X30MD,Peritoneal dialysis catheter tunnel infection,CTV3_Children
+X30ME,Loss of ultrafiltration,CTV3_Children
+X30MF,Loss of solute clearance,CTV3_Children
+X30MG,Disorder of peritoneal dialysis catheter,CTV3_Children
+X30MH,Obstruction of peritoneal dialysis catheter,CTV3_Children
+X30MI,Migration of peritoneal dialysis catheter,CTV3_Children
+X30MJ,Omental wrapping around peritoneal dialysis catheter,CTV3_Children
+X30MK,Poor drainage of peritoneal dialysis catheter,CTV3_Children
+X30ML,Extrusion of peritoneal dialysis catheter cuff,CTV3_Children
+X30MM,Misplacement of acute peritoneal dialysis catheter,CTV3_Children
+X30MN,Renal transplant disorder,QOF
+X30MO,Primary non-function of renal transplant,QOF
+X30MP,Renal transplant rejection,QOF
+X30MQ,Hyperacute rejection of renal transplant,QOF
+X30MR,Accelerated rejection of renal transplant,QOF
+X30MS,Very mild acute rejection of renal transplant,QOF
+X30MT,Acute rejection of renal transplant,QOF
+X30MU,Acute rejection of renal transplant - grade I,QOF
+X30MV,Acute rejection of renal transplant - grade II,QOF
+X30MW,Acute rejection of renal transplant - grade III,QOF
+X30MX,Chronic rejection of renal transplant,QOF
+X30MY,Chronic rejection of renal transplant - grade 1,QOF
+X30MZ,Chronic rejection of renal transplant - grade II,QOF
+X30Ma,Chronic rejection of renal transplant - grade III,QOF
+X30Mb,Acute-on-chronic rejection of renal transplant,QOF
+X30Mc,Failed renal transplant,QOF
+X30Md,Perfusion injury of renal transplant,QOF
+X30Mg,Transplant glomerulopathy,QOF
+X30Mh,Transplant glomerulopathy - early form,QOF
+X30Mi,Transplant glomerulopathy - late form,QOF
+X30NN,Perirenal and periureteric post-transplant lymphocele,QOF
+X40bz,Renewal of chronic ambulatory peritoneal dialysis catheter,CTV3_Children
+X40c0,Adjustment chronic ambulatory peritoneal dialysis catheter,CTV3_Children
+X40c1,Aspiration chronic ambulatory peritoneal dialysis catheter,CTV3_Children
+X40c2,Flushing of chronic ambulatory peritoneal dialysis catheter,CTV3Map_Code_And_Term
+X40c3,Continuous ambulatory peritoneal dialysis,CTV3Map_Code_And_Term
+X40c4,Continuous cycling peritoneal dialysis,CTV3_Children
+X40c5,Intermittent peritoneal dialysis,CTV3_Children
+X40c6,Tidal peritoneal dialysis,CTV3_Children
+X40c7,Night-time intermittent peritoneal dialysis,CTV3_Children
+XE0Fh,Creation of arteriovenous fistula NEC,CTV3Map_Code_And_Term
+XE0Fh,Creation of arteriovenous fistula NEC,CTV3Map_Code_Only
+XE0Fj,Repair of acquired arteriovenous fistula,CTV3Map_Code_And_Term
+XE0Fj,Repair of acquired arteriovenous fistula,CTV3Map_Code_Only
+XE0Jf,Compensation for renal failure,CTV3Map_Code_And_Term
+XE0Jf,Compensation for renal failure,CTV3Map_Code_Only
+XE0Jg,Renal dialysis,CTV3Map_Code_And_Term
+XE0Jg,Renal dialysis,CTV3Map_Code_Only
+XE0kD,Renal dialysis (& haemodialysis),High_Level_SNOMED
+XE21r,Mechanical failure of apparatus during kidney dialysis,CTV3Map_Code_And_Term
+XE21r,Mechanical failure of apparatus during kidney dialysis,CTV3Map_Code_Only
+XE2u6,Chronic ambulatory peritoneal dialysis catheter procedure,CTV3_Children
+Xa0Ex,Peritoneal dialysis-associated peritonitis,CTV3_Children
+Xa0FB,Percutaneous balloon angioplasty of arteriovenous fistula,CTV3_Children
+Xa0Gm,Percutaneous embolectomy of arteriovenous fistula,CTV3_Children
+Xa0H7,Percutaneous thrombolysis of arteriovenous fistula,CTV3_Children
+Xa0HK,Unexplained episode of renal transplant dysfunction,QOF
+Xa0HL,Pre-existing disease in renal transplant,QOF
+Xa0ol,Procedure related to surgical arteriovenous connection,CTV3Map_Code_And_Term
+Xa0x1,Removal of arteriovenous shunt,CTV3_Children
+Xa1dw,Transplant kidney,QOF
+Xa24I,Acquired renal arteriovenous fistula,CTV3_Children
+Xa3x6,Kidney replacement,QOF
+Xa402,Extracorporeal kidney,CTV3_Children
+Xa8S7,Haemodialysis,CTV3Map_Code_And_Term
+Xa8S7,Haemodialysis,CTV3Map_Code_Only
+Xa9zl,Dependence on renal dialysis,QOF
+XaBrA,Haemodialysis procedure,QOF
+XaC2Z,[X] Peritoneal dialysis associated peritonitis,CTV3_Children
+XaE9T,Donor renal transplantation,QOF
+XaLiG,Thrombectomy of arteriovenous fistula,CTV3Map_Code_And_Term
+XaLiH,Creation of graft fistula for dialysis,CTV3Map_Code_And_Term
+XaM1o,"Allotransplantation of kidney from cadaver, heart-beating",QOF
+XaM1p,"Allotransplantation kidney from cadaver, heart non-beating",QOF
+XaM2A,Automated peritoneal dialysis,CTV3Map_Code_And_Term
+XaMKM,Allotransplantation of kidney from cadaver NEC,QOF
+XaMMt,Peritoneal dialysis NEC,CTV3Map_Code_And_Term
+XaMtq,Extracorporeal albumin haemodialysis,CTV3Map_Code_And_Term
+XaOmL,Ligation of arteriovenous dialysis fistula,CTV3Map_Code_And_Term
+XaOoH,Ligation of arteriovenous dialysis graft,CTV3Map_Code_And_Term
+XaREO,Continuous ambulatory peritoneal dialysis associated perit,CTV3_Children
+XaZWa,Urological complication of renal transplant,QOF
+XaZYx,Vascular complication of renal transplant,QOF
+XaZc8,Ruptured aneurysm of dialysis vascular access,CTV3Map_Code_And_Term
+XaZcQ,Aneurysm of superficialised artery of dialysis AV fistula,CTV3Map_Code_And_Term
+XaZcU,Aneurysm of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+XaZcX,Aneurysm of needle site of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+XaZcd,Aneurysm of anastomotic site of dialysis AV fistula,CTV3Map_Code_And_Term
+XaZdk,Thrombus in peritoneal dialysis catheter,CTV3Map_Code_And_Term
+XaZe2,Rupture of artery of transplanted kidney,QOF
+XaZe3,Rupture of vein of transplanted kidney,QOF
+XaZe7,Stenosis of vein of transplanted kidney,QOF
+XaZkw,Aneurysm of vein of transplanted kidney,QOF
+XaZl0,Aneurysm of artery of transplanted kidney,QOF
+XaZlu,Stenosis of dialysis vascular access,CTV3Map_Code_And_Term
+XaZlv,Thrombosis of dialysis vascular access,CTV3Map_Code_And_Term
+XaZmp,Anaphylactoid reaction due to haemodialysis,CTV3Map_Code_And_Term
+Xaa2O,Thrombosis of artery of transplanted kidney,QOF
+Xaa2Q,Thrombosis of vein of transplanted kidney,QOF
+Xaa5S,Occlusion of dialysis vascular access,CTV3Map_Code_And_Term
+Xaa5T,Infection of dialysis vascular access,CTV3Map_Code_And_Term
+Xaa5U,Haemorrhage of dialysis vascular access,CTV3Map_Code_And_Term
+Xaa5W,Stenosis of dialysis arteriovenous graft,CTV3Map_Code_And_Term
+Xaa5X,Stenosis of dialysis arteriovenous shunt,CTV3_Children
+Xaa5e,Thrombosis of dialysis arteriovenous graft,CTV3_Children
+Xaa5f,Thrombosis of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+Xaa5g,Thrombosis of dialysis arteriovenous shunt,CTV3_Children
+Xaa5h,Occlusion of dialysis arteriovenous graft,CTV3Map_Code_And_Term
+Xaa5i,Occlusion of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+Xaa5j,Occlusion of dialysis arteriovenous shunt,CTV3_Children
+Xaa6n,Infection of dialysis arteriovenous graft,CTV3Map_Code_And_Term
+Xaa6o,Infection of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+Xaa7F,Infection of dialysis arteriovenous shunt,CTV3_Children
+Xaa7H,Haemorrhage of dialysis arteriovenous graft,CTV3_Children
+Xaa7I,Haemorrhage of dialysis arteriovenous fistula,CTV3Map_Code_And_Term
+Xaa7J,Haemorrhage of dialysis arteriovenous shunt,CTV3_Children
+Xaa7K,Rupture of dialysis arteriovenous graft,CTV3Map_Code_And_Term
+XaaEx,Stenosis of arterial side of dialysis arteriovenous shunt,CTV3_Children
+XaaEy,Stenosis of venous side of dialysis arteriovenous shunt,CTV3_Children
+ZV420,[V]Kidney transplanted,QOF
+ZV451,[V]Renal dialysis status,CTV3Map_Code_And_Term
+ZV56.,[V]Aftercare involving intermittent dialysis,CTV3Map_Code_And_Term
+ZV560,[V]Aftercare involving extracorporeal dialysis,CTV3Map_Code_And_Term
+ZV560,[V]Aftercare involving extracorporeal dialysis,CTV3Map_Code_Only
+ZV561,[V]Preparatory care for dialysis,CTV3_Children
+ZV56y,[V]Other specified aftercare involving intermittent dialysis,CTV3_Children
+ZV56z,[V]Unspecified aftercare involving intermittent dialysis,CTV3_Children
+ZVu3G,[X]Other dialysis,CTV3Map_Code_And_Term

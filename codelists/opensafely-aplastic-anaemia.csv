@@ -1,0 +1,42 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+D2...,Aplastic and other anaemias,CTV3Map_Code_And_Term
+D20..,Aplastic anaemia,CTV3Map_Code_And_Term
+D200.,(Anaem:[const aplas][fam hypopl])(pancytop+malf)(Black-Diam),CTV3_Children
+D2000,"Anaemia: [congen hypoplastic]/[constit aplastic, no malform]",CTV3_Children
+D2001,Fanconi's anaemia,CTV3Map_Code_And_Term
+D2001,Fanconi's anaemia,CTV3Map_Code_Only
+D2003,(RBC aplas/hypoplas: [named variants]) or (Blackf-Diam synd),CTV3_Children
+D200y,Other specified constitutional aplastic anaemia,CTV3Map_Code_And_Term
+D200z,Constitutional aplastic anaemia NOS,CTV3_Children
+D201.,Anaemia: [acquired aplastic] or [normocytic due to aplasia],CTV3_Children
+D2010,Aplastic anaemia due to chronic disease,CTV3Map_Code_And_Term
+D2011,Anaemia: [aplast due drug][hypoplast due drug or chem subst],CTV3_Children
+D2012,Aplastic anaemia due to infection,CTV3Map_Code_And_Term
+D2012,Aplastic anaemia due to infection,CTV3Map_Code_Only
+D2013,Aplastic anaemia due to radiation,CTV3Map_Code_And_Term
+D2013,Aplastic anaemia due to radiation,CTV3Map_Code_Only
+D2014,Aplastic anaemia due to toxic cause,CTV3Map_Code_And_Term
+D2014,Aplastic anaemia due to toxic cause,CTV3Map_Code_Only
+D2017,Transient hypoplastic anaemia,CTV3_Children
+D204.,Idiopathic aplastic anaemia,CTV3Map_Code_And_Term
+D20z.,Aplastic anaemia NOS,CTV3Map_Code_And_Term
+Dyu21,[X]Other specified aplastic anaemias,CTV3_Children
+X20CO,Pancytopenia with pancreatitis,CTV3Map_Code_Only
+X20CP,Constitutional aplastic anaemia without malformation,CTV3Map_Code_And_Term
+X20CP,Constitutional aplastic anaemia without malformation,CTV3Map_Code_Only
+X30Jq,Congenital Fanconi syndrome,CTV3Map_Code_And_Term
+X30Jr,Acquired Fanconi syndrome,CTV3Map_Code_And_Term
+X30Jr,Acquired Fanconi syndrome,CTV3Map_Code_Only
+X30Js,Adult Fanconi syndrome,CTV3Map_Code_And_Term
+X70Jk,Parvoviral aplastic crisis,QOF
+XE13q,Constitutional aplastic anaemia,CTV3Map_Code_And_Term
+XE13q,Constitutional aplastic anaemia,CTV3Map_Code_Only
+XE13r,Constitutional aplastic anaemia with malformation,CTV3Map_Code_And_Term
+XE13r,Constitutional aplastic anaemia with malformation,CTV3Map_Code_Only
+XE13t,Acquired aplastic anaemia,CTV3Map_Code_And_Term
+XE13u,Aplastic anaemia due to drugs,CTV3Map_Code_And_Term
+XE13u,Aplastic anaemia due to drugs,CTV3Map_Code_Only
+XE13w,Acquired aplastic anaemia NOS,CTV3Map_Code_And_Term
+XE14g,Anaemia: [aplastic and other] or [aplastic] or [hypoblastic],High_Level_SNOMED
+XM1Qy,Pancytopenia-dysmelia,CTV3Map_Code_And_Term
+XM1Qy,Pancytopenia-dysmelia,CTV3Map_Code_Only

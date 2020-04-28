@@ -1,0 +1,41 @@
+CTV3ID,CTV3PreferredTermDesc
+42H4.,Agranulocytosis
+D2015,Pancytopenia - acquired
+D400.,(Agranulocytosis) or (Kostmann's syndrome) or (neutropenia)
+D4000,Idiopathic: [agranulocytosis] or [neutropenia]
+D4002,Drug induced: [agranulocytosis] or [neutropenia]
+D4003,Radiation: [agranulocytosis] or [neutropenia]
+D4004,Infection: [agranulocytosis] or [neutropenia]
+D4006,Drug-associated neutropenia
+D4008,Acquired: [neutropenia NEC] or [agranulocytosis NEC]
+D400y,Other specified agranulocytosis
+D400z,Agranulocytosis NOS
+F1001,Schultz disease
+Ua14c,Patient immunocompromised
+Ua19z,Patient immunosuppressed
+X20CN,Pancytopenia
+X20Dp,Corticosteroid-induced neutrophilia
+X20HQ,Phagocytic cell defect
+X20HR,Disorder of phagocytic cell number
+X20Hs,Complement deficiency
+X20Il,Secondary immunodeficiency
+X20Ip,Drug-induced immunodeficiency
+Xa09u,Chloramphenicol-induced neutropenia
+Xa97S,Immunosuppressive therapy
+Xa9E8,Neutropenic disorder
+XaXUJ,Immunosuppressant drug therapy
+XE13v,Pancytopenia NOS
+XE14A,Agranulocytopenic disorder
+XE14C,Drug-associated neutropenia
+XE14D,Neutropenia due to irradiation
+XE14E,Infective neutropenia
+XE14G,Acquired neutropenia NEC
+XM0BV,Predominantly B-cell defect
+XM0BW,Predominantly T-cell defect
+XM1WJ,Preventing infection of immunocompromised patient
+XM1WL,Reverse barrier nursing
+X20HB,Primary immunoglobulin catabolism abnormality
+X20HC,Immunoglobulin hypercatabolism
+X20HD,Familial immunoglobulin hypercatabolism
+X20HP,Benign combined immunodeficiency
+BBmC.,[M] T-gamma lymphoproliferative disease

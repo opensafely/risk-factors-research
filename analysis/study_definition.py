@@ -7,88 +7,88 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
 aplastic_codes = codelist_from_csv(
-    "codelists/aplastic.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-aplastic-anaemia.csv", system="ctv3", column="CTV3ID")
 
 hiv_codes = codelist_from_csv(
-    "codelists/hiv.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-hiv.csv", system="ctv3", column="CTV3ID")
 
 permanent_immune_codes = codelist_from_csv(
-    "codelists/permanent-immune.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-permanent-immunosuppresion.csv", system="ctv3", column="CTV3ID")
 
 temp_immune_codes = codelist_from_csv(
-    "codelists/temporary-immune.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-temporary-immunosuppresion.csv", system="ctv3", column="CTV3ID")
 
 stroke = codelist_from_csv(
-    "codelists/stroke.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-stroke.csv", system="ctv3", column="CTV3ID")
 
 dementia = codelist_from_csv(
-    "codelists/dementia.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID")
 smoking_codes  = codelist_from_csv(
-    "codelists/smoking.csv", system="ctv3", column="CTV3Code", category_column="Category"
+    "codelists/opensafely-smoking-status.csv", system="ctv3", column="CTV3Code", category_column="Category"
 )
 
 other_neuro = codelist_from_csv(
-    "codelists/other_neuro.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-other-neurological-conditions.csv", system="ctv3", column="CTV3ID")
 ethnicity_codes  = codelist_from_csv(
-    "codelists/ethnicity_codes_2020_04_22.csv", system="ctv3", column="Code", category_column="Grouping_6"
+    "codelists/opensafely-ethnicity.csv", system="ctv3", column="Code", category_column="Grouping_6"
 )
 
 chronic_respiratory_disease_codes = codelist_from_csv(
-    "codelists/chronic_respiratory_disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-respiratory-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 asthma_codes = codelist_from_csv(
-    "codelists/asthma_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-asthma-diagnosis.csv", system="ctv3", column="CTV3ID"
 )
 
 salbutamol_codes = codelist_from_csv(
-    "codelists/sabutamol_asthma.csv", system="snomed", column="id"
+    "codelists/opensafely-asthma-inhaled-salbutamol-medication.csv", system="snomed", column="id"
 )
 
 ics_codes = codelist_from_csv(
-    "codelists/ics_asthma.csv", system="snomed", column="id"
+    "codelists/opensafely-asthma-inhaled-steroid-medication.csv", system="snomed", column="id"
 )
 
 pred_codes = codelist_from_csv(
-    "codelists/pred_codelist.csv", system="snomed", column="snomed_id"
+    "codelists/opensafely-asthma-oral-prednisolone-medication.csv", system="snomed", column="snomed_id"
 )
 
 chronic_cardiac_disease_codes = codelist_from_csv(
-    "codelists/chronic_cardiac_disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-cardiac-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 diabetes_codes = codelist_from_csv(
-    "codelists/diabetes_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-diabetes.csv", system="ctv3", column="CTV3ID"
 )
 
 lung_cancer_codes = codelist_from_csv(
-    "codelists/lung_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-lung-cancer.csv", system="ctv3", column="CTV3ID"
 )
 
 haem_cancer_codes = codelist_from_csv(
-    "codelists/haematological_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-haematological-cancer.csv", system="ctv3", column="CTV3ID"
 )
 
 other_cancer_codes = codelist_from_csv(
-    "codelists/other_cancer_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-cancer-excluding-lung-and-haematological.csv", system="ctv3", column="CTV3ID"
 )
 
 bone_marrow_transplant_codes = codelist_from_csv(
-    "codelists/bone_marrow_transplant_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-bone-marrow-transplant.csv", system="ctv3", column="CTV3ID"
 )
 
 chemo_radio_therapy_codes = codelist_from_csv(
-    "codelists/chemo_radio_therapy_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chemotherapy-or-radiotherapy.csv", system="ctv3", column="CTV3ID"
 )
 
 chronic_liver_disease_codes = codelist_from_csv(
-    "codelists/chronic_liver_disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-liver-disease.csv", system="ctv3", column="CTV3ID"
 )
 gi_bleed_and_ulcer_codes = codelist_from_csv(
-    "codelists/gi_bleed_and_ulcer.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-gi-bleed-or-ulcer.csv", system="ctv3", column="CTV3ID"
 )
 inflammatory_bowel_disease_codes = codelist_from_csv(
-    "codelists/inflammatory_bowel_disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-inflammatory-bowel-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
@@ -98,30 +98,30 @@ hba1c_old_codes = codelist(['XaERp'], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
-    "codelists/dialysis_codes.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-dialysis.csv", system="ctv3", column="CTV3ID"
 )
 
 organ_transplant_codes = codelist_from_csv(
-    "codelists/organ_transplant.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-solid-organ-transplantation.csv", system="ctv3", column="CTV3ID"
 )
 
 spleen_codes = codelist_from_csv(
-    "codelists/spleen_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-asplenia.csv", system="ctv3", column="CTV3ID"
 )
 
 sickle_cell_codes = codelist_from_csv(
-    "codelists/sickle_cell_2020-04-16.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-sickle-cell-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 ra_sle_psoriasis_codes = codelist_from_csv(
-    "codelists/ra_sle_psoriasis.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-ra-sle-psoriasis.csv", system="ctv3", column="CTV3ID"
 )
 
 systolic_blood_pressure_codes = codelist(["2469."], system="ctv3")
 diastolic_blood_pressure_codes = codelist(["246A."], system="ctv3")
 
 hypertension_codes = codelist_from_csv(
-    "codelists/htn.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-hypertension.csv", system="ctv3", column="CTV3ID"
 )
 
 ## STUDY POPULATION

@@ -1,0 +1,87 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+43C3.,HIV positive,CTV3Map_Code_And_Term
+43CZ.,HTLV-3 antibody NOS,High_Level_SNOMED
+65QA.,AIDS carrier,CTV3Map_Code_And_Term
+65VE.,Notification of AIDS,CTV3Map_Code_And_Term
+A788.,(AIDS) or (HIV infection),CTV3_Children
+A7880,Acute human immunodeficiency virus seroconversion illness,CTV3Map_Code_And_Term
+A7881,Asymptomatic human immunodeficiency virus infection,CTV3Map_Code_And_Term
+A7882,HIV infection with persistent generalised lymphadenopathy,CTV3Map_Code_And_Term
+A7883,HIV infection constitutional disease,CTV3Map_Code_And_Term
+A7884,Human immunodeficiency virus with neurological disease,CTV3Map_Code_And_Term
+A7885,Human immunodeficiency virus with secondary infection,CTV3Map_Code_And_Term
+A7886,Human immunodeficiency virus with secondary cancers,CTV3Map_Code_And_Term
+A788y,Human immunodeficiency virus with other clinical findings,CTV3Map_Code_And_Term
+A788z,Acquired human immunodeficiency virus infection syndrome NOS,CTV3Map_Code_And_Term
+A789.,Human immunodef virus resulting in other disease,CTV3Map_Code_And_Term
+A7890,HIV disease resulting in mycobacterial infection,CTV3Map_Code_And_Term
+A7891,HIV disease resulting in cytomegaloviral disease,CTV3Map_Code_And_Term
+A7892,HIV disease resulting in candidiasis,CTV3Map_Code_And_Term
+A7893,HIV disease resulting in Pneumocystis carinii pneumonia,CTV3Map_Code_And_Term
+A7894,HIV disease resulting in multiple infections,CTV3Map_Code_And_Term
+A7895,HIV disease resulting in Kaposi's sarcoma,CTV3Map_Code_And_Term
+A7896,HIV disease resulting in Burkitt's lymphoma,CTV3Map_Code_And_Term
+A7897,HIV dis resulting oth types of non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+A7898,HIV disease resulting in multiple malignant neoplasms,CTV3Map_Code_And_Term
+A7899,HIV disease resulting in lymphoid interstitial pneumonitis,CTV3Map_Code_And_Term
+AyuC.,[X]Human immunodeficiency virus disease,CTV3Map_Code_And_Term
+AyuC0,[X]HIV disease resulting in other bacterial infections,CTV3Map_Code_And_Term
+AyuC1,[X]HIV disease resulting in other viral infections,CTV3Map_Code_And_Term
+AyuC2,[X]HIV disease resulting in other mycoses,CTV3Map_Code_And_Term
+AyuC4,[X]HIV disease resulting/other infectious+parasitic diseases,CTV3Map_Code_And_Term
+AyuC5,[X]HIV disease resulting/unspcf infectious+parasitic disease,CTV3Map_Code_And_Term
+AyuC6,[X]HIV disease resulting in other non-Hodgkin's lymphoma,CTV3Map_Code_And_Term
+AyuC7,"[X]HIV dis reslt/oth mal neopl/lymph,h'matopoetc+reltd tissu",CTV3Map_Code_And_Term
+AyuC8,[X]HIV disease resulting in other malignant neoplasms,CTV3Map_Code_And_Term
+AyuC9,[X]HIV disease resulting in unspecified malignant neoplasm,CTV3Map_Code_And_Term
+AyuCA,[X]HIV disease resulting in multiple diseases CE,CTV3Map_Code_And_Term
+AyuCB,"[X]HIV disease result/haematological+immunologic abnorms,NEC",CTV3Map_Code_And_Term
+AyuCC,[X]HIV disease resulting in other specified conditions,CTV3Map_Code_And_Term
+AyuCD,[X]Unspecified human immunodeficiency virus [HIV] disease,CTV3Map_Code_And_Term
+R109.,[D]Laboratory evidence of human immunodeficiency virus [HIV],CTV3Map_Code_And_Term
+X001B,Human immunodefiency virus encephalitis,CTV3_Children
+X001C,Human immunodefiency virus leucoencephalopathy,CTV3_Children
+X001h,Human immunodeficiency virus myelitis,CTV3_Children
+X003P,Acquired immune deficiency syndrome dementia complex,CTV3Map_Code_And_Term
+X00B7,Neuropathy due to human immunodeficiency virus,CTV3_Children
+X00cZ,HIV-associated retinitis,CTV3_Children
+X20Q9,Human immunodeficiency virus-associated periodontitis,CTV3_Children
+X303J,Human immunodeficiency virus enteropathy,CTV3_Children
+X30IP,Acquired immune deficiency syndrome-related nephropathy,CTV3_Children
+X709a,Human immunodeficiency virus myopathy,CTV3_Children
+X70M6,Human immunodeficiency virus infection,CTV3Map_Code_And_Term
+X70O0,Acquired immune deficiency syndrome-related complex,CTV3_Children
+X70O1,Human immunodeficiency virus infection wasting syndrome,CTV3Map_Code_And_Term
+X70O5,Human immunodeficiency viral myelitis,CTV3_Children
+X70O6,Human immunodeficiency virus neuropathy,CTV3_Children
+X73kd,Human immunodeficiency virus type 1,High_Level_SNOMED
+X73ke,Human immunodeficiency virus type 2,High_Level_SNOMED
+X80bg,Human immunodeficiency virus antibody,High_Level_SNOMED
+X80bh,Human immunodeficiency virus type 1 antibody,High_Level_SNOMED
+X80bi,Human immunodeficiency virus type 2 antibody,High_Level_SNOMED
+X80t8,Human immunodeficiency virus p24 antigen,High_Level_SNOMED
+XE0RX,Acquired immune deficiency syndrome,CTV3Map_Code_And_Term
+XE0Tk,Acquired immune deficiency syndrome (& [ARC]),CTV3_Children
+Xa0Ae,Congenital acquired immune deficiency syndrome,QOF
+Xa0Af,Congenital human immunodeficiency virus positive status synd,QOF
+Xa0ye,Human immunodeficiency virus,High_Level_SNOMED
+Xa1k1,HIV-related sclerosing cholangitis,CTV3_Children
+Xa1k3,HIV-related gut disease - cause unknown,QOF
+Xa3e8,AIDS with viral/chlamydial disease NOS,High_Level_SNOMED
+XaFuL,HIV viral load,CTV3Map_Code_And_Term
+XaFuN,HIV antibody/antigen (Duo),High_Level_SNOMED
+XaFuO,HIV p24 antigen level,High_Level_SNOMED
+XaILa,HIV 1 nucleic acid detection,CTV3Map_Code_And_Term
+XaMBK,Human immunodeficiency virus RNA/DNA ratio,CTV3Map_Code_And_Term
+XaO9K,Human immunodeficiency virus viral load by log rank,CTV3Map_Code_And_Term
+XaQOu,Human immunodeficiency virus annual review,CTV3Map_Code_And_Term
+XaQOv,HIV positive general health check service declined,CTV3Map_Code_And_Term
+XaZxo,Seen by community HIV (human immunodeficiency virus) nurse,High_Level_SNOMED
+Xaapx,Human immunodeficiency virus infection monitoring invitation,CTV3Map_Code_And_Term
+Xaapy,HIV infection monitoring telephone invitation,CTV3_Children
+Xaapz,HIV infection monitoring first telephone invitation,CTV3Map_Code_And_Term
+XaaqE,HIV infection monitoring second telephone invitation,CTV3Map_Code_And_Term
+XaaqF,HIV infection monitoring third telephone invitation,CTV3Map_Code_And_Term
+XabfF,Human immunodeficiency virus drug resistance test,CTV3Map_Code_And_Term
+Xabnk,Human immunodeficiency virus type 1 subtype identification,CTV3Map_Code_And_Term
+ZV01A,[V]Asymptomatic human immunodeficency virus infection status,CTV3Map_Code_And_Term
