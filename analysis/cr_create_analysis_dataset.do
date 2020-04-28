@@ -32,7 +32,7 @@ log using ./output/cr_analysis_dataset, replace t
 * Censoring dates for each outcome (largely, last date outcome data available)
 *global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
-global cpnsdeathcensor 		= "16/04/2020"
+global cpnsdeathcensor 		= "25/04/2020"
 global onscoviddeathcensor 	= "06/04/2020"
 
 
