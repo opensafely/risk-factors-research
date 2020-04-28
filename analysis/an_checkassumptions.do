@@ -1,9 +1,32 @@
+********************************************************************************
+*
+*	Do-file:		an_checkassumptions.do
+*
+*	Project:		Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
+*
+*	Programmed by:	Krishnan & Fizz
+*
+*	Data used:		cr_create_analysis_dataset.dta
+*
+*	Data created:	
+*
+*	Other output:	
+*
+********************************************************************************
+*
+*	Purpose:		This do-file f
+*
+********************************************************************************
+*	
+*	Stata routines required:		???
+*
+********************************************************************************
+
+
+
 ****************************************************
-*Assumption checks - ph test
-*KB and Fizz
-*27/4
-*EXPERIMENTAL - PLACING AT END OF RUN IN CASE V SLOW
-*Later, incorporate into main modelling do-files
+*   EXPERIMENTAL - PLACING AT END OF RUN IN CASE V SLOW
+*   Later, incorporate into main modelling do-files
 *****************************************************
 
 local outcome `1' 
@@ -13,7 +36,7 @@ capture log close
 log using "./output/an_checkassumptions_`1'", text replace
 
 use cr_create_analysis_dataset, clear
-
+replace cpnsdeath = uniform()<0.3     // ****************************************** REMOVE
 
 ******************************
 *  Multivariable Cox models  *
@@ -58,20 +81,148 @@ end
 *************************************************************************************
 
 
+local outcome = "cpnsdeath"
+
+* Set as survival outcome
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
-*Age spline model (not adj ethnicity)
-basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-if _rc==0{
-estimates
-estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
-*estat concordance /*c-statistic*/
-timer clear 
-timer on 1
-if e(N_fail)>0 estat phtest, d
-timer off 1
-timer list
+
+
+/*   Proportional Hazards test  */
+/*
+stcox age1 age2 age3					///
+		i.male 							///
+		i.obese4cat						///
+		i.smoke_nomiss					///
+		i.imd 							///
+		i.htdiag_or_highbp				///
+		i.chronic_respiratory_disease 	///
+		i.asthmacat						///
+		i.chronic_cardiac_disease 		///
+		i.diabcat						///
+		i.cancer_exhaem_cat	 			///
+		i.cancer_haem_cat  				///
+		i.chronic_liver_disease 		///
+		i.stroke_dementia		 		///
+		i.other_neuro					///
+		i.chronic_kidney_disease 		///
+		i.organ_transplant 				///
+		i.spleen 						///
+		i.ra_sle_psoriasis  			///
+		other_immunosuppression			///
+		, strata(stp)
+			
+		*/	
+			
+* Age spline model (not adj ethnicity)
+capture basecoxmodel, age("age1 age2 age3")  ethnicity(0)
+if _rc==0 {
+	
+	estimates
+	* estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+
+	/*  Proportional Hazards test  */
+	
+	* Based on Schoenfeld residuals
+	timer clear 
+	timer on 1
+	if e(N_fail)>0 estat phtest, d
+	timer off 1
+	timer list
+	
+	
+	/*  Concordance statistic  */
+	
+	timer clear 
+	timer on 2
+	set seed 12437
+	qui count
+	local N = r(N)
+	local p = 10000/`N'
+	local csum = 0
+	forvalues i = 1 (1) 10 {
+	    gen rsample`i' = uniform()<`p'
+		estat concordance if rsample`i'==1
+		local cstat`i' =  r(C)
+		noi di "C-statistic in `i' th sample = " `cstat`i''
+		local csum = `csum' + `cstat`i''
+		drop rsample`i'
+	}
+	local csum = `csum'/10
+	noi di "Average C-statistic = " `csum'
+	timer off 2
+	timer list	
+	
+	
+	/*  Brier score  */
+	
+	timer clear 
+	timer on 3
+
+	* Calculate at 60 days
+	
+	* Unadjusted
+	capture stbrier, bt(60) efron
+	if _rc==0 {
+	    noi di "Brier score, unadjusted"
+		estimates
+	}
+
+	* Fully adjusted
+	capture stbrier age1 age2 age3		///
+		i.male 							///
+		i.obese4cat						///
+		i.smoke_nomiss					///
+		i.imd 							///
+		i.htdiag_or_highbp				///
+		i.chronic_respiratory_disease 	///
+		i.asthmacat						///
+		i.chronic_cardiac_disease 		///
+		i.diabcat						///
+		i.cancer_exhaem_cat	 			///
+		i.cancer_haem_cat  				///
+		i.chronic_liver_disease 		///
+		i.stroke_dementia		 		///
+		i.other_neuro					///
+		i.chronic_kidney_disease 		///
+		i.organ_transplant 				///
+		i.spleen 						///
+		i.ra_sle_psoriasis  			///
+		other_immunosuppression			///
+		, shared(stp) bt(60) 			///
+		ipcw(age1 age2 age3				///
+		i.male 							///
+		i.obese4cat						///
+		i.smoke_nomiss					///
+		i.imd 							///
+		i.htdiag_or_highbp				///
+		i.chronic_respiratory_disease 	///
+		i.asthmacat						///
+		i.chronic_cardiac_disease 		///
+		i.diabcat						///
+		i.cancer_exhaem_cat	 			///
+		i.cancer_haem_cat  				///
+		i.chronic_liver_disease 		///
+		i.stroke_dementia		 		///
+		i.other_neuro					///
+		i.chronic_kidney_disease 		///
+		i.organ_transplant 				///
+		i.spleen 						///
+		i.ra_sle_psoriasis  			///
+		other_immunosuppression)
+	if _rc==0 {
+	    noi di "Brier score, fully adjusted"
+		estimates
+	}
+
+	timer off 3
+	timer list
+	
 }
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
- 
+
+
+
+
+
 log close
