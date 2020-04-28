@@ -157,7 +157,7 @@ outputHRsforvar, variable("stroke_dementia") min(1) max(1)
 file write tablecontents _n	
 outputHRsforvar, variable("other_neuro") min(1) max(1)			
 file write tablecontents _n	
-outputHRsforvar, variable("ckd") min(1) max(1)			
+outputHRsforvar, variable("chronic_kidney_disease") min(1) max(1)			
 file write tablecontents _n	
 outputHRsforvar, variable("organ_transplant") min(1) max(1)			
 file write tablecontents _n	

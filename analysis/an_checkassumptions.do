@@ -45,7 +45,7 @@ timer on 1
 			i.chronic_liver_disease 		///
 			i.stroke_dementia		 		///
 			i.other_neuro					///
-			i.ckd					 		///
+			i.chronic_kidney_disease 		///
 			i.organ_transplant 				///
 			i.spleen 						///
 			i.ra_sle_psoriasis  			///

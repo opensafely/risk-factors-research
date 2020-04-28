@@ -14,7 +14,7 @@ replace obese4cat = 4 if bmicat==6
 
 replace organ_transplant = uniform()<.05
 
-replace ckd = uniform()<.1
+replace chronic_kidney_disease = uniform()<.1
 
 replace other_immunosuppression = uniform()<.1
 

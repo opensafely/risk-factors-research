@@ -38,6 +38,9 @@ log using "output/an_checks", text replace
 use cr_create_analysis_dataset, clear
 
 
+*Duplicate patient check
+datacheck _n==1, by(patient_id) nol
+
 
 ******************************************
 *  Check variables take expected values  *
@@ -231,7 +234,8 @@ tab chronic_respiratory_disease asthmacat, row col
 tab diabetes chronic_cardiac_disease, row col
 tab chronic_cardiac_disease bpcat, row col
 
-
+* Liver
+tab chronic_liver_disease organ_transplant, row col
 
 
 

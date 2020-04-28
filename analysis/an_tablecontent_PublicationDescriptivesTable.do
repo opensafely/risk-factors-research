@@ -123,7 +123,7 @@ file write tablecontent _n
 tabulatevariable, variable(other_neuro) start(1) end(0)
 file write tablecontent _n
 *CKD
-tabulatevariable, variable(ckd) start(1) end(0)
+tabulatevariable, variable(chronic_kidney_disease) start(1) end(0)
 file write tablecontent _n
 *ORGAN TRANSPLANT
 tabulatevariable, variable(organ_transplant) start(1) end(0)
