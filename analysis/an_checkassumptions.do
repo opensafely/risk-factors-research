@@ -113,12 +113,20 @@ if _rc==0 {
 	timer clear 
 	timer on 2
 	set seed 12437
-	qui count
-	local N = r(N)
-	local p = 10000/`N'
+	
+	qui count if `outcome'==0
+	local N0 = r(N)
+	local p0 = 5000/`N0'
+	qui count if `outcome'==1
+	local N1 = r(N)
+	local p1 = 5000/`N1'	
+	
+	noi di "Fraction of controls to be used" `p0'
+	noi di "Fraction of cases to be used" `p1'
 	local csum = 0
 	forvalues i = 1 (1) 10 {
-	    gen rsample`i' = uniform()<`p'
+		gen     rsample`i' = uniform()<`p0' if `outcome'==0
+		replace rsample`i' = uniform()<`p1' if `outcome'==1
 		estat concordance if rsample`i'==1
 		local cstat`i' =  r(C)
 		noi di "C-statistic in `i' th sample = " `cstat`i''
