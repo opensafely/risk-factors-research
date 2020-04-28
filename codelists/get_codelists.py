@@ -3,11 +3,13 @@ import os
 import requests
 
 
-for path in glob.glob("*.csv"):
+base_path = os.path.dirname(__file__)
+
+for path in glob.glob(os.path.join(base_path, "*.csv")):
     os.unlink(path)
 
 
-with open("codelists.txt") as f:
+with open(os.path.join(base_path, "codelists.txt")) as f:
     for line in f:
         line = line.strip()
         if not line:
@@ -20,5 +22,5 @@ with open("codelists.txt") as f:
         rsp = requests.get(url)
         rsp.raise_for_status()
 
-        with open(f"{project_id}-{codelist_id}.csv", "w") as f:
+        with open(os.path.join(base_path, f"{project_id}-{codelist_id}.csv"), "w") as f:
             f.write(rsp.text)
