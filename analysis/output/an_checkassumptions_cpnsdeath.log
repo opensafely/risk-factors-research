@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_cpnsdeath.log
   log type:  text
- opened on:  28 Apr 2020, 00:41:50
+ opened on:  28 Apr 2020, 02:23:19
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -80,7 +80,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:     13.90 /        1 =      13.8970
+   1:      7.89 /        1 =       7.8860
 
 . if _rc==0{
 . estimates
@@ -101,5 +101,5 @@ WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_cpnsdeath.log
   log type:  text
- closed on:  28 Apr 2020, 00:42:05
+ closed on:  28 Apr 2020, 02:23:28
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

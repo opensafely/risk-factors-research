@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_kidney_diseaseTOethnicity.log
   log type:  text
- opened on:  28 Apr 2020, 00:40:08
+ opened on:  28 Apr 2020, 02:22:10
 
 . 
 . * Open dataset and fit specified model(s)
@@ -93,5 +93,5 @@ file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster s
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_kidney_diseaseTOethnicity.log
   log type:  text
- closed on:  28 Apr 2020, 00:40:22
+ closed on:  28 Apr 2020, 02:22:20
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

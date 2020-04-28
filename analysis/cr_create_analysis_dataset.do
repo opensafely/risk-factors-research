@@ -270,7 +270,7 @@ gen     bpcat = 1 if bp_sys < 120 &  bp_dias < 80
 replace bpcat = 2 if inrange(bp_sys, 120, 130) & bp_dias<80
 replace bpcat = 3 if inrange(bp_sys, 130, 140) | inrange(bp_dias, 80, 90)
 replace bpcat = 4 if (bp_sys>=140 & bp_sys<.) | (bp_dias>=90 & bp_dias<.) 
-replace bpcat = .u if bp_sys>=. | bp_dias>=.
+replace bpcat = .u if bp_sys>=. | bp_dias>=. | bp_sys==0 | bp_dias==0
 
 label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
 					4 "High, stage II" .u "Unknown"
@@ -295,7 +295,7 @@ drop imd_o
 * Reverse the order (so high is more deprived)
 recode imd 5=1 4=2 3=3 2=4 1=5 .u=.u
 
-label define imd 1 "1 lest deprived" 2 "2" 3 "3" 4 "4" 5 "5 most deprived" .u "Unknown"
+label define imd 1 "1 least deprived" 2 "2" 3 "3" 4 "4" 5 "5 most deprived" .u "Unknown"
 label values imd imd 
 
 

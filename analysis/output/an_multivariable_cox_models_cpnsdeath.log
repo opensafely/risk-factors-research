@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- opened on:  28 Apr 2020, 00:41:09
+ opened on:  28 Apr 2020, 02:22:51
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -81,7 +81,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:     14.04 /        1 =      14.0390
+   1:      8.14 /        1 =       8.1390
 
 . if _rc==0{
 . estimates
@@ -95,7 +95,7 @@ WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
 .  
 . *Age group model (not adj ethnicity)
 . basecoxmodel, age("ib3.agegroup")  ethnicity(0)
-   1:     23.05 /        1 =      23.0460
+   1:     17.27 /        1 =      17.2750
 
 . if _rc==0{
 . estimates
@@ -109,64 +109,64 @@ Stratified Cox regr. -- no ties
 No. of subjects =       99,184                  Number of obs    =      99,184
 No. of failures =            1
 Time at risk    =      7438536
-                                                LR chi2(26)      =        8.06
-Log likelihood  =   -6.0822189                  Prob > chi2      =      0.9997
+                                                LR chi2(25)      =        8.06
+Log likelihood  =   -6.0822189                  Prob > chi2      =      0.9995
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
                      agegroup |
-                      18-<40  |   1.56e+15   9.65e+22     0.00   1.000            0           .
-                      40-<50  |   .0549403   1.30e+07    -0.00   1.000            0           .
-                      60-<70  |   .0370058   1.09e+07    -0.00   1.000            0           .
-                      70-<80  |   .0282601    9484599    -0.00   1.000            0           .
-                         80+  |   .0189049    7635711    -0.00   1.000            0           .
+                      18-<40  |   9.38e+14   4.27e+22     0.00   1.000            0           .
+                      40-<50  |   .0584228   1.03e+07    -0.00   1.000            0           .
+                      60-<70  |   .0206553    6169220    -0.00   1.000            0           .
+                      70-<80  |   .0298039    7393117    -0.00   1.000            0           .
+                         80+  |   .0114279    4582210    -0.00   1.000            0           .
                               |
-                       1.male |   2.16e-16   1.57e-08    -0.00   1.000            0           .
+                       1.male |   2.11e-16   1.54e-08    -0.00   1.000            0           .
                               |
                     obese4cat |
-           Obese I (30-34.9)  |   4.632778   9.01e+08     0.00   1.000            0           .
-          Obese II (35-39.9)  |   .3470806   2.10e+08    -0.00   1.000            0           .
-             Obese III (40+)  |   2.15e+13   1.92e+22     0.00   1.000            0           .
+           Obese I (30-34.9)  |   1.222396   2.51e+08     0.00   1.000            0           .
+          Obese II (35-39.9)  |   .2772739   1.61e+08    -0.00   1.000            0           .
+             Obese III (40+)  |   .1596595   1.24e+08    -0.00   1.000            0           .
                               |
                  smoke_nomiss |
-                      Former  |   3.44e-15   6.12e-07    -0.00   1.000            0           .
-                     Current  |   1.91e-15   1.66e-07    -0.00   1.000            0           .
+                      Former  |   3.37e-15   6.01e-07    -0.00   1.000            0           .
+                     Current  |   1.46e-15   1.30e-07    -0.00   1.000            0           .
                               |
                           imd |
-                           2  |   .1641994   5.79e+07    -0.00   1.000            0           .
-                           3  |    .169456   4.33e+07    -0.00   1.000            0           .
-                           4  |   7.44e+15   5.66e+23     0.00   1.000            0           .
-             5 most deprived  |   .1341912   4.83e+07    -0.00   1.000            0           .
+                           2  |   .1624426   4.95e+07    -0.00   1.000            0           .
+                           3  |    .128876   3.21e+07    -0.00   1.000            0           .
+                           4  |   5.60e+15   3.27e+23     0.00   1.000            0           .
+             5 most deprived  |   .1418804   4.29e+07    -0.00   1.000            0           .
                               |
-           1.htdiag_or_highbp |   4.43e-15   3.72e-07    -0.00   1.000            0           .
-1.chronic_respiratory_disease |   .1672736   1.15e+08    -0.00   1.000            0           .
+           1.htdiag_or_highbp |   1.21e-15   1.95e-07    -0.00   1.000            0           .
+1.chronic_respiratory_disease |   .1144307   7.60e+07    -0.00   1.000            0           .
                               |
                     asthmacat |
-                 Yes, no OCS  |   1.23e-15   4.24e-07    -0.00   1.000            0           .
-    1.chronic_cardiac_disease |   2.85e-15   1.12e-06    -0.00   1.000            0           .
+                 Yes, no OCS  |   1.16e-15   4.11e-07    -0.00   1.000            0           .
+    1.chronic_cardiac_disease |   2.73e-15   1.09e-06    -0.00   1.000            0           .
                               |
                       diabcat |
-         Controlled diabetes  |   5.66e-15   4.75e-07    -0.00   1.000            0           .
+         Controlled diabetes  |   4.42e-15   3.86e-07    -0.00   1.000            0           .
                               |
             cancer_exhaem_cat |
-                   Last year  |   2.71e+58          .        .       .            .           .
-               2-5 years ago  |   7.15e+12          .        .       .            .           .
-                    5+ years  |   4.50e-16   3.14e-07    -0.00   1.000            0           .
+                   Last year  |   1.99e+59          .        .       .            .           .
+               2-5 years ago  |   7.49e+12          .        .       .            .           .
+                    5+ years  |   4.47e-16   3.13e-07    -0.00   1.000            0           .
                               |
               cancer_haem_cat |
-                   Last year  |   3.31e+11          .        .       .            .           .
-               2-5 years ago  |   2.53e+22          .        .       .            .           .
-                    5+ years  |   6.82e+12          .        .       .            .           .
+                   Last year  |   3.53e+11          .        .       .            .           .
+               2-5 years ago  |   9.53e+22          .        .       .            .           .
+                    5+ years  |   1.71e+13          .        .       .            .           .
                               |
-      1.chronic_liver_disease |   2.33e+28          .        .       .            .           .
-            1.stroke_dementia |   1.215252   2.43e+09     0.00   1.000            0           .
-                1.other_neuro |   1.81e+14   5.47e+23     0.00   1.000            0           .
-     1.chronic_kidney_disease |   1.01e-15   6.66e-07    -0.00   1.000            0           .
-           1.organ_transplant |   1.11e-45          .        .       .            .           .
-                     1.spleen |   6.36e+13   1.71e+23     0.00   1.000            0           .
-           1.ra_sle_psoriasis |   2.383498   1.68e+09     0.00   1.000            0           .
-    1.other_immunosuppression |   .0067436          .        .       .            .           .
+      1.chronic_liver_disease |   1.02e+27          .        .       .            .           .
+            1.stroke_dementia |   2.95e+14   6.27e+23     0.00   1.000            0           .
+                1.other_neuro |   1.06e+14          .        .       .            .           .
+     1.chronic_kidney_disease |   1.10e-15   6.93e-07    -0.00   1.000            0           .
+           1.organ_transplant |   2.26e-44          .        .       .            .           .
+                     1.spleen |   1.85e+14   5.65e+23     0.00   1.000            0           .
+           1.ra_sle_psoriasis |   1.428461   1.23e+09     0.00   1.000            0           .
+    1.other_immunosuppression |    .015855          .        .       .            .           .
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
@@ -180,7 +180,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ageg
 . 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3")  ethnicity(1)
-   1:      1.08 /        1 =       1.0810
+   1:      0.84 /        1 =       0.8440
 
 . if _rc==0{
 . estimates
@@ -265,7 +265,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
 .  
 . *Model without ethnicity among ethnicity complete cases 
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0) if("if ethnicity<.")
-   1:      1.07 /        1 =       1.0700
+   1:      0.79 /        1 =       0.7930
 
 . if _rc==0{
 . estimates
@@ -379,5 +379,5 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- closed on:  28 Apr 2020, 00:41:50
+ closed on:  28 Apr 2020, 02:23:19
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

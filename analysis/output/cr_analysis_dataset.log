@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  28 Apr 2020, 00:38:50
+ opened on:  28 Apr 2020, 02:21:33
 
 . 
 . 
@@ -448,8 +448,8 @@ variable ra_sle_psoriasis was str7 now str10
 . replace bpcat = 4 if (bp_sys>=140 & bp_sys<.) | (bp_dias>=90 & bp_dias<.) 
 (24,205 real changes made)
 
-. replace bpcat = .u if bp_sys>=. | bp_dias>=.
-(0 real changes made)
+. replace bpcat = .u if bp_sys>=. | bp_dias>=. | bp_sys==0 | bp_dias==0
+(45,541 real changes made, 45,541 to missing)
 
 . 
 . label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"    ///
@@ -488,7 +488,7 @@ variable ra_sle_psoriasis was str7 now str10
 (imd: 85605 changes made)
 
 . 
-. label define imd 1 "1 lest deprived" 2 "2" 3 "3" 4 "4" 5 "5 most deprived" .u "Unknown"
+. label define imd 1 "1 least deprived" 2 "2" 3 "3" 4 "4" 5 "5 most deprived" .u "Unknown"
 
 . label values imd imd 
 
@@ -659,7 +659,7 @@ variable ra_sle_psoriasis was str7 now str10
 . gen htdiag_or_highbp = bphigh
 
 . recode htdiag_or_highbp 0 = 1 if hypertension==1 
-(htdiag_or_highbp: 357 changes made)
+(htdiag_or_highbp: 949 changes made)
 
 . 
 . 
@@ -1180,5 +1180,5 @@ file cr_create_analysis_dataset.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  28 Apr 2020, 00:38:59
+ closed on:  28 Apr 2020, 02:21:39
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

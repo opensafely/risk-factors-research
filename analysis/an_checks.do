@@ -38,6 +38,9 @@ log using "output/an_checks", text replace
 use cr_create_analysis_dataset, clear
 
 
+*Duplicate patient check
+datacheck _n==1, by(patient_id) nol
+
 
 ******************************************
 *  Check variables take expected values  *
