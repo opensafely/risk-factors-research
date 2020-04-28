@@ -92,7 +92,7 @@ stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(p
 
 			
 * Age spline model (not adj ethnicity)
-capture basecoxmodel, age("age1 age2 age3")  ethnicity(0)
+basecoxmodel, age("age1 age2 age3")  ethnicity(0)
 if _rc==0 {
 	
 	estimates

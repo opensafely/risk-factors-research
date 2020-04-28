@@ -2,12 +2,16 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checkassumptions_.log
   log type:  text
- opened on:  27 Apr 2020, 23:19:21
+ opened on:  28 Apr 2020, 17:16:03
 
 . 
 . use cr_create_analysis_dataset, clear
 (Analysis dataset for the poor outcomes in Covid project)
 
+. 
+. *local outcome "cpnsdeath"
+. *replace cpnsdeath = uniform()<0.3
+. 
 . 
 . 
 . ******************************
@@ -41,7 +45,7 @@
 >                         i.chronic_liver_disease                 ///
 >                         i.stroke_dementia                               ///
 >                         i.other_neuro                                   ///
->                         i.ckd                                                   ///
+>                         i.chronic_kidney_disease                ///
 >                         i.organ_transplant                              ///
 >                         i.spleen                                                ///
 >                         i.ra_sle_psoriasis                      ///
@@ -55,6 +59,8 @@
 . *************************************************************************************
 . 
 . 
+. 
+. * Set as survival outcome
 . stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 stime_ ambiguous abbreviation
 r(111);
@@ -63,16 +69,39 @@ end of do-file
 
 r(111);
 
-. do "C:\Users\Krish\AppData\Local\Temp\STD1080_000000.tmp"
+. do "C:\Users\Krish\AppData\Local\Temp\STD30e0_000000.tmp"
 
 . do "an_checkassumptions.do" cpnsdeath
 
+. ********************************************************************************
+. *
+. *       Do-file:                an_checkassumptions.do
+. *
+. *       Project:                Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
+. *
+. *       Programmed by:  Krishnan & Fizz
+. *
+. *       Data used:              cr_create_analysis_dataset.dta
+. *
+. *       Data created:   
+. *
+. *       Other output:   
+. *
+. ********************************************************************************
+. *
+. *       Purpose:                This do-file f
+. *
+. ********************************************************************************
+. *       
+. *       Stata routines required:                ???
+. *
+. ********************************************************************************
+. 
+. 
+. 
 . ****************************************************
-. *Assumption checks - ph test
-. *KB and Fizz
-. *27/4
-. *EXPERIMENTAL - PLACING AT END OF RUN IN CASE V SLOW
-. *Later, incorporate into main modelling do-files
+. *   EXPERIMENTAL - PLACING AT END OF RUN IN CASE V SLOW
+. *   Later, incorporate into main modelling do-files
 . *****************************************************
 . 
 . local outcome `1' 

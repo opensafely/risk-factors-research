@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  28 Apr 2020, 02:21:33
+ opened on:  28 Apr 2020, 17:10:08
 
 . 
 . 
@@ -13,7 +13,7 @@
 . *global ecdseventcensor                 = "21/04/2020"
 . global ituadmissioncensor       = "20/04/2020"
 
-. global cpnsdeathcensor          = "16/04/2020"
+. global cpnsdeathcensor          = "25/04/2020"
 
 . global onscoviddeathcensor      = "06/04/2020"
 
@@ -1180,5 +1180,5 @@ file cr_create_analysis_dataset.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  28 Apr 2020, 02:21:39
+ closed on:  28 Apr 2020, 17:10:14
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
