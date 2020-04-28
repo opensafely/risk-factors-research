@@ -17,7 +17,7 @@ with open(os.path.join(base_path, "codelists.txt")) as f:
 
         print(line)
         project_id, codelist_id, version = line.split("/")
-        url = f"http://smallweb1.ebmdatalab.net:8001/codelist/{project_id}/{codelist_id}/{version}/download.csv"
+        url = f"https://codelists.opensafely.org/codelist/{project_id}/{codelist_id}/{version}/download.csv"
 
         rsp = requests.get(url)
         rsp.raise_for_status()
