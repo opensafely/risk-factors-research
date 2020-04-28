@@ -1,5 +1,6 @@
 CTV3ID,CTV3PreferredTermDesc,CTV3Source
 14A2.,H/O: hypertension,CTV3Map_Code_And_Term
+21261,Hypertension resolved,QOF
 2466.,O/E - BP reading raised,QOF
 2467.,O/E - BP reading very high,QOF
 662..,Cardiac disease monitoring (& [hypertension]),CTV3_Children
@@ -8,6 +9,7 @@ CTV3ID,CTV3PreferredTermDesc,CTV3Source
 6629.,Hypertension:follow-up default,CTV3Map_Code_And_Term
 662F.,Hypertension treatm. started,CTV3Map_Code_And_Term
 662G.,Hypertensive treatm.changed,CTV3Map_Code_And_Term
+662H.,Hypertension treatm.stopped,CTV3Map_Code_And_Term
 662O.,On treatment for hypertension,CTV3_Children
 662P.,Hypertension monitoring,CTV3_Children
 8HT5.,Referral to hypertension clinic,CTV3Map_Code_And_Term
@@ -157,7 +159,6 @@ XE0Ue,Hypertensive heart disease NOS without CCF,CTV3Map_Code_Only
 XE0Ue,Hypertensive heart disease NOS without CCF,QOF
 XE0Uf,Hypertensive renal disease,CTV3Map_Code_And_Term
 XE0Uf,Hypertensive renal disease,CTV3Map_Code_Only
-XE0Ug,Hypertensive renal disease NOS,CTV3Map_Code_And_Term
 XE0VM,Hypertensive encephalopathy,CTV3Map_Code_And_Term
 XE0VM,Hypertensive encephalopathy,CTV3Map_Code_Only
 XE0W8,(Hypertensive disease) or (hypertension),CTV3_Children

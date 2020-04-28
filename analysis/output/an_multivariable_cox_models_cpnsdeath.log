@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- opened on:  28 Apr 2020, 02:22:51
+ opened on:  28 Apr 2020, 17:11:28
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -73,15 +73,15 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
     100,572  observations remaining, representing
     100,572  subjects
           1  failure in single-failure-per-subject data
-  7,542,636  total analysis time at risk and under observation
+  8,447,712  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
-                                          last observed exit t =        75
+                                          last observed exit t =        84
 
 . 
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:      8.14 /        1 =       8.1390
+   1:      8.03 /        1 =       8.0320
 
 . if _rc==0{
 . estimates
@@ -95,7 +95,7 @@ WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME cpnsdeath)
 .  
 . *Age group model (not adj ethnicity)
 . basecoxmodel, age("ib3.agegroup")  ethnicity(0)
-   1:     17.27 /        1 =      17.2750
+   1:     17.82 /        1 =      17.8160
 
 . if _rc==0{
 . estimates
@@ -108,7 +108,7 @@ Stratified Cox regr. -- no ties
 
 No. of subjects =       99,184                  Number of obs    =      99,184
 No. of failures =            1
-Time at risk    =      7438536
+Time at risk    =      8331120
                                                 LR chi2(25)      =        8.06
 Log likelihood  =   -6.0822189                  Prob > chi2      =      0.9995
 
@@ -180,7 +180,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ageg
 . 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3")  ethnicity(1)
-   1:      0.84 /        1 =       0.8440
+   1:      0.81 /        1 =       0.8050
 
 . if _rc==0{
 . estimates
@@ -193,7 +193,7 @@ Stratified Cox regr. -- no ties
 
 No. of subjects =       19,794                  Number of obs    =      19,794
 No. of failures =            0
-Time at risk    =      1484550
+Time at risk    =      1662696
                                                 LR chi2(0)       =        0.00
 Log likelihood  =            0                  Prob > chi2      =           .
 
@@ -265,7 +265,7 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
 .  
 . *Model without ethnicity among ethnicity complete cases 
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0) if("if ethnicity<.")
-   1:      0.79 /        1 =       0.7930
+   1:      0.76 /        1 =       0.7600
 
 . if _rc==0{
 . estimates
@@ -278,7 +278,7 @@ Stratified Cox regr. -- no ties
 
 No. of subjects =       19,794                  Number of obs    =      19,794
 No. of failures =            0
-Time at risk    =      1484550
+Time at risk    =      1662696
                                                 LR chi2(0)       =        0.00
 Log likelihood  =            0                  Prob > chi2      =           .
 
@@ -379,5 +379,5 @@ file ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_ages
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_multivariable_cox_models_cpnsdeath.log
   log type:  text
- closed on:  28 Apr 2020, 02:23:19
+ closed on:  28 Apr 2020, 17:11:57
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

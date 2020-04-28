@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checks.log
   log type:  text
- opened on:  28 Apr 2020, 02:21:42
+ opened on:  28 Apr 2020, 17:10:17
 
 . 
 . * Open Stata dataset
@@ -283,7 +283,7 @@ High, stage II |         0     20,197 |    20,197
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
 stime_itua~n |    100,575   19apr2020    .6429596  01feb2020  20apr2020
-stime_cpns~h |    100,575   15apr2020     .504367  01feb2020  16apr2020
+stime_cpns~h |    100,575   24apr2020    .5922435  01feb2020  25apr2020
 stime_onsc~h |    100,575   05apr2020    .4099889  01feb2020  06apr2020
 
 . summ itu_date died_date_ons died_date_cpns died_date_onscovid, format
@@ -2505,5 +2505,5 @@ Failure/ce |
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/an_checks.log
   log type:  text
- closed on:  28 Apr 2020, 02:21:44
+ closed on:  28 Apr 2020, 17:10:19
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

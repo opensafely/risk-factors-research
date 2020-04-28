@@ -8,7 +8,7 @@
 *
 *	Data used:		Data in memory (from input.csv)
 *
-*	Data created:	egdata.dta
+*	Data created:	cr_create_analysis_dataset.dta
 *
 *	Other output:	None
 *
@@ -32,7 +32,7 @@ log using ./output/cr_analysis_dataset, replace t
 * Censoring dates for each outcome (largely, last date outcome data available)
 *global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
-global cpnsdeathcensor 		= "16/04/2020"
+global cpnsdeathcensor 		= "25/04/2020"
 global onscoviddeathcensor 	= "06/04/2020"
 
 
@@ -156,11 +156,11 @@ drop smoking_status
 * Ethnicity 
 replace ethnicity = .u if ethnicity==.
 
-label define ethnicity 	1 "White"  		///
-						2 "Mixed" ///
-						3 "Asian or Asian British" 		///
-						4 "Black"  		///
-						5 "Other"		///
+label define ethnicity 	1 "White"  					///
+						2 "Mixed" 					///
+						3 "Asian or Asian British"	///
+						4 "Black"  					///
+						5 "Other"					///
 						.u "Unknown"
 label values ethnicity ethnicity
 

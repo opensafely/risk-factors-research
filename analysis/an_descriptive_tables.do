@@ -6,7 +6,7 @@
 *
 *	Programmed by:	Elizabeth Williamson
 *
-*	Data used:		egdata.dta
+*	Data used:		cr_create_analysis_dataset.dta
 *
 *	Data created:	None
 *
@@ -25,7 +25,7 @@
 capture log close
 log using "output/an_descriptive_tables", text replace
 
-use egdata, clear
+use cr_create_analysis_dataset, clear
 
 
 **********************************
@@ -39,17 +39,27 @@ tab agegroup
 tab male
 tab bmicat
 tab bmicat, m
+tab obese4cat
 tab smoke
 tab smoke, m
+tab bpcat
+tab bpcat, m
+tab htdiag_or_highbp
+
 
 * Comorbidities
 tab chronic_respiratory_disease
 tab asthma
+tab asthmacat
 tab chronic_cardiac_disease
 tab diabetes
-tab cancer_exhaem_lastyr
-tab haemmalig_aanaem_bmtrans_lastyr
+tab diabcat
+tab cancer_exhaem_cat
+tab cancer_haem_cat
 tab chronic_liver_disease
+tab dementia
+tab stroke
+tab stroke_dementia
 tab other_neuro
 tab chronic_kidney_disease
 tab organ_transplant
@@ -57,21 +67,14 @@ tab chronic_kidney_disease
 tab organ_transplant
 tab spleen
 tab ra_sle_psoriasis
-tab dementia
-tab stroke
-tab stroke_dementia
-* tab immunosuppressed
-						    
-tab bpcat
-
-*summ bp_sys,  detail
-*summ bp_dias, detail
+tab other_immunosuppression
 
 tab imd 
 tab imd, m
 tab ethnicity
 tab ethnicity, m
 *tab urban
+tab region
 
 
 * Outcomes
@@ -79,6 +82,7 @@ tab onscoviddeath
 tab cpnsdeath
 tab ituadmission
 * tab ecds
+
 
 
 
@@ -96,27 +100,32 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	tab male 								`outvar', col
 	tab bmicat 								`outvar', col m 
 	tab smoke 								`outvar', col m
-	tab obese 								`outvar', col m 
-	tab current								`outvar', col m
+	tab obese4cat							`outvar', col m 
 
 	* Comorbidities
 	tab chronic_respiratory_disease 		`outvar', col
 	tab asthma 								`outvar', col
+	tab asthmacat							`outvar', col
 	tab chronic_cardiac_disease 			`outvar', col
 	tab diabetes 							`outvar', col
-	tab cancer_exhaem_lastyr				`outvar', col
-
-	tab haemmalig_aanaem_bmtrans_lastyr 	`outvar', col
+	tab diabcat 							`outvar', col
+	tab cancer_exhaem_cat					`outvar', col
+	tab cancer_haem_cat						`outvar', col
 	tab chronic_liver_disease 				`outvar', col
+	tab stroke 								`outvar', col
+	tab dementia 							`outvar', col
+	tab stroke_dementia 					`outvar', col
 	tab other_neuro 						`outvar', col
 	tab chronic_kidney_disease 				`outvar', col
 	tab organ_transplant 					`outvar', col
 	tab spleen 								`outvar', col
 	tab ra_sle_psoriasis					`outvar', col
+	tab other_immunosuppression				`outvar', col
 	
-	tab imd  								`outvar', col
+	tab imd  								`outvar', col m
 	tab ethnicity 							`outvar', col m
 	*tab urban 								`outvar', col
+	tab region 								`outvar', col
 }
 
 
