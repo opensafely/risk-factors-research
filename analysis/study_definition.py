@@ -23,8 +23,13 @@ stroke = codelist_from_csv(
 
 dementia = codelist_from_csv(
     "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID")
-smoking_codes  = codelist_from_csv(
-    "codelists/opensafely-smoking-status.csv", system="ctv3", column="CTV3Code", category_column="Category"
+
+clear_smoking_codes  = codelist_from_csv(
+    "codelists/opensafely-smoking-clear.csv", system="ctv3", column="CTV3Code", category_column="Category"
+)
+
+unclear_smoking_codes  = codelist_from_csv(
+    "codelists/opensafely-smoking-unclear.csv", system="ctv3", column="CTV3Code", category_column="Category"
 )
 
 other_neuro = codelist_from_csv(
@@ -193,41 +198,49 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
     smoking_status=patients.categorised_as(
         {
-            "S": """
-                most_recent_smoking_code = 'S' OR (
-                  most_recent_smoking_code = 'X' AND most_recent_smoking_numeric > 0
-                )
-            """,
+            "S": "most_recent_smoking_code = 'S'",
             "E": """
                  most_recent_smoking_code = 'E' OR (
                    most_recent_smoking_code = 'N' AND ever_smoked
                  )
             """,
-            "N": """
-                (
-                  most_recent_smoking_code = 'N' OR (
-                    most_recent_smoking_code = 'X' AND most_recent_smoking_numeric = 0
-                  )
-                ) AND NOT ever_smoked
-            """,
+            "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
             "M": "DEFAULT"
         },
         most_recent_smoking_code=patients.with_these_clinical_events(
-            smoking_codes,
+            clear_smoking_codes,
             find_last_match_in_period=True,
             on_or_before='2020-02-01',
             returning="category",
         ),
-        most_recent_smoking_numeric=patients.with_these_clinical_events(
-            smoking_codes,
-            find_last_match_in_period=True,
-            on_or_before="2020-02-01",
-            returning="numeric_value",
-        ),
         ever_smoked=patients.with_these_clinical_events(
-            filter_codes_by_category(smoking_codes, include=['S', 'E']),
+            filter_codes_by_category(clear_smoking_codes, include=['S', 'E']),
             on_or_before='2020-02-01'
         ),
+    ),
+    smoking_status_date=patients.with_these_clinical_events(
+        clear_smoking_codes,
+        on_or_before='2020-02-01',
+        return_last_date_in_period=True,
+        include_month=True,
+    ),
+    most_recent_unclear_smoking_cat=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        find_last_match_in_period=True,
+        on_or_before='2020-02-01',
+        returning="category",
+    ),
+    most_recent_unclear_smoking_numeric=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+    ),
+    most_recent_unclear_smoking_cat_date=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        on_or_before='2020-02-01',
+        return_last_date_in_period=True,
+        include_month=True,
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27

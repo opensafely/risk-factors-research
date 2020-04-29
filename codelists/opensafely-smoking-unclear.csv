@@ -1,0 +1,93 @@
+CTV3Code,Description,CodeSource,Category
+E2513,Tobacco dependence in remission,Tobacco_Text,E
+Eu173,[X]Mental and behav dis due to use tobacco: withdrawal state,Tobacco_Text,E
+Eu174,[X]Men & behav dis due tobacco: withdrawl state wth delirium,Tobacco_Text,E
+XaXPD,Smoker in household,QOF,N
+137C.,Keeps trying to stop smoking,QOF,S
+137D.,Admitted tobacco cons untrue ?,QOF,S
+137G.,Trying to give up smoking,QOF,S
+6791.,Health education - smoking,QOF,S
+67A3.,Pregnancy smoking advice,QOF,S
+9OO..,Stop smoking monitoring admin: [monitoring] or [clinic],QOF,S
+9OO1.,Attends stop smoking monitoring,QOF,S
+9OO2.,Refuses stop smoking monitor,QOF,S
+9OO3.,Stop smoking monitor default,QOF,S
+9OO4.,Stop smoking monitoring first letter,QOF,S
+9OO5.,Stop smoking monitoring second letter,QOF,S
+9OO6.,Stop smoking monitoring third letter,QOF,S
+9OO7.,Stop smoking monitoring verbal invite,QOF,S
+9OO8.,Stop smoking monitoring telephone invite,QOF,S
+9OO9.,Stop smoking monitoring delete,QOF,S
+9OOA.,Stop smoking monitoring check done,QOF,S
+Ua1Nz,Smoking cessation advice,QOF,S
+Ua1O0,Advice on effects of smoking on health,QOF,S
+Ub1nZ,Tobacco use and exposure,QOF,S
+Xa1dC,Advice on smoking,QOF,S
+XaBUG,Smoking monitoring status,QOF,S
+XaCGl,Smoking monitoring invitation,QOF,S
+XaEKU,Nicotine replacement therapy,QOF,S
+XaF98,Tobacco related optic neuropathy,Tobacco_Text,S
+XaFw9,Referral to stop-smoking clinic,QOF,S
+XaIQi,Smoking cessation milestones,QOF,S
+XaIQj,Negotiated date for cessation of smoking,QOF,S
+XaIQk,Smoking status at 4 weeks,QOF,S
+XaIQl,Smoking status between 4 and 52 weeks,QOF,S
+XaIQm,Smoking status at 52 weeks,QOF,S
+XaIQn,Nicotine replacement therapy provided free,QOF,S
+XaIpo,Did not attend smoking cessation clinic,QOF,S
+XaItC,Referral to smoking cessation advisor,QOF,S
+XaIth,Smoking cessation programme start date,QOF,S
+XaIuQ,Cigarette pack-years,QOF,S
+XaIye,Seen by smoking cessation advisor,QOF,S
+XaKlS,[V]Personal history of tobacco abuse,QOF,S
+XaLD4,Smoking cessation advice provided by community pharmacist,QOF,S
+XaLIY,Excepted from smoking quality indicators: Patient unsuitable,QOF,S
+XaLIZ,Excepted from smoking quality indicators: Informed dissent,QOF,S
+XaLMR,Attends practice smoking cessation clinic,QOF,S
+XaLMS,Attends smoking cessation clinic not at practice,QOF,S
+XaMlI,Smoking cessation drug therapy,QOF,S
+XaMlJ,Nicotine replacement therapy using nicotine patches,QOF,S
+XaMlK,Nicotine replacement therapy using nicotine gum,QOF,S
+XaMlL,Nicotine replacement therapy using nicotine inhalator,QOF,S
+XaMlM,Nicotine replacement therapy using nicotine lozenges,QOF,S
+XaMlN,Other specified smoking cessation therapy,QOF,S
+XaMt6,Smoking cessation therapy NOS,QOF,S
+XaMwY,Smoking cessation therapy,QOF,S
+XaPid,Smoking cessation enhanced services administration,QOF,S
+XaQT5,Referral to NHS stop smoking service,QOF,S
+XaQVQ,Brief intervention for smoking cessation,QOF,S
+XaREz,Smoking cessation programme declined,QOF,S
+XaW0h,Practice based smoking cessation programme start date,QOF,S
+XaX0O,Consent given follow-up after smoking cessation intervention,QOF,S
+XaX0i,Declin cons follow-up evaluation after smoking cess interven,QOF,S
+XaX5W,Consent given for follow-up by smoking cessation team,QOF,S
+XaX5X,Declined consent for follow-up by smoking cessation team,QOF,S
+XaXPX,Smoking status at 12 weeks,QOF,S
+XaXR4,Referral for smoking cessation service offered,QOF,S
+XaXUL,Lost to smoking cessation follow-up,QOF,S
+XaXnG,Stop smoking service opportunity signposted,QOF,S
+XaXnf,Stop smoking invitation short message service text message,QOF,S
+XaXng,Stop smoking invitation first SMS text message,QOF,S
+XaXni,Stop smoking invitation second SMS text message,QOF,S
+XaXnk,Stop smoking invitation third SMS text message,QOF,S
+XaZ01,Smoking cessation drug therapy declined,QOF,S
+XaZhB,Smoking cessation 12 week follow-up,QOF,S
+Xaa26,Number of previous attempts to stop smoking,QOF,S
+XaaDx,Referral to smoking cessation service declined,QOF,S
+XaaDy,Referral to smoking cessation service,QOF,S
+XacZz,Varenicline smoking cessation therapy declined,QOF,S
+Xaca0,Varenicline smoking cessation therapy offered,QOF,S
+Xaety,Varenicline therapy,QOF,S
+Y0018,Smoking Target Notes,QOF,S
+Y01e6,Loose tobacco consumption,Tobacco_Text,S
+Y0790,Prompted for smoking cessation support by Smoke Free Bus,Smoke_Text,S
+XaFst,Over the counter nicotine replacement therapy,QOF,S
+XaJIs,Lifestyle advice regarding smoking,QOF,S
+XaRFh,Smoking cessation advice declined,QOF,S
+XaZIE,Waterpipe tobacco consumption,QOF,S
+137Z.,Tobacco consumption NOS,QOF,X
+Ub0p2,Total time smoked,QOF,X
+Ub1tI,Cigarette consumption,QOF,X
+Ub1tJ,Cigar consumption,QOF,X
+Ub1tK,Pipe tobacco consumption,QOF,X
+XaIr7,Smoking free weeks,QOF,S
