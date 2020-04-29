@@ -6,6 +6,7 @@ shutdowns gracefully
 import os
 import re
 import subprocess
+import shutil
 import signal
 import socket
 import sys
@@ -162,13 +163,6 @@ def docker_port(container_id):
     return port
 
 
-def docker_build_and_run(*args, skip_build=False):
-    if not skip_build:
-        docker_build(image)
-    result = docker_run(image, *args)
-    print(result)
-
-
 def check_output():
     # Stata insists on writing to the current
     # directory: https://stackoverflow.com/a/35051922/559140
@@ -189,13 +183,13 @@ def generate_cohort():
     sys.dont_write_bytecode = True
     from study_definition import study
 
-    study.to_csv("analysis/input.csv")
+    with_sqlcmd = shutil.which("sqlcmd") is not None
+    study.to_csv("analysis/input.csv", with_sqlcmd=with_sqlcmd)
     print("Successfully created cohort and covariates at analysis/input.csv")
 
 
 def run_model(folder, stata_path=None):
     # XXX it's /e on windows
-    # XXX and windows doesn't know where we are now
     args = ["-b", "do", f"{folder}/model.do"]
     if not stata_path:
         # XXX they'll need to log in docker_login()? Ensure
@@ -206,7 +200,7 @@ def run_model(folder, stata_path=None):
     return check_output()
 
 
-def main():
+def main(from_cmd_line=False):
     parser = ArgumentParser()
     subparsers = parser.add_subparsers(help="sub-command help")
     generate_cohort_parser = subparsers.add_parser(
@@ -226,6 +220,13 @@ def main():
         required=True,
         default=os.environ.get("DATABASE_URL", ""),
     )
+    if from_cmd_line:
+        generate_cohort_parser.add_argument(
+            "--docker", action="store_true", help="Run in docker"
+        )
+        generate_cohort_parser.add_argument(
+            "--skip-build", action="store_true", help="Skip docker build step"
+        )
 
     # Model runner options
     run_model_stata_kwargs = {
@@ -235,7 +236,6 @@ def main():
         run_model_stata_kwargs["widget"] = "FileChooser"
 
     run_model_parser.add_argument("--stata-path", **run_model_stata_kwargs)
-
     run_target_group = run_model_parser.add_mutually_exclusive_group()
     run_target_group.add_argument(
         "--analysis",
@@ -263,8 +263,16 @@ def main():
         else:
             print(run_model("analysis", options.stata_path))
     elif options.which == "generate_cohort":
-        os.environ["DATABASE_URL"] = options.database_url
-        generate_cohort()
+        if from_cmd_line and options.docker:
+            if not options.skip_build:
+                docker_build(notebook_tag)
+            args = sys.argv[:]
+            if "--docker" in args:
+                args.remove("--docker")
+            docker_run(notebook_tag, "python", *args)
+        else:
+            os.environ["DATABASE_URL"] = options.database_url
+            generate_cohort()
     elif options.which == "notebook":
         if not options.skip_build:
             docker_build(notebook_tag)
@@ -282,4 +290,4 @@ if __name__ == "__main__":
     if (len(sys.argv) == 1 or sys.argv[1] == "--ignore-gooey") and GOOEY_INSTALLED:
         Gooey(main)()
     else:
-        main()
+        main(from_cmd_line=True)
