@@ -44,41 +44,55 @@ use cr_create_analysis_dataset, clear
 
 *** Intended for publication
 
-
-
 * Declare survival outcome
-stset stime_cpnsdeath, fail(cpnsdeath) 			///
+stset stime_cpnsdeath, fail(cpnsdeath) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
 
 * KM plot for females by age		
-sts graph if male==0, title("Female") 			///
-	failure by(agegroup) 						///
-	xtitle("Days since 1 Feb 2020")				///
-	yscale(range(0, 0.025)) 					///
-	ylabel(0 (0.005) 0.02, angle(0))			///
-	legend(order(1 2 3 4 5 6)					///
-	subtitle("Age group", size(small)) 			///
-	label(1 "18-<40") label(2 "40-<50") 		///
-	label(3 "50-<60") label(4 "60-<70")			///
-	label(5 "70-<80") label(6 "80+")			///
-	col(2) size(small))							///
+sts graph if male==0, title("Female") 				///
+	failure by(agegroup) 							///
+	xtitle("Days since 1 Feb 2020")					///
+	yscale(range(0, 0.012)) 						///
+	ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
+	xscale(range(30, 84)) 							///
+	xlabel(30 (10) 80)								///
+	legend(order(1 2 3 4 5 6)						///
+	subtitle("Age group", size(small)) 				///
+	label(1 "18-<40") label(2 "40-<50") 			///
+	label(3 "50-<60") label(4 "60-<70")				///
+	label(5 "70-<80") label(6 "80+")				///
+	col(3) colfirst size(small))	noorigin		///
+	plot1opts(lcolor(red)) 							///
+	plot2opts(lcolor(blue)) 						///
+	plot3opts(lcolor(orange) lpattern(dash)) 		///
+	plot4opts(lcolor(green)  lpattern(dash)) 		///
+	plot5opts(lcolor(pink)   lpattern(dash_dot)) 	///
+	plot6opts(lcolor(sienna) lpattern(dash_dot))  	///
 	saving(female, replace)
 * KM plot for males by age		
-sts graph if male==1, title("Male") 			///
-	failure by(agegroup)						///
-	xtitle("Days since 1 Feb 2020")				///
-	yscale(range(0, 0.025)) 					///
-	ylabel(0 (0.005) 0.02, angle(0))			///
-	legend(order(1 2 3 4 5 6)					///
-	subtitle("Age group", size(small)) 			///
-	label(1 "18-<40") label(2 "40-<50") 		///
-	label(3 "50-<60") label(4 "60-<70")			///
-	label(5 "70-<80") label(6 "80+") 			///
-	col(2) size(small))							///
-	saving(male, replace)
+sts graph if male==1, title("Male") 				///
+failure by(agegroup) 								///
+	xtitle("Days since 1 Feb 2020")					///
+	yscale(range(0, 0.012)) 						///
+	ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
+	xscale(range(30, 84)) 							///
+	xlabel(30 (10) 80)								///
+	legend(order(1 2 3 4 5 6)						///
+	subtitle("Age group", size(small)) 				///
+	label(1 "18-<40") label(2 "40-<50") 			///
+	label(3 "50-<60") label(4 "60-<70")				///
+	label(5 "70-<80") label(6 "80+")				///
+	col(3) colfirst size(small))	noorigin		///
+	plot1opts(lcolor(red)) 							///
+	plot2opts(lcolor(blue)) 						///
+	plot3opts(lcolor(orange) lpattern(dash)) 		///
+	plot4opts(lcolor(green)  lpattern(dash)) 		///
+	plot5opts(lcolor(pink)   lpattern(dash_dot)) 	///
+	plot6opts(lcolor(sienna) lpattern(dash_dot))  	///
+	saving(male, replace)	
 * KM plot for males and females 
-grc1leg female.gph male.gph, 					///
-	t1(" ") 	
+grc1leg female.gph male.gph, 						///
+	t1(" ") l1title("Cumulative probability" "hospital COVID-19 death", size(medsmall))
 graph export "output/km_age_sex_cpnsdeath.svg", as(svg) replace
 
 * Delete unneeded graphs
@@ -86,6 +100,67 @@ erase female.gph
 erase male.gph
 
 	
+
+
+
+********************************************************
+*  KM plots for each factor, adjusted for sex and age  *
+********************************************************
+
+
+
+/*  Centred age, sex, IMD, ethnicity (for adjusted KM plots)  */ 
+
+* Centre age (linear)
+summ age
+gen c_age = age-r(mean)
+
+* "Centre" sex to be coded -1 +1 
+recode male 0=-1, gen(c_male)
+
+
+* Declare survival outcome
+stset stime_cpnsdeath, fail(cpnsdeath) 			///
+	id(patient_id) enter(enter_date) origin(enter_date)
+
+
+sts graph, by(male) adjustfor(c_age) 		
+graph export "output/km_adj_male.svg", replace as(svg)
+
+			
+* Loop over risk factors
+foreach rf of varlist 	region							///
+						imd 							///
+						ethnicity						///	
+						bmicat 							///
+						bpcat 							///
+						htdiag_or_highbp				///
+						smoke		 					///
+						chronic_respiratory_disease 	///
+						asthmacat						///
+						chronic_cardiac_disease 		///
+						diabetes 						///
+						cancer_exhaem_cat				///
+						cancer_haem_cat`'				///
+						chronic_liver_disease 			///
+						dementia						///
+						stroke							///
+						stroke_dementia					///
+						other_neuro 					///
+						chronic_kidney_disease 			///
+						organ_transplant 				///	
+						spleen 							///
+						ra_sle_psoriasis				///
+						other_immunosuppression { 
+
+
+		* Kaplan-Meier graph, adjusted for age and sex
+		sts graph, by(`rf') adjustfor(c_age c_male) 		
+		graph export "output/km_adj_`rf'.svg", replace as(svg)
+	}
+}
+
+
 
 
 
@@ -236,46 +311,6 @@ erase both_hosp.gph
 */
 
 
-
-
-********************************************************
-*  KM plots for each factor, adjusted for sex and age  *
-********************************************************
-/*
-* Loop over outcomes
-foreach outvar of varlist died hosp itu {
-					
-	* Declare survival outcome
-	stset stime_`outvar', fail(`outvar') 					///
-		id(patient_id) enter(enter_date) origin(enter_date)
-		
-	* Loop over risk factors
-	foreach rf of varlist 	imd 							///
-							ethnicity						///	
-							bmicat 							///
-							obese40 						///
-							smoke		 					///
-							currentsmoke 					///
-							chronic_respiratory_disease 	///
-							asthma 							///
-							chronic_cardiac_disease 		///
-							diabetes 						///
-							cancer_lastyr					///
-							chronic_liver_disease 			///
-							neurological_condition 			///
-							chronic_kidney_disease 			///
-							organ_transplant 				///	
-							spleen 							///
-							immunosuppressed	 			///
-							ra_sle_psoriasis { 
-
-		* Kaplan-Meier graph, adjusted for age and sex
-		sts graph, by(`rf') adjustfor(c_age c_male) 		
-		graph export "output/km_adj_`rf'_`outvar'.eps", replace as(eps)
-	}
-}
-
-*/
 
 	
 ****************************************************************
