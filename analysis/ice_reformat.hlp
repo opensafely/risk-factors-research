@@ -1,0 +1,58 @@
+{smcl}
+{* 04feb2007}{...}
+{hline}
+help for {hi:ice_reformat}{right:Patrick Royston}
+{hline}
+
+{title:Reformat -ice- file}
+
+
+{p 8 17 2}
+{cmd:ice_reformat using} {it:filename}
+{cmd:,}
+{cmd:replace}
+
+
+{title:Description}
+
+{p 4 4 2}
+{cmd:ice_reformat} reformats files of imputations created by versions of 
+{cmd:ice} earlier than 1.4.0 to the current format. This ensures
+compatibility with {help mim}. The changes are described
+under {it:Remarks}.
+
+
+{title:Options}
+
+{p 4 4 2}{cmd:replace} is not optional. It permits {it:filename} to be replaced.
+
+
+{title:Remarks}
+
+{p 4 4 2}
+{cmd:ice_reformat} makes the following small changes to {it:filename}:
+
+{p 8 8 2}(i) Variables {hi:_i} and {hi:_j} are renamed to {hi:_mi} and {hi:_mj} 
+respectively.
+
+{p 8 8 2}(ii) The characteristic {hi:_dta[mi_id]} is changed from {hi:_i} to {hi:_mi}.
+
+{p 4 4 2}These changes ensure that the file is compatible with {help mim}.
+
+
+{title:Example}
+
+{p 4 4 2}{cmd:. ice_reformat "c:\data\myimputations.dta", replace}
+
+
+{title:Author}
+
+{p 4 4 2}
+Patrick Royston, MRC Clinical Trials Unit, London.{break}
+pr@ctu.mrc.ac.uk
+
+
+{title:Also see}
+
+{p 4 13 2}
+On-line:  help for {help ice}, {help mim} (if installed).

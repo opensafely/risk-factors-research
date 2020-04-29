@@ -1,0 +1,351 @@
+{smcl}
+{* 01nov2006}{...}
+{hline}
+help for {hi:micombine}{right:Patrick Royston}
+{hline}
+
+{title:Estimation of regression models with multiply imputed samples}
+
+
+{p 8 17 2}
+{cmd:micombine}
+{{it:supported_regression_cmd} | {it:other_regression_cmd}}
+[{it:yvar}]
+[{it:covarlist}]
+[{it:other_stuff]}
+[{cmd:if} {it:exp}]
+[{cmd:in} {it:range}]
+[{it:weight}]
+[
+{cmd:,}
+{cmd:br}
+{cmdab:nocons:tant}
+{cmdab:det:ail}
+{cmdab:ef:orm}|{{cmdab:ef:orm(}{it:string}{cmd:)}}
+{cmdab:g:enxb(}{it:newvarname}{cmd:)}
+{cmdab:imp:id(}{it:varname}{cmd:)}
+{cmdab:inf:gain}
+{cmd:lrr}
+{cmdab:nowar:ning}
+{cmdab:obs:id(}{it:varname}{cmd:)}
+{cmd:svy}[{cmd:(}{it:svy_options}{cmd:)}]
+{it:regression_cmd_options}
+]
+
+{p 4 4 2}
+where
+
+{p 8 8 2}
+{it:supported_regression_cmd}s are
+{help clogit},
+{help cnreg},
+{help glm},
+{help logistic},
+{help logit},
+{help mlogit},
+{help ologit},
+{help oprobit},
+{help poisson},
+{help probit},
+{help qreg},
+{help regress},
+{help rreg},
+{help stcox},
+{help streg},
+or
+{help xtgee}, and {it:other_regression_cmd} is any other Stata regression command
+(see Remarks).
+
+{p 4 4 2}
+{cmd:micombine} shares a subset of the features of all estimation commands
+(see help {help estimates}); see {it:Remarks}.
+
+{p 4 4 2}
+All weight types supported by {it:regression_cmd} are allowed; see help
+{help weights}.
+
+
+{title:Description}
+
+{p 4 4 2}
+{cmd:micombine} estimates the parameters of a regression model whose
+type is determined by {it:supported_regression_cmd} or {it:other_regression_cmd}.
+Parameter estimates are combined
+across several replicates obtained previously by multiple imputation,
+e.g. by using {help ice} to create a file of imputed data.
+See {it:Remarks} for a brief account of how {cmd:micombine} combines
+the estimates and obtains standard errors.
+
+
+{title:Options}
+
+{p 4 8 2}
+{cmd:br} calculates degrees of freedom and tests of significance for each predictor
+according to the formulae (3)-(5) of Barnard & Rubin (1999). 
+After estimation, the required degrees of freedom are stored in a matrix
+(column vector) {cmd:e(nutilde)}. Note that if {cmd:test}
+is used after {cmd:micombine} for significance testing of regression
+coefficients, such tests assume that the degrees of freedom are
+equal to the number of observations minus the number of parameters
+estimated, not those given in {cmd:e(nutilde)}.
+
+{p 4 8 2}
+{cmd:detail} gives details of the regression model for each imputation.
+
+{p 4 8 2}
+{cmd:eform(}{it:string}{cmd:)} indicates that the exponentiated
+form of the coefficients is to be output and reporting of the constant is to
+be suppressed; {it:string} is used to label the exponentiated coefficients.
+
+{p 4 8 2}
+{cmd:eform} indicates that the exponentiated
+form of the coefficients is to be output and reporting of the constant is to
+be suppressed; the exponentiated coefficients are labelled {cmd:exp(b)}.
+
+{p 4 8 2}
+{cmd:genxb(}{it:newvarname}{cmd:)} creates {it:newvarname} to hold the
+linear predictor from each regression model, averaged over all the
+imputations.
+
+{p 4 8 2}
+{cmd:impid(}{it:varname}{cmd:)} specifies that {it:varname} is the variable
+identifying the imputations. The number of imputations is determined as
+the number of unique values of {it:varname}. All observations for which
+{it:varname} takes the value zero are ignored in the analysis.
+Default {it:varname}: {cmd:_mj}.
+
+{p 4 8 2}
+{cmd:infgain} reports the percentage increase in information and sample
+size due to the use of multiple imputation. The information gain is
+the percent increase in Wald chisquare for the entire model, comparing
+the Wald chisquare for the model on the original data (complete case
+analysis) with that using the variance-covariance matrix of the
+parameters estimated using Rubin's rules. With a bad imputation model
+the information increase could be negative.
+
+{p 4 8 2}
+{cmd:lrr} specifies that the Li-Raghunathan-Rubin (LRR) robust estimate of the 
+variance-covariance matrix of the regression coefficients be used.
+
+{p 4 8 2}
+{cmd:noconstant} suppresses the regression constant in all regressions.
+
+{p 4 8 2}
+{cmd:nowarning} suppresses the warning message about the use
+of {it:other_regression_cmd}s (see {it:Remarks}).
+
+{p 4 8 2}
+{cmd:obsid(}{it:varname}{cmd:)} is provided to allow {cmd:micombine} to analyse
+datasets created by programs other than {cmd:ice}. {it:varname} specifies the name
+of a variable holding the "observation ID", i.e. the sequence number of each
+observation in a given imputation. The number of observations should
+be identical between imputations, as should the order of the observations.
+{it:varname} should run 1,...,N for imputation 1, 1,...,N for imputation 2, and
+so on. {cmd:ice} automatically stores the information with the data, so this 
+option is not required. Default {it:varname}: {cmd:_mi}.
+
+{p 4 8 2}
+[Stata 9] {cmd:svy}[{cmd:(}{it:svy_options}{cmd:)}] performs survey regression.
+The prefix {cmd:svy:} is placed before
+{it:regression_cmd}. If {it:svy_options} is supplied then {cmd:, }
+{it:svy_options} is placed after {cmd:svy} and before the colon.
+The data must be {cmd:svyset} before
+this option is used. This must be done before {cmd:ice} is used
+to impute missing values. That the data have been {cmd:svyset} is
+inherited by the file of imputations created by {cmd:ice}.
+
+{p 4 8 2}
+[Stata 8] {cmd:svy} performs survey regression.
+The prefix {cmd:svy} is placed before
+{it:regression_cmd}, so that for example {cmd:micombine regress ..., svy}
+is interpreted as {cmd:micombine svyregress ...}. Options for survey
+regression are included as options to {cmd:micombine}.
+The data must be {cmd:svyset} before
+the {cmd:svy} option is used. This must be done before {cmd:ice} is used
+to impute missing values. That the data have been {cmd:svyset} is
+inherited by the file of imputations created by {cmd:ice}.
+
+{p 4 8 2}
+{it:regression_cmd_options} may be any of the options appropriate to
+{it:regression_cmd}.
+
+
+{title:Remarks}
+
+{p 4 4 2}
+Details of statistical inference from multiple imputed datasets are nicely described
+in a recent Stata Journal article by John Carlin and colleagues (Carlin et al, 2003).
+Here, with due acknowledgment to John, I give an edited version of Section 2 of his article.
+
+{p 4 4 2}
+A simple method of combining estimates from several models was derived by Rubin (1987).
+Suppose initially that primary interest lies in estimating a scalar quantity, Q.
+Here, Q is a regression coefficient, for example, the log hazard ratio in a 
+proportional hazards model. Suppose that we have imputed m complete datasets
+using an appropriate model. In each dataset, standard complete-data methods
+are used to obtain an estimate of Q with an associated standard error.
+Let Q_j and V_j denote the point estimate and variance respectively from the jth
+(j = 1, 2, ... , m) dataset. The point estimate Q^ of Q from multiple imputation
+is simply the arithmetic mean of Q_1,...,Q_m.
+
+{p 4 4 2}
+Obtaining a valid standard error for this estimate of Q^ requires combining information
+on within-imputation and between-imputation variation. The latter is important in
+reflecting uncertainty due to variability between imputation samples. First,
+a within-imputation variance component, W, is obtained as the mean over the m
+imputations of the complete-data variance-covariance matrices, V_1,....,V_m.
+Second, a between-imputation variance
+component, B, is calculated as the sum of squares of Q_1,....,Q_m about Q^,
+divided by m-1. In summary,
+
+{p 8 12 2}
+Q^ = (Q_1 + ... + Q_m)/m
+
+{p 8 12 2}
+W = (V_1 + ... + V_m)/m
+
+{p 8 12 2}
+B = ((Q_1 - Q^)^2 + ... + (Q_m - Q^)^2)/(m - 1)
+
+{p 4 4 2}
+The (total) variance T of Q^ is given by
+
+{p 8 12 2}
+T = W + B * (1 + 1/m)
+
+{p 4 4 2}
+Rubin (1987) showed that (Q - Q^)/sqrt(T) is distributed approximately
+as Student's t on nu degrees of freedom, where
+
+{p 8 12 2}
+nu = (m - 1) * (1 + W /(B * (1 + 1/m)))^2
+
+{p 4 4 2}
+The (1 + 1/m) term in these expressions indicates that it is not necessary to
+a create large number of imputed datasets, particularly when B is much smaller
+than W. The condition will be satisfied unless there is much missing data and
+the parameter estimates within each dataset are very precise.
+
+    {title:Available regression commands}
+
+{p 4 4 2}
+{cmd:micombine} has been tested with the commands listed 
+under {it:supported_regression_cmd} at the beginning of this
+help file. {cmd:micombine} {it:may} work satisfactorily
+with {it:other_regression_cmd}s, but this cannot
+be guaranteed. This facility is provided so that the
+researcher familiar with a particular Stata command has a
+fighting chance of obtaining correct MI estimates and standard errors.
+{hi:HOWEVER, THE AUTHOR DISCLAIMS RESPONSIBILITY FOR} 
+{hi:THE CORRECTNESS OF RESULTS ARISING FROM USE OF AN} {it:other_regression_cmd}.
+Note that {it:other_stuff} in the syntax diagram 
+is code that may be required by
+some {it:other_regression_cmd}s, for example {cmd:ivreg} wants
+{cmd:(}{it:varlist2}{cmd: = }{it:varlist_iv}{cmd:)}.
+{cmd:micombine} parses for the
+occurrence of an opening parenthesis. There may be other
+syntaxes that are not accommodated by this approach; if so,
+please contact the author with details.
+
+    {title:Post-estimation prediction}
+
+{p 4 4 2}
+The {cmd:predict} command {it:may} work as you expect after {cmd:micombine},
+but this feature should be 
+treated with caution. {cmd:micombine} stores the quantities needed by
+{cmd:predict} at the last execution of the regression command, that is at the
+final imputation, but prediction following some regression commands has
+non-standard features that are hard to emulate accurately.
+Known issues are as follows:
+
+{p 8 12 2}
+1.  After {cmd:micombine mlogit}: {cmd:predict} may require that the outcome
+    levels are known as 0, 1, 2, ... , so it may be necessary to drop the
+    score label for the outcome variable, if such a label is defined.
+    This is KNOWN to be a problem using {cmd:mfx} following {cmd:micombine mlogit}.
+    For example, {cmd:mfx compute, predict(outcome(0))} will work only if
+    the lowest level of the outcome is 0, and is not labelled.
+
+
+    {title:Sample size}
+
+{p 4 4 2}
+The sample size reported by {cmd:micombine} is the number of observations found
+when fitting the model in the first imputation (i.e. by default: for {hi:_mj==1}).
+It may happen that the sample size varies between imputations,
+for example, when the effect of an {cmd:if} or {cmd:in} filter differs between
+imputations, or when a weighting scheme effectively removes different
+observations in different imputations. The resulting parameter estimates
+and their SEs are believed still to be approximately valid in this situation.
+The program alerts you to the occurrence of variable sample size, but no action
+need be taken by you. Post-estimation commands {cmd:test} and {cmd:testparm}
+use the sample size found when the model is fitted in the final imputed dataset.
+
+
+{title:Examples}
+
+{p 4 8 2}{cmd:. ice y x1 x2 x3 using imp, m(10) genmiss(m_)}{p_end}
+{p 4 8 2}{cmd:. use imp, clear}{p_end}
+{p 4 8 2}{cmd:. micombine regress y x1 x2 x3}{p_end}
+{p 4 8 2}{cmd:. stset time, failure(cens)}{p_end}
+{p 4 8 2}{cmd:. micombine stcox x1 x2 x3, genxb(index)}{p_end}
+{p 4 8 2}{cmd:. test x2==1}{p_end}
+{p 4 8 2}{cmd:. testparm x1 x2}{p_end}
+{p 4 8 2}{cmd:. micombine regress y x1 x2 x3, svy(subpop(if sex==1))}{p_end}
+
+
+{title:Author}
+
+{p 4 4 2}
+Patrick Royston, MRC Clinical Trials Unit, London.
+pr@ctu.mrc.ac.uk
+
+
+{title:References}
+
+{p 4 8 2}
+Barnard, J. and D. B. Rubin. 1999. Small-sample degrees of freedom with
+multiple imputation. {it:Biometrika} {cmd:86}: 948-955.
+
+{p 4 8 2}
+Carlin, J. B., N. Li, P. Greenwood, and C. Coffey. 2003. 
+Tools for analyzing multiple imputed datasets. {it:Stata Journal} {cmd:3(3)}: 226-244.
+
+{p 4 8 2}
+Carlin, J. B., N. Li, P. Greenwood, and C. Coffey. 2003. 
+Tools for analyzing multiple imputed datasets. {it:Stata Journal} {cmd:3(3)}: 226-244.
+
+{p 4 8 2}
+Li, K., T. Raghunathan, and D. Rubin. 1991. Large sample significance levels from
+multiply-imputed data using moment-based statistics and an F reference distribution.
+{it:Journal of the American Statistical Association} {cmd:86}: 1065-1073.
+
+{p 4 8 2}
+Royston P. 2004. Multiple imputation of missing values.
+{it:Stata Journal} {cmd:4(3)}:227-241.
+
+{p 4 8 2}
+Royston P. 2005. Multiple imputation of missing values: update.
+{it:Stata Journal} {cmd:5(2)}:188-201.
+
+{p 4 8 2}
+Royston P. 2006. Multiple imputation of missing values: update of ice.
+{it:Stata Journal} in preparation.
+
+{p 4 8 2}
+Rubin, D. 1987. Multiple Imputation for Nonresponse in Surveys. New York: John Wiley &
+Sons.
+
+{p 4 8 2}
+Schafer, J. 1997. Analysis of Incomplete Multivariate Data. London: Chapman & Hall.
+
+{p 4 8 2}
+van Buuren, S., H. C. Boshuizen and D. L. Knook. 1999. Multiple imputation of
+    missing blood pressure covariates in survival analysis.
+    {it:Statistics in Medicine} {cmd:18}:681-694. (Also see http://www.multiple-imputation.com.)
+
+
+{title:Also see}
+
+{p 4 13 2}
+Online:  help for {help ice}.
