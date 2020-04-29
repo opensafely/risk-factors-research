@@ -24,7 +24,8 @@ opensafely/permanent-immunosuppresion/2020-04-24
 opensafely/asthma-oral-prednisolone-medication/2020-04-27
 opensafely/ra-sle-psoriasis/2020-04-14
 opensafely/sickle-cell-disease/2020-04-14
-opensafely/smoking-status/2020-04-07
+opensafely/smoking-clear/2020-04-29
+opensafely/smoking-unclear/2020-04-29
 opensafely/solid-organ-transplantation/2020-04-10
 opensafely/stroke/2020-04-21
 opensafely/temporary-immunosuppresion/2020-04-24

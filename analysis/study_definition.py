@@ -23,8 +23,13 @@ stroke = codelist_from_csv(
 
 dementia = codelist_from_csv(
     "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID")
-smoking_codes  = codelist_from_csv(
-    "codelists/opensafely-smoking-status.csv", system="ctv3", column="CTV3Code", category_column="Category"
+
+clear_smoking_codes  = codelist_from_csv(
+    "codelists/opensafely-smoking-clear.csv", system="ctv3", column="CTV3Code", category_column="Category"
+)
+
+unclear_smoking_codes  = codelist_from_csv(
+    "codelists/opensafely-smoking-unclear.csv", system="ctv3", column="CTV3Code", category_column="Category"
 )
 
 other_neuro = codelist_from_csv(
@@ -93,8 +98,8 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
 
-hba1c_new_codes = codelist(['Xaeze', 'Xaezd'], system="ctv3")
-hba1c_old_codes = codelist(['XaERp'], system="ctv3")
+hba1c_new_codes = codelist(['XaPbt', 'Xaeze', 'Xaezd'], system="ctv3")
+hba1c_old_codes = codelist(['X772q', 'XaERo', 'XaERp'], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
@@ -193,41 +198,49 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
     smoking_status=patients.categorised_as(
         {
-            "S": """
-                most_recent_smoking_code = 'S' OR (
-                  most_recent_smoking_code = 'X' AND most_recent_smoking_numeric > 0
-                )
-            """,
+            "S": "most_recent_smoking_code = 'S'",
             "E": """
                  most_recent_smoking_code = 'E' OR (
                    most_recent_smoking_code = 'N' AND ever_smoked
                  )
             """,
-            "N": """
-                (
-                  most_recent_smoking_code = 'N' OR (
-                    most_recent_smoking_code = 'X' AND most_recent_smoking_numeric = 0
-                  )
-                ) AND NOT ever_smoked
-            """,
+            "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
             "M": "DEFAULT"
         },
         most_recent_smoking_code=patients.with_these_clinical_events(
-            smoking_codes,
+            clear_smoking_codes,
             find_last_match_in_period=True,
             on_or_before='2020-02-01',
             returning="category",
         ),
-        most_recent_smoking_numeric=patients.with_these_clinical_events(
-            smoking_codes,
-            find_last_match_in_period=True,
-            on_or_before="2020-02-01",
-            returning="numeric_value",
-        ),
         ever_smoked=patients.with_these_clinical_events(
-            filter_codes_by_category(smoking_codes, include=['S', 'E']),
+            filter_codes_by_category(clear_smoking_codes, include=['S', 'E']),
             on_or_before='2020-02-01'
         ),
+    ),
+    smoking_status_date=patients.with_these_clinical_events(
+        clear_smoking_codes,
+        on_or_before='2020-02-01',
+        return_last_date_in_period=True,
+        include_month=True,
+    ),
+    most_recent_unclear_smoking_cat=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        find_last_match_in_period=True,
+        on_or_before='2020-02-01',
+        returning="category",
+    ),
+    most_recent_unclear_smoking_numeric=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        find_last_match_in_period=True,
+        on_or_before="2020-02-01",
+        returning="numeric_value",
+    ),
+    most_recent_unclear_smoking_cat_date=patients.with_these_clinical_events(
+        unclear_smoking_codes,
+        on_or_before='2020-02-01',
+        return_last_date_in_period=True,
+        include_month=True,
     ),
 
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27
@@ -434,7 +447,7 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    hba1c_new=patients.with_these_clinical_events(
+    hba1c_mmol_per_mol=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
         on_or_before="2020-02-01",
@@ -442,7 +455,7 @@ study = StudyDefinition(
         include_date_of_match=True,
         include_month=True,
     ),
-    hba1c_old=patients.with_these_clinical_events(
+    hba1c_percentage=patients.with_these_clinical_events(
         hba1c_old_codes,
         find_last_match_in_period=True,
         on_or_before="2020-02-01",

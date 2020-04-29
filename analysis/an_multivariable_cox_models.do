@@ -49,7 +49,7 @@ use cr_create_analysis_dataset, clear
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
-	syntax , age(string) [ethnicity(real 0) if(string)] 
+	syntax , age(string) bp(string) [ethnicity(real 0) if(string)] 
 
 	if `ethnicity'==1 local ethnicity "i.ethnicity"
 	else local ethnicity
@@ -61,7 +61,7 @@ timer on 1
 			i.smoke_nomiss					///
 			`ethnicity'						///
 			i.imd 							///
-			i.htdiag_or_highbp				///
+			`bp'							///
 			i.chronic_respiratory_disease 	///
 			i.asthmacat						///
 			i.chronic_cardiac_disease 		///
@@ -88,7 +88,7 @@ end
 stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 *Age spline model (not adj ethnicity)
-basecoxmodel, age("age1 age2 age3")  ethnicity(0)
+basecoxmodel, age("age1 age2 age3")  bp("i.htdiag_or_highbp") ethnicity(0)
 if _rc==0{
 estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
@@ -97,7 +97,7 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
  
 *Age group model (not adj ethnicity)
-basecoxmodel, age("ib3.agegroup")  ethnicity(0)
+basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(0)
 if _rc==0{
 estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
@@ -106,7 +106,7 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
 else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
 
 *Complete case ethnicity model
-basecoxmodel, age("age1 age2 age3")  ethnicity(1)
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(1)
 if _rc==0{
 estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
@@ -114,9 +114,8 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
  }
  else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
 
- 
 *Model without ethnicity among ethnicity complete cases 
-basecoxmodel, age("age1 age2 age3")  ethnicity(0) if("if ethnicity<.")
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(0) if("if ethnicity<.")
 if _rc==0{
 estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
@@ -124,49 +123,34 @@ estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJ
  }
  else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
  
-/* 
-*PRIMARY MODEL PH TEST 
-estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth
-estat phtest
-*/
-************************************************************************
-* Add IBS 
-
-* Calculate at 60 days
-*
-*stbrier, bt(60) efron
-
-/*
-stbrier age1 age2 age3 male i.bmicat i.smoke							///
-		resp asthma heart diabetes cancer liver neuro_dis kidney_dis 	///
-		transplant spleen immunosup hypertension autoimmune sle 		///
-		endocrine														///
-		, shared(stp) bt(60) 											///
-		ipcw(age1 age2 age3 male i.bmicat i.smoke						///
-		resp asthma heart diabetes cancer liver neuro_dis kidney_dis 	///
-		transplant spleen immunosup hypertension autoimmune sle 		///
-		endocrine)
-*/
-
-* Simple model just to try:
-/*
-stbrier age1 age2 age3 male 											///
-		, shared(stp) bt(60) 											///
-		ipcw(age1 age2 age3 male)
-*/
-************************************************************************
+ *BP SENS ANALYSES
+ *Model with coded hypertension 
+basecoxmodel, age("age1 age2 age3") bp("i.hypertension") ethnicity(1)
+if _rc==0{
+estimates
+estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_HTN, replace
+*estat concordance /*c-statistic*/
+ }
+ else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+ 
 
 
-* Close log file  (bootstrapping likely to take a while)
+*Model with categorised bp
+basecoxmodel, age("age1 age2 age3") bp("i.bpcat_nomiss") ethnicity(1)
+if _rc==0{
+estimates
+estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_BPCAT, replace
+*estat concordance /*c-statistic*/
+ }
+ else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+ 
+
+ 
+
+
 log close
 
 
-
-
-
-/*   Add bootstrapping to correct C-statistic for overoptimism     */
-
-* ADD BOOTSTRAP HERE!
 
 
 

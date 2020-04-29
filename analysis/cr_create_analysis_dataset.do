@@ -67,8 +67,8 @@ drop if inlist(sex, "I", "U")
 * To be added: dates related to outcomes
 foreach var of varlist 	bp_sys_date 					///
 						bp_dias_date 					///
-						hba1c_old_date					///
-						hba1c_new_date					///
+						hba1c_percentage_date			///
+						hba1c_mmol_per_mol_date			///
 						hypertension					///
 						bmi_date_measured				///
 						chronic_respiratory_disease 	///
@@ -110,9 +110,8 @@ foreach var of varlist 	bp_sys_date 					///
 rename bmi_date_measured_date      bmi_date_measured
 rename bp_dias_date_measured_date  bp_dias_date
 rename bp_sys_date_measured_date   bp_sys_date
-rename hba1c_old_date_date   	   hba1c_old_date
-rename hba1c_new_date_date         hba1c_new_date
-
+rename hba1c_percentage_date_date  hba1c_percentage_date
+rename hba1c_mmol_per_mol_date_date  hba1c_mmol_per_mol_date
 
 
 
@@ -248,6 +247,8 @@ recode smoke .u=1, gen(smoke_nomiss)
 order smoke_nomiss, after(smoke)
 label values smoke_nomiss smoke
 
+
+
 /*  Asthma  */
 
 
@@ -276,8 +277,11 @@ label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
 					4 "High, stage II" .u "Unknown"
 label values bpcat bpcat
 
+recode bpcat .u=1, gen(bpcat_nomiss)
+label values bpcat_nomiss bpcat
+
 * Create non-missing indicator of known high blood pressure
-gen bphigh = (bpcat==3 | bpcat==4)
+gen bphigh = (bpcat==4)
 order bpcat bphigh, after(bp_dias_date)
 
 
@@ -428,14 +432,12 @@ recode htdiag_or_highbp 0 = 1 if hypertension==1
 *   eGFR   *
 ************
 
-* Set implausible creatinine values to missing 
+* Set implausible creatinine values to missing (Note: zero changed to missing)
 replace creatinine = . if !inrange(creatinine, 20, 3000) 
 	
-* Multiply by 0.95 (for assay-fudge factor) and 
-* divide by 88.4 (to convert umol/l to mg/dl)
+* Divide by 88.4 (to convert umol/l to mg/dl)
 gen SCr_adj = creatinine/88.4
 
-* NB: I have guessed which way round sex is...
 gen min=.
 replace min = SCr_adj/0.7 if male==0
 replace min = SCr_adj/0.9 if male==1
@@ -452,7 +454,7 @@ replace max=1 if max>1
 gen egfr=min*max*141
 replace egfr=egfr*(0.993^age)
 replace egfr=egfr*1.018 if male==0
-label var egfr "egfr calculated using CKD-EPI formula with no eth + fudge"
+label var egfr "egfr calculated using CKD-EPI formula with no eth"
 
 * Categorise into ckd stages
 egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
@@ -460,7 +462,7 @@ recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
 * 0 = "No CKD" 	2 "stage 3a" 3 "stage 3b" 4 "stage 4" 5 "stage 5"
 label define ckd 0 "No CKD" 1 "CKD"
 label values ckd ckd
-label var ckd "CKD stage calc without eth + DN fudge factor"
+label var ckd "CKD stage calc without eth"
 
 * Convert into CKD group
 recode ckd 2/5=1, gen(chronic_kidney_disease)
@@ -475,19 +477,23 @@ replace chronic_kidney_disease = 0 if creatinine==.
 
 /*  Diabetes severity  */
 
+* Set zero or negative to missing
+replace hba1c_percentage   = . if hba1c_percentage<=0
+replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol<=0
+
+
 * Only consider measurements in last 15 months
-replace hba1c_old = . if hba1c_old_date<d(1/11/2018)
-replace hba1c_new = . if hba1c_new_date<d(1/11/2018)
+replace hba1c_percentage   = . if hba1c_percentage   < d(1/11/2018)
+replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol < d(1/11/2018)
 
 
 
-/* Express  HbA1c as perecentage  */ 
-
+/* Express  HbA1c as percentage  */ 
 
 * Express all values as perecentage 
-noi summ hba1c_old hba1c_new 
-gen 	hba1c_pct = hba1c_old 
-replace hba1c_pct = (hba1c_new/10.929)+2.15 if hba1c_new<. 
+noi summ hba1c_percentage hba1c_mmol_per_mol 
+gen 	hba1c_pct = hba1c_percentage 
+replace hba1c_pct = (hba1c_mmol_per_mol/10.929)+2.15 if hba1c_mmol_per_mol<. 
 
 * Valid % range between 0-20  
 replace hba1c_pct = . if !inrange(hba1c_pct, 0, 20) 
@@ -519,7 +525,7 @@ label define diabcat 	1 "No diabetes" 			///
 label values diabcat diabcat
 
 * Delete unneeded variables
-drop hba1c_pct hba1c_new hba1c_old
+drop hba1c_pct hba1c_percentage hba1c_mmol_per_mol
 
 
 
@@ -707,7 +713,7 @@ keep patient_id imd stp region enter_date  									///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
 	stime_onscoviddeath														///
 	age agegroup age70 age1 age2 age3 male bmi smoke   						///
-	smoke smoke_nomiss bmicat obese4cat ethnicity 							///
+	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity 				///
 	bpcat bphigh htdiag_or_highbp hypertension 								///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///

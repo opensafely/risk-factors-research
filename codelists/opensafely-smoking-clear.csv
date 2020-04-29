@@ -1,0 +1,102 @@
+CTV3Code,Description,CodeSource,Category
+1377.,Ex-trivial smoker (<1/day),QOF,E
+1378.,Ex-light smoker (1-9/day),QOF,E
+1379.,Ex-moderate smoker (10-19/day),QOF,E
+137A.,Ex-heavy smoker (20-39/day),QOF,E
+137B.,Ex-very heavy smoker (40+/day),QOF,E
+137F.,Ex-smoker - amount unknown,QOF,E
+137K.,Stopped smoking,QOF,E
+137N.,Ex-pipe smoker,QOF,E
+137O.,Ex-cigar smoker,QOF,E
+137T.,Date ceased smoking,QOF,E
+137l.,Ex roll-up cigarette smoker,QOF,E
+Ub0p1,Time since stopped smoking,QOF,E
+Ub1na,Ex-smoker,QOF,E
+XE0oj,Ex-trivial cigarette smoker (<1/day),QOF,E
+XE0ok,Ex-light cigarette smoker (1-9/day),QOF,E
+XE0ol,Ex-moderate cigarette smoker (10-19/day),QOF,E
+XE0om,Ex-heavy cigarette smoker (20-39/day),QOF,E
+XE0on,Ex-very heavy cigarette smoker (40+/day),QOF,E
+XE0op,Ex-cigarette smoker amount unknown,QOF,E
+Xa1bv,Ex-cigarette smoker,QOF,E
+XaQ8V,Ex roll-up cigarette smoker,QOF,E
+XaQUI,Ex-smoker annual review,QOF,E
+XaQzw,Recently stopped smoking,QOF,E
+XaXP6,Stopped smoking during pregnancy,QOF,E
+XaXP8,Stopped smoking before pregnancy,QOF,E
+XaXP9,Smoker before confirmation of pregnancy,QOF,E
+Y0984,Smoking status at 4 weeks - Ex-smoker,Smoke_Text,E
+Y1152,Smoke free at 6 weeks confirmed by CO reading,Smoke_Text,E
+Y1153,Smoke free at 12 weeks confirmed by CO reading,Smoke_Text,E
+Y6626,Ex cigar smoker,Smoke_Text,E
+Y6627,Ex pipe smoker,Smoke_Text,E
+Y6628,Ex smoker,Smoke_Text,E
+1371.,Non-smoker (& [never smoked tobacco]),QOF,N
+137L.,Current non-smoker,QOF,N
+Ub0oq,Non-smoker,QOF,N
+XE0oh,Never smoked tobacco,QOF,N
+XaQUC,Non-smoker annual review,QOF,N
+XaXYo,Tobacco smoke free home,Smoke_Text,N
+Y0993,Smoking status between 4 and 52 weeks - Current non-smoker,Smoke_Text,N
+Y099f,Smoking status at 52 weeks - Current non-smoker,Smoke_Text,N
+Y09a0,Smoking status at 52 weeks - Smoker,Smoke_Text,S
+1372.,(Trivial smoker - < 1 cig/day) or (occasional smoker),QOF,S
+1373.,Light cigarette smoker (1-9 cigs/day),QOF,S
+1374.,Moderate cigarette smoker (10-19 cigs/day),QOF,S
+1375.,Heavy cigarette smoker (20-39 cigs/day),QOF,S
+1376.,Very heavy cigarette smoker (40+ cigs/day),QOF,S
+137H.,Pipe smoker,QOF,S
+137J.,Cigar smoker,QOF,S
+137M.,Rolls own cigarettes,QOF,S
+137P.,Smoker (& cigarette),QOF,S
+137Q.,Smoking: [started] or [restarted],QOF,S
+137R.,Smoker,QOF,S
+E251.,Tobacco dependence,Tobacco_Text,S
+E2510,"Tobacco dependence, unspecified",Tobacco_Text,S
+E2511,"Tobacco dependence, continuous",Tobacco_Text,S
+E2512,"Tobacco dependence, episodic",Tobacco_Text,S
+E251z,Tobacco dependence NOS,Tobacco_Text,S
+Eu17.,[X]Mental and behavioural disorder due to use of tobacco,Tobacco_Text,S
+Eu170,[X]Mental & behav dis due to use tobacco: acute intoxication,Tobacco_Text,S
+Eu171,[X]Mental and behav dis due to use of tobacco: harmful use,Tobacco_Text,S
+Eu172,[X]Mental and behav dis due to use tobacco: dependence syndr,Tobacco_Text,S
+Eu175,[X]Mental & behav dis due to use tobacco: psychotic disorder,Tobacco_Text,S
+Eu176,[X]Mental and behav dis due to use tobacco: amnesic syndrome,Tobacco_Text,S
+Eu177,[X]Men & beh dis due tobacco: resid & late-onset psychot dis,Tobacco_Text,S
+Eu17y,[X]Men & behav dis due to use tobacco: oth men & behav dis,Tobacco_Text,S
+Eu17z,[X]Ment & behav dis due use tobacco: unsp ment & behav dis,Tobacco_Text,S
+H3101,Smokers' cough,Smoke_Text,S
+Ua2Cl,Smokes in bed,QOF,S
+Ub1tR,Occasional cigarette smoker,QOF,S
+Ub1tS,Light cigarette smoker,QOF,S
+Ub1tT,Moderate cigarette smoker,QOF,S
+Ub1tU,Heavy cigarette smoker,QOF,S
+Ub1tV,Very heavy cigarette smoker,QOF,S
+Ub1tW,Chain smoker,QOF,S
+X20Qm,Smokers keratosis,Smoke_Text,S
+XE0oi,Trivial cigarette smoker (less than one cigarette/day),QOF,S
+XE0oq,Cigarette smoker,QOF,S
+XE0or,Smoking started,QOF,S
+XE1b4,Tobacco dependence (& [dependent smoker]),Smoke_Text,S
+XaBSp,Smoking restarted,QOF,S
+XaIIu,Smoking reduced,QOF,S
+XaIkW,Thinking about stopping smoking,QOF,S
+XaIkX,Ready to stop smoking,QOF,S
+XaIkY,Not interested in stopping smoking,QOF,S
+XaItg,Reason for restarting smoking,QOF,S
+XaJX2,Minutes from waking to first tobacco consumption,QOF,S
+XaLQh,Wants to stop smoking,QOF,S
+XaQUB,Current smoker annual review,Smoke_Text,S
+XaWNE,Failed attempt to stop smoking,QOF,S
+XagO3,Occasional tobacco smoker,QOF,S
+Y0983,Smoking status at 4 weeks - Smoker,Smoke_Text,S
+Y0994,Smoking status between 4 and 52 weeks - Smoker,Smoke_Text,S
+Y19d7,Stop Smoking Medication Offered,QOF,S
+Y2869,Wants to stop smoking,QOF,S
+Y3985,Reduced Smoker,QOF,S
+Y7110,Heavy smoker - 20-39 cigs/day,Smoke_Text,S
+Y7467,Light smoker - 1-9 cigs/day,Smoke_Text,S
+Y7677,Moderate smoker - 10-19 cigs/d,Smoke_Text,S
+Y9843,Very heavy smoker - 40+cigs/d,Smoke_Text,S
+YA602,Contented smoker,Smoke_Text,S
+ZV6D8,[V]Tobacco abuse counselling,Tobacco_Text,S

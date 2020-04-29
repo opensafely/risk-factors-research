@@ -87,6 +87,8 @@ do "an_tablecontent_HRtable.do"
 
 **Experimental, to do at end (in case slow)
 do "an_checkassumptions.do" cpnsdeath
+do "an_checkassumptions_2.do"
+
 
 
 

@@ -1,0 +1,102 @@
+{smcl}
+{* 21feb2006}{...}
+{hline}
+help for {cmd:mijoin}, {cmd:misplit}{right:Patrick Royston}
+{hline}
+
+{title:Join or split multiple imputed datasets}
+
+
+{p 8 17 2}
+{c -(}{cmd:mijoin} [{it:filestubname}] | {cmd:misplit}{c )-}
+{cmd:,}
+{cmd:clear}
+[
+{cmd:m(}{it:#}{cmd:)}
+{cmdab:imp:id(}{it:varname}{cmd:)}
+]
+
+
+{title:Description}
+
+{p 4 4 2}
+{cmd:mijoin} converts datasets prepared by Carlin's {help miset} routine
+to {help ice} format, for analysis by {help micombine}. The component
+datasets are stacked (joined vertically). If {it:filestubname} is 
+specified then the program will look for files called 
+{it:filestubname}{cmd:1.dta}, {it:filestubname}{cmd:2.dta},...,
+{it:filestubname}{cmd:m.dta} where {cmd:m} is determined by
+the {cmd:m()} option.
+
+{p 4 4 2}
+{cmd:misplit} converts a dataset prepared by {help ice}
+to {help miset} format, for analysis
+by {help mifit} and other utilities. You should {cmd:use}
+the dataset first.
+
+{p 4 4 2}
+The operations performed by {cmd:mijoin} and {cmd:misplit}
+are reciprocal.
+
+
+{title:Options}
+
+{p 4 8 2}
+{cmd:clear} is not optional and confirms that you are willing to replace the data in memory.
+
+{p 4 8 2}
+{cmd:impid(}{it:varname}{cmd:)} sets the name of the variable identifying the imputations
+to {it:varname} (default is {cmd:_j}). {cmd:mijoin} creates {it:varname} whereas
+{cmd:misplit} expects it to exist already.
+
+{p 4 8 2}
+{cmd:m(}{it:#}{cmd:)} sets the number of imputed datasets to be {it:#}.
+
+
+{title:Remarks}
+
+{p 4 4 2}
+After {cmd:mijoin} has been executed, the data are ready for immediate use by
+{cmd:micombine}. However, to save the data permanently you would
+need to issue a {help save} command.
+
+{p 4 4 2}
+After {cmd:misplit} has been executed, the data are ready for immediate use by
+Carlin's routines. However, to save the data permanently you would
+need to issue a {help misave} command followed by {help miset} on the next use.
+
+
+{title:Examples}
+
+{p 4 8 2}{cmd:. ice y x1 x2 x3 using imp, m(3)}{p_end}
+{p 4 8 2}{cmd:. use imp, clear}{p_end}
+{p 4 8 2}{cmd:. misplit, clear}{p_end}
+{p 4 8 2}{cmd:. mifit regress y x1 x2 x3}
+
+{p 4 8 2}{cmd:. miset using imp, clear mimps(5)}{p_end}
+{p 4 8 2}{cmd:. mijoin, clear}{p_end}
+{p 4 8 2}{cmd:. micombine regress y x1 x2 x3}
+
+{p 4 8 2}{cmd:. mijoin imp, clear m(5)}{p_end}
+{p 4 8 2}{cmd:. save imp_ice}{p_end}
+{p 4 8 2}{cmd:. micombine regress y x1 x2 x3}
+
+
+{title:Author}
+
+{p 4 4 2}
+Patrick Royston, MRC Clinical Trials Unit, London.
+patrick.royston@ctu.mrc.ac.uk
+
+
+{title:References}
+
+{p 4 4 2}
+Carlin, J. B., N. Li, P. Greenwood, and C. Coffey. 2003. 
+Tools for analyzing multiple imputed datasets. The Stata Journal 3 (3): 226-244.
+
+
+{title:Also see}
+
+{p 4 13 2}
+Online:  help for {help ice}, {help micombine}, {help miset} (if installed).
