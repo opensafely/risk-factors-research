@@ -11,20 +11,19 @@
 *	Data created:	None
 *
 *	Other output:	Kaplan-Meier plots (intended for publication)
-*							output/km_age_sex_onscoviddeath.svg 
 *							output/km_age_sex_cpnsdeath.svg 	
+*							
+*					To be added later: 
+*							output/km_age_sex_onscoviddeath.svg 
 *							output/km_age_sex_ituadmission.svg	 
 *					Line plots of cumulative deaths
-*							utput/events_onscoviddeath.svg
-*							utput/events_cpnsdeath.svg
-*							utput/events_ituadmission.svg
-*
-*							(others later)   (for data checking)
+*							output/events_onscoviddeath.svg
+*							output/events_cpnsdeath.svg
+*							output/events_ituadmission.svg
 *
 ********************************************************************************
 *
-*	Purpose:		This do-file creates Kaplan-Meier plots for each risk
-*					factor of interest.
+*	Purpose:		This do-file creates Kaplan-Meier plots by age and sex. 
 *  
 ********************************************************************************
 *	
@@ -101,63 +100,6 @@ erase male.gph
 
 	
 
-
-
-********************************************************
-*  KM plots for each factor, adjusted for sex and age  *
-********************************************************
-
-
-
-/*  Centred age, sex, IMD, ethnicity (for adjusted KM plots)  */ 
-
-* Centre age (linear)
-summ age
-gen c_age = age-r(mean)
-
-* "Centre" sex to be coded -1 +1 
-recode male 0=-1, gen(c_male)
-
-
-* Declare survival outcome
-stset stime_cpnsdeath, fail(cpnsdeath) 			///
-	id(patient_id) enter(enter_date) origin(enter_date)
-
-
-sts graph, by(male) adjustfor(c_age) 		
-graph export "output/km_adj_male.svg", replace as(svg)
-
-			
-* Loop over risk factors
-foreach rf of varlist 	region							///
-						imd 							///
-						ethnicity						///	
-						bmicat 							///
-						bpcat 							///
-						htdiag_or_highbp				///
-						smoke		 					///
-						chronic_respiratory_disease 	///
-						asthmacat						///
-						chronic_cardiac_disease 		///
-						diabetes 						///
-						cancer_exhaem_cat				///
-						cancer_haem_cat`'				///
-						chronic_liver_disease 			///
-						dementia						///
-						stroke							///
-						stroke_dementia					///
-						other_neuro 					///
-						chronic_kidney_disease 			///
-						organ_transplant 				///	
-						spleen 							///
-						ra_sle_psoriasis				///
-						other_immunosuppression { 
-
-
-		* Kaplan-Meier graph, adjusted for age and sex
-		sts graph, by(`rf') adjustfor(c_age c_male) 		
-		graph export "output/km_adj_`rf'.svg", replace as(svg)
-}
 
 
 
