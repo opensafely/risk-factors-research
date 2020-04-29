@@ -474,23 +474,23 @@ replace chronic_kidney_disease = 0 if creatinine==.
 
 /*  Diabetes severity  */
 
-* Set zero to missing
-replace hba1c_percentage = . if hba1c_percentage==0
-replace hba1c_mmol_per_l = . if hba1c_mmol_per_l==0
+* Set zero or negative to missing
+replace hba1c_percentage   = . if hba1c_percentage<=0
+replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol<=0
 
 
 * Only consider measurements in last 15 months
-replace hba1c_percentage = . if hba1c_percentage<d(1/11/2018)
-replace hba1c_mmol_per_l = . if hba1c_mmol_per_l<d(1/11/2018)
+replace hba1c_percentage   = . if hba1c_percentage   < d(1/11/2018)
+replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol < d(1/11/2018)
 
 
 
 /* Express  HbA1c as percentage  */ 
 
 * Express all values as perecentage 
-noi summ hba1c_percentage hba1c_mmol_per_l 
+noi summ hba1c_percentage hba1c_mmol_per_mol 
 gen 	hba1c_pct = hba1c_percentage 
-replace hba1c_pct = (hba1c_mmol_per_l/10.929)+2.15 if hba1c_mmol_per_l<. 
+replace hba1c_pct = (hba1c_mmol_per_mol/10.929)+2.15 if hba1c_mmol_per_mol<. 
 
 * Valid % range between 0-20  
 replace hba1c_pct = . if !inrange(hba1c_pct, 0, 20) 
@@ -522,7 +522,7 @@ label define diabcat 	1 "No diabetes" 			///
 label values diabcat diabcat
 
 * Delete unneeded variables
-drop hba1c_pct hba1c_percentage hba1c_mmol_per_l
+drop hba1c_pct hba1c_percentage hba1c_mmol_per_mol
 
 
 
