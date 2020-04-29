@@ -53,7 +53,13 @@ stset stime_cpnsdeath, fail(cpnsdeath) 			///
 	id(patient_id) enter(enter_date) origin(enter_date)
 
 
-sts graph, by(male) adjustfor(c_age) 		
+sts graph, by(male) adjustfor(c_age) 						///
+			failure yscale(range(0, 0.012)) 				///
+			ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
+			noorigin										///
+			xscale(range(30, 84)) 							///
+			xlabel(30 (10) 80)							
+	
 graph export "output/km_adj_male.svg", replace as(svg)
 
 			
@@ -85,11 +91,11 @@ foreach rf of varlist 	region							///
 
 		* Kaplan-Meier graph, adjusted for age and sex
 		sts graph, by(`rf') adjustfor(c_age c_male) 		///
-			yscale(range(0, 0.012)) 						///
+			failure yscale(range(0, 0.012)) 				///
 			ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
 			noorigin										///
 			xscale(range(30, 84)) 							///
-			xlabel(30 (10) 80)								///
+			xlabel(30 (10) 80)							
 
 		graph export "output/km_adj_`rf'.svg", replace as(svg)
 }
