@@ -82,8 +82,8 @@ do "an_multivariable_cox_models.do" cpnsdeath
 ************************************************************
 *PARALLEL WORKING - THIS MUST BE RUN LAST (IT's VERY QUICK)*
 ************************************************************
-do "an_tablecontent_HRtable.do"
-
+*do "an_tablecontent_HRtable.do"
+do "an_tablecontent_HRtable_HRforest"
 
 **Experimental, to do at end (in case slow)
 do "an_checkassumptions.do" cpnsdeath
