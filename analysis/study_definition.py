@@ -93,8 +93,8 @@ inflammatory_bowel_disease_codes = codelist_from_csv(
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
 
-hba1c_new_codes = codelist(['Xaeze', 'Xaezd'], system="ctv3")
-hba1c_old_codes = codelist(['XaERp'], system="ctv3")
+hba1c_new_codes = codelist(['XaPbt', 'Xaeze', 'Xaezd'], system="ctv3")
+hba1c_old_codes = codelist(['X772q', 'XaERo', 'XaERp'], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
@@ -434,7 +434,7 @@ study = StudyDefinition(
         include_month=True,
     ),
 
-    hba1c_new=patients.with_these_clinical_events(
+    hba1c_mmol_per_mol=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
         on_or_before="2020-02-01",
@@ -442,7 +442,7 @@ study = StudyDefinition(
         include_date_of_match=True,
         include_month=True,
     ),
-    hba1c_old=patients.with_these_clinical_events(
+    hba1c_percentage=patients.with_these_clinical_events(
         hba1c_old_codes,
         find_last_match_in_period=True,
         on_or_before="2020-02-01",
