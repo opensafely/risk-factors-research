@@ -141,7 +141,7 @@ if _rc==0 {
 	
 	/*  Brier score  */
 	
-	timer clear 
+	/*timer clear 
 	timer on 3
 
 	* Calculate at 60 days
@@ -202,6 +202,7 @@ if _rc==0 {
 
 	timer off 3
 	timer list
+	*/
 	
 }
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
