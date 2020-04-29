@@ -157,8 +157,8 @@ foreach rf of varlist 	region							///
 		* Kaplan-Meier graph, adjusted for age and sex
 		sts graph, by(`rf') adjustfor(c_age c_male) 		
 		graph export "output/km_adj_`rf'.svg", replace as(svg)
-	}
 }
+
 
 
 
