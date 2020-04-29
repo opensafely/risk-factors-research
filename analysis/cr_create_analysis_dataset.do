@@ -68,7 +68,7 @@ drop if inlist(sex, "I", "U")
 foreach var of varlist 	bp_sys_date 					///
 						bp_dias_date 					///
 						hba1c_percentage_date			///
-						hba1c_mmol_per_l_date			///
+						hba1c_mmol_per_mol_date			///
 						hypertension					///
 						bmi_date_measured				///
 						chronic_respiratory_disease 	///
@@ -111,7 +111,7 @@ rename bmi_date_measured_date      bmi_date_measured
 rename bp_dias_date_measured_date  bp_dias_date
 rename bp_sys_date_measured_date   bp_sys_date
 rename hba1c_percentage_date_date  hba1c_percentage_date
-rename hba1c_mmol_per_l_date_date  hba1c_mmol_per_l_date
+rename hba1c_mmol_per_mol_date_date  hba1c_mmol_per_mol_date
 
 
 
@@ -277,8 +277,11 @@ label define bpcat 1 "Normal" 2 "Elevated" 3 "High, stage I"	///
 					4 "High, stage II" .u "Unknown"
 label values bpcat bpcat
 
+recode bpcat .u=1, gen(bpcat_nomiss)
+label values bpcat_nomiss bpcat
+
 * Create non-missing indicator of known high blood pressure
-gen bphigh = (bpcat==3 | bpcat==4)
+gen bphigh = (bpcat==4)
 order bpcat bphigh, after(bp_dias_date)
 
 
@@ -710,7 +713,7 @@ keep patient_id imd stp region enter_date  									///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
 	stime_onscoviddeath														///
 	age agegroup age70 age1 age2 age3 male bmi smoke   						///
-	smoke smoke_nomiss bmicat obese4cat ethnicity 							///
+	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity 				///
 	bpcat bphigh htdiag_or_highbp hypertension 								///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///

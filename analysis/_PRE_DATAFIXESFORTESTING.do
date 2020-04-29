@@ -7,7 +7,7 @@ set more off
 
 set seed 21478
 
-
+/*
 * Creatinine
 gen creatinine = runiform()*35
 
@@ -18,6 +18,7 @@ gen hypertension = string(year(hyper))		 	///
 				+ "-" + string(month(hyper)) 
 replace hypertension = " " if hypertension==".-." 
 drop hypertension_temp
+*/
 
 * Hba1c 
 gen hba1c_percentage   = rnormal(2, 10)
@@ -43,10 +44,10 @@ replace hba1c_mmol_per_mol_date = "" if hba1c_mmol_per_mol==.
 
 
 * STP
-rename geographic_area stp
+*rename geographic_area stp
 
 
-* Region
+/* Region
 gen region = "North East" if uniform()<0.1 
 replace region = "North West" if uniform()<0.2 & region==""
 replace region = "Yorkshire and The Humber" if uniform()<0.3 & region==""
@@ -56,5 +57,4 @@ replace region = "East" if uniform()<0.6 & region==""
 replace region = "London" if uniform()<0.7 & region==""
 replace region = "South East" if uniform()<0.8 & region==""
 replace region = "South West" if region==""
-
-
+*/
