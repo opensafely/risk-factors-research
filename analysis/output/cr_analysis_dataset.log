@@ -1,8 +1,8 @@
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
+       log:  C:\Users\emsuewil\Documents\Work\Covid\Risk profile\Git\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  28 Apr 2020, 17:10:08
+ opened on:  29 Apr 2020, 16:47:47
 
 . 
 . 
@@ -58,8 +58,8 @@
 . * To be added: dates related to outcomes
 . foreach var of varlist  bp_sys_date                                     ///
 >                                                 bp_dias_date                                    ///
->                                                 hba1c_old_date                                  ///
->                                                 hba1c_new_date                                  ///
+>                                                 hba1c_percentage_date                   ///
+>                                                 hba1c_mmol_per_l_date                   ///
 >                                                 hypertension                                    ///
 >                                                 bmi_date_measured                               ///
 >                                                 chronic_respiratory_disease     ///
@@ -105,26 +105,26 @@ variable bp_dias_date_measured was str7 now str10
 (100,575 real changes made)
 (45,520 real changes made)
 (45,520 missing values generated)
-variable hba1c_old_date was str7 now str10
+variable hba1c_percentage_date was str7 now str10
 (100,575 real changes made)
-(100,539 real changes made)
-(100,539 missing values generated)
-variable hba1c_new_date was str7 now str10
+(95,600 real changes made)
+(99,551 missing values generated)
+variable hba1c_mmol_per_l_date was str7 now str10
 (100,575 real changes made)
-(100,573 real changes made)
-(100,573 missing values generated)
+(20,300 real changes made)
+(84,424 missing values generated)
 variable hypertension was str7 now str10
 (100,575 real changes made)
-(86,809 real changes made)
-(86,809 missing values generated)
+(0 real changes made)
+(80,610 missing values generated)
 variable bmi_date_measured was str7 now str10
 (100,575 real changes made)
 (90,131 real changes made)
 (90,131 missing values generated)
 variable chronic_respiratory_disease was str7 now str10
 (100,575 real changes made)
-(99,932 real changes made)
-(99,932 missing values generated)
+(99,918 real changes made)
+(99,918 missing values generated)
 variable chronic_cardiac_disease was str7 now str10
 (100,575 real changes made)
 (78,304 real changes made)
@@ -209,11 +209,10 @@ variable ra_sle_psoriasis was str7 now str10
 
 . rename bp_sys_date_measured_date   bp_sys_date
 
-. rename hba1c_old_date_date         hba1c_old_date
+. rename hba1c_percentage_date_date  hba1c_percentage_date
 
-. rename hba1c_new_date_date         hba1c_new_date
+. rename hba1c_mmol_per_l_date_date  hba1c_mmol_per_l_date
 
-. 
 . 
 . 
 . 
@@ -253,16 +252,16 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . gen     smoke = 1  if smoking_status=="N"
-(94,588 missing values generated)
+(94,589 missing values generated)
 
 . replace smoke = 2  if smoking_status=="E"
-(12,819 real changes made)
+(12,816 real changes made)
 
 . replace smoke = 3  if smoking_status=="S"
-(26,466 real changes made)
+(26,401 real changes made)
 
 . replace smoke = .u if smoking_status=="M"
-(55,303 real changes made, 55,303 to missing)
+(55,372 real changes made, 55,372 to missing)
 
 . label values smoke smoke
 
@@ -275,11 +274,11 @@ variable ra_sle_psoriasis was str7 now str10
 (79,990 real changes made, 79,990 to missing)
 
 . 
-. label define ethnicity  1 "White"               ///
->                                                 2 "Mixed" ///
->                                                 3 "Asian or Asian British"              ///
->                                                 4 "Black"               ///
->                                                 5 "Other"               ///
+. label define ethnicity  1 "White"                                       ///
+>                                                 2 "Mixed"                                       ///
+>                                                 3 "Asian or Asian British"      ///
+>                                                 4 "Black"                                       ///
+>                                                 5 "Other"                                       ///
 >                                                 .u "Unknown"
 
 . label values ethnicity ethnicity
@@ -405,7 +404,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Create non-missing 3-category variable for current smoking
 . recode smoke .u=1, gen(smoke_nomiss)
-(55303 differences between smoke and smoke_nomiss)
+(55372 differences between smoke and smoke_nomiss)
 
 . order smoke_nomiss, after(smoke)
 
@@ -659,7 +658,7 @@ variable ra_sle_psoriasis was str7 now str10
 . gen htdiag_or_highbp = bphigh
 
 . recode htdiag_or_highbp 0 = 1 if hypertension==1 
-(htdiag_or_highbp: 949 changes made)
+(htdiag_or_highbp: 12551 changes made)
 
 . 
 . 
@@ -671,13 +670,13 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Set implausible creatinine values to missing 
 . replace creatinine = . if !inrange(creatinine, 20, 3000) 
-(77,333 real changes made, 77,333 to missing)
+(57,652 real changes made, 57,652 to missing)
 
 .         
 . * Multiply by 0.95 (for assay-fudge factor) and 
 . * divide by 88.4 (to convert umol/l to mg/dl)
 . gen SCr_adj = creatinine/88.4
-(77,333 missing values generated)
+(57,652 missing values generated)
 
 . 
 . * NB: I have guessed which way round sex is...
@@ -685,55 +684,55 @@ variable ra_sle_psoriasis was str7 now str10
 (100,575 missing values generated)
 
 . replace min = SCr_adj/0.7 if male==0
-(11,664 real changes made)
+(23,652 real changes made)
 
 . replace min = SCr_adj/0.9 if male==1
-(11,578 real changes made)
+(19,271 real changes made)
 
 . replace min = min^-0.329  if male==0
-(11,664 real changes made)
+(23,652 real changes made)
 
 . replace min = min^-0.411  if male==1
-(11,578 real changes made)
+(19,271 real changes made)
 
 . replace min = 1 if min<1
-(2,698 real changes made)
+(0 real changes made)
 
 . 
 . gen max=.
 (100,575 missing values generated)
 
 . replace max=SCr_adj/0.7 if male==0
-(11,664 real changes made)
+(23,652 real changes made)
 
 . replace max=SCr_adj/0.9 if male==1
-(11,578 real changes made)
+(19,271 real changes made)
 
 . replace max=max^-1.209
-(23,242 real changes made)
+(42,923 real changes made)
 
 . replace max=1 if max>1
-(97,877 real changes made)
+(100,575 real changes made)
 
 . 
 . gen egfr=min*max*141
-(77,333 missing values generated)
+(57,652 missing values generated)
 
 . replace egfr=egfr*(0.993^age)
-(23,242 real changes made)
+(42,923 real changes made)
 
 . replace egfr=egfr*1.018 if male==0
-(11,664 real changes made)
+(23,652 real changes made)
 
 . label var egfr "egfr calculated using CKD-EPI formula with no eth + fudge"
 
 . 
 . * Categorise into ckd stages
 . egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
-(77333 missing values generated)
+(57652 missing values generated)
 
 . recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
-(23242 differences between egfr_cat and ckd)
+(42923 differences between egfr_cat and ckd)
 
 . * 0 = "No CKD"  2 "stage 3a" 3 "stage 3b" 4 "stage 4" 5 "stage 5"
 . label define ckd 0 "No CKD" 1 "CKD"
@@ -745,10 +744,10 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Convert into CKD group
 . recode ckd 2/5=1, gen(chronic_kidney_disease)
-(765 differences between ckd and chronic_kidney_disease)
+(0 differences between ckd and chronic_kidney_disease)
 
 . replace chronic_kidney_disease = 0 if creatinine==. 
-(77,333 real changes made)
+(57,652 real changes made)
 
 .         
 .         
@@ -757,35 +756,45 @@ variable ra_sle_psoriasis was str7 now str10
 . *   Hba1c  *
 . ************
 .         
+.         
 . 
 . /*  Diabetes severity  */
 . 
+. 
+. * Set zero to missing
+. replace hba1c_percentage = . if hba1c_percentage==0
+(0 real changes made)
+
+. replace hba1c_mmol_per_l = . if hba1c_percentage==0
+(0 real changes made)
+
+. 
+. 
 . * Only consider measurements in last 15 months
-. replace hba1c_old = . if hba1c_old_date<d(1/11/2018)
-(36 real changes made, 36 to missing)
+. replace hba1c_percentage = . if hba1c_percentage<d(1/11/2018)
+(4,975 real changes made, 4,975 to missing)
 
-. replace hba1c_new = . if hba1c_new_date<d(1/11/2018)
-(2 real changes made, 2 to missing)
+. replace hba1c_mmol_per_l = . if hba1c_mmol_per_l<d(1/11/2018)
+(80,275 real changes made, 80,275 to missing)
 
 . 
 . 
 . 
-. /* Express  HbA1c as perecentage  */ 
-. 
+. /* Express  HbA1c as percentage  */ 
 . 
 . * Express all values as perecentage 
-. noi summ hba1c_old hba1c_new 
+. noi summ hba1c_percentage hba1c_mmol_per_l 
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-   hba1c_old |    100,539           0           0          0          0
-   hba1c_new |    100,573           0           0          0          0
+hba1c_per~ge |          0
+hba1c_mmol~l |          0
 
-. gen     hba1c_pct = hba1c_old 
-(36 missing values generated)
+. gen     hba1c_pct = hba1c_percentage 
+(100,575 missing values generated)
 
-. replace hba1c_pct = (hba1c_new/10.929)+2.15 if hba1c_new<. 
-(100,573 real changes made)
+. replace hba1c_pct = (hba1c_mmol_per_l/10.929)+2.15 if hba1c_mmol_per_l<. 
+(0 real changes made)
 
 . 
 . * Valid % range between 0-20  
@@ -793,7 +802,7 @@ variable ra_sle_psoriasis was str7 now str10
 (0 real changes made)
 
 . replace hba1c_pct = round(hba1c_pct, 0.1)
-(100,573 real changes made)
+(0 real changes made)
 
 . 
 . 
@@ -801,7 +810,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Group hba1c
 . gen     hba1ccat = 0 if hba1c_pct <  6.5
-(1 missing value generated)
+(100,575 missing values generated)
 
 . replace hba1ccat = 1 if hba1c_pct >= 6.5  & hba1c_pct < 7.5
 (0 real changes made)
@@ -820,12 +829,7 @@ variable ra_sle_psoriasis was str7 now str10
 . label values hba1ccat hba1ccat
 
 . tab hba1ccat
-
-   hba1ccat |      Freq.     Percent        Cum.
-------------+-----------------------------------
-      <6.5% |    100,574      100.00      100.00
-------------+-----------------------------------
-      Total |    100,574      100.00
+no observations
 
 . 
 . * Create diabetes, split by control/not
@@ -833,13 +837,13 @@ variable ra_sle_psoriasis was str7 now str10
 (27,879 missing values generated)
 
 . replace diabcat = 2 if diabetes==1 & inlist(hba1ccat, 0, 1)
-(27,879 real changes made)
+(0 real changes made)
 
 . replace diabcat = 3 if diabetes==1 & inlist(hba1ccat, 2, 3, 4)
 (0 real changes made)
 
 . replace diabcat = 4 if diabetes==1 & !inlist(hba1ccat, 0, 1, 2, 3, 4)
-(0 real changes made)
+(27,879 real changes made)
 
 . 
 . label define diabcat    1 "No diabetes"                         ///
@@ -851,7 +855,7 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . * Delete unneeded variables
-. drop hba1c_pct hba1c_new hba1c_old
+. drop hba1c_pct hba1c_percentage hba1c_mmol_per_l
 
 . 
 . 
@@ -1178,7 +1182,7 @@ file cr_create_analysis_dataset.dta saved
 . 
 . log close
       name:  <unnamed>
-       log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
+       log:  C:\Users\emsuewil\Documents\Work\Covid\Risk profile\Git\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  28 Apr 2020, 17:10:14
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ closed on:  29 Apr 2020, 16:47:52
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
