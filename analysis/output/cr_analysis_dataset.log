@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:  29 Apr 2020, 18:00:19
+ opened on:  29 Apr 2020, 22:18:30
 
 . 
 . 
@@ -107,12 +107,12 @@ variable bp_dias_date_measured was str7 now str10
 (45,520 missing values generated)
 variable hba1c_percentage_date was str7 now str10
 (100,575 real changes made)
-(95,400 real changes made)
-(95,400 missing values generated)
+(79,398 real changes made)
+(79,398 missing values generated)
 variable hba1c_mmol_per_mol_date was str7 now str10
 (100,575 real changes made)
-(20,013 real changes made)
-(20,013 missing values generated)
+(100,562 real changes made)
+(100,562 missing values generated)
 variable hypertension was str7 now str10
 (100,575 real changes made)
 (86,858 real changes made)
@@ -252,16 +252,16 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . gen     smoke = 1  if smoking_status=="N"
-(94,589 missing values generated)
+(94,712 missing values generated)
 
 . replace smoke = 2  if smoking_status=="E"
-(12,817 real changes made)
+(12,807 real changes made)
 
 . replace smoke = 3  if smoking_status=="S"
-(26,125 real changes made)
+(27,170 real changes made)
 
 . replace smoke = .u if smoking_status=="M"
-(55,647 real changes made, 55,647 to missing)
+(54,735 real changes made, 54,735 to missing)
 
 . label values smoke smoke
 
@@ -404,7 +404,7 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Create non-missing 3-category variable for current smoking
 . recode smoke .u=1, gen(smoke_nomiss)
-(55647 differences between smoke and smoke_nomiss)
+(54735 differences between smoke and smoke_nomiss)
 
 . order smoke_nomiss, after(smoke)
 
@@ -767,19 +767,19 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Set zero or negative to missing
 . replace hba1c_percentage   = . if hba1c_percentage<=0
-(2,176 real changes made, 2,176 to missing)
+(79,553 real changes made, 79,553 to missing)
 
 . replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol<=0
-(34,837 real changes made, 34,837 to missing)
+(100,563 real changes made, 100,563 to missing)
 
 . 
 . 
 . * Only consider measurements in last 15 months
 . replace hba1c_percentage   = . if hba1c_percentage   < d(1/11/2018)
-(2,999 real changes made, 2,999 to missing)
+(21,022 real changes made, 21,022 to missing)
 
 . replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol < d(1/11/2018)
-(45,725 real changes made, 45,725 to missing)
+(12 real changes made, 12 to missing)
 
 . 
 . 
@@ -1188,5 +1188,5 @@ file cr_create_analysis_dataset.dta saved
       name:  <unnamed>
        log:  C:\Github\opencorona-risk-factors-research\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:  29 Apr 2020, 18:00:26
+ closed on:  29 Apr 2020, 22:18:36
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

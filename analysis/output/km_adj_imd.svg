@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This is a Stata 15.1 generated SVG file (http://www.stata.com) -->
+
+<svg version="1.1" width="5.50in" height="4.00in" viewBox="0 0 3960 2880" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>Stata Graph - Graph</desc>
+	<rect x="0" y="0" width="3960" height="2880" style="fill:#EAF2F3;stroke:none"/>
+	<rect x="0.00" y="0.00" width="3959.88" height="2880.00" style="fill:#EAF2F3"/>
+	<rect x="2.88" y="2.88" width="3954.12" height="2874.24" style="fill:none;stroke:#EAF2F3;stroke-width:5.76"/>
+	<rect x="540.79" y="415.32" width="3318.23" height="1538.38" style="fill:#FFFFFF"/>
+	<rect x="543.67" y="418.20" width="3312.47" height="1532.62" style="fill:none;stroke:#FFFFFF;stroke-width:5.76"/>
+	<line x1="540.79" y1="1890.34" x2="3859.02" y2="1890.34" style="stroke:#EAF2F3;stroke-width:8.64"/>
+	<line x1="540.79" y1="1596.30" x2="3859.02" y2="1596.30" style="stroke:#EAF2F3;stroke-width:8.64"/>
+	<line x1="540.79" y1="1302.14" x2="3859.02" y2="1302.14" style="stroke:#EAF2F3;stroke-width:8.64"/>
+	<line x1="540.79" y1="1008.10" x2="3859.02" y2="1008.10" style="stroke:#EAF2F3;stroke-width:8.64"/>
+	<line x1="540.79" y1="713.94" x2="3859.02" y2="713.94" style="stroke:#EAF2F3;stroke-width:8.64"/>
+	<line x1="1313.36" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#90353B;stroke-width:8.64"/>
+	<line x1="3795.66" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#90353B;stroke-width:8.64"/>
+	<line x1="1313.36" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#55752F;stroke-width:8.64"/>
+	<line x1="3795.66" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#55752F;stroke-width:8.64"/>
+	<line x1="1313.36" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#E37E00;stroke-width:8.64"/>
+	<line x1="3795.66" y1="1890.34" x2="3795.66" y2="1890.34" stroke-linecap="round" style="stroke:#E37E00;stroke-width:8.64"/>
+	<line x1="540.79" y1="1953.70" x2="540.79" y2="415.32" style="stroke:#000000;stroke-width:5.76"/>
+	<line x1="540.79" y1="1890.34" x2="500.82" y2="1890.34" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="480.77" y="1925.37" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="end">0.0000</text>
+	<line x1="540.79" y1="1596.30" x2="500.82" y2="1596.30" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="480.77" y="1631.33" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="end">0.0025</text>
+	<line x1="540.79" y1="1302.14" x2="500.82" y2="1302.14" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="480.77" y="1337.17" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="end">0.0050</text>
+	<line x1="540.79" y1="1008.10" x2="500.82" y2="1008.10" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="480.77" y="1043.13" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="end">0.0075</text>
+	<line x1="540.79" y1="713.94" x2="500.82" y2="713.94" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="480.77" y="748.96" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="end">0.0100</text>
+	<line x1="540.79" y1="1953.70" x2="3859.02" y2="1953.70" style="stroke:#000000;stroke-width:5.76"/>
+	<line x1="604.15" y1="1953.70" x2="604.15" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="604.15" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">30</text>
+	<line x1="1195.18" y1="1953.70" x2="1195.18" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="1195.18" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">40</text>
+	<line x1="1786.21" y1="1953.70" x2="1786.21" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="1786.21" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">50</text>
+	<line x1="2377.24" y1="1953.70" x2="2377.24" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="2377.24" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">60</text>
+	<line x1="2968.27" y1="1953.70" x2="2968.27" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="2968.27" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">70</text>
+	<line x1="3559.30" y1="1953.70" x2="3559.30" y2="1993.67" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="3559.30" y="2083.66" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">80</text>
+	<text x="2199.90" y="2193.67" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle">analysis time</text>
+	<rect x="962.53" y="2278.31" width="2474.75" height="466.30" style="fill:#FFFFFF"/>
+	<rect x="965.41" y="2281.19" width="2468.99" height="460.54" style="fill:none;stroke:#000000;stroke-width:5.76"/>
+	<line x1="1005.84" y1="2371.50" x2="1380.18" y2="2371.50" style="stroke:#1A476F;stroke-width:8.64"/>
+	<line x1="2612.61" y1="2371.50" x2="2986.95" y2="2371.50" style="stroke:#90353B;stroke-width:8.64"/>
+	<line x1="1005.84" y1="2511.46" x2="1380.18" y2="2511.46" style="stroke:#55752F;stroke-width:8.64"/>
+	<line x1="2612.61" y1="2511.46" x2="2986.95" y2="2511.46" style="stroke:#E37E00;stroke-width:8.64"/>
+	<line x1="1005.84" y1="2651.43" x2="1380.18" y2="2651.43" style="stroke:#6E8E84;stroke-width:8.64"/>
+	<text x="1440.20" y="2406.52" style="font-family:'Helvetica';font-size:99.99px;fill:#000000">imd = 1 least deprived</text>
+	<text x="3046.97" y="2406.52" style="font-family:'Helvetica';font-size:99.99px;fill:#000000">imd = 2</text>
+	<text x="1440.20" y="2546.49" style="font-family:'Helvetica';font-size:99.99px;fill:#000000">imd = 3</text>
+	<text x="3046.97" y="2546.49" style="font-family:'Helvetica';font-size:99.99px;fill:#000000">imd = 4</text>
+	<text x="1440.20" y="2686.46" style="font-family:'Helvetica';font-size:99.99px;fill:#000000">imd = 5 most deprived</text>
+	<text x="2199.90" y="215.98" style="font-family:'Helvetica';font-size:139.96px;fill:#1E2D53" text-anchor="middle">Failure functions</text>
+	<text x="2199.90" y="356.06" style="font-family:'Helvetica';font-size:139.96px;fill:#1E2D53" text-anchor="middle">adjusted for c_age c_male</text>
+</svg>
