@@ -1,73 +1,25 @@
-# For researchers
+# Factors associated with COVID-19-related hospital death
 
-This repository contains everything needed to:
+This is the code and configuration for our paper, _OpenSAFELY: factors associated with COVID-19-related hospital death in the linked electronic health records of 17 million adult NHS patients_
 
-* Define a set of covariates needed for your model
-* Generate an input dataset from dummy data against which you can develop your model
+* The paper is [here]()
+* Raw model outputs, including charts, crosstabs, etc, are in `released_analysis_results/`
+* If you are interested in how we defined our covarates, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
+* If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/).
+* Developers and epidemiologists interested in the code should review
+[DEVELOPERS.md](./DEVELOPERS.md).
 
-The entrypoint of your model **must** be called `model.do` and it must
-live in the `analysis/` folder.
+# About the OpenSAFELY framework
 
-Your model **must** start by importing the dataset, which will be called
-`input.csv` and be in the same folder.
+The OpenSAFELY framework is a new secure analytics platform for
+electronic health records research in the NHS.
 
-For portability, the recommended way of starting your model is:
+Instead of requesting access for slices of patient data and
+transporting them elsewhere for analysis, the framework supports
+developing analytics against dummy data, and then running against the
+real data *within the same infrastructure that the data is stored*.
+Read more at [OpenSAFELY.org](https://opensafely.org).
 
-```stata
-import delimited `c(pwd)'/analysis/input.csv
-```
-
-## Defining covariates
-
-At the moment, this involves writing some simple Python code.
-
-This must live in a file at `analysis/study_definition.py`.  Until
-more documentation is written, refer to the sample one provided here
-for inspiration.
-
-## Generating dummy data
-
-### Windows
-
-On Windows, you'll want to install a couple of things:
-
-* [This ODBC driver from Microsoft]( https://www.microsoft.com/en-us/download/details.aspx?id=56567)
-* The latest `run.exe` from [here](https://github.com/ebmdatalab/opencorona-research-template/releases)
-  * This must be copied to the root folder of your research repository
-
-You need to obtain the "database URL", which includes a username and password.
-
-Now double-click `run.exe`, and it will use your covariate definitions
-in `analysis/study_definition.py` to generate a data file at `analysis/input.csv`
-
-You can now use Stata as you usually would, with your code entrypoint
-in `analysis/model.do`.
-
-### Mac
-
-On a Mac, you will need to run this from the command line (terminal). You will need to install the [Microsoft ODBC driver](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#microsoft-odbc-17). This can be installed via `brew`.
-
-You will need to add the "database URL" when you run the command. This has been shared on slack.
-
-## Running the model against real data
-
-
-* Set environment variables:
-  * `DATABASE_URL` should point at the SQL Server DNS for the live data (see `.env-example`)
-  * `GITHUB_ACTOR` and `GITHUB_TOKEN` are a username and token with
-    package repo read rights. Generate your own from Settings >
-    Developer. These are needed to run the Stata docker
-    container. Alternatively, you can specify a Stata executable
-* Run `run.py generate_cohort` to generate the cohort
-* Run `run.py run` to run the model. Its output is streamed to stdout, and saved in `model.log`
-
-# For developers
-
-## Run tests
-
-* Start an mssql server with `docker-compose up`
-* Set up a virtualenv and `pip install -r requirements.txt`
-* `py.test tests/`
-
-Note: until we make this cleaner... if you change the database schema
-be sure to `docker rm stata-docker_sql_1` before restarting.
+The framework is under fast, active development to support rapid
+analytics relating to COVID19; we're currently seeking funding to make
+it easier for outside collaborators to work with our system.
