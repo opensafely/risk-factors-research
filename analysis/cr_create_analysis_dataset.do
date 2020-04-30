@@ -483,8 +483,8 @@ replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol<=0
 
 
 * Only consider measurements in last 15 months
-replace hba1c_percentage   = . if hba1c_percentage   < d(1/11/2018)
-replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol < d(1/11/2018)
+replace hba1c_percentage   = . if hba1c_percentage_date   < d(1/11/2018)
+replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol_date < d(1/11/2018)
 
 
 
