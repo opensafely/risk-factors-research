@@ -1,0 +1,183 @@
+--------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/kbadhoc_agegp_adjethcpnsdeath.log
+  log type:  text
+ opened on:   1 May 2020, 00:27:27
+
+. 
+. use cr_create_analysis_dataset, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) bp(string) [ethnicity(real 0) if(string)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         capture stcox   `age'                                   ///
+>                         i.male                                                  ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         `bp'                                                    ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.chronic_kidney_disease                ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         i.other_immunosuppression                       ///
+>                         `if'                                                    ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. 
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id)
+>  
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+   17420594  total observations
+        466  observations end on or before enter()
+------------------------------------------------------------------------------
+   17420128  observations remaining, representing
+   17420128  subjects
+      5,707  failures in single-failure-per-subject data
+ 1.4615e+09  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        84
+
+. 
+. *Complete case ethnicity model
+. basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(1)
+   1:   2149.57 /        1 =    2149.5680
+
+. if _rc==0{
+. estimates
+
+--------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,715,040                  Number of obs    =  12,715,040
+No. of failures =        4,221
+Time at risk    =   1066826984
+                                                LR chi2(41)      =    13370.39
+Log likelihood  =   -48952.422                  Prob > chi2      =      0.0000
+
+-------------------------------------------------------------------------------------------
+                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------+----------------------------------------------------------------
+                 agegroup |
+                  18-<40  |   .0808469   .0147593   -13.78   0.000     .0565287    .1156266
+                  40-<50  |    .293576   .0385084    -9.34   0.000     .2270222    .3796407
+                  60-<70  |   2.083426   .1551182     9.86   0.000     1.800542    2.410754
+                  70-<80  |    4.83117   .3359124    22.65   0.000     4.215684    5.536516
+                     80+  |   11.99166   .8534267    34.91   0.000     10.43039    13.78662
+                          |
+                   1.male |   1.833336   .0606812    18.31   0.000     1.718179    1.956212
+                          |
+                obese4cat |
+       Obese I (30-34.9)  |   1.207856   .0476042     4.79   0.000     1.118066    1.304856
+      Obese II (35-39.9)  |   1.481855   .0852101     6.84   0.000     1.323913    1.658639
+         Obese III (40+)  |   2.053178   .1581178     9.34   0.000     1.765528    2.387694
+                          |
+             smoke_nomiss |
+                  Former  |   1.329654   .0484806     7.81   0.000     1.237949    1.428152
+                 Current  |   .8866028    .058779    -1.82   0.069     .7785688    1.009627
+                          |
+                ethnicity |
+                   Mixed  |   1.585771   .2578925     2.84   0.005     1.152949    2.181075
+  Asian or Asian British  |   1.550059   .0950373     7.15   0.000     1.374546    1.747982
+                   Black  |   1.639251   .1419441     5.71   0.000     1.383373    1.942459
+                   Other  |   1.344698   .1769439     2.25   0.024     1.039007    1.740329
+                          |
+                      imd |
+                       2  |   1.201833   .0649542     3.40   0.001     1.081036    1.336128
+                       3  |   1.253338   .0676532     4.18   0.000     1.127513    1.393204
+                       4  |   1.535306   .0809017     8.14   0.000     1.384655    1.702348
+         5 most deprived  |    1.68945    .091406     9.69   0.000     1.519469    1.878446
+                          |
+       1.htdiag_or_highbp |   1.016828   .0387186     0.44   0.661     .9437034    1.095618
+1.chronic_respiratory_d~e |    1.78335   .0697544    14.79   0.000     1.651743    1.925443
+                          |
+                asthmacat |
+             Yes, no OCS  |   1.011423   .0479429     0.24   0.811     .9216893    1.109892
+            Yes with OCS  |   1.193397   .0985274     2.14   0.032     1.015101    1.403009
+                          |
+1.chronic_cardiac_disease |     1.3128   .0456614     7.82   0.000     1.226287    1.405415
+                          |
+                  diabcat |
+     Controlled diabetes  |   1.469398   .0579428     9.76   0.000      1.36011    1.587467
+   Uncontrolled diabetes  |   2.148439   .1047125    15.69   0.000     1.952704    2.363794
+Diabetes, no hba1c mea..  |   1.987753   .1491803     9.15   0.000     1.715852     2.30274
+                          |
+        cancer_exhaem_cat |
+               Last year  |   1.631046   .1795194     4.44   0.000     1.314558    2.023732
+           2-5 years ago  |   1.195137   .0912885     2.33   0.020     1.028964    1.388146
+                5+ years  |   1.038031   .0540428     0.72   0.473      .937334    1.149546
+                          |
+          cancer_haem_cat |
+               Last year  |   3.155231   .7263459     4.99   0.000      2.00947    4.954284
+           2-5 years ago  |    3.27945   .4141093     9.41   0.000      2.56045    4.200352
+                5+ years  |   1.793835    .212575     4.93   0.000     1.422043    2.262833
+                          |
+  1.chronic_liver_disease |   1.566928   .1710068     4.12   0.000     1.265182     1.94064
+        1.stroke_dementia |    1.83113   .0779571    14.21   0.000     1.684538    1.990479
+            1.other_neuro |   2.354066   .1618946    12.45   0.000     2.057215    2.693753
+ 1.chronic_kidney_disease |   1.923532   .0682238    18.44   0.000     1.794358    2.062006
+       1.organ_transplant |   4.162768   .6621963     8.97   0.000      3.04773    5.685752
+                 1.spleen |   1.379912   .3267169     1.36   0.174     .8675917    2.194762
+       1.ra_sle_psoriasis |   1.141863   .0620333     2.44   0.015      1.02653    1.270156
+1.other_immunosuppression |   1.592959   .2937074     2.53   0.012     1.109842    2.286377
+-------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/kbadhoc_agegp_adjeth, replace
+(note: file ./output/models/kbadhoc_agegp_adjeth.ster not found)
+file ./output/models/kbadhoc_agegp_adjeth.ster saved
+. *estat concordance /*c-statistic*/
+.  }
+
+.  else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
+
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/kbadhoc_agegp_adjethcpnsdeath.log
+  log type:  text
+ closed on:   1 May 2020, 01:08:30
+--------------------------------------------------------------------------------------------
