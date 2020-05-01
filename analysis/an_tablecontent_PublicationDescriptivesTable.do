@@ -92,44 +92,35 @@ file write tablecontent _n _n
 **COMORBIDITIES
 *RESPIRATORY
 tabulatevariable, variable(chronic_respiratory_disease) start(1) end(1)
-file write tablecontent _n _n
+file write tablecontent _n
 *ASTHMA
 tabulatevariable, variable(asthmacat) start(3) end(2)
-file write tablecontent _n
 *CARDIAC
 tabulatevariable, variable(chronic_cardiac_disease) start(1) end(1)
-file write tablecontent _n _n
+file write tablecontent _n 
 *DIABETES
 tabulatevariable, variable(diabcat) start(3) end(2) /*uncontrolled, then controlled*/
 tabulatevariable, variable(diabcat) start(4) end(4) /*no a1c measure*/
-file write tablecontent _n _n
+file write tablecontent _n
 *CANCER EX HAEM
 tabulatevariable, variable(cancer_exhaem_cat) start(2) end(4) /*<1, 1-4.9, 5+ years ago*/
-file write tablecontent _n _n
+file write tablecontent _n
 *CANCER HAEM
 tabulatevariable, variable(cancer_haem_cat) start(2) end(4) /*<1, 1-4.9, 5+ years ago*/
-file write tablecontent _n
 *LIVER
 tabulatevariable, variable(chronic_liver_disease) start(1) end(1)
-file write tablecontent _n 
 *STROKE/DEMENTIA
 tabulatevariable, variable(stroke_dementia) start(1) end(1)
-file write tablecontent _n 
 *OTHER NEURO
 tabulatevariable, variable(other_neuro) start(1) end(1)
-file write tablecontent _n 
 *CKD
 tabulatevariable, variable(chronic_kidney_disease) start(1) end(1)
-file write tablecontent _n 
 *ORGAN TRANSPLANT
 tabulatevariable, variable(organ_transplant) start(1) end(1)
-file write tablecontent _n 
 *SPLEEN
 tabulatevariable, variable(spleen) start(1) end(1)
-file write tablecontent _n 
 *RA_SLE_PSORIASIS
 tabulatevariable, variable(ra_sle_psoriasis) start(1) end(1)
-file write tablecontent _n 
 *OTHER IMMUNOSUPPRESSION
 tabulatevariable, variable(other_immunosuppression) start(1) end(1)
 
