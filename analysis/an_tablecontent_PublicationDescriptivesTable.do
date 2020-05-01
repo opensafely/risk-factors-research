@@ -31,7 +31,7 @@ syntax, variable(varname) condition(string)
 */
 	cou if cpnsdeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
-	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _n
+	file write tablecontent (r(N)) (" (") %4.2f  (`pct') (")") _n
 /*
 	cou if onscoviddeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
