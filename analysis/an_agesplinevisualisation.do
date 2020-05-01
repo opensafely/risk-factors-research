@@ -15,7 +15,7 @@ if _rc==0{
 	chronic_liver_disease stroke_dementia other_neuro chronic_kidney_disease organ_transplant ///
 	spleen ra_sle_psoriasis other_immunosuppression: replace X = 0 
 
-	predict xb
+	predict xb, xb
 	summ xb if age==60
 	gen xb_c = xb-r(mean)
 	line xb_c age, sort xtitle(Age in years) ytitle("Log hazard ratio (reference age 60 years)") yline(0, lp(dash))

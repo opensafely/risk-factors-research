@@ -34,7 +34,7 @@ local region `1'
 
 * Open a log file
 capture log close
-log using "output/an_checkassumptions_MI_`k'", text replace
+log using "output/an_checkassumptions_MI_`region'", text replace
 
 local k = `region'
 noi di `region'
