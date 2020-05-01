@@ -74,8 +74,6 @@ do "an_univariable_cox_models.do" cpnsdeath ///
 *MULTIVARIATE MODELS (this fits the models needed for fully adj col of Table 2)
 do "an_multivariable_cox_models.do" cpnsdeath
 
-*Graph of log HR against age, from primary model
-do "an_agesplinevisualisation.do"
 
 *SENSITIVITY ANALYSES / POST HOC ANALYSES
 
@@ -134,6 +132,7 @@ do "an_sensan_differentBPmeasures_cpnsdeath"
 ************************************************************
 do "an_tablecontent_HRtable_HRforest.do"
 do "an_tablecontent_SENSANtable.do"
+do "an_agesplinevisualisation.do"
 
 **Experimental, to do at end (in case slow)
 do "an_checkassumptions.do" cpnsdeath /*calculates c-stat and Schoenfeld PH test */
