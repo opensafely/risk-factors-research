@@ -10,7 +10,7 @@ Each Read 2 term maps to a CTV3 code, but the CTV3 hierarchy contains additional
 
 Codelists are hosted on OpenCodelists.  The script `get_codelists.py` in this directory will fetch all the codelists identified in `codelists.txt` from OpenCodelists.  As such, codelists should not be added or edited by hand.  Instead:
 
-* Go to http://smallweb1.ebmdatalab.net:8001/admin/
+* Go to https://codelists.opensafely.org/
 * Create or update the codelist.
   * Copy/paste the CSV data into the `csv_data field`
   * Set the `version_str` to today's date in `YYYY-MM-DD`
