@@ -57,7 +57,7 @@ local endwith "_tab"
 				if _rc!=0 local noestimatesflag 1			
 				}
 			if "`modeltype'"=="fulladj" {
-				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth  
+				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth  
 				if _rc!=0 local noestimatesflag 1
 				}
 			}
