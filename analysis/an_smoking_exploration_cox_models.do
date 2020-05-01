@@ -15,7 +15,10 @@
 *
 ********************************************************************************
 *
-*	Purpose:		Fit age/sex adjusted Cox models
+*	Purpose:		Fit age/sex adjusted Cox models for smoking, 
+* 					adjusted for each other risk factor indivivually
+*				(Post hoc analysis to explore drivers of confounding 
+*				of smoking effect)
 *  
 ********************************************************************************
 
@@ -32,28 +35,23 @@ local lastvar = word("`0'", `arguments')
 
 * Open a log file
 capture log close
-log using "./output/an_smok_exp_cox_models_`outcome'_`firstvar'TO`lastvar'", text replace
+log using "./output/an_smoking_exploration_cox_models_`outcome'_`firstvar'TO`lastvar'", text replace
 
 * Open dataset and fit specified model(s)
-use cr_create_analysis_dataset, clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
-stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 foreach var of any `varlist' {
 
-	*Special cases
-	if "`var'"=="agesplsex" local model "age1 age2 age3 i.male  i.smoke"
-	else if "`var'"=="agegroupsex" local model "ib3.agegroup i.male  i.smoke"
-	else if "`var'"=="bmicat" local model "age1 age2 age3 i.male ib2.bmicat i.smoke"
 	*General form of model
-	else local model "age1 age2 age3 i.male i.`var' i.smoke"
+	local model "age1 age2 age3 i.male i.`var' i.smoke"
 
 	*Fit and save model
 	cap erase ./output/models/an_smok_exp_cox_models_`outcome'_AGESEX_`var'.ster
 	capture stcox `model' , strata(stp) 
 	if _rc==0 {
 		estimates
-		estimates save ./output/models/an_smok_exp_cox_models_`outcome'_AGESEX_`var', replace
+		estimates save ./output/models/an_smoking_exploration_cox_models_`outcome'_AGESEX_`var', replace
 		}
 	else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
 

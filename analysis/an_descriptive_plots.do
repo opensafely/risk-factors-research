@@ -33,8 +33,7 @@
 
 
 
-use cr_create_analysis_dataset, clear
-
+use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 
 
 ****************************
@@ -43,9 +42,6 @@ use cr_create_analysis_dataset, clear
 
 *** Intended for publication
 
-* Declare survival outcome
-stset stime_cpnsdeath, fail(cpnsdeath) 				///
-	id(patient_id) enter(enter_date) origin(enter_date)
 
 * KM plot for females by age		
 sts graph if male==0, title("Female") 				///

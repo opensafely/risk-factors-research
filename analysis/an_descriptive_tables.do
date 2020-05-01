@@ -129,6 +129,14 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 }
 
 
+***************************************
+*  Cumulative incidence of CPNS DEATH *
+***************************************
+
+use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+
+sts list , at(0 80) by(agegroup male) fail
+
 
 * Close the log file
 log close

@@ -38,7 +38,7 @@ cap erase ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL
 capture log close
 log using "./output/an_multivariable_cox_models_`outcome'", text replace
 
-use cr_create_analysis_dataset, clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 
 ******************************
@@ -85,8 +85,6 @@ end
 
 
 
-stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
-
 *Age spline model (not adj ethnicity)
 basecoxmodel, age("age1 age2 age3")  bp("i.htdiag_or_highbp") ethnicity(0)
 if _rc==0{
@@ -112,39 +110,7 @@ estimates
 estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
  }
- else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
-
-*Model without ethnicity among ethnicity complete cases 
-basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(0) if("if ethnicity<.")
-if _rc==0{
-estimates
-estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
-*estat concordance /*c-statistic*/
- }
- else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
- 
- *BP SENS ANALYSES
- *Model with coded hypertension 
-basecoxmodel, age("age1 age2 age3") bp("i.hypertension") ethnicity(1)
-if _rc==0{
-estimates
-estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_HTN, replace
-*estat concordance /*c-statistic*/
- }
- else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
- 
-
-
-*Model with categorised bp
-basecoxmodel, age("age1 age2 age3") bp("i.bpcat_nomiss") ethnicity(1)
-if _rc==0{
-estimates
-estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_BPCAT, replace
-*estat concordance /*c-statistic*/
- }
- else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
- 
-
+ else di "WARNING CC ETHNICITY MODEL WITH AGESPLINE DID NOT FIT (OUTCOME `outcome')"
  
 
 

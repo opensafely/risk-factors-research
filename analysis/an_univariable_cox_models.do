@@ -35,9 +35,8 @@ capture log close
 log using "./output/an_univariable_cox_models_`outcome'_`firstvar'TO`lastvar'", text replace
 
 * Open dataset and fit specified model(s)
-use cr_create_analysis_dataset, clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
-stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
 
 foreach var of any `varlist' {
 
