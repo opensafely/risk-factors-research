@@ -24,18 +24,19 @@ syntax, variable(varname) condition(string)
 	local rowdenom = r(N)
 	local colpct = 100*(r(N)/`overalldenom')
 	file write tablecontent (`rowdenom')  (" (") %3.1f (`colpct') (")") _tab
-
+/*
 	cou if ituadmission==1<. & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
-
+*/
 	cou if cpnsdeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
-	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _tab
-
+	file write tablecontent (r(N)) (" (") %3.1f  (`pct') (")") _n
+/*
 	cou if onscoviddeath==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %3.1f (`pct') (")") _n
+*/
 end
 
 *******************************************************************************
@@ -88,55 +89,49 @@ file write tablecontent _n
 tabulatevariable, variable(htdiag_or_highbp) start(1) end(1) 			
 file write tablecontent _n _n
 
-file write tablecontent _n 
-
 **COMORBIDITIES
 *RESPIRATORY
-tabulatevariable, variable(chronic_respiratory_disease) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(chronic_respiratory_disease) start(1) end(1)
+file write tablecontent _n _n
 *ASTHMA
-tabulatevariable, variable(asthmacat) start(3) end(1)
+tabulatevariable, variable(asthmacat) start(3) end(2)
 file write tablecontent _n
 *CARDIAC
-tabulatevariable, variable(chronic_cardiac_disease) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(chronic_cardiac_disease) start(1) end(1)
+file write tablecontent _n _n
 *DIABETES
 tabulatevariable, variable(diabcat) start(3) end(2) /*uncontrolled, then controlled*/
 tabulatevariable, variable(diabcat) start(4) end(4) /*no a1c measure*/
-tabulatevariable, variable(diabcat) start(1) end(1) /*no diabetes*/
-file write tablecontent _n
+file write tablecontent _n _n
 *CANCER EX HAEM
 tabulatevariable, variable(cancer_exhaem_cat) start(2) end(4) /*<1, 1-4.9, 5+ years ago*/
-tabulatevariable, variable(cancer_exhaem_cat) start(1) end(1) /*never*/
-file write tablecontent _n
+file write tablecontent _n _n
 *CANCER HAEM
 tabulatevariable, variable(cancer_haem_cat) start(2) end(4) /*<1, 1-4.9, 5+ years ago*/
-tabulatevariable, variable(cancer_haem_cat) start(1) end(1) /*never*/
 file write tablecontent _n
 *LIVER
-tabulatevariable, variable(chronic_liver_disease) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(chronic_liver_disease) start(1) end(1)
+file write tablecontent _n 
 *STROKE/DEMENTIA
-tabulatevariable, variable(stroke_dementia) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(stroke_dementia) start(1) end(1)
+file write tablecontent _n 
 *OTHER NEURO
-tabulatevariable, variable(other_neuro) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(other_neuro) start(1) end(1)
+file write tablecontent _n 
 *CKD
-tabulatevariable, variable(chronic_kidney_disease) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(chronic_kidney_disease) start(1) end(1)
+file write tablecontent _n 
 *ORGAN TRANSPLANT
-tabulatevariable, variable(organ_transplant) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(organ_transplant) start(1) end(1)
+file write tablecontent _n 
 *SPLEEN
-tabulatevariable, variable(spleen) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(spleen) start(1) end(1)
+file write tablecontent _n 
 *RA_SLE_PSORIASIS
-tabulatevariable, variable(ra_sle_psoriasis) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(ra_sle_psoriasis) start(1) end(1)
+file write tablecontent _n 
 *OTHER IMMUNOSUPPRESSION
-tabulatevariable, variable(other_immunosuppression) start(1) end(0)
-file write tablecontent _n
+tabulatevariable, variable(other_immunosuppression) start(1) end(1)
 
 
 
