@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_descriptive_tables.log
   log type:  text
- opened on:  30 Apr 2020, 01:33:02
+ opened on:   1 May 2020, 18:39:23
 
 . 
 . use cr_create_analysis_dataset, clear
@@ -511,19 +511,14 @@ Failure/cen |
 . 
 .         * Demographics
 .         tab agegroup                                                    `outvar', col
-  3.         tab male                                                                `outvar
-> ', col
-  4.         tab bmicat                                                              `outvar
-> ', col m 
-  5.         tab smoke                                                               `outvar
-> ', col m
-  6.         tab obese4cat                                                   `outvar', col m
->  
+  3.         tab male                                                                `outvar', col
+  4.         tab bmicat                                                              `outvar', col m 
+  5.         tab smoke                                                               `outvar', col m
+  6.         tab obese4cat                                                   `outvar', col m 
   7. 
 .         * Comorbidities
 .         tab chronic_respiratory_disease                 `outvar', col
-  8.         tab asthma                                                              `outvar
-> ', col
+  8.         tab asthma                                                              `outvar', col
   9.         tab asthmacat                                                   `outvar', col
  10.         tab chronic_cardiac_disease                     `outvar', col
  11.         tab diabetes                                                    `outvar', col
@@ -531,25 +526,20 @@ Failure/cen |
  13.         tab cancer_exhaem_cat                                   `outvar', col
  14.         tab cancer_haem_cat                                             `outvar', col
  15.         tab chronic_liver_disease                               `outvar', col
- 16.         tab stroke                                                              `outvar
-> ', col
+ 16.         tab stroke                                                              `outvar', col
  17.         tab dementia                                                    `outvar', col
  18.         tab stroke_dementia                                     `outvar', col
  19.         tab other_neuro                                                 `outvar', col
  20.         tab chronic_kidney_disease                              `outvar', col
  21.         tab organ_transplant                                    `outvar', col
- 22.         tab spleen                                                              `outvar
-> ', col
+ 22.         tab spleen                                                              `outvar', col
  23.         tab ra_sle_psoriasis                                    `outvar', col
  24.         tab other_immunosuppression                             `outvar', col
  25.         
-.         tab imd                                                                 `outvar', 
-> col m
+.         tab imd                                                                 `outvar', col m
  26.         tab ethnicity                                                   `outvar', col m
- 27.         *tab urban                                                              `outvar
-> ', col
-.         tab region                                                              `outvar', 
-> col
+ 27.         *tab urban                                                              `outvar', col
+.         tab region                                                              `outvar', col
  28. }
 
 +-------------------+
@@ -2238,8 +2228,7 @@ l malignancy, |     indicator for
     diagnosis |         0          1 |     Total
 --------------+----------------------+----------
 
-*REDACTED DUE TO SMALL Ns
-
+REDACTED DUE TO SMALL Ns
 
 +-------------------+
 | Key               |
@@ -2255,7 +2244,7 @@ l malignancy, |     indicator for
    disease |         0          1 |     Total
 -----------+----------------------+----------
 
-*REDACTED DUE TO SMALL Ns
+REDACTED DUE TO SMALL Ns
 
 +-------------------+
 | Key               |
@@ -2292,8 +2281,8 @@ l malignancy, |     indicator for
            |       admission
   dementia |         0          1 |     Total
 -----------+----------------------+----------
- 
-*REDACTED DUE TO SMALL Ns
+
+REDACTED DUE TO SMALL Ns
 
 
 +-------------------+
@@ -2398,7 +2387,7 @@ transplant |       admission
      cell) |         0          1 |     Total
 -----------+----------------------+----------
 
-*REDACTED DUE TO SMALL Ns
+REDACTED DUE TO SMALL Ns
 
 
 +-------------------+
@@ -2459,7 +2448,7 @@ algorithm) |         0          1 |     Total
            (IMD) |         0          1 |     Total
 -----------------+----------------------+----------
 
-*REDACTED DUE TO SMALL Ns
+REDACTED DUE TO SMALL Ns
 
 
 +-------------------+
@@ -2541,11 +2530,71 @@ Yorkshire and The H.. | 2,501,964        186 | 2,502,150
 
 . 
 . 
+. ***************************************
+. *  Cumulative incidence of CPNS DEATH *
+. ***************************************
+. 
+. use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. sts list , at(0 80) by(agegroup male) fail
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+              Beg.                      Failure       Std.
+    Time     Total     Fail             Function     Error     [95% Conf. Int.]
+-------------------------------------------------------------------------------
+18-<40 male=0 
+       0         0        0              0.0000         .          .         .
+      80   2.9e+06       15              0.0000    0.0000     0.0000    0.0000
+18-<40 male=1 
+       0         0        0              0.0000         .          .         .
+      80   3.1e+06       18              0.0000    0.0000     0.0000    0.0000
+40-<50 male=0 
+       0         0        0              0.0000         .          .         .
+      80   1.4e+06       27              0.0000    0.0000     0.0000    0.0000
+40-<50 male=1 
+       0         0        0              0.0000         .          .         .
+      80   1.5e+06       59              0.0000    0.0000     0.0000    0.0001
+50-<60 male=0 
+       0         0        0              0.0000         .          .         .
+      80   1.5e+06      105              0.0001    0.0000     0.0001    0.0001
+50-<60 male=1 
+       0         0        0              0.0000         .          .         .
+      80   1.6e+06      216              0.0001    0.0000     0.0001    0.0002
+60-<70 male=0 
+       0         0        0              0.0000         .          .         .
+      80   1.2e+06      207              0.0002    0.0000     0.0001    0.0002
+60-<70 male=1 
+       0         0        0              0.0000         .          .         .
+      80   1.2e+06      432              0.0004    0.0000     0.0003    0.0004
+70-<80 male=0 
+       0         0        0              0.0000         .          .         .
+      80   1.0e+06      475              0.0005    0.0000     0.0004    0.0005
+70-<80 male=1 
+       0         0        0              0.0000         .          .         .
+      80    925418      971              0.0010    0.0000     0.0010    0.0011
+80+ male=0 
+       0         0        0              0.0000         .          .         .
+      80    662204     1095              0.0016    0.0000     0.0016    0.0018
+80+ male=1 
+       0         0        0              0.0000         .          .         .
+      80    463698     1608              0.0035    0.0001     0.0033    0.0036
+-------------------------------------------------------------------------------
+Note: Failure function is calculated over full data and evaluated at indicated
+      times; it is not calculated from aggregates shown at left.
+
+. 
 . 
 . * Close the log file
 . log close
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_descriptive_tables.log
   log type:  text
- closed on:  30 Apr 2020, 01:38:41
---------------------------------------------------------------------------------------------
+ closed on:   1 May 2020, 18:49:43
+--------------------------------------------------------------------------------------------------------------------
