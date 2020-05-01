@@ -1,6 +1,6 @@
 ********************************************************************************
 *
-*	Do-file:		an_checkassumptions_3.do
+*	Do-file:		an_checkassumptions_3b.do
 *
 *	Project:		Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
 *
