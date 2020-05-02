@@ -14,7 +14,7 @@
 *
 ********************************************************************************
 *
-*	Purpose:		This do-file f
+*	Purpose:		Calculates c-statistic for primary model
 *
 ********************************************************************************
 *	
@@ -35,11 +35,8 @@ local outcome `1'
 capture log close
 log using "./output/an_checkassumptions_`1'", text replace
 
-use cr_create_analysis_dataset, clear
 
-*local outcome "cpnsdeath"
-*replace cpnsdeath = uniform()<0.3
-
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 
 ******************************
@@ -138,71 +135,6 @@ if _rc==0 {
 	timer off 2
 	timer list	
 	
-	
-	/*  Brier score  */
-	
-	/*timer clear 
-	timer on 3
-
-	* Calculate at 60 days
-	
-	* Unadjusted
-	capture stbrier, bt(60) efron
-	if _rc==0 {
-	    noi di "Brier score, unadjusted"
-		estimates
-	}
-
-	* Fully adjusted
-	capture stbrier age1 age2 age3		///
-		i.male 							///
-		i.obese4cat						///
-		i.smoke_nomiss					///
-		i.imd 							///
-		i.htdiag_or_highbp				///
-		i.chronic_respiratory_disease 	///
-		i.asthmacat						///
-		i.chronic_cardiac_disease 		///
-		i.diabcat						///
-		i.cancer_exhaem_cat	 			///
-		i.cancer_haem_cat  				///
-		i.chronic_liver_disease 		///
-		i.stroke_dementia		 		///
-		i.other_neuro					///
-		i.chronic_kidney_disease 		///
-		i.organ_transplant 				///
-		i.spleen 						///
-		i.ra_sle_psoriasis  			///
-		other_immunosuppression			///
-		, shared(stp) bt(60) 			///
-		ipcw(age1 age2 age3				///
-		i.male 							///
-		i.obese4cat						///
-		i.smoke_nomiss					///
-		i.imd 							///
-		i.htdiag_or_highbp				///
-		i.chronic_respiratory_disease 	///
-		i.asthmacat						///
-		i.chronic_cardiac_disease 		///
-		i.diabcat						///
-		i.cancer_exhaem_cat	 			///
-		i.cancer_haem_cat  				///
-		i.chronic_liver_disease 		///
-		i.stroke_dementia		 		///
-		i.other_neuro					///
-		i.chronic_kidney_disease 		///
-		i.organ_transplant 				///
-		i.spleen 						///
-		i.ra_sle_psoriasis  			///
-		other_immunosuppression)
-	if _rc==0 {
-	    noi di "Brier score, fully adjusted"
-		estimates
-	}
-
-	timer off 3
-	timer list
-	*/
 	
 }
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"

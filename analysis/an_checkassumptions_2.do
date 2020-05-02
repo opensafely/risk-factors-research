@@ -27,7 +27,7 @@
 
 
 
-use cr_create_analysis_dataset, clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 
 
@@ -46,11 +46,6 @@ gen c_age = age-r(mean)
 
 * "Centre" sex to be coded -1 +1 
 recode male 0=-1, gen(c_male)
-
-
-* Declare survival outcome
-stset stime_cpnsdeath, fail(cpnsdeath) 			///
-	id(patient_id) enter(enter_date) origin(enter_date)
 
 
 sts graph, by(male) adjustfor(c_age) 						///

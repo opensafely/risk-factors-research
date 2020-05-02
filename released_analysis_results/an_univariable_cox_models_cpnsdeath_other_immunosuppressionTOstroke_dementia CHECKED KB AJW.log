@@ -1,39 +1,16 @@
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _other_immunosuppressionTOstroke_dementia.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_other_immunosuppression
+> TOstroke_dementia.log
   log type:  text
- opened on:  30 Apr 2020, 01:26:04
+ opened on:   1 May 2020, 18:31:40
 
 . 
 . * Open dataset and fit specified model(s)
-. use cr_create_analysis_dataset, clear
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 (Analysis dataset for the poor outcomes in Covid project)
 
 . 
-. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id)
->  
-
-                id:  patient_id
-     failure event:  cpnsdeath != 0 & cpnsdeath < .
-obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
- enter on or after:  time enter_date
- exit on or before:  failure
-    t for analysis:  (time-origin)
-            origin:  time enter_date
-
-------------------------------------------------------------------------------
-   17420594  total observations
-        466  observations end on or before enter()
-------------------------------------------------------------------------------
-   17420128  observations remaining, representing
-   17420128  subjects
-      5,707  failures in single-failure-per-subject data
- 1.4615e+09  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        84
-
 . 
 . foreach var of any `varlist' {
   2. 
@@ -49,16 +26,15 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
   7.         capture stcox `model' , strata(stp) 
   8.         if _rc==0 {
   9.                 estimates
- 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGES
-> EX_`var', replace
+ 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var', replace
  11.                 }
  12.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
  13. 
 . }
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -77,14 +53,12 @@ Log likelihood  =   -69543.241                  Prob > chi2      =      0.0000
 1.other_immunosuppression |    2.01751   .3393241     4.17   0.000      1.45095    2.805298
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_immunosuppressi
-> on.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_immunosuppression.ster
->  saved
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_immunosuppression.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_immunosuppression.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -103,13 +77,12 @@ Log likelihood  =   -69424.823                  Prob > chi2      =      0.0000
 1.other_neuro |   2.911949   .1692708    18.39   0.000     2.598386    3.263352
 -------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_neuro.ster not 
-> found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_neuro.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_other_neuro.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -128,13 +101,12 @@ Log likelihood  =   -69530.709                  Prob > chi2      =      0.0000
 1.ra_sle_psoriasis |   1.345219   .0612915     6.51   0.000     1.230297    1.470875
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ra_sle_psoriasis.ster
->  not found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ra_sle_psoriasis.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ra_sle_psoriasis.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -159,9 +131,9 @@ Log likelihood  =   -68908.722                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_smoke.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_smoke.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -183,13 +155,12 @@ smoke_nomiss |
     Current  |   1.250762   .0704955     3.97   0.000     1.119952    1.396851
 ------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_smoke_nomiss.ster not
->  found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_smoke_nomiss.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_smoke_nomiss.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -208,13 +179,12 @@ Log likelihood  =   -69546.972                  Prob > chi2      =      0.0000
     1.spleen |   1.801545   .3764247     2.82   0.005     1.196163    2.713312
 ------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_spleen.ster not found
-> )
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_spleen.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_spleen.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -233,8 +203,7 @@ Log likelihood  =    -69312.11                  Prob > chi2      =      0.0000
 1.stroke_dementia |   2.338782   .0837548    23.73   0.000     2.180254    2.508836
 -----------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_stroke_dementia.ster 
-> not found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_stroke_dementia.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_stroke_dementia.ster saved
 
 . 
@@ -242,8 +211,8 @@ file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_stroke_dementia.
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _other_immunosuppressionTOstroke_dementia.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_other_immunosuppression
+> TOstroke_dementia.log
   log type:  text
- closed on:  30 Apr 2020, 03:04:23
---------------------------------------------------------------------------------------------
+ closed on:   1 May 2020, 20:22:53
+--------------------------------------------------------------------------------------------------------------------

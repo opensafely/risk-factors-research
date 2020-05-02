@@ -158,7 +158,7 @@ program nlnle2_wrap, rclass
 	qui replace y = 0 in 4
 
 	qui nl nle2 @ y lp1 lp2 lp3 lp4 r, ///
-		parameters(A B C D) initial(A 2 B 2 C 2 D 2)
+		parameters(A B C D) initial(A  0 B 0 C 0 D 0)
 	qui drop y 
 
 	* Convert calibration parameters into RR for being observed among r=0 vs r=1
@@ -167,7 +167,7 @@ program nlnle2_wrap, rclass
 	local delta1 = G[1,1]
 	local delta2 = G[1,2]
 	local delta3 = G[1,3]
-	local delta3 = G[1,4]
+	local delta4 = G[1,4]
 	* On RR scale
 	local gamma1 = exp(G[1,1])
 	local gamma2 = exp(G[1,2])

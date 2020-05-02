@@ -33,8 +33,7 @@
 
 
 
-use cr_create_analysis_dataset, clear
-
+use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 
 
 ****************************
@@ -43,16 +42,13 @@ use cr_create_analysis_dataset, clear
 
 *** Intended for publication
 
-* Declare survival outcome
-stset stime_cpnsdeath, fail(cpnsdeath) 				///
-	id(patient_id) enter(enter_date) origin(enter_date)
 
 * KM plot for females by age		
 sts graph if male==0, title("Female") 				///
 	failure by(agegroup) 							///
 	xtitle("Days since 1 Feb 2020")					///
-	yscale(range(0, 0.012)) 						///
-	ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
+	yscale(range(0, 0.005)) 						///
+	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))	///
 	xscale(range(30, 84)) 							///
 	xlabel(30 (10) 80)								///
 	legend(order(1 2 3 4 5 6)						///
@@ -72,8 +68,8 @@ sts graph if male==0, title("Female") 				///
 sts graph if male==1, title("Male") 				///
 failure by(agegroup) 								///
 	xtitle("Days since 1 Feb 2020")					///
-	yscale(range(0, 0.012)) 						///
-	ylabel(0 (0.0025) 0.01, angle(0) format(%5.4f))	///
+	yscale(range(0, 0.005)) 						///
+	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))	///
 	xscale(range(30, 84)) 							///
 	xlabel(30 (10) 80)								///
 	legend(order(1 2 3 4 5 6)						///
