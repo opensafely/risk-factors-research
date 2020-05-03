@@ -10,7 +10,7 @@ NHS patients_
 * If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/). A new tool
 called OpenSafely Codelists was developed to allow codelists to be versioned and hosted online at [codelists.opensafely.org](codelists.opensafely.org)
 The tool allows agreed codelists to be pulled into a repository by running a python command. More information available in
-the [README~~~~](https://github.com/ebmdatalab/opensafely-risk-factors-research/blob/master/codelists/README.md) of the codelist folder
+the [README](https://github.com/ebmdatalab/opensafely-risk-factors-research/blob/master/codelists/README.md) of the codelist folder
 * Developers and epidemiologists interested in the code should review
 [DEVELOPERS.md](./DEVELOPERS.md).
 
