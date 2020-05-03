@@ -1,0 +1,1338 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_checkassumptions_MI_8.log
+  log type:  text
+ opened on:   1 May 2020, 22:16:05
+
+. 
+. local k = `region'
+
+. noi di `region'
+8
+
+. 
+. * Load user written functions
+. do Calibration_parameter_nlsolution.do  
+
+. ********************************************************************************
+. *
+. *       Do-file:                Calibration_parameter_nlsolution.do
+. *
+. *       Project:                Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
+. *
+. *       Programmed by:  Fizz
+. *
+. *       Data used:              None
+. *
+. *       Data created:   None
+. *
+. *       Other output:   User-written program:  nlnle2 and a wrapper, nlnle2_wrap
+. *
+. ********************************************************************************
+. *
+. *       Purpose:                This do-file creates a program whose purpose is to solve
+. *                                       a specific set of non-linear equations.
+. *  
+. ********************************************************************************
+. *       
+. *       Input parameters: The following globals need to be defined:
+. *
+. *               Number missing ethnicity, $Nmis 
+. *               Probability of missing/observing ethnicity, $r0star and $r1star
+. *               Probability of each ethnicity among observed, $Eth1obsstar, 
+. *                                               $Eth2obsstar, $Eth3obsstar, $Eth4obsstar
+. *               Marginal probability of ethnicity (external data), $Eth1, $Eth2, $Eth3, $Eth4
+. *
+. *       Input variables: The following variables need to be in memory:
+. *
+. *               r - indicator of Ethnicity being observed (1=yes, 0=no)
+. *               lp1 - linear predictor from mlogit model to impute ethnicity among r=1, Black
+. *               lp2 - linear predictor from mlogit model to impute ethnicity among r=1, Asian
+. *               lp3 - linear predictor from mlogit model to impute ethnicity among r=1, Mixed
+. *               lp4 - linear predictor from mlogit model to impute ethnicity among r=1, Other
+. *
+. *
+. *       ASSUMPTIONS:    This is a complete case sample, other than ethnicity.
+. *                                       Ethnicity is White, Black, Asian, Mixed, other
+. *                                       (same order, coding (1, 2, 3, 4, 5), labelling)
+. *  
+. ********************************************************************************
+. 
+. 
+. ********************************************************************************
+. *       
+. *       To run alone:   
+. *                       matrix mat = (1,0,0,0)
+. *                       nlnle2 y lp1 lp2 lp3 lp4 r, at(mat)
+. *
+. *       Use in MI process:
+. *                       nl nle2 @ y lp1 lp2 lp3 lp4 ethnicity, ///
+> *                                       parameters(A B C D) initial(A 2 B 2 C 2 D 2)
+. *
+. ********************************************************************************
+. 
+. 
+. *******************************************
+. *  Program to solve non-linear equations  *
+. *******************************************
+. 
+. 
+. cap prog drop nlnle2
+
+. program nlnle2
+  1. syntax varlist(min=6 max=6) [if], at(name)
+  2. 
+.         * Pick up inputs
+.         tokenize `varlist'
+  3.         local y   `1'
+  4.         local lp1 `2'
+  5.         local lp2 `3'
+  6.         local lp3 `4'
+  7.         local lp4 `5'
+  8.         local r   `6'
+  9.         
+.         * Pick up current parameter values (Black/Asian/Mixed/Other, respectively)
+.         tempname A B C D
+ 10.         scalar `A' = `at'[1, 1]
+ 11.         scalar `B' = `at'[1, 2]
+ 12.         scalar `C' = `at'[1, 3]
+ 13.         scalar `D' = `at'[1, 4]
+ 14. 
+.         tempvar yh t1 t2 t3 t4 denom
+ 15.         
+.         * Linear predictor among those missing ethnicity
+.         gen `denom' = 1 + exp(`A' + `lp1') + exp(`B' + `lp2') + exp(`C' + `lp3') + exp(`D' + `lp4')
+ 16.         gen `t1' = exp(`A' + `lp1')/`denom'
+ 17.         gen `t2' = exp(`B' + `lp2')/`denom'
+ 18.         gen `t3' = exp(`C' + `lp3')/`denom'
+ 19.         gen `t4' = exp(`D' + `lp4')/`denom'
+ 20. 
+.         qui summ `t1' if `r'==0
+ 21.         local t1sum=r(sum)
+ 22.         qui summ `t2' if `r'==0
+ 23.         local t2sum=r(sum)
+ 24.         qui summ `t3' if `r'==0
+ 25.         local t3sum=r(sum)
+ 26.         qui summ `t4' if `r'==0
+ 27.         local t4sum=r(sum)
+ 28.         
+.         * Set equal to marginal expression (using external data)
+.         gen double      `yh' =  `t1sum'*$r0star/$Nmis + $Eth1obsstar*$r1star - $Eth1 + 1 in 1
+ 29.         replace         `yh' =  `t2sum'*$r0star/$Nmis + $Eth2obsstar*$r1star - $Eth2 in 2
+ 30.         replace         `yh' =  `t3sum'*$r0star/$Nmis + $Eth3obsstar*$r1star - $Eth3 in 3
+ 31.         replace         `yh' =  `t4sum'*$r0star/$Nmis + $Eth4obsstar*$r1star - $Eth4 in 4
+ 32. 
+.         * Return 4 equations evaluated at current versions of parameter 
+.         replace `y' = `yh'
+ 33. 
+. end
+
+. 
+. 
+. 
+. 
+. 
+. *******************************
+. *  Wrapper for program above  *
+. *******************************
+. 
+. 
+. cap prog drop nlnle2_wrap
+
+. program nlnle2_wrap, rclass
+  1. 
+.         * Check inputs are there and print summary
+. 
+.         di _n "INPUTS:" 
+  2.         
+.         di _n "Missingness of ethnicity:"
+  3.         di _col(10) "Number missing ethnicity data:   " $Nmis 
+  4.         di _col(10) "Probability of missing  (drawn): " $r0star
+  5.         di _col(10) "Probability of observed (drawn): " $r1star
+  6. 
+. 
+.         di _n "Drawn proportions (among complete cases):"
+  7.         di _col(10)"Black (drawn): " $Eth1obsstar
+  8.         di _col(10)"Asian (drawn): " $Eth2obsstar
+  9.         di _col(10)"Mixed (drawn): " $Eth3obsstar
+ 10.         di _col(10)"Other (drawn): " $Eth4obsstar
+ 11. 
+.         di _n "External data:"
+ 12.         di _col(10) "Black (external): " $Eth1
+ 13.         di _col(10) "Asian (external): " $Eth2
+ 14.         di _col(10) "Mixed (external): " $Eth3
+ 15.         di _col(10) "Other (external): " $Eth4
+ 16. 
+.         * Check linear predictor variables exist
+.         confirm numeric variable lp1
+ 17.         confirm numeric variable lp2
+ 18.         confirm numeric variable lp3
+ 19.         confirm numeric variable lp4
+ 20.            
+. 
+.         * Create variable to house estimation results
+.         qui gen     y = 1 in 1
+ 21.         qui replace y = 0 in 2
+ 22.         qui replace y = 0 in 3
+ 23.         qui replace y = 0 in 4
+ 24. 
+.         qui nl nle2 @ y lp1 lp2 lp3 lp4 r, ///
+>                 parameters(A B C D) initial(A  0 B 0 C 0 D 0)
+ 25.         qui drop y 
+ 26. 
+.         * Convert calibration parameters into RR for being observed among r=0 vs r=1
+.         mat def G = e(b)
+ 27.         * On logged scale
+.         local delta1 = G[1,1]
+ 28.         local delta2 = G[1,2]
+ 29.         local delta3 = G[1,3]
+ 30.         local delta4 = G[1,4]
+ 31.         * On RR scale
+.         local gamma1 = exp(G[1,1])
+ 32.         local gamma2 = exp(G[1,2])
+ 33.         local gamma3 = exp(G[1,3])
+ 34.         local gamma4 = exp(G[1,4])
+ 35. 
+.         
+.         /*  Return parameters  */ 
+.         
+.         return scalar rr1 = `gamma1'
+ 36.         return scalar rr2 = `gamma2'
+ 37.         return scalar rr3 = `gamma3'
+ 38.         return scalar rr4 = `gamma4'
+ 39.         
+.         noi di _n "ESTIMATED CALIBRATION PARAMETERS:  "
+ 40. 
+.         noi di _col(10) "Parameter (log scale):"
+ 41.         noi di _col(10) "Black:  " `delta1'
+ 42.         noi di _col(10) "Asian:  " `delta2'
+ 43.         noi di _col(10) "Mixed:  " `delta3'
+ 44.         noi di _col(10) "Other:  " `delta4'
+ 45.         noi di _col(10) "Relative risk (for being this ethnicity (vs white)"
+ 46.         noi di _col(15) "...in missing cf complete cases):"
+ 47.         noi di _col(10) "Black:  " `gamma1'
+ 48.         noi di _col(10) "Asian:  " `gamma2'
+ 49.         noi di _col(10) "Mixed:  " `gamma3'
+ 50.         noi di _col(10) "Other:  " `gamma4'
+ 51.         
+. end
+
+. 
+. 
+. 
+end of do-file
+
+. do Calibration_parameter_estimation.do  
+
+. ********************************************************************************
+. *
+. *       Do-file:                Calibration_parameter_estimation.do
+. *
+. *       Project:                Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
+. *
+. *       Programmed by:  Fizz
+. *
+. *       Data used:              None
+. *
+. *       Data created:   None
+. *
+. *       Other output:   User-written programs:  count_missing and prop_ethnicity
+. *
+. ********************************************************************************
+. *
+. *       Purpose:                This do-file creates programs which count the proportion 
+. *                                       of missing ethnicity data, and the proportion in each group
+. *                                       in the complete case data. 
+. *
+. *                                       It then draws these parameters from their posterior 
+. *                                       predictive distributions. 
+. *
+. *       ASSUMPTIONS:    This is a complete case sample, other than ethnicity.
+. *                                       Ethnicity is White, Black, Asian, Mixed, other
+. *                                       (same order, coding (1, 2, 3, 4, 5), labelling)
+. *  
+. ********************************************************************************
+. 
+. 
+. 
+. 
+. ***************************************************
+. *  Observed and drawn proportions of missingness  *
+. ***************************************************
+. 
+. 
+. capture program drop count_missing
+
+. program define count_missing, rclass
+  1.         syntax varname
+  2.         
+.         
+.         /*      Number of patients with missing ethnicity  */
+. 
+.         * Overall
+.         qui count if `varlist' == 0 
+  3.         local Nmis = r(N)
+  4.         qui count if `varlist' == 1
+  5.         local Nobs = r(N)
+  6. 
+.         
+.         /*  Draw probability of observing ethnicity  */
+. 
+. 
+.         * Sample proportion of observed ethnicity
+.         qui count if `varlist' == 0
+  7.         local r0 = r(N)/_N
+  8.         local se_r0 = sqrt((`r0'*(1-`r0'))/_N)
+  9. 
+.         ** Draw probability from the normal approximation
+.         ** whose mean is the sample proportion of observed ethnicities
+.         local r0star = rnormal(`r0', `se_r0')
+ 10.         local r1star = 1-`r0star'
+ 11. 
+. 
+.         /*  Return probabilities  */
+.         
+.         * Observed proportions
+.         return scalar Nmis = `Nmis'
+ 12.         return scalar Nobs = `Nobs'
+ 13.         
+.         * Drawn probabilities 
+.         return scalar r0star = `r0star'
+ 14.         return scalar r1star = `r1star'
+ 15. 
+.         
+.         /*  Display results  */
+.         
+.         noi di _n "Observed proportions:"
+ 16.         
+.         noi di _col(10) "Number Missing:   " `Nmis'
+ 17.         noi di _col(10) "Number Observed:  " `Nobs'
+ 18.         
+.         noi di _n "Drawn probabilities:"
+ 19.         
+.         noi di _col(10)  "P(Missing):        " `r0star'
+ 20.         noi di _col(10)  "P(Observed):       " `r1star'
+ 21.         
+. end
+
+.         
+.         
+.         
+.         
+. ***************************************************************
+. *  Observed and drawn proportions of each ethnicity category  *
+. ***************************************************************
+. 
+. 
+. capture program drop prop_ethnicity
+
+. program define prop_ethnicity, rclass
+  1.         syntax varname
+  2.         
+.         * Check there are 4 categories
+.         assert inlist(`varlist', 1, 2, 3, 4, 5, ., .u)
+  3.         
+.         * Count number of observations
+.         qui count if `varlist'<.
+  4.         local nobs = r(N)
+  5.         
+.         /*  Draw probability of each ethnicity category  */ 
+. 
+.         * Pick up observed proportions of each ethnicity (in complete cases)
+.         prop `varlist'  
+  6.         mat def Eth_m = r(table)
+  7. 
+.         ** Draw probability from the normal approximation
+.         ** whose mean is the corresponding observed proportion of each category
+.         forvalues i = 2 (1) 5 {
+  8.             local j = `i' - 1
+  9.                 local Eth`j'obs = Eth_m[1,`i']
+ 10.                 local se_Eth`j'obs = sqrt((`Eth`j'obs'*(1-`Eth`j'obs'))/(`nobs'))
+ 11.                 local Eth`j'obsstar = rnormal(`Eth`j'obs', `se_Eth`j'obs')
+ 12.         }
+ 13.         matrix drop Eth_m
+ 14.         
+. 
+.         /*  Return probabilities  */
+.         
+.         * Observed proportions
+.         return scalar Eth1obs = `Eth1obs'
+ 15.         return scalar Eth2obs = `Eth2obs'
+ 16.         return scalar Eth3obs = `Eth3obs'
+ 17.         return scalar Eth4obs = `Eth4obs'
+ 18.         
+.         * Drawn probabilities 
+.         return scalar Eth1obsstar = `Eth1obsstar'
+ 19.         return scalar Eth2obsstar = `Eth2obsstar'
+ 20.         return scalar Eth3obsstar = `Eth3obsstar'
+ 21.         return scalar Eth4obsstar = `Eth4obsstar'
+ 22. 
+.         
+.         /*  Display results  */
+.         
+.         noi di _n "Observed proportions of each ethnic group:"
+ 23.         
+.         noi di _col(10) "Proportion Black:   " `Eth1obs'
+ 24.         noi di _col(10) "Proportion Asian:   " `Eth2obs'
+ 25.         noi di _col(10) "Proportion Mixed:   " `Eth3obs'
+ 26.         noi di _col(10) "Proportion Other:   " `Eth4obs'
+ 27.         
+.         noi di _n "Drawn probabilities of each ethnic group:"
+ 28.         
+.         noi di _col(10)  "P(Black | r=1):  " `Eth1obsstar'
+ 29.         noi di _col(10)  "P(Asian | r=1):  " `Eth2obsstar'
+ 30.         noi di _col(10)  "P(Mixed | r=1):  " `Eth3obsstar'
+ 31.         noi di _col(10)  "P(Other | r=1):  " `Eth4obsstar'
+ 32. 
+. end
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. 
+. 
+. 
+. ********************************   NOTES  **************************************
+. 
+. *  Assumes region is string, taking  values: 
+. *    East, East Midlands, London, North East, North West, South East, 
+. *    South West, West Midlands, and Yorkshire and The Humber
+. *
+. *  Assumes ethnicity is numeric, taking values: 
+. *       1, 2, 3, 4, 5, (missing: . or .u)
+. *       in the order White, Black, Asian, Mixed, Other
+. *       with value labels exactly as above. 
+. *       (NB: this is now intially recoded from ordering: 
+. *      White, Mixed, Asian, Black, Other)       
+. *
+. *
+. *  Assumes a complete case sample other than ethnicity
+. *
+. ********************************************************************************
+. 
+. 
+. 
+. 
+.                         
+. *******************************************************
+. *  Perform imputations within each region separately  *
+. *******************************************************
+. 
+. * List of regions
+. global region1 = "East"
+
+. global region2 = "East Midlands"        
+
+. global region3 = "London" 
+
+. global region4 = "North East" 
+
+. global region5 = "North West" 
+
+. global region6 = "South East" 
+
+. global region7 = "South West" 
+
+. global region8 = "West Midlands" 
+
+. global region9 = "Yorkshire and The Humber"  
+
+. 
+. 
+. 
+. 
+. * Open data 
+. use cr_create_analysis_dataset.dta, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. tab region, m
+
+     Geographical region |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+                         |        691        0.00        0.00
+                    East |  4,049,564       23.25       23.25
+           East Midlands |  3,067,130       17.61       40.86
+                  London |  1,197,806        6.88       47.73
+              North East |    810,319        4.65       52.38
+              North West |  1,558,493        8.95       61.33
+              South East |  1,174,256        6.74       68.07
+              South West |  2,363,994       13.57       81.64
+           West Midlands |    696,191        4.00       85.64
+Yorkshire and The Humber |  2,502,150       14.36      100.00
+-------------------------+-----------------------------------
+                   Total | 17,420,594      100.00
+
+. 
+. 
+. * Only keep data from one region
+. keep if region=="${region`k'}"
+(16,724,403 observations deleted)
+
+. tab region, m   
+
+     Geographical region |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+           West Midlands |    696,191      100.00      100.00
+-------------------------+-----------------------------------
+                   Total |    696,191      100.00
+
+.         
+. * Change ordering of ethnicity
+. label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other", modify
+
+. recode ethnicity 1=1 2=4 3=3 4=2 5=5
+(ethnicity: 50903 changes made)
+
+. 
+. 
+. * Only keep required variables
+. keep patient_id stp region ethnicity                            ///
+>         stime_cpnsdeath cpnsdeath enter_date                    ///
+>         agegroup male obese4cat                                                 ///
+>         smoke_nomiss imd htdiag_or_highbp                               ///
+>         chronic_respiratory_disease                                     ///
+>         asthmacat                                                                               ///
+>         chronic_cardiac_disease                                                 ///
+>         diabcat                                                                                 ///
+>         cancer_exhaem_cat                                                               ///
+>         cancer_haem_cat                                                                 ///
+>         chronic_liver_disease                                                   ///
+>         stroke_dementia                                                                 ///
+>         other_neuro                                                                             ///
+>         chronic_kidney_disease                                                  ///
+>         organ_transplant                                                                ///
+>         spleen                                                                                  ///
+>         ra_sle_psoriasis                                                                ///
+>         other_immunosuppression
+
+. 
+.                 
+. * Create complete case sample (except for ethnicity) 
+. drop if imd>=. 
+(2,267 observations deleted)
+
+. 
+. * Set as survival
+. stset stime_cpnsdeath, fail(cpnsdeath) enter(enter_date)        ///
+>         origin(enter_date) id(patient_id)
+
+                id:  patient_id
+     failure event:  cpnsdeath != 0 & cpnsdeath < .
+obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+    693,924  total observations
+         11  observations end on or before enter()
+------------------------------------------------------------------------------
+    693,913  observations remaining, representing
+    693,913  subjects
+        474  failures in single-failure-per-subject data
+   58215950  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        84
+
+. 
+. * Generate the Nelson-Aalen estimate of the cumulative hazard
+. sts generate cumh = na 
+
+. egen cumhgp = cut(cumh), group(5) 
+(11 missing values generated)
+
+. replace cumhgp = cumhgp+1
+(693,913 real changes made)
+
+. 
+. * Gene missingness indicator
+. gen r = 1 - missing(ethnicity)
+
+. 
+. * Create dummy variables for categorical predictors
+. foreach var of varlist agegroup obese4cat smoke_nomiss imd  ///
+>         asthmacat diabcat cancer_exhaem_cat cancer_haem_cat             ///
+>         stp cumhgp {
+  2.                 egen ord_`var' = group(`var')
+  3.                 qui summ ord_`var'
+  4.                 local max=r(max)
+  5.                 forvalues i = 1 (1) `max' {
+  6.                         gen `var'_`i' = (`var'==`i')
+  7.                 }       
+  8.                 drop ord_`var'
+  9.                 drop `var'_1
+ 10. }
+(11 missing values generated)
+
+. 
+. 
+. 
+. forvalues m = 1 (1) 5   {
+  2. 
+.         /*      Number of patients with missing ethnicity  */
+. 
+.         count_missing r
+  3.         global Nmis = r(Nmis)
+  4.         global Nobs = r(Nobs)
+  5. 
+. 
+.         /*  Draw probability of observing ethnicity  */
+. 
+.         global r0star = r(r0star)
+  6.         global r1star = r(r1star)
+  7. 
+. 
+.         /*  Draw probability of each ethnicity category  */ 
+. 
+.         prop_ethnicity ethnicity
+  8.         forvalues j = 1 (1) 4 {
+  9.                 global Eth`j'obsstar = r(Eth`j'obsstar)
+ 10.         }
+ 11. 
+.                 
+.                 
+.         *******************************************************************
+.         *  External parameters needed to estimate calibration parameters  *
+.         *******************************************************************
+.                 
+.         /*      External data distribution of ethnicity         */
+. 
+.         if `k'==1 {     // East
+ 12.                 global Eth1 = 0.02252
+ 13.                 global Eth2 = 0.048303
+ 14.                 global Eth3 = 0.016971
+ 15.                 global Eth4 = 0.009791  
+ 16.         }
+ 17.         else if `k'==2 {        // East Midlands
+ 18.                 global Eth1 = 0.019259
+ 19.                 global Eth2 = 0.062222
+ 20.                 global Eth3 = 0.012698
+ 21.                 global Eth4 = 0.008254
+ 22.         }
+ 23.         else if `k'==3 {        // London
+ 24.                 global Eth1 = 0.124872
+ 25.                 global Eth2 = 0.183715
+ 26.                 global Eth3 = 0.037176
+ 27.                 global Eth4 = 0.060554
+ 28.         }               
+ 29.         else if `k'==4 {        // North East
+ 30.                 global Eth1 = 0.006447  
+ 31.                 global Eth2 = 0.029579
+ 32.                 global Eth3 = 0.005309
+ 33.                 global Eth4 = 0.006826
+ 34.         }       
+ 35.         else if `k'==5 {        // North West
+ 36.                 global Eth1 = 0.018688  
+ 37.                 global Eth2 = 0.06423
+ 38.                 global Eth3 = 0.012458
+ 39.                 global Eth4 = 0.011766
+ 40.         }       
+ 41.         else if `k'==6 {        // South East
+ 42.                 global Eth1 = 0.01665
+ 43.                 global Eth2 = 0.053826
+ 44.                 global Eth3 = 0.01722
+ 45.                 global Eth4 = 0.012544
+ 46.         }       
+ 47.         else if `k'==7 {        // South West
+ 48.                 global Eth1 = 0.009425  
+ 49.                 global Eth2 = 0.021388
+ 50.                 global Eth3 = 0.010332
+ 51.                 global Eth4 = 0.008519
+ 52.         }       
+ 53.         else if `k'==8 {        // West Midlands
+ 54.                 global Eth1 = 0.033207  
+ 55.                 global Eth2 = 0.121129
+ 56.                 global Eth3 = 0.015657
+ 57.                 global Eth4 = 0.014109
+ 58.         }       
+ 59.         else if `k'==9 {        // Yorkshire and the Humber
+ 60.                 global Eth1 = 0.015112
+ 61.                 global Eth2 = 0.066532
+ 62.                 global Eth3 = 0.014191
+ 63.                 global Eth4 = 0.011426
+ 64.         }       
+ 65.                         
+. 
+. 
+. 
+. 
+. 
+.         ***********************************************************************
+.         *  Obtain linear predictor needed to estimate calibration parameters  *
+.         ***********************************************************************
+. 
+. 
+.         /*   Fit imputation model for ethnicity   */
+. 
+.         * 4th region only has one STP so exclude from model
+.         if `k'!=4 { 
+ 66.                 local stp_text = "stp_*"
+ 67.         }
+ 68.         else {
+ 69.                 local stp_text = ""
+ 70.         }
+ 71. 
+.         * Fit imputation model for ethnicity
+.         capture drop temp
+ 72.         noi uvis mlogit ethnicity                               ///
+>                 `stp_text'                                                      ///
+>                 cumhgp_* cpnsdeath                                      ///
+>                 agegroup_*                                              ///
+>                 male                                                            ///
+>                 obese4cat_*                                                     ///
+>                 smoke_nomiss_*                                          ///
+>                 imd_*                                                           ///
+>                 htdiag_or_highbp                                        ///
+>                 chronic_respiratory_disease             ///
+>                 asthmacat_*                                             ///
+>                 chronic_cardiac_disease                         ///
+>                 diabcat_*                                                       ///
+>                 cancer_exhaem_cat_*                             ///
+>                 cancer_haem_cat_*                                       ///
+>                 chronic_liver_disease                           ///
+>                 stroke_dementia                                         ///
+>                 other_neuro                                                     ///
+>                 chronic_kidney_disease                          ///
+>                 organ_transplant                                        ///
+>                 spleen                                                          ///
+>                 ra_sle_psoriasis                                        ///
+>                 other_immunosuppression,                        ///
+>                 gen(temp) baseoutcome(1)
+ 73.         drop temp
+ 74.         
+.         * Obtain linear predictor, for P(eth=j | r=1)
+.         local eth_text_1 = "Black"
+ 75.         local eth_text_2 = "Asian"
+ 76.         local eth_text_3 = "Mixed"
+ 77.         local eth_text_4 = "Other"
+ 78. 
+.         forvalues j = 1 (1) 4 {
+ 79.                 qui gen lp`j' = [`eth_text_`j'']_b[_cons]
+ 80.                 foreach var of varlist                                  ///
+>                         `stp_text'                                                      ///
+>                         cumhgp_* cpnsdeath                                      ///
+>                         agegroup_*                                              ///
+>                         male obese4cat_*                                        ///
+>                         smoke_nomiss_*                                          ///
+>                         imd_*                                                           ///
+>                         htdiag_or_highbp                                        ///
+>                         chronic_respiratory_disease             ///
+>                         asthmacat_*                                             ///
+>                         chronic_cardiac_disease                         ///
+>                         diabcat_*                                                       ///
+>                         cancer_exhaem_cat_*                             ///
+>                         cancer_haem_cat_*                                       ///
+>                         chronic_liver_disease                           ///
+>                         stroke_dementia                                         ///
+>                         other_neuro                                                     ///
+>                         chronic_kidney_disease                          ///
+>                         organ_transplant                                        ///
+>                         spleen                                                          ///
+>                         ra_sle_psoriasis                                        ///
+>                         other_immunosuppression                         ///
+>                          {
+ 81.                          capture  di [`eth_text_`j'']_b[`var'] 
+ 82.                          if _rc==0 {
+ 83.                                 qui replace lp`j' = lp`j' + [`eth_text_`j'']_b[`var']*(`var'==1)
+ 84.                         }
+ 85.                 }
+ 86.         }
+ 87. 
+.                 
+.         * Create variable to house estimation results
+.         noi summ lp?
+ 88.         nlnle2_wrap
+ 89.         global gamma1 = r(rr1) 
+ 90.         global gamma2 = r(rr2) 
+ 91.         global gamma3 = r(rr3) 
+ 92.         global gamma4 = r(rr4) 
+ 93. 
+. 
+.         noi di "Weight for Black: " $gamma1
+ 94.         noi di "Weight for Asian: " $gamma2
+ 95.         noi di "Weight for Mixed: " $gamma3
+ 96.         noi di "Weight for Other: " $gamma4
+ 97.         
+.         
+.         * Delete variables no longer needed
+.         drop lp1 lp2 lp3 lp4
+ 98.         
+.         
+. 
+.         **********************
+.         *  Impute ethnicity  *
+.         **********************
+. 
+. 
+.         /*  Use calibration parameters to generate probability weights (P(obs))  */
+. 
+.         * Missing ethnicities, assign a small weight
+.         * Observed ethnicities, weight = the RR from above (for non-ref groups)
+.         cap drop caldelw
+ 99.         gen     caldelw = 0.0001 
+100.         replace caldelw = 1           if ethnicity == 1
+101.         replace caldelw = $gamma1 if ethnicity == 2
+102.         replace caldelw = $gamma2 if ethnicity == 3
+103.         replace caldelw = $gamma3 if ethnicity == 4
+104.         replace caldelw = $gamma4 if ethnicity == 5
+105. 
+.         noi tab caldelw ethnicity, m
+106.         noi di "Manual replacements to avoid crashes:"
+107.         replace caldelw = 0.1 if caldelw==0 & ethnicity<. // To avoid crashes
+108. 
+. 
+.         /*  Fit imputation model in weighted population */
+.         
+.         uvis mlogit ethnicity                                   ///
+>                 `stp_text'                                                      ///
+>                 cumhgp_* cpnsdeath                                      ///
+>                 agegroup_*                                              ///
+>                 male                                                            ///
+>                 obese4cat_*                                                     ///
+>                 smoke_nomiss_*                                          ///
+>                 imd_*                                                           ///
+>                 htdiag_or_highbp                                        ///
+>                 chronic_respiratory_disease             ///
+>                 asthmacat_*                                             ///
+>                 chronic_cardiac_disease                         ///
+>                 diabcat_*                                                       ///
+>                 cancer_exhaem_cat_*                             ///
+>                 cancer_haem_cat_*                                       ///
+>                 chronic_liver_disease                           ///
+>                 stroke_dementia                                         ///
+>                 other_neuro                                                     ///
+>                 chronic_kidney_disease                          ///
+>                 organ_transplant                                        ///
+>                 spleen                                                          ///
+>                 ra_sle_psoriasis                                        ///
+>                 other_immunosuppression                         ///
+>                 [pw=caldelw],                                           ///
+>                 baseoutcome(1)                                          ///
+>                 gen(ethnicity`m') 
+109.         drop caldelw
+110.         
+. }
+
+Observed proportions:
+         Number Missing:   158820
+         Number Observed:  535104
+
+Drawn probabilities:
+         P(Missing):        .22989386
+         P(Observed):       .77010614
+
+Proportion estimation             Number of obs   =    535,104
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .6860648   .0006344        .68482    .6873069
+      Black  |   .0717973   .0003529      .0711086     .072492
+      Asian  |   .1869169   .0005329      .1858747    .1879637
+      Mixed  |   .0229208   .0002046      .0225232    .0233252
+      Other  |   .0323003   .0002417      .0318299    .0327773
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .07179726
+         Proportion Asian:   .18691694
+         Proportion Mixed:   .02292078
+         Proportion Other:   .03230026
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .07216521
+         P(Asian | r=1):  .1870756
+         P(Mixed | r=1):  .02256847
+         P(Other | r=1):  .03212402
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 0.888]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    693,924   -2.582789    1.257546  -8.696331   2.090583
+         lp2 |    693,924   -1.564444    1.205607   -6.93314   2.342636
+         lp3 |    693,924   -3.589618    1.019984  -7.652013  -.9652944
+         lp4 |    693,924   -3.359768    1.232037  -9.240694  -.6607724
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   158820
+         Probability of missing  (drawn): .22989386
+         Probability of observed (drawn): .77010614
+
+Drawn proportions (among complete cases):
+         Black (drawn): .07216521
+         Asian (drawn): .1870756
+         Mixed (drawn): .02256847
+         Other (drawn): .03212402
+
+External data:
+         Black (external): .033207
+         Asian (external): .121129
+         Mixed (external): .015657
+         Other (external): .014109
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(367,116 real changes made)
+(38,419 real changes made)
+(100,020 real changes made)
+(12,265 real changes made)
+(17,284 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,820 |   158,820 
+         1 |   367,116     38,419    100,020     12,265     17,284          0 |   535,104 
+-----------+------------------------------------------------------------------+----------
+     Total |   367,116     38,419    100,020     12,265     17,284    158,820 |   693,924 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 1.782]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+Observed proportions:
+         Number Missing:   158820
+         Number Observed:  535104
+
+Drawn probabilities:
+         P(Missing):        .22875795
+         P(Observed):       .77124205
+
+Proportion estimation             Number of obs   =    535,104
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .6860648   .0006344        .68482    .6873069
+      Black  |   .0717973   .0003529      .0711086     .072492
+      Asian  |   .1869169   .0005329      .1858747    .1879637
+      Mixed  |   .0229208   .0002046      .0225232    .0233252
+      Other  |   .0323003   .0002417      .0318299    .0327773
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .07179726
+         Proportion Asian:   .18691694
+         Proportion Mixed:   .02292078
+         Proportion Other:   .03230026
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .07180028
+         P(Asian | r=1):  .18630733
+         P(Mixed | r=1):  .02288414
+         P(Other | r=1):  .03224312
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 1.054]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    693,924   -2.582789    1.257546  -8.696331   2.090583
+         lp2 |    693,924   -1.564444    1.205607   -6.93314   2.342636
+         lp3 |    693,924   -3.589618    1.019984  -7.652013  -.9652944
+         lp4 |    693,924   -3.359768    1.232037  -9.240694  -.6607724
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   158820
+         Probability of missing  (drawn): .22875795
+         Probability of observed (drawn): .77124205
+
+Drawn proportions (among complete cases):
+         Black (drawn): .07180028
+         Asian (drawn): .18630733
+         Mixed (drawn): .02288414
+         Other (drawn): .03224312
+
+External data:
+         Black (external): .033207
+         Asian (external): .121129
+         Mixed (external): .015657
+         Other (external): .014109
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(367,116 real changes made)
+(38,419 real changes made)
+(100,020 real changes made)
+(12,265 real changes made)
+(17,284 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,820 |   158,820 
+         1 |   367,116     38,419    100,020     12,265     17,284          0 |   535,104 
+-----------+------------------------------------------------------------------+----------
+     Total |   367,116     38,419    100,020     12,265     17,284    158,820 |   693,924 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 0.144]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+Observed proportions:
+         Number Missing:   158820
+         Number Observed:  535104
+
+Drawn probabilities:
+         P(Missing):        .22964674
+         P(Observed):       .77035326
+
+Proportion estimation             Number of obs   =    535,104
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .6860648   .0006344        .68482    .6873069
+      Black  |   .0717973   .0003529      .0711086     .072492
+      Asian  |   .1869169   .0005329      .1858747    .1879637
+      Mixed  |   .0229208   .0002046      .0225232    .0233252
+      Other  |   .0323003   .0002417      .0318299    .0327773
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .07179726
+         Proportion Asian:   .18691694
+         Proportion Mixed:   .02292078
+         Proportion Other:   .03230026
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .07261727
+         P(Asian | r=1):  .1869767
+         P(Mixed | r=1):  .02295355
+         P(Other | r=1):  .03263844
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 1.627]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    693,924   -2.582789    1.257546  -8.696331   2.090583
+         lp2 |    693,924   -1.564444    1.205607   -6.93314   2.342636
+         lp3 |    693,924   -3.589618    1.019984  -7.652013  -.9652944
+         lp4 |    693,924   -3.359768    1.232037  -9.240694  -.6607724
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   158820
+         Probability of missing  (drawn): .22964674
+         Probability of observed (drawn): .77035326
+
+Drawn proportions (among complete cases):
+         Black (drawn): .07261727
+         Asian (drawn): .1869767
+         Mixed (drawn): .02295355
+         Other (drawn): .03263844
+
+External data:
+         Black (external): .033207
+         Asian (external): .121129
+         Mixed (external): .015657
+         Other (external): .014109
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(367,116 real changes made)
+(38,419 real changes made)
+(100,020 real changes made)
+(12,265 real changes made)
+(17,284 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,820 |   158,820 
+         1 |   367,116     38,419    100,020     12,265     17,284          0 |   535,104 
+-----------+------------------------------------------------------------------+----------
+     Total |   367,116     38,419    100,020     12,265     17,284    158,820 |   693,924 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 21.600]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+Observed proportions:
+         Number Missing:   158820
+         Number Observed:  535104
+
+Drawn probabilities:
+         P(Missing):        .228797
+         P(Observed):       .771203
+
+Proportion estimation             Number of obs   =    535,104
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .6860648   .0006344        .68482    .6873069
+      Black  |   .0717973   .0003529      .0711086     .072492
+      Asian  |   .1869169   .0005329      .1858747    .1879637
+      Mixed  |   .0229208   .0002046      .0225232    .0233252
+      Other  |   .0323003   .0002417      .0318299    .0327773
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .07179726
+         Proportion Asian:   .18691694
+         Proportion Mixed:   .02292078
+         Proportion Other:   .03230026
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .07187177
+         P(Asian | r=1):  .18670706
+         P(Mixed | r=1):  .02303903
+         P(Other | r=1):  .03261051
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 2.219]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    693,924   -2.582789    1.257546  -8.696331   2.090583
+         lp2 |    693,924   -1.564444    1.205607   -6.93314   2.342636
+         lp3 |    693,924   -3.589618    1.019984  -7.652013  -.9652944
+         lp4 |    693,924   -3.359768    1.232037  -9.240694  -.6607724
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   158820
+         Probability of missing  (drawn): .228797
+         Probability of observed (drawn): .771203
+
+Drawn proportions (among complete cases):
+         Black (drawn): .07187177
+         Asian (drawn): .18670706
+         Mixed (drawn): .02303903
+         Other (drawn): .03261051
+
+External data:
+         Black (external): .033207
+         Asian (external): .121129
+         Mixed (external): .015657
+         Other (external): .014109
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(367,116 real changes made)
+(38,419 real changes made)
+(100,020 real changes made)
+(12,265 real changes made)
+(17,284 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,820 |   158,820 
+         1 |   367,116     38,419    100,020     12,265     17,284          0 |   535,104 
+-----------+------------------------------------------------------------------+----------
+     Total |   367,116     38,419    100,020     12,265     17,284    158,820 |   693,924 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 0.238]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+Observed proportions:
+         Number Missing:   158820
+         Number Observed:  535104
+
+Drawn probabilities:
+         P(Missing):        .22824567
+         P(Observed):       .77175433
+
+Proportion estimation             Number of obs   =    535,104
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .6860648   .0006344        .68482    .6873069
+      Black  |   .0717973   .0003529      .0711086     .072492
+      Asian  |   .1869169   .0005329      .1858747    .1879637
+      Mixed  |   .0229208   .0002046      .0225232    .0233252
+      Other  |   .0323003   .0002417      .0318299    .0327773
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .07179726
+         Proportion Asian:   .18691694
+         Proportion Mixed:   .02292078
+         Proportion Other:   .03230026
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .07228165
+         P(Asian | r=1):  .18708364
+         P(Mixed | r=1):  .02303609
+         P(Other | r=1):  .03253671
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 0.951]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    693,924   -2.582789    1.257546  -8.696331   2.090583
+         lp2 |    693,924   -1.564444    1.205607   -6.93314   2.342636
+         lp3 |    693,924   -3.589618    1.019984  -7.652013  -.9652944
+         lp4 |    693,924   -3.359768    1.232037  -9.240694  -.6607724
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   158820
+         Probability of missing  (drawn): .22824567
+         Probability of observed (drawn): .77175433
+
+Drawn proportions (among complete cases):
+         Black (drawn): .07228165
+         Asian (drawn): .18708364
+         Mixed (drawn): .02303609
+         Other (drawn): .03253671
+
+External data:
+         Black (external): .033207
+         Asian (external): .121129
+         Mixed (external): .015657
+         Other (external): .014109
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(367,116 real changes made)
+(38,419 real changes made)
+(100,020 real changes made)
+(12,265 real changes made)
+(17,284 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,820 |   158,820 
+         1 |   367,116     38,419    100,020     12,265     17,284          0 |   535,104 
+-----------+------------------------------------------------------------------+----------
+     Total |   367,116     38,419    100,020     12,265     17,284    158,820 |   693,924 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[true/approx likelihood = 0.000/0.000 = 0.908]
+
+158820 missing observations on ethnicity imputed from 535104 complete observations.
+
+. 
+. * Keep the imputed data and patient ID for each region
+. keep patient_id region ethnicity*
+
+. 
+. * Save the data
+. save imputed_`k', replace
+(note: file imputed_8.dta not found)
+file imputed_8.dta saved
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_checkassumptions_MI_8.log
+  log type:  text
+ closed on:   1 May 2020, 22:25:58
+--------------------------------------------------------------------------------------------------------------------
