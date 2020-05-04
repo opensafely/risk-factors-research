@@ -8,9 +8,9 @@
 *
 *	Data used:		cr_create_analysis_dataset.dta
 *
-*	Data created:	imputed.dta  (imputed data)
+*	Data created:	imputed_i.dta  (imputed data; i=1,2,...,9, one per region)
 *
-*	Other output:	Log file output/an_checkassumptions_3
+*	Other output:	Log file output/an_checkassumptions_MI_i
 *
 ********************************************************************************
 *
@@ -34,6 +34,7 @@ local region `1'
 
 * Open a log file
 capture log close
+
 log using "output/an_checkassumptions_MI_`region'", text replace
 
 local k = `region'
