@@ -1,39 +1,16 @@
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _htdiag_or_highbpTOorgan_transplant.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_htdiag_or_highbpTOorgan
+> _transplant.log
   log type:  text
- opened on:  30 Apr 2020, 01:25:30
+ opened on:   1 May 2020, 18:31:34
 
 . 
 . * Open dataset and fit specified model(s)
-. use cr_create_analysis_dataset, clear
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 (Analysis dataset for the poor outcomes in Covid project)
 
 . 
-. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id)
->  
-
-                id:  patient_id
-     failure event:  cpnsdeath != 0 & cpnsdeath < .
-obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
- enter on or after:  time enter_date
- exit on or before:  failure
-    t for analysis:  (time-origin)
-            origin:  time enter_date
-
-------------------------------------------------------------------------------
-   17420594  total observations
-        466  observations end on or before enter()
-------------------------------------------------------------------------------
-   17420128  observations remaining, representing
-   17420128  subjects
-      5,707  failures in single-failure-per-subject data
- 1.4615e+09  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        84
-
 . 
 . foreach var of any `varlist' {
   2. 
@@ -49,16 +26,15 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
   7.         capture stcox `model' , strata(stp) 
   8.         if _rc==0 {
   9.                 estimates
- 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGES
-> EX_`var', replace
+ 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var', replace
  11.                 }
  12.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
  13. 
 . }
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -77,13 +53,12 @@ Log likelihood  =   -69527.225                  Prob > chi2      =      0.0000
 1.htdiag_or_highbp |   1.235976   .0391588     6.69   0.000      1.16156    1.315159
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_htdiag_or_highbp.ster
->  not found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_htdiag_or_highbp.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_htdiag_or_highbp.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -109,9 +84,9 @@ High, stage II  |   .5327623   .0202943   -16.53   0.000     .4944348    .574060
 (note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_bpcat.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_bpcat.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -130,13 +105,12 @@ Log likelihood  =   -69458.397                  Prob > chi2      =      0.0000
 1.hypertension |    1.48454   .0440478    13.32   0.000      1.40067    1.573431
 --------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_hypertension.ster not
->  found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_hypertension.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_hypertension.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -163,9 +137,9 @@ Log likelihood  =   -68954.723                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_imd.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_imd.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -188,13 +162,12 @@ Obese II (35-39.9)  |   2.007339   .0991768    14.10   0.000     1.822071    2.2
    Obese III (40+)  |   2.967658   .1930196    16.72   0.000     2.612467    3.371141
 -------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_obese4cat.ster not fo
-> und)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_obese4cat.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_obese4cat.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -220,13 +193,12 @@ Overweight (25-29.9)  |   .9681016   .0348942    -0.90   0.368     .9020701    1
      Obese III (40+)  |      3.498   .2406436    18.20   0.000     3.056763    4.002929
 ---------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_bmicat.ster not found
-> )
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_bmicat.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_bmicat.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -245,8 +217,7 @@ Log likelihood  =   -69493.031                  Prob > chi2      =      0.0000
 1.organ_transplant |   7.712244    1.10811    14.22   0.000     5.819403    10.22076
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_organ_transplant.ster
->  not found)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_organ_transplant.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_organ_transplant.ster saved
 
 . 
@@ -254,8 +225,8 @@ file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_organ_transplant
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _htdiag_or_highbpTOorgan_transplant.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_htdiag_or_highbpTOorgan
+> _transplant.log
   log type:  text
- closed on:  30 Apr 2020, 03:00:41
---------------------------------------------------------------------------------------------
+ closed on:   1 May 2020, 20:17:33
+--------------------------------------------------------------------------------------------------------------------

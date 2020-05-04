@@ -1,39 +1,16 @@
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _chronic_kidney_diseaseTOethnicity.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_kidney_diseaseT
+> Oethnicity.log
   log type:  text
- opened on:  30 Apr 2020, 01:24:51
+ opened on:   1 May 2020, 18:31:25
 
 . 
 . * Open dataset and fit specified model(s)
-. use cr_create_analysis_dataset, clear
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 (Analysis dataset for the poor outcomes in Covid project)
 
 . 
-. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id)
->  
-
-                id:  patient_id
-     failure event:  cpnsdeath != 0 & cpnsdeath < .
-obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
- enter on or after:  time enter_date
- exit on or before:  failure
-    t for analysis:  (time-origin)
-            origin:  time enter_date
-
-------------------------------------------------------------------------------
-   17420594  total observations
-        466  observations end on or before enter()
-------------------------------------------------------------------------------
-   17420128  observations remaining, representing
-   17420128  subjects
-      5,707  failures in single-failure-per-subject data
- 1.4615e+09  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        84
-
 . 
 . foreach var of any `varlist' {
   2. 
@@ -49,16 +26,15 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
   7.         capture stcox `model' , strata(stp) 
   8.         if _rc==0 {
   9.                 estimates
- 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGES
-> EX_`var', replace
+ 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var', replace
  11.                 }
  12.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
  13. 
 . }
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -77,14 +53,12 @@ Log likelihood  =   -69240.059                  Prob > chi2      =      0.0000
 1.chronic_kidney_disease |   2.153213   .0657631    25.11   0.000     2.028101    2.286042
 ------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_kidney_diseas
-> e.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_kidney_disease.ster 
-> saved
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_kidney_disease.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_kidney_disease.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -103,14 +77,12 @@ Log likelihood  =   -69519.654                  Prob > chi2      =      0.0000
 1.chronic_liver_disease |   2.338124     .22345     8.89   0.000     1.938741     2.81978
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease
-> .ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster s
-> aved
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -120,23 +92,21 @@ Time at risk    =   1461529354
                                                 LR chi2(4)       =    15099.20
 Log likelihood  =   -69250.454                  Prob > chi2      =      0.0000
 
--------------------------------------------------------------------------------------------
-                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
---------------------------+----------------------------------------------------------------
-                     age1 |   1.115773    .025969     4.71   0.000     1.066018    1.167851
-                     age2 |   1.034855   .0538944     0.66   0.511     .9344359    1.146065
-                     age3 |   .8725264   .1066299    -1.12   0.264     .6866806     1.10867
-1.chronic_respiratory_d~e |   2.339772   .0749803    26.53   0.000     2.197333    2.491444
--------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   1.115773    .025969     4.71   0.000     1.066018    1.167851
+                         age2 |   1.034855   .0538944     0.66   0.511     .9344359    1.146065
+                         age3 |   .8725264   .1066299    -1.12   0.264     .6866806     1.10867
+1.chronic_respiratory_disease |   2.339772   .0749803    26.53   0.000     2.197333    2.491444
+-----------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_d
-> isease.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.
-> ster saved
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -146,26 +116,25 @@ Time at risk    =   1461529354
                                                 LR chi2(6)       =    15619.75
 Log likelihood  =   -68990.178                  Prob > chi2      =      0.0000
 
--------------------------------------------------------------------------------------------
-                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
---------------------------+----------------------------------------------------------------
-                     age1 |   1.112413   .0257632     4.60   0.000     1.063046    1.164071
-                     age2 |   1.028056   .0533384     0.53   0.594     .9286546    1.138098
-                     age3 |   .8962273   .1091883    -0.90   0.368     .7058548    1.137944
-                          |
-                  diabcat |
-     Controlled diabetes  |   2.033886   .0669505    21.57   0.000     1.906809    2.169432
-   Uncontrolled diabetes  |   3.606582   .1445058    32.02   0.000     3.334191    3.901226
-Diabetes, no hba1c mea..  |   2.383816   .1577616    13.13   0.000     2.093823    2.713972
--------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+                         _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------+----------------------------------------------------------------
+                       age1 |   1.112413   .0257632     4.60   0.000     1.063046    1.164071
+                       age2 |   1.028056   .0533384     0.53   0.594     .9286546    1.138098
+                       age3 |   .8962273   .1091883    -0.90   0.368     .7058548    1.137944
+                            |
+                    diabcat |
+       Controlled diabetes  |   2.033886   .0669505    21.57   0.000     1.906809    2.169432
+     Uncontrolled diabetes  |   3.606582   .1445058    32.02   0.000     3.334191    3.901226
+Diabetes, no hba1c measure  |   2.383816   .1577616    13.13   0.000     2.093823    2.713972
+---------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_diabcat.ster not foun
-> d)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_diabcat.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_diabcat.ster saved
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -189,8 +158,7 @@ Asian or Asian British  |   1.927786   .1133604    11.16   0.000     1.717929   
                  Other  |   1.385574   .1817201     2.49   0.013     1.071503    1.791703
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster not fo
-> und)
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster not found)
 file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster saved
 
 . 
@@ -198,8 +166,8 @@ file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster s
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath
-> _chronic_kidney_diseaseTOethnicity.log
+       log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_univariable_cox_models_cpnsdeath_chronic_kidney_diseaseT
+> Oethnicity.log
   log type:  text
- closed on:  30 Apr 2020, 02:37:27
---------------------------------------------------------------------------------------------
+ closed on:   1 May 2020, 19:47:35
+--------------------------------------------------------------------------------------------------------------------

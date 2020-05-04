@@ -11,6 +11,7 @@
 *	Data created:	imputed.dta  (all imputed data)
 *
 *	Other output:	Log file output/an_checkassumptions_MI_combine
+
 *
 ********************************************************************************
 *
@@ -25,9 +26,12 @@
 
 
 
+
 * Open a log file
 capture log close
+
 log using "output/an_checkassumptions_MI_combine", text replace
+
 
 
 
@@ -52,13 +56,16 @@ log using "output/an_checkassumptions_MI_combine", text replace
 
 
 
+
 **************************
 *  Combine imputed data  *
 **************************
 
 * Put imputed data together (across regions)
 use imputed_1.dta, clear
+
 forvalues k= 2 (1) 9	{
+
 append using imputed_`k'
 }
 save imputed, replace

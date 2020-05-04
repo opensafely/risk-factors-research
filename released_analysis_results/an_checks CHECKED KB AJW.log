@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_checks.log
   log type:  text
- opened on:  30 Apr 2020, 01:25:55
+ opened on:   1 May 2020, 18:31:16
 
 . 
 . * Open Stata dataset
@@ -70,49 +70,49 @@
 . * BMI
 . bysort bmicat: summ bmi
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Underweight (<18.5)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |    314,161    17.42138    .8303779         15       18.4
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Normal (18.5-24.9)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |  4,812,116      22.371    1.711695       18.5       24.9
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Overweight (25-29.9)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |  4,727,688    27.27529    1.413887         25       29.9
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Obese I (30-34.9)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |  2,405,886    32.08332    1.416578         30       34.9
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Obese II (35-39.9)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |    930,210    37.05085    1.405943         35       39.9
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Obese III (40+)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          bmi |    467,049    43.38459    2.637177         40         50
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> bmicat = Unknown (.u)
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -139,42 +139,42 @@ Overweight (25-29.9) | 4,727,688          0          0          0 | 4,727,688
 . * Age
 . bysort agegroup: summ age
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 18-<40
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          age |  5,973,929    29.19206    6.204253         18         39
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 40-<50
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          age |  2,871,926    44.59315    2.923632         40         49
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 50-<60
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          age |  3,067,705    54.42895    2.843625         50         59
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 60-<70
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          age |  2,406,148    64.29786    2.885123         60         69
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 70-<80
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
          age |  1,952,091    73.95631    2.759321         70         79
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 -> agegroup = 80+
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -264,14 +264,10 @@ High, stage II |         0  3,754,995 | 3,754,995
 . /*
 > * Dates of comorbidities  
 > foreach var of varlist  chronic_respiratory_disease     ///
->                                                 chronic_cardiac_disease                 //
-> /
->                                                 diabetes                                  
->               ///
->                                                 chronic_liver_disease                   //
-> /
->                                                 organ_transplant                          
->       ///     
+>                                                 chronic_cardiac_disease                 ///
+>                                                 diabetes                                                ///
+>                                                 chronic_liver_disease                   ///
+>                                                 organ_transplant                                ///     
 >                                                 ra_sle_psoriasis  {
 > 
 >         summ `var'_date, format
@@ -891,32 +887,19 @@ Asian or Asian Britis |   310,449    139,726    309,847    146,854 |   906,876
 . 
 . * Relationships with age
 . foreach var of varlist  chronic_respiratory_disease     ///
->                                                 asthma                                    
->               ///
->                                                 asthmacat                                 
->               ///
->                                                 chronic_cardiac_disease                 //
-> /
->                                                 diabetes                                  
->               ///
->                                                 diabcat                                   
->               ///
->                                                 cancer_exhaem_cat                         
->       ///
->                                                 cancer_haem_cat                           
->       ///
->                                                 chronic_liver_disease                   //
-> /
->                                                 other_neuro                               
->               ///
->                                                 chronic_kidney_disease                  //
-> /
->                                                 organ_transplant                          
->       ///     
->                                                 spleen                                    
->               ///
->                                                 ra_sle_psoriasis                          
->       ///
+>                                                 asthma                                                  ///
+>                                                 asthmacat                                               ///
+>                                                 chronic_cardiac_disease                 ///
+>                                                 diabetes                                                ///
+>                                                 diabcat                                                 ///
+>                                                 cancer_exhaem_cat                               ///
+>                                                 cancer_haem_cat                                 ///
+>                                                 chronic_liver_disease                   ///
+>                                                 other_neuro                                             ///
+>                                                 chronic_kidney_disease                  ///
+>                                                 organ_transplant                                ///     
+>                                                 spleen                                                  ///
+>                                                 ra_sle_psoriasis                                ///
 >                                                 other_immunosuppression {
   2.         tab agegroup `var', row col
   3. }
@@ -1521,32 +1504,19 @@ Asian or Asian Britis |   310,449    139,726    309,847    146,854 |   906,876
 . 
 . * Relationships with sex
 . foreach var of varlist  chronic_respiratory_disease     ///
->                                                 asthma                                    
->               ///
->                                                 asthmacat                                 
->               ///
->                                                 chronic_cardiac_disease                 //
-> /
->                                                 diabetes                                  
->               ///
->                                                 diabcat                                   
->               ///
->                                                 cancer_exhaem_cat                         
->       ///
->                                                 cancer_haem_cat                           
->       ///
->                                                 chronic_liver_disease                   //
-> /
->                                                 other_neuro                               
->               ///
->                                                 chronic_kidney_disease                  //
-> /
->                                                 organ_transplant                          
->       ///     
->                                                 spleen                                    
->               ///
->                                                 ra_sle_psoriasis                          
->       ///
+>                                                 asthma                                                  ///
+>                                                 asthmacat                                               ///
+>                                                 chronic_cardiac_disease                 ///
+>                                                 diabetes                                                ///
+>                                                 diabcat                                                 ///
+>                                                 cancer_exhaem_cat                               ///
+>                                                 cancer_haem_cat                                 ///
+>                                                 chronic_liver_disease                   ///
+>                                                 other_neuro                                             ///
+>                                                 chronic_kidney_disease                  ///
+>                                                 organ_transplant                                ///     
+>                                                 spleen                                                  ///
+>                                                 ra_sle_psoriasis                                ///
 >                                                 other_immunosuppression {
   2.         tab male `var', row col
   3. }
@@ -1910,34 +1880,20 @@ Asian or Asian Britis |   310,449    139,726    309,847    146,854 |   906,876
 . 
 . * Relationships with smoking
 . foreach var of varlist chronic_respiratory_disease      ///
->                                                 asthma                                    
->               ///
->                                                 asthmacat                                 
->               ///
->                                                 chronic_cardiac_disease                 //
-> /
->                                                 diabetes                                  
->               ///
->                                                 diabcat                                   
->               ///
->                                                 cancer_exhaem_cat                         
->       ///
->                                                 cancer_haem_cat                           
->       ///
->                                                 chronic_liver_disease                   //
-> /
->                                                 other_neuro                               
->               ///
->                                                 chronic_kidney_disease                  //
-> /
->                                                 organ_transplant                          
->       ///     
->                                                 spleen                                    
->               ///
->                                                 ra_sle_psoriasis                          
->       ///
->                                                 other_immunosuppression                   
->               {
+>                                                 asthma                                                  ///
+>                                                 asthmacat                                               ///
+>                                                 chronic_cardiac_disease                 ///
+>                                                 diabetes                                                ///
+>                                                 diabcat                                                 ///
+>                                                 cancer_exhaem_cat                               ///
+>                                                 cancer_haem_cat                                 ///
+>                                                 chronic_liver_disease                   ///
+>                                                 other_neuro                                             ///
+>                                                 chronic_kidney_disease                  ///
+>                                                 organ_transplant                                ///     
+>                                                 spleen                                                  ///
+>                                                 ra_sle_psoriasis                                ///
+>                                                 other_immunosuppression                                 {
   2.         tab smoke `var', row col
   3. }
 
@@ -2549,5 +2505,5 @@ Failure/ce |
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-2\analysis\output/an_checks.log
   log type:  text
- closed on:  30 Apr 2020, 01:33:02
---------------------------------------------------------------------------------------------
+ closed on:   1 May 2020, 18:39:23
+--------------------------------------------------------------------------------------------------------------------

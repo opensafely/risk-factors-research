@@ -1,5 +1,7 @@
+*an_tablecontent_SENSANtable
 
-*an_tablecontent_HRtable
+*SENSITIVITY ANALYSES / POST HOC ANALYSES
+
 *************************************************************************
 *Purpose: Create content that is ready to paste into a pre-formatted Word 
 * shell table containing minimally and fully-adjusted HRs for risk factors
@@ -22,57 +24,42 @@ syntax, variable(string) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
-	foreach outcome of any /*ituadmission*/ cpnsdeath /*onscoviddeath*/ {
-	
-	foreach modeltype of any minadj fulladj {
+local outcome onscoviddeath
+local modeltype fulladj
+
+foreach antype of any primary earlycens ccbmismok adjethnic {
+
+if "`antype'" == "primary" local filestem "./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL"
+if "`antype'" == "earlycens" local filestem "./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL"
+if "`antype'" == "ccbmismok" local filestem "./output/models/an_sensan_CCbmiandsmok_cpnsdeath_MAINFULLYADJMODEL"
+if "`antype'" == "adjethnic" local filestem "./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL"
 	
 		local noestimatesflag 0 /*reset*/
 
-		if "`outcome'"=="cpnsdeath" & "`modeltype'"=="fulladj" local endwith "_n"
+		if "`antype'"=="adjethnic" local endwith "_n"
 
 		***********************
 		*1) GET THE RIGHT ESTIMATES INTO MEMORY
 		
-		if "`modeltype'"=="minadj" & "`variable'"!="agegroup" & "`variable'"!="male" {
-			cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`variable'
-			if _rc!=0 local noestimatesflag 1
-			}
-
 		*FOR AGEGROUP - need to use the separate univariate/multivariate model fitted with age group rather than spline
 		*FOR ETHNICITY - use the separate complete case multivariate model
 		*FOR REST - use the "main" multivariate model
 		if "`variable'"=="agegroup" {
-			if "`modeltype'"=="minadj" {
-				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_agegroupsex
+					if "`antype'"=="adjethnic" cap estimates use `filestem'_agegroup_bmicat_CCeth
+						else cap estimates use `filestem'_agegroup_bmicat_noeth
 				if _rc!=0 local noestimatesflag 1
 				}
-			if "`modeltype'"=="fulladj" {
-				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth
-				if _rc!=0 local noestimatesflag 1
-				}
-			}
-		else if "`variable'"=="male" {
-			if "`modeltype'"=="minadj" {
-				cap estimates use ./output/models/an_univariable_cox_models_`outcome'_AGESEX_agesplsex
-				if _rc!=0 local noestimatesflag 1			
-				}
-			if "`modeltype'"=="fulladj" {
-				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth  
-				if _rc!=0 local noestimatesflag 1
-				}
-			}
+
 		else if "`variable'"=="ethnicity" {
-			if "`modeltype'"=="fulladj" {
-				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth  
+				cap estimates use `filestem'_agespline_bmicat_CCeth  
 				if _rc!=0 local noestimatesflag 1
-				}
 			}			
+
 		else {
-			if "`modeltype'"=="fulladj" {
-				cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth  
+				if "`antype'"=="adjethnic" cap estimates use `filestem'_agespline_bmicat_CCeth  
+					else cap estimates use `filestem'_agespline_bmicat_noeth  
 				if _rc!=0 local noestimatesflag 1
-				}
-		}
+			}
 		
 		***********************
 		*2) WRITE THE HRs TO THE OUTPUT FILE
@@ -84,7 +71,6 @@ local endwith "_tab"
 			}
 			else file write tablecontents %4.2f ("DID NOT FIT") `endwith' 
 			
-		} /*min adj, full adj*/
 		
 	} /*outcomes*/
 } /*variable levels*/
@@ -101,7 +87,7 @@ end
 *MAIN CODE TO PRODUCE TABLE CONTENTS
 
 cap file close tablecontents
-file open tablecontents using ./output/an_tablecontents_HRtable.txt, t w replace 
+file open tablecontents using ./output/an_tablecontent_SENSANtable.txt, t w replace 
 
 *Age group
 outputHRsforvar, variable("agegroup") min(1) max(2)

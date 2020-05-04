@@ -22,13 +22,14 @@ syntax, variable(string) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
-	foreach outcome of any ituadmission cpnsdeath onscoviddeath {
+	foreach outcome of any /*ituadmission*/ cpnsdeath /*onscoviddeath*/ {
 	
 	foreach modeltype of any minadj fulladj {
 	
 		local noestimatesflag 0 /*reset*/
 
-		if "`outcome'"=="onscoviddeath" & "`modeltype'"=="fulladj" local endwith "_n"
+*CHANGE THE OUTCOME BELOW TO LAST IF BRINGING IN MORE COLS
+		if "`outcome'"=="cpnsdeath" & "`modeltype'"=="fulladj" local endwith "_n"
 
 		***********************
 		*1) GET THE RIGHT ESTIMATES INTO MEMORY
@@ -107,7 +108,7 @@ end
 cap prog drop refline
 prog define refline
 syntax, refcat(real)
-file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
+file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)")  _n
 *post HRestimates ("`outcome'") ("`variable'") (`refcat') (1) (1) (1) (.)
 end
 ***********************************************************************************************************************
@@ -253,6 +254,8 @@ replace Name = "Haematological malignancy" if Name=="Cancer haem cat"
 replace Name = "Stroke or dementia" if Name=="Stroke dementia"
 replace Name = "Other neurological" if Name=="Other neuro"
 replace Name = "Rheumatoid arthritis/Lupus/Psoriasis" if Name=="Ra sle psoriasis"
+replace Name = "Reduced kidney function" if Name=="Chronic kidney disease"
+
 
 *Levels
 gen leveldesc = ""

@@ -47,14 +47,18 @@ global onscoviddeathcensor 	= "06/04/2020"
 ****************************
 
 * Age: Exclude children
+noi di "DROPPING AGE<18:" 
 drop if age<18
+
 
 * Age: Exclude those with implausible ages
 assert age<.
+noi di "DROPPING AGE<105:" 
 drop if age>105
 
 * Sex: Exclude categories other than M and F
 assert inlist(sex, "M", "F", "I", "U")
+noi di "DROPPING GENDER NOT M/F:" 
 drop if inlist(sex, "I", "U")
 
 
@@ -731,6 +735,12 @@ keep patient_id imd stp region enter_date  									///
 sort patient_id
 label data "Analysis dataset for the poor outcomes in Covid project"
 save "cr_create_analysis_dataset.dta", replace
+
+* Save a version set on CPNS survival outcome
+stset stime_cpnsdeath, fail(cpnsdeath) 				///
+	id(patient_id) enter(enter_date) origin(enter_date)
+	
+save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
 
 
 log close
