@@ -3,8 +3,10 @@ start a notebook, open a web browser on the correct port, and handle
 shutdowns gracefully
 """
 
+import glob
 import os
 import re
+import requests
 import subprocess
 import shutil
 import signal
@@ -13,6 +15,19 @@ import sys
 import time
 import urllib.request
 import webbrowser
+
+
+import base64
+from io import BytesIO
+from matplotlib import pyplot as plt
+import numpy as np
+from pandas.api.types import is_categorical_dtype
+from pandas.api.types import is_bool_dtype
+from pandas.api.types import is_datetime64_dtype
+from pandas.api.types import is_numeric_dtype
+
+from datetime import datetime
+import seaborn as sns
 
 
 try:
@@ -177,7 +192,62 @@ def check_output():
     return output
 
 
+def make_chart(name, series, dtype):
+    FLOOR_DATE = datetime(1960, 1, 1)
+    CEILING_DATE = datetime.today()
+    img = BytesIO()
+    # Setting figure sizes in seaborn is a bit weird:
+    # https://stackoverflow.com/a/23973562/559140
+    if is_categorical_dtype(dtype):
+        sns.set_style("ticks")
+        sns.catplot(
+            x=name, data=series.to_frame(), kind="count", height=3, aspect=3 / 2
+        )
+        plt.xticks(rotation=45)
+    elif is_bool_dtype(dtype):
+        sns.set_style("ticks")
+        sns.catplot(x=name, data=series.to_frame(), kind="count", height=2, aspect=1)
+        plt.xticks(rotation=45)
+    elif is_datetime64_dtype(dtype):
+        # Early dates are dummy values; I don't know what late dates
+        # are but presumably just dud data
+        series = series[(series > FLOOR_DATE) & (series <= CEILING_DATE)]
+        # Set bin numbers appropriate to the time window
+        delta = series.max() - series.min()
+        if delta.days <= 31:
+            bins = delta.days
+        elif delta.days <= 365 * 10:
+            bins = delta.days / 31
+        else:
+            bins = delta.days / 365
+        if bins < 1:
+            bins = 1
+        fig = plt.figure(figsize=(5, 2))
+        ax = fig.add_subplot(111)
+        series.hist(bins=int(bins), ax=ax)
+        plt.xticks(rotation=45, ha="right")
+    elif is_numeric_dtype(dtype):
+        # Trim percentiles and negatives which are usually bad data
+        series = series[
+            (series < np.percentile(series, 95))
+            & (series > np.percentile(series, 5))
+            & (series > 0)
+        ]
+        fig = plt.figure(figsize=(5, 2))
+        ax = fig.add_subplot(111)
+        sns.distplot(series, kde=False, ax=ax)
+        plt.xticks(rotation=45)
+    else:
+        raise ValueError()
+
+    plt.savefig(img, transparent=True, bbox_inches="tight")
+    img.seek(0)
+    plt.close()
+    return base64.b64encode(img.read()).decode("UTF-8")
+
+
 def generate_cohort():
+    print("Running. Please wait...")
     sys.path.extend([relative_dir(), os.path.join(relative_dir(), "analysis")])
     # Avoid creating __pycache__ files in the analysis directory
     sys.dont_write_bytecode = True
@@ -186,6 +256,70 @@ def generate_cohort():
     with_sqlcmd = shutil.which("sqlcmd") is not None
     study.to_csv("analysis/input.csv", with_sqlcmd=with_sqlcmd)
     print("Successfully created cohort and covariates at analysis/input.csv")
+
+
+def make_cohort_report():
+    sys.path.extend([relative_dir(), os.path.join(relative_dir(), "analysis")])
+    # Avoid creating __pycache__ files in the analysis directory
+    sys.dont_write_bytecode = True
+    from study_definition import study
+
+    df = study.csv_to_df("analysis/input.csv")
+    descriptives = df.describe(include="all")
+
+    for name, dtype in zip(df.columns, df.dtypes):
+        if name == "patient_id":
+            continue
+        main_chart = '<div><img src="data:image/png;base64,{}"/></div>'.format(
+            make_chart(name, df[name], dtype)
+        )
+        empty_values_chart = ""
+        if is_datetime64_dtype(dtype):
+            # also do a null / not null plot
+            empty_values_chart = '<div><img src="data:image/png;base64,{}"/></div>'.format(
+                make_chart(name, df[name].isnull(), bool)
+            )
+        elif is_numeric_dtype(dtype):
+            # also do a null / not null plot
+            empty_values_chart = '<div><img src="data:image/png;base64,{}"/></div>'.format(
+                make_chart(name, df[name] > 0, bool)
+            )
+        descriptives.loc["values", name] = main_chart
+        descriptives.loc["nulls", name] = empty_values_chart
+
+    with open("analysis/descriptives.html", "w") as f:
+
+        f.write(
+            """<html>
+<head>
+  <style>
+    table {
+      text-align: left;
+      position: relative;
+      border-collapse: collapse;
+    }
+    td, th {
+      padding: 8px;
+      margin: 2px;
+    }
+    td {
+      border-left: solid 1px black;
+    }
+    tr:nth-child(even) {background: #EEE}
+    tr:nth-child(odd) {background: #FFF}
+    tbody th:first-child {
+      position: sticky;
+      left: 0px;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>"""
+        )
+
+        f.write(descriptives.to_html(escape=False, na_rep="", justify="left", border=0))
+        f.write("</body></html>")
+    print("Created cohort report at analysis/descriptives.html")
 
 
 def run_model(folder, stata_path=None):
@@ -200,17 +334,55 @@ def run_model(folder, stata_path=None):
     return check_output()
 
 
+def update_codelists():
+    base_path = os.path.join(os.path.dirname(__file__), "codelists")
+
+    # delete all existing codelists
+    for path in glob.glob(os.path.join(base_path, "*.csv")):
+        os.unlink(path)
+
+    with open(os.path.join(base_path, "codelists.txt")) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+
+            print(line)
+            project_id, codelist_id, version = line.split("/")
+            url = f"https://codelists.opensafely.org/codelist/{project_id}/{codelist_id}/{version}/download.csv"
+
+            rsp = requests.get(url)
+            rsp.raise_for_status()
+
+            with open(
+                os.path.join(base_path, f"{project_id}-{codelist_id}.csv"), "w"
+            ) as f:
+                f.write(rsp.text)
+
+
 def main(from_cmd_line=False):
-    parser = ArgumentParser()
+    parser = ArgumentParser(
+        description="Generate cohorts and run models in openSAFELY framework. "
+        "Latest version at https://github.com/ebmdatalab/opencorona-research-template/releases/latest"
+    )
     subparsers = parser.add_subparsers(help="sub-command help")
     generate_cohort_parser = subparsers.add_parser(
         "generate_cohort", help="Generate cohort"
     )
     generate_cohort_parser.set_defaults(which="generate_cohort")
+    cohort_report_parser = subparsers.add_parser(
+        "cohort_report", help="Generate cohort report"
+    )
+    cohort_report_parser.set_defaults(which="cohort_report")
     run_model_parser = subparsers.add_parser("run", help="Run model")
     run_model_parser.set_defaults(which="run")
     run_notebook_parser = subparsers.add_parser("notebook", help="Run notebook")
     run_notebook_parser.set_defaults(which="notebook")
+    update_codelists_parser = subparsers.add_parser(
+        "update_codelists",
+        help="Update codelists, using specification at codelists/codelists.txt",
+    )
+    update_codelists_parser.set_defaults(which="update_codelists")
 
     # Cohort parser options
     generate_cohort_parser.add_argument(
@@ -273,6 +445,8 @@ def main(from_cmd_line=False):
         else:
             os.environ["DATABASE_URL"] = options.database_url
             generate_cohort()
+    elif options.which == "cohort_report":
+        make_cohort_report()
     elif options.which == "notebook":
         if not options.skip_build:
             docker_build(notebook_tag)
@@ -284,6 +458,9 @@ def main(from_cmd_line=False):
             "To stop this docker container, use Ctrl+ C, or the File -> Shut Down menu in Jupyter Lab"
         )
         stream_subprocess_output(["docker", "logs", "--follow", container_id])
+    elif options.which == "update_codelists":
+        update_codelists()
+        print("Codelists updated. Don't forget to commit them to the repo")
 
 
 if __name__ == "__main__":
