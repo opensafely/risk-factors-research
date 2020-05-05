@@ -1,3 +1,4 @@
+import copy
 import csv
 import datetime
 import os
@@ -8,27 +9,26 @@ from urllib.parse import urlparse, unquote
 
 import pyodbc
 
+import pandas as pd
+
 from .expressions import format_expression
 
 
 # Characters that are safe to interpolate into SQL (see
 # `placeholders_and_params` below)
-SAFE_CHARS_RE = re.compile(r"[a-zA-Z0-9_\.\-]+")
+SAFE_CHARS_RE = re.compile(r"^[a-zA-Z0-9_\.\-]+$")
 
 
 class StudyDefinition:
     _db_connection = None
     _current_column_name = None
 
-    def __init__(self, population, **kwargs):
-        self.population_definition = population
-        self.covariate_definitions = kwargs
-        if self.population_definition[0] == "categorised_as":
-            raise ValueError(
-                "Expression queries can't yet be used in the population definition"
-            )
+    def __init__(self, population, **covariates):
+        covariates["population"] = population
+        assert "patient_id" not in covariates, "patient_id is a reserved column name"
         self.codelist_tables = []
-        self.queries = self.build_queries()
+        self.queries = self.build_queries(covariates)
+        self.pandas_csv_args = self.get_pandas_csv_args(covariates)
 
     def _to_csv_with_sqlcmd(self, filename):
         unique_check = UniqueCheck()
@@ -94,6 +94,86 @@ class StudyDefinition:
                     writer.writerow(row)
             unique_check.assert_unique_ids()
 
+    def csv_to_df(self, csv_name):
+        return pd.read_csv(csv_name, **self.pandas_csv_args)
+
+    def get_pandas_csv_args(self, covariate_definitions):
+        def tobool(val):
+            if val == "":
+                return False
+            if val == "0":
+                return False
+            return True
+
+        def add_month_and_day_to_date(val):
+            if val:
+                return val + "-01-01"
+            return val
+
+        def add_day_to_date(val):
+            if val:
+                return val + "-01"
+            return val
+
+        dtypes = {}
+        parse_dates = []
+        converters = {}
+        implicit_dates = []
+        definitions = list(covariate_definitions.items())
+
+        for name, (funcname, kwargs) in copy.deepcopy(definitions):
+            if kwargs.get("include_date_of_match"):
+                kwargs["returning"] = "date"
+                implicit_dates.append((name + "_date", (funcname, kwargs)))
+            elif kwargs.get("include_measurement_date"):
+                kwargs["returning"] = "date"
+                implicit_dates.append((name + "_date_measured", (funcname, kwargs)))
+
+        for name, (funcname, kwargs) in implicit_dates + definitions:
+            returning = kwargs.get("returning", None)
+            if name == "population":
+                continue
+            if returning and (
+                returning == "date"
+                or returning.startswith("date_")
+                or returning.endswith("_date")
+                or "_date_" in returning
+            ):
+                parse_dates.append(name)
+                # if granularity doesn't include a day, add one
+                if not kwargs.get("include_day") and not kwargs.get("include_month"):
+                    converters[name] = add_month_and_day_to_date
+                elif kwargs.get("include_month"):
+                    converters[name] = add_day_to_date
+
+            elif returning == "numeric_value":
+                dtypes[name] = "float"
+            elif returning == "number_of_matches_in_period":
+                dtypes[name] = "int"
+            elif returning == "binary_flag":
+                converters[name] = tobool
+            elif returning == "category" or "category_definitions" in kwargs:
+                dtypes[name] = "category"
+            elif "include_measurement_date" in kwargs:
+                # currently a special case for BMI
+                dtypes[name] = "float"
+                if name + "_date_measured" not in parse_dates:
+                    if kwargs["include_measurement_date"]:
+                        parse_dates.append(name + "_date_measured")
+            elif returning:
+                dtypes[name] = "category"
+            elif funcname == "age_as_of":
+                dtypes[name] = "int"
+            elif funcname == "sex":
+                dtypes[name] = "category"
+            elif funcname == "have_died_of_covid":
+                dtypes[name] = "category"
+            else:
+                raise ValueError(
+                    f"Unable to impute Pandas type for {name} ({funcname})"
+                )
+        return {"dtype": dtypes, "converters": converters, "parse_dates": parse_dates}
+
     def to_dicts(self):
         result = self.execute_query()
         keys = [x[0] for x in result.description]
@@ -126,39 +206,25 @@ class StudyDefinition:
             prepared_sql.append("\n\n")
         return "\n".join(prepared_sql)
 
-    def build_queries(self):
-        self.covariates = {}
-        population_cols, population_sql = self.get_query(
-            "population", *self.population_definition
+    def build_queries(self, covariate_definitions):
+        covariate_definitions, hidden_columns = self.flatten_nested_covariates(
+            covariate_definitions
         )
-        hidden_columns = set()
-        for name, (query_type, query_args) in self.covariate_definitions.items():
-            if query_type != "categorised_as":
-                self.covariates[name] = self.get_query(name, query_type, query_args)
-            # Special case for expression queries which can define extra hidden
-            # columns which they use for their logic but which don't appear in
-            # the output
-            else:
-                extra_columns = query_args["extra_columns"].items()
-                for hidden_name, (hidden_query_type, hidden_args) in extra_columns:
-                    hidden_columns.add(hidden_name)
-                    self.covariates[hidden_name] = self.get_query(
-                        hidden_name, hidden_query_type, hidden_args
-                    )
-        output_columns = ["#population.patient_id"]
-        table_queries = [
-            ("population", f"SELECT * INTO #population FROM ({population_sql}) t")
-        ]
-        joins = []
-        for column_name, (cols, sql) in self.covariates.items():
-            table_queries.append(
-                (column_name, f"SELECT * INTO #{column_name} FROM ({sql}) t")
-            )
-            joins.append(
-                f"LEFT JOIN #{column_name} ON #{column_name}.patient_id = #population.patient_id"
-            )
-            if column_name in hidden_columns:
+        # Ensure that patient_id is the first output column by reserving its
+        # place here even though we won't define it until later
+        output_columns = {"patient_id": None}
+        table_queries = {}
+        for name, (query_type, query_args) in covariate_definitions.items():
+            # `categorised_as` columns don't generate their own table query,
+            # they're just a CASE expression over columns generated by other
+            # queries
+            if query_type == "categorised_as":
+                output_columns[name] = self.get_case_expression(
+                    output_columns, **query_args
+                )
                 continue
+            cols, sql = self.get_query(name, query_type, query_args)
+            table_queries[name] = f"SELECT * INTO #{name} FROM ({sql}) t"
             # The first column should always be patient_id so we can join on it
             assert len(cols) > 1
             assert cols[0] == "patient_id"
@@ -166,28 +232,71 @@ class StudyDefinition:
                 # The first result column is given the name of the desired
                 # output column. The rest are added as suffixes to the name of
                 # the output column
-                output_column = column_name if n == 0 else f"{column_name}_{col}"
+                output_col = name if n == 0 else f"{name}_{col}"
                 default_value = quote(self.default_for_column(col))
-                output_columns.append(
-                    f"ISNULL(#{column_name}.{col}, {default_value}) AS {output_column}"
-                )
-        # Add column defintions for covariates which are boolean expressions
-        # over other covariates
-        for name, (query_type, query_args) in self.covariate_definitions.items():
-            if query_type == "categorised_as":
-                case_expression = self.get_case_expression(
-                    self.covariates, **query_args
-                )
-                output_columns.append(f"{case_expression} AS {name}")
-        output_columns_str = ",\n          ".join(output_columns)
+                output_columns[output_col] = f"ISNULL(#{name}.{col}, {default_value})"
+        # If the population query defines its own temporary table then we use
+        # that as the primary table to query against and left join everything
+        # else against that. Otherwise, we use the `Patient` table.
+        if "population" in table_queries:
+            primary_table = "#population"
+            output_columns["patient_id"] = "#population.patient_id"
+        else:
+            primary_table = "Patient"
+            output_columns["patient_id"] = "Patient.Patient_ID"
+        output_columns_str = ",\n          ".join(
+            f"{expr} AS {name}"
+            for (name, expr) in output_columns.items()
+            if name not in hidden_columns and name != "population"
+        )
+        joins = [
+            f"LEFT JOIN #{name} ON #{name}.patient_id = {output_columns['patient_id']}"
+            for name in table_queries
+            if name != "population"
+        ]
         joins_str = "\n          ".join(joins)
         joined_output_query = f"""
         SELECT
           {output_columns_str}
-        FROM #population
+        FROM
+          {primary_table}
           {joins_str}
+        WHERE {output_columns["population"]} = 1
         """
-        return table_queries + [("final_output", joined_output_query)]
+        return list(table_queries.items()) + [("final_output", joined_output_query)]
+
+    def flatten_nested_covariates(self, covariate_definitions):
+        """
+        Some covariates (e.g `categorised_as`) can define their own internal
+        covariates which are used for calculating the column value but don't
+        appear in the final output. Here we pull all these internal covariates
+        out (which may be recursively nested) and assemble a flat list of
+        covariates along with a set of ones which should be hidden from the
+        final output.
+
+        We also check for any name clashes among covariates. (In future we
+        could rewrite the names of internal covariates to avoid this but for
+        now we just throw an error.)
+        """
+        flattened = {}
+        hidden = set()
+        items = list(covariate_definitions.items())
+        while items:
+            name, (query_type, query_args) = items.pop(0)
+            if query_type == "categorised_as" and "extra_columns" in query_args:
+                # Pull out the extra columns
+                extra_columns = query_args.pop("extra_columns")
+                # Stick the query back on the stack
+                items.insert(0, (name, (query_type, query_args)))
+                # Mark the extra columns as hidden
+                hidden.update(extra_columns.keys())
+                # Add them to the start of the list of items to be processed
+                items[:0] = extra_columns.items()
+            else:
+                if name in flattened:
+                    raise ValueError(f"Duplicate columns named '{name}'")
+                flattened[name] = (query_type, query_args)
+        return flattened, hidden
 
     def default_for_column(self, column_name):
         is_str_col = (
@@ -310,9 +419,9 @@ class StudyDefinition:
         All patients
         """
         return (
-            ["patient_id", "date_of_birth", "sex"],
+            ["patient_id", "is_included"],
             """
-            SELECT Patient_ID AS patient_id, DateOfBirth AS date_of_birth, Sex AS sex
+            SELECT Patient_ID AS patient_id, 1 AS is_included
             FROM Patient
             """,
         )
@@ -379,7 +488,7 @@ class StudyDefinition:
         # each list is the canonical version according to TPP
         weight_codes = [
             "X76C7",  # Concept containing "body weight" terms:
-            "22A.. ",  # O/E weight
+            "22A..",  # O/E weight
         ]
         height_codes = [
             "XM01E",  # Concept containing height/length/stature/growth terms:
@@ -708,6 +817,8 @@ class StudyDefinition:
             column = "MSOACode"
         elif returning == "nhse_region_name":
             column = "Region"
+        elif returning == "pseudo_id":
+            column = "Organisation_ID"
         else:
             raise ValueError(f"Unsupported `returning` value: {returning}")
         # Note that current registrations are recorded with an EndDate of
@@ -952,7 +1063,7 @@ class StudyDefinition:
             """,
         )
 
-    def get_case_expression(self, covariates, category_definitions, extra_columns=None):
+    def get_case_expression(self, column_definitions, category_definitions):
         defaults = [k for (k, v) in category_definitions.items() if v == "DEFAULT"]
         if len(defaults) > 1:
             raise ValueError("At most one default category can be defined")
@@ -963,22 +1074,13 @@ class StudyDefinition:
             default_value = ""
         clauses = []
         for category, expression in category_definitions.items():
-            formatted_expression = self.get_boolean_expression(covariates, expression)
+            # The column references in the supplied expression need to be
+            # rewritten to ensure they refer to the correct CTE. The formatting
+            # function also ensures that the expression matches the very
+            # limited subset of SQL we support here.
+            formatted_expression = format_expression(expression, column_definitions)
             clauses.append(f"WHEN ({formatted_expression}) THEN {quote(category)}")
         return f"CASE {' '.join(clauses)} ELSE {quote(default_value)} END"
-
-    def get_boolean_expression(self, covariates, expression):
-        # The column references in the supplied expression need to be rewritten
-        # to ensure they refer to the correct CTE. The formatting function also
-        # ensures that the expression matches the very limited subset of SQL we
-        # support here.
-        name_map = {}
-        for name, (columns, query) in covariates.items():
-            # The first column is the patient_id, the next is the primary column
-            column = columns[1]
-            default_value = quote(self.default_for_column(column))
-            name_map[name] = f"ISNULL(#{name}.{column}, {default_value})"
-        return format_expression(expression, name_map)
 
     def get_db_dict(self):
         parsed = urlparse(os.environ["DATABASE_URL"])
@@ -1302,11 +1404,28 @@ def codelist_to_sql(codelist):
     return ",".join(values)
 
 
+def standardise_if_date(value):
+    """For strings that look like ISO dates, format in a SQL-Server
+    friendly fashion
+
+    """
+
+    # ISO date strings with hyphens are unreliable in SQL Server:
+    # https://stackoverflow.com/a/25548626/559140
+    try:
+        date = datetime.datetime.strptime(value, "%Y-%m-%d")
+        value = date.strftime("%Y%m%d")
+    except ValueError:
+        pass
+    return value
+
+
 def quote(value):
     if isinstance(value, (int, float)):
         return str(value)
     else:
         value = str(value)
+        value = standardise_if_date(value)
         if not SAFE_CHARS_RE.match(value) and value != "":
             raise ValueError(f"Value contains disallowed characters: {value}")
         return f"'{value}'"
