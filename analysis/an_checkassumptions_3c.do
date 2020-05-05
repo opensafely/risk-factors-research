@@ -79,7 +79,7 @@ forvalues i = 1 (1) 5 {
 }
 
 
-
+recode ethnicity .u=.
 
 /*  Import into -mi- format  */
 
@@ -117,16 +117,16 @@ mi estimate, eform: 							///
 	stcox 	i.ethnicity							///
 			age1 age2 age3						///
 			i.male 								///
-			i.obese4cat_*						///
-			i.smoke_nomiss_*					///
-			i.imd_*								///
+			i.obese4cat							///
+			i.smoke_nomiss						///
+			i.imd								///
 			i.htdiag_or_highbp					///
 			i.chronic_respiratory_disease 		///
-			i.asthmacat_* 						///
+			i.asthmacat 						///
 			i.chronic_cardiac_disease 			///
-			i.diabcat_* 						///
-			i.cancer_exhaem_cat_* 				///
-			i.cancer_haem_cat_*  				///
+			i.diabcat 							///
+			i.cancer_exhaem_cat 				///
+			i.cancer_haem_cat	  				///
 			i.chronic_liver_disease 			///
 			i.stroke_dementia		 			///
 			i.other_neuro						///
@@ -137,7 +137,7 @@ mi estimate, eform: 							///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
-			
+estimates save ./output/models/an_sensan_ethnicityMI_cpnsdeath_MAINFULLYADJMODEL_agespline, replace			
 			
 
 * Primary analysis using imputed data, with grouped age
@@ -145,16 +145,16 @@ mi estimate, eform: 							///
 	stcox 	i.ethnicity							///
 			i.agegroup							///
 			i.male 								///
-			i.obese4cat_*						///
-			i.smoke_nomiss_*					///
-			i.imd_*								///
+			i.obese4cat							///
+			i.smoke_nomiss						///
+			i.imd								///
 			i.htdiag_or_highbp					///
 			i.chronic_respiratory_disease 		///
-			i.asthmacat_* 						///
+			i.asthmacat 						///
 			i.chronic_cardiac_disease 			///
-			i.diabcat_* 						///
-			i.cancer_exhaem_cat_* 				///
-			i.cancer_haem_cat_*  				///
+			i.diabcat	 						///
+			i.cancer_exhaem_cat 				///
+			i.cancer_haem_cat	  				///
 			i.chronic_liver_disease 			///
 			i.stroke_dementia		 			///
 			i.other_neuro						///
@@ -165,6 +165,7 @@ mi estimate, eform: 							///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
+estimates save ./output/models/an_sensan_ethnicityMI_cpnsdeath_MAINFULLYADJMODEL_agegroup, replace			
 			
 log close
 
