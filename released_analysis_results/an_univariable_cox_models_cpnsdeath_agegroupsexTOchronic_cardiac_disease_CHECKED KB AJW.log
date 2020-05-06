@@ -1,0 +1,206 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_univariable_cox_models_cpnsdeath_agegroupse
+> xTOchronic_cardiac_disease.log
+  log type:  text
+ opened on:   5 May 2020, 22:21:47
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *Special cases
+.         if "`var'"=="agesplsex" local model "age1 age2 age3 i.male"
+  3.         else if "`var'"=="agegroupsex" local model "ib3.agegroup i.male"
+  4.         else if "`var'"=="bmicat" local model "age1 age2 age3 i.male ib2.bmicat"
+  5.         *General form of model
+.         else local model "age1 age2 age3 i.`var'"
+  6. 
+.         *Fit and save model
+.         cap erase ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var'.ster
+  7.         capture stcox `model' , strata(stp) 
+  8.         if _rc==0 {
+  9.                 estimates
+ 10.                 estimates save ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var', r
+> eplace
+ 11.                 }
+ 12.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 13. 
+. }
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(6)       =    14768.69
+Log likelihood  =   -69093.423                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    agegroup |
+     18-<40  |   .0544929   .0090899   -17.44   0.000     .0392963    .0755662
+     40-<50  |   .2688635   .0311929   -11.32   0.000     .2141793    .3375097
+     60-<70  |   2.605335    .170081    14.67   0.000     2.292427    2.960953
+     70-<80  |   7.608783   .4478805    34.47   0.000     6.779699    8.539256
+        80+  |   26.26745   1.478983    58.05   0.000     23.52291     29.3322
+             |
+      1.male |   2.119555   .0584401    27.25   0.000     2.008055    2.237247
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_agegroupsex.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_agegroupsex.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(4)       =    15411.95
+Log likelihood  =   -68771.792                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.113519   .0257604     4.65   0.000     1.064157     1.16517
+        age2 |   1.045221   .0541413     0.85   0.393      .944315     1.15691
+        age3 |   .8608794   .1046952    -1.23   0.218     .6783035    1.092599
+      1.male |   2.238883   .0620639    29.07   0.000     2.120485    2.363891
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_agesplsex.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_agesplsex.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(5)       =    14597.19
+Log likelihood  =   -69179.172                  Prob > chi2      =      0.0000
+
+-------------------------------------------------------------------------------
+           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+         age1 |   1.106014   .0252497     4.41   0.000     1.057616    1.156626
+         age2 |    1.06979    .054838     1.32   0.188     .9675325    1.182855
+         age3 |   .8031531   .0967728    -1.82   0.069     .6342143    1.017093
+              |
+    asthmacat |
+ Yes, no OCS  |   1.233395   .0496549     5.21   0.000     1.139814     1.33466
+Yes with OCS  |   1.701798   .1226017     7.38   0.000     1.477697    1.959885
+-------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_asthmacat.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_asthmacat.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(6)       =    14581.64
+Log likelihood  =   -69186.947                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------
+               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             age1 |   1.107209   .0253459     4.45   0.000      1.05863    1.158017
+             age2 |   1.064507   .0546975     1.22   0.224     .9625238    1.177297
+             age3 |   .8134345   .0982238    -1.71   0.087     .6420049     1.03064
+                  |
+cancer_exhaem_cat |
+       Last year  |   1.826554   .1794974     6.13   0.000     1.506552    2.214527
+   2-5 years ago  |   1.390108   .0908544     5.04   0.000     1.222971    1.580088
+        5+ years  |   1.025524   .0462635     0.56   0.576     .9387423    1.120328
+-----------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_cancer_exhaem_cat.ster not found
+> )
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_cancer_exhaem_cat.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(6)       =    14695.80
+Log likelihood  =   -69129.869                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------
+             _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------+----------------------------------------------------------------
+           age1 |   1.107252    .025345     4.45   0.000     1.058674    1.158058
+           age2 |   1.064817   .0546979     1.22   0.221     .9628309    1.177605
+           age3 |   .8124224   .0980699    -1.72   0.085     .6412551    1.029279
+                |
+cancer_haem_cat |
+     Last year  |   4.028748   .7773981     7.22   0.000     2.760069    5.880582
+ 2-5 years ago  |   3.593419   .4048912    11.35   0.000     2.881364    4.481441
+      5+ years  |   2.133658   .2123594     7.61   0.000     1.755521    2.593244
+---------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_cancer_haem_cat.ster not found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_cancer_haem_cat.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,424,997                  Number of obs    =  17,424,997
+No. of failures =        5,683
+Time at risk    =   1461875026
+                                                LR chi2(4)       =    15080.85
+Log likelihood  =   -68937.343                  Prob > chi2      =      0.0000
+
+-------------------------------------------------------------------------------------------
+                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------+----------------------------------------------------------------
+                     age1 |   1.109906   .0255151     4.54   0.000     1.061008    1.161059
+                     age2 |   1.053656   .0543264     1.01   0.311     .9523812    1.165699
+                     age3 |   .8257056    .100014    -1.58   0.114      .651213    1.046953
+1.chronic_cardiac_disease |   2.012968   .0580318    24.27   0.000     1.902381    2.129983
+-------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_cardiac_disease.ster not
+>  found)
+file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_cardiac_disease.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_univariable_cox_models_cpnsdeath_agegroupse
+> xTOchronic_cardiac_disease.log
+  log type:  text
+ closed on:   5 May 2020, 23:51:48
+-------------------------------------------------------------------------------------------------------

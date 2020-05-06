@@ -1,0 +1,191 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_ra
+> _sle_psoriasisTOstroke_dementia.log
+  log type:  text
+ opened on:   5 May 2020, 22:21:50
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.smoke"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_smok_exp_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_smoking_exploration_cox_models_`outcome'_AGESEX_
+> `var', replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,699,675                  Number of obs    =  16,699,675
+No. of failures =        5,654
+Time at risk    =   1400959472
+                                                LR chi2(7)       =    15248.44
+Log likelihood  =   -68216.658                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.116213   .0276116     4.44   0.000     1.063386    1.171664
+              age2 |   1.021297   .0560114     0.38   0.701     .9172113    1.137195
+              age3 |   .9195511   .1178287    -0.65   0.513     .7153281    1.182079
+            1.male |   2.105027   .0593714    26.39   0.000     1.991819    2.224669
+1.ra_sle_psoriasis |   1.338427   .0611492     6.38   0.000     1.223786    1.463807
+                   |
+             smoke |
+           Former  |   1.536315   .0460973    14.31   0.000     1.448571    1.629373
+          Current  |   1.095264   .0622019     1.60   0.109     .9798911    1.224222
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_ra_sle_psoriasis.ster no
+> t found)
+file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_ra_sle_psoriasis.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,699,675                  Number of obs    =  16,699,675
+No. of failures =        5,654
+Time at risk    =   1400959472
+                                                LR chi2(6)       =    15210.78
+Log likelihood  =   -68235.488                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.115359   .0275418     4.42   0.000     1.062664    1.170668
+        age2 |   1.024978   .0561301     0.45   0.652     .9206636    1.141112
+        age3 |   .9102959   .1164847    -0.73   0.463     .7083694    1.169783
+      1.male |   2.095359   .0590793    26.24   0.000     1.982707    2.214412
+             |
+       smoke |
+     Former  |   1.549061   .0464266    14.60   0.000     1.460687    1.642781
+    Current  |    1.10516   .0627433     1.76   0.078     .9887804    1.235237
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_smoke.ster not found)
+file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_smoke.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,699,675                  Number of obs    =  16,699,675
+No. of failures =        5,654
+Time at risk    =   1400959472
+                                                LR chi2(6)       =    15210.78
+Log likelihood  =   -68235.488                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.115359   .0275418     4.42   0.000     1.062664    1.170668
+        age2 |   1.024978   .0561301     0.45   0.652     .9206636    1.141112
+        age3 |   .9102959   .1164847    -0.73   0.463     .7083694    1.169783
+      1.male |   2.095359   .0590793    26.24   0.000     1.982707    2.214412
+             |
+smoke_nomiss |
+     Former  |   1.549061   .0464266    14.60   0.000     1.460687    1.642781
+    Current  |    1.10516   .0627433     1.76   0.078     .9887804    1.235237
+             |
+       smoke |
+     Former  |          1  (omitted)
+    Current  |          1  (omitted)
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_smoke_nomiss.ster not fo
+> und)
+file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_smoke_nomiss.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,699,675                  Number of obs    =  16,699,675
+No. of failures =        5,654
+Time at risk    =   1400959472
+                                                LR chi2(7)       =    15216.36
+Log likelihood  =   -68232.696                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        age1 |   1.115392   .0275443     4.42   0.000     1.062692    1.170706
+        age2 |   1.024758   .0561211     0.45   0.655     .9204603    1.140874
+        age3 |   .9108853   .1165662    -0.73   0.466     .7088189    1.170556
+      1.male |   2.094741    .059063    26.22   0.000      1.98212    2.213761
+    1.spleen |   1.711862   .3577047     2.57   0.010     1.136592    2.578296
+             |
+       smoke |
+     Former  |   1.548576    .046413    14.59   0.000     1.460228    1.642269
+    Current  |   1.104885   .0627284     1.76   0.079     .9885328    1.234931
+------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_spleen.ster not found)
+file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_spleen.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,699,675                  Number of obs    =  16,699,675
+No. of failures =        5,654
+Time at risk    =   1400959472
+                                                LR chi2(7)       =    15619.20
+Log likelihood  =   -68031.274                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------
+               _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             age1 |   1.112524   .0273424     4.34   0.000     1.060204    1.167426
+             age2 |   1.033082   .0563662     0.60   0.551     .9283081    1.149681
+             age3 |   .8835927    .112718    -0.97   0.332     .6881231    1.134588
+           1.male |   2.062684   .0582063    25.66   0.000     1.951699     2.17998
+1.stroke_dementia |   2.193945   .0789317    21.84   0.000      2.04457    2.354233
+                  |
+            smoke |
+          Former  |   1.524616   .0457333    14.06   0.000     1.437565     1.61694
+         Current  |   1.080028   .0613356     1.36   0.175     .9662618     1.20719
+-----------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_stroke_dementia.ster not
+>  found)
+file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_stroke_dementia.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_ra
+> _sle_psoriasisTOstroke_dementia.log
+  log type:  text
+ closed on:   5 May 2020, 23:42:23
+-------------------------------------------------------------------------------------------------------
