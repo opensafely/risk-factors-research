@@ -291,8 +291,8 @@ replace leveldesc = "4" if variable=="imd" & level==4
 replace leveldesc = "5 (most deprived)" if variable=="imd" & level==5
 
 replace leveldesc = "No diabetes (ref)" if variable=="diabcat" & level==1
-replace leveldesc = "Controlled (HbA1c <7.5%)" if variable=="diabcat" & level==2
-replace leveldesc = "Uncontrolled (HbA1c >-7.5%) " if variable=="diabcat" & level==3
+replace leveldesc = "Controlled (HbA1c <58mmol/mol)" if variable=="diabcat" & level==2
+replace leveldesc = "Uncontrolled (HbA1c >=58mmol/mol) " if variable=="diabcat" & level==3
 replace leveldesc = "Unknown HbA1c" if variable=="diabcat" & level==4
 
 replace leveldesc = "No asthma (ref)" if variable=="asthmacat" & level==1
