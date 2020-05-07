@@ -4,7 +4,7 @@ This is the code and configuration for our paper, _OpenSAFELY: factors associate
 COVID-19-related hospital death in the linked electronic health records of 17 million adult
 NHS patients_
 
-* The paper is [here]()
+* The paper is [here](https://www.medrxiv.org/content/10.1101/2020.05.06.20092999v1)
 * Raw model outputs, including charts, crosstabs, etc, are in `released_analysis_results/`
 * If you are interested in how we defined our covarates, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
 * If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/). A new tool
