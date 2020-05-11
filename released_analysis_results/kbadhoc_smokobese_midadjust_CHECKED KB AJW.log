@@ -1,0 +1,202 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/kbadhoc_smokobese_midadjust.log
+  log type:  text
+ opened on:  10 May 2020, 10:52:37
+
+. 
+. local outcome cpnsdeath 
+
+. 
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. stcox i.smoke_nomiss age1 age2 age3 i.male i.imd i.ethnicity , strata(stp)
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+Iteration 0:   log likelihood = -55395.077
+Iteration 1:   log likelihood = -50857.252
+Iteration 2:   log likelihood = -49521.171
+Iteration 3:   log likelihood = -49493.953
+Iteration 4:   log likelihood = -49490.377
+Iteration 5:   log likelihood = -49490.122
+Iteration 6:   log likelihood =  -49490.12
+Iteration 7:   log likelihood =  -49490.12
+Refining estimates:
+Iteration 0:   log likelihood =  -49490.12
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,719,249                  Number of obs    =  12,719,249
+No. of failures =        4,203
+Time at risk    =   1067136353
+                                                LR chi2(14)      =    11809.91
+Log likelihood  =    -49490.12                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+           smoke_nomiss |
+                Former  |   1.607883   .0572291    13.34   0.000     1.499539    1.724055
+               Current  |   1.071582   .0704753     1.05   0.293     .9419855    1.219009
+                        |
+                   age1 |   1.103328   .0292553     3.71   0.000     1.047453    1.162183
+                   age2 |   1.062769   .0630874     1.03   0.305     .9460414    1.193898
+                   age3 |   .8302291   .1156731    -1.34   0.182     .6318337     1.09092
+                 1.male |    2.03888   .0666367    21.80   0.000      1.91237     2.17376
+                        |
+                    imd |
+                     2  |   1.245436   .0674656     4.05   0.000     1.119983     1.38494
+                     3  |   1.375367   .0741158     5.91   0.000     1.237511     1.52858
+                     4  |   1.762966   .0926025    10.79   0.000     1.590499    1.954136
+       5 most deprived  |    2.09068   .1123095    13.73   0.000      1.88175    2.322809
+                        |
+              ethnicity |
+                 Mixed  |   1.757623   .2855211     3.47   0.001     1.278352     2.41658
+Asian or Asian British  |   1.901255   .1142545    10.69   0.000     1.690005    2.138911
+                 Black  |   1.974369   .1690967     7.94   0.000     1.669269    2.335233
+                 Other  |   1.332178   .1776932     2.15   0.032     1.025709    1.730215
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+
+. estimates save ./output/models/kbadhoc_smokobese_midadjus_smokAdemog, replace
+(note: file ./output/models/kbadhoc_smokobese_midadjus_smokAdemog.ster not found)
+file ./output/models/kbadhoc_smokobese_midadjus_smokAdemog.ster saved
+
+. 
+. 
+. stcox i.obese4cat age1 age2 age3 i.male i.imd i.ethnicity , strata(stp)
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+Iteration 0:   log likelihood = -55395.077
+Iteration 1:   log likelihood = -50840.497
+Iteration 2:   log likelihood = -49456.539
+Iteration 3:   log likelihood = -49417.293
+Iteration 4:   log likelihood = -49413.782
+Iteration 5:   log likelihood = -49413.562
+Iteration 6:   log likelihood =  -49413.56
+Iteration 7:   log likelihood =  -49413.56
+Refining estimates:
+Iteration 0:   log likelihood =  -49413.56
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,719,249                  Number of obs    =  12,719,249
+No. of failures =        4,203
+Time at risk    =   1067136353
+                                                LR chi2(15)      =    11963.03
+Log likelihood  =    -49413.56                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+              obese4cat |
+     Obese I (30-34.9)  |   1.518086   .0592969    10.69   0.000     1.406204     1.63887
+    Obese II (35-39.9)  |   2.096236   .1191469    13.02   0.000      1.87525    2.343264
+       Obese III (40+)  |   3.196394   .2427037    15.30   0.000     2.754407    3.709304
+                        |
+                   age1 |   1.099509    .028769     3.63   0.000     1.044545    1.157366
+                   age2 |   1.066297   .0626093     1.09   0.274     .9503831    1.196349
+                   age3 |   .8385474    .115724    -1.28   0.202     .6398192    1.099001
+                 1.male |   2.312401   .0746451    25.97   0.000     2.170632     2.46343
+                        |
+                    imd |
+                     2  |   1.233222   .0667995     3.87   0.000     1.109008    1.371349
+                     3  |   1.348809   .0726866     5.55   0.000     1.213611    1.499067
+                     4  |   1.703855   .0894969    10.15   0.000     1.537171    1.888613
+       5 most deprived  |   1.995516   .1069348    12.89   0.000     1.796559    2.216507
+                        |
+              ethnicity |
+                 Mixed  |    1.67419   .2719036     3.17   0.002     1.217761    2.301694
+Asian or Asian British  |    1.77264   .1052096     9.65   0.000     1.577975     1.99132
+                 Black  |   1.819739   .1554112     7.01   0.000     1.539267    2.151316
+                 Other  |   1.326281   .1769338     2.12   0.034     1.021128    1.722625
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+
+. estimates save ./output/models/kbadhoc_smokobese_midadjus_obesAdemog, replace
+(note: file ./output/models/kbadhoc_smokobese_midadjus_obesAdemog.ster not found)
+file ./output/models/kbadhoc_smokobese_midadjus_obesAdemog.ster saved
+
+. 
+. 
+. stcox i.obese4cat i.smoke_nomiss age1 age2 age3 i.male i.imd i.ethnicity , strata(stp)
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+Iteration 0:   log likelihood = -55395.077
+Iteration 1:   log likelihood = -50714.105
+Iteration 2:   log likelihood = -49372.228
+Iteration 3:   log likelihood = -49332.973
+Iteration 4:   log likelihood = -49329.139
+Iteration 5:   log likelihood = -49328.877
+Iteration 6:   log likelihood = -49328.875
+Iteration 7:   log likelihood = -49328.875
+Refining estimates:
+Iteration 0:   log likelihood = -49328.875
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,719,249                  Number of obs    =  12,719,249
+No. of failures =        4,203
+Time at risk    =   1067136353
+                                                LR chi2(17)      =    12132.40
+Log likelihood  =   -49328.875                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+              obese4cat |
+     Obese I (30-34.9)  |   1.477918   .0578578     9.98   0.000      1.36876    1.595781
+    Obese II (35-39.9)  |   2.026188   .1153661    12.40   0.000     1.812234      2.2654
+       Obese III (40+)  |   3.072089   .2336188    14.76   0.000     2.646693    3.565856
+                        |
+           smoke_nomiss |
+                Former  |   1.561825   .0557497    12.49   0.000     1.456292    1.675006
+               Current  |    1.12717   .0742139     1.82   0.069     .9907078    1.282429
+                        |
+                   age1 |   1.102176   .0293634     3.65   0.000     1.046102    1.161257
+                   age2 |   1.050424   .0626023     0.83   0.409     .9346205    1.180575
+                   age3 |   .8722749   .1219887    -0.98   0.329       .66315    1.147347
+                 1.male |   2.132064   .0700726    23.04   0.000     1.999054    2.273923
+                        |
+                    imd |
+                     2  |   1.225016   .0663693     3.75   0.000     1.101603    1.362255
+                     3  |   1.332121   .0718411     5.32   0.000     1.198502    1.480638
+                     4  |   1.678237   .0883116     9.84   0.000     1.513776    1.860565
+       5 most deprived  |   1.951165   .1051417    12.40   0.000     1.755601    2.168515
+                        |
+              ethnicity |
+                 Mixed  |   1.758664   .2857161     3.47   0.001     1.279072    2.418081
+Asian or Asian British  |   1.992132   .1199586    11.45   0.000     1.770361    2.241683
+                 Black  |   1.958437   .1677741     7.85   0.000     1.655729    2.316486
+                 Other  |   1.393732    .186005     2.49   0.013      1.07295    1.810419
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+
+. estimates save ./output/models/kbadhoc_smokobese_midadjus_obesAdemogsmok, replace
+(note: file ./output/models/kbadhoc_smokobese_midadjus_obesAdemogsmok.ster not found)
+file ./output/models/kbadhoc_smokobese_midadjus_obesAdemogsmok.ster saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/kbadhoc_smokobese_midadjust.log
+  log type:  text
+ closed on:  10 May 2020, 11:33:02
+-------------------------------------------------------------------------------------------------------
