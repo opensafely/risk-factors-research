@@ -15,10 +15,15 @@ use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
-	syntax , age(string) bp(string) [ethnicity(real 0) if(string)] 
+	syntax , age(string) bp(string) [ethnicity(real 0) dialysis(real 0) if(string)] 
 
 	if `ethnicity'==1 local ethnicity "i.ethnicity"
 	else local ethnicity
+
+	if `dialysis'==1 local dialysis "i.dialysis"
+	else local dialysis
+
+	
 timer clear
 timer on 1
 	capture stcox 	`age' 					///
@@ -37,7 +42,8 @@ timer on 1
 			i.chronic_liver_disease 		///
 			i.stroke_dementia		 		///
 			i.other_neuro					///
-			i.chronic_kidney_disease 		///
+			i.reduced_kidney_function_cat	///
+			`dialysis'						///
 			i.organ_transplant 				///
 			i.spleen 						///
 			i.ra_sle_psoriasis  			///
@@ -52,26 +58,36 @@ end
 
  
 *Model with coded hypertension 
-basecoxmodel, age("age1 age2 age3") bp("i.hypertension") ethnicity(1)
+basecoxmodel, age("age1 age2 age3") bp("i.hypertension") ethnicity(0) dialysis(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_differentBPmeasures_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_HTN, replace
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth_HTN, replace
 *estat concordance /*c-statistic*/
  }
- else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+ else di "WARNING coded htn model DID NOT FIT (OUTCOME `outcome')"
  
 
 
 *Model with categorised bp
-basecoxmodel, age("age1 age2 age3") bp("i.bpcat_nomiss") ethnicity(1)
+basecoxmodel, age("age1 age2 age3") bp("i.bpcat_nomiss") ethnicity(0) dialysis(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_differentBPmeasures_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_BPCAT, replace
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_MAINFULLYADJMODEL_agespline_bmicat_noeth_BPCAT, replace
 *estat concordance /*c-statistic*/
  }
- else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
+ else di "WARNING bp cat model DID NOT FIT (OUTCOME `outcome')"
  
 
+ *Model with original bp, adds dialysis
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(0) dialysis(1)
+if _rc==0{
+estimates
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_MAINFULLYADJMODEL_agespline_bmicat_noeth_dialysis, replace
+*estat concordance /*c-statistic*/
+ }
+ else di "WARNING dialysis model DID NOT FIT (OUTCOME `outcome')"
+
+ 
 
 
 log close

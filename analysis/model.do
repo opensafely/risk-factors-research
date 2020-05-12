@@ -44,7 +44,8 @@ do "an_univariable_cox_models.do" cpnsdeath ///
 
 *UNIVARIATE MODELS BATCH 2
 do "an_univariable_cox_models.do" cpnsdeath ///
-	chronic_kidney_disease				///
+	reduced_kidney_function_cat				///
+	dialysis							///
 	chronic_liver_disease 				///
 	chronic_respiratory_disease 		///
 	diabcat								///
@@ -83,7 +84,7 @@ do "an_smoking_exploration_cox_models.do" cpnsdeath ///
 	cancer_exhaem_cat					///
 	cancer_haem_cat						///
 	chronic_cardiac_disease 			///
-	chronic_kidney_disease				
+	reduced_kidney_function_cat				
 
 *SMOKING EXPLORATION COX MODELS BATCH 2
 do "an_smoking_exploration_cox_models.do" cpnsdeath ///
@@ -122,7 +123,7 @@ do "an_sensan_earlieradmincensoring_cpnsdeath.do"
 do "an_sensan_CCbmiandsmok_cpnsdeath.do"	
 
 *SENS AN USING DIFFERENT BP MEASURES
-do "an_sensan_differentBPmeasures_cpnsdeath"
+do "an_sensan_differentBPmeasures_dialysis_cpnsdeath"
 	
 ************************************************************
 *PARALLEL WORKING - THESE MUST BE RUN AFTER THE 

@@ -94,7 +94,7 @@ foreach var of varlist 	bp_sys_date 					///
 						hiv 							///
 						permanent_immunodeficiency 		///
 						temporary_immunodeficiency		///
-						ra_sle_psoriasis  {
+						ra_sle_psoriasis  dialysis 	{
 	capture confirm string variable `var'
 	if _rc!=0 {
 		assert `var'==.
@@ -349,7 +349,7 @@ foreach var of varlist	chronic_respiratory_disease_date 	///
 						hiv_date							///
 						permanent_immunodeficiency_date		///
 						temporary_immunodeficiency_date		///
-						ra_sle_psoriasis_date   {
+						ra_sle_psoriasis_date dialysis_date {
 	local newvar =  substr("`var'", 1, length("`var'") - 5)
 	gen `newvar' = (`var'< d(1/2/2020))
 	order `newvar', after(`var')
@@ -414,8 +414,8 @@ order cancer_exhaem_cat cancer_haem_cat, after(other_cancer_date)
 * HIV, permanent immunodeficiency ever, OR 
 * temporary immunodeficiency or aplastic anaemia last year
 gen temp1  = max(hiv, permanent_immunodeficiency)
-gen temp2  = inrange(temporary_immunodeficiency_date, d(1/11/2019), d(1/2/2020))
-gen temp3  = inrange(aplastic_anaemia_date, d(1/11/2019), d(1/2/2020))
+gen temp2  = inrange(temporary_immunodeficiency_date, d(1/2/2019), d(1/2/2020))
+gen temp3  = inrange(aplastic_anaemia_date, d(1/2/2019), d(1/2/2020))
 
 egen other_immunosuppression = rowmax(temp1 temp2 temp3)
 drop temp1 temp2 temp3
@@ -469,10 +469,14 @@ label values ckd ckd
 label var ckd "CKD stage calc without eth"
 
 * Convert into CKD group
-recode ckd 2/5=1, gen(chronic_kidney_disease)
-replace chronic_kidney_disease = 0 if creatinine==. 
+*recode ckd 2/5=1, gen(chronic_kidney_disease)
+*replace chronic_kidney_disease = 0 if creatinine==. 
 	
-	
+recode ckd 0=1 2/3=2 4/5=3, gen(reduced_kidney_function_cat)
+replace reduced_kidney_function_cat = 1 if creatinine==. 
+label define reduced_kidney_function_catlab 1 "None" 2 "Stage 3a/3b egfr 30-60	" 3 "Stage 4/5 egfr<30"
+label values reduced_kidney_function_cat reduced_kidney_function_catlab 
+ 
 	
 ************
 *   Hba1c  *
@@ -623,8 +627,6 @@ label var stp 							"Sustainability and Transformation Partnership"
 label var region 						"Geographical region"
 
 label var hba1ccat						"Categorised hba1c"
-
-label var chronic_kidney_disease      	"Chronic kidney disease" 
 label var egfr_cat						"Calculated eGFR"
 	
 label var bp_sys 						"Systolic blood pressure"
@@ -655,7 +657,7 @@ label var cancer_haem_cat				"Haematological malignancy, grouped by time since d
 label var chronic_liver_disease			"Chronic liver disease"
 label var stroke_dementia				"Stroke or dementia"
 label var other_neuro					"Neuro condition other than stroke/dementia"	
-label var chronic_kidney_disease 		"Kidney disease"
+label var reduced_kidney_function_cat	"Reduced kidney function" 
 label var organ_transplant 				"Organ transplant recipient"
 label var dysplenia						"Dysplenia (splenectomy, other, not sickle cell)"
 label var sickle_cell 					"Sickle cell"
@@ -687,7 +689,8 @@ label var aplastic_anaemia_date			"Aplastic anaemia, date"
 label var hiv_date 						"HIV, date"
 label var permanent_immunodeficiency_date "Permanent immunodeficiency, date"
 label var temporary_immunodeficiency_date "Temporary immunosuppression, date"
-
+label var dialysis						"Dialysis"
+	
 * Outcomes and follow-up
 label var enter_date					"Date of study entry"
 label var ituadmissioncensor_date 		"Date of admin censoring for itu admission (icnarc)"
@@ -722,9 +725,9 @@ keep patient_id imd stp region enter_date  									///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
-	chronic_kidney_disease stroke dementia stroke_dementia other_neuro		///
+	reduced_kidney_function_cat stroke dementia stroke_dementia other_neuro		///
 	other_immunosuppression   												///
-	creatinine egfr egfr_cat ckd  chronic_kidney_disease
+	creatinine egfr egfr_cat ckd  dialysis
 
 
 

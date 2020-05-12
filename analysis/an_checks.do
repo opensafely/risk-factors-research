@@ -174,7 +174,7 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						cancer_haem_cat 				///
 						chronic_liver_disease 			///
 						other_neuro			 			///
-						chronic_kidney_disease			///
+						reduced_kidney_function_cat			///
 						organ_transplant 				///	
 						spleen							///
 						ra_sle_psoriasis  				///
@@ -194,7 +194,7 @@ foreach var of varlist 	chronic_respiratory_disease 	///
 						cancer_haem_cat 				///
 						chronic_liver_disease 			///
 						other_neuro			 			///
-						chronic_kidney_disease			///
+						reduced_kidney_function_cat			///
 						organ_transplant 				///	
 						spleen							///
 						ra_sle_psoriasis   				///
@@ -213,7 +213,7 @@ foreach var of varlist chronic_respiratory_disease 	///
 						cancer_haem_cat 				///
 						chronic_liver_disease 			///
 						other_neuro			 			///
-						chronic_kidney_disease			///
+						reduced_kidney_function_cat			///
 						organ_transplant 				///	
 						spleen							///
 						ra_sle_psoriasis   				///
@@ -236,6 +236,10 @@ tab chronic_cardiac_disease bpcat, row col
 
 * Liver
 tab chronic_liver_disease organ_transplant, row col
+
+* Renal
+tab reduced_kidney_function_cat dialysis, row col
+tab organ_transplant dialysis, row col
 
 
 
