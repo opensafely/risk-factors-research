@@ -90,7 +90,7 @@ end
 *Generic code to write a full row of "ref category" to the output file
 cap prog drop refline
 prog define refline
-file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
+file write tablecontents _tab _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _tab ("1.00 (ref)") _n
 end
 ***********************************************************************************************************************
 
@@ -100,7 +100,7 @@ cap file close tablecontents
 file open tablecontents using ./output/an_tablecontent_SENSANtable.txt, t w replace 
 
 *N events
-file write tablecontents _tab
+file write tablecontents _tab _tab 
 foreach antype of any primary earlycens ccbmismok adjethnic ethnicmi {
 local endwith _tab
 if "`antype'" == "primary" cap estimates use "./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth"
