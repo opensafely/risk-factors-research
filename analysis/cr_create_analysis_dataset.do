@@ -65,7 +65,6 @@ drop if inlist(sex, "I", "U")
 
 
 
-
 ******************************
 *  Convert strings to dates  *
 ******************************
@@ -307,6 +306,10 @@ recode imd 5=1 4=2 3=3 2=4 1=5 .u=.u
 
 label define imd 1 "1 least deprived" 2 "2" 3 "3" 4 "4" 5 "5 most deprived" .u "Unknown"
 label values imd imd 
+
+noi di "DROPPING IF NO IMD" 
+drop if imd>=.
+
 
 
 
