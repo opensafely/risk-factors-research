@@ -35,7 +35,7 @@ cou
 *global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
 global cpnsdeathcensor 		= "25/04/2020"
-global onscoviddeathcensor 	= "06/04/2020"
+global onscoviddeathcensor 	= "16/04/2020"
 
 
 *******************************************************************************
