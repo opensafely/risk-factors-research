@@ -25,6 +25,8 @@
 cap log close
 log using ./output/cr_analysis_dataset, replace t
 
+di "STARTING COUNT FROM IMPORT:"
+cou
 
 
 **************************   INPUT REQUIRED   *********************************

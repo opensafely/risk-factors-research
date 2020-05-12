@@ -22,7 +22,9 @@ syntax, variable(string) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
-
+	*put the varname and condition to left so that alignment can be checked vs shell
+	file write tablecontents ("`variable'") _tab ("`i'") _tab
+	
 	foreach outcome of any /*ituadmission*/ cpnsdeath /*onscoviddeath*/ {
 	
 	foreach modeltype of any minadj fulladj {
@@ -108,7 +110,7 @@ end
 *Generic code to write a full row of "ref category" to the output file
 cap prog drop refline
 prog define refline
-file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)")  _n
+file write tablecontents _tab _tab ("1.00 (ref)") _tab ("1.00 (ref)")  _n
 *post HRestimates ("`outcome'") ("`variable'") (`refcat') (1) (1) (1) (.)
 end
 ***********************************************************************************************************************
@@ -295,9 +297,9 @@ replace leveldesc = "<1 year ago" if substr(variable,1,6)=="cancer" & level==2
 replace leveldesc = "1-4.9 years ago" if substr(variable,1,6)=="cancer" & level==3
 replace leveldesc = "5+ years ago" if substr(variable,1,6)=="cancer" & level==4
 
-replace leveldesc = "None (ref)" if substr(variable,1,6)=="reduced_kidney_function_cat" & level==1
-replace leveldesc = "eGFR 30-60 ml/min/1.73m2" if substr(variable,1,6)=="reduced_kidney_function_cat" & level==2
-replace leveldesc = "eGFR <30 ml/min/1.73m2" if substr(variable,1,6)=="reduced_kidney_function_cat" & level==3
+replace leveldesc = "None (ref)" if variable=="reduced_kidney_function_cat" & level==1
+replace leveldesc = "eGFR 30-60 ml/min/1.73m2" if variable=="reduced_kidney_function_cat" & level==2
+replace leveldesc = "eGFR <30 ml/min/1.73m2" if variable=="reduced_kidney_function_cat" & level==3
 
 
 *replace leveldesc = "Absent" if level==0

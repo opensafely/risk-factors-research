@@ -132,7 +132,6 @@ do "an_sensan_differentBPmeasures_dialysis_cpnsdeath"
 *(THESE ARE VERY QUICK)*
 ************************************************************
 do "an_tablecontent_HRtable_HRforest.do"
-do "an_tablecontent_SENSANtable.do"
 do "an_agesplinevisualisation.do"
 
 **Experimental, to do at end (in case slow)
@@ -154,4 +153,5 @@ do "an_checkassumptions_3.do" 9
 do an_checkassumptions_3b /*run at end, combines imputations and analyses)*/
 **************************************/
 
+do "an_tablecontent_SENSANtable.do"
 

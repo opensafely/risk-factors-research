@@ -9,7 +9,7 @@ replace died_date_cpns = d(1/2/2020)+floor(80*uniform()) if cpnsdeath==1
 replace stime_cpnsdeath  	= min(cpnsdeathcensor_date, 	died_date_cpns, died_date_ons)
 replace cpnsdeath 		= 0 if (died_date_cpns		> cpnsdeathcensor_date) 
 
-replace cpns_died_date 
+*replace cpns_died_date 
 replace onscoviddeath = (uniform()<0.20)
 
 replace bmicat = 1+(floor(6*uniform())) if bmicat==.u
@@ -19,7 +19,8 @@ replace obese4cat = 4 if bmicat==6
 
 replace organ_transplant = uniform()<.05
 
-replace chronic_kidney_disease = uniform()<.1
+*replace chronic_kidney_disease = uniform()<.1
+replace dialysis = uniform()<0.05
 
 replace other_immunosuppression = uniform()<.1
 

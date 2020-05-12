@@ -18,7 +18,7 @@ program define generaterow
 syntax, variable(varname) condition(string) 
 	
 	*put the varname and condition to left so that alignment can be checked vs shell
-	file write tablecontent ("`variable'") _tab ("`string'") _tab
+	file write tablecontent ("`variable'") _tab ("`condition'") _tab
 	
 	cou
 	local overalldenom=r(N)
