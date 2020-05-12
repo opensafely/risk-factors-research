@@ -22,6 +22,9 @@ syntax, variable(string) min(real) max(real)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
+	*put the varname and condition to left so that alignment can be checked vs shell
+	file write tablecontents ("`variable'") _tab ("`i'") _tab
+	
 	foreach outcome of any /*ituadmission*/ cpnsdeath /*onscoviddeath*/ {
 	
 	foreach modeltype of any minadj fulladj {
@@ -107,8 +110,7 @@ end
 *Generic code to write a full row of "ref category" to the output file
 cap prog drop refline
 prog define refline
-syntax, refcat(real)
-file write tablecontents ("1.00 (ref)") _tab ("1.00 (ref)")  _n
+file write tablecontents _tab _tab ("1.00 (ref)") _tab ("1.00 (ref)")  _n
 *post HRestimates ("`outcome'") ("`variable'") (`refcat') (1) (1) (1) (.)
 end
 ***********************************************************************************************************************
@@ -124,66 +126,57 @@ postfile HRestimates str10 outcome str27 variable level hr lci uci pval using `H
 
 *Age group
 outputHRsforvar, variable("agegroup") min(1) max(2)
-refline, refcat(3)
+refline
 outputHRsforvar, variable("agegroup") min(4) max(6)
-file write tablecontents _n _n
+file write tablecontents _n 
 
 *Sex 
-refline, refcat(0)
+refline
 outputHRsforvar, variable("male") min(1) max(1)
-file write tablecontents _n _n
+file write tablecontents _n
 
 *BMI
-refline, refcat(1)
+refline
 outputHRsforvar, variable("obese4cat") min(2) max(4)
-file write tablecontents _n _n
+file write tablecontents _n
 
 *Smoking
-refline, refcat(1)
+refline
 outputHRsforvar, variable("smoke_nomiss") min(2) max(3)
-file write tablecontents _n _n
+file write tablecontents _n
 
 *Ethnicity
-refline, refcat(1)
+refline
 outputHRsforvar, variable("ethnicity") min(2) max(5)
-file write tablecontents _n _n
+file write tablecontents _n
 
 *IMD
-refline, refcat(1)
+refline
 outputHRsforvar, variable("imd") min(2) max(5)
-file write tablecontents _n _n
+file write tablecontents _n 
 
 *BP/hypertension
-refline, refcat(0)
+refline
 outputHRsforvar, variable("htdiag_or_highbp") min(1) max(1)
-file write tablecontents _n _n
-
+file write tablecontents _n
 outputHRsforvar, variable("chronic_respiratory_disease") min(1) max(1)
-file write tablecontents _n	_n		
+file write tablecontents _n			
 outputHRsforvar, variable("asthmacat") min(2) max(3)			
-file write tablecontents _n	
 outputHRsforvar, variable("chronic_cardiac_disease") min(1) max(1)
-file write tablecontents _n	_n		
+file write tablecontents _n	
 outputHRsforvar, variable("diabcat") min(2) max(4)
-file write tablecontents _n	_n		
+file write tablecontents _n		
 outputHRsforvar, variable("cancer_exhaem_cat") min(2) max(4)
-file write tablecontents _n	_n		
+file write tablecontents _n		
 outputHRsforvar, variable("cancer_haem_cat") min(2) max(4)			
-file write tablecontents _n				
+file write tablecontents _n
+outputHRsforvar, variable("reduced_kidney_function_cat") min(2) max(3)			
 outputHRsforvar, variable("chronic_liver_disease") min(1) max(1)			
-file write tablecontents _n	
 outputHRsforvar, variable("stroke_dementia") min(1) max(1)			
-file write tablecontents _n	
 outputHRsforvar, variable("other_neuro") min(1) max(1)			
-file write tablecontents _n	
-outputHRsforvar, variable("chronic_kidney_disease") min(1) max(1)			
-file write tablecontents _n	
 outputHRsforvar, variable("organ_transplant") min(1) max(1)			
-file write tablecontents _n	
 outputHRsforvar, variable("spleen") min(1) max(1)
-file write tablecontents _n	
 outputHRsforvar, variable("ra_sle_psoriasis") min(1) max(1)
-file write tablecontents _n	
 outputHRsforvar, variable("other_immunosuppression") min(1) max(1)			
 
 
@@ -196,9 +189,9 @@ use `HRestimates', clear
 gen varorder = 1 
 local i=2
 foreach var of any male obese4cat smoke_nomiss ethnicity imd  diabcat ///
-	cancer_exhaem_cat cancer_haem_cat asthmacat chronic_respiratory_disease ///
+	cancer_exhaem_cat cancer_haem_cat reduced_kidney_function_cat asthmacat chronic_respiratory_disease ///
 	chronic_cardiac_disease htdiag_or_highbp chronic_liver_disease ///
-	stroke_dementia other_neuro chronic_kidney_disease organ_transplant ///
+	stroke_dementia other_neuro organ_transplant ///
 	spleen ra_sle_psoriasis other_immunosuppression {
 replace varorder = `i' if variable=="`var'"
 local i=`i'+1
@@ -213,7 +206,7 @@ for var hr lci uci: replace X = 1 if expanded==1
 sort obsorder
 drop obsorder
 replace level = 0 if expanded == 1
-replace level = 1 if expanded == 1 & (variable=="obese4cat"|variable=="smoke_nomiss"|variable=="ethnicity"|variable=="imd"|variable=="asthmacat"|variable=="diabcat"|substr(variable,1,6)=="cancer")
+replace level = 1 if expanded == 1 & (variable=="obese4cat"|variable=="smoke_nomiss"|variable=="ethnicity"|variable=="imd"|variable=="asthmacat"|variable=="diabcat"|substr(variable,1,6)=="cancer"|variable=="reduced_kidney_function_cat")
 replace level = 3 if expanded == 1 & variable=="agegroup"
 
 gen varorder = 1 if variable!=variable[_n-1]
@@ -254,8 +247,8 @@ replace Name = "Haematological malignancy" if Name=="Cancer haem cat"
 replace Name = "Stroke or dementia" if Name=="Stroke dementia"
 replace Name = "Other neurological" if Name=="Other neuro"
 replace Name = "Rheumatoid arthritis/Lupus/Psoriasis" if Name=="Ra sle psoriasis"
-replace Name = "Reduced kidney function" if Name=="Chronic kidney disease"
-
+replace Name = "Reduced kidney function" if Name=="Reduced kidney function cat"
+replace Name = "Conditions with splenic dysfunction" if Name=="Spleen"
 
 *Levels
 gen leveldesc = ""
@@ -304,6 +297,11 @@ replace leveldesc = "<1 year ago" if substr(variable,1,6)=="cancer" & level==2
 replace leveldesc = "1-4.9 years ago" if substr(variable,1,6)=="cancer" & level==3
 replace leveldesc = "5+ years ago" if substr(variable,1,6)=="cancer" & level==4
 
+replace leveldesc = "None (ref)" if variable=="reduced_kidney_function_cat" & level==1
+replace leveldesc = "eGFR 30-60 ml/min/1.73m2" if variable=="reduced_kidney_function_cat" & level==2
+replace leveldesc = "eGFR <30 ml/min/1.73m2" if variable=="reduced_kidney_function_cat" & level==3
+
+
 *replace leveldesc = "Absent" if level==0
 *replace leveldesc = "Present" if level==1 & leveldesc==""
 drop if level==0 & variable!="male"
@@ -324,7 +322,7 @@ scatter graphorder hr if lci>=.15, mcol(black)	msize(small)		///										///
 	|| scatter graphorder varx , m(i) mlab(Name) mlabsize(tiny) mlabcol(black) 	///
 	|| scatter graphorder levelx, m(i) mlab(leveldesc) mlabsize(tiny) mlabcol(gs8) 	///
 		xline(1,lp(dash)) 															///
-		xscale(log) xlab(0.25 5 1 2 5 10) xtitle("Hazard Ratio & 95% CI") ylab(none) ytitle("")						/// 
+		xscale(log) xlab(0.25 0.5 1 2 5 10) xtitle("Hazard Ratio & 95% CI") ylab(none) ytitle("")						/// 
 		legend(off)  ysize(8) 
 
 graph export ./output/an_tablecontent_HRtable_HRforest.svg, as(svg) replace

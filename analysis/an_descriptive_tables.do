@@ -61,9 +61,8 @@ tab dementia
 tab stroke
 tab stroke_dementia
 tab other_neuro
-tab chronic_kidney_disease
-tab organ_transplant
-tab chronic_kidney_disease
+tab reduced_kidney_function_cat
+tab dialysis
 tab organ_transplant
 tab spleen
 tab ra_sle_psoriasis
@@ -91,7 +90,7 @@ tab ituadmission
 *  Number (%) with each outcome  *
 **********************************
 
-foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
+foreach outvar of varlist /*onscoviddeath*/ cpnsdeath /*ituadmission*/ {
 
 *** Repeat for each outcome
 
@@ -116,7 +115,8 @@ foreach outvar of varlist onscoviddeath cpnsdeath ituadmission {
 	tab dementia 							`outvar', col
 	tab stroke_dementia 					`outvar', col
 	tab other_neuro 						`outvar', col
-	tab chronic_kidney_disease 				`outvar', col
+	tab reduced_kidney_function_cat			`outvar', col
+	tab dialysis							`outvar', col
 	tab organ_transplant 					`outvar', col
 	tab spleen 								`outvar', col
 	tab ra_sle_psoriasis					`outvar', col

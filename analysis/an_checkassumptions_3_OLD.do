@@ -114,7 +114,7 @@ keep patient_id stp region ethnicity				///
 	chronic_liver_disease 							///
 	stroke_dementia		 							///
 	other_neuro										///
-	reduced_kidney_function_cat						///
+	chronic_kidney_disease 							///
 	organ_transplant 								///
 	spleen 											///
 	ra_sle_psoriasis 								///
@@ -138,7 +138,7 @@ gen r = 1 - missing(ethnicity)
 
 * Create dummy variables for categorical predictors
 foreach var of varlist agegroup obese4cat smoke_nomiss imd  ///
-	asthmacat diabcat cancer_exhaem_cat cancer_haem_cat	reduced_kidney_function_cat	///
+	asthmacat diabcat cancer_exhaem_cat cancer_haem_cat		///
 	stp cumhgp {
 		egen ord_`var' = group(`var')
 		qui summ ord_`var'
@@ -277,7 +277,7 @@ forvalues m = 1 (1) 5	{
 		chronic_liver_disease 				///
 		stroke_dementia		 				///
 		other_neuro							///
-		reduced_kidney_function_cat_*		///
+		chronic_kidney_disease 				///
 		organ_transplant 					///
 		spleen 								///
 		ra_sle_psoriasis  					///
@@ -310,7 +310,7 @@ forvalues m = 1 (1) 5	{
 			chronic_liver_disease 				///
 			stroke_dementia		 				///
 			other_neuro							///
-			reduced_kidney_function_cat_*		///
+			chronic_kidney_disease 				///
 			organ_transplant 					///
 			spleen 								///
 			ra_sle_psoriasis  					///
@@ -386,7 +386,7 @@ forvalues m = 1 (1) 5	{
 		chronic_liver_disease 				///
 		stroke_dementia		 				///
 		other_neuro							///
-		reduced_kidney_function_cat_*		///
+		chronic_kidney_disease 				///
 		organ_transplant 					///
 		spleen 								///
 		ra_sle_psoriasis  					///

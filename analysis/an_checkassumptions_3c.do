@@ -130,20 +130,20 @@ mi estimate, eform: 							///
 			i.chronic_liver_disease 			///
 			i.stroke_dementia		 			///
 			i.other_neuro						///
-			i.chronic_kidney_disease 			///
+			i.reduced_kidney_function_cat		///
 			i.organ_transplant 					///
 			i.spleen 							///
 			i.ra_sle_psoriasis  				///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
-estimates save ./output/models/an_sensan_ethnicityMI_cpnsdeath_MAINFULLYADJMODEL_agespline, replace			
+estimates save ./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_MIeth, replace			
 			
 
 * Primary analysis using imputed data, with grouped age
 mi estimate, eform: 							///
 	stcox 	i.ethnicity							///
-			i.agegroup							///
+			ib3.agegroup							///
 			i.male 								///
 			i.obese4cat							///
 			i.smoke_nomiss						///
@@ -158,14 +158,14 @@ mi estimate, eform: 							///
 			i.chronic_liver_disease 			///
 			i.stroke_dementia		 			///
 			i.other_neuro						///
-			i.chronic_kidney_disease 			///
+			i.reduced_kidney_function_cat		///
 			i.organ_transplant 					///
 			i.spleen 							///
 			i.ra_sle_psoriasis  				///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
-estimates save ./output/models/an_sensan_ethnicityMI_cpnsdeath_MAINFULLYADJMODEL_agegroup, replace			
+estimates save ./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_MIeth, replace			
 			
 log close
 

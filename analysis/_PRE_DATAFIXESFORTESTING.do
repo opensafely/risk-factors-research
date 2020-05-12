@@ -20,7 +20,7 @@ replace hypertension = " " if hypertension==".-."
 drop hypertension_temp
 */
 
-* Hba1c 
+/* Hba1c 
 gen hba1c_percentage   = rnormal(2, 10)
 gen hba1c_mmol_per_mol = rnormal(15, 90)
 
@@ -41,7 +41,7 @@ drop hba1c_mmol_per_mol_date_temp
 
 replace hba1c_percentage_date = ""   if hba1c_percentage==.
 replace hba1c_mmol_per_mol_date = "" if hba1c_mmol_per_mol==.
-
+*/
 
 * STP
 *rename geographic_area stp
