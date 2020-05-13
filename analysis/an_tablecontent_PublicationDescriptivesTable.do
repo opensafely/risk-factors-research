@@ -77,7 +77,7 @@ file write tablecontent _n
 tabulatevariable, variable(ethnicity) start(1) end(5) missing 
 file write tablecontent _n 
 
-tabulatevariable, variable(imd) start(1) end(5) missing
+tabulatevariable, variable(imd) start(1) end(5) 
 file write tablecontent _n 
 
 tabulatevariable, variable(bpcat) start(1) end(4) missing
