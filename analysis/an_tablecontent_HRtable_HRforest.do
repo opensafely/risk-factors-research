@@ -248,7 +248,7 @@ replace Name = "Stroke or dementia" if Name=="Stroke dementia"
 replace Name = "Other neurological" if Name=="Other neuro"
 replace Name = "Rheumatoid arthritis/Lupus/Psoriasis" if Name=="Ra sle psoriasis"
 replace Name = "Reduced kidney function" if Name=="Reduced kidney function cat"
-replace Name = "Conditions with splenic dysfunction" if Name=="Spleen"
+replace Name = "Asplenia" if Name=="Spleen"
 
 *Levels
 gen leveldesc = ""
