@@ -3,7 +3,7 @@
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_ch
 > ronic_liver_diseaseTOhtdiag_or_highbp.log
   log type:  text
- opened on:   5 May 2020, 22:21:50
+ opened on:  12 May 2020, 19:40:50
 
 . 
 . * Open dataset and fit specified model(s)
@@ -35,28 +35,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15264.57
-Log likelihood  =   -68208.591                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15107.89
+Log likelihood  =   -67807.398                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------
                      _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------+----------------------------------------------------------------
-                   age1 |   1.115834    .027578     4.43   0.000      1.06307    1.171216
-                   age2 |   1.022084   .0560138     0.40   0.690     .9179898    1.137982
-                   age3 |   .9183057   .1175915    -0.67   0.506     .7144776    1.180282
-                 1.male |   2.093418   .0590343    26.20   0.000     1.980853    2.212381
-1.chronic_liver_disease |   2.211712   .2124623     8.26   0.000     1.832147    2.669913
+                   age1 |   1.115509   .0275509     4.43   0.000     1.062796    1.170836
+                   age2 |     1.0219    .055981     0.40   0.693      .917864    1.137727
+                   age3 |   .9189601   .1176469    -0.66   0.509     .7150301    1.181052
+                 1.male |   2.090331   .0591079    26.08   0.000     1.977633    2.209451
+1.chronic_liver_disease |    2.22528   .2137803     8.33   0.000     1.843362    2.686326
                         |
                   smoke |
-                Former  |   1.543478   .0462689    14.48   0.000     1.455405     1.63688
-               Current  |   1.095195    .062211     1.60   0.109     .9798063    1.224173
+                Former  |   1.545324   .0464663    14.47   0.000     1.456884    1.639133
+               Current  |   1.096744   .0624038     1.62   0.105     .9810084    1.226134
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.st
-> er not found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster save
 > d
 
@@ -66,28 +64,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15662.86
-Log likelihood  =   -68009.448                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15504.98
+Log likelihood  =   -67608.854                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |   1.129245    .028386     4.84   0.000     1.074958    1.186274
-                         age2 |   .9834538   .0546642    -0.30   0.764     .8819437    1.096647
-                         age3 |   1.009339   .1309118     0.07   0.943     .7827727    1.301482
-                       1.male |   2.071884   .0583943    25.85   0.000     1.960537    2.189555
-1.chronic_respiratory_disease |   2.110248   .0695983    22.64   0.000     1.978153    2.251164
+                         age1 |   1.128911   .0283575     4.83   0.000     1.074678    1.185882
+                         age2 |    .983262   .0546304    -0.30   0.761     .8818124    1.096383
+                         age3 |   1.010093   .1309754     0.08   0.938     .7834095    1.302368
+                       1.male |   2.068851   .0584677    25.72   0.000     1.957373    2.186679
+1.chronic_respiratory_disease |   2.113626   .0698894    22.63   0.000      1.98099    2.255143
                               |
                         smoke |
-                      Former  |   1.404294   .0428507    11.13   0.000      1.32277    1.490842
-                     Current  |   .9286004   .0533432    -1.29   0.197     .8297205    1.039264
+                      Former  |   1.405656   .0430247    11.12   0.000     1.323809    1.492564
+                     Current  |   .9297489   .0534992    -1.27   0.206      .830589    1.040747
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_chronic_respiratory_dise
-> ase.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ste
 > r saved
 
@@ -97,31 +93,30 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(9)       =    16131.38
-Log likelihood  =   -67775.186                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(9)       =    15971.57
+Log likelihood  =   -67375.559                  Prob > chi2      =      0.0000
 
 ---------------------------------------------------------------------------------------------
                          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------+----------------------------------------------------------------
-                       age1 |   1.125595   .0281988     4.72   0.000     1.071661    1.182243
-                       age2 |   .9776607   .0542126    -0.41   0.684     .8769764    1.089905
-                       age3 |   1.036188   .1341505     0.27   0.784     .8039659    1.335488
-                     1.male |   1.991498   .0564133    24.32   0.000     1.883944    2.105193
+                       age1 |   1.125272   .0281714     4.71   0.000      1.07139    1.181864
+                       age2 |   .9774381   .0541784    -0.41   0.681     .8768151    1.089609
+                       age3 |   1.037075    .134233     0.28   0.779     .8047031    1.336549
+                     1.male |    1.98823   .0564746    24.19   0.000     1.880567    2.102058
                             |
                     diabcat |
-       Controlled diabetes  |   1.858043   .0614016    18.75   0.000     1.741513    1.982371
-     Uncontrolled diabetes  |   3.222279    .128642    29.31   0.000     2.979757    3.484539
-Diabetes, no hba1c measure  |   2.281935   .1627388    11.57   0.000     1.984262    2.624265
+       Controlled diabetes  |   1.858819   .0616097    18.70   0.000     1.741905    1.983581
+     Uncontrolled diabetes  |   3.232645   .1292664    29.34   0.000     2.988961    3.496195
+Diabetes, no hba1c measure  |   2.262998   .1624923    11.37   0.000     1.965914    2.604977
                             |
                       smoke |
-                    Former  |   1.478571    .044509    12.99   0.000     1.393858    1.568432
-                   Current  |   1.089647   .0618961     1.51   0.131     .9748419    1.217972
+                    Former  |   1.480144   .0446934    12.99   0.000     1.395089    1.570386
+                   Current  |   1.091496   .0621051     1.54   0.124     .9763141    1.220267
 ---------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_diabcat.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_diabcat.ster saved
 
 -------------------------------------------------------------------------------------------------------
@@ -130,33 +125,31 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   12,554,271                  Number of obs    =  12,554,271
-No. of failures =        4,215
-Time at risk    =   1053274856
-                                                LR chi2(10)      =    11510.65
-Log likelihood  =   -49738.882                  Prob > chi2      =      0.0000
+No. of subjects =   12,442,503                  Number of obs    =  12,442,503
+No. of failures =        4,192
+Time at risk    =   1043893054
+                                                LR chi2(10)      =    11389.66
+Log likelihood  =   -49460.283                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------
                      _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------+----------------------------------------------------------------
-                   age1 |   1.097151   .0296557     3.43   0.001     1.040539    1.156842
-                   age2 |   1.070298   .0646278     1.13   0.261     .9508383    1.204767
-                   age3 |   .8211519   .1162348    -1.39   0.164     .6222074    1.083707
-                 1.male |    2.01802   .0658298    21.52   0.000     1.893034    2.151258
+                   age1 |   1.096632   .0296081     3.42   0.001      1.04011    1.156226
+                   age2 |   1.070719   .0646046     1.13   0.257     .9512973    1.205133
+                   age3 |   .8204706   .1160753    -1.40   0.162     .6217848    1.082645
+                 1.male |   2.015306   .0659144    21.43   0.000      1.89017    2.148727
                         |
               ethnicity |
-                 Mixed  |   1.929893    .313284     4.05   0.000     1.403963    2.652838
-Asian or Asian British  |    2.17195   .1293815    13.02   0.000      1.93261     2.44093
-                 Black  |    2.32489   .1977001     9.92   0.000     1.967974    2.746537
-                 Other  |   1.431677   .1908794     2.69   0.007     1.102448    1.859226
+                 Mixed  |   1.943168   .3154623     4.09   0.000     1.413587    2.671149
+Asian or Asian British  |   2.172453    .129749    12.99   0.000     1.932469    2.442239
+                 Black  |   2.339474   .1989909     9.99   0.000     1.980235    2.763883
+                 Other  |   1.440284   .1920448     2.74   0.006     1.109049    1.870449
                         |
                   smoke |
-                Former  |   1.657599   .0588421    14.24   0.000     1.546191    1.777035
-               Current  |   1.203434   .0784722     2.84   0.005     1.059054    1.367497
+                Former  |   1.658539   .0590405    14.21   0.000     1.546766    1.778388
+               Current  |    1.20325   .0786096     2.83   0.005     1.058634    1.367621
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_ethnicity.ster not found
-> )
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_ethnicity.ster saved
 
 -------------------------------------------------------------------------------------------------------
@@ -165,28 +158,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15240.85
-Log likelihood  =    -68220.45                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15083.52
+Log likelihood  =   -67819.584                  Prob > chi2      =      0.0000
 
 ------------------------------------------------------------------------------------
                 _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------------+----------------------------------------------------------------
-              age1 |    1.11638   .0276487     4.45   0.000     1.063484    1.171908
-              age2 |   1.014495   .0557191     0.26   0.793     .9109605    1.129798
-              age3 |    .936228   .1201512    -0.51   0.608     .7280184    1.203984
-            1.male |   2.097816   .0591865    26.26   0.000     1.984962    2.217087
-1.htdiag_or_highbp |   1.187669   .0377144     5.42   0.000     1.116004    1.263937
+              age1 |   1.116049   .0276213     4.44   0.000     1.063204     1.17152
+              age2 |   1.014313   .0556865     0.26   0.796     .9108365    1.129545
+              age3 |   .9368853   .1202065    -0.51   0.611     .7285738    1.204757
+            1.male |   2.094701   .0592598    26.14   0.000     1.981715    2.214129
+1.htdiag_or_highbp |    1.18853    .037853     5.42   0.000     1.116608    1.265085
                    |
              smoke |
-           Former  |   1.541472   .0462262    14.43   0.000     1.453481    1.634789
-          Current  |    1.10801   .0629153     1.81   0.071     .9913125    1.238445
+           Former  |   1.543336    .046424    14.43   0.000     1.454977    1.637061
+          Current  |    1.10971   .0631175     1.83   0.067      .992648    1.240577
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_htdiag_or_highbp.ster no
-> t found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_htdiag_or_highbp.ster saved
 
 . 
@@ -197,5 +188,5 @@ file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_htdiag_o
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_ch
 > ronic_liver_diseaseTOhtdiag_or_highbp.log
   log type:  text
- closed on:   5 May 2020, 23:41:20
+ closed on:  12 May 2020, 21:00:28
 -------------------------------------------------------------------------------------------------------

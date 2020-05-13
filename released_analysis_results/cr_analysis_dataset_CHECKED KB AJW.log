@@ -2,9 +2,15 @@
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/cr_analysis_dataset.log
   log type:  text
- opened on:   5 May 2020, 21:50:10
+ opened on:  12 May 2020, 19:13:15
 
 . 
+. di "STARTING COUNT FROM IMPORT:"
+STARTING COUNT FROM IMPORT:
+
+. cou
+  21,645,495
+
 . 
 . 
 . **************************   INPUT REQUIRED   *********************************
@@ -15,7 +21,7 @@
 
 . global cpnsdeathcensor          = "25/04/2020"
 
-. global onscoviddeathcensor      = "06/04/2020"
+. global onscoviddeathcensor      = "16/04/2020"
 
 . 
 . 
@@ -60,7 +66,6 @@ DROPPING GENDER NOT M/F:
 . 
 . 
 . 
-. 
 . ******************************
 . *  Convert strings to dates  *
 . ******************************
@@ -98,7 +103,7 @@ DROPPING GENDER NOT M/F:
 >    ///
 >                                                 permanent_immunodeficiency              ///
 >                                                 temporary_immunodeficiency              ///
->                                                 ra_sle_psoriasis  {
+>                                                 ra_sle_psoriasis  dialysis      {
   2.         capture confirm string variable `var'
   3.         if _rc!=0 {
   4.                 assert `var'==.
@@ -218,6 +223,10 @@ variable ra_sle_psoriasis was str7 now str10
 (17,425,445 real changes made)
 (16,534,539 real changes made)
 (16,534,539 missing values generated)
+variable dialysis was str7 now str10
+(17,425,445 real changes made)
+(17,400,846 real changes made)
+(17,400,846 missing values generated)
 
 . 
 . rename bmi_date_measured_date      bmi_date_measured
@@ -517,6 +526,14 @@ variable ra_sle_psoriasis was str7 now str10
 . label values imd imd 
 
 . 
+. noi di "DROPPING IF NO IMD" 
+DROPPING IF NO IMD
+
+. drop if imd>=.
+(142,166 observations deleted)
+
+. 
+. 
 . 
 . 
 . 
@@ -527,24 +544,23 @@ variable ra_sle_psoriasis was str7 now str10
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         age | 17,425,445    49.68887    18.70859         18        105
+         age | 17,283,279     49.7454    18.71273         18        105
 
 . gen c_age = age-r(mean)
 
 . 
 . * "Centre" sex to be coded -1 +1 
 . recode male 0=-1, gen(c_male)
-(8729741 differences between male and c_male)
+(8650522 differences between male and c_male)
 
 . 
 . * "Centre" IMD
 . gen c_imd = imd - 3
-(142,166 missing values generated)
 
 . 
 . * "Centre" ethnicity
 . gen c_ethnicity = ethnicity - 3
-(4,592,377 missing values generated)
+(4,563,711 missing values generated)
 
 . 
 . 
@@ -580,7 +596,7 @@ variable ra_sle_psoriasis was str7 now str10
 >            ///
 >                                                 permanent_immunodeficiency_date         ///
 >                                                 temporary_immunodeficiency_date         ///
->                                                 ra_sle_psoriasis_date   {
+>                                                 ra_sle_psoriasis_date dialysis_date {
   2.         local newvar =  substr("`var'", 1, length("`var'") - 5)
   3.         gen `newvar' = (`var'< d(1/2/2020))
   4.         order `newvar', after(`var')
@@ -623,16 +639,16 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Haematological malignancies
 . gen     cancer_haem_cat = 4 if inrange(haem_cancer_date, d(1/1/1900), d(1/2/2015))
-(17,361,627 missing values generated)
+(17,219,821 missing values generated)
 
 . replace cancer_haem_cat = 3 if inrange(haem_cancer_date, d(1/2/2015), d(1/2/2019))
-(27,925 real changes made)
+(27,746 real changes made)
 
 . replace cancer_haem_cat = 2 if inrange(haem_cancer_date, d(1/2/2019), d(1/2/2020))
-(8,725 real changes made)
+(8,684 real changes made)
 
 . recode  cancer_haem_cat . = 1
-(cancer_haem_cat: 17324977 changes made)
+(cancer_haem_cat: 17183391 changes made)
 
 . label values cancer_haem_cat cancer
 
@@ -642,20 +658,20 @@ variable ra_sle_psoriasis was str7 now str10
 . gen     cancer_exhaem_cat = 4 if inrange(lung_cancer_date,  d(1/1/1900), d(1/2/2015)) | ///
 >                                                                  inrange(other_cancer_date, d(1/1/190
 > 0), d(1/2/2015)) 
-(16,877,162 missing values generated)
+(16,737,905 missing values generated)
 
 . replace cancer_exhaem_cat = 3 if inrange(lung_cancer_date,  d(1/2/2015), d(1/2/2019)) | ///
 >                                                                  inrange(other_cancer_date, d(1/2/201
 > 5), d(1/2/2019)) 
-(236,544 real changes made)
+(235,041 real changes made)
 
 . replace cancer_exhaem_cat = 2 if inrange(lung_cancer_date,  d(1/2/2019), d(1/2/2020)) | ///
 >                                                                  inrange(other_cancer_date, d(1/2/201
 > 9), d(1/2/2020))
-(80,334 real changes made)
+(79,880 real changes made)
 
 . recode  cancer_exhaem_cat . = 1
-(cancer_exhaem_cat: 16564253 changes made)
+(cancer_exhaem_cat: 16426938 changes made)
 
 . label values cancer_exhaem_cat cancer
 
@@ -674,9 +690,9 @@ variable ra_sle_psoriasis was str7 now str10
 . * temporary immunodeficiency or aplastic anaemia last year
 . gen temp1  = max(hiv, permanent_immunodeficiency)
 
-. gen temp2  = inrange(temporary_immunodeficiency_date, d(1/11/2019), d(1/2/2020))
+. gen temp2  = inrange(temporary_immunodeficiency_date, d(1/2/2019), d(1/2/2020))
 
-. gen temp3  = inrange(aplastic_anaemia_date, d(1/11/2019), d(1/2/2020))
+. gen temp3  = inrange(aplastic_anaemia_date, d(1/2/2019), d(1/2/2020))
 
 . 
 . egen other_immunosuppression = rowmax(temp1 temp2 temp3)
@@ -694,7 +710,7 @@ variable ra_sle_psoriasis was str7 now str10
 . gen htdiag_or_highbp = bphigh
 
 . recode htdiag_or_highbp 0 = 1 if hypertension==1 
-(htdiag_or_highbp: 2209124 changes made)
+(htdiag_or_highbp: 2197094 changes made)
 
 . 
 . 
@@ -706,67 +722,67 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Set implausible creatinine values to missing (Note: zero changed to missing)
 . replace creatinine = . if !inrange(creatinine, 20, 3000) 
-(4,425,482 real changes made, 4,425,482 to missing)
+(4,387,675 real changes made, 4,387,675 to missing)
 
 .         
 . * Divide by 88.4 (to convert umol/l to mg/dl)
 . gen SCr_adj = creatinine/88.4
-(4,425,482 missing values generated)
+(4,387,675 missing values generated)
 
 . 
 . gen min=.
-(17,425,445 missing values generated)
+(17,283,279 missing values generated)
 
 . replace min = SCr_adj/0.7 if male==0
-(7,068,272 real changes made)
+(7,006,100 real changes made)
 
 . replace min = SCr_adj/0.9 if male==1
-(5,931,691 real changes made)
+(5,889,504 real changes made)
 
 . replace min = min^-0.329  if male==0
-(7,068,271 real changes made)
+(7,006,099 real changes made)
 
 . replace min = min^-0.411  if male==1
-(5,931,691 real changes made)
+(5,889,504 real changes made)
 
 . replace min = 1 if min<1
-(8,582,308 real changes made)
+(8,513,621 real changes made)
 
 . 
 . gen max=.
-(17,425,445 missing values generated)
+(17,283,279 missing values generated)
 
 . replace max=SCr_adj/0.7 if male==0
-(7,068,272 real changes made)
+(7,006,100 real changes made)
 
 . replace max=SCr_adj/0.9 if male==1
-(5,931,691 real changes made)
+(5,889,504 real changes made)
 
 . replace max=max^-1.209
-(12,999,962 real changes made)
+(12,895,603 real changes made)
 
 . replace max=1 if max>1
-(8,843,136 real changes made)
+(8,769,657 real changes made)
 
 . 
 . gen egfr=min*max*141
-(4,425,482 missing values generated)
+(4,387,675 missing values generated)
 
 . replace egfr=egfr*(0.993^age)
-(12,999,963 real changes made)
+(12,895,604 real changes made)
 
 . replace egfr=egfr*1.018 if male==0
-(7,068,272 real changes made)
+(7,006,100 real changes made)
 
 . label var egfr "egfr calculated using CKD-EPI formula with no eth"
 
 . 
 . * Categorise into ckd stages
 . egen egfr_cat = cut(egfr), at(0, 15, 30, 45, 60, 5000)
-(4425482 missing values generated)
+(4387675 missing values generated)
 
 . recode egfr_cat 0=5 15=4 30=3 45=2 60=0, generate(ckd)
-(12999963 differences between egfr_cat and ckd)
+(12895604 differences between egfr_cat and ckd)
 
 . * 0 = "No CKD"  2 "stage 3a" 3 "stage 3b" 4 "stage 4" 5 "stage 5"
 . label define ckd 0 "No CKD" 1 "CKD"
@@ -777,14 +793,21 @@ variable ra_sle_psoriasis was str7 now str10
 
 . 
 . * Convert into CKD group
-. recode ckd 2/5=1, gen(chronic_kidney_disease)
-(1090760 differences between ckd and chronic_kidney_disease)
-
-. replace chronic_kidney_disease = 0 if creatinine==. 
-(4,425,482 real changes made)
-
+. *recode ckd 2/5=1, gen(chronic_kidney_disease)
+. *replace chronic_kidney_disease = 0 if creatinine==. 
 .         
-.         
+. recode ckd 0=1 2/3=2 4/5=3, gen(reduced_kidney_function_cat)
+(12143741 differences between ckd and reduced_kidney_function_cat)
+
+. replace reduced_kidney_function_cat = 1 if creatinine==. 
+(4,387,675 real changes made)
+
+. label define reduced_kidney_function_catlab 1 "None" 2 "Stage 3a/3b egfr 30-60  " 3 "Stage 4/5 egfr<3
+> 0"
+
+. label values reduced_kidney_function_cat reduced_kidney_function_catlab 
+
+.  
 .         
 . ************
 . *   Hba1c  *
@@ -795,19 +818,19 @@ variable ra_sle_psoriasis was str7 now str10
 . 
 . * Set zero or negative to missing
 . replace hba1c_percentage   = . if hba1c_percentage<=0
-(15,044,915 real changes made, 15,044,915 to missing)
+(14,919,931 real changes made, 14,919,931 to missing)
 
 . replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol<=0
-(8,134,554 real changes made, 8,134,554 to missing)
+(8,063,148 real changes made, 8,063,148 to missing)
 
 . 
 . 
 . * Only consider measurements in last 15 months
 . replace hba1c_percentage   = . if hba1c_percentage_date   < d(1/11/2018)
-(1,548,596 real changes made, 1,548,596 to missing)
+(1,537,495 real changes made, 1,537,495 to missing)
 
 . replace hba1c_mmol_per_mol = . if hba1c_mmol_per_mol_date < d(1/11/2018)
-(3,640,271 real changes made, 3,640,271 to missing)
+(3,609,884 real changes made, 3,609,884 to missing)
 
 . 
 . 
@@ -819,14 +842,14 @@ variable ra_sle_psoriasis was str7 now str10
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-hba1c_per~ge |    831,934    6.038755     1.31215         .3        128
-hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
+hba1c_per~ge |    825,853    6.040219    1.313702         .3        128
+hba1c_mmol~l |  5,610,247     42.2794    12.23316         .4        471
 
 . gen     hba1c_pct = hba1c_percentage 
-(16,593,511 missing values generated)
+(16,457,426 missing values generated)
 
 . replace hba1c_pct = (hba1c_mmol_per_mol/10.929)+2.15 if hba1c_mmol_per_mol<. 
-(5,650,620 real changes made)
+(5,610,247 real changes made)
 
 . 
 . * Valid % range between 0-20  
@@ -834,7 +857,7 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 (50 real changes made, 50 to missing)
 
 . replace hba1c_pct = round(hba1c_pct, 0.1)
-(5,650,618 real changes made)
+(5,610,245 real changes made)
 
 . 
 . 
@@ -842,19 +865,19 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 . 
 . * Group hba1c
 . gen     hba1ccat = 0 if hba1c_pct <  6.5
-(12,815,771 missing values generated)
+(12,708,444 missing values generated)
 
 . replace hba1ccat = 1 if hba1c_pct >= 6.5  & hba1c_pct < 7.5
-(557,524 real changes made)
+(554,679 real changes made)
 
 . replace hba1ccat = 2 if hba1c_pct >= 7.5  & hba1c_pct < 8
-(151,140 real changes made)
+(150,313 real changes made)
 
 . replace hba1ccat = 3 if hba1c_pct >= 8    & hba1c_pct < 9
-(162,851 real changes made)
+(161,940 real changes made)
 
 . replace hba1ccat = 4 if hba1c_pct >= 9    & hba1c_pct !=.
-(178,599 real changes made)
+(177,573 real changes made)
 
 . label define hba1ccat 0 "<6.5%" 1">=6.5-7.4" 2">=7.5-7.9" 3">=8-8.9" 4">=9"
 
@@ -864,27 +887,27 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 
    hba1ccat |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-      <6.5% |  4,609,674       81.45       81.45
-  >=6.5-7.4 |    557,524        9.85       91.30
-  >=7.5-7.9 |    151,140        2.67       93.97
-    >=8-8.9 |    162,851        2.88       96.84
-        >=9 |    178,599        3.16      100.00
+      <6.5% |  4,574,835       81.41       81.41
+  >=6.5-7.4 |    554,679        9.87       91.28
+  >=7.5-7.9 |    150,313        2.67       93.96
+    >=8-8.9 |    161,940        2.88       96.84
+        >=9 |    177,573        3.16      100.00
 ------------+-----------------------------------
-      Total |  5,659,788      100.00
+      Total |  5,619,340      100.00
 
 . 
 . * Create diabetes, split by control/not
 . gen     diabcat = 1 if diabetes==0
-(1,727,716 missing values generated)
+(1,718,074 missing values generated)
 
 . replace diabcat = 2 if diabetes==1 & inlist(hba1ccat, 0, 1)
-(1,043,176 real changes made)
+(1,037,554 real changes made)
 
 . replace diabcat = 3 if diabetes==1 & inlist(hba1ccat, 2, 3, 4)
-(489,297 real changes made)
+(486,564 real changes made)
 
 . replace diabcat = 4 if diabetes==1 & !inlist(hba1ccat, 0, 1, 2, 3, 4)
-(195,243 real changes made)
+(193,956 real changes made)
 
 . 
 . label define diabcat    1 "No diabetes"                         ///
@@ -938,16 +961,16 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
   4.         gen `var' = date(`var'_dstr, "YMD")
   5.         drop `var'_dstr
   6. }
-(17,382,063 missing values generated)
-(17,419,739 missing values generated)
-(17,424,010 missing values generated)
+(17,240,109 missing values generated)
+(17,277,605 missing values generated)
+(17,281,846 missing values generated)
 
 . rename icu_date_admitted itu_date
 
 . 
 . * Date of Covid death in ONS
 . gen died_date_onscovid = died_date_ons if died_ons_covid_flag_any==1
-(17,419,795 missing values generated)
+(17,277,666 missing values generated)
 
 . 
 . * Binary indicators for outcomes
@@ -981,7 +1004,7 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 (23 real changes made)
 
 . replace onscoviddeath   = 0 if (died_date_onscovid      > onscoviddeathcensor_date) 
-(2,900 real changes made)
+(131 real changes made)
 
 . 
 . * Format date variables
@@ -1034,9 +1057,6 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 
 . 
 . label var hba1ccat                                              "Categorised hba1c"
-
-. 
-. label var chronic_kidney_disease        "Chronic kidney disease" 
 
 . label var egfr_cat                                              "Calculated eGFR"
 
@@ -1101,7 +1121,7 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 . label var other_neuro                                   "Neuro condition other than stroke/dementia" 
 >    
 
-. label var chronic_kidney_disease                "Kidney disease"
+. label var reduced_kidney_function_cat   "Reduced kidney function" 
 
 . label var organ_transplant                              "Organ transplant recipient"
 
@@ -1168,7 +1188,9 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 
 . label var temporary_immunodeficiency_date "Temporary immunosuppression, date"
 
-. 
+. label var dialysis                                              "Dialysis"
+
+.         
 . * Outcomes and follow-up
 . label var enter_date                                    "Date of study entry"
 
@@ -1221,10 +1243,10 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 >         chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease    ///
 >         diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat                     ///
 >         chronic_liver_disease organ_transplant spleen ra_sle_psoriasis                  ///
->         chronic_kidney_disease stroke dementia stroke_dementia other_neuro              ///
+>         reduced_kidney_function_cat stroke dementia stroke_dementia other_neuro         ///
 >         other_immunosuppression                                                                      
 >                            ///
->         creatinine egfr egfr_cat ckd  chronic_kidney_disease
+>         creatinine egfr egfr_cat ckd  dialysis
 
 . 
 . 
@@ -1238,7 +1260,6 @@ hba1c_mmol~l |  5,650,620    42.26627    12.22856         .4        471
 . label data "Analysis dataset for the poor outcomes in Covid project"
 
 . save "cr_create_analysis_dataset.dta", replace
-(note: file cr_create_analysis_dataset.dta not found)
 file cr_create_analysis_dataset.dta saved
 
 . 
@@ -1255,20 +1276,19 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
             origin:  time enter_date
 
 ------------------------------------------------------------------------------
-   17425445  total observations
-        448  observations end on or before enter()
+   17283279  total observations
+        447  observations end on or before enter()
 ------------------------------------------------------------------------------
-   17424997  observations remaining, representing
-   17424997  subjects
-      5,683  failures in single-failure-per-subject data
- 1.4619e+09  total analysis time at risk and under observation
+   17282832  observations remaining, representing
+   17282832  subjects
+      5,651  failures in single-failure-per-subject data
+ 1.4499e+09  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        84
 
 .         
 . save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
-(note: file cr_create_analysis_dataset_STSET_cpnsdeath.dta not found)
 file cr_create_analysis_dataset_STSET_cpnsdeath.dta saved
 
 . 
@@ -1277,5 +1297,5 @@ file cr_create_analysis_dataset_STSET_cpnsdeath.dta saved
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/cr_analysis_dataset.log
   log type:  text
- closed on:   5 May 2020, 22:15:12
+ closed on:  12 May 2020, 19:38:53
 -------------------------------------------------------------------------------------------------------

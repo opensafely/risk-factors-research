@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_sensan_earlieradmincensoring_cpnsdeath.log
   log type:  text
- opened on:   5 May 2020, 22:21:51
+ opened on:  12 May 2020, 19:40:51
 
 . 
 . **********************************
@@ -12,14 +12,14 @@
 . 
 . *CHANGE ADMIN CENSORING DATE
 . replace cpnsdeathcensor_date = date("06/04/2020", "DMY")
-(17,425,445 real changes made)
+(17,283,279 real changes made)
 
 . 
 . replace stime_cpnsdeath         = min(cpnsdeathcensor_date,     died_date_cpns, died_date_ons)
-(17,389,430 real changes made)
+(17,247,436 real changes made)
 
 . replace cpnsdeath               = 0 if (died_date_cpns          > cpnsdeathcensor_date) 
-(3,457 real changes made)
+(3,438 real changes made)
 
 . 
 . *STSET
@@ -35,13 +35,13 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
             origin:  time enter_date
 
 ------------------------------------------------------------------------------
-   17425445  total observations
-        448  observations end on or before enter()
+   17283279  total observations
+        447  observations end on or before enter()
 ------------------------------------------------------------------------------
-   17424997  observations remaining, representing
-   17424997  subjects
-      2,226  failures in single-failure-per-subject data
- 1.1316e+09  total analysis time at risk and under observation
+   17282832  observations remaining, representing
+   17282832  subjects
+      2,213  failures in single-failure-per-subject data
+ 1.1224e+09  total analysis time at risk and under observation
                                                 at risk from t =         0
                                      earliest observed entry t =         0
                                           last observed exit t =        65
@@ -78,7 +78,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 >                         i.chronic_liver_disease                 ///
 >                         i.stroke_dementia                               ///
 >                         i.other_neuro                                   ///
->                         i.chronic_kidney_disease                ///
+>                         i.reduced_kidney_function_cat   ///
 >                         i.organ_transplant                              ///
 >                         i.spleen                                                ///
 >                         i.ra_sle_psoriasis                      ///
@@ -94,7 +94,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 .  
 . *Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  bp("i.htdiag_or_highbp") ethnicity(0)
-   1:   2431.43 /        1 =    2431.4300
+   1:   2784.40 /        1 =    2784.4000
 
 . if _rc==0{
 . estimates
@@ -108,70 +108,72 @@ Stratified Cox regr. -- Breslow method for ties
 No. of subjects =   17,282,832                  Number of obs    =  17,282,832
 No. of failures =        2,213
 Time at risk    =   1122352592
-                                                LR chi2(35)      =     7562.26
-Log likelihood  =   -25972.235                  Prob > chi2      =      0.0000
+                                                LR chi2(36)      =     7651.14
+Log likelihood  =   -25927.796                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |   1.081913   .0385256     2.21   0.027     1.008979    1.160119
-                         age2 |   1.082175   .0881417     0.97   0.332     .9225036    1.269482
-                         age3 |   .7869604   .1518522    -1.24   0.214      .539144    1.148685
-                       1.male |   2.175945   .1016646    16.64   0.000     1.985537    2.384612
+                         age1 |   1.076887   .0380469     2.10   0.036      1.00484      1.1541
+                         age2 |    1.10123   .0891934     1.19   0.234     .9395834    1.290686
+                         age3 |   .7498996    .144043    -1.50   0.134     .5146379    1.092709
+                       1.male |   2.168275   .1012759    16.57   0.000     1.978593    2.376142
                               |
                     obese4cat |
-           Obese I (30-34.9)  |    1.38686   .0750507     6.04   0.000     1.247295     1.54204
-          Obese II (35-39.9)  |   1.623587    .130892     6.01   0.000     1.386285     1.90151
-             Obese III (40+)  |   2.450958   .2561184     8.58   0.000     1.997044    3.008044
+           Obese I (30-34.9)  |   1.385185   .0749434     6.02   0.000     1.245819    1.540142
+          Obese II (35-39.9)  |   1.612736   .1300223     5.93   0.000     1.377011    1.888813
+             Obese III (40+)  |   2.428993   .2538309     8.49   0.000     1.979134    2.981104
                               |
                  smoke_nomiss |
-                      Former  |   1.332859   .0664762     5.76   0.000     1.208734    1.469731
-                     Current  |   .8394492   .0806331    -1.82   0.068     .6953964    1.013343
+                      Former  |   1.329358   .0663141     5.71   0.000     1.205537    1.465898
+                     Current  |   .8362911   .0803205    -1.86   0.063     .6927952    1.009509
                               |
                           imd |
-                           2  |   1.007444   .0708177     0.11   0.916     .8777806     1.15626
-                           3  |   1.040761    .073412     0.57   0.571     .9063795    1.195067
-                           4  |    1.27169   .0878477     3.48   0.001     1.110659    1.456069
-             5 most deprived  |   1.487145   .1061402     5.56   0.000     1.293009    1.710429
+                           2  |   1.006773   .0707724     0.10   0.924     .8771928    1.155494
+                           3  |   1.039357   .0733107     0.55   0.584     .9051606     1.19345
+                           4  |   1.266736   .0874994     3.42   0.001     1.106343    1.450383
+             5 most deprived  |   1.476945   .1054304     5.46   0.000      1.28411    1.698739
                               |
-           1.htdiag_or_highbp |   .9448669   .0489727    -1.09   0.274     .8535966    1.045896
-1.chronic_respiratory_disease |   1.968034   .1038712    12.83   0.000     1.774626     2.18252
+           1.htdiag_or_highbp |   .9346157   .0485606    -1.30   0.193     .8441245    1.034808
+1.chronic_respiratory_disease |   1.970743   .1039909    12.86   0.000      1.77711    2.185474
                               |
                     asthmacat |
-                 Yes, no OCS  |   1.139843   .0731096     2.04   0.041     1.005192    1.292532
-                Yes with OCS  |   1.392772   .1529939     3.02   0.003     1.122993    1.727362
+                 Yes, no OCS  |   1.140159   .0731304     2.05   0.041      1.00547    1.292891
+                Yes with OCS  |   1.397229   .1534723     3.05   0.002     1.126604    1.732862
                               |
-    1.chronic_cardiac_disease |   1.333484   .0631956     6.07   0.000     1.215202     1.46328
+    1.chronic_cardiac_disease |   1.309068    .062264     5.66   0.000     1.192549    1.436973
                               |
                       diabcat |
-         Controlled diabetes  |    1.48414   .0804369     7.29   0.000     1.334571    1.650471
-       Uncontrolled diabetes  |   2.571038   .1643814    14.77   0.000     2.268225    2.914276
-  Diabetes, no hba1c measure  |   1.677923   .2013507     4.31   0.000     1.326258    2.122835
+         Controlled diabetes  |    1.46638   .0796005     7.05   0.000     1.318379    1.630996
+       Uncontrolled diabetes  |   2.467659   .1586424    14.05   0.000     2.175518    2.799031
+  Diabetes, no hba1c measure  |   1.633075   .1961362     4.08   0.000      1.29055     2.06651
                               |
             cancer_exhaem_cat |
-                   Last year  |   1.505887   .2382232     2.59   0.010     1.104426    2.053278
-               2-5 years ago  |   1.361672   .1325468     3.17   0.002     1.125164    1.647895
-                    5+ years  |   .9158074   .0677887    -1.19   0.235     .7921322    1.058792
+                   Last year  |   1.506079   .2382449     2.59   0.010      1.10458    2.053517
+               2-5 years ago  |   1.353144   .1317312     3.11   0.002     1.118093    1.637608
+                    5+ years  |   .9085337   .0672697    -1.30   0.195     .7858078    1.050427
                               |
               cancer_haem_cat |
-                   Last year  |   2.603236   .9228792     2.70   0.007     1.299428    5.215248
-               2-5 years ago  |   3.667847   .6016324     7.92   0.000     2.659437    5.058628
-                    5+ years  |   1.638735   .2764368     2.93   0.003      1.17739    2.280853
+                   Last year  |   2.453432   .8701819     2.53   0.011     1.224251    4.916745
+               2-5 years ago  |   3.598212   .5904478     7.80   0.000     2.608609    4.963231
+                    5+ years  |   1.615111   .2725007     2.84   0.004     1.160348    2.248105
                               |
-      1.chronic_liver_disease |   1.855483   .2695861     4.25   0.000     1.395676    2.466775
-            1.stroke_dementia |   1.612605   .0970544     7.94   0.000     1.433173    1.814502
-                1.other_neuro |   2.276439   .2236547     8.37   0.000     1.877706    2.759844
-     1.chronic_kidney_disease |   1.745257   .0861389    11.28   0.000     1.584337    1.922522
-           1.organ_transplant |    2.62262   .7420622     3.41   0.001     1.506227    4.566466
-                     1.spleen |   1.867562   .5422063     2.15   0.031     1.057175    3.299157
-           1.ra_sle_psoriasis |   1.312035   .0934418     3.81   0.000       1.1411    1.508575
-    1.other_immunosuppression |   2.013533   .4928041     2.86   0.004     1.246323    3.253021
+      1.chronic_liver_disease |   1.859573   .2695893     4.28   0.000     1.399624    2.470672
+            1.stroke_dementia |    1.60389   .0965545     7.85   0.000     1.425385    1.804751
+                1.other_neuro |   2.289785   .2249819     8.43   0.000     1.888688    2.776062
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   1.578031   .0814748     8.84   0.000     1.426158    1.746078
+           Stage 4/5 egfr<30  |   3.488907   .2879779    15.14   0.000     2.967771    4.101554
+                              |
+           1.organ_transplant |   2.245588   .6358152     2.86   0.004     1.289202    3.911462
+                     1.spleen |   1.865891   .5417167     2.15   0.032     1.056235     3.29619
+           1.ra_sle_psoriasis |   1.312448   .0934681     3.82   0.000     1.141464    1.509043
+    1.other_immunosuppression |   2.189749   .4830434     3.55   0.000     1.421102    3.374143
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_
 > bmicat_noeth, replace
-(note: file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmica
-> t_noeth.ster not found)
 file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth
 > .ster saved
 . *estat concordance /*c-statistic*/
@@ -183,62 +185,63 @@ file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL
       ----------------------------------------------------------------
                   |       rho            chi2       df       Prob>chi2
       ------------+---------------------------------------------------
-      age1        |      0.00028         0.00        1         0.9897
-      age2        |     -0.00564         0.07        1         0.7960
-      age3        |      0.00824         0.14        1         0.7057
+      age1        |      0.00063         0.00        1         0.9772
+      age2        |     -0.00623         0.08        1         0.7763
+      age3        |      0.00890         0.17        1         0.6844
       0b.male     |            .            .        1             .
-      1.male      |      0.01960         0.86        1         0.3530
+      1.male      |      0.01962         0.86        1         0.3524
       1b.obese4cat|            .            .        1             .
-      2.obese4cat |      0.00712         0.11        1         0.7367
-      3.obese4cat |      0.02649         1.54        1         0.2149
-      4.obese4cat |      0.02640         1.53        1         0.2158
+      2.obese4cat |      0.00725         0.12        1         0.7322
+      3.obese4cat |      0.02684         1.58        1         0.2088
+      4.obese4cat |      0.02656         1.55        1         0.2130
       1b.smoke_n~s|            .            .        1             .
-      2.smoke_no~s|      0.02586         1.47        1         0.2260
-      3.smoke_no~s|      0.01776         0.71        1         0.3994
+      2.smoke_no~s|      0.02573         1.45        1         0.2283
+      3.smoke_no~s|      0.01767         0.70        1         0.4019
       1b.imd      |            .            .        1             .
-      2.imd       |      0.01739         0.67        1         0.4131
-      3.imd       |      0.01235         0.33        1         0.5639
-      4.imd       |      0.03356         2.46        1         0.1165
-      5.imd       |      0.02768         1.68        1         0.1954
+      2.imd       |      0.01740         0.67        1         0.4129
+      3.imd       |      0.01227         0.33        1         0.5663
+      4.imd       |      0.03359         2.47        1         0.1163
+      5.imd       |      0.02782         1.69        1         0.1930
       0b.htdiag_~p|            .            .        1             .
-      1.htdiag_o~p|     -0.00648         0.10        1         0.7538
+      1.htdiag_o~p|     -0.00637         0.10        1         0.7575
       0b.c~respi~e|            .            .        1             .
-      1.c~respir~e|     -0.01557         0.58        1         0.4459
+      1.c~respir~e|     -0.01554         0.58        1         0.4470
       1b.asthmacat|            .            .        1             .
-      2.asthmacat |     -0.00836         0.15        1         0.6940
-      3.asthmacat |     -0.01009         0.23        1         0.6309
+      2.asthmacat |     -0.00828         0.15        1         0.6970
+      3.asthmacat |     -0.01008         0.23        1         0.6314
       0b.c~cardi~e|            .            .        1             .
-      1.c~cardia~e|     -0.06417         9.44        1         0.0021
+      1.c~cardia~e|     -0.06377         9.37        1         0.0022
       1b.diabcat  |            .            .        1             .
-      2.diabcat   |     -0.02136         1.02        1         0.3114
-      3.diabcat   |     -0.02954         1.98        1         0.1591
-      4.diabcat   |     -0.00388         0.03        1         0.8541
+      2.diabcat   |     -0.02120         1.01        1         0.3148
+      3.diabcat   |     -0.02876         1.90        1         0.1677
+      4.diabcat   |     -0.00378         0.03        1         0.8579
       1b.c~exhae~t|            .            .        1             .
-      2.cancer_e~t|     -0.03479         2.68        1         0.1014
-      3.cancer_e~t|     -0.00526         0.06        1         0.8038
-      4.cancer_e~t|     -0.00096         0.00        1         0.9639
+      2.cancer_e~t|     -0.03496         2.71        1         0.0998
+      3.cancer_e~t|     -0.00531         0.06        1         0.8020
+      4.cancer_e~t|     -0.00104         0.00        1         0.9608
       1b.cancer_h~|            .            .        1             .
-      2.cancer_h~t|     -0.02612         1.51        1         0.2187
-      3.cancer_h~t|      0.01471         0.48        1         0.4872
-      4.cancer_h~t|     -0.01186         0.31        1         0.5756
+      2.cancer_h~t|     -0.02592         1.49        1         0.2220
+      3.cancer_h~t|      0.01489         0.49        1         0.4823
+      4.cancer_h~t|     -0.01149         0.29        1         0.5877
       0b.c~liver~e|            .            .        1             .
-      1.c~liver_~e|      0.00222         0.01        1         0.9149
+      1.c~liver_~e|      0.00283         0.02        1         0.8920
       0b.stroke_~a|            .            .        1             .
-      1.stroke_d~a|      0.02312         1.26        1         0.2616
+      1.stroke_d~a|      0.02328         1.28        1         0.2584
       0b.other_n~o|            .            .        1             .
-      1.other_ne~o|     -0.01441         0.48        1         0.4881
-      0b.c~kidne~e|            .            .        1             .
-      1.c~kidney~e|     -0.00534         0.07        1         0.7872
+      1.other_ne~o|     -0.01443         0.48        1         0.4875
+      1b.reduced~t|            .            .        1             .
+      2.reduced_~t|     -0.00389         0.04        1         0.8461
+      3.reduced_~t|     -0.00486         0.06        1         0.8069
       0b.organ_t~t|            .            .        1             .
-      1.organ_tr~t|      0.03879         3.46        1         0.0631
+      1.organ_tr~t|      0.03957         3.54        1         0.0598
       0b.spleen   |            .            .        1             .
-      1.spleen    |      0.01044         0.24        1         0.6226
+      1.spleen    |      0.01046         0.24        1         0.6220
       0b.ra_sle_~s|            .            .        1             .
-      1.ra_sle_p~s|     -0.00749         0.12        1         0.7239
+      1.ra_sle_p~s|     -0.00757         0.13        1         0.7213
       0b.other_i~n|            .            .        1             .
-      1.other_im~n|      0.01433         0.45        1         0.5022
+      1.other_im~n|      0.00781         0.13        1         0.7146
       ------------+---------------------------------------------------
-      global test |                     33.14       35         0.5581
+      global test |                     32.89       36         0.6172
       ----------------------------------------------------------------
 . }
 
@@ -248,7 +251,7 @@ file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL
 .  
 . *Age group model (not adj ethnicity)
 . basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(0)
-   1:   2596.49 /        1 =    2596.4850
+   1:   2720.94 /        1 =    2720.9440
 
 . if _rc==0{
 . estimates
@@ -262,74 +265,76 @@ Stratified Cox regr. -- Breslow method for ties
 No. of subjects =   17,282,832                  Number of obs    =  17,282,832
 No. of failures =        2,213
 Time at risk    =   1122352592
-                                                LR chi2(37)      =     7370.40
-Log likelihood  =   -26068.168                  Prob > chi2      =      0.0000
+                                                LR chi2(38)      =     7469.01
+Log likelihood  =   -26018.859                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
                      agegroup |
-                      18-<40  |   .0782258   .0214688    -9.28   0.000     .0456816    .1339552
-                      40-<50  |   .3131385   .0614689    -5.91   0.000     .2131307    .4600732
-                      60-<70  |   2.354425   .2564474     7.86   0.000     1.901825    2.914734
-                      70-<80  |   5.546146   .5648123    16.82   0.000     4.542616     6.77137
-                         80+  |   13.42551   1.393355    25.02   0.000     10.95443    16.45402
+                      18-<40  |   .0771642   .0211763    -9.33   0.000     .0450629    .1321334
+                      40-<50  |   .3103533   .0609203    -5.96   0.000     .2112376    .4559756
+                      60-<70  |   2.381189   .2593486     7.97   0.000     1.923467    2.947833
+                      70-<80  |   5.669332   .5771924    17.04   0.000     4.643778    6.921375
+                         80+  |   13.51019   1.402361    25.08   0.000     11.02317    16.55833
                               |
-                       1.male |   2.079149   .0966735    15.74   0.000      1.89805    2.277528
+                       1.male |   2.073707   .0963853    15.69   0.000     1.893145    2.271491
                               |
                     obese4cat |
-           Obese I (30-34.9)  |   1.305473    .070203     4.96   0.000      1.17488    1.450581
-          Obese II (35-39.9)  |   1.498326    .120169     5.04   0.000     1.280378    1.753374
-             Obese III (40+)  |   2.224028   .2313293     7.68   0.000      1.81386    2.726948
+           Obese I (30-34.9)  |   1.306753   .0702741     4.98   0.000     1.176028    1.452008
+          Obese II (35-39.9)  |   1.491081   .1196004     4.98   0.000     1.274166    1.744924
+             Obese III (40+)  |   2.207845   .2296419     7.61   0.000     1.800667    2.707095
                               |
                  smoke_nomiss |
-                      Former  |   1.338267   .0668266     5.84   0.000     1.213494    1.475868
-                     Current  |   .7970464   .0763591    -2.37   0.018     .6605965    .9616808
+                      Former  |   1.334647   .0666565     5.78   0.000     1.210194      1.4719
+                     Current  |   .7955882   .0762116    -2.39   0.017     .6594008    .9599028
                               |
                           imd |
-                           2  |   1.008736   .0709086     0.12   0.902     .8789069    1.157744
-                           3  |   1.041925   .0735126     0.58   0.560     .9073619    1.196445
-                           4  |   1.271367   .0878816     3.47   0.001     1.110281    1.455825
-             5 most deprived  |    1.48114   .1057714     5.50   0.000     1.287685    1.703657
+                           2  |   1.007735    .070841     0.11   0.913     .8780298    1.156601
+                           3  |   1.040472   .0734082     0.56   0.574     .9060993    1.194772
+                           4  |   1.265923   .0875023     3.41   0.001     1.105531    1.449584
+             5 most deprived  |   1.470229   .1050094     5.40   0.000      1.27817    1.691146
                               |
-           1.htdiag_or_highbp |   .9750046   .0506702    -0.49   0.626     .8805831     1.07955
-1.chronic_respiratory_disease |   1.964123   .1039015    12.76   0.000     1.770682    2.178698
+           1.htdiag_or_highbp |   .9628755   .0501786    -0.73   0.468     .8693832    1.066422
+1.chronic_respiratory_disease |   1.964103   .1038763    12.76   0.000     1.770706    2.178623
                               |
                     asthmacat |
-                 Yes, no OCS  |   1.121765   .0719284     1.79   0.073      .989287    1.271984
-                Yes with OCS  |   1.365026   .1498981     2.83   0.005     1.100697    1.692834
+                 Yes, no OCS  |   1.122272   .0719613     1.80   0.072     .9897333     1.27256
+                Yes with OCS  |   1.370375   .1504779     2.87   0.004     1.105022    1.699449
                               |
-    1.chronic_cardiac_disease |   1.374704   .0653138     6.70   0.000     1.252471    1.508866
+    1.chronic_cardiac_disease |   1.346194   .0642148     6.23   0.000      1.22604    1.478124
                               |
                       diabcat |
-         Controlled diabetes  |   1.462734   .0794346     7.00   0.000     1.315044     1.62701
-       Uncontrolled diabetes  |   2.476004   .1583007    14.18   0.000     2.184393    2.806545
-  Diabetes, no hba1c measure  |   1.726566   .2072191     4.55   0.000     1.364657    2.184453
+         Controlled diabetes  |   1.443538   .0785364     6.75   0.000     1.297532    1.605973
+       Uncontrolled diabetes  |      2.368    .152358    13.40   0.000     2.087445    2.686262
+  Diabetes, no hba1c measure  |   1.671353   .2008073     4.28   0.000     1.320685     2.11513
                               |
             cancer_exhaem_cat |
-                   Last year  |   1.499177   .2371727     2.56   0.010      1.09949    2.044159
-               2-5 years ago  |   1.353393   .1317944     3.11   0.002     1.118236    1.638003
-                    5+ years  |   .9324687    .069061    -0.94   0.345     .8064772    1.078143
+                   Last year  |   1.497061   .2368308     2.55   0.011     1.097948    2.041255
+               2-5 years ago  |   1.342304    .130732     3.02   0.003     1.109045    1.624623
+                    5+ years  |    .923261   .0684021    -1.08   0.281     .7984745    1.067549
                               |
               cancer_haem_cat |
-                   Last year  |    2.55023   .9040496     2.64   0.008     1.273006    5.108907
-               2-5 years ago  |   3.568832   .5854701     7.76   0.000     2.587532    4.922282
-                    5+ years  |    1.62478   .2740958     2.88   0.004     1.167345    2.261465
+                   Last year  |   2.404847   .8529458     2.47   0.013     1.200011    4.819364
+               2-5 years ago  |   3.490821   .5728847     7.62   0.000     2.530669     4.81526
+                    5+ years  |   1.597007   .2694686     2.77   0.006     1.147309    2.222967
                               |
-      1.chronic_liver_disease |   1.802302   .2615727     4.06   0.000     1.356096    2.395326
-            1.stroke_dementia |    1.68304   .1012799     8.65   0.000     1.495795    1.893726
-                1.other_neuro |   2.232655   .2195108     8.17   0.000     1.841335    2.707137
-     1.chronic_kidney_disease |    1.92964    .093791    13.52   0.000     1.754298    2.122508
-           1.organ_transplant |   2.406814   .6805862     3.11   0.002     1.382752    4.189294
-                     1.spleen |   1.829806   .5311898     2.08   0.037     1.035864    3.232269
-           1.ra_sle_psoriasis |   1.293057   .0920799     3.61   0.000     1.124613    1.486732
-    1.other_immunosuppression |   1.914652   .4683614     2.66   0.008     1.185412    3.092505
+      1.chronic_liver_disease |   1.810411   .2621167     4.10   0.000     1.363131    2.404455
+            1.stroke_dementia |   1.668336   .1004439     8.50   0.000     1.482641    1.877288
+                1.other_neuro |   2.244785   .2207107     8.22   0.000     1.851328    2.721863
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   1.730544    .088233    10.76   0.000      1.56597    1.912413
+           Stage 4/5 egfr<30  |   4.021716   .3285291    17.04   0.000     3.426713    4.720032
+                              |
+           1.organ_transplant |    2.02375   .5726152     2.49   0.013     1.162282    3.523727
+                     1.spleen |   1.826972   .5303606     2.08   0.038     1.034266     3.22724
+           1.ra_sle_psoriasis |     1.2943   .0921644     3.62   0.000       1.1257    1.488152
+    1.other_immunosuppression |   2.084349   .4595566     3.33   0.001        1.353     3.21102
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agegroup_b
 > micat_noeth, replace
-(note: file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat
-> _noeth.ster not found)
 file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.
 > ster saved
 . *estat concordance /*c-statistic*/
@@ -340,7 +345,7 @@ file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL
 . 
 . *Complete case ethnicity model
 . basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(1)
-   1:   1760.70 /        1 =    1760.7050
+   1:   3306.87 /        1 =    3306.8730
 
 . if _rc==0{
 . estimates
@@ -354,76 +359,78 @@ Stratified Cox regr. -- Breslow method for ties
 No. of subjects =   12,719,249                  Number of obs    =  12,719,249
 No. of failures =        1,642
 Time at risk    =    826027835
-                                                LR chi2(39)      =     5629.18
-Log likelihood  =   -18828.736                  Prob > chi2      =      0.0000
+                                                LR chi2(40)      =     5695.52
+Log likelihood  =   -18795.566                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |   1.088336   .0475786     1.94   0.053     .9989671      1.1857
-                         age2 |   1.076786   .1057715     0.75   0.451     .8882127    1.305396
-                         age3 |   .7856996   .1815285    -1.04   0.297     .4995678    1.235716
-                       1.male |   2.063315   .1116033    13.39   0.000     1.855772    2.294069
+                         age1 |    1.08332   .0469999     1.84   0.065     .9950096    1.179468
+                         age2 |   1.095036   .1069507     0.93   0.353     .9042588    1.326063
+                         age3 |    .750273   .1725108    -1.25   0.211     .4780815    1.177434
+                       1.male |   2.057398   .1112579    13.34   0.000     1.850495    2.287434
                               |
                     obese4cat |
-           Obese I (30-34.9)  |   1.392078   .0865903     5.32   0.000     1.232301    1.572571
-          Obese II (35-39.9)  |   1.565904    .147459     4.76   0.000     1.301993    1.883309
-             Obese III (40+)  |   2.517808   .3002472     7.74   0.000     1.993046    3.180738
+           Obese I (30-34.9)  |   1.389627   .0864213     5.29   0.000     1.230161    1.569765
+          Obese II (35-39.9)  |   1.552551   .1462138     4.67   0.000     1.290871    1.867279
+             Obese III (40+)  |   2.495811   .2976721     7.67   0.000     1.975559    3.153068
                               |
                  smoke_nomiss |
-                      Former  |   1.386697   .0820524     5.53   0.000     1.234853    1.557214
-                     Current  |   .9017342   .0989396    -0.94   0.346     .7272495    1.118082
+                      Former  |   1.382843   .0818291     5.48   0.000     1.231412    1.552896
+                     Current  |   .8983084   .0985629    -0.98   0.328      .724488    1.113832
                               |
                     ethnicity |
-                       Mixed  |    1.12624   .3434485     0.39   0.697     .6195207    2.047416
-      Asian or Asian British  |   1.771486    .164626     6.15   0.000     1.476504      2.1254
-                       Black  |   1.903174   .2434198     5.03   0.000     1.481181    2.445394
-                       Other  |   1.813947    .323313     3.34   0.001     1.279112    2.572411
+                       Mixed  |   1.107749   .3378365     0.34   0.737     .6093201    2.013896
+      Asian or Asian British  |   1.754508   .1630121     6.05   0.000     1.462413    2.104946
+                       Black  |   1.864577   .2386433     4.87   0.000     1.450897    2.396204
+                       Other  |   1.795036   .3200008     3.28   0.001     1.265696    2.545756
                               |
                           imd |
-                           2  |   1.064793    .089177     0.75   0.453     .9036011    1.254741
-                           3  |    .994402   .0847956    -0.07   0.948     .8413515    1.175294
-                           4  |   1.231988   .1016141     2.53   0.011     1.048093     1.44815
-             5 most deprived  |    1.39969    .118617     3.97   0.000     1.185486    1.652597
+                           2  |   1.064576   .0891624     0.75   0.455     .9034108    1.254493
+                           3  |   .9933871   .0847135    -0.08   0.938     .8404855    1.174105
+                           4  |   1.228943   .1013437     2.50   0.012     1.045534    1.444526
+             5 most deprived  |   1.392284   .1180425     3.90   0.000     1.179126    1.643977
                               |
-           1.htdiag_or_highbp |   .9756803   .0595951    -0.40   0.687     .8655968    1.099764
-1.chronic_respiratory_disease |   2.015394   .1225827    11.52   0.000     1.788905    2.270559
+           1.htdiag_or_highbp |   .9655498   .0591273    -0.57   0.567     .8563468    1.088679
+1.chronic_respiratory_disease |   2.016248   .1225932    11.53   0.000     1.789735     2.27143
                               |
                     asthmacat |
-                 Yes, no OCS  |   1.013239   .0770611     0.17   0.863     .8729202    1.176114
-                Yes with OCS  |    1.48652    .175677     3.35   0.001     1.179168    1.873984
+                 Yes, no OCS  |   1.013498    .077084     0.18   0.860     .8731381    1.176422
+                Yes with OCS  |   1.492822   .1763963     3.39   0.001     1.184207    1.881866
                               |
-    1.chronic_cardiac_disease |   1.398939   .0770036     6.10   0.000     1.255871    1.558305
+    1.chronic_cardiac_disease |   1.374052   .0758953     5.75   0.000     1.233069    1.531154
                               |
                       diabcat |
-         Controlled diabetes  |   1.434928   .0905385     5.72   0.000      1.26801    1.623819
-       Uncontrolled diabetes  |   2.420138   .1800757    11.88   0.000     2.091725    2.800114
-  Diabetes, no hba1c measure  |   1.644381   .2241276     3.65   0.000     1.258881    2.147932
+         Controlled diabetes  |   1.419731   .0897269     5.55   0.000     1.254326    1.606949
+       Uncontrolled diabetes  |   2.329924   .1742148    11.31   0.000     2.012311    2.697667
+  Diabetes, no hba1c measure  |   1.601318   .2184628     3.45   0.001     1.225606    2.092205
                               |
             cancer_exhaem_cat |
-                   Last year  |   1.567122   .2853211     2.47   0.014     1.096799    2.239126
-               2-5 years ago  |    1.40584    .158882     3.01   0.003     1.126514    1.754426
-                    5+ years  |    .984612   .0837286    -0.18   0.855     .8334535    1.163185
+                   Last year  |   1.569375   .2857293     2.48   0.013     1.098378    2.242339
+               2-5 years ago  |   1.395526    .157746     2.95   0.003     1.118203    1.741627
+                    5+ years  |    .977521   .0831431    -0.27   0.789      .827422    1.154849
                               |
               cancer_haem_cat |
-                   Last year  |   3.050364   1.156743     2.94   0.003     1.450653    6.414162
-               2-5 years ago  |   4.181665   .7488294     7.99   0.000     2.943884     5.93988
-                    5+ years  |   1.661899   .3238744     2.61   0.009     1.134281    2.434942
+                   Last year  |   2.833584   1.075145     2.75   0.006     1.346993    5.960831
+               2-5 years ago  |   4.103241   .7352081     7.88   0.000     2.888092    5.829659
+                    5+ years  |   1.625318    .316868     2.49   0.013     1.109149    2.381697
                               |
-      1.chronic_liver_disease |   1.830216   .3012642     3.67   0.000      1.32553    2.527057
-            1.stroke_dementia |   1.604033   .1125465     6.73   0.000     1.397942    1.840508
-                1.other_neuro |   2.026985    .242672     5.90   0.000      1.60304     2.56305
-     1.chronic_kidney_disease |   1.803667   .1039046    10.24   0.000     1.611094    2.019259
-           1.organ_transplant |   2.433099   .7854876     2.75   0.006     1.292299    4.580963
-                     1.spleen |   2.211553   .6714238     2.61   0.009     1.219759    4.009781
-           1.ra_sle_psoriasis |     1.2955   .1074494     3.12   0.002     1.101129    1.524181
-    1.other_immunosuppression |   1.956596   .5289653     2.48   0.013     1.151805    3.323711
+      1.chronic_liver_disease |   1.831786   .3008441     3.69   0.000     1.327631    2.527389
+            1.stroke_dementia |   1.595371   .1119541     6.66   0.000     1.390366    1.830603
+                1.other_neuro |   2.040911   .2443332     5.96   0.000     1.614062    2.580643
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   1.627813   .0981912     8.08   0.000     1.446303    1.832103
+           Stage 4/5 egfr<30  |    3.55585   .3391946    13.30   0.000     2.949489    4.286867
+                              |
+           1.organ_transplant |    2.08222   .6727058     2.27   0.023     1.105421    3.922162
+                     1.spleen |   2.203185   .6688678     2.60   0.009      1.21516    3.994554
+           1.ra_sle_psoriasis |   1.296859   .1075574     3.13   0.002     1.102292    1.525769
+    1.other_immunosuppression |   2.219051    .530399     3.33   0.001     1.389033    3.545047
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_
 > bmicat_CCeth, replace
-(note: file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmica
-> t_CCeth.ster not found)
 file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth
 > .ster saved
 . *estat concordance /*c-statistic*/
@@ -436,5 +443,5 @@ file ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_sensan_earlieradmincensoring_cpnsdeath.log
   log type:  text
- closed on:   6 May 2020, 01:09:13
+ closed on:  12 May 2020, 23:03:13
 -------------------------------------------------------------------------------------------------------

@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_checkassumptions_MI_combine.log
+  log type:  text
+ opened on:  12 May 2020, 23:42:28
+
+. 
+. 
+. 
+. 
+. ********************************   NOTES  **************************************
+. 
+. *  Assumes region is string, taking  values: 
+. *    East, East Midlands, London, North East, North West, South East, 
+. *    South West, West Midlands, and Yorkshire and The Humber
+. *
+. *  Assumes ethnicity is numeric, taking values: 
+. *       1, 2, 3, 4, 5, (missing: . or .u)
+. *       in the order White, Black, Asian, Mixed, Other
+. *       with value labels exactly as above. 
+. *       (NB: this is now intially recoded from ordering: 
+. *      White, Mixed, Asian, Black, Other)       
+. *
+. *
+. *  Assumes a complete case sample other than ethnicity
+. *
+. ********************************************************************************
+. 
+. 
+. 
+. 
+. 
+. **************************
+. *  Combine imputed data  *
+. **************************
+. 
+. * Put imputed data together (across regions)
+. use imputed_1.dta, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. forvalues k= 2 (1) 9    {
+  2. 
+. append using imputed_`k'
+  3. }
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+
+. save imputed, replace
+file imputed.dta saved
+
+. forvalues k= 1 (1) 9    {
+  2. *erase imputed_`k'.dta
+. }
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_checkassumptions_MI_combine.log
+  log type:  text
+ closed on:  12 May 2020, 23:42:33
+-------------------------------------------------------------------------------------------------------

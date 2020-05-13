@@ -3,7 +3,7 @@
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_im
 > dTOother_neuro.log
   log type:  text
- opened on:   5 May 2020, 22:21:50
+ opened on:  12 May 2020, 19:40:50
 
 . 
 . * Open dataset and fit specified model(s)
@@ -60,7 +60,6 @@ Log likelihood  =   -67647.761                  Prob > chi2      =      0.0000
         Current  |   .9798709    .056102    -0.36   0.722     .8758581    1.096236
 ----------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_imd.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_imd.ster saved
 
 -------------------------------------------------------------------------------------------------------
@@ -69,32 +68,30 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(9)       =    15697.18
-Log likelihood  =   -67992.286                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(9)       =    15532.64
+Log likelihood  =   -67595.026                  Prob > chi2      =      0.0000
 
 -------------------------------------------------------------------------------------
                  _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 --------------------+----------------------------------------------------------------
-               age1 |    1.11535   .0276661     4.40   0.000     1.062422    1.170914
-               age2 |   1.009858   .0555161     0.18   0.858     .9067058    1.124746
-               age3 |   .9647719   .1239125    -0.28   0.780     .7500648    1.240939
-             1.male |    2.18911   .0620653    27.63   0.000     2.070783      2.3142
+               age1 |   1.115033   .0276395     4.39   0.000     1.062155    1.170542
+               age2 |   1.009753   .0554885     0.18   0.860     .9066494    1.124581
+               age3 |   .9651535   .1239332    -0.28   0.782     .7504046    1.241359
+             1.male |   2.185449   .0621297    27.50   0.000     2.067008    2.310678
                     |
           obese4cat |
- Obese I (30-34.9)  |   1.522212   .0517396    12.36   0.000     1.424108    1.627074
-Obese II (35-39.9)  |   2.101531   .1045403    14.93   0.000     1.906308    2.316748
-   Obese III (40+)  |   3.340068   .2189533    18.40   0.000     2.937352    3.797997
+ Obese I (30-34.9)  |   1.518443   .0517768    12.25   0.000     1.420279    1.623392
+Obese II (35-39.9)  |    2.09613   .1045981    14.83   0.000     1.900828    2.311499
+   Obese III (40+)  |   3.323086   .2186614    18.25   0.000     2.921003    3.780517
                     |
               smoke |
-            Former  |    1.48886    .044758    13.24   0.000      1.40367     1.57922
-           Current  |   1.147777   .0652282     2.43   0.015     1.026795    1.283014
+            Former  |   1.491069   .0449612    13.25   0.000     1.405501    1.581848
+           Current  |   1.149364    .065428     2.45   0.014     1.028023    1.285028
 -------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_obese4cat.ster not found
-> )
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_obese4cat.ster saved
 
 -------------------------------------------------------------------------------------------------------
@@ -103,28 +100,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15319.19
-Log likelihood  =   -68181.284                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15162.09
+Log likelihood  =   -67780.299                  Prob > chi2      =      0.0000
 
 ------------------------------------------------------------------------------------
                 _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------------+----------------------------------------------------------------
-              age1 |   1.115136   .0275299     4.41   0.000     1.062463    1.170421
-              age2 |     1.0242   .0560793     0.44   0.662     .9199788    1.140228
-              age3 |   .9135267   .1168849    -0.71   0.480     .7109037    1.173902
-            1.male |   2.090111   .0589464    26.14   0.000     1.977713    2.208897
-1.organ_transplant |   7.181879   1.032359    13.72   0.000     5.418539    9.519058
+              age1 |   1.114811   .0275027     4.41   0.000     1.062189     1.17004
+              age2 |    1.02403   .0560472     0.43   0.664     .9198668    1.139989
+              age3 |   .9141333   .1169342    -0.70   0.483     .7114191     1.17461
+            1.male |   2.087006   .0590194    26.02   0.000     1.974477    2.205948
+1.organ_transplant |   7.208994   1.036285    13.74   0.000     5.438954    9.555071
                    |
              smoke |
-           Former  |   1.548986   .0464229    14.60   0.000      1.46062    1.642699
-          Current  |   1.110732   .0630641     1.85   0.064      .993758    1.241475
+           Former  |   1.550872   .0466218    14.60   0.000     1.462134    1.644994
+          Current  |   1.112462   .0632683     1.87   0.061     .9951202    1.243641
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_organ_transplant.ster no
-> t found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_organ_transplant.ster saved
 
 -------------------------------------------------------------------------------------------------------
@@ -133,28 +128,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15224.28
-Log likelihood  =   -68228.737                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15075.40
+Log likelihood  =   -67823.645                  Prob > chi2      =      0.0000
 
 -------------------------------------------------------------------------------------------
                        _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 --------------------------+----------------------------------------------------------------
-                     age1 |   1.114998   .0276057     4.40   0.000     1.062183    1.170438
-                     age2 |   1.027757   .0564187     0.50   0.618     .9229196    1.144504
-                     age3 |   .9033409   .1158601    -0.79   0.428     .7025526    1.161514
-                   1.male |   2.095508   .0590846    26.24   0.000     1.982846    2.214571
-1.other_immunosuppression |   1.985141   .3334393     4.08   0.000     1.428292    2.759088
+                     age1 |   1.114579   .0275944     4.38   0.000     1.061786    1.169997
+                     age2 |    1.02826   .0564554     0.51   0.612     .9233546    1.145083
+                     age3 |   .9022722   .1157551    -0.80   0.423     .7016724    1.160221
+                   1.male |    2.09223   .0591528    26.11   0.000     1.979446    2.211439
+1.other_immunosuppression |   2.240238   .3406105     5.30   0.000     1.662936    3.017954
                           |
                     smoke |
-                  Former  |   1.548502   .0464091    14.59   0.000     1.460162    1.642187
-                 Current  |    1.10526   .0627493     1.76   0.078     .9888693     1.23535
+                  Former  |   1.550195    .046602    14.58   0.000     1.461496    1.644278
+                 Current  |   1.107041    .062956     1.79   0.074      .990278    1.237572
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_other_immunosuppression.
-> ster not found)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_other_immunosuppression.ster sa
 > ved
 
@@ -164,28 +157,26 @@ active results
 
 Stratified Cox regr. -- Breslow method for ties
 
-No. of subjects =   16,699,675                  Number of obs    =  16,699,675
-No. of failures =        5,654
-Time at risk    =   1400959472
-                                                LR chi2(7)       =    15436.26
-Log likelihood  =   -68122.746                  Prob > chi2      =      0.0000
+No. of subjects =   16,561,722                  Number of obs    =  16,561,722
+No. of failures =        5,622
+Time at risk    =   1389380352
+                                                LR chi2(7)       =    15279.84
+Log likelihood  =   -67721.423                  Prob > chi2      =      0.0000
 
 -------------------------------------------------------------------------------
            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 --------------+----------------------------------------------------------------
-         age1 |   1.118002   .0277233     4.50   0.000     1.064965    1.173681
-         age2 |   1.016589   .0558644     0.30   0.765     .9127872    1.132195
-         age3 |   .9291982   .1192778    -0.57   0.567      .722508    1.195017
-       1.male |    2.07533   .0585197    25.89   0.000     1.963745    2.193255
-1.other_neuro |   2.752867   .1611536    17.30   0.000     2.454459    3.087556
+         age1 |   1.117671   .0276959     4.49   0.000     1.064685    1.173294
+         age2 |   1.016425   .0558327     0.30   0.767     .9126802    1.131963
+         age3 |   .9298016   .1193262    -0.57   0.571     .7230215     1.19572
+       1.male |   2.072176   .0585899    25.77   0.000     1.960466    2.190252
+1.other_neuro |   2.765328   .1621573    17.35   0.000     2.465089    3.102135
               |
         smoke |
-      Former  |   1.549839   .0464459    14.62   0.000     1.461429    1.643598
-     Current  |   1.114052   .0632645     1.90   0.057     .9967075    1.245212
+      Former  |   1.551792   .0466469    14.62   0.000     1.463007    1.645965
+     Current  |   1.115817    .063471     1.93   0.054     .9980998    1.247417
 -------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_other_neuro.ster not fou
-> nd)
 file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_other_neuro.ster saved
 
 . 
@@ -196,5 +187,5 @@ file ./output/models/an_smoking_exploration_cox_models_cpnsdeath_AGESEX_other_ne
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_smoking_exploration_cox_models_cpnsdeath_im
 > dTOother_neuro.log
   log type:  text
- closed on:   5 May 2020, 23:43:43
+ closed on:  12 May 2020, 21:03:26
 -------------------------------------------------------------------------------------------------------

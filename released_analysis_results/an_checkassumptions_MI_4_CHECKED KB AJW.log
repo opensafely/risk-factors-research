@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_checkassumptions_MI_4.log
   log type:  text
- opened on:   6 May 2020, 08:59:04
+ opened on:  12 May 2020, 22:15:32
 
 . 
 . local k = `region'
@@ -453,39 +453,39 @@ end of do-file
 
      Geographical region |      Freq.     Percent        Cum.
 -------------------------+-----------------------------------
-                         |        702        0.00        0.00
-                    East |  4,048,027       23.23       23.23
-           East Midlands |  3,066,800       17.60       40.83
-                  London |  1,203,624        6.91       47.74
-              North East |    809,926        4.65       52.39
-              North West |  1,558,260        8.94       61.33
-              South East |  1,174,384        6.74       68.07
-              South West |  2,366,245       13.58       81.65
-           West Midlands |    695,977        3.99       85.64
-Yorkshire and The Humber |  2,501,500       14.36      100.00
+                         |        700        0.00        0.00
+                    East |  4,013,841       23.22       23.23
+           East Midlands |  3,042,303       17.60       40.83
+                  London |  1,196,140        6.92       47.75
+              North East |    805,411        4.66       52.41
+              North West |  1,544,924        8.94       61.35
+              South East |  1,166,057        6.75       68.10
+              South West |  2,343,181       13.56       81.65
+           West Midlands |    693,670        4.01       85.67
+Yorkshire and The Humber |  2,477,052       14.33      100.00
 -------------------------+-----------------------------------
-                   Total | 17,425,445      100.00
+                   Total | 17,283,279      100.00
 
 . 
 . 
 . * Only keep data from one region
 . keep if region=="${region`k'}"
-(16,615,519 observations deleted)
+(16,477,868 observations deleted)
 
 . tab region, m   
 
      Geographical region |      Freq.     Percent        Cum.
 -------------------------+-----------------------------------
-              North East |    809,926      100.00      100.00
+              North East |    805,411      100.00      100.00
 -------------------------+-----------------------------------
-                   Total |    809,926      100.00
+                   Total |    805,411      100.00
 
 .         
 . * Change ordering of ethnicity
 . label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other", modify
 
 . recode ethnicity 1=1 2=4 3=3 4=2 5=5
-(ethnicity: 16707 changes made)
+(ethnicity: 16575 changes made)
 
 . 
 . 
@@ -503,7 +503,7 @@ Yorkshire and The Humber |  2,501,500       14.36      100.00
 >         chronic_liver_disease                                                   ///
 >         stroke_dementia                                                                 ///
 >         other_neuro                                                                             ///
->         chronic_kidney_disease                                                  ///
+>         reduced_kidney_function_cat                                             ///
 >         organ_transplant                                                                ///
 >         spleen                                                                                  ///
 >         ra_sle_psoriasis                                                                ///
@@ -513,7 +513,7 @@ Yorkshire and The Humber |  2,501,500       14.36      100.00
 .                 
 . * Create complete case sample (except for ethnicity) 
 . drop if imd>=. 
-(4,515 observations deleted)
+(0 observations deleted)
 
 . 
 . * Set as survival
@@ -557,7 +557,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 . 
 . * Create dummy variables for categorical predictors
 . foreach var of varlist agegroup obese4cat smoke_nomiss imd  ///
->         asthmacat diabcat cancer_exhaem_cat cancer_haem_cat             ///
+>         asthmacat diabcat cancer_exhaem_cat cancer_haem_cat     reduced_kidney_function_cat     ///
 >         stp cumhgp {
   2.                 egen ord_`var' = group(`var')
   3.                 qui summ ord_`var'
@@ -698,7 +698,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 >                 chronic_liver_disease                           ///
 >                 stroke_dementia                                         ///
 >                 other_neuro                                                     ///
->                 chronic_kidney_disease                          ///
+>                 reduced_kidney_function_cat_*           ///
 >                 organ_transplant                                        ///
 >                 spleen                                                          ///
 >                 ra_sle_psoriasis                                        ///
@@ -731,7 +731,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 >                         chronic_liver_disease                           ///
 >                         stroke_dementia                                         ///
 >                         other_neuro                                                     ///
->                         chronic_kidney_disease                          ///
+>                         reduced_kidney_function_cat_*           ///
 >                         organ_transplant                                        ///
 >                         spleen                                                          ///
 >                         ra_sle_psoriasis                                        ///
@@ -807,7 +807,7 @@ obs. time interval:  (stime_cpnsdeath[_n-1], stime_cpnsdeath]
 >                 chronic_liver_disease                           ///
 >                 stroke_dementia                                         ///
 >                 other_neuro                                                     ///
->                 chronic_kidney_disease                          ///
+>                 reduced_kidney_function_cat_*           ///
 >                 organ_transplant                                        ///
 >                 spleen                                                          ///
 >                 ra_sle_psoriasis                                        ///
@@ -860,10 +860,10 @@ Drawn probabilities of each ethnic group:
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    805,411   -4.576685    1.320311  -15.41911   .6712892
-         lp2 |    805,411    -3.47761    1.199513  -8.399163   1.066908
-         lp3 |    805,411   -4.842672    1.065164  -9.203328  -1.641079
-         lp4 |    805,411   -4.297999      1.3433  -10.87565  -.6760724
+         lp1 |    805,411   -4.576658    1.320688  -15.41767   .6880608
+         lp2 |    805,411   -3.478045    1.200316  -8.398336   1.055279
+         lp3 |    805,411   -4.842922    1.065851  -9.206136  -1.651207
+         lp4 |    805,411   -4.298997    1.345276   -10.9517  -.6774986
 
 INPUTS:
 
@@ -917,7 +917,7 @@ Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
 [perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 0.678]
+[true/approx likelihood = 0.000/0.000 = 0.049]
 
 192674 missing observations on ethnicity imputed from 612737 complete observations.
 
@@ -926,8 +926,8 @@ Observed proportions:
          Number Observed:  612737
 
 Drawn probabilities:
-         P(Missing):        .23982066
-         P(Observed):       .76017934
+         P(Missing):        .23885253
+         P(Observed):       .76114747
 
 Proportion estimation             Number of obs   =    612,737
 
@@ -950,112 +950,10 @@ Observed proportions of each ethnic group:
          Proportion Other:   .02129462
 
 Drawn probabilities of each ethnic group:
-         P(Black | r=1):  .01732725
-         P(Asian | r=1):  .04475948
-         P(Mixed | r=1):  .00958776
-         P(Other | r=1):  .02150052
-[imputing by drawing from conditional distribution without bootstrap]
-[perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 0.654]
-
-192674 missing observations on ethnicity imputed from 612737 complete observations.
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-         lp1 |    805,411   -4.576685    1.320311  -15.41911   .6712892
-         lp2 |    805,411    -3.47761    1.199513  -8.399163   1.066908
-         lp3 |    805,411   -4.842672    1.065164  -9.203328  -1.641079
-         lp4 |    805,411   -4.297999      1.3433  -10.87565  -.6760724
-
-INPUTS:
-
-Missingness of ethnicity:
-         Number missing ethnicity data:   192674
-         Probability of missing  (drawn): .23982066
-         Probability of observed (drawn): .76017934
-
-Drawn proportions (among complete cases):
-         Black (drawn): .01732725
-         Asian (drawn): .04475948
-         Mixed (drawn): .00958776
-         Other (drawn): .02150052
-
-External data:
-         Black (external): .006447
-         Asian (external): .029579
-         Mixed (external): .005309
-         Other (external): .006826
-
-ESTIMATED CALIBRATION PARAMETERS:  
-         Parameter (log scale):
-         Black:  0
-         Asian:  0
-         Mixed:  0
-         Other:  0
-         Relative risk (for being this ethnicity (vs white)
-              ...in missing cf complete cases):
-         Black:  1
-         Asian:  1
-         Mixed:  1
-         Other:  1
-Weight for Black: 1
-Weight for Asian: 1
-Weight for Mixed: 1
-Weight for Other: 1
-(555,708 real changes made)
-(10,548 real changes made)
-(27,406 real changes made)
-(6,027 real changes made)
-(13,048 real changes made)
-
-           |                             Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
------------+------------------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0    192,674 |   192,674 
-         1 |   555,708     10,548     27,406      6,027     13,048          0 |   612,737 
------------+------------------------------------------------------------------+----------
-     Total |   555,708     10,548     27,406      6,027     13,048    192,674 |   805,411 
-Manual replacements to avoid crashes:
-(0 real changes made)
-[imputing by drawing from conditional distribution without bootstrap]
-[perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 0.516]
-
-192674 missing observations on ethnicity imputed from 612737 complete observations.
-
-Observed proportions:
-         Number Missing:   192674
-         Number Observed:  612737
-
-Drawn probabilities:
-         P(Missing):        .23884891
-         P(Observed):       .76115109
-
-Proportion estimation             Number of obs   =    612,737
-
---------------------------------------------------------------
-             |                                   Logit
-             | Proportion   Std. Err.     [95% Conf. Interval]
--------------+------------------------------------------------
-   ethnicity |
-      White  |   .9069274   .0003712      .9061974    .9076524
-      Black  |   .0172146   .0001662      .0168919    .0175433
-      Asian  |   .0447272   .0002641      .0442125    .0452476
-      Mixed  |   .0098362   .0001261      .0095921    .0100864
-      Other  |   .0212946   .0001844      .0209361    .0216591
---------------------------------------------------------------
-
-Observed proportions of each ethnic group:
-         Proportion Black:   .01721456
-         Proportion Asian:   .04472718
-         Proportion Mixed:   .00983619
-         Proportion Other:   .02129462
-
-Drawn probabilities of each ethnic group:
-         P(Black | r=1):  .01723425
-         P(Asian | r=1):  .0446366
-         P(Mixed | r=1):  .00979563
-         P(Other | r=1):  .02138742
+         P(Black | r=1):  .01703982
+         P(Asian | r=1):  .0446429
+         P(Mixed | r=1):  .00979816
+         P(Other | r=1):  .02154149
 [imputing by drawing from conditional distribution without bootstrap]
 [perfect prediction detected: using augmlogit to impute ethnicity]
 [true/approx likelihood = 0.000/0.000 = 0.000]
@@ -1064,23 +962,23 @@ Drawn probabilities of each ethnic group:
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    805,411   -4.576685    1.320311  -15.41911   .6712892
-         lp2 |    805,411    -3.47761    1.199513  -8.399163   1.066908
-         lp3 |    805,411   -4.842672    1.065164  -9.203328  -1.641079
-         lp4 |    805,411   -4.297999      1.3433  -10.87565  -.6760724
+         lp1 |    805,411   -4.576658    1.320688  -15.41767   .6880608
+         lp2 |    805,411   -3.478045    1.200316  -8.398336   1.055279
+         lp3 |    805,411   -4.842922    1.065851  -9.206136  -1.651207
+         lp4 |    805,411   -4.298997    1.345276   -10.9517  -.6774986
 
 INPUTS:
 
 Missingness of ethnicity:
          Number missing ethnicity data:   192674
-         Probability of missing  (drawn): .23884891
-         Probability of observed (drawn): .76115109
+         Probability of missing  (drawn): .23885253
+         Probability of observed (drawn): .76114747
 
 Drawn proportions (among complete cases):
-         Black (drawn): .01723425
-         Asian (drawn): .0446366
-         Mixed (drawn): .00979563
-         Other (drawn): .02138742
+         Black (drawn): .01703982
+         Asian (drawn): .0446429
+         Mixed (drawn): .00979816
+         Other (drawn): .02154149
 
 External data:
          Black (external): .006447
@@ -1121,7 +1019,7 @@ Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
 [perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 33.097]
+[true/approx likelihood = 0.000/0.000 = 23.823]
 
 192674 missing observations on ethnicity imputed from 612737 complete observations.
 
@@ -1130,8 +1028,8 @@ Observed proportions:
          Number Observed:  612737
 
 Drawn probabilities:
-         P(Missing):        .23912788
-         P(Observed):       .76087212
+         P(Missing):        .23976829
+         P(Observed):       .76023171
 
 Proportion estimation             Number of obs   =    612,737
 
@@ -1154,112 +1052,10 @@ Observed proportions of each ethnic group:
          Proportion Other:   .02129462
 
 Drawn probabilities of each ethnic group:
-         P(Black | r=1):  .01717117
-         P(Asian | r=1):  .04446137
-         P(Mixed | r=1):  .00995182
-         P(Other | r=1):  .0211648
-[imputing by drawing from conditional distribution without bootstrap]
-[perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 0.423]
-
-192674 missing observations on ethnicity imputed from 612737 complete observations.
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-         lp1 |    805,411   -4.576685    1.320311  -15.41911   .6712892
-         lp2 |    805,411    -3.47761    1.199513  -8.399163   1.066908
-         lp3 |    805,411   -4.842672    1.065164  -9.203328  -1.641079
-         lp4 |    805,411   -4.297999      1.3433  -10.87565  -.6760724
-
-INPUTS:
-
-Missingness of ethnicity:
-         Number missing ethnicity data:   192674
-         Probability of missing  (drawn): .23912788
-         Probability of observed (drawn): .76087212
-
-Drawn proportions (among complete cases):
-         Black (drawn): .01717117
-         Asian (drawn): .04446137
-         Mixed (drawn): .00995182
-         Other (drawn): .0211648
-
-External data:
-         Black (external): .006447
-         Asian (external): .029579
-         Mixed (external): .005309
-         Other (external): .006826
-
-ESTIMATED CALIBRATION PARAMETERS:  
-         Parameter (log scale):
-         Black:  0
-         Asian:  0
-         Mixed:  0
-         Other:  0
-         Relative risk (for being this ethnicity (vs white)
-              ...in missing cf complete cases):
-         Black:  1
-         Asian:  1
-         Mixed:  1
-         Other:  1
-Weight for Black: 1
-Weight for Asian: 1
-Weight for Mixed: 1
-Weight for Other: 1
-(555,708 real changes made)
-(10,548 real changes made)
-(27,406 real changes made)
-(6,027 real changes made)
-(13,048 real changes made)
-
-           |                             Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
------------+------------------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0    192,674 |   192,674 
-         1 |   555,708     10,548     27,406      6,027     13,048          0 |   612,737 
------------+------------------------------------------------------------------+----------
-     Total |   555,708     10,548     27,406      6,027     13,048    192,674 |   805,411 
-Manual replacements to avoid crashes:
-(0 real changes made)
-[imputing by drawing from conditional distribution without bootstrap]
-[perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 0.632]
-
-192674 missing observations on ethnicity imputed from 612737 complete observations.
-
-Observed proportions:
-         Number Missing:   192674
-         Number Observed:  612737
-
-Drawn probabilities:
-         P(Missing):        .23954185
-         P(Observed):       .76045815
-
-Proportion estimation             Number of obs   =    612,737
-
---------------------------------------------------------------
-             |                                   Logit
-             | Proportion   Std. Err.     [95% Conf. Interval]
--------------+------------------------------------------------
-   ethnicity |
-      White  |   .9069274   .0003712      .9061974    .9076524
-      Black  |   .0172146   .0001662      .0168919    .0175433
-      Asian  |   .0447272   .0002641      .0442125    .0452476
-      Mixed  |   .0098362   .0001261      .0095921    .0100864
-      Other  |   .0212946   .0001844      .0209361    .0216591
---------------------------------------------------------------
-
-Observed proportions of each ethnic group:
-         Proportion Black:   .01721456
-         Proportion Asian:   .04472718
-         Proportion Mixed:   .00983619
-         Proportion Other:   .02129462
-
-Drawn probabilities of each ethnic group:
-         P(Black | r=1):  .0171924
-         P(Asian | r=1):  .04517948
-         P(Mixed | r=1):  .00981853
-         P(Other | r=1):  .02141754
+         P(Black | r=1):  .01738904
+         P(Asian | r=1):  .04482238
+         P(Mixed | r=1):  .00992109
+         P(Other | r=1):  .0213235
 [imputing by drawing from conditional distribution without bootstrap]
 [perfect prediction detected: using augmlogit to impute ethnicity]
 [true/approx likelihood = 0.000/0.000 = 0.000]
@@ -1268,23 +1064,23 @@ Drawn probabilities of each ethnic group:
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    805,411   -4.576685    1.320311  -15.41911   .6712892
-         lp2 |    805,411    -3.47761    1.199513  -8.399163   1.066908
-         lp3 |    805,411   -4.842672    1.065164  -9.203328  -1.641079
-         lp4 |    805,411   -4.297999      1.3433  -10.87565  -.6760724
+         lp1 |    805,411   -4.576658    1.320688  -15.41767   .6880608
+         lp2 |    805,411   -3.478045    1.200316  -8.398336   1.055279
+         lp3 |    805,411   -4.842922    1.065851  -9.206136  -1.651207
+         lp4 |    805,411   -4.298997    1.345276   -10.9517  -.6774986
 
 INPUTS:
 
 Missingness of ethnicity:
          Number missing ethnicity data:   192674
-         Probability of missing  (drawn): .23954185
-         Probability of observed (drawn): .76045815
+         Probability of missing  (drawn): .23976829
+         Probability of observed (drawn): .76023171
 
 Drawn proportions (among complete cases):
-         Black (drawn): .0171924
-         Asian (drawn): .04517948
-         Mixed (drawn): .00981853
-         Other (drawn): .02141754
+         Black (drawn): .01738904
+         Asian (drawn): .04482238
+         Mixed (drawn): .00992109
+         Other (drawn): .0213235
 
 External data:
          Black (external): .006447
@@ -1325,7 +1121,211 @@ Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
 [perfect prediction detected: using augmlogit to impute ethnicity]
-[true/approx likelihood = 0.000/0.000 = 83.153]
+[true/approx likelihood = 0.000/0.000 = 1.877]
+
+192674 missing observations on ethnicity imputed from 612737 complete observations.
+
+Observed proportions:
+         Number Missing:   192674
+         Number Observed:  612737
+
+Drawn probabilities:
+         P(Missing):        .23943994
+         P(Observed):       .76056006
+
+Proportion estimation             Number of obs   =    612,737
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .9069274   .0003712      .9061974    .9076524
+      Black  |   .0172146   .0001662      .0168919    .0175433
+      Asian  |   .0447272   .0002641      .0442125    .0452476
+      Mixed  |   .0098362   .0001261      .0095921    .0100864
+      Other  |   .0212946   .0001844      .0209361    .0216591
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .01721456
+         Proportion Asian:   .04472718
+         Proportion Mixed:   .00983619
+         Proportion Other:   .02129462
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .01697529
+         P(Asian | r=1):  .04481519
+         P(Mixed | r=1):  .0098258
+         P(Other | r=1):  .02133114
+[imputing by drawing from conditional distribution without bootstrap]
+[perfect prediction detected: using augmlogit to impute ethnicity]
+[true/approx likelihood = 0.000/0.000 = 0.015]
+
+192674 missing observations on ethnicity imputed from 612737 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    805,411   -4.576658    1.320688  -15.41767   .6880608
+         lp2 |    805,411   -3.478045    1.200316  -8.398336   1.055279
+         lp3 |    805,411   -4.842922    1.065851  -9.206136  -1.651207
+         lp4 |    805,411   -4.298997    1.345276   -10.9517  -.6774986
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   192674
+         Probability of missing  (drawn): .23943994
+         Probability of observed (drawn): .76056006
+
+Drawn proportions (among complete cases):
+         Black (drawn): .01697529
+         Asian (drawn): .04481519
+         Mixed (drawn): .0098258
+         Other (drawn): .02133114
+
+External data:
+         Black (external): .006447
+         Asian (external): .029579
+         Mixed (external): .005309
+         Other (external): .006826
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(555,708 real changes made)
+(10,548 real changes made)
+(27,406 real changes made)
+(6,027 real changes made)
+(13,048 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    192,674 |   192,674 
+         1 |   555,708     10,548     27,406      6,027     13,048          0 |   612,737 
+-----------+------------------------------------------------------------------+----------
+     Total |   555,708     10,548     27,406      6,027     13,048    192,674 |   805,411 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[perfect prediction detected: using augmlogit to impute ethnicity]
+[true/approx likelihood = 0.000/0.000 = 0.046]
+
+192674 missing observations on ethnicity imputed from 612737 complete observations.
+
+Observed proportions:
+         Number Missing:   192674
+         Number Observed:  612737
+
+Drawn probabilities:
+         P(Missing):        .23843751
+         P(Observed):       .76156249
+
+Proportion estimation             Number of obs   =    612,737
+
+--------------------------------------------------------------
+             |                                   Logit
+             | Proportion   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+   ethnicity |
+      White  |   .9069274   .0003712      .9061974    .9076524
+      Black  |   .0172146   .0001662      .0168919    .0175433
+      Asian  |   .0447272   .0002641      .0442125    .0452476
+      Mixed  |   .0098362   .0001261      .0095921    .0100864
+      Other  |   .0212946   .0001844      .0209361    .0216591
+--------------------------------------------------------------
+
+Observed proportions of each ethnic group:
+         Proportion Black:   .01721456
+         Proportion Asian:   .04472718
+         Proportion Mixed:   .00983619
+         Proportion Other:   .02129462
+
+Drawn probabilities of each ethnic group:
+         P(Black | r=1):  .01715097
+         P(Asian | r=1):  .04528144
+         P(Mixed | r=1):  .00990961
+         P(Other | r=1):  .0210591
+[imputing by drawing from conditional distribution without bootstrap]
+[perfect prediction detected: using augmlogit to impute ethnicity]
+[true/approx likelihood = 0.000/0.000 = 0.002]
+
+192674 missing observations on ethnicity imputed from 612737 complete observations.
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         lp1 |    805,411   -4.576658    1.320688  -15.41767   .6880608
+         lp2 |    805,411   -3.478045    1.200316  -8.398336   1.055279
+         lp3 |    805,411   -4.842922    1.065851  -9.206136  -1.651207
+         lp4 |    805,411   -4.298997    1.345276   -10.9517  -.6774986
+
+INPUTS:
+
+Missingness of ethnicity:
+         Number missing ethnicity data:   192674
+         Probability of missing  (drawn): .23843751
+         Probability of observed (drawn): .76156249
+
+Drawn proportions (among complete cases):
+         Black (drawn): .01715097
+         Asian (drawn): .04528144
+         Mixed (drawn): .00990961
+         Other (drawn): .0210591
+
+External data:
+         Black (external): .006447
+         Asian (external): .029579
+         Mixed (external): .005309
+         Other (external): .006826
+
+ESTIMATED CALIBRATION PARAMETERS:  
+         Parameter (log scale):
+         Black:  0
+         Asian:  0
+         Mixed:  0
+         Other:  0
+         Relative risk (for being this ethnicity (vs white)
+              ...in missing cf complete cases):
+         Black:  1
+         Asian:  1
+         Mixed:  1
+         Other:  1
+Weight for Black: 1
+Weight for Asian: 1
+Weight for Mixed: 1
+Weight for Other: 1
+(555,708 real changes made)
+(10,548 real changes made)
+(27,406 real changes made)
+(6,027 real changes made)
+(13,048 real changes made)
+
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    192,674 |   192,674 
+         1 |   555,708     10,548     27,406      6,027     13,048          0 |   612,737 
+-----------+------------------------------------------------------------------+----------
+     Total |   555,708     10,548     27,406      6,027     13,048    192,674 |   805,411 
+Manual replacements to avoid crashes:
+(0 real changes made)
+[imputing by drawing from conditional distribution without bootstrap]
+[perfect prediction detected: using augmlogit to impute ethnicity]
+[true/approx likelihood = 0.000/0.000 = 6.885]
 
 192674 missing observations on ethnicity imputed from 612737 complete observations.
 
@@ -1336,7 +1336,6 @@ Manual replacements to avoid crashes:
 . 
 . * Save the data
 . save imputed_`k', replace
-(note: file imputed_4.dta not found)
 file imputed_4.dta saved
 
 . 
@@ -1345,5 +1344,5 @@ file imputed_4.dta saved
       name:  <unnamed>
        log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_checkassumptions_MI_4.log
   log type:  text
- closed on:   6 May 2020, 09:34:21
+ closed on:  12 May 2020, 22:54:04
 -------------------------------------------------------------------------------------------------------
