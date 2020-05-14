@@ -1,0 +1,124 @@
+.-
+help for ^sumby^    			                               		Version: 3/4/01
+.-
+
+^Summary statistics in tabular format^
+^------------------------------------^
+
+ ^sumby^ varlist  [^if^ exp] [^in^ range] [^,^ ^b^y(var2) ^st^at^(^statistics^)^ 
+
+	^l^abel^(^labels^)^ ^d^ec^(^numbers^)^ ^w^idth^(^#^)^ ^h^ead ^m^is no^BYT^ot]
+
+	^start(^int 12^)^ ^te^st^(^string^)^
+
+^Description^
+^-----------^
+
+Generates a table with summary statistics of variable ^var1^. 
+If ^by(var2)^ is specified, the statistics are calculated for each
+variabel in the ^varlist^ and for each value of var2, and displayed 
+in columns in order of values of var2. 
+A "total"-column with the values of the statistics of var1 for all 
+(non-missing) values of var2 is displayed, unless ^nobytot^ is specified.
+
+^Options^
+^-------^
+
+ ^by(^var2^)^	Optional. If not specified only overall summary statistics
+
+		are calculated.
+
+ ^stat(^st..^)^	Optional, specifies the requested statistics of var1.
+		Default is 4 statistics: mean;sd median range number.  
+  ^st..^ 	Lowercase and UPPERCASE indifferent! Separators:"," or " ".
+  ^----^
+		  	Specifies				Default label
+
+  ^mean^,^m^		  mean					  Mean
+  ^median^,^med^,^q2^	    median				    Median
+  ^sd^			standard deviation			SD
+  ^msd^			mean;sd					Mean;SD
+  ^min^			minimum					Minimum
+  ^max^			maximum					Maximum
+  ^range^,^r^		  min-max      				  Range
+  ^q1^			Q1					Q1
+  ^q3^			Q3					Q3
+  ^p01^,^p1^	          1th percentile			   1 %
+  ^p5^,^p05^		  5th percentile			   5 %
+  ^p10^	         	10th percentile				10 %
+  ^p90^	         	90th percentile				90 %
+  ^p95^			95th percentile				95 %
+  ^p99^	         	99th percentile				99 %
+  ^n^			number of non missing			N
+
+  ^all^ or ^_all^ 	  is equivalent to "n msd range p5 q1 median q3 p95"
+			If "all" appears anywhere in the string, requests 
+			for other statistics will be ignored.
+
+ ^label(^..^)^    Specifies labels in the order of requested statistics. 
+		Strings are separated by " " or ",".  A "." defines the
+		default label for the corresponding statistic. 
+		The default label is also taken if not specified.
+
+ ^dec(^..^)^	  Specifies number of decimals per statistic in the order 
+		specified by ^stat()^. The default value is, for each 
+		statistic, the number of decimals specified in the format 
+		attached to the variable var1 (between 0 and 9). The numbers
+		should be again comma or blank separated. A "." instead
+		of a number indicates the default format. 
+		Frequencies are always displayed without decimals.
+		If the length of the statistic would exceed the available 
+		width for the display, the number of decimals is reduced.
+
+ ^width^ 	Integer number, with default value 10. Specifies the width 
+		for each column with statistics. The value 10 corresponds 
+		to the width of columns created by tabulate. If the length
+		of the string required to display a statistic exceeds this 
+		width, the width of all the columns is increased.
+		The width excludes a space between columns. 
+		Long columnlabels in the header are abbreviated if necessary.
+
+ ^mis^		Specifies that the category with missing values of ^var2^ 
+		should be included in the calculations. Only applicable if 
+		^by(var2)^ is specified. Default: observations with 
+		missing value on var2 are excluded.
+
+ ^head^		Request the display of a heading of the table. Active only if
+		 ^by(var2)^ is specified.
+
+ ^nobytot^	Request suppression of a total column if ^by()^ is specified.
+
+ ^start()^	Specifies starting point of the body of the table, i.e. the
+		column in which the ^|^ is printed. Default 12. Values less 
+		than 12, will be replaced by 12.
+
+ ^test(XXX)^ request the calculation of a P-value:
+   with XXX = ^kw^, ^k-w^ or ^wil^coxon or ^rank^sum: Kruskal-Wallis test
+        XXX = np^tr^end: NPtrend test by ^by^-variable ^(*)^
+        XXX = ^sp^ear: Spearman rank correlation test by ^by^-variable ^(*)^
+ 
+ ^(*)^ the P-value calculated by ^NPtrend^ depends on the values of the ^by^-variable:
+     ^by^ = 1/2/3, ^by^ = 2/3/4 and ^by^ = 2/5/8 provide the same P-values, but they 
+     may be different when ^by^ = 1/2/88; 
+     P-values calculated by ^K-W^ do not depend on the values of the ^by^-variable
+       
+
+ ^Examples:^
+ ^---------^
+
+. sumby age, by(t) st(msd, range Q1 q3) dec(1 0 .)  mis head
+. sumby age, st(msd, range Q1 q3) dec(1 0 .)  
+. sumby age, by(t)
+
+ ^Other ado files required:^	fns.ado, dummy.ado
+ ^-------------------------^
+
+
+^Author:^
+^-------^ 
+Wim van Putten
+Erasmus MC - Daniel den Hoed Cancer Center
+Department of Statistics
+Rotterdam
+The Netherlands
+e-mail:	w.vanputten@@erasmusmc.nl 
