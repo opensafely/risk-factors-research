@@ -33,6 +33,15 @@ replace asthmacat = 2 + (uniform()>.5) if uniform()<.2
 replace ethnicity = 1+(floor(5*uniform())) 
 
 
+* Kidney function 
+replace reduced_kidney_function_cat=.
+replace reduced_kidney_function_cat  = 1 if uniform()<0.5
+replace reduced_kidney_function_cat  = 2 if uniform()<0.5 & reduced_kidney_function_cat==.
+replace reduced_kidney_function_cat  = 3 if reduced_kidney_function_cat==.
+
+
+
+
 save cr_create_analysis_dataset, replace
 
 * Save a version set on CPNS survival outcome
