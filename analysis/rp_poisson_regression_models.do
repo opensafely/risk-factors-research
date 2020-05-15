@@ -1,20 +1,21 @@
 ********************************************************************************
 *
-*	Do-file:		rp_logistic_regression_models.do
+*	Do-file:		rp_poisson_regression_models.do
 *
 *	Programmed by:	Fizz & Krishnan
 *
 *	Data used:		cr_create_analysis_dataset_STSET_CPNS.dta
 *
-*	Data created:	output/abs_risks_logistic.out (table of absolute risks)
+*	Data created:	output/abs_risks_poisson.out (table of absolute risks)
+*					output/abs_risks_weibull.out
 *
-*	Other output:	Log file:  rp_logistic_regression_models.log
-*					Model estimates: rp_logistic_regression_models.ster
+*	Other output:	Log file:  rp_poisson_regression_models.log
+*					Model estimates: rp_poisson_regression_models.ster
 *
 ********************************************************************************
 *
 *	Purpose:		This do-file selects series of case-control samples moving
-*					across time to perform logistic regression to obtain 
+*					across time to perform Poisson regression to obtain 
 *					absolute risk estimates. 
 *  
 ********************************************************************************
@@ -56,7 +57,6 @@ use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 tab cpnsdeath 
 
 
-
 *************************************************
 *   Use a complete case analysis for ethnicity  *
 *************************************************
@@ -64,9 +64,10 @@ tab cpnsdeath
 drop if ethnicity>=.
 
 
-********************
-*   Select sample  *
-********************
+
+*******************
+*  Select sample  *
+*******************
 
 * Identify all deaths occurring over the next month, starting each two-week
 * period (i.e. overlapping 28-day periods) 
@@ -107,7 +108,8 @@ forvalues t = 3 (1) 5 {
 forvalues t = 2 (1) 5 {
 	erase time`t'.dta
 }
-tab outcome time 
+
+tab outcome time  
  
 
 
@@ -159,15 +161,17 @@ rename region_new region
 
 
 
-**************************
-*   Logistic regression  *
-**************************
+*************************
+*   Poisson regression  *
+*************************
 
+gen pw = 1 if outcome==1
+replace pw = 1/$sampling_frac if outcome==0
 
 * At present: no ethnicity
 timer clear 1
 timer on 1
-logit outcome age1 age2 age3 i.male 		///
+poisson outcome age1 age2 age3 i.male 		///
 			i.obese4cat						///
 			i.smoke_nomiss					///
 			i.imd 							///
@@ -187,20 +191,24 @@ logit outcome age1 age2 age3 i.male 		///
 			i.ra_sle_psoriasis  			///
 			i.other_immunosuppression		///
 			i.region						///
-			i.time, cluster(patient_id)
+			i.time [pweight=pw],			///
+			cluster(patient_id) exposure(days_fup)
 timer off 1
 timer list 1
 estat ic
 
 estimates
-estimates save ./output/models/rp_logistic_regression_models.ster, replace
-logit, or
+estimates save ./output/models/rp_poisson_regression_models.ster, replace
+poisson, irr
  
 
 * Obtain absolute predictions, correcting the intercept for the control sampling
-predict xb, xb
-replace xb = xb + log($sampling_frac) 
-gen risk28 = exp(xb)/(1 + exp(xb))
+gen days_fup_old = days_fup
+replace days_fup = 28
+predict pr0, pr(0,0)
+gen risk28 = 1 - pr0
+replace days_fup = days_fup_old
+drop days_fup_old
 
 
 
@@ -221,7 +229,7 @@ centile risk28, c(10 20 30 40 50 60 70 80 90)
 tempname temprf 
 
 postfile `temprf' str30(rf) rfcat sex age risk28 using ///
-	output/abs_risks_logistic, replace
+	output/abs_risks_poisson, replace
 
 	* Binary risk factors
 	foreach var of varlist 						///
@@ -310,11 +318,194 @@ postfile `temprf' str30(rf) rfcat sex age risk28 using ///
 postclose `temprf'
 
 
+preserve
+use "output/abs_risks_poisson", clear
+outsheet using "output/abs_risks_poisson", replace
+erase "output/abs_risks_poisson.dta"
+restore
 
-use "output/abs_risks_logistic", clear
-outsheet using "output/abs_risks_logistic", replace
-erase "output/abs_risks_logistic.dta"
 
+
+
+
+
+
+*************************
+*   Weibull regression  *
+*************************
+
+
+
+rename reduced_kidney_function_cat red_kidney_cat
+rename chronic_respiratory_disease respiratory_disease
+rename chronic_cardiac_disease cardiac_disease
+rename other_immunosuppression immunosuppression
+
+
+
+stset days_fup [pweight=pw], fail(outcome)
+
+* At present: no ethnicity
+timer clear 1
+timer on 1
+streg       age1 age2 age3 i.male 			///
+			i.obese4cat						///
+			i.smoke_nomiss					///
+			i.imd 							///
+			i.htdiag_or_highbp				///
+			i.respiratory_disease 			///
+			i.asthmacat						///
+			i.cardiac_disease 				///
+			i.diabcat						///
+			i.cancer_exhaem_cat	 			///
+			i.cancer_haem_cat  				///
+			i.chronic_liver_disease 		///
+			i.stroke_dementia		 		///
+			i.other_neuro					///
+			i.red_kidney_cat				///
+			i.organ_transplant 				///
+			i.spleen 						///
+			i.ra_sle_psoriasis  			///
+			i.immunosuppression				///
+			i.region 						///
+			i.time,							///
+			cluster(patient_id) dist(weibull) 
+timer off 1
+timer list 1
+estat ic
+
+estimates
+estimates save ./output/models/rpweibull_regression_models.ster, replace
+streg, hr
+ 
+
+* Obtain absolute predictions, correcting the intercept for the control sampling
+capture drop risk28
+gen told = _t
+replace _t = 28
+predict risk28, surv
+replace _t = told
+drop told
+
+
+
+/*  Quantiles of predicted 28 day risk   */
+
+centile risk28, c(10 20 30 40 50 60 70 80 90)
+
+
+
+
+*************************************
+*   Summarise risks by comorbidity  *
+*************************************
+
+
+/*  Post into dataset   */
+
+tempname temprf 
+
+postfile `temprf' str30(rf) rfcat sex age risk28 using ///
+	output/abs_risks_weibull, replace
+
+	* Binary risk factors
+	foreach var of varlist 						///
+				htdiag_or_highbp				///
+				respiratory_disease 			///
+				cardiac_disease 				///
+				chronic_liver_disease 			///
+				stroke_dementia		 			///
+				other_neuro						///
+				organ_transplant 				///
+				spleen 							///
+				ra_sle_psoriasis  				///
+				immunosuppression    {
+					
+		forvalues i = 1 (1) 6 {
+			forvalues j = 0 (1) 1 {
+				forvalues k = 0 (1) 1 {
+
+					* Mean risk of event among age and sex group
+					qui summ risk28 if  `var'==`k' 
+					local r28 = r(mean)
+					
+					post `temprf'  ("`var'") (`k') (`j') (`i') (`r28')
+				}
+			}
+		}
+	}
+
+	* Categorical risk factors
+	local max_obese4cat 			= 4
+	local max_smoke_nomiss			= 3	
+	local max_imd 					= 5	
+	local max_asthmacat				= 3	
+	local max_diabcat				= 4	
+	local max_cancer_exhaem_cat		= 4	 
+	local max_cancer_haem_cat  		= 4 
+	local max_red_kidney_cat = 3
+					
+
+	foreach var of varlist 						///
+				obese4cat						///
+				smoke_nomiss					///
+				imd 							///
+				asthmacat						///
+				diabcat							///
+				cancer_exhaem_cat	 			///
+				cancer_haem_cat  				///
+				red_kidney_cat    {
+					
+		forvalues i = 1 (1) 6 {
+			forvalues j = 0 (1) 1 {	
+				forvalues k = 1 (1) `max_`var'' {
+					
+					* Mean risk of event among age and sex group
+					qui summ risk28 if  `var'==`k'
+					local r28 = r(mean)
+							
+					post `temprf'  ("`var'") (`k')  (`j') (`i') (`r28') 
+				}
+			}
+		}
+	}
+	
+	
+	/*  Grouped comorbidity  */
+	
+	* Smoking with no other disease vs other disease 
+	forvalues i = 1 (1) 6 {
+		forvalues j = 0 (1) 1 {	
+			forvalues k = 1 (1) `max_smoke_nomiss' {
+				forvalues l = 0 (1) 1 {
+					
+					* Mean risk of event among age and sex group
+					qui summ risk28 if  smoke_nomiss==`k' & comorbidity_any==`l'
+					local r28 = r(mean)
+					
+					post `temprf'  ("Smoking, comorb=`l'") (`k')  (`j') (`i') (`r28') 
+				}
+			}
+		}
+	}
+	
+	
+	* Other comorbidity groups?
+	
+	
+postclose `temprf'
+
+
+preserve
+use "output/abs_risks_weibull", clear
+outsheet using "output/abs_risks_weibull", replace
+erase "output/abs_risks_weibull.dta"
+restore
+
+
+
+
+log close
 
 
 
