@@ -395,8 +395,8 @@ foreach var of varlist cons 				///
 		asthmacat_3   				 		///	
 		cardiac_disease 					///
 		diabcat_2 		 					///
-	///	diabcat_3 		 					///
-	///	diabcat_4 			 				///	
+		diabcat_3 		 					///
+		diabcat_4 			 				///	
 		cancer_exhaem_cat_2  				///
 		cancer_exhaem_cat_3  				///
 		cancer_exhaem_cat_4  				///
