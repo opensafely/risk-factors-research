@@ -1,0 +1,681 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/rp_logistic_regression_m
+> odels.log
+  log type:  text
+ opened on:  15 May 2020, 01:15:00
+
+. cap erase ./output/models/rp_logistic_regression_models.ster
+
+. 
+. 
+. 
+. 
+. *************************
+. *  Parameters required  *
+. *************************
+. 
+. 
+. set seed 37873
+
+. noi di "Sampling fraction for controls = " $sampling_frac
+Sampling fraction for controls = .003
+
+.  
+. 
+. 
+. ****************************
+. *  Open and select sample  *
+. ****************************
+. 
+. use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. tab cpnsdeath 
+
+Failure/cen |
+     soring |
+  indicator |
+        for |
+   outcome: |
+ CPNS covid |
+      death |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 | 17,277,628       99.97       99.97
+          1 |      5,651        0.03      100.00
+------------+-----------------------------------
+      Total | 17,283,279      100.00
+
+. 
+. 
+. * Identify all deaths occurring over the next month, starting each two-week
+. * period (i.e. overlapping 28-day periods) 
+. * In each two-week period: Select a sample comprising all cases and a random
+. * selection of controls (people at risk at start of period)
+. forvalues t = 1 (1) 6 {
+  2.                 local lb = (`t' - 1)*14 
+  3.                 local ub = `lb' + 28
+  4.                 gen case`t' = (cpnsdeath==1 & inrange(_t, `lb', `ub'))
+  5.                 gen atrisk`t' = _t>`lb'
+  6.                 gen control`t' = (uniform()<$sampling_frac) if atrisk`t'==1
+  7. }
+(6,743 missing values generated)
+(13,487 missing values generated)
+(20,418 missing values generated)
+(28,265 missing values generated)
+(39,610 missing values generated)
+
+. 
+. * Delete people who are neither case nor control
+. egen case = rowtotal(case?)
+
+. tab case
+
+       case |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 | 17,277,628       99.97       99.97
+          2 |      5,322        0.03      100.00
+          3 |        329        0.00      100.00
+------------+-----------------------------------
+      Total | 17,283,279      100.00
+
+. egen control = rowtotal(control?)
+
+. tab control
+
+    control |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 | 16,974,140       98.21       98.21
+          1 |    306,792        1.78       99.99
+          2 |      2,340        0.01      100.00
+          3 |          7        0.00      100.00
+------------+-----------------------------------
+      Total | 17,283,279      100.00
+
+. drop if case==0 & control==0  
+(16,968,575 observations deleted)
+
+. 
+. * Combine separate case-control samples
+. forvalues t = 1 (1) 6 {
+  2.         preserve 
+  3.         keep if case`t'==1 | control`t'==1
+  4.         gen outcome = 1 if case`t'==1
+  5.         replace outcome = 0 if outcome==.
+  6.         drop case* control* atrisk* _* stime*
+  7.         gen time = `t'
+  8.         save time`t'.dta, replace
+  9.         restore
+ 10. }
+(262,897 observations deleted)
+(51,807 missing values generated)
+(51,807 real changes made)
+(note: file time1.dta not found)
+file time1.dta saved
+(262,503 observations deleted)
+(52,191 missing values generated)
+(52,191 real changes made)
+(note: file time2.dta not found)
+file time2.dta saved
+(262,439 observations deleted)
+(51,690 missing values generated)
+(51,690 real changes made)
+(note: file time3.dta not found)
+file time3.dta saved
+(259,448 observations deleted)
+(51,895 missing values generated)
+(51,895 real changes made)
+(note: file time4.dta not found)
+file time4.dta saved
+(257,634 observations deleted)
+(51,889 missing values generated)
+(51,889 real changes made)
+(note: file time5.dta not found)
+file time5.dta saved
+(260,208 observations deleted)
+(51,992 missing values generated)
+(51,992 real changes made)
+(note: file time6.dta not found)
+file time6.dta saved
+
+. use time1.dta, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. forvalues t = 2 (1) 6 {
+  2.         append using time`t'.dta        
+  3. }
+(label diabcat already defined)
+(label hba1ccat already defined)
+(label reduced_kidney_function_catlab already defined)
+(label ckd already defined)
+(label cancer already defined)
+(label imd already defined)
+(label bpcat already defined)
+(label asthmacat already defined)
+(label obese4cat already defined)
+(label bmicat already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label smoke already defined)
+(label smoke already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label bmicat already defined)
+(label obese4cat already defined)
+(label asthmacat already defined)
+(label bpcat already defined)
+(label imd already defined)
+(label cancer already defined)
+(label ckd already defined)
+(label reduced_kidney_function_catlab already defined)
+(label hba1ccat already defined)
+(label diabcat already defined)
+(label diabcat already defined)
+(label hba1ccat already defined)
+(label reduced_kidney_function_catlab already defined)
+(label ckd already defined)
+(label cancer already defined)
+(label imd already defined)
+(label bpcat already defined)
+(label asthmacat already defined)
+(label obese4cat already defined)
+(label bmicat already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label smoke already defined)
+(label smoke already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label bmicat already defined)
+(label obese4cat already defined)
+(label asthmacat already defined)
+(label bpcat already defined)
+(label imd already defined)
+(label cancer already defined)
+(label ckd already defined)
+(label reduced_kidney_function_catlab already defined)
+(label hba1ccat already defined)
+(label diabcat already defined)
+(label diabcat already defined)
+(label hba1ccat already defined)
+(label reduced_kidney_function_catlab already defined)
+(label ckd already defined)
+(label cancer already defined)
+(label imd already defined)
+(label bpcat already defined)
+(label asthmacat already defined)
+(label obese4cat already defined)
+(label bmicat already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label smoke already defined)
+
+. forvalues t = 1 (1) 6 {
+  2.         erase time`t'.dta
+  3. }
+
+. 
+. 
+. 
+. 
+. *******************************
+. *  Create variables required  *
+. *******************************
+. 
+. 
+. /*   Comorbidity counts for assessing risk  */
+. 
+. * Create absent/present for categorical comorbidities
+. recode asthma 1=0 2/3=1, gen(asthmabin)
+(51505 differences between asthma and asthmabin)
+
+. recode diabcat 1=0 2/4=1, gen(diabbin)
+(323095 differences between diabcat and diabbin)
+
+. recode cancer_exhaem_cat 1=0 2/4=1, gen(cancer_exhaem_bin)
+(323095 differences between cancer_exhaem_cat and cancer_exhaem_bin)
+
+. recode cancer_haem_cat 1=0 2/4=1, gen(cancer_haem_bin)
+(323095 differences between cancer_haem_cat and cancer_haem_bin)
+
+. recode reduced_kidney_function_cat 1=0 2/3=1, gen(kidneybin)
+(323095 differences between reduced_kidney_function_cat and kidneybin)
+
+. 
+. * Count comorbidities present
+. egen comorbidity_count = rowtotal(                      ///
+>                         htdiag_or_highbp                                ///
+>                         chronic_respiratory_disease     ///
+>                         asthmabin                                               ///
+>                         chronic_cardiac_disease                 ///
+>                         diabbin                                                 ///
+>                         cancer_exhaem_bin                               ///
+>                         cancer_haem_bin                                 ///
+>                         chronic_liver_disease                   ///
+>                         stroke_dementia                                 ///
+>                         kidneybin                                               ///
+>                         other_neuro                                             ///
+>                         organ_transplant                                ///
+>                         spleen                                                  ///
+>                         ra_sle_psoriasis                                ///
+>                         other_immunosuppression                 ///
+>                         )
+
+. drop asthmabin diabbin cancer_exhaem_bin cancer_haem_bin kidneybin
+
+. 
+. recode comorbidity_count 1/max=1 0=0, gen(comorbidity_any)
+(69488 differences between comorbidity_count and comorbidity_any)
+
+. 
+. 
+. * Create numerical region variable
+. encode region, gen(region_new)
+
+. drop region
+
+. rename region_new region
+
+. 
+. 
+. 
+. 
+. 
+. 
+. **************************
+. *   Logistic regression  *
+. **************************
+. 
+. 
+. * At present: no ethnicity
+. timer clear 1
+
+. timer on 1
+
+. logit outcome age1 age2 age3 i.male             ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         i.imd                                                   ///
+>                         i.htdiag_or_highbp                              ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.reduced_kidney_function_cat   ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         i.other_immunosuppression               ///
+>                         i.region                                                ///
+>                         i.time, cluster(patient_id)
+
+note: 1.time != 0 predicts failure perfectly
+      1.time dropped and 51804 obs not used
+
+note: 6.time omitted because of collinearity
+Iteration 0:   log pseudolikelihood = -48009.376  
+Iteration 1:   log pseudolikelihood = -34535.433  
+Iteration 2:   log pseudolikelihood = -28697.516  
+Iteration 3:   log pseudolikelihood = -26836.852  
+Iteration 4:   log pseudolikelihood = -26458.596  
+Iteration 5:   log pseudolikelihood = -26394.739  
+Iteration 6:   log pseudolikelihood = -26390.734  
+Iteration 7:   log pseudolikelihood = -26390.714  
+Iteration 8:   log pseudolikelihood = -26390.714  
+
+Logistic regression                             Number of obs     =    271,275
+                                                Wald chi2(48)     =   13579.27
+                                                Prob > chi2       =     0.0000
+Log pseudolikelihood = -26390.714               Pseudo R2         =     0.4503
+
+                                        (Std. Err. adjusted for 263,737 clusters in patient_id)
+-----------------------------------------------------------------------------------------------
+                              |               Robust
+                      outcome |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   .1364241   .0246512     5.53   0.000     .0881086    .1847396
+                         age2 |  -.0963513    .054811    -1.76   0.079    -.2037789    .0110763
+                         age3 |   .2174163   .1286652     1.69   0.091    -.0347628    .4695954
+                       1.male |   .7183179   .0333588    21.53   0.000     .6529359    .7836999
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   .2431597   .0415837     5.85   0.000     .1616572    .3246623
+          Obese II (35-39.9)  |    .489225   .0614698     7.96   0.000     .3687465    .6097036
+             Obese III (40+)  |   .9032679   .0823824    10.96   0.000     .7418014    1.064734
+                              |
+                 smoke_nomiss |
+                      Former  |   .2168192   .0351789     6.16   0.000     .1478698    .2857686
+                     Current  |  -.1927678   .0648502    -2.97   0.003    -.3198719   -.0656638
+                              |
+                          imd |
+                           2  |   .0683531   .0514619     1.33   0.184    -.0325103    .1692165
+                           3  |   .1606139    .051186     3.14   0.002     .0602913    .2609366
+                           4  |   .3608096   .0510441     7.07   0.000      .260765    .4608542
+             5 most deprived  |   .4937734   .0524351     9.42   0.000     .3910024    .5965444
+                              |
+           1.htdiag_or_highbp |  -.0350719   .0374698    -0.94   0.349    -.1085114    .0383676
+1.chronic_respiratory_disease |   .7040324   .0443855    15.86   0.000     .6170385    .7910263
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .1551013   .0487458     3.18   0.001     .0595614    .2506413
+                Yes with OCS  |   .3774058   .0946238     3.99   0.000     .1919466     .562865
+                              |
+    1.chronic_cardiac_disease |   .2482847   .0376135     6.60   0.000     .1745636    .3220058
+                              |
+                      diabcat |
+         Controlled diabetes  |    .472234   .0417416    11.31   0.000     .3904219    .5540461
+       Uncontrolled diabetes  |   .9642252   .0542034    17.79   0.000     .8579885    1.070462
+  Diabetes, no hba1c measure  |   .7859599   .0924449     8.50   0.000     .6047713    .9671486
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   .6260128   .1315587     4.76   0.000     .3681624    .8838631
+               2-5 years ago  |   .2440659   .0825903     2.96   0.003     .0821918    .4059399
+                    5+ years  |   .0260766   .0552146     0.47   0.637    -.0821421    .1342953
+                              |
+              cancer_haem_cat |
+                   Last year  |   1.405984   .2985988     4.71   0.000     .8207414    1.991227
+               2-5 years ago  |   1.485492   .1801312     8.25   0.000     1.132441    1.838542
+                    5+ years  |   .5926248   .1347713     4.40   0.000      .328478    .8567717
+                              |
+      1.chronic_liver_disease |   .6116669   .1213131     5.04   0.000     .3738976    .8494362
+            1.stroke_dementia |   .6269501   .0492158    12.74   0.000     .5304889    .7234114
+                1.other_neuro |   1.198117    .086384    13.87   0.000     1.028807    1.367426
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   .4672362   .0389294    12.00   0.000      .390936    .5435363
+           Stage 4/5 egfr<30  |   1.570727   .0810272    19.39   0.000     1.411916    1.729537
+                              |
+           1.organ_transplant |    1.57065   .1856886     8.46   0.000     1.206707    1.934593
+                     1.spleen |   .3041968   .3002121     1.01   0.311     -.284208    .8926016
+           1.ra_sle_psoriasis |   .2747116   .0575128     4.78   0.000     .1619886    .3874347
+    1.other_immunosuppression |    .701764   .1885965     3.72   0.000     .3321215    1.071406
+                              |
+                       region |
+               East Midlands  |  -.2893875   .0501323    -5.77   0.000    -.3876449     -.19113
+                      London  |   .5287437   .0651078     8.12   0.000     .4011347    .6563527
+                  North East  |  -.3000313   .0805619    -3.72   0.000    -.4579297   -.1421329
+                  North West  |  -.2035388    .057471    -3.54   0.000    -.3161799   -.0908977
+                  South East  |  -.3814644   .0725786    -5.26   0.000    -.5237159   -.2392129
+                  South West  |  -.9402291   .0631209   -14.90   0.000    -1.063944   -.8165145
+               West Midlands  |   .5948083   .0675097     8.81   0.000     .4624917    .7271248
+    Yorkshire and The Humber  |   -.289914   .0533018    -5.44   0.000    -.3943837   -.1854443
+                              |
+                         time |
+                           1  |          0  (empty)
+                           2  |  -5.650912   .3186894   -17.73   0.000    -6.275532   -5.026292
+                           3  |  -1.535421   .0520287   -29.51   0.000    -1.637396   -1.433447
+                           4  |   .2849241   .0318062     8.96   0.000     .2225851    .3472632
+                           5  |   .7386376   .0219095    33.71   0.000     .6956958    .7815793
+                           6  |          0  (omitted)
+                              |
+                        _cons |  -11.94099   .8928597   -13.37   0.000    -13.69096   -10.19102
+-----------------------------------------------------------------------------------------------
+
+. timer off 1
+
+. timer list 1
+   1:     19.84 /        1 =      19.8450
+
+. 
+. estimates
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+note: 1b.time != 0 predicts failure perfectly
+      1b.time dropped and 51804 obs not used
+note: 6.time omitted because of collinearity
+
+Logistic regression                             Number of obs     =    271,275
+                                                Wald chi2(48)     =   13579.27
+                                                Prob > chi2       =     0.0000
+Log pseudolikelihood = -26390.714               Pseudo R2         =     0.4503
+
+                                        (Std. Err. adjusted for 263,737 clusters in patient_id)
+-----------------------------------------------------------------------------------------------
+                              |               Robust
+                      outcome |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   .1364241   .0246512     5.53   0.000     .0881086    .1847396
+                         age2 |  -.0963513    .054811    -1.76   0.079    -.2037789    .0110763
+                         age3 |   .2174163   .1286652     1.69   0.091    -.0347628    .4695954
+                       1.male |   .7183179   .0333588    21.53   0.000     .6529359    .7836999
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   .2431597   .0415837     5.85   0.000     .1616572    .3246623
+          Obese II (35-39.9)  |    .489225   .0614698     7.96   0.000     .3687465    .6097036
+             Obese III (40+)  |   .9032679   .0823824    10.96   0.000     .7418014    1.064734
+                              |
+                 smoke_nomiss |
+                      Former  |   .2168192   .0351789     6.16   0.000     .1478698    .2857686
+                     Current  |  -.1927678   .0648502    -2.97   0.003    -.3198719   -.0656638
+                              |
+                          imd |
+                           2  |   .0683531   .0514619     1.33   0.184    -.0325103    .1692165
+                           3  |   .1606139    .051186     3.14   0.002     .0602913    .2609366
+                           4  |   .3608096   .0510441     7.07   0.000      .260765    .4608542
+             5 most deprived  |   .4937734   .0524351     9.42   0.000     .3910024    .5965444
+                              |
+           1.htdiag_or_highbp |  -.0350719   .0374698    -0.94   0.349    -.1085114    .0383676
+1.chronic_respiratory_disease |   .7040324   .0443855    15.86   0.000     .6170385    .7910263
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .1551013   .0487458     3.18   0.001     .0595614    .2506413
+                Yes with OCS  |   .3774058   .0946238     3.99   0.000     .1919466     .562865
+                              |
+    1.chronic_cardiac_disease |   .2482847   .0376135     6.60   0.000     .1745636    .3220058
+                              |
+                      diabcat |
+         Controlled diabetes  |    .472234   .0417416    11.31   0.000     .3904219    .5540461
+       Uncontrolled diabetes  |   .9642252   .0542034    17.79   0.000     .8579885    1.070462
+  Diabetes, no hba1c measure  |   .7859599   .0924449     8.50   0.000     .6047713    .9671486
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   .6260128   .1315587     4.76   0.000     .3681624    .8838631
+               2-5 years ago  |   .2440659   .0825903     2.96   0.003     .0821918    .4059399
+                    5+ years  |   .0260766   .0552146     0.47   0.637    -.0821421    .1342953
+                              |
+              cancer_haem_cat |
+                   Last year  |   1.405984   .2985988     4.71   0.000     .8207414    1.991227
+               2-5 years ago  |   1.485492   .1801312     8.25   0.000     1.132441    1.838542
+                    5+ years  |   .5926248   .1347713     4.40   0.000      .328478    .8567717
+                              |
+      1.chronic_liver_disease |   .6116669   .1213131     5.04   0.000     .3738976    .8494362
+            1.stroke_dementia |   .6269501   .0492158    12.74   0.000     .5304889    .7234114
+                1.other_neuro |   1.198117    .086384    13.87   0.000     1.028807    1.367426
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   .4672362   .0389294    12.00   0.000      .390936    .5435363
+           Stage 4/5 egfr<30  |   1.570727   .0810272    19.39   0.000     1.411916    1.729537
+                              |
+           1.organ_transplant |    1.57065   .1856886     8.46   0.000     1.206707    1.934593
+                     1.spleen |   .3041968   .3002121     1.01   0.311     -.284208    .8926016
+           1.ra_sle_psoriasis |   .2747116   .0575128     4.78   0.000     .1619886    .3874347
+    1.other_immunosuppression |    .701764   .1885965     3.72   0.000     .3321215    1.071406
+                              |
+                       region |
+               East Midlands  |  -.2893875   .0501323    -5.77   0.000    -.3876449     -.19113
+                      London  |   .5287437   .0651078     8.12   0.000     .4011347    .6563527
+                  North East  |  -.3000313   .0805619    -3.72   0.000    -.4579297   -.1421329
+                  North West  |  -.2035388    .057471    -3.54   0.000    -.3161799   -.0908977
+                  South East  |  -.3814644   .0725786    -5.26   0.000    -.5237159   -.2392129
+                  South West  |  -.9402291   .0631209   -14.90   0.000    -1.063944   -.8165145
+               West Midlands  |   .5948083   .0675097     8.81   0.000     .4624917    .7271248
+    Yorkshire and The Humber  |   -.289914   .0533018    -5.44   0.000    -.3943837   -.1854443
+                              |
+                         time |
+                           1  |          0  (empty)
+                           2  |  -5.650912   .3186894   -17.73   0.000    -6.275532   -5.026292
+                           3  |  -1.535421   .0520287   -29.51   0.000    -1.637396   -1.433447
+                           4  |   .2849241   .0318062     8.96   0.000     .2225851    .3472632
+                           5  |   .7386376   .0219095    33.71   0.000     .6956958    .7815793
+                           6  |          0  (omitted)
+                              |
+                        _cons |  -11.94099   .8928597   -13.37   0.000    -13.69096   -10.19102
+-----------------------------------------------------------------------------------------------
+
+. estimates save ./output/models/rp_logistic_regression_models.ster, replace
+(note: file ./output/models/rp_logistic_regression_models.ster not found)
+file ./output/models/rp_logistic_regression_models.ster saved
+
+. 
+. 
+. * Obtain absolute predictions, correcting the intercept for the control sampling
+. predict xb, xb
+(51820 missing values generated)
+
+. replace xb = xb + log($sampling_frac) 
+(271,275 real changes made)
+
+. gen risk28 = exp(xb)/(1 + exp(xb))
+(51,820 missing values generated)
+
+. 
+. 
+. 
+. /*  Quantiles of predicted 28 day risk   */
+. 
+. centile risk28, c(20 40 60 80)
+
+                                                       -- Binom. Interp. --
+    Variable |       Obs  Percentile    Centile        [95% Conf. Interval]
+-------------+-------------------------------------------------------------
+      risk28 |   271,275         20    4.19e-07        4.08e-07    4.27e-07
+             |                   40    3.45e-06        3.40e-06    3.52e-06
+             |                   60     .000018        .0000177    .0000182
+             |                   80    .0001031        .0001014    .0001049
+
+. 
+. 
+. 
+. 
+. *************************************
+. *   Summarise risks by comorbidity  *
+. *************************************
+. 
+. 
+. /*  Post into dataset   */
+. 
+. tempname temprf 
+
+. 
+. postfile `temprf' str30(rf) rfcat sex age risk28 using abs_risks_logistic, replace
+(note: file abs_risks_logistic.dta not found)
+
+. 
+.         * Binary risk factors
+.         foreach var of varlist                                          ///
+>                                 htdiag_or_highbp                                ///
+>                                 chronic_respiratory_disease     ///
+>                                 chronic_cardiac_disease                 ///
+>                                 chronic_liver_disease                   ///
+>                                 stroke_dementia                                 ///
+>                                 other_neuro                                             ///
+>                                 organ_transplant                                ///
+>                                 spleen                                                  ///
+>                                 ra_sle_psoriasis                                ///
+>                                 other_immunosuppression    {
+  2.                                         
+.                 forvalues i = 1 (1) 6 {
+  3.                         forvalues j = 0 (1) 1 {
+  4.                                 forvalues k = 0 (1) 1 {
+  5. 
+.                                         * Mean risk of event among age and sex group
+.                                         qui summ risk28 if  `var'==`k' 
+  6.                                         local r28 = r(mean)
+  7.                                         
+.                                         post `temprf'  ("`var'") (`k') (`j') (`i') (`r28')
+  8.                                 }
+  9.                         }
+ 10.                 }
+ 11.         }
+
+. 
+.         * Categorical risk factors
+.         local max_obese4cat                     = 4
+
+.         local max_smoke_nomiss                  = 3     
+
+.         local max_imd                                   = 5     
+
+.         local max_asthmacat                             = 3     
+
+.         local max_diabcat                               = 4     
+
+.         local max_cancer_exhaem_cat             = 4      
+
+.         local max_cancer_haem_cat               = 4 
+
+.         local max_reduced_kidney_function_cat = 3
+
+.                                         
+.         foreach var of varlist                                          ///
+>                                 obese4cat                                               ///
+>                                 smoke_nomiss                                    ///
+>                                 imd                                                     ///
+>                                 asthmacat                                               ///
+>                                 diabcat                                                 ///
+>                                 cancer_exhaem_cat                               ///
+>                                 cancer_haem_cat                                 ///
+>                                 reduced_kidney_function_cat    {
+  2.                                         
+.                 forvalues i = 1 (1) 6 {
+  3.                         forvalues j = 0 (1) 1 { 
+  4.                                 forvalues k = 1 (1) `max_`var'' {
+  5.                                         
+.                                         * Mean risk of event among age and sex group
+.                                         qui summ risk28 if  `var'==`k'
+  6.                                         local r28 = r(mean)
+  7.                                                         
+.                                         post `temprf'  ("`var'") (`k')  (`j') (`i') (`r28') 
+  8.                                 }
+  9.                         }
+ 10.                 }
+ 11.         }
+
+.         
+.         
+.         /*  Grouped comorbidity  */
+.         
+.         * Smoking with no other disease vs other disease 
+.         forvalues i = 1 (1) 6 {
+  2.                 forvalues j = 0 (1) 1 { 
+  3.                         forvalues k = 1 (1) `max_smoke_nomiss' {
+  4.                                 forvalues l = 0 (1) 1 {
+  5.                                         
+.                                         * Mean risk of event among age and sex group
+.                                         qui summ risk28 if  smoke_nomiss==`k' & comorbidity_any==`l'
+  6.                                         local r28 = r(mean)
+  7.                                         
+.                                         post `temprf'  ("Smoking, comorb=`l'") (`k')  (`j') (`i') (`r
+> 28') 
+  8.                                 }
+  9.                         }
+ 10.                 }
+ 11.         }
+
+.         
+.         
+.         * Other comorbidity groups?
+.         
+.         
+. postclose `temprf'
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+
+. exit, clear

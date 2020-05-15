@@ -1,0 +1,646 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/rp_parametric_survival_m
+> odels_gamma.log
+  log type:  text
+ opened on:  15 May 2020, 01:11:28
+
+. 
+. use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. ********************************************
+. *   Comorbidity counts for assessing risk  *
+. ********************************************
+. 
+. * Create absent/present for categorical comorbidities
+. recode asthma 1=0 2/3=1, gen(asthmabin)
+(2747068 differences between asthma and asthmabin)
+
+. recode diabcat 1=0 2/4=1, gen(diabbin)
+(17283279 differences between diabcat and diabbin)
+
+. recode cancer_exhaem_cat 1=0 2/4=1, gen(cancer_exhaem_bin)
+(17283279 differences between cancer_exhaem_cat and cancer_exhaem_bin)
+
+. recode cancer_haem_cat 1=0 2/4=1, gen(cancer_haem_bin)
+(17283279 differences between cancer_haem_cat and cancer_haem_bin)
+
+. recode reduced_kidney_function_cat 1=0 2/3=1, gen(kidneybin)
+(17283279 differences between reduced_kidney_function_cat and kidneybin)
+
+. 
+. * Count comorbidities present
+. egen comorbidity_count = rowtotal(                      ///
+>                         htdiag_or_highbp                                ///
+>                         chronic_respiratory_disease     ///
+>                         asthmabin                                               ///
+>                         chronic_cardiac_disease                 ///
+>                         diabbin                                                 ///
+>                         cancer_exhaem_bin                               ///
+>                         cancer_haem_bin                                 ///
+>                         chronic_liver_disease                   ///
+>                         stroke_dementia                                 ///
+>                         kidneybin                                               ///
+>                         other_neuro                                             ///
+>                         organ_transplant                                ///
+>                         spleen                                                  ///
+>                         ra_sle_psoriasis                                ///
+>                         other_immunosuppression                 ///
+>                         )
+
+. drop asthmabin diabbin cancer_exhaem_bin cancer_haem_bin kidneybin
+
+. 
+. recode comorbidity_count 1/max=1 0=0, gen(comorbidity_any)
+(3362133 differences between comorbidity_count and comorbidity_any)
+
+. 
+. 
+. * Create numerical region variable
+. encode region, gen(region_new)
+
+. drop region
+
+. rename region_new region
+
+. 
+. 
+. 
+. 
+. *******************************
+. *   Generalized gamma models  *
+. *******************************
+. 
+. 
+. * At present: no ethnicity
+. timer clear 1
+
+. timer on 1
+
+. streg age1 age2 age3 i.male                             ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         i.imd                                                   ///
+>                         i.htdiag_or_highbp                              ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.reduced_kidney_function_cat   ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         i.other_immunosuppression               ///
+>                         i.region,                                               ///
+>                         dist(ggamma) 
+
+         failure _d:  cpnsdeath
+   analysis time _t:  (stime_cpnsdeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+Fitting constant-only model:
+
+Iteration 0:   log likelihood = -52242.419  (not concave)
+Iteration 1:   log likelihood = -52120.606  (not concave)
+Iteration 2:   log likelihood =   -51983.8  (not concave)
+Iteration 3:   log likelihood = -51859.539  (not concave)
+Iteration 4:   log likelihood = -51745.846  (not concave)
+Iteration 5:   log likelihood = -51627.611  (not concave)
+Iteration 6:   log likelihood = -51521.168  (not concave)
+Iteration 7:   log likelihood = -51422.209  (not concave)
+Iteration 8:   log likelihood = -51319.129  (not concave)
+Iteration 9:   log likelihood = -51217.863  (not concave)
+Iteration 10:  log likelihood = -51117.469  (not concave)
+Iteration 11:  log likelihood =  -51020.04  (not concave)
+Iteration 12:  log likelihood = -50922.217  (not concave)
+Iteration 13:  log likelihood = -50826.851  (not concave)
+Iteration 14:  log likelihood = -50731.635  (not concave)
+Iteration 15:  log likelihood = -50639.144  (not concave)
+Iteration 16:  log likelihood = -50546.796  (not concave)
+Iteration 17:  log likelihood = -50457.115  (not concave)
+Iteration 18:  log likelihood = -50367.796  (not concave)
+Iteration 19:  log likelihood =  -50281.24  (not concave)
+Iteration 20:  log likelihood = -50195.185  (not concave)
+Iteration 21:  log likelihood = -50111.927  (not concave)
+Iteration 22:  log likelihood = -50029.349  (not concave)
+Iteration 23:  log likelihood = -49949.625  (not concave)
+Iteration 24:  log likelihood = -49870.742  (not concave)
+Iteration 25:  log likelihood = -49794.747  (not concave)
+Iteration 26:  log likelihood = -49719.751  (not concave)
+Iteration 27:  log likelihood = -49647.663  (not concave)
+Iteration 28:  log likelihood = -49576.715  (not concave)
+Iteration 29:  log likelihood = -49508.671  (not concave)
+Iteration 30:  log likelihood = -49441.888  (not concave)
+Iteration 31:  log likelihood =  -49377.98  (not concave)
+Iteration 32:  log likelihood = -49315.427  (not concave)
+Iteration 33:  log likelihood = -49255.693  (not concave)
+Iteration 34:  log likelihood = -49197.381  (not concave)
+Iteration 35:  log likelihood = -49141.807  (not concave)
+Iteration 36:  log likelihood = -49087.695  (not concave)
+Iteration 37:  log likelihood = -49036.216  (not concave)
+Iteration 38:  log likelihood = -48986.212  
+Iteration 39:  log likelihood = -48882.363  
+Iteration 40:  log likelihood = -48077.061  
+Iteration 41:  log likelihood = -48001.415  
+Iteration 42:  log likelihood = -47958.143  (not concave)
+Iteration 43:  log likelihood = -47957.897  
+Iteration 44:  log likelihood = -47951.238  
+Iteration 45:  log likelihood = -47942.027  
+Iteration 46:  log likelihood = -47925.047  
+Iteration 47:  log likelihood = -47919.805  
+Iteration 48:  log likelihood = -47905.634  
+Iteration 49:  log likelihood = -47902.577  
+Iteration 50:  log likelihood =  -47886.59  
+Iteration 51:  log likelihood = -47879.154  
+Iteration 52:  log likelihood = -47873.508  
+Iteration 53:  log likelihood = -47867.837  
+Iteration 54:  log likelihood =  -47862.61  
+Iteration 55:  log likelihood = -47855.439  
+Iteration 56:  log likelihood = -47850.553  
+Iteration 57:  log likelihood = -47841.045  
+Iteration 58:  log likelihood =  -47834.11  
+Iteration 59:  log likelihood = -47826.877  
+Iteration 60:  log likelihood = -47820.214  
+Iteration 61:  log likelihood = -47809.076  
+Iteration 62:  log likelihood = -47803.821  
+Iteration 63:  log likelihood = -47795.304  
+Iteration 64:  log likelihood = -47788.656  
+Iteration 65:  log likelihood = -47779.743  
+Iteration 66:  log likelihood = -47770.923  
+Iteration 67:  log likelihood = -47759.172  
+Iteration 68:  log likelihood = -47738.803  
+Iteration 69:  log likelihood = -47720.678  
+Iteration 70:  log likelihood = -47716.414  
+Iteration 71:  log likelihood = -47700.885  (not concave)
+Iteration 72:  log likelihood = -47699.095  (not concave)
+Iteration 73:  log likelihood = -47699.046  
+Iteration 74:  log likelihood = -47692.099  
+Iteration 75:  log likelihood = -47677.206  
+Iteration 76:  log likelihood = -47660.166  
+Iteration 77:  log likelihood = -47646.376  
+Iteration 78:  log likelihood = -47627.302  
+Iteration 79:  log likelihood = -47608.137  
+Iteration 80:  log likelihood = -47578.505  
+Iteration 81:  log likelihood = -47548.485  
+Iteration 82:  log likelihood = -47501.233  
+Iteration 83:  log likelihood = -47439.994  (not concave)
+Iteration 84:  log likelihood = -47438.881  
+Iteration 85:  log likelihood = -47426.041  
+Iteration 86:  log likelihood = -47399.375  
+Iteration 87:  log likelihood = -47387.839  
+Iteration 88:  log likelihood = -47372.732  
+Iteration 89:  log likelihood =  -47372.45  
+Iteration 90:  log likelihood =  -47371.95  
+Iteration 91:  log likelihood = -47371.938  
+Iteration 92:  log likelihood = -47371.938  
+
+Fitting full model:
+
+Iteration 0:   log likelihood = -47371.938  (not concave)
+Iteration 1:   log likelihood = -44485.028  (not concave)
+Iteration 2:   log likelihood = -43183.158  
+Iteration 3:   log likelihood = -41306.348  
+Iteration 4:   log likelihood = -40556.829  
+Iteration 5:   log likelihood =  -39966.88  
+Iteration 6:   log likelihood = -39187.624  
+Iteration 7:   log likelihood = -38721.551  
+Iteration 8:   log likelihood = -38644.106  
+Iteration 9:   log likelihood = -38578.257  
+Iteration 10:  log likelihood = -38497.574  
+Iteration 11:  log likelihood = -38395.966  
+Iteration 12:  log likelihood = -38359.417  
+Iteration 13:  log likelihood = -38292.108  
+Iteration 14:  log likelihood = -38255.132  
+Iteration 15:  log likelihood = -38216.435  
+Iteration 16:  log likelihood = -38212.565  
+Iteration 17:  log likelihood = -38201.788  (not concave)
+Iteration 18:  log likelihood = -38199.184  (not concave)
+Iteration 19:  log likelihood = -38198.799  
+Iteration 20:  log likelihood =   -38197.4  
+Iteration 21:  log likelihood = -38195.736  
+Iteration 22:  log likelihood = -38194.483  
+Iteration 23:  log likelihood = -38193.946  
+Iteration 24:  log likelihood = -38193.775  
+Iteration 25:  log likelihood = -38193.762  
+Iteration 26:  log likelihood = -38193.762  
+
+Generalized gamma AFT regression
+
+No. of subjects =   17,282,132                  Number of obs    =  17,282,132
+No. of failures =        5,651
+Time at risk    =   1449883343
+                                                LR chi2(44)      =    18356.35
+Log likelihood  =   -38193.762                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |  -.0161092   .0030251    -5.33   0.000    -.0220383   -.0101802
+                         age2 |   .0115185   .0072286     1.59   0.111    -.0026492    .0256862
+                         age3 |  -.0416581   .0175764    -2.37   0.018    -.0761071    -.007209
+                       1.male |  -.1501253   .0065361   -22.97   0.000    -.1629358   -.1373148
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |  -.0540404   .0077992    -6.93   0.000    -.0693266   -.0387541
+          Obese II (35-39.9)  |  -.0978532   .0115024    -8.51   0.000    -.1203975    -.075309
+             Obese III (40+)  |  -.1784941   .0152185   -11.73   0.000    -.2083217   -.1486664
+                              |
+                 smoke_nomiss |
+                      Former  |  -.0406778   .0066749    -6.09   0.000    -.0537603   -.0275953
+                     Current  |   .0388932   .0114288     3.40   0.001     .0164931    .0612933
+                              |
+                          imd |
+                           2  |  -.0166924   .0097073    -1.72   0.086    -.0357183    .0023335
+                           3  |  -.0281941   .0096795    -2.91   0.004    -.0471656   -.0092226
+                           4  |  -.0695327   .0096718    -7.19   0.000    -.0884892   -.0505763
+             5 most deprived  |   -.105214   .0099959   -10.53   0.000    -.1248056   -.0856225
+                              |
+           1.htdiag_or_highbp |   .0144044   .0069011     2.09   0.037     .0008785    .0279304
+1.chronic_respiratory_disease |  -.1558663   .0086135   -18.10   0.000    -.1727484   -.1389842
+                              |
+                    asthmacat |
+                 Yes, no OCS  |  -.0291386    .009028    -3.23   0.001    -.0468331    -.011444
+                Yes with OCS  |   -.067683   .0171953    -3.94   0.000    -.1013851   -.0339808
+                              |
+    1.chronic_cardiac_disease |  -.0586724   .0072406    -8.10   0.000    -.0728638   -.0444811
+                              |
+                      diabcat |
+         Controlled diabetes  |  -.1002761   .0080547   -12.45   0.000    -.1160629   -.0844892
+       Uncontrolled diabetes  |   -.209987   .0104619   -20.07   0.000     -.230492   -.1894821
+  Diabetes, no hba1c measure  |  -.1579959   .0179361    -8.81   0.000    -.1931499   -.1228418
+                              |
+            cancer_exhaem_cat |
+                   Last year  |  -.1392771   .0239976    -5.80   0.000    -.1863116   -.0922426
+               2-5 years ago  |  -.0510805   .0157647    -3.24   0.001    -.0819788   -.0201822
+                    5+ years  |   .0094227   .0109619     0.86   0.390    -.0120623    .0309076
+                              |
+              cancer_haem_cat |
+                   Last year  |  -.3399825   .0549527    -6.19   0.000    -.4476879   -.2322771
+               2-5 years ago  |   -.333337   .0312558   -10.66   0.000    -.3945971   -.2720768
+                    5+ years  |   -.144319   .0266295    -5.42   0.000    -.1965119   -.0921261
+                              |
+      1.chronic_liver_disease |  -.1206193   .0232093    -5.20   0.000    -.1661087   -.0751298
+            1.stroke_dementia |  -.1471748   .0098231   -14.98   0.000    -.1664277    -.127922
+                1.other_neuro |  -.2544973   .0158415   -16.07   0.000    -.2855462   -.2234485
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |  -.1001879   .0076989   -13.01   0.000    -.1152776   -.0850983
+           Stage 4/5 egfr<30  |  -.3670359   .0161342   -22.75   0.000    -.3986583   -.3354136
+                              |
+           1.organ_transplant |  -.2671327   .0417406    -6.40   0.000    -.3489428   -.1853226
+                     1.spleen |  -.0936962   .0492165    -1.90   0.057    -.1901588    .0027664
+           1.ra_sle_psoriasis |  -.0578245   .0105818    -5.46   0.000    -.0785644   -.0370847
+    1.other_immunosuppression |  -.1315407   .0317287    -4.15   0.000    -.1937279   -.0693536
+                              |
+                       region |
+               East Midlands  |   .0556463   .0093485     5.95   0.000     .0373235    .0739691
+                      London  |  -.1154983   .0124612    -9.27   0.000    -.1399219   -.0910747
+                  North East  |   .0743561    .015386     4.83   0.000     .0442001    .1045121
+                  North West  |   .0440693   .0112463     3.92   0.000      .022027    .0661115
+                  South East  |   .0835832   .0135213     6.18   0.000     .0570819    .1100846
+                  South West  |   .1871622   .0117308    15.95   0.000     .1641701    .2101542
+               West Midlands  |  -.1182189   .0133224    -8.87   0.000    -.1443304   -.0921075
+    Yorkshire and The Humber  |   .0649817   .0101338     6.41   0.000     .0451198    .0848436
+                              |
+                        _cons |   8.917776    .118457    75.28   0.000     8.685605    9.149948
+------------------------------+----------------------------------------------------------------
+                     /lnsigma |   .7362703    .069947    10.53   0.000     .5991767    .8733638
+                       /kappa |  -1.917108   .2338101    -8.20   0.000    -2.375368   -1.458849
+------------------------------+----------------------------------------------------------------
+                        sigma |   2.088133   .1460585                      1.820619    2.394953
+-----------------------------------------------------------------------------------------------
+
+. timer off 1
+
+. timer list 1
+   1:  30305.04 /        1 =   30305.0380
+
+. 
+. estat ic
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |          N   ll(null)  ll(model)      df        AIC        BIC
+-------------+---------------------------------------------------------------
+           . | 17,282,132  -47371.94  -38193.76      47   76481.52   77170.79
+-----------------------------------------------------------------------------
+Note: BIC uses N = number of observations. See [R] BIC note.
+
+. 
+. streg, tratio
+
+Generalized gamma AFT regression
+
+No. of subjects =   17,282,132                  Number of obs    =  17,282,132
+No. of failures =        5,651
+Time at risk    =   1449883343
+                                                LR chi2(44)      =    18356.35
+Log likelihood  =   -38193.762                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Time Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   .9840198   .0029767    -5.33   0.000     .9782028    .9898715
+                         age2 |   1.011585   .0073123     1.59   0.111     .9973543    1.026019
+                         age3 |   .9591977   .0168592    -2.37   0.018     .9267169    .9928169
+                       1.male |   .8606001    .005625   -22.97   0.000     .8496457    .8716958
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   .9473939    .007389    -6.93   0.000     .9330219    .9619872
+          Obese II (35-39.9)  |    .906782   .0104301    -8.51   0.000      .886568    .9274568
+             Obese III (40+)  |    .836529   .0127307   -11.73   0.000     .8119458    .8618566
+                              |
+                 smoke_nomiss |
+                      Former  |   .9601384   .0064088    -6.09   0.000     .9476592     .972782
+                     Current  |   1.039659   .0118821     3.40   0.001      1.01663    1.063211
+                              |
+                          imd |
+                           2  |   .9834461   .0095466    -1.72   0.086      .964912    1.002336
+                           3  |   .9721996   .0094104    -2.91   0.004     .9539294    .9908198
+                           4  |   .9328296   .0090222    -7.19   0.000      .915313    .9506814
+             5 most deprived  |   .9001318   .0089976   -10.53   0.000     .8826685    .9179407
+                              |
+           1.htdiag_or_highbp |   1.014509   .0070012     2.09   0.037     1.000879    1.028324
+1.chronic_respiratory_disease |   .8556736   .0073703   -18.10   0.000     .8413493    .8702418
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .9712818   .0087687    -3.23   0.001     .9542466    .9886212
+                Yes with OCS  |   .9345567     .01607    -3.94   0.000      .903585      .96659
+                              |
+    1.chronic_cardiac_disease |   .9430156    .006828    -8.10   0.000     .9297274    .9564937
+                              |
+                      diabcat |
+         Controlled diabetes  |   .9045877   .0072862   -12.45   0.000     .8904192    .9189816
+       Uncontrolled diabetes  |   .8105947   .0084804   -20.07   0.000     .7941428    .8273875
+  Diabetes, no hba1c measure  |   .8538533   .0153148    -8.81   0.000     .8243584    .8844035
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   .8699869   .0208776    -5.80   0.000     .8300149    .9118839
+               2-5 years ago  |   .9502022   .0149797    -3.24   0.001     .9212915    .9800201
+                    5+ years  |   1.009467   .0110657     0.86   0.390     .9880102     1.03139
+                              |
+              cancer_haem_cat |
+                   Last year  |   .7117828   .0391144    -6.19   0.000     .6391041    .7927264
+               2-5 years ago  |   .7165287   .0223957   -10.66   0.000     .6739515    .7617958
+                    5+ years  |   .8656116   .0230508    -5.42   0.000     .8215916    .9119902
+                              |
+      1.chronic_liver_disease |   .8863714   .0205721    -5.20   0.000     .8469541    .9276231
+            1.stroke_dementia |   .8631431   .0084787   -14.98   0.000     .8466841     .879922
+                1.other_neuro |   .7753061    .012282   -16.07   0.000     .7516036    .7997561
+                              |
+  reduced_kidney_function_cat |
+    Stage 3a/3b egfr 30-60    |   .9046674    .006965   -13.01   0.000     .8911188     .918422
+           Stage 4/5 egfr<30  |   .6927847   .0111775   -22.75   0.000       .67122    .7150423
+                              |
+           1.organ_transplant |   .7655715   .0319554    -6.40   0.000     .7054335    .8308362
+                     1.spleen |   .9105594   .0448146    -1.90   0.057     .8268278     1.00277
+           1.ra_sle_psoriasis |   .9438155   .0099872    -5.46   0.000     .9244425    .9635945
+    1.other_immunosuppression |   .8767436    .027818    -4.15   0.000     .8238821    .9329967
+                              |
+                       region |
+               East Midlands  |   1.057224   .0098835     5.95   0.000     1.038029    1.076774
+                      London  |   .8909221    .011102    -9.27   0.000     .8694262    .9129495
+                  North East  |    1.07719   .0165736     4.83   0.000     1.045191    1.110169
+                  North West  |   1.045055    .011753     3.92   0.000     1.022271    1.068346
+                  South East  |   1.087176   .0147001     6.18   0.000     1.058743    1.116372
+                  South West  |   1.205823   .0141453    15.95   0.000     1.178415    1.233868
+               West Midlands  |   .8885015    .011837    -8.87   0.000     .8656017    .9120071
+    Yorkshire and The Humber  |    1.06714   .0108142     6.41   0.000     1.046153    1.088547
+                              |
+                        _cons |   7463.474   884.1006    75.28   0.000     5917.118    9413.948
+------------------------------+----------------------------------------------------------------
+                     /lnsigma |   .7362703    .069947    10.53   0.000     .5991767    .8733638
+                       /kappa |  -1.917108   .2338101    -8.20   0.000    -2.375368   -1.458849
+------------------------------+----------------------------------------------------------------
+                        sigma |   2.088133   .1460585                      1.820619    2.394953
+-----------------------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation.
+Note: _cons estimates baseline time.
+
+. 
+. 
+. /*  Wald tests to compare against other distributions  */
+. 
+. * Null: Weibull distribution (i.e. kappa=1)
+. test _b[/kappa] = 1
+
+ ( 1)  [/]kappa = 1
+
+           chi2(  1) =  155.66
+         Prob > chi2 =    0.0000
+
+. 
+. * Null: lognormal distribution (i.e. kappa=0)
+. test _b[/kappa] = 0
+
+ ( 1)  [/]kappa = 0
+
+           chi2(  1) =   67.23
+         Prob > chi2 =    0.0000
+
+. 
+. 
+. 
+. 
+. /*  Survival predictions from gamma model  */
+. 
+. * Survival at t
+. predict surv, surv
+(1,147 missing values generated)
+
+. 
+. * Survival at 30 days
+. gen told = _t
+(447 missing values generated)
+
+. replace _t = 30
+(17,282,746 real changes made)
+
+. predict surv30, surv
+(1,147 missing values generated)
+
+. 
+. * Survival at 60 days
+. replace _t = 60
+(17,283,279 real changes made)
+
+. predict surv60, surv
+(1,147 missing values generated)
+
+. 
+. * Survival at 80 days
+. replace _t = 60
+(0 real changes made)
+
+. predict surv80, surv
+(1,147 missing values generated)
+
+. replace _t = told
+(17,282,467 real changes made, 447 to missing)
+
+. 
+. * Absolute risk at 30, 60 and 80 days
+. gen risk = 1-surv
+(1,147 missing values generated)
+
+. gen risk30 = 1-surv30
+(1,147 missing values generated)
+
+. gen risk60 = 1-surv60
+(1,147 missing values generated)
+
+. gen risk80 = 1-surv80
+(1,147 missing values generated)
+
+. 
+. 
+. 
+. 
+. /*  Quantiles of predicted 30, 60 and 80 day risk   */
+. 
+. centile risk30, c(20 40 60 80)
+
+                                                       -- Binom. Interp. --
+    Variable |       Obs  Percentile    Centile        [95% Conf. Interval]
+-------------+-------------------------------------------------------------
+      risk30 |17,282,132         20           0               0           0
+             |                   40           0               0           0
+             |                   60           0               0           0
+             |                   80           0               0           0
+
+. centile risk60, c(20 40 60 80)
+
+                                                       -- Binom. Interp. --
+    Variable |       Obs  Percentile    Centile        [95% Conf. Interval]
+-------------+-------------------------------------------------------------
+      risk60 |17,282,132         20    5.96e-08        5.96e-08    5.96e-08
+             |                   40    6.56e-07        6.56e-07    6.56e-07
+             |                   60    3.64e-06        3.64e-06    3.64e-06
+             |                   80    .0000283        .0000283    .0000284
+
+. centile risk80, c(20 40 60 80)
+
+                                                       -- Binom. Interp. --
+    Variable |       Obs  Percentile    Centile        [95% Conf. Interval]
+-------------+-------------------------------------------------------------
+      risk80 |17,282,132         20    5.96e-08        5.96e-08    5.96e-08
+             |                   40    6.56e-07        6.56e-07    6.56e-07
+             |                   60    3.64e-06        3.64e-06    3.64e-06
+             |                   80    .0000283        .0000283    .0000284
+
+. 
+. 
+. 
+. 
+. *************************************
+. *   Summarise risks by comorbidity  *
+. *************************************
+. 
+. 
+. /*  Post into dataset   */
+. 
+. tempname temprf 
+
+. 
+. postfile `temprf' str30(rf) rfcat sex age risk30 risk60 risk80 using abs_risks_gamma, replace
+(note: file abs_risks_gamma.dta not found)
+
+. 
+.         * Binary risk factors
+.         foreach var of varlist                                          ///
+>                                 htdiag_or_highbp                                ///
+>                                 chronic_respiratory_disease     ///
+>                                 chronic_cardiac_disease                 ///
+>                                 chronic_liver_disease                   ///
+>                                 stroke_dementia                                 ///
+>                                 other_neuro                                             ///
+>                                 organ_transplant                                ///
+>                                 spleen                                                  ///
+>                                 ra_sle_psoriasis                                ///
+>                                 other_immunosuppression    {
+  2.                                         
+.                 forvalues i = 1 (1) 6 {
+  3.                         forvalues j = 0 (1) 1 {
+  4.                                 forvalues k = 0 (1) 1 {
+  5. 
+.                                         * Mean risk of event at 30 days among age and sex group
+.                                         qui summ risk30 if  `var'==`k'
+  6.                                         local r30 = r(mean)                                       
+>                       
+  7.                                         
+.                                         * Mean risk of event at 60 days among age and sex group
+.                                         qui summ risk60 if  `var'==`k'
+  8.                                         local r60 = r(mean)
+  9.                                         
+.                                         * Mean risk of event at 80 days among age and sex group
+.                                         qui summ risk80 if  `var'==`k' 
+ 10.                                         local r80 = r(mean)
+ 11.                                                                                 
+.                                         post `temprf'  ("`var'") (`k') (`j') (`i') (`r30') (`r60') (`
+> r80')
+ 12.                                 }
+ 13.                         }
+ 14.                 }
+ 15.         }
+
+. 
+.         * Categorical risk factors
+.         local max_obese4cat                     = 4
+
+.         local max_smoke_nomiss                  = 3     
+
+.         local max_imd                                   = 5     
+
+.         local max_asthmacat                             = 3     
+
+.         local max_diabcat                               = 4     
+
+.         local max_cancer_exhaem_cat             = 4      
+
+.         local max_cancer_haem_cat               = 4 
+
+.         local max_reduced_kidney_function_cat = 3
+
+.                                         
+.         foreach var of varlist                                          ///
+>                                 obese4cat                                               ///
+>                                 smoke_nomiss                                    ///
+>                                 imd                                                     ///
+>                                 asthmacat                                               ///
+>                                 diabcat                                                 ///
+>                                 cancer_exhaem_cat                               ///
+>                                 cancer_haem_cat                                 ///
+>                                 reduced_kidney_function_cat    {
+  2.                                         
+.                 forvalues i = 1 (1) 6 {
+  3.                         forvalues j = 0 (1) 1 { 
+  4.                                 forvalues k = 1 (1) `max_`var'' {
+  5. 
+.                                         * Mean risk of event at 30 days among age and sex group
+.                                         qui summ risk30 if  `var'==`k' 
+  6.                                         local r30 = r(mean)             
+  7.                                         
+.                                         * Mean risk of event at 60 days among age and sex group
+.                                         qui summ risk60 if  `var'==`k' 
+  8.                                         local r60 = r(mean)                                     
+  9.                                         
+.                                         * Mean risk of event at 80 days among age and sex group
+.                                         qui summ risk80 if  `var'==`k'
+ 10.                                         local r80 = r(mean)
+ 11. 
+.                                         post `temprf'  ("`var'") (`k')  (`j') (`i') (`r30') (`r60') (
+> `r80')
+ 12.                                 }
+ 13.                         }
+ 14.                 }
