@@ -24,6 +24,14 @@ log using "./output/rp_parametric_survival_models_gamma", text replace
 use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 
 
+*************************************************
+*   Use a complete case analysis for ethnicity  *
+*************************************************
+
+drop if ethnicity>=.
+
+
+
 ********************************************
 *   Comorbidity counts for assessing risk  *
 ********************************************
@@ -129,24 +137,24 @@ replace _t = 60
 predict surv60, surv
 
 * Survival at 80 days
-replace _t = 60
+replace _t = 80
 predict surv80, surv
 replace _t = told
 
 * Absolute risk at 30, 60 and 80 days
 gen risk = 1-surv
-gen risk30 = 1-surv30
-gen risk60 = 1-surv60
-gen risk80 = 1-surv80
+gen risk30gamma = 1-surv30
+gen risk60gamma = 1-surv60
+gen risk80gamma = 1-surv80
 
 
 
 
 /*  Quantiles of predicted 30, 60 and 80 day risk   */
 
-centile risk30, c(20 40 60 80)
-centile risk60, c(20 40 60 80)
-centile risk80, c(20 40 60 80)
+centile risk30_gamma, c(10 20 30 40 50 60 70 80 90)
+centile risk60_gamma, c(10 20 30 40 50 60 70 80 90)
+centile risk80_gamma, c(10 20 30 40 50 60 70 80 90)
 
 
 
@@ -180,15 +188,15 @@ postfile `temprf' str30(rf) rfcat sex age risk30 risk60 risk80 using abs_risks_g
 				forvalues k = 0 (1) 1 {
 
 					* Mean risk of event at 30 days among age and sex group
-					qui summ risk30 if  `var'==`k'
+					qui summ risk30 if  `var'==`k' & agegroup==`i' & male==`j'
 					local r30 = r(mean)								
 					
 					* Mean risk of event at 60 days among age and sex group
-					qui summ risk60 if  `var'==`k'
+					qui summ risk60 if  `var'==`k' & agegroup==`i' & male==`j'
 					local r60 = r(mean)
 					
 					* Mean risk of event at 80 days among age and sex group
-					qui summ risk80 if  `var'==`k' 
+					qui summ risk80 if  `var'==`k' & agegroup==`i' & male==`j' 
 					local r80 = r(mean)
 										
 					post `temprf'  ("`var'") (`k') (`j') (`i') (`r30') (`r60') (`r80')
@@ -222,15 +230,15 @@ postfile `temprf' str30(rf) rfcat sex age risk30 risk60 risk80 using abs_risks_g
 				forvalues k = 1 (1) `max_`var'' {
 
 					* Mean risk of event at 30 days among age and sex group
-					qui summ risk30 if  `var'==`k' 
+					qui summ risk30 if  `var'==`k' & agegroup==`i' & male==`j'
 					local r30 = r(mean)		
 					
 					* Mean risk of event at 60 days among age and sex group
-					qui summ risk60 if  `var'==`k' 
+					qui summ risk60 if  `var'==`k' & agegroup==`i' & male==`j'
 					local r60 = r(mean)					
 					
 					* Mean risk of event at 80 days among age and sex group
-					qui summ risk80 if  `var'==`k'
+					qui summ risk80 if  `var'==`k' & agegroup==`i' & male==`j'
 					local r80 = r(mean)
 
 					post `temprf'  ("`var'") (`k')  (`j') (`i') (`r30') (`r60') (`r80')
@@ -249,17 +257,17 @@ postfile `temprf' str30(rf) rfcat sex age risk30 risk60 risk80 using abs_risks_g
 				forvalues l = 0 (1) 1 {
 
 					* Mean risk of event at 30 days among age and sex group
-					qui summ risk30 if  smoke_nomiss==`k' & comorbidity_any==`l'
+					qui summ risk30 if  smoke_nomiss==`k' & agegroup==`i' & male==`j' & comorbidity_any==`l'
 					local r30 = r(mean)
 					
-					* Mean risk of event at 80 days among age and sex group
-					qui summ risk80 if  smoke_nomiss==`k' & comorbidity_any==`l'
-					local r80 = r(mean)
-					
 					* Mean risk of event at 60 days among age and sex group
-					qui summ risk60 if smoke_nomiss==`k' & comorbidity_any==`l'
+					qui summ risk60 if smoke_nomiss==`k' & agegroup==`i' & male==`j' & comorbidity_any==`l'
 					local r60 = r(mean)
 					
+					* Mean risk of event at 80 days among age and sex group
+					qui summ risk80 if  smoke_nomiss==`k' & agegroup==`i' & male==`j' & comorbidity_any==`l'
+					local r80 = r(mean)
+									
 					post `temprf'  ("Smoking, comorb=`l'") (`k')  (`j') (`i') (`r30') (`r60') (`r80')
 				}
 			}
