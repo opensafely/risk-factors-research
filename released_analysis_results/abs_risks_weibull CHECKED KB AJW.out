@@ -1,0 +1,673 @@
+rf	rfcat	sex	age	risk28
+"htdiag_or_highbp"	0	0	1	.9999158
+"htdiag_or_highbp"	1	0	1	.9994269
+"htdiag_or_highbp"	0	1	1	.9999158
+"htdiag_or_highbp"	1	1	1	.9994269
+"htdiag_or_highbp"	0	0	2	.9999158
+"htdiag_or_highbp"	1	0	2	.9994269
+"htdiag_or_highbp"	0	1	2	.9999158
+"htdiag_or_highbp"	1	1	2	.9994269
+"htdiag_or_highbp"	0	0	3	.9999158
+"htdiag_or_highbp"	1	0	3	.9994269
+"htdiag_or_highbp"	0	1	3	.9999158
+"htdiag_or_highbp"	1	1	3	.9994269
+"htdiag_or_highbp"	0	0	4	.9999158
+"htdiag_or_highbp"	1	0	4	.9994269
+"htdiag_or_highbp"	0	1	4	.9999158
+"htdiag_or_highbp"	1	1	4	.9994269
+"htdiag_or_highbp"	0	0	5	.9999158
+"htdiag_or_highbp"	1	0	5	.9994269
+"htdiag_or_highbp"	0	1	5	.9999158
+"htdiag_or_highbp"	1	1	5	.9994269
+"htdiag_or_highbp"	0	0	6	.9999158
+"htdiag_or_highbp"	1	0	6	.9994269
+"htdiag_or_highbp"	0	1	6	.9999158
+"htdiag_or_highbp"	1	1	6	.9994269
+"respiratory_disease"	0	0	1	.9998106
+"respiratory_disease"	1	0	1	.9984126
+"respiratory_disease"	0	1	1	.9998106
+"respiratory_disease"	1	1	1	.9984126
+"respiratory_disease"	0	0	2	.9998106
+"respiratory_disease"	1	0	2	.9984126
+"respiratory_disease"	0	1	2	.9998106
+"respiratory_disease"	1	1	2	.9984126
+"respiratory_disease"	0	0	3	.9998106
+"respiratory_disease"	1	0	3	.9984126
+"respiratory_disease"	0	1	3	.9998106
+"respiratory_disease"	1	1	3	.9984126
+"respiratory_disease"	0	0	4	.9998106
+"respiratory_disease"	1	0	4	.9984126
+"respiratory_disease"	0	1	4	.9998106
+"respiratory_disease"	1	1	4	.9984126
+"respiratory_disease"	0	0	5	.9998106
+"respiratory_disease"	1	0	5	.9984126
+"respiratory_disease"	0	1	5	.9998106
+"respiratory_disease"	1	1	5	.9984126
+"respiratory_disease"	0	0	6	.9998106
+"respiratory_disease"	1	0	6	.9984126
+"respiratory_disease"	0	1	6	.9998106
+"respiratory_disease"	1	1	6	.9984126
+"cardiac_disease"	0	0	1	.9998492
+"cardiac_disease"	1	0	1	.9984831
+"cardiac_disease"	0	1	1	.9998492
+"cardiac_disease"	1	1	1	.9984831
+"cardiac_disease"	0	0	2	.9998492
+"cardiac_disease"	1	0	2	.9984831
+"cardiac_disease"	0	1	2	.9998492
+"cardiac_disease"	1	1	2	.9984831
+"cardiac_disease"	0	0	3	.9998492
+"cardiac_disease"	1	0	3	.9984831
+"cardiac_disease"	0	1	3	.9998492
+"cardiac_disease"	1	1	3	.9984831
+"cardiac_disease"	0	0	4	.9998492
+"cardiac_disease"	1	0	4	.9984831
+"cardiac_disease"	0	1	4	.9998492
+"cardiac_disease"	1	1	4	.9984831
+"cardiac_disease"	0	0	5	.9998492
+"cardiac_disease"	1	0	5	.9984831
+"cardiac_disease"	0	1	5	.9998492
+"cardiac_disease"	1	1	5	.9984831
+"cardiac_disease"	0	0	6	.9998492
+"cardiac_disease"	1	0	6	.9984831
+"cardiac_disease"	0	1	6	.9998492
+"cardiac_disease"	1	1	6	.9984831
+"chronic_liver_disease"	0	0	1	.9997454
+"chronic_liver_disease"	1	0	1	.9989874
+"chronic_liver_disease"	0	1	1	.9997454
+"chronic_liver_disease"	1	1	1	.9989874
+"chronic_liver_disease"	0	0	2	.9997454
+"chronic_liver_disease"	1	0	2	.9989874
+"chronic_liver_disease"	0	1	2	.9997454
+"chronic_liver_disease"	1	1	2	.9989874
+"chronic_liver_disease"	0	0	3	.9997454
+"chronic_liver_disease"	1	0	3	.9989874
+"chronic_liver_disease"	0	1	3	.9997454
+"chronic_liver_disease"	1	1	3	.9989874
+"chronic_liver_disease"	0	0	4	.9997454
+"chronic_liver_disease"	1	0	4	.9989874
+"chronic_liver_disease"	0	1	4	.9997454
+"chronic_liver_disease"	1	1	4	.9989874
+"chronic_liver_disease"	0	0	5	.9997454
+"chronic_liver_disease"	1	0	5	.9989874
+"chronic_liver_disease"	0	1	5	.9997454
+"chronic_liver_disease"	1	1	5	.9989874
+"chronic_liver_disease"	0	0	6	.9997454
+"chronic_liver_disease"	1	0	6	.9989874
+"chronic_liver_disease"	0	1	6	.9997454
+"chronic_liver_disease"	1	1	6	.9989874
+"stroke_dementia"	0	0	1	.999797
+"stroke_dementia"	1	0	1	.9977218
+"stroke_dementia"	0	1	1	.999797
+"stroke_dementia"	1	1	1	.9977218
+"stroke_dementia"	0	0	2	.999797
+"stroke_dementia"	1	0	2	.9977218
+"stroke_dementia"	0	1	2	.999797
+"stroke_dementia"	1	1	2	.9977218
+"stroke_dementia"	0	0	3	.999797
+"stroke_dementia"	1	0	3	.9977218
+"stroke_dementia"	0	1	3	.999797
+"stroke_dementia"	1	1	3	.9977218
+"stroke_dementia"	0	0	4	.999797
+"stroke_dementia"	1	0	4	.9977218
+"stroke_dementia"	0	1	4	.999797
+"stroke_dementia"	1	1	4	.9977218
+"stroke_dementia"	0	0	5	.999797
+"stroke_dementia"	1	0	5	.9977218
+"stroke_dementia"	0	1	5	.999797
+"stroke_dementia"	1	1	5	.9977218
+"stroke_dementia"	0	0	6	.999797
+"stroke_dementia"	1	0	6	.9977218
+"stroke_dementia"	0	1	6	.999797
+"stroke_dementia"	1	1	6	.9977218
+"other_neuro"	0	0	1	.9997543
+"other_neuro"	1	0	1	.9985107
+"other_neuro"	0	1	1	.9997543
+"other_neuro"	1	1	1	.9985107
+"other_neuro"	0	0	2	.9997543
+"other_neuro"	1	0	2	.9985107
+"other_neuro"	0	1	2	.9997543
+"other_neuro"	1	1	2	.9985107
+"other_neuro"	0	0	3	.9997543
+"other_neuro"	1	0	3	.9985107
+"other_neuro"	0	1	3	.9997543
+"other_neuro"	1	1	3	.9985107
+"other_neuro"	0	0	4	.9997543
+"other_neuro"	1	0	4	.9985107
+"other_neuro"	0	1	4	.9997543
+"other_neuro"	1	1	4	.9985107
+"other_neuro"	0	0	5	.9997543
+"other_neuro"	1	0	5	.9985107
+"other_neuro"	0	1	5	.9997543
+"other_neuro"	1	1	5	.9985107
+"other_neuro"	0	0	6	.9997543
+"other_neuro"	1	0	6	.9985107
+"other_neuro"	0	1	6	.9997543
+"other_neuro"	1	1	6	.9985107
+"organ_transplant"	0	0	1	.9997439
+"organ_transplant"	1	0	1	.9970401
+"organ_transplant"	0	1	1	.9997439
+"organ_transplant"	1	1	1	.9970401
+"organ_transplant"	0	0	2	.9997439
+"organ_transplant"	1	0	2	.9970401
+"organ_transplant"	0	1	2	.9997439
+"organ_transplant"	1	1	2	.9970401
+"organ_transplant"	0	0	3	.9997439
+"organ_transplant"	1	0	3	.9970401
+"organ_transplant"	0	1	3	.9997439
+"organ_transplant"	1	1	3	.9970401
+"organ_transplant"	0	0	4	.9997439
+"organ_transplant"	1	0	4	.9970401
+"organ_transplant"	0	1	4	.9997439
+"organ_transplant"	1	1	4	.9970401
+"organ_transplant"	0	0	5	.9997439
+"organ_transplant"	1	0	5	.9970401
+"organ_transplant"	0	1	5	.9997439
+"organ_transplant"	1	1	5	.9970401
+"organ_transplant"	0	0	6	.9997439
+"organ_transplant"	1	0	6	.9970401
+"organ_transplant"	0	1	6	.9997439
+"organ_transplant"	1	1	6	.9970401
+"spleen"	0	0	1	.9997405
+"spleen"	1	0	1	.9993317
+"spleen"	0	1	1	.9997405
+"spleen"	1	1	1	.9993317
+"spleen"	0	0	2	.9997405
+"spleen"	1	0	2	.9993317
+"spleen"	0	1	2	.9997405
+"spleen"	1	1	2	.9993317
+"spleen"	0	0	3	.9997405
+"spleen"	1	0	3	.9993317
+"spleen"	0	1	3	.9997405
+"spleen"	1	1	3	.9993317
+"spleen"	0	0	4	.9997405
+"spleen"	1	0	4	.9993317
+"spleen"	0	1	4	.9997405
+"spleen"	1	1	4	.9993317
+"spleen"	0	0	5	.9997405
+"spleen"	1	0	5	.9993317
+"spleen"	0	1	5	.9997405
+"spleen"	1	1	5	.9993317
+"spleen"	0	0	6	.9997405
+"spleen"	1	0	6	.9993317
+"spleen"	0	1	6	.9997405
+"spleen"	1	1	6	.9993317
+"ra_sle_psoriasis"	0	0	1	.9997505
+"ra_sle_psoriasis"	1	0	1	.999547
+"ra_sle_psoriasis"	0	1	1	.9997505
+"ra_sle_psoriasis"	1	1	1	.999547
+"ra_sle_psoriasis"	0	0	2	.9997505
+"ra_sle_psoriasis"	1	0	2	.999547
+"ra_sle_psoriasis"	0	1	2	.9997505
+"ra_sle_psoriasis"	1	1	2	.999547
+"ra_sle_psoriasis"	0	0	3	.9997505
+"ra_sle_psoriasis"	1	0	3	.999547
+"ra_sle_psoriasis"	0	1	3	.9997505
+"ra_sle_psoriasis"	1	1	3	.999547
+"ra_sle_psoriasis"	0	0	4	.9997505
+"ra_sle_psoriasis"	1	0	4	.999547
+"ra_sle_psoriasis"	0	1	4	.9997505
+"ra_sle_psoriasis"	1	1	4	.999547
+"ra_sle_psoriasis"	0	0	5	.9997505
+"ra_sle_psoriasis"	1	0	5	.999547
+"ra_sle_psoriasis"	0	1	5	.9997505
+"ra_sle_psoriasis"	1	1	5	.999547
+"ra_sle_psoriasis"	0	0	6	.9997505
+"ra_sle_psoriasis"	1	0	6	.999547
+"ra_sle_psoriasis"	0	1	6	.9997505
+"ra_sle_psoriasis"	1	1	6	.999547
+"immunosuppression"	0	0	1	.9997391
+"immunosuppression"	1	0	1	.9997769
+"immunosuppression"	0	1	1	.9997391
+"immunosuppression"	1	1	1	.9997769
+"immunosuppression"	0	0	2	.9997391
+"immunosuppression"	1	0	2	.9997769
+"immunosuppression"	0	1	2	.9997391
+"immunosuppression"	1	1	2	.9997769
+"immunosuppression"	0	0	3	.9997391
+"immunosuppression"	1	0	3	.9997769
+"immunosuppression"	0	1	3	.9997391
+"immunosuppression"	1	1	3	.9997769
+"immunosuppression"	0	0	4	.9997391
+"immunosuppression"	1	0	4	.9997769
+"immunosuppression"	0	1	4	.9997391
+"immunosuppression"	1	1	4	.9997769
+"immunosuppression"	0	0	5	.9997391
+"immunosuppression"	1	0	5	.9997769
+"immunosuppression"	0	1	5	.9997391
+"immunosuppression"	1	1	5	.9997769
+"immunosuppression"	0	0	6	.9997391
+"immunosuppression"	1	0	6	.9997769
+"immunosuppression"	0	1	6	.9997391
+"immunosuppression"	1	1	6	.9997769
+"obese4cat"	1	0	1	.9997816
+"obese4cat"	2	0	1	.999603
+"obese4cat"	3	0	1	.9996266
+"obese4cat"	4	0	1	.9995572
+"obese4cat"	1	1	1	.9997816
+"obese4cat"	2	1	1	.999603
+"obese4cat"	3	1	1	.9996266
+"obese4cat"	4	1	1	.9995572
+"obese4cat"	1	0	2	.9997816
+"obese4cat"	2	0	2	.999603
+"obese4cat"	3	0	2	.9996266
+"obese4cat"	4	0	2	.9995572
+"obese4cat"	1	1	2	.9997816
+"obese4cat"	2	1	2	.999603
+"obese4cat"	3	1	2	.9996266
+"obese4cat"	4	1	2	.9995572
+"obese4cat"	1	0	3	.9997816
+"obese4cat"	2	0	3	.999603
+"obese4cat"	3	0	3	.9996266
+"obese4cat"	4	0	3	.9995572
+"obese4cat"	1	1	3	.9997816
+"obese4cat"	2	1	3	.999603
+"obese4cat"	3	1	3	.9996266
+"obese4cat"	4	1	3	.9995572
+"obese4cat"	1	0	4	.9997816
+"obese4cat"	2	0	4	.999603
+"obese4cat"	3	0	4	.9996266
+"obese4cat"	4	0	4	.9995572
+"obese4cat"	1	1	4	.9997816
+"obese4cat"	2	1	4	.999603
+"obese4cat"	3	1	4	.9996266
+"obese4cat"	4	1	4	.9995572
+"obese4cat"	1	0	5	.9997816
+"obese4cat"	2	0	5	.999603
+"obese4cat"	3	0	5	.9996266
+"obese4cat"	4	0	5	.9995572
+"obese4cat"	1	1	5	.9997816
+"obese4cat"	2	1	5	.999603
+"obese4cat"	3	1	5	.9996266
+"obese4cat"	4	1	5	.9995572
+"obese4cat"	1	0	6	.9997816
+"obese4cat"	2	0	6	.999603
+"obese4cat"	3	0	6	.9996266
+"obese4cat"	4	0	6	.9995572
+"obese4cat"	1	1	6	.9997816
+"obese4cat"	2	1	6	.999603
+"obese4cat"	3	1	6	.9996266
+"obese4cat"	4	1	6	.9995572
+"smoke_nomiss"	1	0	1	.9998553
+"smoke_nomiss"	2	0	1	.9995021
+"smoke_nomiss"	3	0	1	.9999186
+"smoke_nomiss"	1	1	1	.9998553
+"smoke_nomiss"	2	1	1	.9995021
+"smoke_nomiss"	3	1	1	.9999186
+"smoke_nomiss"	1	0	2	.9998553
+"smoke_nomiss"	2	0	2	.9995021
+"smoke_nomiss"	3	0	2	.9999186
+"smoke_nomiss"	1	1	2	.9998553
+"smoke_nomiss"	2	1	2	.9995021
+"smoke_nomiss"	3	1	2	.9999186
+"smoke_nomiss"	1	0	3	.9998553
+"smoke_nomiss"	2	0	3	.9995021
+"smoke_nomiss"	3	0	3	.9999186
+"smoke_nomiss"	1	1	3	.9998553
+"smoke_nomiss"	2	1	3	.9995021
+"smoke_nomiss"	3	1	3	.9999186
+"smoke_nomiss"	1	0	4	.9998553
+"smoke_nomiss"	2	0	4	.9995021
+"smoke_nomiss"	3	0	4	.9999186
+"smoke_nomiss"	1	1	4	.9998553
+"smoke_nomiss"	2	1	4	.9995021
+"smoke_nomiss"	3	1	4	.9999186
+"smoke_nomiss"	1	0	5	.9998553
+"smoke_nomiss"	2	0	5	.9995021
+"smoke_nomiss"	3	0	5	.9999186
+"smoke_nomiss"	1	1	5	.9998553
+"smoke_nomiss"	2	1	5	.9995021
+"smoke_nomiss"	3	1	5	.9999186
+"smoke_nomiss"	1	0	6	.9998553
+"smoke_nomiss"	2	0	6	.9995021
+"smoke_nomiss"	3	0	6	.9999186
+"smoke_nomiss"	1	1	6	.9998553
+"smoke_nomiss"	2	1	6	.9995021
+"smoke_nomiss"	3	1	6	.9999186
+"imd"	1	0	1	.9998235
+"imd"	2	0	1	.9997861
+"imd"	3	0	1	.9997721
+"imd"	4	0	1	.9996793
+"imd"	5	0	1	.9996436
+"imd"	1	1	1	.9998235
+"imd"	2	1	1	.9997861
+"imd"	3	1	1	.9997721
+"imd"	4	1	1	.9996793
+"imd"	5	1	1	.9996436
+"imd"	1	0	2	.9998235
+"imd"	2	0	2	.9997861
+"imd"	3	0	2	.9997721
+"imd"	4	0	2	.9996793
+"imd"	5	0	2	.9996436
+"imd"	1	1	2	.9998235
+"imd"	2	1	2	.9997861
+"imd"	3	1	2	.9997721
+"imd"	4	1	2	.9996793
+"imd"	5	1	2	.9996436
+"imd"	1	0	3	.9998235
+"imd"	2	0	3	.9997861
+"imd"	3	0	3	.9997721
+"imd"	4	0	3	.9996793
+"imd"	5	0	3	.9996436
+"imd"	1	1	3	.9998235
+"imd"	2	1	3	.9997861
+"imd"	3	1	3	.9997721
+"imd"	4	1	3	.9996793
+"imd"	5	1	3	.9996436
+"imd"	1	0	4	.9998235
+"imd"	2	0	4	.9997861
+"imd"	3	0	4	.9997721
+"imd"	4	0	4	.9996793
+"imd"	5	0	4	.9996436
+"imd"	1	1	4	.9998235
+"imd"	2	1	4	.9997861
+"imd"	3	1	4	.9997721
+"imd"	4	1	4	.9996793
+"imd"	5	1	4	.9996436
+"imd"	1	0	5	.9998235
+"imd"	2	0	5	.9997861
+"imd"	3	0	5	.9997721
+"imd"	4	0	5	.9996793
+"imd"	5	0	5	.9996436
+"imd"	1	1	5	.9998235
+"imd"	2	1	5	.9997861
+"imd"	3	1	5	.9997721
+"imd"	4	1	5	.9996793
+"imd"	5	1	5	.9996436
+"imd"	1	0	6	.9998235
+"imd"	2	0	6	.9997861
+"imd"	3	0	6	.9997721
+"imd"	4	0	6	.9996793
+"imd"	5	0	6	.9996436
+"imd"	1	1	6	.9998235
+"imd"	2	1	6	.9997861
+"imd"	3	1	6	.9997721
+"imd"	4	1	6	.9996793
+"imd"	5	1	6	.9996436
+"asthmacat"	1	0	1	.999743
+"asthmacat"	2	0	1	.9997747
+"asthmacat"	3	0	1	.9993391
+"asthmacat"	1	1	1	.999743
+"asthmacat"	2	1	1	.9997747
+"asthmacat"	3	1	1	.9993391
+"asthmacat"	1	0	2	.999743
+"asthmacat"	2	0	2	.9997747
+"asthmacat"	3	0	2	.9993391
+"asthmacat"	1	1	2	.999743
+"asthmacat"	2	1	2	.9997747
+"asthmacat"	3	1	2	.9993391
+"asthmacat"	1	0	3	.999743
+"asthmacat"	2	0	3	.9997747
+"asthmacat"	3	0	3	.9993391
+"asthmacat"	1	1	3	.999743
+"asthmacat"	2	1	3	.9997747
+"asthmacat"	3	1	3	.9993391
+"asthmacat"	1	0	4	.999743
+"asthmacat"	2	0	4	.9997747
+"asthmacat"	3	0	4	.9993391
+"asthmacat"	1	1	4	.999743
+"asthmacat"	2	1	4	.9997747
+"asthmacat"	3	1	4	.9993391
+"asthmacat"	1	0	5	.999743
+"asthmacat"	2	0	5	.9997747
+"asthmacat"	3	0	5	.9993391
+"asthmacat"	1	1	5	.999743
+"asthmacat"	2	1	5	.9997747
+"asthmacat"	3	1	5	.9993391
+"asthmacat"	1	0	6	.999743
+"asthmacat"	2	0	6	.9997747
+"asthmacat"	3	0	6	.9993391
+"asthmacat"	1	1	6	.999743
+"asthmacat"	2	1	6	.9997747
+"asthmacat"	3	1	6	.9993391
+"diabcat"	1	0	1	.9998648
+"diabcat"	2	0	1	.9988988
+"diabcat"	3	0	1	.9985314
+"diabcat"	4	0	1	.9990351
+"diabcat"	1	1	1	.9998648
+"diabcat"	2	1	1	.9988988
+"diabcat"	3	1	1	.9985314
+"diabcat"	4	1	1	.9990351
+"diabcat"	1	0	2	.9998648
+"diabcat"	2	0	2	.9988988
+"diabcat"	3	0	2	.9985314
+"diabcat"	4	0	2	.9990351
+"diabcat"	1	1	2	.9998648
+"diabcat"	2	1	2	.9988988
+"diabcat"	3	1	2	.9985314
+"diabcat"	4	1	2	.9990351
+"diabcat"	1	0	3	.9998648
+"diabcat"	2	0	3	.9988988
+"diabcat"	3	0	3	.9985314
+"diabcat"	4	0	3	.9990351
+"diabcat"	1	1	3	.9998648
+"diabcat"	2	1	3	.9988988
+"diabcat"	3	1	3	.9985314
+"diabcat"	4	1	3	.9990351
+"diabcat"	1	0	4	.9998648
+"diabcat"	2	0	4	.9988988
+"diabcat"	3	0	4	.9985314
+"diabcat"	4	0	4	.9990351
+"diabcat"	1	1	4	.9998648
+"diabcat"	2	1	4	.9988988
+"diabcat"	3	1	4	.9985314
+"diabcat"	4	1	4	.9990351
+"diabcat"	1	0	5	.9998648
+"diabcat"	2	0	5	.9988988
+"diabcat"	3	0	5	.9985314
+"diabcat"	4	0	5	.9990351
+"diabcat"	1	1	5	.9998648
+"diabcat"	2	1	5	.9988988
+"diabcat"	3	1	5	.9985314
+"diabcat"	4	1	5	.9990351
+"diabcat"	1	0	6	.9998648
+"diabcat"	2	0	6	.9988988
+"diabcat"	3	0	6	.9985314
+"diabcat"	4	0	6	.9990351
+"diabcat"	1	1	6	.9998648
+"diabcat"	2	1	6	.9988988
+"diabcat"	3	1	6	.9985314
+"diabcat"	4	1	6	.9990351
+"cancer_exhaem_cat"	1	0	1	.9997756
+"cancer_exhaem_cat"	2	0	1	.998974
+"cancer_exhaem_cat"	3	0	1	.9991748
+"cancer_exhaem_cat"	4	0	1	.999101
+"cancer_exhaem_cat"	1	1	1	.9997756
+"cancer_exhaem_cat"	2	1	1	.998974
+"cancer_exhaem_cat"	3	1	1	.9991748
+"cancer_exhaem_cat"	4	1	1	.999101
+"cancer_exhaem_cat"	1	0	2	.9997756
+"cancer_exhaem_cat"	2	0	2	.998974
+"cancer_exhaem_cat"	3	0	2	.9991748
+"cancer_exhaem_cat"	4	0	2	.999101
+"cancer_exhaem_cat"	1	1	2	.9997756
+"cancer_exhaem_cat"	2	1	2	.998974
+"cancer_exhaem_cat"	3	1	2	.9991748
+"cancer_exhaem_cat"	4	1	2	.999101
+"cancer_exhaem_cat"	1	0	3	.9997756
+"cancer_exhaem_cat"	2	0	3	.998974
+"cancer_exhaem_cat"	3	0	3	.9991748
+"cancer_exhaem_cat"	4	0	3	.999101
+"cancer_exhaem_cat"	1	1	3	.9997756
+"cancer_exhaem_cat"	2	1	3	.998974
+"cancer_exhaem_cat"	3	1	3	.9991748
+"cancer_exhaem_cat"	4	1	3	.999101
+"cancer_exhaem_cat"	1	0	4	.9997756
+"cancer_exhaem_cat"	2	0	4	.998974
+"cancer_exhaem_cat"	3	0	4	.9991748
+"cancer_exhaem_cat"	4	0	4	.999101
+"cancer_exhaem_cat"	1	1	4	.9997756
+"cancer_exhaem_cat"	2	1	4	.998974
+"cancer_exhaem_cat"	3	1	4	.9991748
+"cancer_exhaem_cat"	4	1	4	.999101
+"cancer_exhaem_cat"	1	0	5	.9997756
+"cancer_exhaem_cat"	2	0	5	.998974
+"cancer_exhaem_cat"	3	0	5	.9991748
+"cancer_exhaem_cat"	4	0	5	.999101
+"cancer_exhaem_cat"	1	1	5	.9997756
+"cancer_exhaem_cat"	2	1	5	.998974
+"cancer_exhaem_cat"	3	1	5	.9991748
+"cancer_exhaem_cat"	4	1	5	.999101
+"cancer_exhaem_cat"	1	0	6	.9997756
+"cancer_exhaem_cat"	2	0	6	.998974
+"cancer_exhaem_cat"	3	0	6	.9991748
+"cancer_exhaem_cat"	4	0	6	.999101
+"cancer_exhaem_cat"	1	1	6	.9997756
+"cancer_exhaem_cat"	2	1	6	.998974
+"cancer_exhaem_cat"	3	1	6	.9991748
+"cancer_exhaem_cat"	4	1	6	.999101
+"cancer_haem_cat"	1	0	1	.9997536
+"cancer_haem_cat"	2	0	1	.9980483
+"cancer_haem_cat"	3	0	1	.9968053
+"cancer_haem_cat"	4	0	1	.998399
+"cancer_haem_cat"	1	1	1	.9997536
+"cancer_haem_cat"	2	1	1	.9980483
+"cancer_haem_cat"	3	1	1	.9968053
+"cancer_haem_cat"	4	1	1	.998399
+"cancer_haem_cat"	1	0	2	.9997536
+"cancer_haem_cat"	2	0	2	.9980483
+"cancer_haem_cat"	3	0	2	.9968053
+"cancer_haem_cat"	4	0	2	.998399
+"cancer_haem_cat"	1	1	2	.9997536
+"cancer_haem_cat"	2	1	2	.9980483
+"cancer_haem_cat"	3	1	2	.9968053
+"cancer_haem_cat"	4	1	2	.998399
+"cancer_haem_cat"	1	0	3	.9997536
+"cancer_haem_cat"	2	0	3	.9980483
+"cancer_haem_cat"	3	0	3	.9968053
+"cancer_haem_cat"	4	0	3	.998399
+"cancer_haem_cat"	1	1	3	.9997536
+"cancer_haem_cat"	2	1	3	.9980483
+"cancer_haem_cat"	3	1	3	.9968053
+"cancer_haem_cat"	4	1	3	.998399
+"cancer_haem_cat"	1	0	4	.9997536
+"cancer_haem_cat"	2	0	4	.9980483
+"cancer_haem_cat"	3	0	4	.9968053
+"cancer_haem_cat"	4	0	4	.998399
+"cancer_haem_cat"	1	1	4	.9997536
+"cancer_haem_cat"	2	1	4	.9980483
+"cancer_haem_cat"	3	1	4	.9968053
+"cancer_haem_cat"	4	1	4	.998399
+"cancer_haem_cat"	1	0	5	.9997536
+"cancer_haem_cat"	2	0	5	.9980483
+"cancer_haem_cat"	3	0	5	.9968053
+"cancer_haem_cat"	4	0	5	.998399
+"cancer_haem_cat"	1	1	5	.9997536
+"cancer_haem_cat"	2	1	5	.9980483
+"cancer_haem_cat"	3	1	5	.9968053
+"cancer_haem_cat"	4	1	5	.998399
+"cancer_haem_cat"	1	0	6	.9997536
+"cancer_haem_cat"	2	0	6	.9980483
+"cancer_haem_cat"	3	0	6	.9968053
+"cancer_haem_cat"	4	0	6	.998399
+"cancer_haem_cat"	1	1	6	.9997536
+"cancer_haem_cat"	2	1	6	.9980483
+"cancer_haem_cat"	3	1	6	.9968053
+"cancer_haem_cat"	4	1	6	.998399
+"red_kidney_cat"	1	0	1	.9998835
+"red_kidney_cat"	2	0	1	.9984617
+"red_kidney_cat"	3	0	1	.9941066
+"red_kidney_cat"	1	1	1	.9998835
+"red_kidney_cat"	2	1	1	.9984617
+"red_kidney_cat"	3	1	1	.9941066
+"red_kidney_cat"	1	0	2	.9998835
+"red_kidney_cat"	2	0	2	.9984617
+"red_kidney_cat"	3	0	2	.9941066
+"red_kidney_cat"	1	1	2	.9998835
+"red_kidney_cat"	2	1	2	.9984617
+"red_kidney_cat"	3	1	2	.9941066
+"red_kidney_cat"	1	0	3	.9998835
+"red_kidney_cat"	2	0	3	.9984617
+"red_kidney_cat"	3	0	3	.9941066
+"red_kidney_cat"	1	1	3	.9998835
+"red_kidney_cat"	2	1	3	.9984617
+"red_kidney_cat"	3	1	3	.9941066
+"red_kidney_cat"	1	0	4	.9998835
+"red_kidney_cat"	2	0	4	.9984617
+"red_kidney_cat"	3	0	4	.9941066
+"red_kidney_cat"	1	1	4	.9998835
+"red_kidney_cat"	2	1	4	.9984617
+"red_kidney_cat"	3	1	4	.9941066
+"red_kidney_cat"	1	0	5	.9998835
+"red_kidney_cat"	2	0	5	.9984617
+"red_kidney_cat"	3	0	5	.9941066
+"red_kidney_cat"	1	1	5	.9998835
+"red_kidney_cat"	2	1	5	.9984617
+"red_kidney_cat"	3	1	5	.9941066
+"red_kidney_cat"	1	0	6	.9998835
+"red_kidney_cat"	2	0	6	.9984617
+"red_kidney_cat"	3	0	6	.9941066
+"red_kidney_cat"	1	1	6	.9998835
+"red_kidney_cat"	2	1	6	.9984617
+"red_kidney_cat"	3	1	6	.9941066
+"Smoking, comorb=0"	1	0	1	.9999834
+"Smoking, comorb=1"	1	0	1	.9996765
+"Smoking, comorb=0"	2	0	1	.9999659
+"Smoking, comorb=1"	2	0	1	.9992192
+"Smoking, comorb=0"	3	0	1	.9999881
+"Smoking, comorb=1"	3	0	1	.9998255
+"Smoking, comorb=0"	1	1	1	.9999834
+"Smoking, comorb=1"	1	1	1	.9996765
+"Smoking, comorb=0"	2	1	1	.9999659
+"Smoking, comorb=1"	2	1	1	.9992192
+"Smoking, comorb=0"	3	1	1	.9999881
+"Smoking, comorb=1"	3	1	1	.9998255
+"Smoking, comorb=0"	1	0	2	.9999834
+"Smoking, comorb=1"	1	0	2	.9996765
+"Smoking, comorb=0"	2	0	2	.9999659
+"Smoking, comorb=1"	2	0	2	.9992192
+"Smoking, comorb=0"	3	0	2	.9999881
+"Smoking, comorb=1"	3	0	2	.9998255
+"Smoking, comorb=0"	1	1	2	.9999834
+"Smoking, comorb=1"	1	1	2	.9996765
+"Smoking, comorb=0"	2	1	2	.9999659
+"Smoking, comorb=1"	2	1	2	.9992192
+"Smoking, comorb=0"	3	1	2	.9999881
+"Smoking, comorb=1"	3	1	2	.9998255
+"Smoking, comorb=0"	1	0	3	.9999834
+"Smoking, comorb=1"	1	0	3	.9996765
+"Smoking, comorb=0"	2	0	3	.9999659
+"Smoking, comorb=1"	2	0	3	.9992192
+"Smoking, comorb=0"	3	0	3	.9999881
+"Smoking, comorb=1"	3	0	3	.9998255
+"Smoking, comorb=0"	1	1	3	.9999834
+"Smoking, comorb=1"	1	1	3	.9996765
+"Smoking, comorb=0"	2	1	3	.9999659
+"Smoking, comorb=1"	2	1	3	.9992192
+"Smoking, comorb=0"	3	1	3	.9999881
+"Smoking, comorb=1"	3	1	3	.9998255
+"Smoking, comorb=0"	1	0	4	.9999834
+"Smoking, comorb=1"	1	0	4	.9996765
+"Smoking, comorb=0"	2	0	4	.9999659
+"Smoking, comorb=1"	2	0	4	.9992192
+"Smoking, comorb=0"	3	0	4	.9999881
+"Smoking, comorb=1"	3	0	4	.9998255
+"Smoking, comorb=0"	1	1	4	.9999834
+"Smoking, comorb=1"	1	1	4	.9996765
+"Smoking, comorb=0"	2	1	4	.9999659
+"Smoking, comorb=1"	2	1	4	.9992192
+"Smoking, comorb=0"	3	1	4	.9999881
+"Smoking, comorb=1"	3	1	4	.9998255
+"Smoking, comorb=0"	1	0	5	.9999834
+"Smoking, comorb=1"	1	0	5	.9996765
+"Smoking, comorb=0"	2	0	5	.9999659
+"Smoking, comorb=1"	2	0	5	.9992192
+"Smoking, comorb=0"	3	0	5	.9999881
+"Smoking, comorb=1"	3	0	5	.9998255
+"Smoking, comorb=0"	1	1	5	.9999834
+"Smoking, comorb=1"	1	1	5	.9996765
+"Smoking, comorb=0"	2	1	5	.9999659
+"Smoking, comorb=1"	2	1	5	.9992192
+"Smoking, comorb=0"	3	1	5	.9999881
+"Smoking, comorb=1"	3	1	5	.9998255
+"Smoking, comorb=0"	1	0	6	.9999834
+"Smoking, comorb=1"	1	0	6	.9996765
+"Smoking, comorb=0"	2	0	6	.9999659
+"Smoking, comorb=1"	2	0	6	.9992192
+"Smoking, comorb=0"	3	0	6	.9999881
+"Smoking, comorb=1"	3	0	6	.9998255
+"Smoking, comorb=0"	1	1	6	.9999834
+"Smoking, comorb=1"	1	1	6	.9996765
+"Smoking, comorb=0"	2	1	6	.9999659
+"Smoking, comorb=1"	2	1	6	.9992192
+"Smoking, comorb=0"	3	1	6	.9999881
+"Smoking, comorb=1"	3	1	6	.9998255

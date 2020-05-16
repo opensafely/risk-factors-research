@@ -33,8 +33,8 @@ global sampling_frac `1'
 
 * Open a log file
 capture log close
-log using "./output/rp_logistic_regression_models", text replace
-cap erase ./output/models/rp_logistic_regression_models.ster
+log using "./output/rp_poisson_regression_models", text replace
+cap erase ./output/models/rp_poisson_regression_models.ster
 
 
 
