@@ -7,6 +7,7 @@ import pytest
 
 from tests.tpp_backend_setup import make_database, make_session
 from tests.tpp_backend_setup import (
+    Appointment,
     CodedEvent,
     CovidStatus,
     MedicationIssue,
@@ -18,13 +19,22 @@ from tests.tpp_backend_setup import (
     ICNARC,
     ONSDeaths,
     CPNS,
+    Vaccination,
+    VaccinationReference,
+    SGSS_Positive,
+    SGSS_Negative,
+    PotentialCareHomeAddress,
 )
 
-from datalab_cohorts import StudyDefinition
-from datalab_cohorts import patients
-from datalab_cohorts import codelist
-from datalab_cohorts import filter_codes_by_category
-from datalab_cohorts import quote
+from datalab_cohorts import (
+    StudyDefinition,
+    patients,
+    codelist,
+    filter_codes_by_category,
+    combine_codelists,
+    quote,
+    AppointmentStatus,
+)
 
 
 def setup_module(module):
@@ -40,10 +50,16 @@ def setup_function(function):
     session.query(ICNARC).delete()
     session.query(ONSDeaths).delete()
     session.query(CPNS).delete()
+    session.query(Vaccination).delete()
+    session.query(VaccinationReference).delete()
+    session.query(Appointment).delete()
+    session.query(SGSS_Positive).delete()
+    session.query(SGSS_Negative).delete()
     session.query(MedicationIssue).delete()
     session.query(MedicationDictionary).delete()
     session.query(RegistrationHistory).delete()
     session.query(Organisation).delete()
+    session.query(PotentialCareHomeAddress).delete()
     session.query(PatientAddress).delete()
     session.query(Patient).delete()
     session.commit()
@@ -255,8 +271,7 @@ def test_clinical_event_returning_first_date():
             between=["2001-12-01", "2002-06-01"],
             returning="date",
             find_first_match_in_period=True,
-            include_month=True,
-            include_day=True,
+            date_format="YYYY-MM-DD",
         ),
     )
     results = study.to_dicts()
@@ -281,8 +296,7 @@ def test_clinical_event_returning_last_date():
             between=["2001-12-01", "2002-06-01"],
             returning="date",
             find_last_match_in_period=True,
-            include_month=True,
-            include_day=True,
+            date_format="YYYY-MM-DD",
         ),
     )
     results = study.to_dicts()
@@ -315,7 +329,7 @@ def test_clinical_event_returning_year_and_month_only():
             codelist([condition_code], "ctv3"),
             returning="date",
             find_first_match_in_period=True,
-            include_month=True,
+            date_format="YYYY-MM",
         ),
     )
     results = study.to_dicts()
@@ -340,13 +354,12 @@ def test_clinical_event_with_count():
             between=["2001-12-01", "2002-06-01"],
             returning="number_of_matches_in_period",
             find_first_match_in_period=True,
-            include_date_of_match=True,
-            include_month=True,
         ),
+        asthma_count_date=patients.date_of("asthma_count", date_format="YYYY-MM"),
     )
     results = study.to_dicts()
     assert [x["asthma_count"] for x in results] == ["0", "3", "0"]
-    assert [x["asthma_count_first_date"] for x in results] == ["", "2002-01", ""]
+    assert [x["asthma_count_date"] for x in results] == ["", "2002-01", ""]
 
 
 def test_clinical_event_with_code():
@@ -367,12 +380,13 @@ def test_clinical_event_with_code():
             between=["2001-12-01", "2002-06-01"],
             returning="code",
             find_last_match_in_period=True,
-            include_date_of_match=True,
-            include_month=True,
+        ),
+        latest_asthma_code_date=patients.date_of(
+            "latest_asthma_code", date_format="YYYY-MM"
         ),
     )
     results = study.to_dicts()
-    assert [x["latest_asthma_code"] for x in results] == ["0", condition_code, "0"]
+    assert [x["latest_asthma_code"] for x in results] == ["", condition_code, ""]
     assert [x["latest_asthma_code_date"] for x in results] == ["", "2002-06", ""]
 
 
@@ -399,9 +413,8 @@ def test_clinical_event_with_numeric_value():
             between=["2001-12-01", "2002-06-01"],
             returning="numeric_value",
             find_first_match_in_period=True,
-            include_date_of_match=True,
-            include_month=True,
         ),
+        asthma_value_date=patients.date_of("asthma_value", date_format="YYYY-MM"),
     )
     results = study.to_dicts()
     assert [x["asthma_value"] for x in results] == ["0.0", "2.0", "0.0"]
@@ -429,11 +442,9 @@ def test_clinical_event_with_category():
     study = StudyDefinition(
         population=patients.all(),
         code_category=patients.with_these_clinical_events(
-            codes,
-            returning="category",
-            find_last_match_in_period=True,
-            include_date_of_match=True,
+            codes, returning="category", find_last_match_in_period=True
         ),
+        code_category_date=patients.date_of("code_category"),
     )
     results = study.to_dicts()
     assert [x["code_category"] for x in results] == ["", "B", "C"]
@@ -521,23 +532,22 @@ def test_simple_bmi(include_dates):
 
     if include_dates == "none":
         bmi_date = None
-        bmi_kwargs = {}
+        date_query = None
     elif include_dates == "year":
         bmi_date = "2002"
-        bmi_kwargs = dict(include_measurement_date=True)
+        date_query = patients.date_of("BMI")
     elif include_dates == "month":
         bmi_date = "2002-06"
-        bmi_kwargs = dict(include_measurement_date=True, include_month=True)
+        date_query = patients.date_of("BMI", date_format="YYYY-MM")
     elif include_dates == "day":
         bmi_date = "2002-06-01"
-        bmi_kwargs = dict(
-            include_measurement_date=True, include_month=True, include_day=True
-        )
+        date_query = patients.date_of("BMI", date_format="YYYY-MM-DD")
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1995-01-01", on_or_before="2005-01-01", **bmi_kwargs
+            on_or_after="1995-01-01", on_or_before="2005-01-01"
         ),
+        **dict(BMI_date_measured=date_query) if date_query else {}
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.5"]
@@ -564,12 +574,8 @@ def test_bmi_rounded():
 
     study = StudyDefinition(
         population=patients.all(),
-        BMI=patients.most_recent_bmi(
-            "2005-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
-        ),
+        BMI=patients.most_recent_bmi("2005-01-01",),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.1"]
@@ -595,12 +601,9 @@ def test_bmi_with_zero_values():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1995-01-01",
-            on_or_before="2005-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="1995-01-01", on_or_before="2005-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.0"]
@@ -626,12 +629,9 @@ def test_explicit_bmi_fallback():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1995-01-01",
-            on_or_before="2005-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="1995-01-01", on_or_before="2005-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["99.0"]
@@ -653,12 +653,9 @@ def test_no_bmi_when_old_date():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1995-01-01",
-            on_or_before="2005-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="1995-01-01", on_or_before="2005-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.0"]
@@ -680,12 +677,9 @@ def test_no_bmi_when_measurements_of_child():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1995-01-01",
-            on_or_before="2005-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="1995-01-01", on_or_before="2005-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.0"]
@@ -707,12 +701,9 @@ def test_no_bmi_when_measurement_after_reference_date():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="1990-01-01",
-            on_or_before="2000-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="1990-01-01", on_or_before="2000-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.0"]
@@ -742,12 +733,9 @@ def test_bmi_when_only_some_measurements_of_child():
     study = StudyDefinition(
         population=patients.all(),
         BMI=patients.most_recent_bmi(
-            on_or_after="2005-01-01",
-            on_or_before="2015-01-01",
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+            on_or_after="2005-01-01", on_or_before="2015-01-01",
         ),
+        BMI_date_measured=patients.date_of("BMI", date_format="YYYY-MM-DD"),
     )
     results = study.to_dicts()
     assert [x["BMI"] for x in results] == ["0.5"]
@@ -782,9 +770,9 @@ def test_mean_recorded_value():
             codelist([code], system="ctv3"),
             on_most_recent_day_of_measurement=True,
             between=["2018-01-01", "2020-03-01"],
-            include_measurement_date=True,
-            include_month=True,
-            include_day=True,
+        ),
+        bp_systolic_date_measured=patients.date_of(
+            "bp_systolic", date_format="YYYY-MM-DD"
         ),
     )
     results = study.to_dicts()
@@ -803,8 +791,7 @@ def test_patient_random_sample():
     study = StudyDefinition(population=patients.random_sample(percent=20))
     results = study.to_dicts()
     # The method is approximate!
-    expected = sample_size * 0.2
-    assert abs(len(results) - expected) < (expected * 0.1)
+    assert len(results) < (sample_size / 2)
 
 
 def test_patients_satisfying():
@@ -904,6 +891,12 @@ def test_patients_categorised_as():
                     CodedEvent(CTV3Code="foo3", ConsultationDate="2000-01-01")
                 ],
             ),
+            Patient(
+                Sex="F",
+                CodedEvents=[
+                    CodedEvent(CTV3Code="bar1", ConsultationDate="2000-01-01"),
+                ],
+            ),
         ]
     )
     session.commit()
@@ -913,7 +906,7 @@ def test_patients_categorised_as():
         population=patients.all(),
         category=patients.categorised_as(
             {
-                "W": "foo_category = 'B' AND female_with_bar",
+                "W": "(foo_category = 'B' OR NOT foo_category) AND female_with_bar",
                 "X": "sex = 'F' AND (foo_category = 'B' OR foo_category = 'C')",
                 "Y": "sex = 'M' AND foo_category = 'A'",
                 "Z": "DEFAULT",
@@ -929,7 +922,7 @@ def test_patients_categorised_as():
         ),
     )
     results = study.to_dicts()
-    assert [x["category"] for x in results] == ["Y", "W", "Z", "X"]
+    assert [x["category"] for x in results] == ["Y", "W", "Z", "X", "W"]
     # Assert that internal columns do not appear
     assert "foo_category" not in results[0].keys()
     assert "female_with_bar" not in results[0].keys()
@@ -1066,6 +1059,95 @@ def test_patients_address_as_of():
     results = study.to_dicts()
     assert [i["imd"] for i in results] == ["300", "0", "0"]
     assert [i["rural_urban"] for i in results] == ["2", "0", "0"]
+
+
+def test_patients_care_home_status_as_of():
+    session = make_session()
+    session.add_all(
+        [
+            # Was in care home but no longer
+            Patient(
+                Addresses=[
+                    PatientAddress(
+                        StartDate="2010-01-01",
+                        EndDate="2015-01-01",
+                        PotentialCareHomeAddress=[PotentialCareHomeAddress()],
+                    ),
+                    PatientAddress(StartDate="2015-01-01", EndDate="9999-01-01"),
+                ]
+            ),
+            # Currently in non-nursing care home
+            Patient(
+                Addresses=[
+                    PatientAddress(
+                        StartDate="2015-01-01",
+                        EndDate="9999-01-01",
+                        PotentialCareHomeAddress=[
+                            PotentialCareHomeAddress(
+                                LocationRequiresNursing="N",
+                                LocationDoesNotRequireNursing="Y",
+                            )
+                        ],
+                    ),
+                ]
+            ),
+            # Currently in nursing home
+            Patient(
+                Addresses=[
+                    PatientAddress(
+                        StartDate="2015-01-01",
+                        EndDate="9999-01-01",
+                        PotentialCareHomeAddress=[
+                            PotentialCareHomeAddress(
+                                LocationRequiresNursing="Y",
+                                LocationDoesNotRequireNursing="N",
+                            )
+                        ],
+                    ),
+                ]
+            ),
+            # Currently in a schrodin-home which both does and does not require nursing
+            Patient(
+                Addresses=[
+                    PatientAddress(
+                        StartDate="2015-01-01",
+                        EndDate="9999-01-01",
+                        PotentialCareHomeAddress=[
+                            PotentialCareHomeAddress(
+                                LocationRequiresNursing="Y",
+                                LocationDoesNotRequireNursing="Y",
+                            )
+                        ],
+                    ),
+                ]
+            ),
+        ]
+    )
+    session.commit()
+    study = StudyDefinition(
+        population=patients.all(),
+        is_in_care_home=patients.care_home_status_as_of("2020-01-01"),
+        care_home_type=patients.care_home_status_as_of(
+            "2020-01-01",
+            categorised_as={
+                "PC": """
+                  IsPotentialCareHome
+                  AND LocationDoesNotRequireNursing='Y'
+                  AND LocationRequiresNursing='N'
+                """,
+                "PN": """
+                  IsPotentialCareHome
+                  AND LocationDoesNotRequireNursing='N'
+                  AND LocationRequiresNursing='Y'
+                """,
+                "PS": "IsPotentialCareHome",
+                "U": "DEFAULT",
+            },
+        ),
+    )
+    results = study.to_dicts()
+    assert [i["is_in_care_home"] for i in results] == ["0", "1", "1", "1"]
+    assert [i["care_home_type"] for i in results] == ["U", "PC", "PN", "PS"]
 
 
 def test_patients_admitted_to_icu():
@@ -1211,8 +1293,7 @@ def test_patients_with_these_codes_on_death_certificate():
             on_or_before="2020-06-01",
             match_only_underlying_cause=False,
             returning="date_of_death",
-            include_month=True,
-            include_day=True,
+            date_format="YYYY-MM-DD",
         ),
     )
     results = study.to_dicts()
@@ -1240,8 +1321,7 @@ def test_patients_died_from_any_cause():
         date_died=patients.died_from_any_cause(
             on_or_before="2020-06-01",
             returning="date_of_death",
-            include_month=True,
-            include_day=True,
+            date_format="YYYY-MM-DD",
         ),
     )
     results = study.to_dicts()
@@ -1273,8 +1353,7 @@ def test_patients_with_death_recorded_in_cpns():
         cpns_death_date=patients.with_death_recorded_in_cpns(
             on_or_before="2020-06-01",
             returning="date_of_death",
-            include_month=True,
-            include_day=True,
+            date_format="YYYY-MM-DD",
         ),
     )
     results = study.to_dicts()
@@ -1411,184 +1490,6 @@ def test_recursive_definitions_produce_errors():
             that=patients.satisfying("this = 1"),
         )
 
-## Pandas import specification tests
-
-
-def _converters_to_names(kwargs_dict):
-    converters = kwargs_dict.pop("converters")
-    converters_with_names = {}
-    if converters:
-        for k, v in converters.items():
-            converters_with_names[k] = v.__name__
-    kwargs_dict["converters"] = converters_with_names
-    return kwargs_dict
-
-
-def test_age_dtype_generation():
-    study = StudyDefinition(
-        # This line defines the study population
-        population=patients.all(),
-        age=patients.age_as_of("2020-02-01"),
-    )
-    result = study.pandas_csv_args
-    assert result == {"dtype": {"age": "int"}, "converters": {}, "parse_dates": []}
-
-
-def test_address_dtype_generation():
-    study = StudyDefinition(
-        # This line defines the study population
-        population=patients.all(),
-        rural_urban=patients.address_as_of(
-            "2020-02-01", returning="rural_urban_classification"
-        ),
-    )
-    result = study.pandas_csv_args
-    assert result == {
-        "converters": {},
-        "dtype": {"rural_urban": "category"},
-        "parse_dates": [],
-    }
-
-
-def test_sex_dtype_generation():
-    study = StudyDefinition(population=patients.all(), sex=patients.sex())
-    result = study.pandas_csv_args
-    assert result == {"dtype": {"sex": "category"}, "converters": {}, "parse_dates": []}
-
-
-def test_clinical_events_with_date_dtype_generation():
-    test_codelist = codelist(["X"], system="ctv3")
-    study = StudyDefinition(
-        population=patients.all(),
-        diabetes=patients.with_these_clinical_events(
-            test_codelist, return_first_date_in_period=True, include_month=True
-        ),
-    )
-
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"diabetes": "add_day_to_date"},
-        "dtype": {},
-        "parse_dates": ["diabetes"],
-    }
-
-
-def test_clinical_events_with_year_date_dtype_generation():
-    test_codelist = codelist(["X"], system="ctv3")
-    study = StudyDefinition(
-        population=patients.all(),
-        diabetes=patients.with_these_clinical_events(test_codelist, returning="date"),
-    )
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"diabetes": "add_month_and_day_to_date"},
-        "dtype": {},
-        "parse_dates": ["diabetes"],
-    }
-
-
-def test_categorical_clinical_events_with_date_dtype_generation():
-    categorised_codelist = codelist([("X", "Y")], system="ctv3")
-    categorised_codelist.has_categories = True
-    study = StudyDefinition(
-        population=patients.all(),
-        ethnicity=patients.with_these_clinical_events(
-            categorised_codelist,
-            returning="category",
-            find_last_match_in_period=True,
-            include_date_of_match=True,
-        ),
-    )
-
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"ethnicity_date": "add_month_and_day_to_date"},
-        "dtype": {"ethnicity": "category"},
-        "parse_dates": ["ethnicity_date"],
-    }
-
-
-def test_categorical_clinical_events_without_date_dtype_generation():
-    categorised_codelist = codelist([("X", "Y")], system="ctv3")
-    categorised_codelist.has_categories = True
-    study = StudyDefinition(
-        population=patients.all(),
-        ethnicity=patients.with_these_clinical_events(
-            categorised_codelist,
-            returning="category",
-            find_last_match_in_period=True,
-            include_date_of_match=False,
-        ),
-    )
-
-    result = study.pandas_csv_args
-    assert result == {
-        "converters": {},
-        "dtype": {"ethnicity": "category"},
-        "parse_dates": [],
-    }
-
-
-def test_bmi_dtype_generation():
-    categorised_codelist = codelist([("X", "Y")], system="ctv3")
-    categorised_codelist.has_categories = True
-    study = StudyDefinition(
-        population=patients.all(),
-        bmi=patients.most_recent_bmi(
-            on_or_after="2010-02-01",
-            minimum_age_at_measurement=16,
-            include_measurement_date=True,
-            include_month=True,
-        ),
-    )
-
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"bmi_date_measured": "add_day_to_date"},
-        "dtype": {"bmi": "float"},
-        "parse_dates": ["bmi_date_measured"],
-    }
-
-
-def test_clinical_events_numeric_value_dtype_generation():
-    test_codelist = codelist(["X"], system="ctv3")
-    study = StudyDefinition(
-        population=patients.all(),
-        creatinine=patients.with_these_clinical_events(
-            test_codelist,
-            find_last_match_in_period=True,
-            on_or_before="2020-02-01",
-            returning="numeric_value",
-            include_date_of_match=True,
-            include_month=True,
-        ),
-    )
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"creatinine_date": "add_day_to_date"},
-        "dtype": {"creatinine": "float"},
-        "parse_dates": ["creatinine_date"],
-    }
-
-
-def test_mean_recorded_value_dtype_generation():
-    test_codelist = codelist(["X"], system="ctv3")
-    study = StudyDefinition(
-        population=patients.all(),
-        bp_sys=patients.mean_recorded_value(
-            test_codelist,
-            on_most_recent_day_of_measurement=True,
-            on_or_before="2020-02-01",
-            include_measurement_date=True,
-            include_month=True,
-        ),
-    )
-    result = _converters_to_names(study.pandas_csv_args)
-    assert result == {
-        "converters": {"bp_sys_date_measured": "add_day_to_date"},
-        "dtype": {"bp_sys": "float"},
-        "parse_dates": ["bp_sys_date_measured"],
-    }
 
 def test_using_expression_in_population_definition():
     session = make_session()
@@ -1626,7 +1527,7 @@ def test_using_expression_in_population_definition():
     results = study.to_dicts()
     assert results[0].keys() == {"patient_id", "age"}
     assert [i["age"] for i in results] == ["50"]
-    
+
 
 def test_quote():
     with pytest.raises(ValueError):
@@ -1637,3 +1538,416 @@ def test_quote():
     assert quote(0.1) == "0.1"
     assert quote("foo") == "'foo'"
 
+
+def test_number_of_episodes():
+    session = make_session()
+    session.add_all(
+        [
+            Patient(
+                CodedEvents=[
+                    CodedEvent(CTV3Code="foo1", ConsultationDate="2010-01-01"),
+                    # Throw in some irrelevant events
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2010-01-02"),
+                    CodedEvent(CTV3Code="mto2", ConsultationDate="2010-01-03"),
+                    # These two should be merged in to the previous event
+                    # because there's not more than 14 days between them
+                    CodedEvent(CTV3Code="foo2", ConsultationDate="2010-01-14"),
+                    CodedEvent(CTV3Code="foo3", ConsultationDate="2010-01-20"),
+                    # This is just outside the limit so should count as another event
+                    CodedEvent(CTV3Code="foo1", ConsultationDate="2010-02-04"),
+                    # This shouldn't count because there's an "ignore" event on
+                    # the same day (though at a different time)
+                    CodedEvent(CTV3Code="foo1", ConsultationDate="2012-01-01T10:45:00"),
+                    CodedEvent(CTV3Code="bar2", ConsultationDate="2012-01-01T16:10:00"),
+                    # This should be another episode
+                    CodedEvent(CTV3Code="foo1", ConsultationDate="2015-03-05"),
+                    # This "ignore" event should have no effect because it occurs
+                    # on a different day
+                    CodedEvent(CTV3Code="bar1", ConsultationDate="2015-03-06"),
+                    # This is after the time limit and so shouldn't count
+                    CodedEvent(CTV3Code="foo1", ConsultationDate="2020-02-05"),
+                ]
+            ),
+            # This patient doesn't have any relevant events
+            Patient(
+                CodedEvents=[
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2010-01-01"),
+                    CodedEvent(CTV3Code="mto2", ConsultationDate="2010-01-14"),
+                    CodedEvent(CTV3Code="mto3", ConsultationDate="2010-01-20"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2010-02-04"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2012-01-01T10:45:00"),
+                    CodedEvent(CTV3Code="mtr2", ConsultationDate="2012-01-01T16:10:00"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2015-03-05"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2020-02-05"),
+                ]
+            ),
+        ]
+    )
+    session.commit()
+    foo_codes = codelist(["foo1", "foo2", "foo3"], "ctv3")
+    bar_codes = codelist(["bar1", "bar2"], "ctv3")
+    study = StudyDefinition(
+        population=patients.all(),
+        episode_count=patients.with_these_clinical_events(
+            foo_codes,
+            on_or_before="2020-01-01",
+            ignore_days_where_these_codes_occur=bar_codes,
+            returning="number_of_episodes",
+            episode_defined_as="series of events each <= 14 days apart",
+        ),
+    )
+    results = study.to_dicts()
+    assert [i["episode_count"] for i in results] == ["3", "0"]
+
+
+def test_number_of_episodes_for_medications():
+    oral_steriod = MedicationDictionary(
+        FullName="Oral Steroid", DMD_ID="ab12", MultilexDrug_ID="1"
+    )
+    other_drug = MedicationDictionary(
+        FullName="Other Drug", DMD_ID="cd34", MultilexDrug_ID="2"
+    )
+    session = make_session()
+    session.add_all(
+        [
+            Patient(
+                MedicationIssues=[
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2010-01-01"
+                    ),
+                    # Throw in some irrelevant prescriptions
+                    MedicationIssue(
+                        MedicationDictionary=other_drug, ConsultationDate="2010-01-02"
+                    ),
+                    MedicationIssue(
+                        MedicationDictionary=other_drug, ConsultationDate="2010-01-03"
+                    ),
+                    # These two should be merged in to the previous event
+                    # because there's not more than 14 days between them
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2010-01-14"
+                    ),
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2010-01-20"
+                    ),
+                    # This is just outside the limit so should count as another event
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2010-02-04"
+                    ),
+                    # This shouldn't count because there's an "ignore" event on
+                    # the same day (though at a different time)
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod,
+                        ConsultationDate="2012-01-01T10:45:00",
+                    ),
+                    # This should be another episode
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2015-03-05"
+                    ),
+                    # This is after the time limit and so shouldn't count
+                    MedicationIssue(
+                        MedicationDictionary=oral_steriod, ConsultationDate="2020-02-05"
+                    ),
+                ],
+                CodedEvents=[
+                    # This "ignore" event should cause us to skip one of the
+                    # meds issues above
+                    CodedEvent(CTV3Code="bar2", ConsultationDate="2012-01-01T16:10:00"),
+                    # This "ignore" event should have no effect because it
+                    # doesn't occur on the same day as any meds issue
+                    CodedEvent(CTV3Code="bar1", ConsultationDate="2015-03-06"),
+                ],
+            ),
+            # This patient doesn't have any relevant events or prescriptions
+            Patient(
+                MedicationIssues=[
+                    MedicationIssue(
+                        MedicationDictionary=other_drug, ConsultationDate="2010-01-02"
+                    ),
+                    MedicationIssue(
+                        MedicationDictionary=other_drug, ConsultationDate="2010-01-03"
+                    ),
+                ],
+                CodedEvents=[
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2010-02-04"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2012-01-01T10:45:00"),
+                    CodedEvent(CTV3Code="mtr2", ConsultationDate="2012-01-01T16:10:00"),
+                    CodedEvent(CTV3Code="mto1", ConsultationDate="2015-03-05"),
+                ],
+            ),
+        ]
+    )
+    session.commit()
+    foo_codes = codelist(["ab12"], "snomed")
+    bar_codes = codelist(["bar1", "bar2"], "ctv3")
+    study = StudyDefinition(
+        population=patients.all(),
+        episode_count=patients.with_these_medications(
+            foo_codes,
+            on_or_before="2020-01-01",
+            ignore_days_where_these_clinical_codes_occur=bar_codes,
+            returning="number_of_episodes",
+            episode_defined_as="series of events each <= 14 days apart",
+        ),
+    )
+    results = study.to_dicts()
+    assert [i["episode_count"] for i in results] == ["3", "0"]
+
+
+def test_patients_with_tpp_vaccination_record():
+    session = make_session()
+    vaccines = [
+        (1, "Hepatyrix", ["TYPHOID", "HEPATITIS A"]),
+        (2, "Madeva", ["INFLUENZA"]),
+        (3, "Optaflu", ["INFLUENZA"]),
+    ]
+    ids = {}
+    for name_id, name, contents in vaccines:
+        ids[name] = name_id
+        for content in contents:
+            session.add(
+                VaccinationReference(
+                    VaccinationName=name,
+                    VaccinationName_ID=name_id,
+                    VaccinationContent=content,
+                )
+            )
+    session.add_all(
+        [
+            Patient(
+                Vaccinations=[
+                    Vaccination(
+                        VaccinationName_ID=ids["Hepatyrix"],
+                        VaccinationDate="2010-01-01",
+                    ),
+                    Vaccination(
+                        VaccinationName_ID=ids["Optaflu"], VaccinationDate="2014-01-01"
+                    ),
+                ]
+            ),
+            Patient(
+                Vaccinations=[
+                    Vaccination(
+                        VaccinationName_ID=ids["Madeva"], VaccinationDate="2013-01-01"
+                    ),
+                    Vaccination(
+                        VaccinationName_ID=ids["Hepatyrix"],
+                        VaccinationDate="2015-01-01",
+                    ),
+                ]
+            ),
+        ]
+    )
+    session.commit()
+
+    study = StudyDefinition(
+        population=patients.all(),
+        value=patients.with_tpp_vaccination_record(
+            target_disease_matches="TYPHOID", on_or_after="2012-01-01",
+        ),
+        date=patients.date_of("value"),
+    )
+    results = study.to_dicts()
+    assert [i["value"] for i in results] == ["0", "1"]
+    assert [i["date"] for i in results] == ["", "2015"]
+
+    study = StudyDefinition(
+        population=patients.all(),
+        value=patients.with_tpp_vaccination_record(
+            target_disease_matches="INFLUENZA",
+            on_or_after="2012-01-01",
+            find_last_match_in_period=True,
+            returning="date",
+        ),
+    )
+    assert [i["value"] for i in study.to_dicts()] == ["2014", "2013"]
+
+    study = StudyDefinition(
+        population=patients.all(),
+        value=patients.with_tpp_vaccination_record(
+            product_name_matches=["Madeva", "Hepatyrix"],
+            find_first_match_in_period=True,
+            returning="date",
+        ),
+    )
+    assert [i["value"] for i in study.to_dicts()] == ["2010", "2013"]
+
+
+def test_patients_with_gp_consultations():
+    session = make_session()
+    session.add_all(
+        [
+            Patient(
+                RegistrationHistory=[
+                    RegistrationHistory(StartDate="2014-01-01", EndDate="2020-05-01")
+                ],
+                Appointments=[
+                    # Before period starts
+                    Appointment(
+                        SeenDate="2009-01-01", Status=AppointmentStatus.FINISHED
+                    ),
+                    # After period ends
+                    Appointment(
+                        SeenDate="2020-02-01", Status=AppointmentStatus.FINISHED
+                    ),
+                ],
+            ),
+            Patient(
+                RegistrationHistory=[
+                    RegistrationHistory(StartDate="2001-01-01", EndDate="2016-01-01")
+                ],
+                Appointments=[
+                    Appointment(
+                        SeenDate="2011-01-01", Status=AppointmentStatus.FINISHED
+                    ),
+                    # Should not be counted
+                    Appointment(
+                        SeenDate="2012-01-01", Status=AppointmentStatus.DID_NOT_ATTEND
+                    ),
+                    Appointment(
+                        SeenDate="2013-01-01", Status=AppointmentStatus.FINISHED
+                    ),
+                ],
+            ),
+        ]
+    )
+    session.commit()
+    study = StudyDefinition(
+        population=patients.all(),
+        consultation_count=patients.with_gp_consultations(
+            between=["2010-01-01", "2015-01-01"],
+            find_last_match_in_period=True,
+            returning="number_of_matches_in_period",
+        ),
+        latest_consultation_date=patients.date_of(
+            "consultation_count", date_format="YYYY-MM"
+        ),
+        has_history=patients.with_complete_gp_consultation_history_between(
+            "2010-01-01", "2015-01-01"
+        ),
+    )
+    results = study.to_dicts()
+    assert [x["latest_consultation_date"] for x in results] == ["", "2013-01"]
+    assert [x["consultation_count"] for x in results] == ["0", "2"]
+    assert [x["has_history"] for x in results] == ["0", "1"]
+
+
+def test_patients_with_test_result_in_sgss():
+    session = make_session()
+    session.add_all(
+        [
+            Patient(
+                SGSS_Positives=[
+                    SGSS_Positive(Earliest_Specimen_Date="2020-05-15"),
+                    SGSS_Positive(Earliest_Specimen_Date="2020-05-20"),
+                ],
+            ),
+            Patient(
+                SGSS_Negatives=[SGSS_Negative(Earliest_Specimen_Date="2020-04-01")],
+                SGSS_Positives=[SGSS_Positive(Earliest_Specimen_Date="2020-04-20")],
+            ),
+            Patient(
+                SGSS_Negatives=[SGSS_Negative(Earliest_Specimen_Date="2020-04-01")],
+            ),
+            Patient(),
+        ]
+    )
+    session.commit()
+    study = StudyDefinition(
+        population=patients.all(),
+        positive_covid_test_ever=patients.with_test_result_in_sgss(
+            pathogen="SARS-CoV-2", test_result="positive",
+        ),
+        negative_covid_test_ever=patients.with_test_result_in_sgss(
+            pathogen="SARS-CoV-2", test_result="negative",
+        ),
+        tested_before_may=patients.with_test_result_in_sgss(
+            pathogen="SARS-CoV-2", test_result="any", on_or_before="2020-05-01"
+        ),
+        first_positive_test_date=patients.with_test_result_in_sgss(
+            pathogen="SARS-CoV-2",
+            test_result="positive",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+        ),
+    )
+    results = study.to_dicts()
+    assert [x["positive_covid_test_ever"] for x in results] == ["1", "1", "0", "0"]
+    assert [x["negative_covid_test_ever"] for x in results] == ["0", "1", "1", "0"]
+    assert [x["tested_before_may"] for x in results] == ["0", "1", "1", "0"]
+    assert [x["first_positive_test_date"] for x in results] == [
+        "2020-05-15",
+        "2020-04-20",
+        "",
+        "",
+    ]
+
+
+@pytest.mark.parametrize("positive", [True, False])
+def test_patients_with_test_result_in_sgss_raises_error_on_bad_data(positive):
+    kwargs = dict(
+        Earliest_Specimen_Date="2020-05-15", Organism_Species_Name="unexpected"
+    )
+    if positive:
+        patient = Patient(SGSS_Positives=[SGSS_Positive(**kwargs)])
+    else:
+        patient = Patient(SGSS_Negatives=[SGSS_Negative(**kwargs)])
+    session = make_session()
+    session.add(patient)
+    session.commit()
+    study = StudyDefinition(
+        population=patients.all(),
+        covid_test=patients.with_test_result_in_sgss(pathogen="SARS-CoV-2",),
+    )
+    with pytest.raises(Exception):
+        study.to_dicts()
+
+
+def test_combine_codelists():
+    list_1 = codelist(["A", "B", "C"], system="ctv3")
+    list_2 = codelist(["X", "Y", "Z"], system="ctv3")
+    combined = combine_codelists(list_1, list_2)
+    expected = codelist(["A", "B", "C", "X", "Y", "Z"], system="ctv3")
+    assert combined == expected
+    assert combined.system == expected.system
+
+
+def test_combine_codelists_with_categories():
+    list_1 = codelist([("A", "foo"), ("B", "bar")], system="icd10")
+    list_2 = codelist([("X", "foo"), ("Y", "bar")], system="icd10")
+    combined = combine_codelists(list_1, list_2)
+    expected = codelist(
+        [("A", "foo"), ("B", "bar"), ("X", "foo"), ("Y", "bar")], system="icd10"
+    )
+    assert combined == expected
+    assert combined.system == expected.system
+
+
+def test_combine_codelists_raises_error_for_mixed_systems():
+    list_1 = codelist(["A", "B", "C"], system="ctv3")
+    list_2 = codelist(["X", "Y", "Z"], system="icd10")
+    with pytest.raises(ValueError):
+        combine_codelists(list_1, list_2)
+
+
+def test_combine_codelists_raises_error_for_mixed_categorisation():
+    list_1 = codelist([("A", "foo"), ("B", "bar")], system="icd10")
+    list_2 = codelist(["X", "Y", "Z"], system="icd10")
+    with pytest.raises(ValueError):
+        combine_codelists(list_1, list_2)
+
+
+def test_combine_codelists_with_duplicates():
+    list_1 = codelist(["A", "B", "C"], system="ctv3")
+    list_2 = codelist(["X", "B", "Z"], system="ctv3")
+    combined = combine_codelists(list_1, list_2)
+    expected = codelist(["A", "B", "C", "X", "Z"], system="ctv3")
+    assert combined == expected
+
+
+def test_combine_codelists_raises_error_on_inconsistent_categorisation():
+    list_1 = codelist([("A", "foo"), ("B", "bar")], system="icd10")
+    list_2 = codelist([("X", "foo"), ("B", "foo")], system="icd10")
+    with pytest.raises(ValueError):
+        combine_codelists(list_1, list_2)
