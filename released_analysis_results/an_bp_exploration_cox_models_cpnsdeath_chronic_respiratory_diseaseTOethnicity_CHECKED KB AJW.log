@@ -1,0 +1,132 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_bp_exploration_cox_models_cpnsdeath_chronic
+> _respiratory_diseaseTOethnicity.log
+  log type:  text
+ opened on:  14 May 2020, 21:40:10
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.htdiag_or_highbp"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'
+> , replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,282,832                  Number of obs    =  17,282,832
+No. of failures =        5,651
+Time at risk    =   1449942098
+                                                LR chi2(6)       =    15828.96
+Log likelihood  =   -68082.621                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   1.128563   .0268221     5.09   0.000     1.077198    1.182377
+                         age2 |   .9871816   .0523263    -0.24   0.808     .8897714    1.095256
+                         age3 |   .9981999   .1239895    -0.01   0.988      .782505     1.27335
+                       1.male |   2.171028   .0604048    27.86   0.000     2.055807    2.292707
+1.chronic_respiratory_disease |   2.229751   .0719936    24.84   0.000     2.093018    2.375416
+           1.htdiag_or_highbp |    1.22721   .0387771     6.48   0.000     1.153514    1.305615
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.s
+> ter not found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ster sav
+> ed
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,282,832                  Number of obs    =  17,282,832
+No. of failures =        5,651
+Time at risk    =   1449942098
+                                                LR chi2(8)       =    16248.28
+Log likelihood  =   -67872.957                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------------------
+                         _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------+----------------------------------------------------------------
+                       age1 |   1.124421   .0265127     4.97   0.000      1.07364    1.177605
+                       age2 |   .9880731   .0520447    -0.23   0.820     .8911561     1.09553
+                       age3 |   1.004902   .1241504     0.04   0.968     .7887914    1.280222
+                     1.male |   2.117048   .0590545    26.89   0.000      2.00441    2.236015
+                            |
+                    diabcat |
+       Controlled diabetes  |   1.901017   .0632415    19.31   0.000     1.781021    2.029098
+     Uncontrolled diabetes  |    3.31087   .1328876    29.83   0.000     3.060396    3.581843
+Diabetes, no hba1c measure  |   2.275474   .1630972    11.47   0.000     1.977248    2.618682
+                            |
+         1.htdiag_or_highbp |   1.090351   .0348306     2.71   0.007     1.024177      1.1608
+---------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_diabcat.ster not found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_diabcat.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,719,249                  Number of obs    =  12,719,249
+No. of failures =        4,203
+Time at risk    =   1067136353
+                                                LR chi2(9)       =    11394.45
+Log likelihood  =    -49697.85                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |    1.10238   .0288751     3.72   0.000     1.047215    1.160452
+                   age2 |   1.059225   .0622393     0.98   0.327     .9440001    1.188513
+                   age3 |   .8397522    .115944    -1.26   0.206     .6406581    1.100718
+                 1.male |   2.197232   .0705893    24.50   0.000     2.063145    2.340033
+                        |
+              ethnicity |
+                 Mixed  |   1.827788   .2966567     3.72   0.000     1.329759    2.512344
+Asian or Asian British  |   1.886361    .111255    10.76   0.000     1.680436     2.11752
+                 Black  |   2.124009   .1803031     8.87   0.000     1.798454    2.508495
+                 Other  |   1.356572   .1808105     2.29   0.022     1.044698    1.761551
+                        |
+     1.htdiag_or_highbp |   1.262523   .0469691     6.27   0.000     1.173742     1.35802
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_ethnicity.ster not found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_ethnicity.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_bp_exploration_cox_models_cpnsdeath_chronic
+> _respiratory_diseaseTOethnicity.log
+  log type:  text
+ closed on:  14 May 2020, 22:22:16
+-------------------------------------------------------------------------------------------------------

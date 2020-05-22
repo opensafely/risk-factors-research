@@ -1,0 +1,127 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_bp_exploration_cox_models_cpnsdeath_chronic
+> _cardiac_diseaseTOchronic_liver_disease.log
+  log type:  text
+ opened on:  14 May 2020, 21:40:09
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.htdiag_or_highbp"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'
+> , replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,282,832                  Number of obs    =  17,282,832
+No. of failures =        5,651
+Time at risk    =   1449942098
+                                                LR chi2(6)       =    15668.75
+Log likelihood  =   -68162.723                  Prob > chi2      =      0.0000
+
+-------------------------------------------------------------------------------------------
+                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------+----------------------------------------------------------------
+                     age1 |   1.118925   .0261505     4.81   0.000     1.068827    1.171371
+                     age2 |   1.017312   .0531883     0.33   0.743     .9182287    1.127088
+                     age3 |   .9158403   .1123701    -0.72   0.474     .7200797     1.16482
+                   1.male |   2.092069   .0587038    26.31   0.000     1.980119    2.210349
+1.chronic_cardiac_disease |   1.778754   .0519016    19.74   0.000     1.679883    1.883445
+       1.htdiag_or_highbp |    1.18335   .0375403     5.31   0.000     1.112014    1.259264
+-------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_cardiac_disease.ster 
+> not found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_cardiac_disease.ster saved
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,282,832                  Number of obs    =  17,282,832
+No. of failures =        5,651
+Time at risk    =   1449942098
+                                                LR chi2(7)       =    16265.55
+Log likelihood  =   -67864.323                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------------------
+                         _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------+----------------------------------------------------------------
+                       age1 |   1.099578   .0249045     4.19   0.000     1.051833    1.149489
+                       age2 |    1.08505   .0553551     1.60   0.110     .9818038    1.199154
+                       age3 |   .7556861   .0907985    -2.33   0.020     .5971267    .9563491
+                     1.male |   2.207044   .0613512    28.48   0.000     2.090015    2.330626
+                            |
+reduced_kidney_function_cat |
+  Stage 3a/3b egfr 30-60    |   1.908835    .061712    20.00   0.000     1.791634    2.033703
+         Stage 4/5 egfr<30  |   5.324464   .2713712    32.81   0.000     4.818289    5.883815
+                            |
+         1.htdiag_or_highbp |    1.12656   .0360006     3.73   0.000     1.058164    1.199376
+---------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_reduced_kidney_function_cat.s
+> ter not found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_reduced_kidney_function_cat.ster sav
+> ed
+
+-------------------------------------------------------------------------------------------------------
+active results
+-------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,282,832                  Number of obs    =  17,282,832
+No. of failures =        5,651
+Time at risk    =   1449942098
+                                                LR chi2(6)       =    15354.05
+Log likelihood  =   -68320.075                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |   1.115067   .0259138     4.69   0.000     1.065416    1.167032
+                   age2 |   1.028703    .053523     0.54   0.587      .928971    1.139141
+                   age3 |   .9003785    .109984    -0.86   0.390     .7086768    1.143937
+                 1.male |    2.23647   .0622155    28.93   0.000     2.117795    2.361796
+1.chronic_liver_disease |   2.258242   .2168787     8.48   0.000     1.870778    2.725956
+     1.htdiag_or_highbp |   1.225169   .0387217     6.43   0.000     1.151579    1.303462
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster no
+> t found)
+file ./output/models/an_bp_exploration_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\alex-tmp-repo-3\analysis\output/an_bp_exploration_cox_models_cpnsdeath_chronic
+> _cardiac_diseaseTOchronic_liver_disease.log
+  log type:  text
+ closed on:  14 May 2020, 22:25:36
+-------------------------------------------------------------------------------------------------------
