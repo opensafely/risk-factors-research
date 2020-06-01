@@ -1,0 +1,464 @@
+CTV3ID,readterm/CTV3PreferredTermDesc,CTV3Source
+XE0X2,(Cereb infarc)(cerebrovas acc)(undef stroke/CVA)(stroke NOS),Original list
+X001P,Acute haemorrhagic leucoencephalitis,Original list
+XaAsJ,Admission to stroke unit,Original list
+Xa0N7,Angiogram-negative subarachnoid haemorrhage,Original list
+SP100,Anoxic brain damage complication,Original list
+G661.,Anterior cerebral artery syndrome,Original list
+X00DJ,Anterior cerebral circulation haemorrhagic infarction,Original list
+X00D5,Anterior cerebral circulation infarction,Original list
+X00DS,Anterior circulation stroke of uncertain pathology,Original list
+G612.,Basal ganglia haemorrhage,Original list
+G630.,Basilar artery occlusion,Original list
+G650.,Basilar artery syndrome,Original list
+G650.,Basilar artery syndrome,Original list
+X00DQ,Brainstem haemorrhage,Original list
+Xa00K,Brainstem infarction,Original list
+X00D9,Brainstem infarction NOS,Original list
+X00D9,Brainstem infarction NOS,Original list
+G663.,Brainstem stroke syndrome,Original list
+G615.,Bulbar haemorrhage,Original list
+X00D3,CVA - cerebral artery occlusion,Original list
+X00D3,CVA - cerebral artery occlusion,Original list
+G66..,CVA - cerebrovascular accident (& unspecified [& stroke]),Original list
+G653.,Carotid artery syndrome hemispheric,Original list
+Xa0Ml,Central post-stroke pain,Original list
+G64..,Cereb art occl (& [cerebvasc acc][stroke]) or (cereb infarc),Original list
+XaIRJ,Cereb autosom dominant arteriop subcort infarcts leukoenceph,Original list
+G6760,"Cereb infarct due cerebral venous thrombosis, non-pyogenic",Original list
+G613.,Cerebellar haemorrhage,Original list
+Xa00J,Cerebellar infarction,Original list
+Xa00J,Cerebellar infarction,Original list
+G664.,Cerebellar stroke syndrome,Original list
+SP101,Cerebral anoxia complication,Original list
+XE0VI,Cerebral arterial occlusion,Original list
+XE0VI,Cerebral arterial occlusion,Original list
+Xa3fV,Cerebral artery occlusion NOS,Original list
+G641.,Cerebral embolus,Original list
+G641.,Cerebral embolus,Original list
+XM0rV,Cerebral haemorrhage,Original list
+Xa41Z,Cerebral haemorrhage - birth,Original list
+XE0Wy,Cerebral haemorrhage NOS,Original list
+Q2007,Cerebral haemorrhage due to birth injury,Original list
+S62z.,Cerebral haemorrhage following injury NOS,Original list
+G63y0,Cerebral infarct due to thrombosis of precerebral arteries,Original list
+Xa0kZ,Cerebral infarction,Original list
+Xa0kZ,Cerebral infarction,Original list
+XE0VJ,Cerebral infarction NOS,Original list
+XE0VJ,Cerebral infarction NOS,Original list
+G6410,Cerebral infarction due to embolism of cerebral arteries,Original list
+G63y1,Cerebral infarction due to embolism of precerebral arteries,Original list
+G6400,Cerebral infarction due to thrombosis of cerebral arteries,Original list
+XE0VF,Cerebral parenchymal haemorrhage,Original list
+XE0VF,Cerebral parenchymal haemorrhage,Original list
+G640.,Cerebral thrombosis,Original list
+X00D1,Cerebrovascular accident,Original list
+X00D1,Cerebrovascular accident,Original list
+G6...,Cerebrovascular disease,Original list
+G610.,Cortical haemorrhage,Original list
+XaLtA,Delivery of rehabilitation for stroke,Original list
+Xa1hE,Extension of cerebrovascular accident,Original list
+G616.,External capsule haemorrhage,Original list
+Xa41d,Fetal cerebral haemorrhage,Original list
+XM1R2,H/O: CVA,Original list
+XM1R2,H/O: CVA,Original list
+14A7.,H/O: CVA &/or stroke,Original list
+XE2te,H/O: CVA/stroke,Original list
+XE2te,H/O: CVA/stroke,Original list
+XaBL3,H/O: Stroke in last year,Original list
+XM1R3,H/O: stroke,Original list
+XM1R3,H/O: stroke,Original list
+Q2000,Haemorr: [cereb unsp birth traum][intra cereb/cran fet/newb],Original list
+S620.,Haemorrh: [closed traum subarach] or [mid mening follow inj],Original list
+X00DI,Haemorrhagic cerebral infarction,Original list
+X00Ds,Heredit cerebral haemorrhage with amyloidosis - Dutch type,Original list
+G64z.,Infarct (& [cerebell] or [cerebral NOS] or [brainstem NOS]),Original list
+X00D4,Infarction - precerebral,Original list
+X00D4,Infarction - precerebral,Original list
+XaJgQ,Infarction of basal ganglia,Original list
+G611.,Internal capsule haemorrhage,Original list
+Xa0Bj,Intracerebellar and posterior fossa haemorrhage,Original list
+G61..,Intracerebral haemorrhage (& [cerebrovasc accident due to]),Original list
+G61z.,Intracerebral haemorrhage NOS,Original list
+X70Ei,Intracerebral haemorrhage in fetus or newborn,Original list
+G617.,"Intracerebral haemorrhage, intraventricular",Original list
+G618.,"Intracerebral haemorrhage, multiple localised",Original list
+G62z.,Intracranial haemorrhage NOS,Original list
+XaeUS,Intraventric (nontraumatic) haemorrhage grade 4 fet newborn,Original list
+Q4113,Intraventricular haemorrhage due to birth injury,Original list
+Xa0AH,Intraventricular haemorrhage of prematurity,Original list
+X00DP,Lacunar haemorrhage,Original list
+X00DA,Lacunar infarction,Original list
+G667.,Left sided cerebral hemisphere cerebrovascular accident,Original list
+XaBEC,Left sided cerebral infarction,Original list
+XaBM4,"Left sided intracerebral haemorrhage, unspecified",Original list
+X00DM,Lobar cerebral haemorrhage,Original list
+XaeUO,Locked in syndrome,Original list
+X00DL,Massive supratentorial cerebral haemorrhage,Original list
+G660.,Middle cerebral artery syndrome,Original list
+XA0B9,Middle meningeal haemorrhage following injury,Original list
+X40U0,"Mitochond encephalopathy, lact acidosis & strokelike episode",Original list
+Xa0lH,Multi-infarct dementia,Original list
+X00DG,Multi-infarct state,Original list
+G633.,Multiple and bilateral precerebral arterial occlusion,Original list
+G654.,Multiple and bilateral precerebral artery syndromes,Original list
+XaB4Z,Multiple lacunar infarcts,Original list
+Xa00I,Occipital cerebral infarction,Original list
+G6771,Occlusion and stenosis of anterior cerebral artery,Original list
+G6773,Occlusion and stenosis of cerebellar arteries,Original list
+G6770,Occlusion and stenosis of middle cerebral artery,Original list
+G6772,Occlusion and stenosis of posterior cerebral artery,Original list
+G6774,Occlusion+stenosis of multiple and bilat cerebral arteries,Original list
+G677.,Occlusion/stenosis cerebral arts not result cerebral infarct,Original list
+S6314,Oth cereb h'ge inj + open intracran wnd+>24hr LOC + recovery,Original list
+S6315,Oth cereb h'ge inj + open intracran wnd+>24hr LOC -restored,Original list
+S6316,Oth cereb h'ge inj + open intracran wnd+LOC unspec duration,Original list
+S631z,Oth cereb h'ge inj + open intracran wnd+concussion unspec,Original list
+S6304,Oth cereb h'ge inj no open intracran wnd+>24hr LOC +recovery,Original list
+S6305,Oth cereb h'ge inj no open intracran wnd+>24hr LOC -restored,Original list
+S6306,Oth cereb h'ge inj no open intracran wnd+LOC unspec duration,Original list
+S630z,Oth cereb h'ge inj no open intracran wnd+concussion unspec,Original list
+S6310,Oth cerebral h'ge inj + open intracran wnd + unspec consc,Original list
+S6313,Oth cerebral h'ge inj + open intracran wnd+1-24hr loss consc,Original list
+S6312,Oth cerebral h'ge inj + open intracran wnd+<1hr loss consc,Original list
+S6311,Oth cerebral h'ge inj + open intracranial wnd+no loss consc,Original list
+S6303,Oth cerebral h'ge inj no open intracran wnd+1-24hr LOC,Original list
+S6302,Oth cerebral h'ge inj no open intracran wnd+<1hr loss consc,Original list
+S6300,Oth cerebral h'ge inj no open intracran wnd+unspec consc,Original list
+S6301,Oth cerebral h'ge inj no open intracranial wnd+no loss consc,Original list
+G62..,Other and unspecified intracranial haemorrhage,Original list
+S631.,Other cerebral h'ge after injury + open intracranial wound,Original list
+S63..,Other cerebral haemorrhage following injury,Original list
+S63z.,Other cerebral haemorrhage following injury NOS,Original list
+G63y.,Other precerebral artery occlusion,Original list
+X00D7,Partial anterior cerebral circulation infarction,Original list
+Q411.,Perinatal intraventricular haemorrhage,Original list
+X40LM,Pituitary haemorrhage,Original list
+G614.,Pontine haemorrhage,Original list
+G662.,Posterior cerebral artery syndrome,Original list
+X00DK,Posterior cerebral circulation haemorrhagic infarction,Original list
+X00D8,Posterior cerebral circulation infarction,Original list
+X00DT,Posterior circulation stroke of uncertain pathology,Original list
+G63z.,Precerebral artery occlusion NOS,Original list
+G63..,Precerebral: [arterial occlusion][arterial stenos][infarct],Original list
+X00DB,Pure motor lacunar infarction,Original list
+XaQbK,Pure motor lacunar syndrome,Original list
+X00DD,Pure sensorimotor lacunar infarction,Original list
+X00DC,Pure sensory lacunar infarction,Original list
+XaQbM,Pure sensory lacunar syndrome,Original list
+Y1fa4,Quality and Outcomes Framework stroke and transient ischaemic attack quality indicator-related care invitation (procedure),Original list
+XaJi5,Ref to multidisciplinary stroke function improvement service,Original list
+G668.,Right sided cerebral hemisphere cerebrovascular accident,Original list
+XaBED,Right sided cerebral infarction,Original list
+XaBM5,"Right sided intracerebral haemorrhage, unspecified",Original list
+Xa0NW,Rupt intern carotid-posterior communicat art zone aneurysm,Original list
+Xa0NV,Rupturd intern carotid-anter communic art zone aneurysm,Original list
+A94y6,Rupture of syphilitic cerebral aneurysm,Original list
+Xa0NJ,Ruptured aneurysm of anterior cerebral artery,Original list
+Xa0NO,Ruptured aneurysm of anterior communicating artery,Original list
+Xa0NR,Ruptured aneurysm of basilar artery,Original list
+Xa0NK,Ruptured aneurysm of middle cerebral artery,Original list
+Xa0NN,Ruptured aneurysm of posterior cerebral artery,Original list
+Xa0NQ,Ruptured aneurysm of posterior communicating artery,Original list
+Xa0NS,Ruptured aneurysm of posterior inferior cerebellar artery,Original list
+G600.,Ruptured berry aneurysm,Original list
+X204F,Ruptured cerebral aneurysm,Original list
+Xa0N3,Ruptured cerebral arteriovenous malformation,Original list
+Xa0NX,Ruptured internal carotid bifurcation aneurysm,Original list
+G683.,Sequelae of cerebral infarction,Original list
+G681.,Sequelae of intracerebral haemorrhage,Original list
+G682.,Sequelae of other non-traumatic intracranial haemorrhage,Original list
+G680.,Sequelae of subarachnoid haemorrhage,Original list
+XE2bF,Spontaneous subarachnoid haemorrhage,Original list
+XaR68,Stroke 6 month review,Original list
+XaEGq,Stroke NOS,Original list
+XE2aB,Stroke and cerebrovascular accident unspecified,Original list
+XE2aB,Stroke and cerebrovascular accident unspecified,Original list
+XaIzF,Stroke annual review,Original list
+XaIzF,Stroke annual review,Original list
+XM1PL,Stroke in the puerperium,Original list
+XM1PL,Stroke in the puerperium,Original list
+X00DR,Stroke of uncertain pathology,Original list
+XaYbE,Stroke self-management plan agreed,Original list
+XaYZQ,Stroke self-management plan review,Original list
+G60z.,Subarachnoid haemorrhage NOS,Original list
+G601.,Subarachnoid haemorrhage from carotid siphon and bifurcation,Original list
+X00Df,Subarachnoid haemorrhage from rupt arteriovenous malformat,Original list
+G606.,Subarachnoid haemorrhage from vertebral artery,Original list
+X00DN,Subcortical cerebral haemorrhage,Original list
+Q200.,Subdural and cerebral haemorrhage due to birth trauma,Original list
+X00DO,Thalamic haemorrhage,Original list
+X00D6,Total anterior cerebral circulation infarction,Original list
+XA0BG,Traumatic intracerebral haemorrhage,Original list
+XE1m2,Traumatic intracranial haemorrhage,Original list
+G632.,Vertebral artery occlusion,Original list
+G651.,Vertebral artery syndrome,Original list
+G6510,Vertebrobasilar artery syndrome,Original list
+Gyu6G,[X]Cereb infarct due unsp occlus/stenos precerebr arteries,Original list
+Gyu63,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,Original list
+G6X..,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,Original list
+Gyu6F,"[X]Intracerebral haemorrhage in hemisphere, unspecified",Original list
+Gyu66,[X]Occlusion and stenosis of other cerebral arteries,Original list
+Gyu65,[X]Occlusion and stenosis of other precerebral arteries,Original list
+Qyu20,[X]Oth intracranial laceratns+haemorrhages due/birth injury,Original list
+Gyu64,[X]Other cerebral infarction,Original list
+Gyu62,[X]Other intracerebral haemorrhage,Original list
+Fyu56,[X]Other lacunar syndromes,Original list
+Fyu57,[X]Other vascular syndroms/brain in cerebrovasculr diseases,Original list
+Gyu6C,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction",Original list
+662M.,Stroke monitoring,CTV3Map_Code_And_Term
+A94y6,Rupture of syphilitic cerebral aneurysm,CTV3_Children
+E004.,Arteriosclerotic dementia (including [multi infarct dement]),CTV3_Children
+E0040,Uncomplicated arteriosclerotic dementia,CTV3_Children
+E0041,Arteriosclerotic dementia with delirium,CTV3_Children
+E0042,Arteriosclerotic dementia with paranoia,CTV3_Children
+E0043,Arteriosclerotic dementia with depression,CTV3_Children
+E004z,Arteriosclerotic dementia NOS,CTV3_Children
+Eu01.,Vascular dementia,CTV3_Children
+Eu011,[X]Dementia: [multi-infarct] or [predominantly cortical],CTV3_Children
+Eu01y,[X]Other vascular dementia,CTV3_Children
+Eu01z,"[X]Vascular dementia, unspecified",CTV3_Children
+F21y2,Binswanger's disease,CTV3_Children
+F4K7.,Retrobulbar haemorrhage,CTV3Map_Code_And_Term
+G601.,Subarachnoid haemorrhage from carotid siphon and bifurcation,CTV3_Children
+G606.,Subarachnoid haemorrhage from vertebral artery,CTV3_Children
+G60z.,Subarachnoid haemorrhage NOS,CTV3_Children
+G61..,Intracerebral haemorrhage (& [cerebrovasc accident due to]),CTV3_Children
+G610.,Cortical haemorrhage,CTV3_Children
+G611.,Internal capsule haemorrhage,CTV3_Children
+G612.,Basal ganglia haemorrhage,CTV3Map_Code_And_Term
+G613.,Cerebellar haemorrhage,CTV3_Children
+G614.,Pontine haemorrhage,CTV3_Children
+G615.,Bulbar haemorrhage,CTV3_Children
+G616.,External capsule haemorrhage,CTV3_Children
+G618.,"Intracerebral haemorrhage, multiple localised",CTV3Map_Code_And_Term
+G61z.,Intracerebral haemorrhage NOS,CTV3_Children
+G63y0,Cerebral infarct due to thrombosis of precerebral arteries,CTV3_Children
+G63y1,Cerebral infarction due to embolism of precerebral arteries,CTV3_Children
+G640.,Cerebral thrombosis,CTV3_Children
+G6400,Cerebral infarction due to thrombosis of cerebral arteries,CTV3_Children
+G6410,Cerebral infarction due to embolism of cerebral arteries,CTV3_Children
+G64z.,Infarct (& [cerebell] or [cerebral NOS] or [brainstem NOS]),CTV3_Children
+G64z1,Wallenberg syndrome,CTV3_Children
+G6510,Vertebrobasilar artery syndrome,CTV3Map_Code_And_Term
+G66..,CVA - cerebrovascular accident (& unspecified [& stroke]),CTV3_Children
+G663.,Brainstem stroke syndrome,CTV3Map_Code_And_Term
+G664.,Cerebellar stroke syndrome,CTV3_Children
+G667.,Left sided cerebral hemisphere cerebrovascular accident,CTV3Map_Code_And_Term
+G668.,Right sided cerebral hemisphere cerebrovascular accident,CTV3Map_Code_And_Term
+G6760,"Cereb infarct due cerebral venous thrombosis, non-pyogenic",CTV3Map_Code_And_Term
+G677.,Occlusion/stenosis cerebral arts not result cerebral infarct,CTV3_Children
+G6770,Occlusion and stenosis of middle cerebral artery,CTV3_Children
+G6771,Occlusion and stenosis of anterior cerebral artery,CTV3_Children
+G6772,Occlusion and stenosis of posterior cerebral artery,CTV3_Children
+G6774,Occlusion+stenosis of multiple and bilat cerebral arteries,CTV3_Children
+G682.,Sequelae of other non-traumatic intracranial haemorrhage,CTV3Map_Code_And_Term
+G6X..,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,CTV3_Children
+Gyu60,[X]Subarachnoid haemorrhage from other intracranial arteries,CTV3Map_Code_And_Term
+Gyu61,[X]Other subarachnoid haemorrhage,CTV3Map_Code_And_Term
+Gyu63,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,CTV3Map_Code_And_Term
+Gyu64,[X]Other cerebral infarction,CTV3_Children
+Gyu6C,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction",CTV3Map_Code_And_Term
+Gyu6E,"[X]Subarachnoid haemorrh from intracranial artery, unspecif",CTV3Map_Code_And_Term
+Gyu6F,"[X]Intracerebral haemorrhage in hemisphere, unspecified",CTV3Map_Code_And_Term
+Gyu6G,[X]Cereb infarct due unsp occlus/stenos precerebr arteries,CTV3Map_Code_And_Term
+L440.,Cerebrovasc disord in puerperium (& [CVA - cerebrovasc acc]),CTV3_Children
+L4400,Puerperal cerebrovascular disorder unspecified,CTV3_Children
+L4401,Puerperal cerebrovascular disorder - delivered,CTV3_Children
+L4402,Puerperal cerebrovascular disorder - delivered with p/n comp,CTV3_Children
+L4403,Puerperal cerebrovascular disorder with antenatal comp,CTV3_Children
+L4404,Puerperal cerebrovascular disorder with postnatal comp,CTV3_Children
+L440z,Puerperal cerebrovascular disorder NOS,CTV3_Children
+Q412.,Perinatal subarachnoid haemorrhage,CTV3Map_Code_And_Term
+Q4120,Subarachnoid haemorrhage due to birth injury,CTV3_Children
+S62..,(Haemor foll inj: [named variants]) or (traum cerebral haem),CTV3_Children
+S620.,Haemorrh: [closed traum subarach] or [mid mening follow inj],CTV3_Children
+S6200,Subarachnoid h'ge inj no open intracran wound + unspec consc,CTV3_Children
+S6201,Subarachnoid h'ge inj no open intracran wnd+no loss consc,CTV3_Children
+S6202,Subarachnoid h'ge inj no open intracran wnd+<1hr loss consc,CTV3_Children
+S6203,Subarachnoid h'ge inj no open intracran wound + 1-24hr LOC,CTV3_Children
+S6204,Subarachnoid h'ge inj no open intracran wnd+>24 LOC+recovery,CTV3_Children
+S6205,Subarach h'ge inj no open intracran wnd+>24hrs LOC-restored,CTV3_Children
+S6206,Subarach h'ge inj no open intracran wnd+LOC unspec duration,CTV3_Children
+S620z,Subarach h'ge inj no open intracran wnd + concussion unspec,CTV3_Children
+S621.,Open traumatic subarachnoid haemorrhage,CTV3Map_Code_And_Term
+S6210,Subarachnoid h'ge inj + open intracran wound + unspec consc,CTV3_Children
+S6211,Subarachnoid h'ge inj + open intracranial wound + no LOC,CTV3_Children
+S6212,Subarachnoid h'ge inj + open intracran wound+<1hr loss consc,CTV3_Children
+S6213,Subarachnoid h'ge inj + open intracran wnd+1-24hr loss consc,CTV3_Children
+S6214,Subarach h'ge inj + open intracran wnd +>24hr LOC + recovery,CTV3_Children
+S6215,Subarach h'ge inj + open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6216,Subarach h'ge inj + open intracran wnd+LOC unspec duration,CTV3_Children
+S621z,Subarachnoid h'ge inj + open intracran wnd+concussion unspec,CTV3_Children
+S622.,Closed traumatic subdural haemorrhage,CTV3_Children
+S6220,Subdural h'ge inj no open intracranial wnd + unspec consc,CTV3_Children
+S6221,Subdural h'ge inj no open intracranial wound+no loss consc,CTV3_Children
+S6222,Subdural h'ge inj no open intracranial wound+<1hr loss consc,CTV3_Children
+S6223,Subdural h'ge inj no open intracran wnd+1-24hr loss consc,CTV3_Children
+S6224,Subdural h'ge inj no open intracranial wnd+>24 LOC +recovery,CTV3_Children
+S6225,Subdural h'ge inj no open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6226,Subdural h'ge inj no open intracran wnd+LOC unspec duration,CTV3_Children
+S622z,Subdural h'ge inj no open intracran wound+concussion unspec,CTV3_Children
+S623.,Open traumatic subdural haemorrhage,CTV3_Children
+S6230,Subdural h'ge inj + open intracranial wound + unspec consc,CTV3_Children
+S6231,Subdural h'ge inj + open intracranial wound+no loss consc,CTV3_Children
+S6232,Subdural h'ge inj + open intracranial wound+<1hr loss consc,CTV3_Children
+S6233,Subdural h'ge inj + open intracranial wnd+1-24hr loss consc,CTV3_Children
+S6234,Subdural h'ge inj + open intracran wound+>24hr LOC +recovery,CTV3_Children
+S6235,Subdural h'ge inj + open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6236,Subdural h'ge inj + open intracran wnd+LOC unspec duration,CTV3_Children
+S623z,Subdural h'ge inj + open intracranial wnd+concussion unspec,CTV3_Children
+S6240,Extradural h'ge inj no open intracranial wnd + unspec consc,CTV3_Children
+S6241,Extradural h'ge inj no open intracranial wnd + no loss consc,CTV3_Children
+S6242,Extradural h'ge inj no open intracranial wnd+<1hr loss consc,CTV3_Children
+S6243,Extradural h'ge inj no open intracran wnd+1-24hr loss consc,CTV3_Children
+S6244,Extradural h'ge inj no open intracran wnd+>24hr LOC+recovery,CTV3_Children
+S6245,Extradural h'ge inj no open intracran wnd+>24hr LOC-restored,CTV3_Children
+S6246,Extradural h'ge inj no open intracra wnd+LOC unspec duration,CTV3_Children
+S624z,Extradural h'ge inj no open intracran wnd+concussion unspec,CTV3_Children
+S625.,Open traumatic extradural haemorrhage,CTV3_Children
+S6250,Extradural h'ge inj + open intracranial wnd + unspec consc,CTV3_Children
+S6251,Extradural h'ge inj + open intracranial wound+no loss consc,CTV3_Children
+S6252,Extradural h'ge inj + open intracranial wnd+<1hr loss consc,CTV3_Children
+S6253,Extradural h'ge inj + open intracran wnd+1-24hr loss consc,CTV3_Children
+S6254,Extradural h'ge inj + open intracran wnd+>24hr LOC+recovery,CTV3_Children
+S6255,Extradural h'ge inj + open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6256,Extradural h'ge inj + open intracran wnd+LOC unspec duration,CTV3_Children
+S625z,Extradural h'ge inj + open intracran wnd+concussion unspec,CTV3_Children
+S626.,Epidural haemorrhage,CTV3_Children
+S628.,Traumatic subdural haemorrhage,CTV3Map_Code_Only
+S62z.,Cerebral haemorrhage following injury NOS,CTV3_Children
+S63..,Other cerebral haemorrhage following injury,CTV3_Children
+S6300,Oth cerebral h'ge inj no open intracran wnd+unspec consc,CTV3_Children
+S6301,Oth cerebral h'ge inj no open intracranial wnd+no loss consc,CTV3_Children
+S6302,Oth cerebral h'ge inj no open intracran wnd+<1hr loss consc,CTV3_Children
+S6303,Oth cerebral h'ge inj no open intracran wnd+1-24hr LOC,CTV3_Children
+S6304,Oth cereb h'ge inj no open intracran wnd+>24hr LOC +recovery,CTV3_Children
+S6305,Oth cereb h'ge inj no open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6306,Oth cereb h'ge inj no open intracran wnd+LOC unspec duration,CTV3_Children
+S630z,Oth cereb h'ge inj no open intracran wnd+concussion unspec,CTV3_Children
+S631.,Other cerebral h'ge after injury + open intracranial wound,CTV3_Children
+S6310,Oth cerebral h'ge inj + open intracran wnd + unspec consc,CTV3_Children
+S6311,Oth cerebral h'ge inj + open intracranial wnd+no loss consc,CTV3_Children
+S6312,Oth cerebral h'ge inj + open intracran wnd+<1hr loss consc,CTV3_Children
+S6313,Oth cerebral h'ge inj + open intracran wnd+1-24hr loss consc,CTV3_Children
+S6314,Oth cereb h'ge inj + open intracran wnd+>24hr LOC + recovery,CTV3_Children
+S6315,Oth cereb h'ge inj + open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6316,Oth cereb h'ge inj + open intracran wnd+LOC unspec duration,CTV3_Children
+S631z,Oth cereb h'ge inj + open intracran wnd+concussion unspec,CTV3_Children
+S63z.,Other cerebral haemorrhage following injury NOS,CTV3_Children
+X003R,Vascular dementia of acute onset,CTV3_Children
+X003T,Subcortical vascular dementia,CTV3_Children
+X003V,Mixed cortical and subcortical vascular dementia,CTV3_Children
+X00D1,Cerebrovascular accident,CTV3Map_Code_And_Term
+X00D1,Cerebrovascular accident,CTV3Map_Code_Only
+X00D3,CVA - cerebral artery occlusion,CTV3Map_Code_And_Term
+X00D3,CVA - cerebral artery occlusion,CTV3Map_Code_Only
+X00D4,Infarction - precerebral,CTV3_Children
+X00D5,Anterior cerebral circulation infarction,CTV3_Children
+X00D6,Total anterior cerebral circulation infarction,CTV3_Children
+X00D7,Partial anterior cerebral circulation infarction,CTV3_Children
+X00D8,Posterior cerebral circulation infarction,CTV3_Children
+X00D9,Brainstem infarction NOS,CTV3_Children
+X00DA,Lacunar infarction,CTV3_Children
+X00DB,Pure motor lacunar infarction,CTV3_Children
+X00DC,Pure sensory lacunar infarction,CTV3_Children
+X00DD,Pure sensorimotor lacunar infarction,CTV3_Children
+X00DE,Lacunar ataxic hemiparesis,CTV3_Children
+X00DF,Dysarthria-clumsy hand syndrome,CTV3_Children
+X00DG,Multi-infarct state,CTV3_Children
+X00DI,Haemorrhagic cerebral infarction,CTV3_Children
+X00DJ,Anterior cerebral circulation haemorrhagic infarction,CTV3_Children
+X00DK,Posterior cerebral circulation haemorrhagic infarction,CTV3_Children
+X00DL,Massive supratentorial cerebral haemorrhage,CTV3_Children
+X00DM,Lobar cerebral haemorrhage,CTV3_Children
+X00DN,Subcortical cerebral haemorrhage,CTV3_Children
+X00DO,Thalamic haemorrhage,CTV3_Children
+X00DP,Lacunar haemorrhage,CTV3_Children
+X00DQ,Brainstem haemorrhage,CTV3_Children
+X00DR,Stroke of uncertain pathology,CTV3_Children
+X00DS,Anterior circulation stroke of uncertain pathology,CTV3_Children
+X00DT,Posterior circulation stroke of uncertain pathology,CTV3_Children
+X00Df,Subarachnoid haemorrhage from rupt arteriovenous malformat,CTV3_Children
+X00Dg,Subarachnoid haemorrhage due to ruptured aneurysm,CTV3_Children
+XA04v,Traumatic spinal subarachnoid haemorrhage,CTV3_Children
+XA0B9,Middle meningeal haemorrhage following injury,CTV3Map_Code_Only
+XA0BB,Traumatic intracranial extradural haematoma,CTV3_Children
+XA0BE,Traumatic intracranial subdural haematoma,CTV3_Children
+XA0BG,Traumatic intracerebral haemorrhage,CTV3_Children
+XA0BH,Traumatic subarachnoid haemorrhage,CTV3Map_Code_And_Term
+XA0BH,Traumatic subarachnoid haemorrhage,CTV3Map_Code_Only
+XA0BI,Traumatic intracranial subarachnoid haemorrhage,CTV3_Children
+XE0VF,Cerebral parenchymal haemorrhage,CTV3Map_Code_And_Term
+XE0VF,Cerebral parenchymal haemorrhage,CTV3Map_Code_Only
+XE0VI,Cerebral arterial occlusion,CTV3Map_Code_Only
+XE0VJ,Cerebral infarction NOS,CTV3_Children
+XE0X2,(Cereb infarc)(cerebrovas acc)(undef stroke/CVA)(stroke NOS),CTV3_Children
+XE1Xs,Vascular dementia,CTV3_Children
+XE1m2,Traumatic intracranial haemorrhage,CTV3Map_Code_And_Term
+XE1m2,Traumatic intracranial haemorrhage,CTV3Map_Code_Only
+XE1m3,Closed traumatic subarachnoid haemorrhage,CTV3Map_Code_And_Term
+XE1m4,Closed traumatic extradural haemorrhage,CTV3_Children
+XE1m5,Other cerebral h'ge after injury no open intracranial wound,CTV3_Children
+XE2aB,Stroke and cerebrovascular accident unspecified,CTV3Map_Code_And_Term
+XE2aB,Stroke and cerebrovascular accident unspecified,CTV3Map_Code_Only
+XE2bF,Spontaneous subarachnoid haemorrhage,CTV3_Children
+XE2sl,Cerebrovascular disorders in the puerperium,CTV3Map_Code_Only
+XM1PL,Stroke in the puerperium,CTV3Map_Code_And_Term
+XM1PL,Stroke in the puerperium,CTV3Map_Code_Only
+XM1R3,H/O: stroke,CTV3Map_Code_And_Term
+XM1R3,H/O: stroke,CTV3Map_Code_Only
+Xa00I,Occipital cerebral infarction,CTV3_Children
+Xa00J,Cerebellar infarction,CTV3_Children
+Xa00K,Brainstem infarction,CTV3_Children
+Xa00L,Benedict syndrome,CTV3_Children
+Xa00M,Wallenberg syndrome,CTV3Map_Code_And_Term
+Xa00M,Wallenberg syndrome,CTV3Map_Code_Only
+Xa00N,Foville syndrome,CTV3_Children
+Xa00O,Millard-Gubler syndrome,CTV3_Children
+Xa00P,Weber syndrome,CTV3_Children
+Xa00Q,Claude syndrome,CTV3_Children
+Xa00R,Top of basilar syndrome,CTV3_Children
+Xa01b,Subarachnoid haemorrhage from multiple aneurysms,CTV3_Children
+Xa01c,Subarachnoid haemorrhage from ant cerebral artery aneurysm,CTV3_Children
+Xa01h,Subarachnoid haemorrhage frm middle cerebral artery aneurysm,CTV3_Children
+Xa01i,Subarachnoid haemorrhage from post cerebral artery aneurysm,CTV3_Children
+Xa01j,Subarachnoid haemorrhage from ant communicat artery aneurysm,CTV3_Children
+Xa01k,Subarachnoid haemorrhage from post communic artery aneurysm,CTV3_Children
+Xa01l,Subarachnoid haemorrhage from basilar artery aneurysm,CTV3Map_Code_And_Term
+Xa01m,Subarachnoid haemorrhage from post inf cerebell artery aneur,CTV3_Children
+Xa01o,Subarachnoid haemorrhage from carotid artery aneurysm,CTV3_Children
+Xa0Bj,Intracerebellar and posterior fossa haemorrhage,CTV3_Children
+Xa0N7,Angiogram-negative subarachnoid haemorrhage,CTV3_Children
+Xa0kZ,Cerebral infarction,CTV3Map_Code_And_Term
+Xa0kZ,Cerebral infarction,CTV3Map_Code_Only
+Xa0lH,Multi-infarct dementia,CTV3_Children
+Xa1hE,Extension of cerebrovascular accident,CTV3_Children
+Xa1uW,Subarachnoid haemorrhage,CTV3Map_Code_And_Term
+Xa3fV,Cerebral artery occlusion NOS,CTV3_Children
+XaA99,Chronic intracranial subdural haematoma,CTV3_Children
+XaB4Z,Multiple lacunar infarcts,CTV3_Children
+XaBEC,Left sided cerebral infarction,CTV3_Children
+XaBED,Right sided cerebral infarction,CTV3_Children
+XaBM4,"Left sided intracerebral haemorrhage, unspecified",CTV3_Children
+XaBM5,"Right sided intracerebral haemorrhage, unspecified",CTV3_Children
+XaBMc,[V] Personal history deep vein thrombosis,CTV3_Children
+XaBMd,[V] Personal history of pulmonary embolism,CTV3_Children
+XaEGq,Stroke NOS,CTV3_Children
+XaIzF,Stroke annual review,CTV3Map_Code_And_Term
+XaIzF,Stroke annual review,CTV3Map_Code_Only
+XaJgQ,Infarction of basal ganglia,CTV3_Children
+XaKSH,Haemorrhagic stroke monitoring,CTV3Map_Code_And_Term
+XaQbK,Pure motor lacunar syndrome,CTV3_Children
+XaQbM,Pure sensory lacunar syndrome,CTV3_Children
+XaR68,Stroke 6 month review,CTV3_Children
+XaX16,[V]Personal history of transient ischaemic attack,CTV3_Children
+XaYm4,Stroke initial post discharge review,CTV3Map_Code_And_Term
+XabJf,SCPE class predom patt C.3 infarct of middle cerebral artery,CTV3Map_Code_And_Term
+XacGH,Old cerebral infarction on imaging,CTV3Map_Code_And_Term
+Y1563,Stroke/Tia monitoring 1st letter,CTV3_Children
+Y1564,Stroke/Tia monitoring 2nd letter,CTV3_Children
+Y1565,Stroke/Tia monitoring 3rd letter,CTV3_Children
+Y1566,Stroke/Tia monitoring offer default,CTV3_Children
+ZV125,[V]Personal history of circulatory system disease,CTV3Map_Code_And_Term
+ZV125,[V]Personal history of circulatory system disease,CTV3Map_Code_Only

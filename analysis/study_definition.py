@@ -19,7 +19,7 @@ temp_immune_codes = codelist_from_csv(
     "codelists/opensafely-temporary-immunosuppresion.csv", system="ctv3", column="CTV3ID")
 
 stroke = codelist_from_csv(
-    "codelists/opensafely-stroke.csv", system="ctv3", column="CTV3ID")
+    "codelists/opensafely-stroke-updated.csv", system="ctv3", column="CTV3ID")
 
 dementia = codelist_from_csv(
     "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID")
@@ -83,7 +83,7 @@ bone_marrow_transplant_codes = codelist_from_csv(
 )
 
 chemo_radio_therapy_codes = codelist_from_csv(
-    "codelists/opensafely-chemotherapy-or-radiotherapy.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chemotherapy-or-radiotherapy-updated.csv", system="ctv3", column="CTV3ID"
 )
 
 chronic_liver_disease_codes = codelist_from_csv(
