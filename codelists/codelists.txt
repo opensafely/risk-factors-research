@@ -1,5 +1,5 @@
 opensafely/aplastic-anaemia/2020-04-24
-opensafely/asplenia/2020-04-14
+opensafely/asplenia/2020-06-02
 opensafely/asthma-diagnosis/2020-04-15
 opensafely/asthma-inhaler-salbutamol-medication/2020-04-15
 opensafely/asthma-inhaler-steroid-medication/2020-04-15
