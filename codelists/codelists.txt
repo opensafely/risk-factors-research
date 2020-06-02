@@ -5,7 +5,7 @@ opensafely/asthma-inhaler-salbutamol-medication/2020-04-15
 opensafely/asthma-inhaler-steroid-medication/2020-04-15
 opensafely/bone-marrow-transplant/2020-04-15
 opensafely/cancer-excluding-lung-and-haematological/2020-04-15
-opensafely/chemotherapy-or-radiotherapy/2020-04-15
+opensafely/chemotherapy-or-radiotherapy-updated/2020-04-15
 opensafely/chronic-cardiac-disease/2020-04-08
 opensafely/chronic-liver-disease/2020-04-07
 opensafely/chronic-respiratory-disease/2020-04-10
