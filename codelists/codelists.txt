@@ -1,8 +1,8 @@
 opensafely/aplastic-anaemia/2020-04-24
 opensafely/asplenia/2020-04-14
 opensafely/asthma-diagnosis/2020-04-15
-opensafely/asthma-inhaled-salbutamol-medication/2020-04-15
-opensafely/asthma-inhaled-steroid-medication/2020-04-15
+opensafely/asthma-inhaler-salbutamol-medication/2020-04-15
+opensafely/asthma-inhaler-steroid-medication/2020-04-15
 opensafely/bone-marrow-transplant/2020-04-15
 opensafely/cancer-excluding-lung-and-haematological/2020-04-15
 opensafely/chemotherapy-or-radiotherapy/2020-04-15
@@ -11,7 +11,7 @@ opensafely/chronic-liver-disease/2020-04-07
 opensafely/chronic-respiratory-disease/2020-04-10
 opensafely/dementia/2020-04-22
 opensafely/diabetes/2020-04-15
-opensafely/dialysis/2020-04-27
+opensafely/chronic-kidney-disease/2020-04-14
 opensafely/ethnicity/2020-04-27
 opensafely/gi-bleed-or-ulcer/2020-04-08
 opensafely/haematological-cancer/2020-04-15
