@@ -145,7 +145,7 @@ hba1c_old_codes = codelist(["X772q", "XaERo", "XaERp"], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
-    "codelists/opensafely-dialysis.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-kidney-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 organ_transplant_codes = codelist_from_csv(
