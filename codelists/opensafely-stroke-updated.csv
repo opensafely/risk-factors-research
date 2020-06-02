@@ -1,0 +1,213 @@
+CTV3ID,readterm/CTV3PreferredTermDesc,CTV3Source
+XE0X2,(Cereb infarc)(cerebrovas acc)(undef stroke/CVA)(stroke NOS),Original list
+XaAsJ,Admission to stroke unit,Original list
+Xa0N7,Angiogram-negative subarachnoid haemorrhage,Original list
+SP100,Anoxic brain damage complication,Original list
+G661.,Anterior cerebral artery syndrome,Original list
+X00DJ,Anterior cerebral circulation haemorrhagic infarction,Original list
+X00D5,Anterior cerebral circulation infarction,Original list
+X00DS,Anterior circulation stroke of uncertain pathology,Original list
+G612.,Basal ganglia haemorrhage,Original list
+G630.,Basilar artery occlusion,Original list
+G650.,Basilar artery syndrome,Original list
+X00DQ,Brainstem haemorrhage,Original list
+Xa00K,Brainstem infarction,Original list
+X00D9,Brainstem infarction NOS,Original list
+G663.,Brainstem stroke syndrome,Original list
+G615.,Bulbar haemorrhage,Original list
+X00D3,CVA - cerebral artery occlusion,Original list
+G66..,CVA - cerebrovascular accident (& unspecified [& stroke]),Original list
+G653.,Carotid artery syndrome hemispheric,Original list
+Xa0Ml,Central post-stroke pain,Original list
+G64..,Cereb art occl (& [cerebvasc acc][stroke]) or (cereb infarc),Original list
+XaIRJ,Cereb autosom dominant arteriop subcort infarcts leukoenceph,Original list
+G6760,"Cereb infarct due cerebral venous thrombosis, non-pyogenic",Original list
+G613.,Cerebellar haemorrhage,Original list
+Xa00J,Cerebellar infarction,Original list
+G664.,Cerebellar stroke syndrome,Original list
+XE0VI,Cerebral arterial occlusion,Original list
+Xa3fV,Cerebral artery occlusion NOS,Original list
+G641.,Cerebral embolus,Original list
+XM0rV,Cerebral haemorrhage,Original list
+XE0Wy,Cerebral haemorrhage NOS,Original list
+S62z.,Cerebral haemorrhage following injury NOS,Original list
+G63y0,Cerebral infarct due to thrombosis of precerebral arteries,Original list
+Xa0kZ,Cerebral infarction,Original list
+XE0VJ,Cerebral infarction NOS,Original list
+G6410,Cerebral infarction due to embolism of cerebral arteries,Original list
+G63y1,Cerebral infarction due to embolism of precerebral arteries,Original list
+G6400,Cerebral infarction due to thrombosis of cerebral arteries,Original list
+XE0VF,Cerebral parenchymal haemorrhage,Original list
+G640.,Cerebral thrombosis,Original list
+X00D1,Cerebrovascular accident,Original list
+G6...,Cerebrovascular disease,Original list
+G610.,Cortical haemorrhage,Original list
+XaLtA,Delivery of rehabilitation for stroke,Original list
+Xa1hE,Extension of cerebrovascular accident,Original list
+G616.,External capsule haemorrhage,Original list
+XM1R2,H/O: CVA,Original list
+14A7.,H/O: CVA &/or stroke,Original list
+XE2te,H/O: CVA/stroke,Original list
+XaBL3,H/O: Stroke in last year,Original list
+XM1R3,H/O: stroke,Original list
+S620.,Haemorrh: [closed traum subarach] or [mid mening follow inj],Original list
+X00DI,Haemorrhagic cerebral infarction,Original list
+X00Ds,Heredit cerebral haemorrhage with amyloidosis - Dutch type,Original list
+G64z.,Infarct (& [cerebell] or [cerebral NOS] or [brainstem NOS]),Original list
+X00D4,Infarction - precerebral,Original list
+XaJgQ,Infarction of basal ganglia,Original list
+G611.,Internal capsule haemorrhage,Original list
+Xa0Bj,Intracerebellar and posterior fossa haemorrhage,Original list
+G61..,Intracerebral haemorrhage (& [cerebrovasc accident due to]),Original list
+G61z.,Intracerebral haemorrhage NOS,Original list
+G617.,"Intracerebral haemorrhage, intraventricular",Original list
+G618.,"Intracerebral haemorrhage, multiple localised",Original list
+G62z.,Intracranial haemorrhage NOS,Original list
+X00DP,Lacunar haemorrhage,Original list
+X00DA,Lacunar infarction,Original list
+G667.,Left sided cerebral hemisphere cerebrovascular accident,Original list
+XaBEC,Left sided cerebral infarction,Original list
+XaBM4,"Left sided intracerebral haemorrhage, unspecified",Original list
+X00DM,Lobar cerebral haemorrhage,Original list
+XaeUO,Locked in syndrome,Original list
+X00DL,Massive supratentorial cerebral haemorrhage,Original list
+G660.,Middle cerebral artery syndrome,Original list
+XA0B9,Middle meningeal haemorrhage following injury,Original list
+X00DG,Multi-infarct state,Original list
+G633.,Multiple and bilateral precerebral arterial occlusion,Original list
+G654.,Multiple and bilateral precerebral artery syndromes,Original list
+XaB4Z,Multiple lacunar infarcts,Original list
+Xa00I,Occipital cerebral infarction,Original list
+G6771,Occlusion and stenosis of anterior cerebral artery,Original list
+G6773,Occlusion and stenosis of cerebellar arteries,Original list
+G6770,Occlusion and stenosis of middle cerebral artery,Original list
+G6772,Occlusion and stenosis of posterior cerebral artery,Original list
+G6774,Occlusion+stenosis of multiple and bilat cerebral arteries,Original list
+G677.,Occlusion/stenosis cerebral arts not result cerebral infarct,Original list
+S6314,Oth cereb h'ge inj + open intracran wnd+>24hr LOC + recovery,Original list
+S6315,Oth cereb h'ge inj + open intracran wnd+>24hr LOC -restored,Original list
+S6316,Oth cereb h'ge inj + open intracran wnd+LOC unspec duration,Original list
+S631z,Oth cereb h'ge inj + open intracran wnd+concussion unspec,Original list
+S6304,Oth cereb h'ge inj no open intracran wnd+>24hr LOC +recovery,Original list
+S6305,Oth cereb h'ge inj no open intracran wnd+>24hr LOC -restored,Original list
+S6306,Oth cereb h'ge inj no open intracran wnd+LOC unspec duration,Original list
+S630z,Oth cereb h'ge inj no open intracran wnd+concussion unspec,Original list
+S6310,Oth cerebral h'ge inj + open intracran wnd + unspec consc,Original list
+S6313,Oth cerebral h'ge inj + open intracran wnd+1-24hr loss consc,Original list
+S6312,Oth cerebral h'ge inj + open intracran wnd+<1hr loss consc,Original list
+S6311,Oth cerebral h'ge inj + open intracranial wnd+no loss consc,Original list
+S6303,Oth cerebral h'ge inj no open intracran wnd+1-24hr LOC,Original list
+S6302,Oth cerebral h'ge inj no open intracran wnd+<1hr loss consc,Original list
+S6300,Oth cerebral h'ge inj no open intracran wnd+unspec consc,Original list
+S6301,Oth cerebral h'ge inj no open intracranial wnd+no loss consc,Original list
+G62..,Other and unspecified intracranial haemorrhage,Original list
+S631.,Other cerebral h'ge after injury + open intracranial wound,Original list
+S63..,Other cerebral haemorrhage following injury,Original list
+S63z.,Other cerebral haemorrhage following injury NOS,Original list
+G63y.,Other precerebral artery occlusion,Original list
+X00D7,Partial anterior cerebral circulation infarction,Original list
+Q411.,Perinatal intraventricular haemorrhage,Original list
+G614.,Pontine haemorrhage,Original list
+G662.,Posterior cerebral artery syndrome,Original list
+X00DK,Posterior cerebral circulation haemorrhagic infarction,Original list
+X00D8,Posterior cerebral circulation infarction,Original list
+X00DT,Posterior circulation stroke of uncertain pathology,Original list
+G63z.,Precerebral artery occlusion NOS,Original list
+G63..,Precerebral: [arterial occlusion][arterial stenos][infarct],Original list
+X00DB,Pure motor lacunar infarction,Original list
+XaQbK,Pure motor lacunar syndrome,Original list
+X00DD,Pure sensorimotor lacunar infarction,Original list
+X00DC,Pure sensory lacunar infarction,Original list
+XaQbM,Pure sensory lacunar syndrome,Original list
+Y1fa4,Quality and Outcomes Framework stroke and transient ischaemic attack quality indicator-related care invitation (procedure),Original list
+XaJi5,Ref to multidisciplinary stroke function improvement service,Original list
+G668.,Right sided cerebral hemisphere cerebrovascular accident,Original list
+XaBED,Right sided cerebral infarction,Original list
+XaBM5,"Right sided intracerebral haemorrhage, unspecified",Original list
+Xa0NW,Rupt intern carotid-posterior communicat art zone aneurysm,Original list
+Xa0NV,Rupturd intern carotid-anter communic art zone aneurysm,Original list
+A94y6,Rupture of syphilitic cerebral aneurysm,Original list
+Xa0NJ,Ruptured aneurysm of anterior cerebral artery,Original list
+Xa0NO,Ruptured aneurysm of anterior communicating artery,Original list
+Xa0NR,Ruptured aneurysm of basilar artery,Original list
+Xa0NK,Ruptured aneurysm of middle cerebral artery,Original list
+Xa0NN,Ruptured aneurysm of posterior cerebral artery,Original list
+Xa0NQ,Ruptured aneurysm of posterior communicating artery,Original list
+Xa0NS,Ruptured aneurysm of posterior inferior cerebellar artery,Original list
+G600.,Ruptured berry aneurysm,Original list
+X204F,Ruptured cerebral aneurysm,Original list
+Xa0N3,Ruptured cerebral arteriovenous malformation,Original list
+Xa0NX,Ruptured internal carotid bifurcation aneurysm,Original list
+G683.,Sequelae of cerebral infarction,Original list
+G681.,Sequelae of intracerebral haemorrhage,Original list
+G682.,Sequelae of other non-traumatic intracranial haemorrhage,Original list
+G680.,Sequelae of subarachnoid haemorrhage,Original list
+XE2bF,Spontaneous subarachnoid haemorrhage,Original list
+XaR68,Stroke 6 month review,Original list
+XaEGq,Stroke NOS,Original list
+XE2aB,Stroke and cerebrovascular accident unspecified,Original list
+XaIzF,Stroke annual review,Original list
+XM1PL,Stroke in the puerperium,Original list
+X00DR,Stroke of uncertain pathology,Original list
+XaYbE,Stroke self-management plan agreed,Original list
+XaYZQ,Stroke self-management plan review,Original list
+G60z.,Subarachnoid haemorrhage NOS,Original list
+G601.,Subarachnoid haemorrhage from carotid siphon and bifurcation,Original list
+X00Df,Subarachnoid haemorrhage from rupt arteriovenous malformat,Original list
+G606.,Subarachnoid haemorrhage from vertebral artery,Original list
+X00DN,Subcortical cerebral haemorrhage,Original list
+Q200.,Subdural and cerebral haemorrhage due to birth trauma,Original list
+X00DO,Thalamic haemorrhage,Original list
+X00D6,Total anterior cerebral circulation infarction,Original list
+XA0BG,Traumatic intracerebral haemorrhage,Original list
+XE1m2,Traumatic intracranial haemorrhage,Original list
+G632.,Vertebral artery occlusion,Original list
+G651.,Vertebral artery syndrome,Original list
+G6510,Vertebrobasilar artery syndrome,Original list
+Gyu6G,[X]Cereb infarct due unsp occlus/stenos precerebr arteries,Original list
+Gyu63,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,Original list
+G6X..,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs,Original list
+Gyu6F,"[X]Intracerebral haemorrhage in hemisphere, unspecified",Original list
+Gyu66,[X]Occlusion and stenosis of other cerebral arteries,Original list
+Gyu65,[X]Occlusion and stenosis of other precerebral arteries,Original list
+Gyu64,[X]Other cerebral infarction,Original list
+Gyu62,[X]Other intracerebral haemorrhage,Original list
+Fyu56,[X]Other lacunar syndromes,Original list
+Fyu57,[X]Other vascular syndroms/brain in cerebrovasculr diseases,Original list
+Gyu6C,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction",Original list
+662M.,Stroke monitoring,CTV3Map_Code_And_Term
+F4K7.,Retrobulbar haemorrhage,CTV3Map_Code_And_Term
+G64z1,Wallenberg syndrome,CTV3_Children
+Gyu60,[X]Subarachnoid haemorrhage from other intracranial arteries,CTV3Map_Code_And_Term
+Gyu61,[X]Other subarachnoid haemorrhage,CTV3Map_Code_And_Term
+Gyu6E,"[X]Subarachnoid haemorrh from intracranial artery, unspecif",CTV3Map_Code_And_Term
+L440.,Cerebrovasc disord in puerperium (& [CVA - cerebrovasc acc]),CTV3_Children
+L4400,Puerperal cerebrovascular disorder unspecified,CTV3_Children
+L4401,Puerperal cerebrovascular disorder - delivered,CTV3_Children
+L4402,Puerperal cerebrovascular disorder - delivered with p/n comp,CTV3_Children
+L4403,Puerperal cerebrovascular disorder with antenatal comp,CTV3_Children
+L4404,Puerperal cerebrovascular disorder with postnatal comp,CTV3_Children
+L440z,Puerperal cerebrovascular disorder NOS,CTV3_Children
+Q412.,Perinatal subarachnoid haemorrhage,CTV3Map_Code_And_Term
+Q4120,Subarachnoid haemorrhage due to birth injury,CTV3_Children
+S62..,(Haemor foll inj: [named variants]) or (traum cerebral haem),CTV3_Children
+S6200,Subarachnoid h'ge inj no open intracran wound + unspec consc,CTV3_Children
+S6201,Subarachnoid h'ge inj no open intracran wnd+no loss consc,CTV3_Children
+S6202,Subarachnoid h'ge inj no open intracran wnd+<1hr loss consc,CTV3_Children
+S6203,Subarachnoid h'ge inj no open intracran wound + 1-24hr LOC,CTV3_Children
+S6204,Subarachnoid h'ge inj no open intracran wnd+>24 LOC+recovery,CTV3_Children
+S6205,Subarach h'ge inj no open intracran wnd+>24hrs LOC-restored,CTV3_Children
+S6206,Subarach h'ge inj no open intracran wnd+LOC unspec duration,CTV3_Children
+S620z,Subarach h'ge inj no open intracran wnd + concussion unspec,CTV3_Children
+S621.,Open traumatic subarachnoid haemorrhage,CTV3Map_Code_And_Term
+S6210,Subarachnoid h'ge inj + open intracran wound + unspec consc,CTV3_Children
+S6211,Subarachnoid h'ge inj + open intracranial wound + no LOC,CTV3_Children
+S6212,Subarachnoid h'ge inj + open intracran wound+<1hr loss consc,CTV3_Children
+S6213,Subarachnoid h'ge inj + open intracran wnd+1-24hr loss consc,CTV3_Children
+S6214,Subarach h'ge inj + open intracran wnd +>24hr LOC + recovery,CTV3_Children
+S6215,Subarach h'ge inj + open intracran wnd+>24hr LOC -restored,CTV3_Children
+S6216,Subarach h'ge inj + open intracran wnd+LOC unspec duration,CTV3_Children
+S621z,Subarachnoid h'ge inj + open intracran wnd+concussion unspec,CTV3_Children
+X00DE,Lacunar ataxic hemiparesis,CTV3_Children
+X00DF,Dysarthria-clumsy hand syndrome,CTV3_Children
+X00Dg,Subarachnoid haemorrhage due to ruptured aneurysm,CTV3_Children
