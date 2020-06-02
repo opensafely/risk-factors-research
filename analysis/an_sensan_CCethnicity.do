@@ -80,7 +80,7 @@ estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL
  else di "WARNING CC ETHNICITY MODEL WITH AGEGROUP DID NOT FIT (OUTCOME `outcome')"
 
 *Complete case ethnicity model with 16 ethnicity categories
-basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(i.ethnicity_16) 
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(i.ethnicity_16_combinemixed) 
 if _rc==0{
 estimates
 estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth_16, replace
