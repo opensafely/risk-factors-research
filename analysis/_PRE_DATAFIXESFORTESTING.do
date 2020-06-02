@@ -9,24 +9,24 @@ set seed 21478
 
 
 * Creatinine
-gen creatinine = runiform()*35
+*gen creatinine = runiform()*35
 
-* Diagnosis of hypertension, string
+/* Diagnosis of hypertension, string
 gen hypertension_temp = 1960 + rnormal(0, 1000) 
 replace hypertension_temp = . if uniform()<0.8
 gen hypertension = string(year(hyper))		 	///
 				+ "-" + string(month(hyper)) 
 replace hypertension = " " if hypertension==".-." 
 drop hypertension_temp
-
+*/
 
 * Hba1c 
-gen hba1c_percentage   = rnormal(2, 10)
-gen hba1c_mmol_per_mol = rnormal(15, 90)
+*gen hba1c_percentage   = rnormal(2, 10)
+*gen hba1c_mmol_per_mol = rnormal(15, 90)
 
-replace hba1c_percentage = . if uniform()<0.95
-replace hba1c_mmol_per_mol = . if uniform()<0.2
-
+*replace hba1c_percentage = . if uniform()<0.95
+*replace hba1c_mmol_per_mol = . if uniform()<0.2
+/*
 gen hba1c_percentage_date_temp = 1960 + rnormal(0, 1000) 
 gen hba1c_percentage_date = string(year(hba1c_percentage_date_temp)) 			///
 					+ "-" + string(month(hba1c_percentage_date_temp)) 
@@ -42,9 +42,9 @@ drop hba1c_mmol_per_mol_date_temp
 replace hba1c_percentage_date = ""   if hba1c_percentage==.
 replace hba1c_mmol_per_mol_date = "" if hba1c_mmol_per_mol==.
 
-
+*/
 * STP
-rename geographic_area stp
+*rename geographic_area stp
 
 
 * Region

@@ -35,7 +35,7 @@ cou
 *global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
 global cpnsdeathcensor 		= "25/04/2020"
-global onscoviddeathcensor 	= "16/04/2020"
+global onscoviddeathcensor 	= "06/05/2020"
 
 
 *******************************************************************************
@@ -159,7 +159,6 @@ drop smoking_status
 
 * Ethnicity 
 replace ethnicity = .u if ethnicity==.
-
 label define ethnicity 	1 "White"  					///
 						2 "Mixed" 					///
 						3 "Asian or Asian British"	///
@@ -168,6 +167,48 @@ label define ethnicity 	1 "White"  					///
 						.u "Unknown"
 label values ethnicity ethnicity
 
+
+replace ethnicity_16 = .u if ethnicity==.
+label define ethnicity_16 	///
+						1 "British or Mixed British" ///
+						2 "Irish" ///
+						3 "Other White" ///
+						4 "White + Black Caribbean" ///
+						5 "White + Black African" ///
+						6 "White + Asian" ///
+ 						7 "Other mixed" ///
+						8 "Indian or British Indian" ///
+						9 "Pakistani or British Pakistani" ///
+						10 "Bangladeshi or British Bangladeshi" ///
+						11 "Other Asian" ///
+						12 "Caribbean" ///
+						13 "African" ///
+						14 "Other Black" ///
+						15 "Chinese" ///
+						16 "Other" ///
+						.u "Unknown"  
+label values ethnicity_16 ethnicity_16
+
+*generate a version of the full breakdown with mixed in one group
+gen ethnicity_16_combinemixed = ethnicity_16
+recode ethnicity_16_combinemixed 4/7 = 4
+label define ethnicity_16_combinemixed 	///
+						1 "British or Mixed British" ///
+						2 "Irish" ///
+						3 "Other White" ///
+						4 "All mixed" ///
+						8 "Indian or British Indian" ///
+						9 "Pakistani or British Pakistani" ///
+						10 "Bangladeshi or British Bangladeshi" ///
+						11 "Other Asian" ///
+						12 "Caribbean" ///
+						13 "African" ///
+						14 "Other Black" ///
+						15 "Chinese" ///
+						16 "Other" ///
+						.u "Unknown"  
+label values ethnicity_16_combinemixed ethnicity_16_combinemixed
+						
 
 * STP 
 rename stp stp_old
@@ -628,6 +669,8 @@ label var smoke		 					"Smoking status"
 label var smoke_nomiss	 				"Smoking status (missing set to non)"
 label var imd 							"Index of Multiple Deprivation (IMD)"
 label var ethnicity						"Ethnicity"
+label var ethnicity_16					"Ethnicity in 16 categories"
+label var ethnicity_16_combinemixed		"Ethnicity detailed with mixed groups combined"
 label var stp 							"Sustainability and Transformation Partnership"
 label var region 						"Geographical region"
 
@@ -725,8 +768,8 @@ keep patient_id imd stp region enter_date  									///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
 	stime_onscoviddeath														///
 	age agegroup age70 age1 age2 age3 male bmi smoke   						///
-	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity 				///
-	bpcat bphigh htdiag_or_highbp hypertension 								///
+	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity ethnicity_16	///
+	ethnicity_16_combinemixed bpcat bphigh htdiag_or_highbp hypertension 	///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
@@ -747,8 +790,15 @@ save "cr_create_analysis_dataset.dta", replace
 * Save a version set on CPNS survival outcome
 stset stime_cpnsdeath, fail(cpnsdeath) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
-	
+
 save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
+
+* Save a version set on ONS covid death outcome
+stset stime_onscoviddeath, fail(onscoviddeath) 				///
+	id(patient_id) enter(enter_date) origin(enter_date)
+	
+save "cr_create_analysis_dataset_STSET_onscoviddeath.dta", replace
+	
 
 
 log close

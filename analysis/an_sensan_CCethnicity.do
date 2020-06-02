@@ -1,9 +1,11 @@
 
-cap log close
-log using "./output/an_sensan_CCethnicity_cpnsdeath", replace t
+local outcome `1' 
 
-*an_sensan_CCethnicity_cpnsdeath
-use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+cap log close
+log using "./output/an_sensan_CCethnicity_`outcome'", replace t
+
+*an_sensan_CCethnicity
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 drop if ethnicity>=.
 
@@ -15,10 +17,8 @@ drop if ethnicity>=.
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
 cap prog drop basecoxmodel
 prog define basecoxmodel
-	syntax , age(string) bp(string) [ethnicity(real 0) if(string)] 
+	syntax , age(string) bp(string) [ethnicity(string) if(string)] 
 
-	if `ethnicity'==1 local ethnicity "i.ethnicity"
-	else local ethnicity
 timer clear
 timer on 1
 	capture stcox 	`age' 					///
@@ -51,32 +51,43 @@ end
 
 
 *Complete case ethnicity model
-basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(1)
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(i.ethnicity) 
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING CC ETHNICITY MODEL WITH AGESPLINE DID NOT FIT (OUTCOME `outcome')"
  
  
 *Model without ethnicity among ethnicity complete cases 
-basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(0) if("if ethnicity<.")
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") if("if ethnicity<.")
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
+estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCnoeth, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING CC MODEL (excluding ethnicity) DID NOT FIT (OUTCOME `outcome')"
  
 
  *Complete case ethnicity model with age group
-basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(1)
+basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(i.ethnicity)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_CCeth, replace
+estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING CC ETHNICITY MODEL WITH AGEGROUP DID NOT FIT (OUTCOME `outcome')"
+
+*Complete case ethnicity model with 16 ethnicity categories
+basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(i.ethnicity_16_combinemixed) 
+if _rc==0{
+estimates
+estimates save ./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth_16, replace
+*estat concordance /*c-statistic*/
+ }
+ else di "WARNING CC ETHNICITY MODEL WITH AGESPLINE DID NOT FIT (OUTCOME `outcome')"
+ 
+ 
  
 log close

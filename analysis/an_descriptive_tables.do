@@ -90,7 +90,7 @@ tab ituadmission
 *  Number (%) with each outcome  *
 **********************************
 
-foreach outvar of varlist /*onscoviddeath*/ cpnsdeath /*ituadmission*/ {
+foreach outvar of varlist onscoviddeath cpnsdeath /*ituadmission*/ {
 
 *** Repeat for each outcome
 
@@ -129,6 +129,14 @@ foreach outvar of varlist /*onscoviddeath*/ cpnsdeath /*ituadmission*/ {
 }
 
 
+********************************************
+*  Cumulative incidence of ONS COVID DEATH *
+********************************************
+
+use "cr_create_analysis_dataset_STSET_onscoviddeath.dta", clear
+
+sts list , at(0 80) by(agegroup male) fail
+
 ***************************************
 *  Cumulative incidence of CPNS DEATH *
 ***************************************
@@ -136,6 +144,7 @@ foreach outvar of varlist /*onscoviddeath*/ cpnsdeath /*ituadmission*/ {
 use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
 
 sts list , at(0 80) by(agegroup male) fail
+
 
 
 * Close the log file

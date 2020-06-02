@@ -1,26 +1,16 @@
-*an_sensan_earlieradmincensoring_cpnsdeath
+*an_sensan_CCbmiandsmok
 *KB 1/5/2020
 
+local outcome `1' 
 
 cap log close
-log using "./output/an_sensan_earlieradmincensoring_cpnsdeath", replace t
+log using "./output/an_sensan_CCbmiandsmok_`outcome'", replace t
 
-**********************************
-use cr_create_analysis_dataset, clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
-*CHANGE ADMIN CENSORING DATE
-replace cpnsdeathcensor_date = date("06/04/2020", "DMY")
-
-replace stime_cpnsdeath  	= min(cpnsdeathcensor_date, 	died_date_cpns, died_date_ons)
-replace cpnsdeath 		= 0 if (died_date_cpns		> cpnsdeathcensor_date) 
-
-*STSET
-stset stime_cpnsdeath, fail(cpnsdeath) 				///
-	id(patient_id) enter(enter_date) origin(enter_date)
-**********************************
-
-
-*RUN MAIN MODELS
+******************************
+drop if bmicat>=. | smoke>=.
+******************************
 
 *************************************************************************************
 *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
@@ -60,23 +50,20 @@ timer list
 end
 *************************************************************************************
 
- 
 *Age spline model (not adj ethnicity)
 basecoxmodel, age("age1 age2 age3")  bp("i.htdiag_or_highbp") ethnicity(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
+estimates save ./output/models/an_sensan_CCbmiandsmok_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 *estat concordance /*c-statistic*/
-if e(N_fail)>0 estat phtest, d
 }
 else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
-
  
 *Age group model (not adj ethnicity)
 basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
+estimates save ./output/models/an_sensan_CCbmiandsmok_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, replace
 *estat concordance /*c-statistic*/
 }
 else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
@@ -85,10 +72,10 @@ else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
 basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(1)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
+estimates save ./output/models/an_sensan_CCbmiandsmok_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, replace
 *estat concordance /*c-statistic*/
  }
- else di "WARNING CC ETHNICITY MODEL DID NOT FIT (OUTCOME `outcome')"
+ else di "WARNING CC ETHNICITY MODEL WITH AGESPLINE DID NOT FIT (OUTCOME `outcome')"
  
  log close
  

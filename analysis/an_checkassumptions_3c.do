@@ -24,11 +24,12 @@
 ********************************************************************************
 
 
+local outcome `1' 
 
 
 * Open a log file
 capture log close
-log using "output/an_checkassumptions_MI_estimate", text replace
+log using "output/an_checkassumptions_MI_estimate_`outcome'", text replace
 
 
 
@@ -54,7 +55,7 @@ log using "output/an_checkassumptions_MI_estimate", text replace
 
 * Add imputations to the full dataset
 use cr_create_analysis_dataset.dta, clear
-merge 1:1 patient_id using imputed.dta
+merge 1:1 patient_id using imputed_`outcome'.dta
 
 
 
@@ -102,7 +103,7 @@ mi import wide, imputed(ethnicity = ///
 
 // Declare imputed data as survival
 
-mi stset stime_cpnsdeath, fail(cpnsdeath) enter(enter_date)	///
+mi stset stime_`outcome', fail(`outcome') enter(enter_date)	///
 	origin(enter_date) id(patient_id)
 
 	
@@ -137,7 +138,7 @@ mi estimate, eform: 							///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
-estimates save ./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_MIeth, replace			
+estimates save ./output/models/an_checkassumptions_3c_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_MIeth, replace			
 			
 
 * Primary analysis using imputed data, with grouped age
@@ -165,7 +166,7 @@ mi estimate, eform: 							///
 			i.other_immunosuppression 			///
 			, strata(stp)
 			
-estimates save ./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL_agegroup_bmicat_MIeth, replace			
+estimates save ./output/models/an_checkassumptions_3c_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_MIeth, replace			
 			
 log close
 

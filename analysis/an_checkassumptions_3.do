@@ -28,14 +28,15 @@
 *
 ********************************************************************************
 
+local outcome `1' 
 
-local region `1' 
+local region `2' 
 
 
 * Open a log file
 capture log close
 
-log using "output/an_checkassumptions_MI_`region'", text replace
+log using "output/an_checkassumptions_MI_`outcome'_`region'", text replace
 
 local k = `region'
 noi di `region'
@@ -102,7 +103,7 @@ recode ethnicity 1=1 2=4 3=3 4=2 5=5
 
 * Only keep required variables
 keep patient_id stp region ethnicity				///
-	stime_cpnsdeath cpnsdeath enter_date 			///
+	stime_`outcome' `outcome' enter_date 			///
 	agegroup male obese4cat							///
 	smoke_nomiss imd htdiag_or_highbp				///
 	chronic_respiratory_disease 					///
@@ -125,7 +126,7 @@ keep patient_id stp region ethnicity				///
 drop if imd>=. 
 
 * Set as survival
-stset stime_cpnsdeath, fail(cpnsdeath) enter(enter_date)	///
+stset stime_`outcome', fail(`outcome') enter(enter_date)	///
 	origin(enter_date) id(patient_id)
 
 * Generate the Nelson-Aalen estimate of the cumulative hazard
@@ -261,7 +262,7 @@ forvalues m = 1 (1) 5	{
 	capture drop temp
 	noi uvis mlogit ethnicity 				///
 		`stp_text'							///
-		cumhgp_* cpnsdeath 					///
+		cumhgp_* `outcome' 					///
 		agegroup_*  						///
 		male 								///
 		obese4cat_*							///
@@ -295,7 +296,7 @@ forvalues m = 1 (1) 5	{
 		qui gen lp`j' = [`eth_text_`j'']_b[_cons]
 		foreach var of varlist 					///
 			`stp_text'							///
-			cumhgp_* cpnsdeath					///
+			cumhgp_* `outcome'					///
 			agegroup_*  						///
 			male obese4cat_*					///
 			smoke_nomiss_*						///
@@ -370,7 +371,7 @@ forvalues m = 1 (1) 5	{
 	
 	uvis mlogit ethnicity 					///
 		`stp_text'							///
-		cumhgp_* cpnsdeath 					///
+		cumhgp_* `outcome' 					///
 		agegroup_*  						///
 		male 								///
 		obese4cat_*							///
@@ -402,7 +403,7 @@ forvalues m = 1 (1) 5	{
 keep patient_id region ethnicity*
 
 * Save the data
-save imputed_`k', replace
+save imputed_`outcome'_`k', replace
 
 
 log close

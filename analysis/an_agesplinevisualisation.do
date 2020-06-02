@@ -2,9 +2,11 @@
 *an_agesplinevisualisation
 *KB 1/5/2020
 
-use cr_create_analysis_dataset_STSET_cpnsdeath, clear
+local outcome `1' 
 
-cap estimates use ./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth
+use cr_create_analysis_dataset_STSET_`outcome', clear
+
+cap estimates use ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth
 
 if _rc==0{
 
@@ -26,6 +28,6 @@ if _rc==0{
 	
 	line hrcf55 age, sort xtitle(Age in years) ytitle("Hazard ratio compared to age 55 years (log scale)") yscale(log) ylab( 0.01 0.1 1 10 100 20) yline(0, lp(dash))
 
-	graph export ./output/an_agesplinevisualisation_cpnsdeath.svg, as(svg) replace
+	graph export ./output/an_agesplinevisualisation_`outcome'.svg, as(svg) replace
 
 }

@@ -1,10 +1,12 @@
-*an_sensan_differentBPmeasures_cpnsdeath
+*an_sensan_differentBPmeasures
 *KB 1/5/2020
 
-cap log close
-log using "./output/an_sensan_differentBPmeasures_cpnsdeath", replace t
+local outcome `1' 
 
-use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+cap log close
+log using "./output/an_sensan_differentBPmeasures_dialysis_`outcome'", replace t
+
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 
 ******************************
@@ -61,7 +63,7 @@ end
 basecoxmodel, age("age1 age2 age3") bp("i.hypertension") ethnicity(0) dialysis(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth_HTN, replace
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth_HTN, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING coded htn model DID NOT FIT (OUTCOME `outcome')"
@@ -72,7 +74,7 @@ estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_cpnsdeath_
 basecoxmodel, age("age1 age2 age3") bp("i.bpcat_nomiss") ethnicity(0) dialysis(0)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_MAINFULLYADJMODEL_agespline_bmicat_noeth_BPCAT, replace
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth_BPCAT, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING bp cat model DID NOT FIT (OUTCOME `outcome')"
@@ -82,7 +84,7 @@ estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_MAINFULLYA
 basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(0) dialysis(1)
 if _rc==0{
 estimates
-estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_MAINFULLYADJMODEL_agespline_bmicat_noeth_dialysis, replace
+estimates save ./output/models/an_sensan_differentBPmeasures_dialysis_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth_dialysis, replace
 *estat concordance /*c-statistic*/
  }
  else di "WARNING dialysis model DID NOT FIT (OUTCOME `outcome')"
