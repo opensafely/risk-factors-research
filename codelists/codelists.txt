@@ -19,8 +19,8 @@ opensafely/hiv/2020-04-24
 opensafely/hypertension/2020-04-28
 opensafely/inflammatory-bowel-disease/2020-04-07
 opensafely/lung-cancer/2020-04-15
-opensafely/permanent-immunosuppresion/2020-04-24
 opensafely/other-neurological-conditions/2020-06-02
+opensafely/permanent-immunosuppresion/2020-06-02
 opensafely/asthma-oral-prednisolone-medication/2020-04-27
 opensafely/ra-sle-psoriasis/2020-04-14
 opensafely/sickle-cell-disease/2020-04-14
