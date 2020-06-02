@@ -1,4 +1,10 @@
-from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codelist, filter_codes_by_category
+from datalab_cohorts import (
+    StudyDefinition,
+    patients,
+    codelist_from_csv,
+    codelist,
+    filter_codes_by_category,
+)
 
 
 ## CODE LISTS
@@ -7,39 +13,63 @@ from datalab_cohorts import StudyDefinition, patients, codelist_from_csv, codeli
 covid_codelist = codelist(["U071", "U072"], system="icd10")
 
 aplastic_codes = codelist_from_csv(
-    "codelists/opensafely-aplastic-anaemia.csv", system="ctv3", column="CTV3ID")
-
-hiv_codes = codelist_from_csv(
-    "codelists/opensafely-hiv.csv", system="ctv3", column="CTV3ID")
-
-permanent_immune_codes = codelist_from_csv(
-    "codelists/opensafely-permanent-immunosuppresion.csv", system="ctv3", column="CTV3ID")
-
-temp_immune_codes = codelist_from_csv(
-    "codelists/opensafely-temporary-immunosuppresion.csv", system="ctv3", column="CTV3ID")
-
-stroke = codelist_from_csv(
-    "codelists/opensafely-stroke.csv", system="ctv3", column="CTV3ID")
-
-dementia = codelist_from_csv(
-    "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID")
-
-clear_smoking_codes  = codelist_from_csv(
-    "codelists/opensafely-smoking-clear.csv", system="ctv3", column="CTV3Code", category_column="Category"
+    "codelists/opensafely-aplastic-anaemia.csv", system="ctv3", column="CTV3ID"
 )
 
-unclear_smoking_codes  = codelist_from_csv(
-    "codelists/opensafely-smoking-unclear.csv", system="ctv3", column="CTV3Code", category_column="Category"
+hiv_codes = codelist_from_csv(
+    "codelists/opensafely-hiv.csv", system="ctv3", column="CTV3ID"
+)
+
+permanent_immune_codes = codelist_from_csv(
+    "codelists/opensafely-permanent-immunosuppresion.csv",
+    system="ctv3",
+    column="CTV3ID",
+)
+
+temp_immune_codes = codelist_from_csv(
+    "codelists/opensafely-temporary-immunosuppresion.csv",
+    system="ctv3",
+    column="CTV3ID",
+)
+
+stroke = codelist_from_csv(
+    "codelists/opensafely-stroke.csv", system="ctv3", column="CTV3ID"
+)
+
+dementia = codelist_from_csv(
+    "codelists/opensafely-dementia.csv", system="ctv3", column="CTV3ID"
+)
+
+clear_smoking_codes = codelist_from_csv(
+    "codelists/opensafely-smoking-clear.csv",
+    system="ctv3",
+    column="CTV3Code",
+    category_column="Category",
+)
+
+unclear_smoking_codes = codelist_from_csv(
+    "codelists/opensafely-smoking-unclear.csv",
+    system="ctv3",
+    column="CTV3Code",
+    category_column="Category",
 )
 
 other_neuro = codelist_from_csv(
-    "codelists/opensafely-other-neurological-conditions.csv", system="ctv3", column="CTV3ID")
-ethnicity_codes  = codelist_from_csv(
-    "codelists/opensafely-ethnicity.csv", system="ctv3", column="Code", category_column="Grouping_6"
+    "codelists/opensafely-other-neurological-conditions.csv",
+    system="ctv3",
+    column="CTV3ID",
+)
+ethnicity_codes = codelist_from_csv(
+    "codelists/opensafely-ethnicity.csv",
+    system="ctv3",
+    column="Code",
+    category_column="Grouping_6",
 )
 
 chronic_respiratory_disease_codes = codelist_from_csv(
-    "codelists/opensafely-chronic-respiratory-disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-respiratory-disease.csv",
+    system="ctv3",
+    column="CTV3ID",
 )
 
 asthma_codes = codelist_from_csv(
@@ -47,15 +77,21 @@ asthma_codes = codelist_from_csv(
 )
 
 salbutamol_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-salbutamol-medication.csv", system="snomed", column="id"
+    "codelists/opensafely-asthma-inhaled-salbutamol-medication.csv",
+    system="snomed",
+    column="id",
 )
 
 ics_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-steroid-medication.csv", system="snomed", column="id"
+    "codelists/opensafely-asthma-inhaled-steroid-medication.csv",
+    system="snomed",
+    column="id",
 )
 
 pred_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-oral-prednisolone-medication.csv", system="snomed", column="snomed_id"
+    "codelists/opensafely-asthma-oral-prednisolone-medication.csv",
+    system="snomed",
+    column="snomed_id",
 )
 
 chronic_cardiac_disease_codes = codelist_from_csv(
@@ -75,7 +111,9 @@ haem_cancer_codes = codelist_from_csv(
 )
 
 other_cancer_codes = codelist_from_csv(
-    "codelists/opensafely-cancer-excluding-lung-and-haematological.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-cancer-excluding-lung-and-haematological.csv",
+    system="ctv3",
+    column="CTV3ID",
 )
 
 bone_marrow_transplant_codes = codelist_from_csv(
@@ -83,7 +121,9 @@ bone_marrow_transplant_codes = codelist_from_csv(
 )
 
 chemo_radio_therapy_codes = codelist_from_csv(
-    "codelists/opensafely-chemotherapy-or-radiotherapy.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chemotherapy-or-radiotherapy.csv",
+    system="ctv3",
+    column="CTV3ID",
 )
 
 chronic_liver_disease_codes = codelist_from_csv(
@@ -93,13 +133,15 @@ gi_bleed_and_ulcer_codes = codelist_from_csv(
     "codelists/opensafely-gi-bleed-or-ulcer.csv", system="ctv3", column="CTV3ID"
 )
 inflammatory_bowel_disease_codes = codelist_from_csv(
-    "codelists/opensafely-inflammatory-bowel-disease.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-inflammatory-bowel-disease.csv",
+    system="ctv3",
+    column="CTV3ID",
 )
 
 creatinine_codes = codelist(["XE2q5"], system="ctv3")
 
-hba1c_new_codes = codelist(['XaPbt', 'Xaeze', 'Xaezd'], system="ctv3")
-hba1c_old_codes = codelist(['X772q', 'XaERo', 'XaERp'], system="ctv3")
+hba1c_new_codes = codelist(["XaPbt", "Xaeze", "Xaezd"], system="ctv3")
+hba1c_old_codes = codelist(["X772q", "XaERo", "XaERp"], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
@@ -107,7 +149,9 @@ dialysis_codes = codelist_from_csv(
 )
 
 organ_transplant_codes = codelist_from_csv(
-    "codelists/opensafely-solid-organ-transplantation.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-solid-organ-transplantation.csv",
+    system="ctv3",
+    column="CTV3ID",
 )
 
 spleen_codes = codelist_from_csv(
@@ -137,7 +181,6 @@ study = StudyDefinition(
     population=patients.registered_with_one_practice_between(
         "2019-02-01", "2020-02-01"
     ),
-
     # Outcomes
     icu_date_admitted=patients.admitted_to_icu(
         on_or_after="2020-02-01",
@@ -163,30 +206,25 @@ study = StudyDefinition(
         include_month=True,
         include_day=True,
     ),
-
     # The rest of the lines define the covariates with associated GitHub issues
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/33
     age=patients.age_as_of("2020-02-01"),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/46
     sex=patients.sex(),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/52
     imd=patients.address_as_of(
         "2020-02-01", returning="index_of_multiple_deprivation", round_to_nearest=100
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/37
     rural_urban=patients.address_as_of(
         "2020-02-01", returning="rural_urban_classification"
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/54
     stp=patients.registered_practice_as_of("2020-02-01", returning="stp_code"),
-
     # region - one of NHS England 9 regions
-    region=patients.registered_practice_as_of("2020-02-01", returning="nhse_region_name"),
-
+    region=patients.registered_practice_as_of(
+        "2020-02-01", returning="nhse_region_name"
+    ),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/10
     bmi=patients.most_recent_bmi(
         on_or_after="2010-02-01",
@@ -194,7 +232,6 @@ study = StudyDefinition(
         include_measurement_date=True,
         include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/6
     smoking_status=patients.categorised_as(
         {
@@ -205,29 +242,29 @@ study = StudyDefinition(
                  )
             """,
             "N": "most_recent_smoking_code = 'N' AND NOT ever_smoked",
-            "M": "DEFAULT"
+            "M": "DEFAULT",
         },
         most_recent_smoking_code=patients.with_these_clinical_events(
             clear_smoking_codes,
             find_last_match_in_period=True,
-            on_or_before='2020-02-01',
+            on_or_before="2020-02-01",
             returning="category",
         ),
         ever_smoked=patients.with_these_clinical_events(
-            filter_codes_by_category(clear_smoking_codes, include=['S', 'E']),
-            on_or_before='2020-02-01'
+            filter_codes_by_category(clear_smoking_codes, include=["S", "E"]),
+            on_or_before="2020-02-01",
         ),
     ),
     smoking_status_date=patients.with_these_clinical_events(
         clear_smoking_codes,
-        on_or_before='2020-02-01',
+        on_or_before="2020-02-01",
         return_last_date_in_period=True,
         include_month=True,
     ),
     most_recent_unclear_smoking_cat=patients.with_these_clinical_events(
         unclear_smoking_codes,
         find_last_match_in_period=True,
-        on_or_before='2020-02-01',
+        on_or_before="2020-02-01",
         returning="category",
     ),
     most_recent_unclear_smoking_numeric=patients.with_these_clinical_events(
@@ -238,26 +275,23 @@ study = StudyDefinition(
     ),
     most_recent_unclear_smoking_cat_date=patients.with_these_clinical_events(
         unclear_smoking_codes,
-        on_or_before='2020-02-01',
+        on_or_before="2020-02-01",
         return_last_date_in_period=True,
         include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27
     ethnicity=patients.with_these_clinical_events(
         ethnicity_codes,
         returning="category",
         find_last_match_in_period=True,
         include_date_of_match=True,
-        ),
-
+    ),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/21
     chronic_respiratory_disease=patients.with_these_clinical_events(
         chronic_respiratory_disease_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/55
     asthma=patients.categorised_as(
         {
@@ -286,47 +320,37 @@ study = StudyDefinition(
             """,
         },
         recent_asthma_code=patients.with_these_clinical_events(
-            asthma_codes,
-            between=['2017-02-01', '2020-02-01'],
+            asthma_codes, between=["2017-02-01", "2020-02-01"],
         ),
         asthma_code_ever=patients.with_these_clinical_events(asthma_codes),
-        copd_code_ever=patients.with_these_clinical_events(chronic_respiratory_disease_codes),
+        copd_code_ever=patients.with_these_clinical_events(
+            chronic_respiratory_disease_codes
+        ),
         prednisolone_last_year=patients.with_these_medications(
             pred_codes,
-            between=['2019-02-01', '2020-02-01'],
+            between=["2019-02-01", "2020-02-01"],
             returning="number_of_matches_in_period",
         ),
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/7
     chronic_cardiac_disease=patients.with_these_clinical_events(
         chronic_cardiac_disease_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/30
     diabetes=patients.with_these_clinical_events(
-        diabetes_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        diabetes_codes, return_first_date_in_period=True, include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/32
     lung_cancer=patients.with_these_clinical_events(
-        lung_cancer_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        lung_cancer_codes, return_first_date_in_period=True, include_month=True,
     ),
     haem_cancer=patients.with_these_clinical_events(
-        haem_cancer_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        haem_cancer_codes, return_first_date_in_period=True, include_month=True,
     ),
     other_cancer=patients.with_these_clinical_events(
-        other_cancer_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        other_cancer_codes, return_first_date_in_period=True, include_month=True,
     ),
     bone_marrow_transplant=patients.with_these_clinical_events(
         bone_marrow_transplant_codes,
@@ -334,35 +358,23 @@ study = StudyDefinition(
         include_month=True,
     ),
     chemo_radio_therapy=patients.with_these_clinical_events(
-        chemo_radio_therapy_codes,
-        return_last_date_in_period=True,
-        include_month=True,
+        chemo_radio_therapy_codes, return_last_date_in_period=True, include_month=True,
     ),
-
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/12
     chronic_liver_disease=patients.with_these_clinical_events(
         chronic_liver_disease_codes,
         return_first_date_in_period=True,
         include_month=True,
     ),
-
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/14
     other_neuro=patients.with_these_clinical_events(
-        other_neuro, 
-        return_first_date_in_period=True,
-        include_month=True,
+        other_neuro, return_first_date_in_period=True, include_month=True,
     ),
-
     stroke=patients.with_these_clinical_events(
-        stroke, 
-        return_first_date_in_period=True,
-        include_month=True,
+        stroke, return_first_date_in_period=True, include_month=True,
     ),
-
     dementia=patients.with_these_clinical_events(
-        dementia, 
-        return_first_date_in_period=True,
-        include_month=True,
+        dementia, return_first_date_in_period=True, include_month=True,
     ),
     # # Chronic kidney disease
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/17
@@ -375,60 +387,37 @@ study = StudyDefinition(
         include_month=True,
     ),
     dialysis=patients.with_these_clinical_events(
-        dialysis_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        dialysis_codes, return_first_date_in_period=True, include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/31
     organ_transplant=patients.with_these_clinical_events(
-        organ_transplant_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        organ_transplant_codes, return_first_date_in_period=True, include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/13
     dysplenia=patients.with_these_clinical_events(
-        spleen_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        spleen_codes, return_first_date_in_period=True, include_month=True,
     ),
     sickle_cell=patients.with_these_clinical_events(
-        sickle_cell_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        sickle_cell_codes, return_first_date_in_period=True, include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/36
     aplastic_anaemia=patients.with_these_clinical_events(
-        aplastic_codes, 
-        return_last_date_in_period=True,
-        include_month=True,
+        aplastic_codes, return_last_date_in_period=True, include_month=True,
     ),
     hiv=patients.with_these_clinical_events(
-        hiv_codes, 
-        return_first_date_in_period=True,
-        include_month=True,
+        hiv_codes, return_first_date_in_period=True, include_month=True,
     ),
     permanent_immunodeficiency=patients.with_these_clinical_events(
-        permanent_immune_codes, 
-        return_first_date_in_period=True,
-        include_month=True,
+        permanent_immune_codes, return_first_date_in_period=True, include_month=True,
     ),
     temporary_immunodeficiency=patients.with_these_clinical_events(
-        temp_immune_codes,
-        return_last_date_in_period=True,
-        include_month=True,
+        temp_immune_codes, return_last_date_in_period=True, include_month=True,
     ),
-
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/23
-    #immunosuppressant_med=
-
-    # hypertension 
-    hypertension = patients.with_these_clinical_events(
-        hypertension_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+    # immunosuppressant_med=
+    # hypertension
+    hypertension=patients.with_these_clinical_events(
+        hypertension_codes, return_first_date_in_period=True, include_month=True,
     ),
     # Blood pressure
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/35
@@ -446,7 +435,6 @@ study = StudyDefinition(
         include_measurement_date=True,
         include_month=True,
     ),
-
     hba1c_mmol_per_mol=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
@@ -463,23 +451,18 @@ study = StudyDefinition(
         include_date_of_match=True,
         include_month=True,
     ),
-
     # # https://github.com/ebmdatalab/tpp-sql-notebook/issues/49
     ra_sle_psoriasis=patients.with_these_clinical_events(
-        ra_sle_psoriasis_codes,
-        return_first_date_in_period=True,
-        include_month=True,
+        ra_sle_psoriasis_codes, return_first_date_in_period=True, include_month=True,
     ),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/51
     gi_bleed_and_ulcer=patients.with_these_clinical_events(
-        gi_bleed_and_ulcer_codes,
-        return_first_date_in_period=True,
-        include_month=True
+        gi_bleed_and_ulcer_codes, return_first_date_in_period=True, include_month=True
     ),
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/50
     inflammatory_bowel_disease=patients.with_these_clinical_events(
         inflammatory_bowel_disease_codes,
         return_first_date_in_period=True,
-        include_month=True
+        include_month=True,
     ),
 )
