@@ -27,5 +27,5 @@ opensafely/sickle-cell-disease/2020-04-14
 opensafely/smoking-clear/2020-04-29
 opensafely/smoking-unclear/2020-04-29
 opensafely/solid-organ-transplantation/2020-04-10
-opensafely/stroke/2020-04-21
+opensafely/stroke-updated/2020-06-02
 opensafely/temporary-immunosuppresion/2020-04-24
