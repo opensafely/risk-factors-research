@@ -21,7 +21,7 @@ local outcome `1'
 *Generic code to ouput the HRs across outcomes for all levels of a particular variables, in the right shape for table
 cap prog drop outputHRsforvar
 prog define outputHRsforvar
-syntax, variable(string) min(real) max(real) 
+syntax, variable(string) min(real) max(real) outcome(string)
 forvalues i=`min'/`max'{
 local endwith "_tab"
 
@@ -118,60 +118,60 @@ if _rc==0 file write tablecontents (e(N_fail)) `endwith'
 
 
 *Age group
-outputHRsforvar, variable("agegroup") min(1) max(2)
+outputHRsforvar, variable("agegroup") min(1) max(2) outcome(`outcome')
 refline
-outputHRsforvar, variable("agegroup") min(4) max(6)
+outputHRsforvar, variable("agegroup") min(4) max(6) outcome(`outcome')
 file write tablecontents _n 
 
 *Sex 
 refline
-outputHRsforvar, variable("male") min(1) max(1)
+outputHRsforvar, variable("male") min(1) max(1) outcome(`outcome')
 file write tablecontents _n
 
 *BMI
 refline
-outputHRsforvar, variable("obese4cat") min(2) max(4)
+outputHRsforvar, variable("obese4cat") min(2) max(4) outcome(`outcome')
 file write tablecontents _n
 
 *Smoking
 refline
-outputHRsforvar, variable("smoke_nomiss") min(2) max(3)
+outputHRsforvar, variable("smoke_nomiss") min(2) max(3) outcome(`outcome')
 file write tablecontents _n 
 
 *Ethnicity
 refline
-outputHRsforvar, variable("ethnicity") min(2) max(5)
+outputHRsforvar, variable("ethnicity") min(2) max(5) outcome(`outcome')
 file write tablecontents _n 
 
 *IMD
 refline
-outputHRsforvar, variable("imd") min(2) max(5)
-file write tablecontents _n 
+outputHRsforvar, variable("imd") min(2) max(5) outcome(`outcome')
+file write tablecontents _n  
 
 *BP/hypertension
 refline
-outputHRsforvar, variable("htdiag_or_highbp") min(1) max(1)
+outputHRsforvar, variable("htdiag_or_highbp") min(1) max(1) outcome(`outcome')
 file write tablecontents _n 
 
-outputHRsforvar, variable("chronic_respiratory_disease") min(1) max(1)
+outputHRsforvar, variable("chronic_respiratory_disease") min(1) max(1) outcome(`outcome')
 file write tablecontents _n			
-outputHRsforvar, variable("asthmacat") min(2) max(3)			
-outputHRsforvar, variable("chronic_cardiac_disease") min(1) max(1)
+outputHRsforvar, variable("asthmacat") min(2) max(3) outcome(`outcome')			
+outputHRsforvar, variable("chronic_cardiac_disease") min(1) max(1) outcome(`outcome')
 file write tablecontents _n		
-outputHRsforvar, variable("diabcat") min(2) max(4)
+outputHRsforvar, variable("diabcat") min(2) max(4) outcome(`outcome')
 file write tablecontents _n			
-outputHRsforvar, variable("cancer_exhaem_cat") min(2) max(4)
+outputHRsforvar, variable("cancer_exhaem_cat") min(2) max(4) outcome(`outcome')
 file write tablecontents _n			
-outputHRsforvar, variable("cancer_haem_cat") min(2) max(4)			
+outputHRsforvar, variable("cancer_haem_cat") min(2) max(4) outcome(`outcome')		
 file write tablecontents _n	
-outputHRsforvar, variable("reduced_kidney_function_cat") min(2) max(3)			
-outputHRsforvar, variable("chronic_liver_disease") min(1) max(1)			
-outputHRsforvar, variable("stroke_dementia") min(1) max(1)			
-outputHRsforvar, variable("other_neuro") min(1) max(1)			
-outputHRsforvar, variable("organ_transplant") min(1) max(1)			
-outputHRsforvar, variable("spleen") min(1) max(1)
-outputHRsforvar, variable("ra_sle_psoriasis") min(1) max(1)
-outputHRsforvar, variable("other_immunosuppression") min(1) max(1)			
+outputHRsforvar, variable("reduced_kidney_function_cat") min(2) max(3) outcome(`outcome')			
+outputHRsforvar, variable("chronic_liver_disease") min(1) max(1) outcome(`outcome')		
+outputHRsforvar, variable("stroke_dementia") min(1) max(1) outcome(`outcome')			
+outputHRsforvar, variable("other_neuro") min(1) max(1) outcome(`outcome')			
+outputHRsforvar, variable("organ_transplant") min(1) max(1) outcome(`outcome')			
+outputHRsforvar, variable("spleen") min(1) max(1) outcome(`outcome')
+outputHRsforvar, variable("ra_sle_psoriasis") min(1) max(1) outcome(`outcome')
+outputHRsforvar, variable("other_immunosuppression") min(1) max(1) outcome(`outcome')			
 
 
 
