@@ -65,6 +65,12 @@ ethnicity_codes = codelist_from_csv(
     column="Code",
     category_column="Grouping_6",
 )
+ethnicity_codes_16 = codelist_from_csv(
+    "codelists/opensafely-ethnicity.csv",
+    system="ctv3",
+    column="Code",
+    category_column="Grouping_16",
+)
 
 chronic_respiratory_disease_codes = codelist_from_csv(
     "codelists/opensafely-chronic-respiratory-disease.csv",
@@ -282,6 +288,12 @@ study = StudyDefinition(
     # https://github.com/ebmdatalab/tpp-sql-notebook/issues/27
     ethnicity=patients.with_these_clinical_events(
         ethnicity_codes,
+        returning="category",
+        find_last_match_in_period=True,
+        include_date_of_match=True,
+    ),
+    ethnicity_16=patients.with_these_clinical_events(
+        ethnicity_codes_16,
         returning="category",
         find_last_match_in_period=True,
         include_date_of_match=True,
