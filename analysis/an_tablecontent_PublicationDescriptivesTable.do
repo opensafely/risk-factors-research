@@ -10,6 +10,7 @@
 *Date drafted: 17/4/2020
 *************************************************************************
 
+local outcome `1' 
 
 *******************************************************************************
 *Generic code to output one row of table
@@ -28,7 +29,7 @@ syntax, variable(varname) condition(string)
 	local colpct = 100*(r(N)/`overalldenom')
 	file write tablecontent (`rowdenom')  (" (") %3.1f (`colpct') (")") _tab
 
-	cou if cpnsdeath==1 & `variable' `condition'
+	cou if `outcome'==1 & `variable' `condition'
 	local pct = 100*(r(N)/`rowdenom')
 	file write tablecontent (r(N)) (" (") %4.2f  (`pct') (")") _n
 
@@ -52,7 +53,7 @@ end
 
 *Set up output file
 cap file close tablecontent
-file open tablecontent using ./output/an_tablecontent_PublicationDescriptivesTable.txt, write text replace
+file open tablecontent using ./output/an_tablecontent_PublicationDescriptivesTable_`outcome'.txt, write text replace
 
 
 use cr_create_analysis_dataset,clear

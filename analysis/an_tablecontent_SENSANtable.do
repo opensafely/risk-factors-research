@@ -14,6 +14,7 @@
 *Date drafted: 18/4/2020
 *************************************************************************
 
+local outcome `1' 
 
 
 ***********************************************************************************************************************
@@ -28,7 +29,7 @@ local endwith "_tab"
 file write tablecontents "`variable'" _tab "`i'" _tab
 
 
-local outcome onscoviddeath
+
 local modeltype fulladj
 
 foreach antype of any primary earlycens ccbmismok adjethnic ethnicmi {
@@ -45,9 +46,9 @@ if "`antype'"=="ethnicmi" local endwith "_n"
 		*FOR REST - use the age spline multivariate model from that analysis
 
 
-		if "`antype'" == "primary" local filestem "./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL"
-		if "`antype'" == "earlycens" local filestem "./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL"
-		if "`antype'" == "ccbmismok" local filestem "./output/models/an_sensan_CCbmiandsmok_cpnsdeath_MAINFULLYADJMODEL"
+		if "`antype'" == "primary" local filestem "./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL"
+		if "`antype'" == "earlycens" local filestem "./output/models/an_sensan_earlieradmincensoring_`outcome'_MAINFULLYADJMODEL"
+		if "`antype'" == "ccbmismok" local filestem "./output/models/an_sensan_CCbmiandsmok_`outcome'_MAINFULLYADJMODEL"
 
 		if "`antype'"=="primary" | "`antype'"=="earlycens" | "`antype'"=="ccbmismok"{
 			if "`variable'"=="agegroup" cap estimates use `filestem'_agegroup_bmicat_noeth
@@ -57,13 +58,13 @@ if "`antype'"=="ethnicmi" local endwith "_n"
 		}
 			
 		if "`antype'" == "adjethnic" {
-			local filestem "./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL"
+			local filestem "./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL"
 			if "`variable'"=="agegroup" cap estimates use `filestem'_agegroup_bmicat_CCeth
 				else cap estimates use `filestem'_agespline_bmicat_CCeth
 			if _rc!=0 local noestimatesflag 1
 			}
 		if "`antype'" == "ethnicmi" {
-			local filestem "./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL"	
+			local filestem "./output/models/an_checkassumptions_3c_`outcome'_MAINFULLYADJMODEL"	
 			if "`variable'"=="agegroup" cap estimates use `filestem'_agegroup_bmicat_MIeth
 				else cap estimates use `filestem'_agespline_bmicat_MIeth
 			if _rc!=0 local noestimatesflag 1
@@ -82,7 +83,7 @@ if "`antype'"=="ethnicmi" local endwith "_n"
 			else file write tablecontents %4.2f ("DID NOT FIT") `endwith' 
 			
 		
-	} /*outcomes*/
+	} /*sens an columns*/
 } /*variable levels*/
 
 end
@@ -97,18 +98,18 @@ end
 *MAIN CODE TO PRODUCE TABLE CONTENTS
 
 cap file close tablecontents
-file open tablecontents using ./output/an_tablecontent_SENSANtable.txt, t w replace 
+file open tablecontents using ./output/an_tablecontent_SENSANtable_`outcome'.txt, t w replace 
 
 *N events
 file write tablecontents _tab _tab 
 foreach antype of any primary earlycens ccbmismok adjethnic ethnicmi {
 local endwith _tab
-if "`antype'" == "primary" cap estimates use "./output/models/an_multivariate_cox_models_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth"
-if "`antype'" == "earlycens" cap estimates use "./output/models/an_sensan_earlieradmincensoring_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth"
-if "`antype'" == "ccbmismok" cap estimates use  "./output/models/an_sensan_CCbmiandsmok_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_noeth"
-if "`antype'" == "adjethnic" cap estimates use "./output/models/an_sensan_CCethnicity_cpnsdeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth"
+if "`antype'" == "primary" cap estimates use "./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth"
+if "`antype'" == "earlycens" cap estimates use "./output/models/an_sensan_earlieradmincensoring_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth"
+if "`antype'" == "ccbmismok" cap estimates use  "./output/models/an_sensan_CCbmiandsmok_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth"
+if "`antype'" == "adjethnic" cap estimates use "./output/models/an_sensan_CCethnicity_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth"
 if "`antype'" == "ethnicmi" {
-	cap estimates use "./output/models/an_checkassumptions_3c_cpnsdeath_MAINFULLYADJMODEL__agespline_bmicat_MIeth"
+	cap estimates use "./output/models/an_checkassumptions_3c_`outcome'_MAINFULLYADJMODEL__agespline_bmicat_MIeth"
 	local endwith _n
 	}
 if _rc==0 file write tablecontents (e(N_fail)) `endwith'

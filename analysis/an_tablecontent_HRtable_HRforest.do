@@ -12,6 +12,7 @@
 *Date drafted: 18/4/2020
 *************************************************************************
 
+local outcome `1' 
 
 
 ***********************************************************************************************************************
@@ -25,14 +26,12 @@ local endwith "_tab"
 	*put the varname and condition to left so that alignment can be checked vs shell
 	file write tablecontents ("`variable'") _tab ("`i'") _tab
 	
-	foreach outcome of any /*ituadmission*/ cpnsdeath /*onscoviddeath*/ {
-	
 	foreach modeltype of any minadj fulladj {
 	
 		local noestimatesflag 0 /*reset*/
 
 *CHANGE THE OUTCOME BELOW TO LAST IF BRINGING IN MORE COLS
-		if "`outcome'"=="cpnsdeath" & "`modeltype'"=="fulladj" local endwith "_n"
+		if "`modeltype'"=="fulladj" local endwith "_n"
 
 		***********************
 		*1) GET THE RIGHT ESTIMATES INTO MEMORY
@@ -102,7 +101,6 @@ local endwith "_tab"
 		}	
 		} /*min adj, full adj*/
 		
-	} /*outcomes*/
 } /*variable levels*/
 
 end
@@ -118,7 +116,7 @@ end
 *MAIN CODE TO PRODUCE TABLE CONTENTS
 
 cap file close tablecontents
-file open tablecontents using ./output/an_tablecontents_HRtable.txt, t w replace 
+file open tablecontents using ./output/an_tablecontents_HRtable_`outcome'.txt, t w replace 
 
 tempfile HRestimates
 cap postutil clear
@@ -325,4 +323,4 @@ scatter graphorder hr if lci>=.15, mcol(black)	msize(small)		///										///
 		xscale(log) xlab(0.25 0.5 1 2 5 10) xtitle("Hazard Ratio & 95% CI") ylab(none) ytitle("")						/// 
 		legend(off)  ysize(8) 
 
-graph export ./output/an_tablecontent_HRtable_HRforest.svg, as(svg) replace
+graph export ./output/an_tablecontent_HRtable_HRforest_`outcome'.svg, as(svg) replace

@@ -35,7 +35,7 @@ cou
 *global ecdseventcensor 		= "21/04/2020"
 global ituadmissioncensor 	= "20/04/2020"
 global cpnsdeathcensor 		= "25/04/2020"
-global onscoviddeathcensor 	= "16/04/2020"
+global onscoviddeathcensor 	= "06/05/2020"
 
 
 *******************************************************************************
@@ -167,6 +167,14 @@ label define ethnicity 	1 "White"  					///
 						5 "Other"					///
 						.u "Unknown"
 label values ethnicity ethnicity
+
+
+replace ethnicity_16 = .u if ethnicity==.
+
+label define ethnicity_16 	///
+						.u "Unknown"
+label values ethnicity_16 ethnicity_16
+
 
 
 * STP 
@@ -628,6 +636,7 @@ label var smoke		 					"Smoking status"
 label var smoke_nomiss	 				"Smoking status (missing set to non)"
 label var imd 							"Index of Multiple Deprivation (IMD)"
 label var ethnicity						"Ethnicity"
+label var ethnicity_16					"Ethnicity in 16 categories"
 label var stp 							"Sustainability and Transformation Partnership"
 label var region 						"Geographical region"
 
@@ -725,7 +734,7 @@ keep patient_id imd stp region enter_date  									///
 	onscoviddeath onscoviddeathcensor_date died_date_ons died_date_onscovid ///
 	stime_onscoviddeath														///
 	age agegroup age70 age1 age2 age3 male bmi smoke   						///
-	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity 				///
+	smoke smoke_nomiss bmicat bpcat_nomiss obese4cat ethnicity ethnicity_16	///
 	bpcat bphigh htdiag_or_highbp hypertension 								///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///
@@ -747,8 +756,15 @@ save "cr_create_analysis_dataset.dta", replace
 * Save a version set on CPNS survival outcome
 stset stime_cpnsdeath, fail(cpnsdeath) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
-	
+
 save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
+
+* Save a version set on ONS covid death outcome
+stset stime_onscovidnotedeath, fail(onscoviddeath) 				///
+	id(patient_id) enter(enter_date) origin(enter_date)
+	
+save "cr_create_analysis_dataset_STSET_onscoviddeath.dta", replace
+	
 
 
 log close

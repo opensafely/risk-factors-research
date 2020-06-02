@@ -19,8 +19,10 @@ do "cr_create_analysis_dataset.do"
 *IF PARALLEL WORKING - FOLLOWING CAN BE RUN IN ANY ORDER/IN PARALLEL*
 *       PROVIDING THE ABOVE CR_ FILE HAS BEEN RUN FIRST				*
 *********************************************************************
-do "an_tablecontent_PublicationDescriptivesTable.do"
-
+foreach outcome of any onscoviddeath cpnsdeath {
+	do "an_tablecontent_PublicationDescriptivesTable.do" `outcome'
+	}
+	
 do "an_checks.do"
 do "an_descriptive_tables.do"
 do "an_descriptive_plots.do"
@@ -33,97 +35,145 @@ do "an_descriptive_plots.do"
 *   because of the ways the resulting log files are named
 
 *UNIVARIATE MODELS (these fit the models needed for age/sex adj col of Table 2)
-*UNIVARIATE MODELS BATCH 1
-do "an_univariable_cox_models.do" cpnsdeath ///
-	agegroupsex							///
-	agesplsex							///
-	asthmacat							///
-	cancer_exhaem_cat					///
-	cancer_haem_cat						///
-	chronic_cardiac_disease 			
 
-*UNIVARIATE MODELS BATCH 2
-do "an_univariable_cox_models.do" cpnsdeath ///
-	reduced_kidney_function_cat				///
-	dialysis							///
-	chronic_liver_disease 				///
-	chronic_respiratory_disease 		///
-	diabcat								///
-	ethnicity 
+foreach outcome of any onscoviddeath cpnsdeath {
 
-*UNIVARIATE MODELS BATCH 3
-do "an_univariable_cox_models.do" cpnsdeath ///
-	htdiag_or_highbp					///
-	 bpcat 								///
-	 hypertension						///
-	imd 								///
-	obese4cat							///
-	 bmicat 							///
-	organ_transplant 					
-	
+	*UNIVARIATE MODELS BATCH 1
+	do "an_univariable_cox_models.do" `outcome' ///
+		agegroupsex							///
+		agesplsex							///
+		asthmacat							///
+		cancer_exhaem_cat					///
+		cancer_haem_cat						///
+		chronic_cardiac_disease 			
 
-*UNIVARIATE MODELS BATCH 4
-do "an_univariable_cox_models.do" cpnsdeath ///
-	other_immunosuppression				///
-	other_neuro 						///
-	ra_sle_psoriasis 					///  
-	smoke  								///
-	smoke_nomiss 						///
-	spleen 								///
-	stroke_dementia
+	*UNIVARIATE MODELS BATCH 2
+	do "an_univariable_cox_models.do" `outcome' ///
+		reduced_kidney_function_cat				///
+		dialysis							///
+		chronic_liver_disease 				///
+		chronic_respiratory_disease 		///
+		diabcat								///
+		ethnicity 
 
-*MULTIVARIATE MODELS (this fits the models needed for fully adj col of Table 2)
-do "an_multivariable_cox_models.do" cpnsdeath
+	*UNIVARIATE MODELS BATCH 3
+	do "an_univariable_cox_models.do" `outcome' ///
+		htdiag_or_highbp					///
+		 bpcat 								///
+		 hypertension						///
+		imd 								///
+		obese4cat							///
+		 bmicat 							///
+		organ_transplant 					
+		
 
+	*UNIVARIATE MODELS BATCH 4
+	do "an_univariable_cox_models.do" `outcome' ///
+		other_immunosuppression				///
+		other_neuro 						///
+		ra_sle_psoriasis 					///  
+		smoke  								///
+		smoke_nomiss 						///
+		spleen 								///
+		stroke_dementia
 
-*SENSITIVITY ANALYSES / POST HOC ANALYSES
+************************************************************
+	*MULTIVARIATE MODELS (this fits the models needed for fully adj col of Table 2)
+	do "an_multivariable_cox_models.do" `outcome'
 
-*SMOKING EXPLORATION COX MODELS BATCH 1
-do "an_smoking_exploration_cox_models.do" cpnsdeath ///
-	asthmacat							///
-	cancer_exhaem_cat					///
-	cancer_haem_cat						///
-	chronic_cardiac_disease 			///
-	reduced_kidney_function_cat				
+************************************************************
+	*SENSITIVITY ANALYSES / POST HOC ANALYSES
+************************************************************
+	*SMOKING EXPLORATION COX MODELS BATCH 1
+	do "an_smoking_exploration_cox_models.do" `outcome' ///
+		asthmacat							///
+		cancer_exhaem_cat					///
+		cancer_haem_cat						///
+		chronic_cardiac_disease 			///
+		reduced_kidney_function_cat				
 
-*SMOKING EXPLORATION COX MODELS BATCH 2
-do "an_smoking_exploration_cox_models.do" cpnsdeath ///
-	chronic_liver_disease 				///
-	chronic_respiratory_disease 		///
-	diabcat								///
-	ethnicity 							///
-	htdiag_or_highbp					
+	*SMOKING EXPLORATION COX MODELS BATCH 2
+	do "an_smoking_exploration_cox_models.do" `outcome' ///
+		chronic_liver_disease 				///
+		chronic_respiratory_disease 		///
+		diabcat								///
+		ethnicity 							///
+		htdiag_or_highbp					
 
-*SMOKING EXPLORATION COX MODELS BATCH 3
-do "an_smoking_exploration_cox_models.do" cpnsdeath ///
-	imd 								///
-	obese4cat							///
-	organ_transplant 					///
-	other_immunosuppression				///
-	other_neuro 						
-	
+	*SMOKING EXPLORATION COX MODELS BATCH 3
+	do "an_smoking_exploration_cox_models.do" `outcome' ///
+		imd 								///
+		obese4cat							///
+		organ_transplant 					///
+		other_immunosuppression				///
+		other_neuro 						
+		
 
-*SMOKING EXPLORATION COX MODELS BATCH 4
-do "an_smoking_exploration_cox_models.do" cpnsdeath ///
-	ra_sle_psoriasis 					///  
-	smoke  								///
-	smoke_nomiss 						///
-	spleen 								///
-	stroke_dementia	
+	*SMOKING EXPLORATION COX MODELS BATCH 4
+	do "an_smoking_exploration_cox_models.do" `outcome' ///
+		ra_sle_psoriasis 					///  
+		smoke  								///
+		smoke_nomiss 						///
+		spleen 								///
+		stroke_dementia	
 
-	
-*THE NEXT 3 INCLUDE ALL THE MODELLING FOR THE SENS AN APPX TABLE	
-*SENS AN AMONG ETHNICITY CCs	
-do "an_sensan_CCethnicity_cpnsdeath.do"
-	
-*SENS AN WITH EARLIER ADMIN CENSORING AT 6th APRIL PRE EFFECT OF LOCKDOWN
-do "an_sensan_earlieradmincensoring_cpnsdeath.do"
+************************************************************
+	*bp EXPLORATION COX MODELS BATCH 1
+	do "an_bp_exploration_cox_models.do" `outcome' ///
+		asthmacat							///
+		cancer_exhaem_cat					///
+		cancer_haem_cat						///
+		chronic_cardiac_disease 			///
+		reduced_kidney_function_cat				
 
-*SENS AN AMONG THOSE WITH RECORDED BMI AND SMOKING ONLY
-do "an_sensan_CCbmiandsmok_cpnsdeath.do"	
+	*bp EXPLORATION COX MODELS BATCH 2
+	do "an_bp_exploration_cox_models.do" `outcome' ///
+		chronic_liver_disease 				///
+		chronic_respiratory_disease 		///
+		diabcat								///
+		ethnicity 							
+							
 
-*SENS AN USING DIFFERENT BP MEASURES
-do "an_sensan_differentBPmeasures_dialysis_cpnsdeath"
+	*bp EXPLORATION COX MODELS BATCH 3
+	do "an_bp_exploration_cox_models.do" `outcome' ///
+		imd 								///
+		obese4cat							///
+		organ_transplant 					///
+		other_immunosuppression				///
+		other_neuro 						
+		
+
+	*bp EXPLORATION COX MODELS BATCH 4
+	do "an_bp_exploration_cox_models.do" `outcome' ///
+		ra_sle_psoriasis 					///  
+		smoke  								///
+		smoke_nomiss 						///
+		spleen 								///
+		stroke_dementia	
+
+************************************************************
+		
+	*SMOKING ADJUSTED FOR DEMOGRAPHICS; HYPERTENSION-AGE INTERACTION
+	do "an_smoke_hypertension_posthoc.do" `outcome'
+
+************************************************************
+	*THE NEXT 3 INCLUDE ALL THE MODELLING FOR THE SENS AN APPX TABLE	
+	*SENS AN AMONG ETHNICITY CCs	
+	do "an_sensan_CCethnicity.do" `outcome'
+		
+	*SENS AN WITH EARLIER ADMIN CENSORING AT 6th APRIL PRE EFFECT OF LOCKDOWN
+	do "an_sensan_earlieradmincensoring.do" `outcome'
+
+	*SENS AN AMONG THOSE WITH RECORDED BMI AND SMOKING ONLY
+	do "an_sensan_CCbmiandsmok.do" `outcome'	
+************************************************************
+	*SENS AN USING DIFFERENT BP MEASURES
+	do "an_sensan_differentBPmeasures_dialysis.do" `outcome'
+************************************************************
+	do "an_checkassumptions.do" `outcome' /*calculates c-stat and Schoenfeld PH test */
+
+}
+
 	
 ************************************************************
 *PARALLEL WORKING - THESE MUST BE RUN AFTER THE 
@@ -131,27 +181,33 @@ do "an_sensan_differentBPmeasures_dialysis_cpnsdeath"
 *and AN_SENS... DO FILES HAVE FINISHED
 *(THESE ARE VERY QUICK)*
 ************************************************************
-do "an_tablecontent_HRtable_HRforest.do"
-do "an_agesplinevisualisation.do"
+foreach outcome of any onscoviddeath cpnsdeath {
+	do "an_tablecontent_HRtable_HRforest.do" `outcome'
+	do "an_agesplinevisualisation.do" `outcome'
+}
 
-**Experimental, to do at end (in case slow)
-do "an_checkassumptions.do" cpnsdeath /*calculates c-stat and Schoenfeld PH test */
-*do "an_checkassumptions_2.do" /*KM curves by each variable, slow*/
 
 /**************************************
 ** MI for ethnicity - run these in parallel
-do "an_checkassumptions_3.do" 1
-do "an_checkassumptions_3.do" 2
-do "an_checkassumptions_3.do" 3
-do "an_checkassumptions_3.do" 4
-do "an_checkassumptions_3.do" 5
-do "an_checkassumptions_3.do" 6
-do "an_checkassumptions_3.do" 7
-do "an_checkassumptions_3.do" 8
-do "an_checkassumptions_3.do" 9
+foreach outcome of any onscoviddeath cpnsdeath {
+	do "an_checkassumptions_3.do" `outcome' 1
+	do "an_checkassumptions_3.do" `outcome' 2
+	do "an_checkassumptions_3.do" `outcome' 3
+	do "an_checkassumptions_3.do" `outcome' 4
+	do "an_checkassumptions_3.do" `outcome' 5
+	do "an_checkassumptions_3.do" `outcome' 6
+	do "an_checkassumptions_3.do" `outcome' 7
+	do "an_checkassumptions_3.do" `outcome' 8
+	do "an_checkassumptions_3.do" `outcome' 9
+	}
 **************************************
-do an_checkassumptions_3b /*run at end, combines imputations and analyses)*/
+*run at end, combines imputations and analyses)
+foreach outcome of any onscoviddeath cpnsdeath {
+	do an_checkassumptions_3b `outcome' /
+	do an_checkassumptions_3c `outcome'
+	}
 **************************************/
 
-do "an_tablecontent_SENSANtable.do"
-
+foreach outcome of any onscoviddeath cpnsdeath {
+do "an_tablecontent_SENSANtable.do" `outcome'
+}

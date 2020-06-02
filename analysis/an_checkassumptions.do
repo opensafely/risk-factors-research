@@ -33,7 +33,7 @@ local outcome `1'
 
 * Open a log file
 capture log close
-log using "./output/an_checkassumptions_`1'", text replace
+log using "./output/an_checkassumptions_`outcome'", text replace
 
 
 use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear

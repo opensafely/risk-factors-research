@@ -24,13 +24,14 @@
 ********************************************************************************
 
 
+local outcome `1' 
 
 
 
 * Open a log file
 capture log close
 
-log using "output/an_checkassumptions_MI_combine", text replace
+log using "output/an_checkassumptions_MI_combine_`outcome'", text replace
 
 
 
@@ -62,13 +63,13 @@ log using "output/an_checkassumptions_MI_combine", text replace
 **************************
 
 * Put imputed data together (across regions)
-use imputed_1.dta, clear
+use imputed_`outcome'_1.dta, clear
 
 forvalues k= 2 (1) 9	{
 
-append using imputed_`k'
+append using imputed_`outcome'_`k'
 }
-save imputed, replace
+save imputed_`outcome', replace
 forvalues k= 1 (1) 9	{
 *erase imputed_`k'.dta
 }
