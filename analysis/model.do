@@ -171,7 +171,10 @@ foreach outcome of any onscoviddeath cpnsdeath {
 	do "an_sensan_differentBPmeasures_dialysis.do" `outcome'
 ************************************************************
 	do "an_checkassumptions.do" `outcome' /*calculates c-stat and Schoenfeld PH test */
-
+************************************************************
+	*CR CI curves (alt methods)
+	do "an_descriptive_plots_cr_manualmethod" `outcome'
+*	do "an_descriptive_plots_cr_thinned" `outcome'
 }
 
 	
