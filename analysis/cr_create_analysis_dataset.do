@@ -8,14 +8,17 @@
 *
 *	Data used:		Data in memory (from input.csv)
 *
-*	Data created:	cr_create_analysis_dataset.dta
+*	Data created:	cr_create_analysis_dataset.dta  (main analysis dataset)
+*					Same data but already stset (to avoid re-doing):
+*						cr_create_analysis_dataset_STSET_cpnsdeath.dta 
+*						cr_create_analysis_dataset_STSET_onscoviddeath.dta
 *
 *	Other output:	None
 *
 ********************************************************************************
 *
 *	Purpose:		This do-file creates the variables required for the 
-*					main analysis and saves into a Stata dataset.
+*					main analysis and saves into Stata datasets.
 *  
 ********************************************************************************
 
@@ -157,7 +160,7 @@ label values smoke smoke
 drop smoking_status
 
 
-* Ethnicity 
+* Ethnicity (5 category)
 replace ethnicity = .u if ethnicity==.
 label define ethnicity 	1 "White"  					///
 						2 "Mixed" 					///
@@ -168,28 +171,31 @@ label define ethnicity 	1 "White"  					///
 label values ethnicity ethnicity
 
 
+* Ethnicity (16 category)
 replace ethnicity_16 = .u if ethnicity==.
-label define ethnicity_16 	///
-						1 "British or Mixed British" ///
-						2 "Irish" ///
-						3 "Other White" ///
-						4 "White + Black Caribbean" ///
-						5 "White + Black African" ///
-						6 "White + Asian" ///
- 						7 "Other mixed" ///
-						8 "Indian or British Indian" ///
-						9 "Pakistani or British Pakistani" ///
+label define ethnicity_16 									///
+						1 "British or Mixed British" 		///
+						2 "Irish" 							///
+						3 "Other White" 					///
+						4 "White + Black Caribbean" 		///
+						5 "White + Black African"			///
+						6 "White + Asian" 					///
+ 						7 "Other mixed" 					///
+						8 "Indian or British Indian" 		///
+						9 "Pakistani or British Pakistani" 	///
 						10 "Bangladeshi or British Bangladeshi" ///
-						11 "Other Asian" ///
-						12 "Caribbean" ///
-						13 "African" ///
-						14 "Other Black" ///
-						15 "Chinese" ///
-						16 "Other" ///
+						11 "Other Asian" 					///
+						12 "Caribbean" 						///
+						13 "African" 						///
+						14 "Other Black" 					///
+						15 "Chinese" 						///
+						16 "Other" 							///
 						.u "Unknown"  
 label values ethnicity_16 ethnicity_16
 
-*generate a version of the full breakdown with mixed in one group
+
+* Ethnicity (16 category grouped further)
+* Generate a version of the full breakdown with mixed in one group
 gen ethnicity_16_combinemixed = ethnicity_16
 recode ethnicity_16_combinemixed 4/7 = 4
 label define ethnicity_16_combinemixed 	///
@@ -520,7 +526,8 @@ label var ckd "CKD stage calc without eth"
 	
 recode ckd 0=1 2/3=2 4/5=3, gen(reduced_kidney_function_cat)
 replace reduced_kidney_function_cat = 1 if creatinine==. 
-label define reduced_kidney_function_catlab 1 "None" 2 "Stage 3a/3b egfr 30-60	" 3 "Stage 4/5 egfr<30"
+label define reduced_kidney_function_catlab ///
+	1 "None" 2 "Stage 3a/3b egfr 30-60	" 3 "Stage 4/5 egfr<30"
 label values reduced_kidney_function_cat reduced_kidney_function_catlab 
  
 	
@@ -773,9 +780,9 @@ keep patient_id imd stp region enter_date  									///
 	chronic_respiratory_disease asthma asthmacat chronic_cardiac_disease 	///
 	diabetes diabcat hba1ccat cancer_exhaem_cat cancer_haem_cat 			///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
-	reduced_kidney_function_cat stroke dementia stroke_dementia other_neuro		///
-	other_immunosuppression   												///
-	creatinine egfr egfr_cat ckd  dialysis
+	reduced_kidney_function_cat stroke dementia stroke_dementia 			///
+	other_neuro other_immunosuppression   									///
+	creatinine egfr egfr_cat ckd dialysis
 
 
 
