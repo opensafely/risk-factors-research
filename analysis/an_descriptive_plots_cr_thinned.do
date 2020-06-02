@@ -33,7 +33,7 @@ use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 * Generate failure variable with 1 indicating the outcome and 2 death due 
 * to other causes (the competing risk)
 gen fail = `outcome'
-replace fail = 2 if fail==0 & stime_`outcome'<td(25april2020)
+replace fail = 2 if fail==0 & stime_`outcome'<td($`outcome'censor)
 
 * Set as competing risk data
 stset stime_`outcome', fail(fail=1) 				///
