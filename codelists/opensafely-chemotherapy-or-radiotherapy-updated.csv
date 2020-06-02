@@ -1,69 +1,69 @@
 CTV3ID,CTV3PreferredTermDesc,CTV3Source
-5135,Radiological tumour control,CTV3Map_Code_And_Term
+5135.,Radiological tumour control,CTV3Map_Code_And_Term
 514..,Purpose of radiotherapy,CTV3Map_Code_And_Term
-5141,Radiotherapy for immunosuppression,CTV3Map_Code_And_Term
-5142,Radiotherapy for haemopoietic irradiation,CTV3Map_Code_And_Term
-5143,Radiotherapy for lymphatic irradiation,CTV3Map_Code_And_Term
-5144,Preoperative course of radiotherapy,CTV3Map_Code_And_Term
-5145,Radiotherapy - intraoperative control,CTV3Map_Code_And_Term
-5146,Postoperative course of radiotherapy,CTV3Map_Code_And_Term
-5147,Radiotherapy for analgesia,CTV3Map_Code_And_Term
-5148,Radiotherapy for inflammation,CTV3Map_Code_And_Term
-5149,Palliative course of radiotherapy,CTV3Map_Code_And_Term
+5141.,Radiotherapy for immunosuppression,CTV3Map_Code_And_Term
+5142.,Radiotherapy for haemopoietic irradiation,CTV3Map_Code_And_Term
+5143.,Radiotherapy for lymphatic irradiation,CTV3Map_Code_And_Term
+5144.,Preoperative course of radiotherapy,CTV3Map_Code_And_Term
+5145.,Radiotherapy - intraoperative control,CTV3Map_Code_And_Term
+5146.,Postoperative course of radiotherapy,CTV3Map_Code_And_Term
+5147.,Radiotherapy for analgesia,CTV3Map_Code_And_Term
+5148.,Radiotherapy for inflammation,CTV3Map_Code_And_Term
+5149.,Palliative course of radiotherapy,CTV3Map_Code_And_Term
 514Z.,Radiotherapy purpose - NOS,CTV3Map_Code_And_Term
 515..,Progress of radiotherapy,CTV3Map_Code_And_Term
-5151,Radiotherapy started,CTV3Map_Code_And_Term
-5152,Radiotherapy changed,CTV3Map_Code_And_Term
-5153,Radiotherapy stopped,CTV3_Children
-5154,Radiotherapy completed,CTV3_Children
+5151.,Radiotherapy started,CTV3Map_Code_And_Term
+5152.,Radiotherapy changed,CTV3Map_Code_And_Term
+5153.,Radiotherapy stopped,CTV3_Children
+5154.,Radiotherapy completed,CTV3_Children
 515Z.,Radiotherapy progress NOS,CTV3Map_Code_And_Term
 56B5.,Image: field control:radiother,CTV3Map_Code_And_Term
 591..,X-ray beam therapy,CTV3Map_Code_And_Term
-5911,Grenz ray therapy up to 10 kV,CTV3_Children
-5912,Superficial X-ray therapy 10-60 kV,CTV3Map_Code_And_Term
-5913,Half-deep therapy 60-150 kV,CTV3Map_Code_And_Term
-5914,Deep X-ray therapy 150-400 kV,CTV3Map_Code_And_Term
-5915,Ultrahard X-rays 400-2000 kV,CTV3_Children
-5916,Short distance X-ray therapy,CTV3_Children
-5917,Intracavitary X-ray therapy,CTV3Map_Code_And_Term
-5918,Combined X-ray therapy,CTV3_Children
+5911.,Grenz ray therapy up to 10 kV,CTV3_Children
+5912.,Superficial X-ray therapy 10-60 kV,CTV3Map_Code_And_Term
+5913.,Half-deep therapy 60-150 kV,CTV3Map_Code_And_Term
+5914.,Deep X-ray therapy 150-400 kV,CTV3Map_Code_And_Term
+5915.,Ultrahard X-rays 400-2000 kV,CTV3_Children
+5916.,Short distance X-ray therapy,CTV3_Children
+5917.,Intracavitary X-ray therapy,CTV3Map_Code_And_Term
+5918.,Combined X-ray therapy,CTV3_Children
 591Z.,X-ray beam therapy NOS,CTV3Map_Code_And_Term
 592..,High-energy beam therapy,CTV3Map_Code_And_Term
-5921,Linear accelerator photon therapy,CTV3Map_Code_And_Term
-5922,Betatron photon therapy,CTV3Map_Code_And_Term
-5923,Van der Graaff photon therapy,CTV3_Children
-5924,Combined photon therapy,CTV3_Children
+5921.,Linear accelerator photon therapy,CTV3Map_Code_And_Term
+5922.,Betatron photon therapy,CTV3Map_Code_And_Term
+5923.,Van der Graaff photon therapy,CTV3_Children
+5924.,Combined photon therapy,CTV3_Children
 592Z.,High-energy beam therapy NOS,CTV3Map_Code_And_Term
 593..,Fast-electron therapy,CTV3Map_Code_And_Term
-5931,Linear accelerator electrons,CTV3_Children
-5932,Betatron electron therapy,CTV3Map_Code_And_Term
-5933,Positron therapy,CTV3Map_Code_And_Term
-5934,Combined fast-electron therapy,CTV3_Children
+5931.,Linear accelerator electrons,CTV3_Children
+5932.,Betatron electron therapy,CTV3Map_Code_And_Term
+5933.,Positron therapy,CTV3Map_Code_And_Term
+5934.,Combined fast-electron therapy,CTV3_Children
 593Z.,Fast-electron therapy NOS,CTV3Map_Code_And_Term
 594..,Heavy particle therapy,CTV3Map_Code_And_Term
-5941,Proton therapy,CTV3Map_Code_And_Term
-5942,Deuteron therapy,CTV3Map_Code_And_Term
-5943,Pi-meson therapy,CTV3_Children
-5944,Neutron capture therapy,CTV3_Children
-5945,Fast neutron therapy,CTV3_Children
-5946,Combined heavy particle therapy,CTV3_Children
+5941.,Proton therapy,CTV3Map_Code_And_Term
+5942.,Deuteron therapy,CTV3Map_Code_And_Term
+5943.,Pi-meson therapy,CTV3_Children
+5944.,Neutron capture therapy,CTV3_Children
+5945.,Fast neutron therapy,CTV3_Children
+5946.,Combined heavy particle therapy,CTV3_Children
 594Z.,Heavy particle therapy NOS,CTV3_Children
 595..,Gamma ray and intermediate distance curietherapy,CTV3Map_Code_And_Term
-5951,Gamma-ray telecurie therapy,CTV3_Children
-5952,Intermediate distance curietherapy,CTV3_Children
-5953,Combined teletherapy and intermediate distance curietherapy,CTV3Map_Code_And_Term
+5951.,Gamma-ray telecurie therapy,CTV3_Children
+5952.,Intermediate distance curietherapy,CTV3_Children
+5953.,Combined teletherapy and intermediate distance curietherapy,CTV3Map_Code_And_Term
 595Z.,Distant gamma therapy NOS,CTV3_Children
 596..,Short distance and contact radiotherapy,CTV3Map_Code_And_Term
-5961,Radium contact therapy,CTV3Map_Code_And_Term
-5962,Beta source contact therapy,CTV3Map_Code_And_Term
-5963,Mould technique gamma/beta,CTV3Map_Code_And_Term
+5961.,Radium contact therapy,CTV3Map_Code_And_Term
+5962.,Beta source contact therapy,CTV3Map_Code_And_Term
+5963.,Mould technique gamma/beta,CTV3Map_Code_And_Term
 596Z.,Short distance/contact radiotherapy NOS,CTV3Map_Code_And_Term
 597..,Combined radiotherapy,CTV3Map_Code_And_Term
-5971,External beam with internal radiotherapy,CTV3Map_Code_And_Term
-5972,External beam - surgery with preoperative radiotherapy,CTV3_Children
-5973,External beam - surgery with postoperative radiotherapy,CTV3Map_Code_And_Term
-5974,External beam - surgery with chemotherapy,CTV3Map_Code_And_Term
-5975,External beam with chemotherapy,CTV3Map_Code_And_Term
+5971.,External beam with internal radiotherapy,CTV3Map_Code_And_Term
+5972.,External beam - surgery with preoperative radiotherapy,CTV3_Children
+5973.,External beam - surgery with postoperative radiotherapy,CTV3Map_Code_And_Term
+5974.,External beam - surgery with chemotherapy,CTV3Map_Code_And_Term
+5975.,External beam with chemotherapy,CTV3Map_Code_And_Term
 597Z.,Combined radiotherapy NOS,CTV3Map_Code_And_Term
 59Z..,External radiotherapy NOS,CTV3Map_Code_And_Term
 5A...,(Radiotherapy - internal) or (other nuclear therapy),CTV3_Children

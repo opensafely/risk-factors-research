@@ -33,7 +33,7 @@ temp_immune_codes = codelist_from_csv(
 )
 
 stroke = codelist_from_csv(
-    "codelists/opensafely-stroke.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-stroke-updated.csv", system="ctv3", column="CTV3ID"
 )
 
 dementia = codelist_from_csv(
@@ -83,13 +83,13 @@ asthma_codes = codelist_from_csv(
 )
 
 salbutamol_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-salbutamol-medication.csv",
+    "codelists/opensafely-asthma-inhaler-salbutamol-medication.csv",
     system="snomed",
     column="id",
 )
 
 ics_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-steroid-medication.csv",
+    "codelists/opensafely-asthma-inhaler-steroid-medication.csv",
     system="snomed",
     column="id",
 )
@@ -127,7 +127,7 @@ bone_marrow_transplant_codes = codelist_from_csv(
 )
 
 chemo_radio_therapy_codes = codelist_from_csv(
-    "codelists/opensafely-chemotherapy-or-radiotherapy.csv",
+    "codelists/opensafely-chemotherapy-or-radiotherapy-updated.csv",
     system="ctv3",
     column="CTV3ID",
 )
@@ -151,7 +151,7 @@ hba1c_old_codes = codelist(["X772q", "XaERo", "XaERp"], system="ctv3")
 
 
 dialysis_codes = codelist_from_csv(
-    "codelists/opensafely-dialysis.csv", system="ctv3", column="CTV3ID"
+    "codelists/opensafely-chronic-kidney-disease.csv", system="ctv3", column="CTV3ID"
 )
 
 organ_transplant_codes = codelist_from_csv(
