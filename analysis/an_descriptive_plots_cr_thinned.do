@@ -6,12 +6,12 @@
 *
 *	Programmed by:	Elizabeth Williamson
 *
-*	Data used:		cr_create_analysis_dataset_STSET_cpnsdeath.dta
+*	Data used:		cr_create_analysis_dataset_STSET_`outcome'.dta
 *
 *	Data created:	None
 *
 *	Other output:	Kaplan-Meier plots (intended for publication)
-*							output/km_age_sex_cpnsdeath_cr.svg 	
+*							output/km_age_sex_`outcome'_cr.svg 	
 *							
 *
 ********************************************************************************
@@ -25,18 +25,18 @@
 *
 ********************************************************************************
 
+local outcome `1'
 
 
-
-use "cr_create_analysis_dataset_STSET_cpnsdeath.dta", clear
+use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
 
 * Generate failure variable with 1 indicating the outcome and 2 death due 
 * to other causes (the competing risk)
-gen fail = cpnsdeath
-replace fail = 2 if fail==0 & stime_cpnsdeath<td(25april2020)
+gen fail = `outcome'
+replace fail = 2 if fail==0 & stime_`outcome'<td(25april2020)
 
 * Set as competing risk data
-stset stime_cpnsdeath, fail(fail=1) 				///
+stset stime_`outcome', fail(fail=1) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
 
 * Fit a competing risks model adjusting only for age and sex
@@ -146,12 +146,13 @@ twoway 	(line ci2 _t, lcolor(red) 	 lpattern(solid)) 		///
 		title("Male")											///
 		saving(male, replace)	
 
-	
+if "`outcome'"=="cpnsdeath" local hospital "hospital "
+		
 * Combine plots for males and females 
 grc1leg female.gph male.gph, 											///
-	t1(" ") l1title("Cumulative incidence of" "hospital COVID-19 death", ///
+	t1(" ") l1title("Cumulative incidence of" "`hospital'COVID-19 death", ///
 	size(medsmall)) col(3)
-graph export "output/km_age_sex_cpnsdeath_cr.svg", as(svg) replace
+graph export "output/an_descriptive_plots_cr_thinned_`outcome'.svg", as(svg) replace
 
 * Delete unneeded graphs
 erase female.gph

@@ -15,7 +15,7 @@ foreach outcome of any cpnsdeath onscoviddeath{
 }
 
 *replace cpns_died_date 
-replace onscoviddeath = (uniform()<0.20)
+*replace onscoviddeath = (uniform()<0.20)
 
 replace bmicat = 1+(floor(6*uniform())) if bmicat==.u
 replace obese4cat = 2 if bmicat==4
@@ -37,6 +37,8 @@ replace asthmacat = 2 + (uniform()>.5) if uniform()<.2
 
 replace ethnicity = 1+(floor(5*uniform())) 
 
+replace ethnicity_16 = 1+(floor(16*uniform())) 
+
 
 * Kidney function 
 replace reduced_kidney_function_cat=.
@@ -49,8 +51,16 @@ replace reduced_kidney_function_cat  = 3 if reduced_kidney_function_cat==.
 
 save cr_create_analysis_dataset, replace
 
+
 * Save a version set on CPNS survival outcome
 stset stime_cpnsdeath, fail(cpnsdeath) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
-	
+
 save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
+
+* Save a version set on ONS covid death outcome
+stset stime_onscoviddeath, fail(onscoviddeath) 				///
+	id(patient_id) enter(enter_date) origin(enter_date)
+	
+save "cr_create_analysis_dataset_STSET_onscoviddeath.dta", replace
+	
