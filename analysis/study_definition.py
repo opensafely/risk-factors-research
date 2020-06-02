@@ -77,13 +77,13 @@ asthma_codes = codelist_from_csv(
 )
 
 salbutamol_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-salbutamol-medication.csv",
+    "codelists/opensafely-asthma-inhaler-salbutamol-medication.csv",
     system="snomed",
     column="id",
 )
 
 ics_codes = codelist_from_csv(
-    "codelists/opensafely-asthma-inhaled-steroid-medication.csv",
+    "codelists/opensafely-asthma-inhaler-steroid-medication.csv",
     system="snomed",
     column="id",
 )
