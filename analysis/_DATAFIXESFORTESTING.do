@@ -3,11 +3,16 @@ use cr_create_analysis_dataset, clear
 
 replace ituadmission = (uniform()<0.20)
 
-*give cpns death realistic dates, and lots of events
-replace cpnsdeath = (uniform()<0.20)
-replace died_date_cpns = d(1/2/2020)+floor(80*uniform()) if cpnsdeath==1
-replace stime_cpnsdeath  	= min(cpnsdeathcensor_date, 	died_date_cpns, died_date_ons)
-replace cpnsdeath 		= 0 if (died_date_cpns		> cpnsdeathcensor_date) 
+*give death outcomes realistic dates, and lots of events
+foreach outcome of any cpnsdeath onscoviddeath{
+	if "`outcome'" == "cpnsdeath" local outcomeshort "cpns"
+	else if "`outcome'" == "onscoviddeath" local outcomeshort "onscovid"
+
+	replace `outcome' = (uniform()<0.20)
+	replace died_date_`outcomeshort' = d(1/2/2020)+floor(80*uniform()) if `outcome'==1
+	replace stime_`outcome'  	= min(`outcome'censor_date, 	died_date_`outcomeshort', died_date_ons)
+	replace `outcome' 		= 0 if (died_date_`outcomeshort'		> `outcome'censor_date) 
+}
 
 *replace cpns_died_date 
 replace onscoviddeath = (uniform()<0.20)

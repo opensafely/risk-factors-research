@@ -760,7 +760,7 @@ stset stime_cpnsdeath, fail(cpnsdeath) 				///
 save "cr_create_analysis_dataset_STSET_cpnsdeath.dta", replace
 
 * Save a version set on ONS covid death outcome
-stset stime_onscovidnotedeath, fail(onscoviddeath) 				///
+stset stime_onscoviddeath, fail(onscoviddeath) 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
 	
 save "cr_create_analysis_dataset_STSET_onscoviddeath.dta", replace
