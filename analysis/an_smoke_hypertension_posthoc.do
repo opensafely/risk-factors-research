@@ -17,6 +17,16 @@ estimates
 estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_smokeadjdemog, replace	
 }
 
+
+
+**********************************
+*Hypertension adjusted for diabetes and obesity
+cap stcox age1 age2 age3 i.male htdiag_or_highbp i.obese4cat i.diabcat, strata(stp)
+if _rc==0{
+estimates 
+estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_htadjdiabobes, replace	
+}
+
 **********************************
 *Hypertension with age interaction
 
