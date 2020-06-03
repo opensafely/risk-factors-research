@@ -61,6 +61,52 @@ Asian or Asian British  |   1.640039   .0757269    10.71   0.000     1.498135   
 file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_smokeadjdemog.ster saved
 . }
 
+
+. **********************************
+. *Hypertension adjusted for diabetes and obesity
+. cap stcox age1 age2 age3 i.male htdiag_or_highbp i.obese4cat i.diabcat, strata(stp)
+
+. if _rc==0{
+. estimates 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+active results
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(11)      =    34936.97
+Log likelihood  =   -129610.59                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------------------
+                         _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------+----------------------------------------------------------------
+                       age1 |   1.162858   .0248265     7.07   0.000     1.115203    1.212549
+                       age2 |   .9050482   .0420588    -2.15   0.032     .8262572    .9913527
+                       age3 |   1.295419   .1393719     2.41   0.016     1.049134     1.59952
+                     1.male |   1.754962   .0344605    28.64   0.000     1.688704     1.82382
+           htdiag_or_highbp |   .9669555   .0221486    -1.47   0.142      .924505    1.011355
+                            |
+                  obese4cat |
+         Obese I (30-34.9)  |   1.119467   .0298563     4.23   0.000     1.062453    1.179541
+        Obese II (35-39.9)  |    1.55484   .0605444    11.33   0.000     1.440591    1.678151
+           Obese III (40+)  |   2.183599   .1177609    14.48   0.000     1.964572    2.427046
+                            |
+                    diabcat |
+       Controlled diabetes  |   1.514565   .0373468    16.84   0.000     1.443107    1.589561
+     Uncontrolled diabetes  |   2.423218   .0764977    28.04   0.000     2.277829    2.577886
+Diabetes, no hba1c measure  |    2.18661    .108051    15.83   0.000     1.984766    2.408981
+---------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_htadjdiabobes, replace   
+(note: file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster not found)
+file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster saved
+. }
+
+
 . 
 . **********************************
 . *Hypertension with age interaction

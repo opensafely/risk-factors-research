@@ -1,0 +1,72 @@
+-------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_MI_c
+> ombine_onscoviddeath.log
+  log type:  text
+ opened on:   3 Jun 2020, 08:52:16
+
+. 
+. 
+. 
+. 
+. ********************************   NOTES  **************************************
+. 
+. *  Assumes region is string, taking  values: 
+. *    East, East Midlands, London, North East, North West, South East, 
+. *    South West, West Midlands, and Yorkshire and The Humber
+. *
+. *  Assumes ethnicity is numeric, taking values: 
+. *       1, 2, 3, 4, 5, (missing: . or .u)
+. *       in the order White, Black, Asian, Mixed, Other
+. *       with value labels exactly as above. 
+. *       (NB: this is now intially recoded from ordering: 
+. *      White, Mixed, Asian, Black, Other)       
+. *
+. *
+. *  Assumes a complete case sample other than ethnicity
+. *
+. ********************************************************************************
+. 
+. 
+. 
+. 
+. 
+. **************************
+. *  Combine imputed data  *
+. **************************
+. 
+. * Put imputed data together (across regions)
+. use imputed_`outcome'_1.dta, clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. forvalues k= 2 (1) 9    {
+  2. 
+. append using imputed_`outcome'_`k'
+  3. }
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+(label ethnicity already defined)
+
+. save imputed_`outcome', replace
+(note: file imputed_onscoviddeath.dta not found)
+file imputed_onscoviddeath.dta saved
+
+. forvalues k= 1 (1) 9    {
+  2. *erase imputed_`k'.dta
+. }
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_MI_c
+> ombine_onscoviddeath.log
+  log type:  text
+ closed on:   3 Jun 2020, 08:52:27
+-------------------------------------------------------------------------------------------------------
