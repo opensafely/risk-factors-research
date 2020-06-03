@@ -55,12 +55,12 @@ stcurve, cif outfile(output/cif_1, replace)	nodraw			///
 	lcolor(red blue orange green pink sienna)				///
 	lpattern(solid solid dash dash dash_dot dash_dot) 		///
 	xtitle(" ")												///
-	yscale(range(0, 0.005)) 								///
-	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))			///
+	yscale(range(0, 0.008)) 								///
+	ylabel(0 (0.002) 0.008, angle(0) format(%4.3f))			///
 	ytitle("")												///
-	xscale(range(30, 84)) 									///
+	xscale(range(30, 100)) 									///
 	xlabel(0 "1 Feb 20" 29 "1 Mar 20" 						///
-	60 "1 Apr 20" 84 "25 Apr 20")	 						///
+	60 "1 Apr 20" 91 "1 May 20")	 						///
 	graphregion(margin(r+10))								///
 	legend(order(1 2 3 4 5 6)								///
 	subtitle("Age group", size(small)) 						///
@@ -82,12 +82,12 @@ stcurve,  cif outfile(output/cif_2, replace)	nodraw	 	///
 	lcolor(red blue orange green pink)						///
 	lpattern(solid solid dash dash dash_dot dash_dot) 		///
 	xtitle(" ")												///
-	yscale(range(0, 0.005)) 								///
-	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))			///
+	yscale(range(0, 0.008)) 								///
+	ylabel(0 (0.002) 0.008, angle(0) format(%4.3f))			///
 	ytitle("")												///
-	xscale(range(30, 84)) 									///
+	xscale(range(30, 100)) 									///
 	xlabel(0 "1 Feb 20" 29 "1 Mar 20" 						///
-	60 "1 Apr 20" 84 "25 Apr 20")	 						///
+	60 "1 Apr 20" 91 "1 May 20")	 						///
 	graphregion(margin(r+10))								///
 	legend(order(1 2 3 4 5 6)								///
 	subtitle("Age group", size(small)) 						///

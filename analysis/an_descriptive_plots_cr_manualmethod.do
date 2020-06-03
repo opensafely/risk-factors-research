@@ -30,12 +30,13 @@ graph twoway line ci _t if male==0 & agegroup==1, sort c(stair) lc(red) ///
 	|| line ci _t if male==0 & agegroup==5, sort c(stair) lc(pink) lp(dash_dot) ///
 	|| line ci _t if male==0 & agegroup==6, sort c(stair) lc(sienna) lp(dash_dot) ///
 	|| , title("Female") 							///
-	xtitle("Days since 1 Feb 2020")					///
+	xtitle(" ")					///
 	ytitle("")										///
-	yscale(range(0, 0.005)) 						///
-	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))	///
-	xscale(range(30, 84)) 							///
-	xlabel(30 (10) 80)								///
+	yscale(range(0, 0.008)) 						///
+	ylabel(0 (0.002) 0.008, angle(0) format(%4.3f))	///
+	xscale(range(30, 100)) 							///
+	xlabel(0 "1 Feb 20" 29 "1 Mar 20" 				///
+	60 "1 Apr 20" 91 "1 May 20")	 				///
 	legend(order(1 2 3 4 5 6)						///
 	subtitle("Age group", size(small)) 				///
 	label(1 "18-<40") label(2 "40-<50") 			///
@@ -52,12 +53,13 @@ graph twoway line ci _t if male==1 & agegroup==1, sort c(stair) lc(red) ///
 	|| line ci _t if male==1 & agegroup==5, sort c(stair) lc(pink) lp(dash_dot) ///
 	|| line ci _t if male==1 & agegroup==6, sort c(stair) lc(sienna) lp(dash_dot) ///
 	|| , title("Male") 								///
-	xtitle("Days since 1 Feb 2020")					///
+	xtitle(" ")					///
 	ytitle("")										///
-	yscale(range(0, 0.005)) 						///
-	ylabel(0 (0.001) 0.005, angle(0) format(%4.3f))	///
-	xscale(range(30, 84)) 							///
-	xlabel(30 (10) 80)								///
+	yscale(range(0, 0.008)) 						///
+	ylabel(0 (0.002) 0.008, angle(0) format(%4.3f))	///
+	xscale(range(30, 100)) 							///
+	xlabel(0 "1 Feb 20" 29 "1 Mar 20" 				///
+	60 "1 Apr 20" 91 "1 May 20")	 				///
 	legend(order(1 2 3 4 5 6)						///
 	subtitle("Age group", size(small)) 				///
 	label(1 "18-<40") label(2 "40-<50") 			///
