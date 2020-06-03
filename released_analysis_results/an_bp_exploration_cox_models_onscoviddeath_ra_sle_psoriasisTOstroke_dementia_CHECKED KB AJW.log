@@ -1,0 +1,178 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_ra_sle_psoriasisTOstroke_dementia.log
+  log type:  text
+ opened on:   3 Jun 2020, 01:19:06
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.htdiag_or_highbp"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var', replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    33619.25
+Log likelihood  =   -130269.45                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.156963   .0244238     6.91   0.000      1.11007    1.205837
+              age2 |   .9329101   .0429244    -1.51   0.131     .8524617     1.02095
+              age3 |   1.182154   .1259953     1.57   0.116     .9592944    1.456787
+            1.male |    1.78541   .0348193    29.72   0.000     1.718453    1.854976
+1.ra_sle_psoriasis |   1.293464    .043713     7.61   0.000     1.210564    1.382042
+1.htdiag_or_highbp |   1.091829   .0246252     3.90   0.000     1.044616    1.141177
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_ra_sle_psoriasis.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_ra_sle_psoriasis.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   16,557,013                  Number of obs    =  16,557,013
+No. of failures =       10,837
+Time at risk    =   1570435914
+                                                LR chi2(7)       =    32818.23
+Log likelihood  =   -129005.83                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.160781   .0259499     6.67   0.000     1.111018    1.212772
+              age2 |    .917231   .0443798    -1.79   0.074     .8342452    1.008472
+              age3 |    1.23761   .1382171     1.91   0.056      .994308    1.540446
+            1.male |   1.685995    .033583    26.22   0.000     1.621442    1.753118
+                   |
+             smoke |
+           Former  |    1.41579   .0300922    16.36   0.000     1.358022    1.476015
+          Current  |   1.131149   .0473684     2.94   0.003     1.042017    1.227906
+                   |
+1.htdiag_or_highbp |   1.063134   .0242143     2.69   0.007     1.016718    1.111668
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_smoke.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_smoke.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(7)       =    33853.91
+Log likelihood  =   -130152.12                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.160198   .0248896     6.93   0.000     1.112426     1.21002
+              age2 |   .9207874   .0429556    -1.77   0.077     .8403303    1.008948
+              age3 |   1.223506   .1320528     1.87   0.062     .9902296    1.511736
+            1.male |   1.672329   .0331371    25.95   0.000     1.608627    1.738555
+                   |
+      smoke_nomiss |
+           Former  |   1.421007   .0299641    16.66   0.000     1.363476    1.480966
+          Current  |   1.137834    .047528     3.09   0.002     1.048392    1.234906
+                   |
+1.htdiag_or_highbp |   1.074355   .0242698     3.17   0.001     1.027825    1.122992
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_smoke_nomiss.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_smoke_nomiss.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    33573.10
+Log likelihood  =   -130292.53                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.156025   .0243517     6.88   0.000     1.109269    1.204753
+              age2 |    .936089   .0429914    -1.44   0.150     .8555085    1.024259
+              age3 |   1.171046   .1245997     1.48   0.138     .9506174    1.442587
+            1.male |   1.780277   .0347154    29.58   0.000      1.71352    1.849635
+          1.spleen |   1.617495   .2562356     3.04   0.002     1.185768    2.206409
+1.htdiag_or_highbp |   1.094297   .0246792     4.00   0.000      1.04698    1.143753
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_spleen.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_spleen.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    34891.50
+Log likelihood  =   -129633.33                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.152205   .0241272     6.77   0.000     1.105874    1.200478
+              age2 |   .9471262   .0432917    -1.19   0.235     .8659657    1.035893
+              age3 |   1.121985   .1188911     1.09   0.277     .9115692    1.380971
+            1.male |   1.739717   .0339541    28.37   0.000     1.674425    1.807555
+ 1.stroke_dementia |   2.565416   .0611517    39.52   0.000     2.448318    2.688115
+1.htdiag_or_highbp |   1.051615    .023793     2.22   0.026     1.006001    1.099298
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_stroke_dementia.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_stroke_dementia.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_ra_sle_psoriasisTOstroke_dementia.log
+  log type:  text
+ closed on:   3 Jun 2020, 02:45:09
+--------------------------------------------------------------------------------------------------------------------

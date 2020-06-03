@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_cpnsdeath_r
-> educed_kidney_function_catTOethnicity.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddea
+> th_reduced_kidney_function_catTOethnicity.log
   log type:  text
- opened on:   3 Jun 2020, 03:19:00
+ opened on:   3 Jun 2020, 01:18:55
 
 . 
 . * Open dataset and fit specified model(s)
@@ -39,25 +39,26 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
-No. of failures =        5,647
-Time at risk    =   1449460311
-                                                LR chi2(5)       =    15390.89
-Log likelihood  =   -68245.684                  Prob > chi2      =      0.0000
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(5)       =    33680.86
+Log likelihood  =   -130238.64                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |   1.090255   .0242787     3.88   0.000     1.043693    1.138894
-                         age2 |   1.122398    .056465     2.30   0.022      1.01701    1.238708
-                         age3 |   .6847953   .0812355    -3.19   0.001     .5427314    .8640456
+                         age1 |   1.133499   .0230043     6.17   0.000     1.089296    1.179495
+                         age2 |   1.001759   .0445943     0.04   0.969     .9180602    1.093088
+                         age3 |    .953723   .0986688    -0.46   0.647     .7786816    1.168112
                               |
   reduced_kidney_function_cat |
-Stage 3a/3b egfr 30-60        |    1.92045   .0619002    20.25   0.000      1.80288    2.045686
-           Stage 4/5 egfr<30  |   5.675516   .2885885    34.14   0.000     5.137164    6.270284
+Stage 3a/3b egfr 30-60        |   1.552673   .0351927    19.41   0.000     1.485206    1.623204
+           Stage 4/5 egfr<30  |    3.59129   .1381554    33.23   0.000     3.330467    3.872539
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_reduced_kidney_function_cat.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_reduced_kidney_function_cat.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_reduced_kidney_function_cat.ster not foun
+> d)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_reduced_kidney_function_cat.ster saved
 
 --------------------------------------------------------------------------------------------------------------------
 active results
@@ -66,22 +67,22 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
-No. of failures =        5,647
-Time at risk    =   1449460311
-                                                LR chi2(4)       =    14818.13
-Log likelihood  =   -68532.064                  Prob > chi2      =      0.0000
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(4)       =    33175.69
+Log likelihood  =   -130491.23                  Prob > chi2      =      0.0000
 
 ------------------------------------------------------------------------------
           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-        age1 |   1.106006   .0252592     4.41   0.000     1.057591    1.156638
-        age2 |   1.065717   .0546533     1.24   0.215      .963806    1.178404
-        age3 |   .8127685   .0979809    -1.72   0.085     .6417306    1.029392
-  1.dialysis |   12.60214   1.076212    29.67   0.000     10.65989    14.89829
+        age1 |   1.147269   .0237979     6.62   0.000     1.101561    1.194873
+        age2 |    .961029   .0435465    -0.88   0.380     .8793596    1.050283
+        age3 |   1.087616   .1142779     0.80   0.424     .8851938    1.336328
+  1.dialysis |   9.232993   .6729912    30.50   0.000     8.003844     10.6509
 ------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_dialysis.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_dialysis.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_dialysis.ster not found)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_dialysis.ster saved
 
 --------------------------------------------------------------------------------------------------------------------
 active results
@@ -90,22 +91,22 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
-No. of failures =        5,647
-Time at risk    =   1449460311
-                                                LR chi2(4)       =    14430.19
-Log likelihood  =   -68726.032                  Prob > chi2      =      0.0000
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(4)       =    32774.26
+Log likelihood  =   -130691.95                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------
                      _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------+----------------------------------------------------------------
-                   age1 |   1.105079   .0251999     4.38   0.000     1.056776     1.15559
-                   age2 |   1.069565   .0547847     1.31   0.189     .9674026    1.182516
-                   age3 |   .8047302   .0969084    -1.80   0.071      .635544    1.018955
-1.chronic_liver_disease |   2.497648   .2499146     9.15   0.000     2.052863    3.038802
+                   age1 |   1.146456   .0237524     6.60   0.000     1.100835    1.193968
+                   age2 |   .9633858   .0436102    -0.82   0.410     .8815935    1.052767
+                   age3 |   1.080691   .1134495     0.74   0.460     .8797177    1.327576
+1.chronic_liver_disease |   2.424241   .1819702    11.80   0.000     2.092581    2.808467
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_liver_disease.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_chronic_liver_disease.ster not found)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_chronic_liver_disease.ster saved
 
 --------------------------------------------------------------------------------------------------------------------
 active results
@@ -114,22 +115,23 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
-No. of failures =        5,647
-Time at risk    =   1449460311
-                                                LR chi2(4)       =    14967.77
-Log likelihood  =   -68457.243                  Prob > chi2      =      0.0000
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(4)       =    33430.48
+Log likelihood  =   -130363.84                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |    1.11971    .026162     4.84   0.000      1.06959    1.172179
-                         age2 |   1.021719   .0533914     0.41   0.681     .9222548    1.131911
-                         age3 |   .9038717   .1108191    -0.82   0.410     .7107965    1.149392
-1.chronic_respiratory_disease |   2.354681   .0758739    26.58   0.000      2.21057    2.508187
+                         age1 |   1.161493   .0246563     7.05   0.000     1.114159    1.210838
+                         age2 |   .9232441   .0426712    -1.73   0.084     .8432864    1.010783
+                         age3 |   1.203338   .1287539     1.73   0.084     .9756886    1.484102
+1.chronic_respiratory_disease |   2.029373   .0484558    29.64   0.000     1.936589    2.126602
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_chronic_respiratory_disease.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_chronic_respiratory_disease.ster not foun
+> d)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_chronic_respiratory_disease.ster saved
 
 --------------------------------------------------------------------------------------------------------------------
 active results
@@ -138,26 +140,26 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
-No. of failures =        5,647
-Time at risk    =   1449460311
-                                                LR chi2(6)       =    15473.73
-Log likelihood  =   -68204.263                  Prob > chi2      =      0.0000
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    33910.41
+Log likelihood  =   -130123.87                  Prob > chi2      =      0.0000
 
 ---------------------------------------------------------------------------------------------
                          _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ----------------------------+----------------------------------------------------------------
-                       age1 |   1.116027   .0259342     4.72   0.000     1.066337    1.168032
-                       age2 |   1.015964   .0528664     0.30   0.761     .9174559    1.125048
-                       age3 |   .9261975   .1131577    -0.63   0.530     .7289681    1.176789
+                       age1 |   1.156843   .0243882     6.91   0.000     1.110017    1.205644
+                       age2 |   .9244484   .0424843    -1.71   0.087     .8448206    1.011581
+                       age3 |    1.20773   .1285784     1.77   0.076      .980276     1.48796
                             |
                     diabcat |
-       Controlled diabetes  |   2.017372   .0666425    21.24   0.000     1.890894    2.152311
-     Uncontrolled diabetes  |   3.614759   .1439152    32.28   0.000     3.343415    3.908124
-Diabetes, no hba1c measure  |   2.328684   .1668125    11.80   0.000     2.023652    2.679695
+       Controlled diabetes  |   1.643501   .0398394    20.50   0.000     1.567243    1.723469
+     Uncontrolled diabetes  |   2.757515   .0850571    32.88   0.000     2.595746    2.929366
+Diabetes, no hba1c measure  |    2.28406    .112653    16.75   0.000       2.0736     2.51588
 ---------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_diabcat.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_diabcat.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_diabcat.ster not found)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_diabcat.ster saved
 
 --------------------------------------------------------------------------------------------------------------------
 active results
@@ -166,35 +168,35 @@ active results
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   12,717,951                  Number of obs    =  12,717,951
-No. of failures =        4,199
-Time at risk    =   1066977045
-                                                LR chi2(7)       =    10712.31
-Log likelihood  =   -49985.723                  Prob > chi2      =      0.0000
+No. of failures =        8,149
+Time at risk    =   1206440035
+                                                LR chi2(7)       =    24555.46
+Log likelihood  =    -95217.63                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------
                      _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------+----------------------------------------------------------------
-                   age1 |    1.09436   .0282093     3.50   0.000     1.040445     1.15107
-                   age2 |   1.097798   .0636632     1.61   0.108     .9798506    1.229943
-                   age3 |   .7572074   .1033003    -2.04   0.041      .579551    .9893229
+                   age1 |   1.149888   .0279084     5.75   0.000      1.09647     1.20591
+                   age2 |    .956605   .0504891    -0.84   0.401     .8625944    1.060861
+                   age3 |    1.10439   .1348595     0.81   0.416     .8693213    1.403022
                         |
               ethnicity |
-                 Mixed  |   1.842629   .2990684     3.77   0.000     1.340551    2.532751
-Asian or Asian British  |   1.940081   .1144756    11.23   0.000     1.728201    2.177938
-                 Black  |   2.172075   .1849147     9.11   0.000     1.838272    2.566492
-                 Other  |   1.351793   .1801747     2.26   0.024     1.041016    1.755348
+                 Mixed  |   1.622026   .2084071     3.76   0.000     1.260929    2.086532
+Asian or Asian British  |   1.723981   .0782066    12.01   0.000     1.577315    1.884284
+                 Black  |   1.902885   .1273846     9.61   0.000     1.668901    2.169674
+                 Other  |   1.373378   .1340201     3.25   0.001     1.134296    1.662854
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster not found)
-file ./output/models/an_univariable_cox_models_cpnsdeath_AGESEX_ethnicity.ster saved
+(note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_ethnicity.ster not found)
+file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_ethnicity.ster saved
 
 . 
 . 
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_cpnsdeath_r
-> educed_kidney_function_catTOethnicity.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddea
+> th_reduced_kidney_function_catTOethnicity.log
   log type:  text
- closed on:   3 Jun 2020, 04:44:22
+ closed on:   3 Jun 2020, 02:55:16
 --------------------------------------------------------------------------------------------------------------------

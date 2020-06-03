@@ -1,0 +1,444 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_onscoviddeath.log
+  log type:  text
+ opened on:   3 Jun 2020, 01:19:07
+
+. 
+. 
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) [ethnicity(real 0) if(string)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         capture stcox   `age'                                   ///
+>                         i.male                                                  ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         i.htdiag_or_highbp                              ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.reduced_kidney_function_cat           ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         other_immunosuppression                 ///
+>                         `if'                                                    ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. 
+. * Set as survival outcome
+. stset stime_`outcome', fail(`outcome') enter(enter_date) origin(enter_date) id(patient_id) 
+
+                id:  patient_id
+     failure event:  onscoviddeath != 0 & onscoviddeath < .
+obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
+ enter on or after:  time enter_date
+ exit on or before:  failure
+    t for analysis:  (time-origin)
+            origin:  time enter_date
+
+------------------------------------------------------------------------------
+   17278392  total observations
+        457  observations end on or before enter()
+------------------------------------------------------------------------------
+   17277935  observations remaining, representing
+   17277935  subjects
+     10,926  failures in single-failure-per-subject data
+ 1.6389e+09  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        95
+
+. 
+. 
+.                         
+. * Age spline model (not adj ethnicity)
+. basecoxmodel, age("age1 age2 age3")  ethnicity(0)
+   1:   3067.20 /        1 =    3067.1980
+
+. if _rc==0 {
+.         
+.         estimates
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(36)      =    38748.98
+Log likelihood  =   -127704.59                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   1.172873   .0256231     7.30   0.000     1.123713    1.224185
+                         age2 |   .8853217   .0420434    -2.56   0.010     .8066369     .971682
+                         age3 |   1.326724   .1457831     2.57   0.010     1.069667    1.645554
+                       1.male |   1.590052   .0321404    22.94   0.000     1.528289     1.65431
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   1.048912   .0280309     1.79   0.074     .9953861    1.105316
+          Obese II (35-39.9)  |   1.403434   .0548133     8.68   0.000     1.300011    1.515085
+             Obese III (40+)  |    1.91523   .1036355    12.01   0.000     1.722509    2.129514
+                              |
+                 smoke_nomiss |
+                      Former  |   1.190147   .0257558     8.04   0.000     1.140722    1.241713
+                     Current  |   .8913247   .0379789    -2.70   0.007     .8199109    .9689587
+                              |
+                          imd |
+                           2  |   1.119706   .0358785     3.53   0.000     1.051549    1.192282
+                           3  |   1.225026   .0391947     6.34   0.000     1.150565    1.304306
+                           4  |   1.513489   .0477074    13.15   0.000     1.422814    1.609943
+             5 most deprived  |   1.795199   .0579593    18.12   0.000      1.68512    1.912468
+                              |
+           1.htdiag_or_highbp |   .8907143   .0205669    -5.01   0.000     .8513025    .9319507
+1.chronic_respiratory_disease |   1.627883   .0409152    19.39   0.000     1.549634    1.710083
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .9909171   .0305435    -0.30   0.767     .9328254    1.052627
+                Yes with OCS  |   1.126633   .0637897     2.11   0.035     1.008295    1.258859
+                              |
+    1.chronic_cardiac_disease |   1.169748    .025264     7.26   0.000     1.121265    1.220327
+                              |
+                      diabcat |
+         Controlled diabetes  |   1.306511   .0325326    10.74   0.000     1.244279    1.371855
+       Uncontrolled diabetes  |   1.947391   .0624579    20.78   0.000     1.828744    2.073736
+  Diabetes, no hba1c measure  |   1.899107   .0940159    12.96   0.000     1.723497    2.092611
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   1.718587   .1175186     7.92   0.000     1.503022    1.965067
+               2-5 years ago  |   1.154272   .0559942     2.96   0.003     1.049581    1.269405
+                    5+ years  |   .9638411   .0307195    -1.16   0.248     .9054741     1.02597
+                              |
+              cancer_haem_cat |
+                   Last year  |   2.821221   .4316938     6.78   0.000     2.090206    3.807897
+               2-5 years ago  |    2.46916   .2270277     9.83   0.000     2.061984    2.956741
+                    5+ years  |   1.616408   .1242533     6.25   0.000     1.390334    1.879242
+                              |
+      1.chronic_liver_disease |   1.748676   .1331546     7.34   0.000     1.506239    2.030135
+            1.stroke_dementia |   2.160875   .0523341    31.81   0.000     2.060699    2.265922
+                1.other_neuro |   2.578903   .1047244    23.33   0.000     2.381603    2.792549
+                              |
+  reduced_kidney_function_cat |
+Stage 3a/3b egfr 30-60        |   1.334576   .0304808    12.64   0.000     1.276153    1.395675
+           Stage 4/5 egfr<30  |   2.518785   .0984393    23.64   0.000     2.333052    2.719304
+                              |
+           1.organ_transplant |   3.548627   .4372422    10.28   0.000     2.787277    4.517943
+                     1.spleen |   1.340171   .2127285     1.84   0.065     .9818542    1.829252
+           1.ra_sle_psoriasis |   1.186968   .0402331     5.06   0.000     1.110675    1.268502
+      other_immunosuppression |   1.702604   .2066262     4.39   0.000     1.342186    2.159805
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+.         * estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_n
+> oeth, replace
+. 
+.         /*  Proportional Hazards test  */
+.         
+.         * Based on Schoenfeld residuals
+.         timer clear 
+.         timer on 1
+.         if e(N_fail)>0 estat phtest, d
+
+      Test of proportional-hazards assumption
+
+      Time:  Time
+      ----------------------------------------------------------------
+                  |       rho            chi2       df       Prob>chi2
+      ------------+---------------------------------------------------
+      age1        |      0.01167         1.72        1         0.1894
+      age2        |     -0.01372         2.33        1         0.1269
+      age3        |      0.01634         3.26        1         0.0708
+      0b.male     |            .            .        1             .
+      1.male      |     -0.05962        38.76        1         0.0000
+      1b.obese4cat|            .            .        1             .
+      2.obese4cat |     -0.05424        31.87        1         0.0000
+      3.obese4cat |     -0.01352         1.98        1         0.1596
+      4.obese4cat |     -0.05163        28.73        1         0.0000
+      1b.smoke_n~s|            .            .        1             .
+      2.smoke_no~s|     -0.01355         1.99        1         0.1587
+      3.smoke_no~s|      0.00482         0.26        1         0.6118
+      1b.imd      |            .            .        1             .
+      2.imd       |      0.02341         5.97        1         0.0145
+      3.imd       |      0.02713         7.96        1         0.0048
+      4.imd       |      0.03321        11.95        1         0.0005
+      5.imd       |      0.03314        11.83        1         0.0006
+      0b.htdiag_~p|            .            .        1             .
+      1.htdiag_o~p|     -0.00870         0.88        1         0.3486
+      0b.c~respi~e|            .            .        1             .
+      1.c~respir~e|     -0.03030        10.31        1         0.0013
+      1b.asthmacat|            .            .        1             .
+      2.asthmacat |     -0.01727         3.26        1         0.0709
+      3.asthmacat |     -0.01536         2.61        1         0.1062
+      0b.c~cardi~e|            .            .        1             .
+      1.c~cardia~e|     -0.04118        19.56        1         0.0000
+      1b.diabcat  |            .            .        1             .
+      2.diabcat   |     -0.02358         6.14        1         0.0132
+      3.diabcat   |     -0.04269        20.04        1         0.0000
+      4.diabcat   |      0.00712         0.56        1         0.4550
+      1b.c~exhae~t|            .            .        1             .
+      2.cancer_e~t|     -0.00400         0.18        1         0.6749
+      3.cancer_e~t|     -0.02221         5.42        1         0.0199
+      4.cancer_e~t|     -0.00186         0.04        1         0.8451
+      1b.cancer_h~|            .            .        1             .
+      2.cancer_h~t|      0.00488         0.26        1         0.6095
+      3.cancer_h~t|     -0.01116         1.36        1         0.2428
+      4.cancer_h~t|      0.01190         1.55        1         0.2129
+      0b.c~liver~e|            .            .        1             .
+      1.c~liver_~e|     -0.00142         0.02        1         0.8803
+      0b.stroke_~a|            .            .        1             .
+      1.stroke_d~a|      0.04901        28.18        1         0.0000
+      0b.other_n~o|            .            .        1             .
+      1.other_ne~o|      0.01663         3.13        1         0.0768
+      1b.reduced~t|            .            .        1             .
+      2.reduced_~t|     -0.01805         3.83        1         0.0504
+      3.reduced_~t|     -0.02455         7.19        1         0.0073
+      0b.organ_t~t|            .            .        1             .
+      1.organ_tr~t|      0.00628         0.44        1         0.5076
+      0b.spleen   |            .            .        1             .
+      1.spleen    |     -0.01117         1.37        1         0.2426
+      0b.ra_sle_~s|            .            .        1             .
+      1.ra_sle_p~s|     -0.00605         0.40        1         0.5271
+      other_immu~n|     -0.00712         0.55        1         0.4583
+      ------------+---------------------------------------------------
+      global test |                    497.62       36         0.0000
+      ----------------------------------------------------------------
+.         timer off 1
+.         timer list
+   1:   3035.39 /        1 =    3035.3890
+.         
+.         
+.         /*  Concordance statistic  */
+.         
+.         timer clear 
+.         timer on 2
+.         set seed 12437
+.         
+.         qui count if `outcome'==0
+.         local N0 = r(N)
+.         local p0 = 5000/`N0'
+.         qui count if `outcome'==1
+.         local N1 = r(N)
+.         local p1 = 5000/`N1'    
+.         
+.         noi di "Fraction of controls to be used" `p0'
+Fraction of controls to be used.00028956
+.         noi di "Fraction of cases to be used" `p1'
+Fraction of cases to be used.45762402
+.         local csum = 0
+.         forvalues i = 1 (1) 10 {
+  2.                 gen     rsample`i' = uniform()<`p0' if `outcome'==0
+  3.                 replace rsample`i' = uniform()<`p1' if `outcome'==1
+  4.                 estat concordance if rsample`i'==1
+  5.                 local cstat`i' =  r(C)
+  6.                 noi di "C-statistic in `i' th sample = " `cstat`i''
+  7.                 local csum = `csum' + `cstat`i''
+  8.                 drop rsample`i'
+  9.         }
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7764
+                            Somers' D =   0.5528
+C-statistic in 1 th sample = .7763959
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7736
+                            Somers' D =   0.5473
+C-statistic in 2 th sample = .77364723
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7759
+                            Somers' D =   0.5517
+C-statistic in 3 th sample = .77587044
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7772
+                            Somers' D =   0.5543
+C-statistic in 4 th sample = .77716053
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7750
+                            Somers' D =   0.5501
+C-statistic in 5 th sample = .77503352
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7742
+                            Somers' D =   0.5483
+C-statistic in 6 th sample = .77415293
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7778
+                            Somers' D =   0.5556
+C-statistic in 7 th sample = .77781187
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7771
+                            Somers' D =   0.5542
+C-statistic in 8 th sample = .77708497
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7760
+                            Somers' D =   0.5520
+C-statistic in 9 th sample = .7759901
+(10,926 missing values generated)
+(10,926 real changes made)
+
+         failure _d:  onscoviddeath
+   analysis time _t:  (stime_onscoviddeath-origin)
+             origin:  time enter_date
+  enter on or after:  time enter_date
+                 id:  patient_id
+
+  Harrell's C concordance statistic
+  (note: different samples used to fit model and to calculate C statistic)
+
+                          Harrell's C =   0.7746
+                            Somers' D =   0.5493
+C-statistic in 10 th sample = .7746273
+.         local csum = `csum'/10
+.         noi di "Average C-statistic = " `csum'
+Average C-statistic = .77577748
+.         timer off 2
+.         timer list      
+   2:   1432.78 /        1 =    1432.7770
+.         
+.         
+. }
+
+. else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
+
+. 
+. 
+. 
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_onscoviddeath.log
+  log type:  text
+ closed on:   3 Jun 2020, 03:31:15
+--------------------------------------------------------------------------------------------------------------------

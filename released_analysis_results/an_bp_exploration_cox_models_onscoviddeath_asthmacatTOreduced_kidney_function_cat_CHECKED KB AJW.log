@@ -1,0 +1,190 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_asthmacatTOreduced_kidney_function_cat.log
+  log type:  text
+ opened on:   3 Jun 2020, 01:19:06
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.htdiag_or_highbp"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var', replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(7)       =    33631.94
+Log likelihood  =    -130263.1                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.157211   .0244115     6.92   0.000     1.110341     1.20606
+              age2 |   .9335061   .0429248    -1.50   0.135     .8530547    1.021545
+              age3 |   1.179584   .1256489     1.55   0.121     .9573247    1.453445
+            1.male |   1.792612    .034991    29.90   0.000     1.725326    1.862521
+                   |
+         asthmacat |
+      Yes, no OCS  |   1.130009   .0345645     4.00   0.000     1.064255    1.199826
+     Yes with OCS  |   1.549244   .0862346     7.86   0.000      1.38912    1.727825
+                   |
+1.htdiag_or_highbp |   1.091192   .0246106     3.87   0.000     1.044006     1.14051
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_asthmacat.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_asthmacat.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(8)       =    33640.85
+Log likelihood  =   -130258.65                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.158285    .024493     6.95   0.000     1.111261    1.207299
+              age2 |    .930019     .04286    -1.57   0.115     .8496971    1.017934
+              age3 |   1.190789   .1271076     1.64   0.102     .9659967    1.467892
+            1.male |   1.767452   .0345323    29.15   0.000     1.701049    1.836446
+                   |
+ cancer_exhaem_cat |
+        Last year  |   1.807976   .1235205     8.67   0.000      1.58139    2.067029
+    2-5 years ago  |    1.20245   .0582809     3.80   0.000     1.093479     1.32228
+         5+ years  |   .9907985   .0315382    -0.29   0.772     .9308734    1.054581
+                   |
+1.htdiag_or_highbp |   1.093512   .0246637     3.96   0.000     1.046225    1.142936
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_cancer_exhaem_cat.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_cancer_exhaem_cat.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(8)       =    33720.61
+Log likelihood  =   -130218.77                  Prob > chi2      =      0.0000
+
+------------------------------------------------------------------------------------
+                _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+              age1 |   1.158132   .0244811     6.95   0.000      1.11113    1.207122
+              age2 |   .9305535   .0428633    -1.56   0.118     .8502235    1.018473
+              age3 |   1.188611   .1268092     1.62   0.105     .9643342    1.465048
+            1.male |   1.769866    .034526    29.27   0.000     1.703473    1.838846
+                   |
+   cancer_haem_cat |
+        Last year  |   3.019053   .4614568     7.23   0.000     2.237516    4.073571
+    2-5 years ago  |   2.561904   .2353313    10.24   0.000     2.139801    3.067274
+         5+ years  |   1.704174   .1307098     6.95   0.000     1.466314    1.980619
+                   |
+1.htdiag_or_highbp |   1.095684   .0247106     4.05   0.000     1.048307    1.145202
+------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_cancer_haem_cat.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_cancer_haem_cat.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    34005.88
+Log likelihood  =   -130076.14                  Prob > chi2      =      0.0000
+
+-------------------------------------------------------------------------------------------
+                       _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------+----------------------------------------------------------------
+                     age1 |   1.160016   .0245859     7.00   0.000     1.112815    1.209218
+                     age2 |   .9255813   .0427363    -1.67   0.094     .8454979     1.01325
+                     age3 |   1.196073   .1278908     1.67   0.094     .9699352    1.474935
+                   1.male |   1.688685   .0332256    26.63   0.000     1.624804    1.755078
+1.chronic_cardiac_disease |   1.567683   .0328985    21.42   0.000     1.504511    1.633507
+       1.htdiag_or_highbp |   1.060994   .0240131     2.62   0.009     1.014958    1.109119
+-------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_cardiac_disease.ster not found
+> )
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_cardiac_disease.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(7)       =    34532.83
+Log likelihood  =   -129812.66                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |    1.14246   .0235494     6.46   0.000     1.097224    1.189561
+                         age2 |    .975817    .044034    -0.54   0.587     .8932185    1.066054
+                         age3 |   1.027774   .1076904     0.26   0.794      .836967    1.262079
+                       1.male |   1.760565   .0343167    29.02   0.000     1.694574    1.829125
+                              |
+  reduced_kidney_function_cat |
+Stage 3a/3b egfr 30-60        |   1.551485   .0352915    19.31   0.000     1.483834     1.62222
+           Stage 4/5 egfr<30  |   3.464428   .1337358    32.19   0.000     3.211981    3.736716
+                              |
+           1.htdiag_or_highbp |   1.027039    .023377     1.17   0.241     .9822277    1.073894
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_reduced_kidney_function_cat.ster not f
+> ound)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_reduced_kidney_function_cat.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_asthmacatTOreduced_kidney_function_cat.log
+  log type:  text
+ closed on:   3 Jun 2020, 02:58:59
+--------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,351 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_multivariable_cox_models_onscovidd
+> eath.log
+  log type:  text
+ opened on:   3 Jun 2020, 01:19:02
+
+. 
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. ******************************
+. *  Multivariable Cox models  *
+. ******************************
+. 
+. *************************************************************************************
+. *PROG TO DEFINE THE BASIC COX MODEL WITH OPTIONS FOR HANDLING OF AGE, BMI, ETHNICITY:
+. cap prog drop basecoxmodel
+
+. prog define basecoxmodel
+  1.         syntax , age(string) bp(string) [ethnicity(real 0) if(string)] 
+  2. 
+.         if `ethnicity'==1 local ethnicity "i.ethnicity"
+  3.         else local ethnicity
+  4. timer clear
+  5. timer on 1
+  6.         capture stcox   `age'                                   ///
+>                         i.male                                                  ///
+>                         i.obese4cat                                             ///
+>                         i.smoke_nomiss                                  ///
+>                         `ethnicity'                                             ///
+>                         i.imd                                                   ///
+>                         `bp'                                                    ///
+>                         i.chronic_respiratory_disease   ///
+>                         i.asthmacat                                             ///
+>                         i.chronic_cardiac_disease               ///
+>                         i.diabcat                                               ///
+>                         i.cancer_exhaem_cat                             ///
+>                         i.cancer_haem_cat                               ///
+>                         i.chronic_liver_disease                 ///
+>                         i.stroke_dementia                               ///
+>                         i.other_neuro                                   ///
+>                         i.reduced_kidney_function_cat   ///
+>                         i.organ_transplant                              ///
+>                         i.spleen                                                ///
+>                         i.ra_sle_psoriasis                      ///
+>                         i.other_immunosuppression                       ///
+>                         `if'                                                    ///
+>                         , strata(stp)
+  7. timer off 1
+  8. timer list
+  9. end
+
+. *************************************************************************************
+. 
+. 
+. 
+. *Age spline model (not adj ethnicity)
+. basecoxmodel, age("age1 age2 age3")  bp("i.htdiag_or_highbp") ethnicity(0)
+   1:   3100.88 /        1 =    3100.8790
+
+. if _rc==0{
+. estimates
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(36)      =    38748.98
+Log likelihood  =   -127704.59                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   1.172873   .0256231     7.30   0.000     1.123713    1.224185
+                         age2 |   .8853217   .0420434    -2.56   0.010     .8066369     .971682
+                         age3 |   1.326724   .1457831     2.57   0.010     1.069667    1.645554
+                       1.male |   1.590052   .0321404    22.94   0.000     1.528289     1.65431
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   1.048912   .0280309     1.79   0.074     .9953861    1.105316
+          Obese II (35-39.9)  |   1.403434   .0548133     8.68   0.000     1.300011    1.515085
+             Obese III (40+)  |    1.91523   .1036355    12.01   0.000     1.722509    2.129514
+                              |
+                 smoke_nomiss |
+                      Former  |   1.190147   .0257558     8.04   0.000     1.140722    1.241713
+                     Current  |   .8913247   .0379789    -2.70   0.007     .8199109    .9689587
+                              |
+                          imd |
+                           2  |   1.119706   .0358785     3.53   0.000     1.051549    1.192282
+                           3  |   1.225026   .0391947     6.34   0.000     1.150565    1.304306
+                           4  |   1.513489   .0477074    13.15   0.000     1.422814    1.609943
+             5 most deprived  |   1.795199   .0579593    18.12   0.000      1.68512    1.912468
+                              |
+           1.htdiag_or_highbp |   .8907143   .0205669    -5.01   0.000     .8513025    .9319507
+1.chronic_respiratory_disease |   1.627883   .0409152    19.39   0.000     1.549634    1.710083
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .9909171   .0305435    -0.30   0.767     .9328254    1.052627
+                Yes with OCS  |   1.126633   .0637897     2.11   0.035     1.008295    1.258859
+                              |
+    1.chronic_cardiac_disease |   1.169748    .025264     7.26   0.000     1.121265    1.220327
+                              |
+                      diabcat |
+         Controlled diabetes  |   1.306511   .0325326    10.74   0.000     1.244279    1.371855
+       Uncontrolled diabetes  |   1.947391   .0624579    20.78   0.000     1.828744    2.073736
+  Diabetes, no hba1c measure  |   1.899107   .0940159    12.96   0.000     1.723497    2.092611
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   1.718587   .1175186     7.92   0.000     1.503022    1.965067
+               2-5 years ago  |   1.154272   .0559942     2.96   0.003     1.049581    1.269405
+                    5+ years  |   .9638411   .0307195    -1.16   0.248     .9054741     1.02597
+                              |
+              cancer_haem_cat |
+                   Last year  |   2.821221   .4316938     6.78   0.000     2.090206    3.807897
+               2-5 years ago  |    2.46916   .2270277     9.83   0.000     2.061984    2.956741
+                    5+ years  |   1.616408   .1242533     6.25   0.000     1.390334    1.879242
+                              |
+      1.chronic_liver_disease |   1.748676   .1331546     7.34   0.000     1.506239    2.030135
+            1.stroke_dementia |   2.160875   .0523341    31.81   0.000     2.060699    2.265922
+                1.other_neuro |   2.578903   .1047244    23.33   0.000     2.381603    2.792549
+                              |
+  reduced_kidney_function_cat |
+Stage 3a/3b egfr 30-60        |   1.334576   .0304808    12.64   0.000     1.276153    1.395675
+           Stage 4/5 egfr<30  |   2.518785   .0984393    23.64   0.000     2.333052    2.719304
+                              |
+           1.organ_transplant |   3.548627   .4372422    10.28   0.000     2.787277    4.517943
+                     1.spleen |   1.340171   .2127285     1.84   0.065     .9818542    1.829252
+           1.ra_sle_psoriasis |   1.186968   .0402331     5.06   0.000     1.110675    1.268502
+    1.other_immunosuppression |   1.702604   .2066262     4.39   0.000     1.342186    2.159805
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, repl
+> ace
+(note: file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster n
+> ot found)
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_noeth.ster saved
+. *estat concordance /*c-statistic*/
+. }
+
+. else di "WARNING AGE SPLINE MODEL DID NOT FIT (OUTCOME `outcome')"
+
+.  
+. *Age group model (not adj ethnicity)
+. basecoxmodel, age("ib3.agegroup") bp("i.htdiag_or_highbp") ethnicity(0)
+   1:   3079.24 /        1 =    3079.2440
+
+. if _rc==0{
+. estimates
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(38)      =    36866.47
+Log likelihood  =   -128645.84                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                     agegroup |
+                      18-<40  |   .0578093   .0082841   -19.89   0.000     .0436537    .0765553
+                      40-<50  |   .2972425    .028338   -12.73   0.000     .2465814     .358312
+                      60-<70  |   2.399902   .1282407    16.38   0.000     2.161269    2.664883
+                      70-<80  |   6.076326   .3000034    36.55   0.000     5.515884    6.693712
+                         80+  |     20.613   1.013627    61.53   0.000     18.71907    22.69856
+                              |
+                       1.male |   1.473931   .0295628    19.34   0.000     1.417113    1.533027
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   .9545953   .0253426    -1.75   0.080     .9061949    1.005581
+          Obese II (35-39.9)  |   1.236793   .0480265     5.47   0.000     1.146156    1.334598
+             Obese III (40+)  |   1.642194   .0884407     9.21   0.000     1.477688    1.825014
+                              |
+                 smoke_nomiss |
+                      Former  |   1.187753   .0257262     7.94   0.000     1.138386    1.239261
+                     Current  |   .8153902   .0345947    -4.81   0.000     .7503285    .8860935
+                              |
+                          imd |
+                           2  |   1.122503   .0359676     3.61   0.000     1.054176    1.195259
+                           3  |   1.229753   .0393584     6.46   0.000     1.154982    1.309365
+                           4  |   1.519698   .0479509    13.26   0.000     1.428563    1.616647
+             5 most deprived  |   1.794797   .0580035    18.10   0.000     1.684638     1.91216
+                              |
+           1.htdiag_or_highbp |   .9238228   .0214058    -3.42   0.001     .8828066    .9667447
+1.chronic_respiratory_disease |   1.602688   .0403667    18.73   0.000     1.525492    1.683791
+                              |
+                    asthmacat |
+                 Yes, no OCS  |   .9650875   .0297328    -1.15   0.249     .9085368    1.025158
+                Yes with OCS  |   1.088934   .0616276     1.51   0.132     .9746042    1.216676
+                              |
+    1.chronic_cardiac_disease |   1.218753   .0264285     9.12   0.000      1.16804    1.271669
+                              |
+                      diabcat |
+         Controlled diabetes  |   1.260162   .0314503     9.27   0.000     1.200004    1.323337
+       Uncontrolled diabetes  |   1.804452   .0579163    18.39   0.000     1.694435    1.921613
+  Diabetes, no hba1c measure  |   1.968528   .0975207    13.67   0.000     1.786377    2.169252
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   1.686789   .1153336     7.65   0.000     1.475232    1.928685
+               2-5 years ago  |   1.131275   .0548894     2.54   0.011     1.028651    1.244138
+                    5+ years  |    .980441   .0312736    -0.62   0.536     .9210225    1.043693
+                              |
+              cancer_haem_cat |
+                   Last year  |    2.69152   .4117931     6.47   0.000     1.994191    3.632691
+               2-5 years ago  |   2.332047   .2144347     9.21   0.000     1.947458    2.792585
+                    5+ years  |   1.583764   .1217612     5.98   0.000     1.362226     1.84133
+                              |
+      1.chronic_liver_disease |   1.662349   .1263085     6.69   0.000     1.432341    1.929293
+            1.stroke_dementia |   2.312385   .0560146    34.61   0.000     2.205163    2.424819
+                1.other_neuro |   2.483241   .1009171    22.38   0.000      2.29312    2.689126
+                              |
+  reduced_kidney_function_cat |
+Stage 3a/3b egfr 30-60        |   1.546026   .0347825    19.37   0.000     1.479334    1.615723
+           Stage 4/5 egfr<30  |   3.177599   .1229774    29.87   0.000     2.945483    3.428008
+                              |
+           1.organ_transplant |   3.013446   .3709954     8.96   0.000     2.367386    3.835815
+                     1.spleen |   1.294165   .2054088     1.62   0.104     .9481727     1.76641
+           1.ra_sle_psoriasis |   1.155249   .0391482     4.26   0.000     1.081012    1.234583
+    1.other_immunosuppression |   1.592542   .1931376     3.84   0.000     1.255626    2.019861
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agegroup_bmicat_noeth, repla
+> ce
+(note: file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster no
+> t found)
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agegroup_bmicat_noeth.ster saved
+. *estat concordance /*c-statistic*/
+. }
+
+. else di "WARNING GROUP MODEL DID NOT FIT (OUTCOME `outcome')"
+
+. 
+. *Complete case ethnicity model
+. basecoxmodel, age("age1 age2 age3") bp("i.htdiag_or_highbp") ethnicity(1)
+   1:   2533.51 /        1 =    2533.5060
+
+. if _rc==0{
+. estimates
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,717,951                  Number of obs    =  12,717,951
+No. of failures =        8,149
+Time at risk    =   1206440035
+                                                LR chi2(40)      =    28947.17
+Log likelihood  =   -93021.775                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |    1.17309   .0298211     6.28   0.000     1.116074    1.233019
+                         age2 |   .8832519   .0486444    -2.25   0.024     .7928761    .9839292
+                         age3 |   1.337597   .1701682     2.29   0.022     1.042404    1.716384
+                       1.male |   1.538637   .0360047    18.41   0.000     1.469663    1.610849
+                              |
+                    obese4cat |
+           Obese I (30-34.9)  |   1.049501   .0320919     1.58   0.114     .9884502    1.114324
+          Obese II (35-39.9)  |   1.413929   .0629841     7.78   0.000     1.295718    1.542925
+             Obese III (40+)  |   1.923068   .1193122    10.54   0.000     1.702879    2.171728
+                              |
+                 smoke_nomiss |
+                      Former  |   1.223788   .0312795     7.90   0.000     1.163991    1.286656
+                     Current  |   .9299885   .0455597    -1.48   0.138     .8448462    1.023711
+                              |
+                    ethnicity |
+                       Mixed  |   1.434354   .1846217     2.80   0.005     1.114538    1.845942
+      Asian or Asian British  |   1.443857   .0677366     7.83   0.000     1.317017    1.582914
+                       Black  |   1.483487    .100804     5.80   0.000     1.298506    1.694819
+                       Other  |   1.327181   .1298784     2.89   0.004     1.095548    1.607789
+                              |
+                          imd |
+                           2  |   1.161268   .0445354     3.90   0.000      1.07718     1.25192
+                           3  |    1.26413   .0482834     6.14   0.000     1.172951    1.362395
+                           4  |   1.542549   .0577958    11.57   0.000      1.43333    1.660089
+             5 most deprived  |   1.771163   .0678698    14.92   0.000     1.643013    1.909308
+                              |
+           1.htdiag_or_highbp |   .9093579   .0246681    -3.50   0.000     .8622721    .9590149
+1.chronic_respiratory_disease |   1.652607   .0474466    17.50   0.000     1.562181    1.748267
+                              |
+                    asthmacat |
+                 Yes, no OCS  |    .936034   .0333633    -1.85   0.064     .8728749    1.003763
+                Yes with OCS  |   1.080527   .0691789     1.21   0.226     .9531005    1.224989
+                              |
+    1.chronic_cardiac_disease |   1.160963   .0290303     5.97   0.000     1.105437    1.219279
+                              |
+                      diabcat |
+         Controlled diabetes  |   1.280329   .0367781     8.60   0.000     1.210237    1.354481
+       Uncontrolled diabetes  |   1.854186   .0686528    16.68   0.000     1.724396    1.993746
+  Diabetes, no hba1c measure  |   1.861998   .1052179    11.00   0.000     1.666785    2.080075
+                              |
+            cancer_exhaem_cat |
+                   Last year  |   1.673985   .1346319     6.41   0.000     1.429858    1.959794
+               2-5 years ago  |   1.211944   .0670627     3.47   0.001      1.08738    1.350777
+                    5+ years  |   .9851989   .0363856    -0.40   0.686     .9164043    1.059158
+                              |
+              cancer_haem_cat |
+                   Last year  |   2.352713   .4541461     4.43   0.000     1.611614    3.434607
+               2-5 years ago  |   2.531767   .2673717     8.80   0.000     2.058407    3.113984
+                    5+ years  |   1.559931   .1410399     4.92   0.000     1.306606     1.86237
+                              |
+      1.chronic_liver_disease |   1.752738   .1501813     6.55   0.000     1.481777    2.073248
+            1.stroke_dementia |   2.163016   .0605309    27.57   0.000     2.047572    2.284968
+                1.other_neuro |   2.528947   .1190909    19.70   0.000     2.305981    2.773472
+                              |
+  reduced_kidney_function_cat |
+Stage 3a/3b egfr 30-60        |   1.366383   .0363053    11.75   0.000     1.297047    1.439425
+           Stage 4/5 egfr<30  |   2.503197   .1136393    20.21   0.000      2.29009    2.736135
+                              |
+           1.organ_transplant |   3.475255   .4886397     8.86   0.000     2.638172    4.577941
+                     1.spleen |   1.346151   .2427488     1.65   0.099     .9453624    1.916856
+           1.ra_sle_psoriasis |   1.151579   .0455636     3.57   0.000     1.065651    1.244436
+    1.other_immunosuppression |   1.656552   .2255099     3.71   0.000     1.268613    2.163121
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+. estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_CCeth, repl
+> ace
+(note: file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster n
+> ot found)
+file ./output/models/an_multivariate_cox_models_onscoviddeath_MAINFULLYADJMODEL_agespline_bmicat_CCeth.ster saved
+. *estat concordance /*c-statistic*/
+.  }
+
+.  else di "WARNING CC ETHNICITY MODEL WITH AGESPLINE DID NOT FIT (OUTCOME `outcome')"
+
+.  
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_multivariable_cox_models_onscovidd
+> eath.log
+  log type:  text
+ closed on:   3 Jun 2020, 03:45:04
+--------------------------------------------------------------------------------------------------------------------

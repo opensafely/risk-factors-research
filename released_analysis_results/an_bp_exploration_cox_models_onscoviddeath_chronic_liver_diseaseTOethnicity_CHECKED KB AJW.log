@@ -1,0 +1,156 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_chronic_liver_diseaseTOethnicity.log
+  log type:  text
+ opened on:   3 Jun 2020, 01:19:06
+
+. 
+. * Open dataset and fit specified model(s)
+. use "cr_create_analysis_dataset_STSET_`outcome'.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. 
+. foreach var of any `varlist' {
+  2. 
+.         *General form of model
+.         local model "age1 age2 age3 i.male i.`var' i.htdiag_or_highbp"
+  3. 
+.         *Fit and save model
+.         cap erase ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var'.ster
+  4.         capture stcox `model' , strata(stp) 
+  5.         if _rc==0 {
+  6.                 estimates
+  7.                 estimates save ./output/models/an_bp_exploration_cox_models_`outcome'_AGESEX_`var', replace
+  8.                 }
+  9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
+ 10. 
+. }
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    33667.89
+Log likelihood  =   -130245.13                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |   1.156358   .0243791     6.89   0.000      1.10955    1.205141
+                   age2 |   .9341076   .0429313    -1.48   0.138     .8536424    1.022158
+                   age3 |   1.179066   .1255366     1.55   0.122     .9569948    1.452668
+                 1.male |   1.779159   .0346978    29.54   0.000     1.712436    1.848482
+1.chronic_liver_disease |   2.379256    .178648    11.54   0.000     2.053658    2.756475
+     1.htdiag_or_highbp |   1.091031    .024605     3.86   0.000     1.043857    1.140338
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_liver_disease.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_liver_disease.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(6)       =    34244.75
+Log likelihood  =    -129956.7                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------------
+                           _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------------+----------------------------------------------------------------
+                         age1 |   1.170425   .0252385     7.30   0.000     1.121989    1.220952
+                         age2 |   .8983754    .042097    -2.29   0.022     .8195423    .9847915
+                         age3 |   1.299777    .140872     2.42   0.016     1.051028    1.607399
+                       1.male |   1.732751   .0338156    28.17   0.000     1.667725    1.800312
+1.chronic_respiratory_disease |   1.946742   .0465796    27.84   0.000     1.857555    2.040211
+           1.htdiag_or_highbp |   1.093333   .0246521     3.96   0.000     1.046068    1.142734
+-----------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_respiratory_disease.ster not f
+> ound)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_chronic_respiratory_disease.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   17,277,935                  Number of obs    =  17,277,935
+No. of failures =       10,926
+Time at risk    =   1638907207
+                                                LR chi2(8)       =    34669.91
+Log likelihood  =   -129744.12                  Prob > chi2      =      0.0000
+
+---------------------------------------------------------------------------------------------
+                         _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+----------------------------+----------------------------------------------------------------
+                       age1 |   1.164822   .0248807     7.14   0.000     1.117064    1.214623
+                       age2 |   .9049658   .0420707    -2.15   0.032     .8261538    .9912961
+                       age3 |   1.283858   .1381635     2.32   0.020     1.039715    1.585331
+                     1.male |    1.70901   .0334278    27.40   0.000     1.644733    1.775799
+                            |
+                    diabcat |
+       Controlled diabetes  |   1.584386   .0386975    18.84   0.000     1.510327    1.662076
+     Uncontrolled diabetes  |   2.609453   .0810902    30.86   0.000     2.455262    2.773326
+Diabetes, no hba1c measure  |   2.264696   .1117706    16.56   0.000     2.055891    2.494707
+                            |
+         1.htdiag_or_highbp |   1.002763    .022837     0.12   0.904     .9589871    1.048536
+---------------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_diabcat.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_diabcat.ster saved
+
+--------------------------------------------------------------------------------------------------------------------
+active results
+--------------------------------------------------------------------------------------------------------------------
+
+Stratified Cox regr. -- Breslow method for ties
+
+No. of subjects =   12,717,951                  Number of obs    =  12,717,951
+No. of failures =        8,149
+Time at risk    =   1206440035
+                                                LR chi2(9)       =    25174.26
+Log likelihood  =   -94908.233                  Prob > chi2      =      0.0000
+
+-----------------------------------------------------------------------------------------
+                     _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------------+----------------------------------------------------------------
+                   age1 |   1.159127   .0285982     5.99   0.000      1.10441    1.216556
+                   age2 |   .9283311   .0497037    -1.39   0.165     .8358508    1.031044
+                   age3 |   1.201393   .1486787     1.48   0.138     .9426367    1.531178
+                 1.male |   1.735439    .039072    24.49   0.000     1.660524    1.813733
+                        |
+              ethnicity |
+                 Mixed  |   1.613058   .2072559     3.72   0.000     1.253956    2.074998
+Asian or Asian British  |   1.682718   .0763716    11.47   0.000     1.539496    1.839263
+                 Black  |   1.864913   .1248584     9.31   0.000     1.635572    2.126413
+                 Other  |   1.370677   .1337652     3.23   0.001     1.132051    1.659604
+                        |
+     1.htdiag_or_highbp |   1.110376   .0294525     3.95   0.000     1.054125    1.169629
+-----------------------------------------------------------------------------------------
+                                                             Stratified by stp
+(note: file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_ethnicity.ster not found)
+file ./output/models/an_bp_exploration_cox_models_onscoviddeath_AGESEX_ethnicity.ster saved
+
+. 
+. 
+. * Close log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_bp_exploration_cox_models_onscovid
+> death_chronic_liver_diseaseTOethnicity.log
+  log type:  text
+ closed on:   3 Jun 2020, 02:28:05
+--------------------------------------------------------------------------------------------------------------------
