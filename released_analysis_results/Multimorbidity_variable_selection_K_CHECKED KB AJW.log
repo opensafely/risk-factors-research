@@ -1,0 +1,637 @@
+--------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_variable_selection_K.l
+> og
+  log type:  text
+ opened on:   5 Jun 2020, 23:59:21
+
+. 
+. use "cr_create_analysis_dataset_STSET_onscoviddeath.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. keep if _d==1| uniform()<0.003
+(17,215,770 observations deleted)
+
+. 
+. stsplit timeband, at(30 60)
+(123,678 observations (episodes) created)
+
+. 
+. gen diedcovforpoisson = _d
+(REDACTED missing values generated)
+
+. gen exposureforpoisson = _t-_t0
+(REDACTED missing values generated)
+
+. 
+. * Keep cases and randomly sample controls
+. *set seed 8842
+. *sample 15000, by(onscoviddeath) count
+. 
+. for var male htdiag_or_highbp chronic_respiratory_disease chronic_cardiac_disease chronic_liver_disease stroke_dem
+> entia other_neuro organ_transplant spleen ra_sle_psoriasis other_immunosuppression: replace X = X+1
+
+->  replace male = male+1
+(186,300 real changes made)
+
+->  replace htdiag_or_highbp = htdiag_or_highbp+1
+(186,300 real changes made)
+
+->  replace chronic_respiratory_disease = chronic_respiratory_disease+1
+(186,300 real changes made)
+
+->  replace chronic_cardiac_disease = chronic_cardiac_disease+1
+(186,300 real changes made)
+
+->  replace chronic_liver_disease = chronic_liver_disease+1
+(186,300 real changes made)
+
+->  replace stroke_dementia = stroke_dementia+1
+(186,300 real changes made)
+
+->  replace other_neuro = other_neuro+1
+(186,300 real changes made)
+
+->  replace organ_transplant = organ_transplant+1
+(186,300 real changes made)
+
+->  replace spleen = spleen+1
+(186,300 real changes made)
+
+->  replace ra_sle_psoriasis = ra_sle_psoriasis+1
+(186,300 real changes made)
+
+->  replace other_immunosuppression = other_immunosuppression+1
+(186,300 real changes made)
+
+. 
+. recode agegroup 1=18 2=40 3=1 4=60 5=70 6=80
+(agegroup: 186300 changes made)
+
+. label values agegroup
+
+. 
+. foreach var of varlist agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp      chronic_respirator
+> y_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stro
+> ke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppressi
+> on {
+  2.                 local list "agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respira
+> tory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease s
+> troke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppre
+> ssion"
+  3.                         local listexcept = subinstr("`list'", "`var'", " ", 1)
+  4.                         local intlist "`intlist' io1.(`var')#io1.(`listexcept')"                               
+>          
+  5.                                                         }
+
+. di "`intlist'"
+ io1.(agegroup)#io1.(  ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthma
+> cat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia othe
+> r_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(ethnici
+> ty)#io1.(agegroup   male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chron
+> ic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro red
+> uced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(male)#io1.(agegrou
+> p ethnicity   obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_
+> disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney
+> _function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(obese4cat)#io1.(agegroup ethn
+> icity male   smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease dia
+> bcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney_function_c
+> at organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(smoke_nomiss)#io1.(agegroup ethnicity ma
+> le obese4cat   imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer
+> _exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_tr
+> ansplant spleen ra_sle_psoriasis other_immunosuppression) io1.(imd)#io1.(agegroup ethnicity male obese4cat smoke_n
+> omiss   htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat
+>  cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant sp
+> leen ra_sle_psoriasis other_immunosuppression) io1.(htdiag_or_highbp)#io1.(agegroup ethnicity male obese4cat smoke
+> _nomiss imd   chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_hae
+> m_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle
+> _psoriasis other_immunosuppression) io1.(chronic_respiratory_disease)#io1.(agegroup ethnicity male obese4cat smoke
+> _nomiss imd htdiag_or_highbp   asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chron
+> ic_liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis 
+> other_immunosuppression) io1.(asthmacat)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp 
+> chronic_respiratory_disease     chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_di
+> sease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immun
+> osuppression) io1.(chronic_cardiac_disease)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_high
+> bp chronic_respiratory_disease asthmacat     diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease strok
+> e_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppressio
+> n) io1.(diabcat)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_dise
+> ase asthmacat   chronic_cardiac_disease   cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia 
+> other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(can
+> cer_exhaem_cat)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disea
+> se asthmacat   chronic_cardiac_disease diabcat   cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro
+>  reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(cancer_haem_ca
+> t)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat 
+>   chronic_cardiac_disease diabcat cancer_exhaem_cat   chronic_liver_disease stroke_dementia other_neuro reduced_ki
+> dney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(chronic_liver_disease)#io
+> 1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chr
+> onic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat   stroke_dementia other_neuro reduced_kidney_functi
+> on_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(stroke_dementia)#io1.(agegroup ethni
+> city male obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_dise
+> ase diabcat cancer_exhaem_cat cancer_haem_cat chronic_liver_disease   other_neuro reduced_kidney_function_cat orga
+> n_transplant spleen ra_sle_psoriasis other_immunosuppression) io1.(other_neuro)#io1.(agegroup ethnicity male obese
+> 4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat can
+> cer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia   reduced_kidney_function_cat organ_transplan
+> t spleen ra_sle_psoriasis other_immunosuppression) io1.(reduced_kidney_function_cat)#io1.(agegroup ethnicity male 
+> obese4cat smoke_nomiss imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabca
+> t cancer_exhaem_cat cancer_haem_cat chronic_liver_disease stroke_dementia other_neuro   organ_transplant spleen ra
+> _sle_psoriasis other_immunosuppression) io1.(organ_transplant)#io1.(agegroup ethnicity male obese4cat smoke_nomiss
+>  imd htdiag_or_highbp chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat ca
+> ncer_haem_cat chronic_liver_disease stroke_dementia other_neuro reduced_kidney_function_cat   spleen ra_sle_psoria
+> sis other_immunosuppression) io1.(spleen)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp
+>  chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic
+> _liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant   ra_sle_psoriasis other_i
+> mmunosuppression) io1.(ra_sle_psoriasis)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp 
+> chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_
+> liver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen   other_immunosuppre
+> ssion) io1.(other_immunosuppression)#io1.(agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp chro
+> nic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_live
+> r_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis  )
+
+. 
+. * All pairwise interactions (full model)
+. timer clear 1
+
+. timer on 1
+
+. lasso poisson diedcovforpoisson (i.agegroup                                                             ///
+>                                                         i.ethnicity                                               
+>       ///
+>                                                         i.male                                                    
+>               ///
+>                                                         i.obese4cat                                               
+>               ///
+>                                                         i.smoke_nomiss                                            
+>       ///
+>                                                         i.imd                                                     
+>               ///
+>                                                         i.htdiag_or_highbp                                        
+>       ///
+>                                                         i.chronic_respiratory_disease                   ///
+>                                                         i.asthmacat                                               
+>       ///
+>                                                         i.chronic_cardiac_disease                               //
+> /
+>                                                         i.diabcat                                                 
+>               ///
+>                                                         i.cancer_exhaem_cat                                     //
+> /
+>                                                         i.cancer_haem_cat                                         
+>       ///
+>                                                         i.chronic_liver_disease                                 //
+> /
+>                                                         i.stroke_dementia                                         
+>       ///
+>                                                         i.other_neuro                                             
+>       ///
+>                                                         i.reduced_kidney_function_cat                   ///
+>                                                         i.organ_transplant                                        
+>       ///
+>                                                         i.spleen                                                  
+>               ///
+>                                                         i.ra_sle_psoriasis                                      //
+> /
+>                                                         i.other_immunosuppression i.timeband)   ///
+>                                                         `intlist'                                                 
+>               ///
+>                                                         , selection(plugin) exp(exposureforpoisson)
+1o.agegroup#1o.ethnicity omitted
+1o.agegroup#1o.male omitted
+1o.agegroup#1o.obese4cat omitted
+1o.agegroup#1o.smoke_nomiss omitted
+1o.agegroup#1o.imd omitted
+1o.agegroup#1o.htdiag_or_highbp omitted
+1o.agegroup#1o.chronic_respiratory_disease omitted
+1o.agegroup#1o.asthmacat omitted
+1o.agegroup#1o.chronic_cardiac_disease omitted
+1o.agegroup#1o.diabcat omitted
+1o.agegroup#1o.cancer_exhaem_cat omitted
+1o.agegroup#1o.cancer_haem_cat omitted
+1o.agegroup#1o.chronic_liver_disease omitted
+1o.agegroup#1o.stroke_dementia omitted
+1o.agegroup#1o.other_neuro omitted
+1o.agegroup#1o.reduced_kidney_function_cat omitted
+1o.agegroup#1o.organ_transplant omitted
+1o.agegroup#1o.spleen omitted
+1o.agegroup#1o.ra_sle_psoriasis omitted
+1o.agegroup#1o.other_immunosuppression omitted
+1o.ethnicity#1o.male omitted
+1o.ethnicity#1o.obese4cat omitted
+1o.ethnicity#1o.smoke_nomiss omitted
+1o.ethnicity#1o.imd omitted
+1o.ethnicity#1o.htdiag_or_highbp omitted
+1o.ethnicity#1o.chronic_respiratory_disease omitted
+1o.ethnicity#1o.asthmacat omitted
+1o.ethnicity#1o.chronic_cardiac_disease omitted
+1o.ethnicity#1o.diabcat omitted
+1o.ethnicity#1o.cancer_exhaem_cat omitted
+1o.ethnicity#1o.cancer_haem_cat omitted
+2o.ethnicity#2o.cancer_haem_cat omitted
+4o.ethnicity#2o.cancer_haem_cat omitted
+5o.ethnicity#4o.cancer_haem_cat omitted
+1o.ethnicity#1o.chronic_liver_disease omitted
+1o.ethnicity#1o.stroke_dementia omitted
+1o.ethnicity#1o.other_neuro omitted
+1o.ethnicity#1o.reduced_kidney_function_cat omitted
+1o.ethnicity#1o.organ_transplant omitted
+5o.ethnicity#2o.organ_transplant omitted
+1o.ethnicity#1o.spleen omitted
+1o.ethnicity#1o.ra_sle_psoriasis omitted
+1o.ethnicity#1o.other_immunosuppression omitted
+1o.male#1o.obese4cat omitted
+1o.male#1o.smoke_nomiss omitted
+1o.male#1o.imd omitted
+1o.male#1o.htdiag_or_highbp omitted
+1o.male#1o.chronic_respiratory_disease omitted
+1o.male#1o.asthmacat omitted
+1o.male#1o.chronic_cardiac_disease omitted
+1o.male#1o.diabcat omitted
+1o.male#1o.cancer_exhaem_cat omitted
+1o.male#1o.cancer_haem_cat omitted
+1o.male#1o.chronic_liver_disease omitted
+1o.male#1o.stroke_dementia omitted
+1o.male#1o.other_neuro omitted
+1o.male#1o.reduced_kidney_function_cat omitted
+1o.male#1o.organ_transplant omitted
+1o.male#1o.spleen omitted
+1o.male#1o.ra_sle_psoriasis omitted
+1o.male#1o.other_immunosuppression omitted
+1o.obese4cat#1o.smoke_nomiss omitted
+1o.obese4cat#1o.imd omitted
+1o.obese4cat#1o.htdiag_or_highbp omitted
+1o.obese4cat#1o.chronic_respiratory_disease omitted
+1o.obese4cat#1o.asthmacat omitted
+1o.obese4cat#1o.chronic_cardiac_disease omitted
+1o.obese4cat#1o.diabcat omitted
+1o.obese4cat#1o.cancer_exhaem_cat omitted
+1o.obese4cat#1o.cancer_haem_cat omitted
+1o.obese4cat#1o.chronic_liver_disease omitted
+1o.obese4cat#1o.stroke_dementia omitted
+1o.obese4cat#1o.other_neuro omitted
+1o.obese4cat#1o.reduced_kidney_function_cat omitted
+1o.obese4cat#1o.organ_transplant omitted
+1o.obese4cat#1o.spleen omitted
+1o.obese4cat#1o.ra_sle_psoriasis omitted
+1o.obese4cat#1o.other_immunosuppression omitted
+1o.smoke_nomiss#1o.imd omitted
+1o.smoke_nomiss#1o.htdiag_or_highbp omitted
+1o.smoke_nomiss#1o.chronic_respiratory_disease omitted
+1o.smoke_nomiss#1o.asthmacat omitted
+1o.smoke_nomiss#1o.chronic_cardiac_disease omitted
+1o.smoke_nomiss#1o.diabcat omitted
+1o.smoke_nomiss#1o.cancer_exhaem_cat omitted
+1o.smoke_nomiss#1o.cancer_haem_cat omitted
+1o.smoke_nomiss#1o.chronic_liver_disease omitted
+1o.smoke_nomiss#1o.stroke_dementia omitted
+1o.smoke_nomiss#1o.other_neuro omitted
+1o.smoke_nomiss#1o.reduced_kidney_function_cat omitted
+1o.smoke_nomiss#1o.organ_transplant omitted
+1o.smoke_nomiss#1o.spleen omitted
+1o.smoke_nomiss#1o.ra_sle_psoriasis omitted
+1o.smoke_nomiss#1o.other_immunosuppression omitted
+1o.imd#1o.htdiag_or_highbp omitted
+1o.imd#1o.chronic_respiratory_disease omitted
+1o.imd#1o.asthmacat omitted
+1o.imd#1o.chronic_cardiac_disease omitted
+1o.imd#1o.diabcat omitted
+1o.imd#1o.cancer_exhaem_cat omitted
+1o.imd#1o.cancer_haem_cat omitted
+1o.imd#1o.chronic_liver_disease omitted
+1o.imd#1o.stroke_dementia omitted
+1o.imd#1o.other_neuro omitted
+1o.imd#1o.reduced_kidney_function_cat omitted
+1o.imd#1o.organ_transplant omitted
+1o.imd#1o.spleen omitted
+1o.imd#1o.ra_sle_psoriasis omitted
+1o.imd#1o.other_immunosuppression omitted
+1o.htdiag_or_highbp#1o.chronic_respiratory_disease omitted
+1o.htdiag_or_highbp#1o.asthmacat omitted
+1o.htdiag_or_highbp#1o.chronic_cardiac_disease omitted
+1o.htdiag_or_highbp#1o.diabcat omitted
+1o.htdiag_or_highbp#1o.cancer_exhaem_cat omitted
+1o.htdiag_or_highbp#1o.cancer_haem_cat omitted
+1o.htdiag_or_highbp#1o.chronic_liver_disease omitted
+1o.htdiag_or_highbp#1o.stroke_dementia omitted
+1o.htdiag_or_highbp#1o.other_neuro omitted
+1o.htdiag_or_highbp#1o.reduced_kidney_function_cat omitted
+1o.htdiag_or_highbp#1o.organ_transplant omitted
+1o.htdiag_or_highbp#1o.spleen omitted
+1o.htdiag_or_highbp#1o.ra_sle_psoriasis omitted
+1o.htdiag_or_highbp#1o.other_immunosuppression omitted
+1o.chronic_respiratory_disease#1o.asthmacat omitted
+1o.chronic_respiratory_disease#1o.chronic_cardiac_disease omitted
+1o.chronic_respiratory_disease#1o.diabcat omitted
+1o.chronic_respiratory_disease#1o.cancer_exhaem_cat omitted
+1o.chronic_respiratory_disease#1o.cancer_haem_cat omitted
+1o.chronic_respiratory_disease#1o.chronic_liver_disease omitted
+1o.chronic_respiratory_disease#1o.stroke_dementia omitted
+1o.chronic_respiratory_disease#1o.other_neuro omitted
+1o.chronic_respiratory_disease#1o.reduced_kidney_function_cat omitted
+1o.chronic_respiratory_disease#1o.organ_transplant omitted
+1o.chronic_respiratory_disease#1o.spleen omitted
+1o.chronic_respiratory_disease#1o.ra_sle_psoriasis omitted
+1o.chronic_respiratory_disease#1o.other_immunosuppression omitted
+1o.asthmacat#1o.chronic_cardiac_disease omitted
+1o.asthmacat#1o.diabcat omitted
+1o.asthmacat#1o.cancer_exhaem_cat omitted
+1o.asthmacat#1o.cancer_haem_cat omitted
+1o.asthmacat#1o.chronic_liver_disease omitted
+1o.asthmacat#1o.stroke_dementia omitted
+1o.asthmacat#1o.other_neuro omitted
+1o.asthmacat#1o.reduced_kidney_function_cat omitted
+1o.asthmacat#1o.organ_transplant omitted
+1o.asthmacat#1o.spleen omitted
+1o.asthmacat#1o.ra_sle_psoriasis omitted
+1o.asthmacat#1o.other_immunosuppression omitted
+1o.chronic_cardiac_disease#1o.diabcat omitted
+1o.chronic_cardiac_disease#1o.cancer_exhaem_cat omitted
+1o.chronic_cardiac_disease#1o.cancer_haem_cat omitted
+1o.chronic_cardiac_disease#1o.chronic_liver_disease omitted
+1o.chronic_cardiac_disease#1o.stroke_dementia omitted
+1o.chronic_cardiac_disease#1o.other_neuro omitted
+1o.chronic_cardiac_disease#1o.reduced_kidney_function_cat omitted
+1o.chronic_cardiac_disease#1o.organ_transplant omitted
+1o.chronic_cardiac_disease#1o.spleen omitted
+1o.chronic_cardiac_disease#1o.ra_sle_psoriasis omitted
+1o.chronic_cardiac_disease#1o.other_immunosuppression omitted
+1o.diabcat#1o.cancer_exhaem_cat omitted
+1o.diabcat#1o.cancer_haem_cat omitted
+1o.diabcat#1o.chronic_liver_disease omitted
+1o.diabcat#1o.stroke_dementia omitted
+1o.diabcat#1o.other_neuro omitted
+1o.diabcat#1o.reduced_kidney_function_cat omitted
+1o.diabcat#1o.organ_transplant omitted
+1o.diabcat#1o.spleen omitted
+1o.diabcat#1o.ra_sle_psoriasis omitted
+1o.diabcat#1o.other_immunosuppression omitted
+1o.cancer_exhaem_cat#1o.cancer_haem_cat omitted
+1o.cancer_exhaem_cat#1o.chronic_liver_disease omitted
+1o.cancer_exhaem_cat#1o.stroke_dementia omitted
+1o.cancer_exhaem_cat#1o.other_neuro omitted
+1o.cancer_exhaem_cat#1o.reduced_kidney_function_cat omitted
+1o.cancer_exhaem_cat#1o.organ_transplant omitted
+1o.cancer_exhaem_cat#1o.spleen omitted
+1o.cancer_exhaem_cat#1o.ra_sle_psoriasis omitted
+1o.cancer_exhaem_cat#1o.other_immunosuppression omitted
+1o.cancer_haem_cat#1o.chronic_liver_disease omitted
+1o.cancer_haem_cat#1o.stroke_dementia omitted
+1o.cancer_haem_cat#1o.other_neuro omitted
+1o.cancer_haem_cat#1o.reduced_kidney_function_cat omitted
+1o.cancer_haem_cat#1o.organ_transplant omitted
+1o.cancer_haem_cat#1o.spleen omitted
+2o.cancer_haem_cat#2o.spleen omitted
+3o.cancer_haem_cat#2o.spleen omitted
+1o.cancer_haem_cat#1o.ra_sle_psoriasis omitted
+1o.cancer_haem_cat#1o.other_immunosuppression omitted
+1o.chronic_liver_disease#1o.stroke_dementia omitted
+1o.chronic_liver_disease#1o.other_neuro omitted
+1o.chronic_liver_disease#1o.reduced_kidney_function_cat omitted
+1o.chronic_liver_disease#1o.organ_transplant omitted
+1o.chronic_liver_disease#1o.spleen omitted
+1o.chronic_liver_disease#1o.ra_sle_psoriasis omitted
+1o.chronic_liver_disease#1o.other_immunosuppression omitted
+1o.stroke_dementia#1o.other_neuro omitted
+1o.stroke_dementia#1o.reduced_kidney_function_cat omitted
+1o.stroke_dementia#1o.organ_transplant omitted
+1o.stroke_dementia#1o.spleen omitted
+1o.stroke_dementia#1o.ra_sle_psoriasis omitted
+1o.stroke_dementia#1o.other_immunosuppression omitted
+1o.other_neuro#1o.reduced_kidney_function_cat omitted
+1o.other_neuro#1o.organ_transplant omitted
+1o.other_neuro#1o.spleen omitted
+1o.other_neuro#1o.ra_sle_psoriasis omitted
+1o.other_neuro#1o.other_immunosuppression omitted
+1o.reduced_kidney_function_cat#1o.organ_transplant omitted
+1o.reduced_kidney_function_cat#1o.spleen omitted
+1o.reduced_kidney_function_cat#1o.ra_sle_psoriasis omitted
+1o.reduced_kidney_function_cat#1o.other_immunosuppression omitted
+1o.organ_transplant#1o.spleen omitted
+2o.organ_transplant#2o.spleen omitted
+1o.organ_transplant#1o.ra_sle_psoriasis omitted
+1o.organ_transplant#1o.other_immunosuppression omitted
+1o.spleen#1o.ra_sle_psoriasis omitted
+1o.spleen#1o.other_immunosuppression omitted
+1o.ra_sle_psoriasis#1o.other_immunosuppression omitted
+note: 30.timeband dropped because it is constant
+note: 3.asthmacat#2.orga~t dropped because it is constant
+note: 2.cancer_exhaem_ca~o dropped because it is constant
+note: 2.cancer_haem_cat#~_ dropped because it is constant
+note: 3.cancer_haem_cat#~_ dropped because it is constant
+note: 2.cancer_haem_cat#~o dropped because it is constant
+note: 4.cancer_haem_cat#~a dropped because it is constant
+note: 5.ethnicity dropped because of collinearity with another variable
+note: 3.cancer_haem_cat dropped because of collinearity with another variable
+note: 4.cancer_haem_cat dropped because of collinearity with another variable
+note: 2.spleen dropped because of collinearity with another variable
+note: 5.ethnicity#2.obes~t dropped because of collinearity with another variable
+note: 2.ethnicity#2.asth~t dropped because of collinearity with another variable
+note: 3.smoke_nomiss#4.c~t dropped because of collinearity with another variable
+note: 2.imd#1.htdiag_or_~p dropped because of collinearity with another variable
+note: 2.asthmacat#1.chro~e dropped because of collinearity with another variable
+note: 3.asthmacat#1.orga~t dropped because of collinearity with another variable
+note: 2.cancer_exhaem_ca~o dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~_ dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~o dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~n dropped because of collinearity with another variable
+note: 3.cancer_haem_cat#~n dropped because of collinearity with another variable
+note: 2.organ_transplant~n dropped because of collinearity with another variable
+Computing plugin lambda ...
+Iteration 1:     lambda = .0135176   no. of nonzero coef. =      57
+Iteration 2:     lambda = .0135176   no. of nonzero coef. =      68
+Iteration 3:     lambda = .0135176   no. of nonzero coef. =      71
+Iteration 4:     lambda = .0135176   no. of nonzero coef. =      69
+Iteration 5:     lambda = .0135176   no. of nonzero coef. =      72
+Iteration 6:     lambda = .0135176   no. of nonzero coef. =      70
+Iteration 7:     lambda = .0135176   no. of nonzero coef. =      70
+Iteration 8:     lambda = .0135176   no. of nonzero coef. =      68
+Iteration 9:     lambda = .0135176   no. of nonzero coef. =      68
+Iteration 10:    lambda = .0135176   no. of nonzero coef. =      69
+Iteration 11:    lambda = .0135176   no. of nonzero coef. =      68
+Iteration 12:    lambda = .0135176   no. of nonzero coef. =      69
+Iteration 13:    lambda = .0135176   no. of nonzero coef. =      68
+Iteration 14:    lambda = .0135176   no. of nonzero coef. =      69
+Iteration 15:    lambda = .0135176   no. of nonzero coef. =      68
+
+Lasso Poisson model                         No. of obs        =    137,593
+                                            No. of covariates =      1,678
+Selection: Plugin heteroskedastic
+
+--------------------------------------------------------------------------
+         |                                No. of
+         |                               nonzero    In-sample
+      ID |     Description      lambda     coef.   dev. ratio          BIC
+---------+----------------------------------------------------------------
+     * 1 | selected lambda    .0135176        68       0.4915     47169.06
+--------------------------------------------------------------------------
+* lambda selected by plugin formula assuming heteroskedastic errors.
+
+. lassocoef, display(coef, postselection eform)
+
+-------------------------------------------------------
+                                            |    active
+--------------------------------------------+----------
+                                   agegroup |
+                                        18  |  .0786531
+                                        40  |  .3341241
+                                        60  |  2.195241
+                                        70  |   4.71262
+                                        80  |  12.44742
+                                            |
+                                  ethnicity |
+                                         2  |  1.791301
+                                         3  |   2.18415
+                                         4  |  2.391736
+                                            |
+                                     2.male |  1.587072
+                                            |
+                                  obese4cat |
+                                         2  |  1.045672
+                                         3  |  1.373717
+                                         4  |  1.838707
+                                            |
+                               smoke_nomiss |
+                                         2  |  1.161903
+                                         3  |  .8924721
+                                            |
+                                        imd |
+                                         2  |  1.365863
+                                         3  |  1.372773
+                                         4  |  1.651631
+                                         5  |  1.879565
+                                            |
+                           htdiag_or_highbp |
+                                         2  |  1.109791
+                                            |
+              2.chronic_respiratory_disease |  1.902828
+                                            |
+                                  asthmacat |
+                                         2  |         e
+                                         3  |  1.152396
+                                            |
+                  2.chronic_cardiac_disease |  1.257321
+                                            |
+                                    diabcat |
+                                         2  |   1.58235
+                                         3  |   2.03503
+                                         4  |  1.983482
+                                            |
+                          cancer_exhaem_cat |
+                                         2  |   1.71913
+                                         3  |  1.238015
+                                         4  |   1.04919
+                                            |
+                            cancer_haem_cat |
+                                         2  |  2.413401
+                                            |
+                    2.chronic_liver_disease |  1.432137
+                          2.stroke_dementia |  1.574812
+                              2.other_neuro |  3.250152
+                                            |
+                reduced_kidney_function_cat |
+                                         2  |  1.341735
+                                         3  |  3.140025
+                                            |
+                         2.organ_transplant |  2.055413
+                         2.ra_sle_psoriasis |  1.106118
+                                            |
+                    other_immunosuppression |
+                                         2  |  1.739669
+                                            |
+                                60.timeband |  18.14101
+                                            |
+                         agegroup#ethnicity |
+                                      80 3  |  .6244912
+                                      80 4  |  .6111232
+                                            |
+                              agegroup#male |
+                                      80 2  |  .7277033
+                                            |
+                         agegroup#obese4cat |
+                                      80 3  |  .6944998
+                                      80 4  |  .5360388
+                                            |
+                               agegroup#imd |
+                                      80 1  |  1.466568
+                                      80 5  |   .864739
+                                            |
+                  agegroup#htdiag_or_highbp |
+                                      80 1  |  1.277988
+                                            |
+       agegroup#chronic_respiratory_disease |
+                                      80 2  |  .6010416
+                                            |
+                           agegroup#diabcat |
+                                      80 1  |   1.55211
+                                      80 3  |  .8413881
+                                            |
+                       agegroup#other_neuro |
+                                      80 2  |  .4365645
+                                            |
+       agegroup#reduced_kidney_function_cat |
+                                       1 2  |  3.284516
+                                      80 3  |  .5163034
+                                            |
+                  agegroup#organ_transplant |
+                                      80 2  |  .4260635
+                                            |
+                ethnicity#cancer_exhaem_cat |
+                                       2 2  |  4.12e-08
+                                       4 2  |  9.89e-08
+                                            |
+            ethnicity#chronic_liver_disease |
+                                       2 2  |  6.64e-08
+                                            |
+          ethnicity#other_immunosuppression |
+                                       2 2  |  3.93e-07
+                                       5 1  |  1.705137
+                                            |
+                        smoke_nomiss#spleen |
+                                       3 2  |  3.45e-07
+                                            |
+    chronic_cardiac_disease#stroke_dementia |
+                                       2 2  |  .7012037
+                                            |
+                             diabcat#spleen |
+                                       4 2  |  .0242763
+                                            |
+          cancer_exhaem_cat#cancer_haem_cat |
+                                       1 4  |  1.670899
+                                            |
+                   cancer_exhaem_cat#spleen |
+                                       2 2  |  2.20e-08
+                                            |
+cancer_haem_cat#reduced_kidney_function_cat |
+                                       3 1  |  2.404024
+                                            |
+    cancer_haem_cat#other_immunosuppression |
+                                       2 2  |  .6692653
+                                            |
+                stroke_dementia#other_neuro |
+                                       2 2  |  .6109797
+                                            |
+stroke_dementia#reduced_kidney_function_cat |
+                                       2 1  |  1.296795
+                                            |
+                                      _cons |   .000024
+-------------------------------------------------------
+Legend:
+  b - base level
+  e - empty cell
+  o - omitted
+
+. timer off 1
+
+. timer list 1
+   1:  24754.17 /        1 =   24754.1740
+
+. 
+.                                                 
+. 
+. 
+. * Close the log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_variable_selection_K.l
+> og
+  log type:  text
+ closed on:   6 Jun 2020, 06:52:13
+--------------------------------------------------------------------------------------------------------------------

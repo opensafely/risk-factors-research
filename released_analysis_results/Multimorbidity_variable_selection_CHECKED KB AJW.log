@@ -1,0 +1,1078 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_variable_selection.log
+  log type:  text
+ opened on:   5 Jun 2020, 17:38:21
+
+. 
+. use "cr_create_analysis_dataset.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. * Keep cases and randomly sample controls
+. set seed 8842
+
+. sample 15000, by(onscoviddeath) count
+(17,252,466 observations deleted)
+
+. 
+. 
+. 
+. * All pairwise interactions (full model)
+. timer clear 1
+
+. timer on 1
+
+. lasso logit onscoviddeath i.(agegroup                                                           ///
+>                                                         ethnicity                                                               ///
+>                                                         male                                                                    ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression)##i.(agegroup   ///
+>                                                         male                                                                    ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression),                               ///
+>                                                         selection(plugin)
+2o.agegroup#2o.cancer_haem_cat omitted
+2o.ethnicity#2o.cancer_exhaem_cat omitted
+2o.ethnicity#2o.cancer_haem_cat omitted
+4o.ethnicity#2o.cancer_haem_cat omitted
+5o.ethnicity#4o.cancer_haem_cat omitted
+2o.ethnicity#1o.chronic_liver_disease omitted
+5o.ethnicity#1o.organ_transplant omitted
+2o.ethnicity#1o.spleen omitted
+5o.ethnicity#1o.spleen omitted
+3o.asthmacat#1o.organ_transplant omitted
+2o.cancer_haem_cat#1o.chronic_liver_disease omitted
+2o.cancer_haem_cat#1o.organ_transplant omitted
+2o.cancer_haem_cat#1o.spleen omitted
+3o.cancer_haem_cat#1o.spleen omitted
+4o.cancer_haem_cat#1o.other_immunosuppression omitted
+1o.organ_transplant#1o.spleen omitted
+1o.spleen#1o.other_immunosuppression omitted
+note: 4.diabcat#1.spleen dropped because it is constant
+note: 2.cancer_exhaem_ca~_ dropped because it is constant
+note: 2.cancer_exhaem_ca~n dropped because it is constant
+note: 3.cancer_haem_cat#~_ dropped because it is constant
+note: 2.cancer_haem_cat#~o dropped because it is constant
+note: 4.cancer_haem_cat#~a dropped because it is constant
+note: 2.ethnicity dropped because of collinearity with another variable
+note: 4.diabcat dropped because of collinearity with another variable
+note: 2.cancer_haem_cat dropped because of collinearity with another variable
+note: 3.cancer_haem_cat dropped because of collinearity with another variable
+note: 4.cancer_haem_cat dropped because of collinearity with another variable
+note: 1.spleen dropped because of collinearity with another variable
+note: 1.other_immunosupp~n dropped because of collinearity with another variable
+note: 2.ethnicity#0.chro~s dropped because of collinearity with another variable
+note: 5.ethnicity#0.orga~t dropped because of collinearity with another variable
+note: 5.ethnicity#0.spleen dropped because of collinearity with another variable
+note: 4.obese4cat#0.stro~a dropped because of collinearity with another variable
+note: 2.smoke_nomiss#1.r~u dropped because of collinearity with another variable
+note: 3.asthmacat#0.orga~t dropped because of collinearity with another variable
+note: 4.diabcat#0.chroni~e dropped because of collinearity with another variable
+note: 2.cancer_exhaem_ca~n dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~_ dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~o dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~a dropped because of collinearity with another variable
+note: 4.cancer_haem_cat#~a dropped because of collinearity with another variable
+note: 3.cancer_haem_cat#~n dropped because of collinearity with another variable
+note: 0.organ_transplant~n dropped because of collinearity with another variable
+note: 1.organ_transplant~n dropped because of collinearity with another variable
+Computing plugin lambda ...
+Iteration 1:     lambda = .0193901   no. of nonzero coef. =      53
+
+Lasso logit model                           No. of obs        =     19,164
+                                            No. of covariates =      1,892
+Selection: Plugin homoskedastic
+
+--------------------------------------------------------------------------
+         |                                No. of
+         |                               nonzero    In-sample
+      ID |     Description      lambda     coef.   dev. ratio          BIC
+---------+----------------------------------------------------------------
+     * 1 | selected lambda    .0193901        53       0.4892      13884.1
+--------------------------------------------------------------------------
+* lambda selected by plugin formula assuming homoskedastic errors.
+
+. lassocoef, display(coef, postselection)
+
+-------------------------------------------------------------------
+                                                        |    active
+--------------------------------------------------------+----------
+                                               agegroup |
+                                                     5  |  .9066665
+                                                     6  |   -2.2645
+                                                        |
+                                          agegroup#male |
+                                                   4 1  |  .3577504
+                                                   5 1  |  .2205008
+                                                        |
+                                     agegroup#obese4cat |
+                                                   3 1  | -.3645232
+                                                   6 1  |  .3862069
+                                                        |
+                                  agegroup#smoke_nomiss |
+                                                   5 2  |  .1688836
+                                                        |
+                                           agegroup#imd |
+                                                   4 5  |  .1899375
+                                                   5 5  |  .2988606
+                                                        |
+                              agegroup#htdiag_or_highbp |
+                                                   6 0  |  .5435144
+                                                        |
+                   agegroup#chronic_respiratory_disease |
+                                                   6 0  |   .645719
+                                                        |
+                                       agegroup#diabcat |
+                                                   2 1  |   -.73394
+                                                   6 1  |  .5110265
+                                                        |
+                             agegroup#cancer_exhaem_cat |
+                                                   2 1  |  -1.09972
+                                                   6 1  |  .5860279
+                                                        |
+                         agegroup#chronic_liver_disease |
+                                                   6 0  |  1.430088
+                                                        |
+                                   agegroup#other_neuro |
+                                                   6 0  |  1.295115
+                                                        |
+                   agegroup#reduced_kidney_function_cat |
+                                                   1 1  | -2.942777
+                                                        |
+                                        agegroup#spleen |
+                                                   6 0  |  .3189946
+                                                        |
+                                     ethnicity#agegroup |
+                                                   1 3  | -.2758193
+                                                   3 4  |  .4365908
+                                                        |
+                  ethnicity#chronic_respiratory_disease |
+                                                   1 0  | -.8412395
+                                                        |
+                                      male#smoke_nomiss |
+                                                   1 2  |  .1772009
+                                                        |
+                                               male#imd |
+                                                   1 5  |  .3493993
+                                                        |
+                       male#reduced_kidney_function_cat |
+                                                   0 1  | -.2741378
+                                                        |
+                  obese4cat#reduced_kidney_function_cat |
+                                                   1 1  | -.2906135
+                                                        |
+                                       smoke_nomiss#imd |
+                                                   2 5  |  .1322099
+                                                        |
+                                   imd#htdiag_or_highbp |
+                                                   5 1  | -.0416629
+                                                        |
+                                   imd#ra_sle_psoriasis |
+                                                   1 0  | -.3614578
+                                                        |
+           htdiag_or_highbp#chronic_respiratory_disease |
+                                                   0 0  |  .0602882
+                                                        |
+               htdiag_or_highbp#chronic_cardiac_disease |
+                                                   0 0  |  .1031366
+                                                        |
+                           htdiag_or_highbp#other_neuro |
+                                                   0 0  | -.3121316
+                                                        |
+                    chronic_respiratory_disease#diabcat |
+                                                   0 1  | -.0662932
+                                                        |
+            chronic_respiratory_disease#stroke_dementia |
+                                                   0 0  |  .0477875
+                                                        |
+chronic_respiratory_disease#reduced_kidney_function_cat |
+                                                   0 1  | -.2137418
+                                                        |
+                        chronic_cardiac_disease#diabcat |
+                                                   0 1  | -.0136307
+                                                        |
+                chronic_cardiac_disease#stroke_dementia |
+                                                   0 0  | -.1520944
+                                                        |
+                    chronic_cardiac_disease#other_neuro |
+                                                   0 0  |  -.183775
+                                                        |
+    chronic_cardiac_disease#reduced_kidney_function_cat |
+                                                   0 1  |  .0370045
+                                                        |
+                                diabcat#stroke_dementia |
+                                                   1 0  | -.3794945
+                                                        |
+                                    diabcat#other_neuro |
+                                                   1 0  | -.1583555
+                                                        |
+                    diabcat#reduced_kidney_function_cat |
+                                                   1 1  |  .1403889
+                                                        |
+                               diabcat#ra_sle_psoriasis |
+                                                   1 0  | -.3630402
+                                                        |
+                      cancer_exhaem_cat#stroke_dementia |
+                                                   1 0  | -.4793533
+                                                        |
+          cancer_exhaem_cat#reduced_kidney_function_cat |
+                                                   1 1  | -.1558242
+                                                        |
+                  cancer_haem_cat#chronic_liver_disease |
+                                                   1 0  | -.7948728
+                                                        |
+                            cancer_haem_cat#other_neuro |
+                                                   1 0  | -.4222349
+                                                        |
+                      chronic_liver_disease#other_neuro |
+                                                   0 0  | -.4344579
+                                                        |
+                            stroke_dementia#other_neuro |
+                                                   0 0  | -.6702537
+                                                        |
+            stroke_dementia#reduced_kidney_function_cat |
+                                                   0 1  |  .1584072
+                                                   0 3  |   1.07033
+                                                        |
+                other_neuro#reduced_kidney_function_cat |
+                                                   0 1  | -.2348487
+                                                   0 3  |  .4677612
+                                                        |
+                                                  _cons |    3.6644
+-------------------------------------------------------------------
+Legend:
+  b - base level
+  e - empty cell
+  o - omitted
+
+. timer off 1
+
+. timer list 1
+   1:    558.75 /        1 =     558.7470
+
+. 
+.                                                 
+. 
+. 
+. * All pairwise interactions (full model with cross-validation, 50 times slower)
+. timer clear 1
+
+. timer on 1
+
+. lasso logit onscoviddeath i.(agegroup                                                           ///
+>                                                         ethnicity                                                               ///
+>                                                         male                                                                    ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression)##i.(agegroup   ///
+>                                                         male                                                                    ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression)                        
+2o.agegroup#2o.cancer_haem_cat omitted
+2o.ethnicity#2o.cancer_exhaem_cat omitted
+2o.ethnicity#2o.cancer_haem_cat omitted
+4o.ethnicity#2o.cancer_haem_cat omitted
+5o.ethnicity#4o.cancer_haem_cat omitted
+2o.ethnicity#1o.chronic_liver_disease omitted
+5o.ethnicity#1o.organ_transplant omitted
+2o.ethnicity#1o.spleen omitted
+5o.ethnicity#1o.spleen omitted
+3o.asthmacat#1o.organ_transplant omitted
+2o.cancer_haem_cat#1o.chronic_liver_disease omitted
+2o.cancer_haem_cat#1o.organ_transplant omitted
+2o.cancer_haem_cat#1o.spleen omitted
+3o.cancer_haem_cat#1o.spleen omitted
+4o.cancer_haem_cat#1o.other_immunosuppression omitted
+1o.organ_transplant#1o.spleen omitted
+1o.spleen#1o.other_immunosuppression omitted
+note: 4.diabcat#1.spleen dropped because it is constant
+note: 2.cancer_exhaem_ca~_ dropped because it is constant
+note: 2.cancer_exhaem_ca~n dropped because it is constant
+note: 3.cancer_haem_cat#~_ dropped because it is constant
+note: 2.cancer_haem_cat#~o dropped because it is constant
+note: 4.cancer_haem_cat#~a dropped because it is constant
+note: 5.ethnicity dropped because of collinearity with another variable
+note: 2.cancer_exhaem_cat dropped because of collinearity with another variable
+note: 4.cancer_haem_cat dropped because of collinearity with another variable
+note: 1.organ_transplant dropped because of collinearity with another variable
+note: 1.spleen dropped because of collinearity with another variable
+note: 2.ethnicity#0.chro~s dropped because of collinearity with another variable
+note: 5.ethnicity#0.orga~t dropped because of collinearity with another variable
+note: 2.ethnicity#0.spleen dropped because of collinearity with another variable
+note: 4.obese4cat#0.stro~a dropped because of collinearity with another variable
+note: 2.smoke_nomiss#1.r~u dropped because of collinearity with another variable
+note: 3.asthmacat#0.orga~t dropped because of collinearity with another variable
+note: 4.diabcat#0.chroni~e dropped because of collinearity with another variable
+note: 4.diabcat#0.spleen dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~_ dropped because of collinearity with another variable
+note: 3.cancer_haem_cat#~_ dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~o dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~a dropped because of collinearity with another variable
+note: 4.cancer_haem_cat#~a dropped because of collinearity with another variable
+note: 2.cancer_haem_cat#~n dropped because of collinearity with another variable
+note: 3.cancer_haem_cat#~n dropped because of collinearity with another variable
+note: 0.spleen#1.other_i~n dropped because of collinearity with another variable
+note: 1.spleen#0.other_i~n dropped because of collinearity with another variable
+note: 1.agegroup#2.cance~t dropped because it is constant in C.V. subsamples
+note: 1.agegroup#3.cance~t dropped because it is constant in C.V. subsamples
+note: 4.ethnicity#2.canc~t dropped because it is constant in C.V. subsamples
+note: 2.ethnicity#3.canc~t dropped because it is constant in C.V. subsamples
+note: 2.ethnicity#4.canc~t dropped because it is constant in C.V. subsamples
+note: 5.ethnicity#2.canc~t dropped because it is constant in C.V. subsamples
+note: 2.ethnicity#1.orga~t dropped because it is constant in C.V. subsamples
+note: 3.ethnicity#1.spleen dropped because it is constant in C.V. subsamples
+note: 4.obese4cat#2.canc~t dropped because it is constant in C.V. subsamples
+note: 4.obese4cat#1.orga~t dropped because it is constant in C.V. subsamples
+note: 4.obese4cat#1.spleen dropped because it is constant in C.V. subsamples
+note: 3.asthmacat#2.canc~t dropped because it is constant in C.V. subsamples
+note: 4.diabcat#2.cancer~t dropped because it is constant in C.V. subsamples
+note: 2.cancer_exhaem_ca~p dropped because it is constant in C.V. subsamples
+note: 3.cancer_exhaem_ca~p dropped because it is constant in C.V. subsamples
+note: 2.cancer_exhaem_ca~o dropped because it is constant in C.V. subsamples
+note: 3.cancer_haem_cat#~a dropped because it is constant in C.V. subsamples
+note: 1.chronic_liver_di~n dropped because it is constant in C.V. subsamples
+note: 1.chronic_liver_di~m dropped because it is constant in C.V. subsamples
+note: 1.organ_transplant~a dropped because it is constant in C.V. subsamples
+10-fold cross-validation with 100 lambdas ...
+Grid value 1:     lambda = .2816223   no. of nonzero coef. =       0
+Folds: 1...5....10   CVF = 1.363211
+Grid value 2:     lambda = .2566038   no. of nonzero coef. =       1
+Folds: 1...5....10   CVF = 1.309195
+Grid value 3:     lambda = .2338078   no. of nonzero coef. =       2
+Folds: 1...5....10   CVF = 1.259861
+Grid value 4:     lambda =  .213037   no. of nonzero coef. =       3
+Folds: 1...5....10   CVF = 1.208235
+Grid value 5:     lambda = .1941113   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = 1.16124
+Grid value 6:     lambda =  .176867   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = 1.120734
+Grid value 7:     lambda = .1611546   no. of nonzero coef. =       5
+Folds: 1...5....10   CVF = 1.085834
+Grid value 8:     lambda = .1468381   no. of nonzero coef. =       9
+Folds: 1...5....10   CVF = 1.052029
+Grid value 9:     lambda = .1337934   no. of nonzero coef. =       9
+Folds: 1...5....10   CVF = 1.016275
+Grid value 10:    lambda = .1219076   no. of nonzero coef. =      12
+Folds: 1...5....10   CVF = .984797
+Grid value 11:    lambda = .1110776   no. of nonzero coef. =      12
+Folds: 1...5....10   CVF = .9570371
+Grid value 12:    lambda = .1012098   no. of nonzero coef. =      12
+Folds: 1...5....10   CVF = .9326966
+Grid value 13:    lambda = .0922186   no. of nonzero coef. =      13
+Folds: 1...5....10   CVF = .9075515
+Grid value 14:    lambda = .0840262   no. of nonzero coef. =      12
+Folds: 1...5....10   CVF = .8834368
+Grid value 15:    lambda = .0765615   no. of nonzero coef. =      14
+Folds: 1...5....10   CVF = .8625125
+Grid value 16:    lambda =   .06976   no. of nonzero coef. =      14
+Folds: 1...5....10   CVF = .8443188
+Grid value 17:    lambda = .0635627   no. of nonzero coef. =      15
+Folds: 1...5....10   CVF = .8280964
+Grid value 18:    lambda =  .057916   no. of nonzero coef. =      19
+Folds: 1...5....10   CVF = .8120299
+Grid value 19:    lambda = .0527709   no. of nonzero coef. =      20
+Folds: 1...5....10   CVF = .7973061
+Grid value 20:    lambda = .0480829   no. of nonzero coef. =      21
+Folds: 1...5....10   CVF = .7843733
+Grid value 21:    lambda = .0438113   no. of nonzero coef. =      22
+Folds: 1...5....10   CVF = .7730205
+Grid value 22:    lambda = .0399192   no. of nonzero coef. =      24
+Folds: 1...5....10   CVF = .762783
+Grid value 23:    lambda = .0363729   no. of nonzero coef. =      25
+Folds: 1...5....10   CVF = .7532994
+Grid value 24:    lambda = .0331417   no. of nonzero coef. =      26
+Folds: 1...5....10   CVF = .7441067
+Grid value 25:    lambda = .0301974   no. of nonzero coef. =      31
+Folds: 1...5....10   CVF = .7355645
+Grid value 26:    lambda = .0275148   no. of nonzero coef. =      33
+Folds: 1...5....10   CVF = .7271908
+Grid value 27:    lambda = .0250704   no. of nonzero coef. =      36
+Folds: 1...5....10   CVF = .7196501
+Grid value 28:    lambda = .0228433   no. of nonzero coef. =      40
+Folds: 1...5....10   CVF = .7128079
+Grid value 29:    lambda = .0208139   no. of nonzero coef. =      47
+Folds: 1...5....10   CVF = .7061837
+Grid value 30:    lambda = .0189649   no. of nonzero coef. =      53
+Folds: 1...5....10   CVF = .6998185
+Grid value 31:    lambda = .0172801   no. of nonzero coef. =      58
+Folds: 1...5....10   CVF = .6936388
+Grid value 32:    lambda =  .015745   no. of nonzero coef. =      62
+Folds: 1...5....10   CVF = .6878015
+Grid value 33:    lambda = .0143462   no. of nonzero coef. =      68
+Folds: 1...5....10   CVF = .6824562
+Grid value 34:    lambda = .0130717   no. of nonzero coef. =      69
+Folds: 1...5....10   CVF = .6776692
+Grid value 35:    lambda = .0119105   no. of nonzero coef. =      73
+Folds: 1...5....10   CVF = .6734897
+Grid value 36:    lambda = .0108524   no. of nonzero coef. =      75
+Folds: 1...5....10   CVF = .6698159
+Grid value 37:    lambda = .0098883   no. of nonzero coef. =      80
+Folds: 1...5....10   CVF = .6666162
+Grid value 38:    lambda = .0090099   no. of nonzero coef. =      82
+Folds: 1...5....10   CVF = .6638327
+Grid value 39:    lambda = .0082094   no. of nonzero coef. =      86
+Folds: 1...5....10   CVF = .661521
+Grid value 40:    lambda = .0074801   no. of nonzero coef. =      98
+Folds: 1...5....10   CVF = .659515
+Grid value 41:    lambda = .0068156   no. of nonzero coef. =     106
+Folds: 1...5....10   CVF = .6577047
+Grid value 42:    lambda = .0062101   no. of nonzero coef. =     121
+Folds: 1...5....10   CVF = .6562498
+Grid value 43:    lambda = .0056584   no. of nonzero coef. =     132
+Folds: 1...5....10   CVF = .6550897
+Grid value 44:    lambda = .0051558   no. of nonzero coef. =     142
+Folds: 1...5....10   CVF = .654112
+Grid value 45:    lambda = .0046977   no. of nonzero coef. =     161
+Folds: 1...5....10   CVF = .6533968
+Grid value 46:    lambda = .0042804   no. of nonzero coef. =     178
+Folds: 1...5....10   CVF = .6529573
+Grid value 47:    lambda = .0039001   no. of nonzero coef. =     197
+Folds: 1...5....10   CVF = .6526182
+Grid value 48:    lambda = .0035537   no. of nonzero coef. =     213
+Folds: 1...5....10   CVF = .6524437
+Grid value 49:    lambda =  .003238   no. of nonzero coef. =     235
+Folds: 1...5....10   CVF = .6525027
+Grid value 50:    lambda = .0029503   no. of nonzero coef. =     261
+Folds: 1...5....10   CVF = .6527595
+Grid value 51:    lambda = .0026882   no. of nonzero coef. =     286
+Folds: 1...5....10   CVF = .6531766
+Grid value 52:    lambda = .0024494   no. of nonzero coef. =     310
+Folds: 1...5....10   CVF = .6537527
+Grid value 53:    lambda = .0022318   no. of nonzero coef. =     333
+Folds: 1...5....10   CVF = .6544803
+... cross-validation complete ... minimum found
+
+Lasso logit model                           No. of obs        =     19,164
+                                            No. of covariates =      1,872
+Selection: Cross-validation                 No. of CV folds   =         10
+
+--------------------------------------------------------------------------
+         |                                No. of      Out-of-
+         |                               nonzero       sample      CV mean
+      ID |     Description      lambda     coef.   dev. ratio     deviance
+---------+----------------------------------------------------------------
+       1 |    first lambda    .2816223         0       0.0005     1.363211
+      47 |   lambda before    .0039001       197       0.5215     .6526182
+    * 48 | selected lambda    .0035537       213       0.5216     .6524437
+      49 |    lambda after     .003238       235       0.5216     .6525027
+      53 |     last lambda    .0022318       333       0.5201     .6544803
+--------------------------------------------------------------------------
+* lambda selected by cross-validation.
+
+. lassocoef, display(coef, postselection)
+
+-------------------------------------------------------------------
+                                                        |    active
+--------------------------------------------------------+----------
+                                               agegroup |
+                                                     5  | -.1467261
+                                                        |
+                                           smoke_nomiss |
+                                                     2  | -.0273024
+                                                        |
+                                          agegroup#male |
+                                                   3 0  | -.2481826
+                                                   4 1  |  .4215679
+                                                   5 1  |  .1908579
+                                                        |
+                                     agegroup#obese4cat |
+                                                   1 1  | -1.033632
+                                                   3 1  | -.1087483
+                                                   4 3  |  .0466559
+                                                   6 1  |  .3559704
+                                                        |
+                                  agegroup#smoke_nomiss |
+                                                   4 1  |    -.4293
+                                                   5 2  |  .4057755
+                                                   5 3  |  .6192075
+                                                   6 3  | -.1527449
+                                                        |
+                                           agegroup#imd |
+                                                   3 3  | -.4025353
+                                                   3 4  |  .2361652
+                                                   4 5  |  .0856389
+                                                   5 1  | -.2419214
+                                                   5 3  |  .0671852
+                                                   5 5  |  .1264339
+                                                   6 1  |  .2618339
+                                                        |
+                              agegroup#htdiag_or_highbp |
+                                                   2 0  | -.3462629
+                                                   3 0  | -.2795361
+                                                   5 0  |  .3098774
+                                                   6 0  |  .5947634
+                                                        |
+                   agegroup#chronic_respiratory_disease |
+                                                   5 0  |  .3070758
+                                                   6 0  |  .6607673
+                                                        |
+                                     agegroup#asthmacat |
+                                                   3 3  |  .7015618
+                                                        |
+                       agegroup#chronic_cardiac_disease |
+                                                   5 0  |  .1206375
+                                                        |
+                                       agegroup#diabcat |
+                                                   1 1  |   -1.1138
+                                                   2 1  | -.7935967
+                                                   3 1  | -.2660279
+                                                   4 3  |  .3420473
+                                                   5 4  |  .6052371
+                                                   6 1  |  .2200988
+                                                        |
+                             agegroup#cancer_exhaem_cat |
+                                                   2 1  |  -1.06353
+                                                   2 2  |  1.606545
+                                                   2 4  |  1.831869
+                                                   4 2  |  1.443436
+                                                   4 3  |  .4880306
+                                                   5 1  |  .0643012
+                                                   5 2  |  .8131864
+                                                   6 1  |  .3559591
+                                                        |
+                               agegroup#cancer_haem_cat |
+                                                   3 3  |  .7223014
+                                                   3 4  |  1.215813
+                                                   5 1  | -.0531771
+                                                   6 1  | -.6230273
+                                                        |
+                         agegroup#chronic_liver_disease |
+                                                   1 1  |  2.115552
+                                                   3 1  |  .6288579
+                                                   6 0  |  .3637403
+                                                        |
+                               agegroup#stroke_dementia |
+                                                   5 1  |  .1865505
+                                                        |
+                                   agegroup#other_neuro |
+                                                   2 1  |  .7557293
+                                                   6 0  |  .9654268
+                                                        |
+                   agegroup#reduced_kidney_function_cat |
+                                                   1 1  | -1.505552
+                                                   1 2  |  2.531528
+                                                   1 3  |  2.253284
+                                                   4 3  |  1.388092
+                                                   5 1  |  .5766948
+                                                   5 3  |  1.444387
+                                                   6 1  |  .4947613
+                                                        |
+                              agegroup#ra_sle_psoriasis |
+                                                   6 0  |  .1134798
+                                                        |
+                                     ethnicity#agegroup |
+                                                   1 3  | -.0907692
+                                                   2 2  |  1.571456
+                                                   3 4  |  .5363372
+                                                   3 5  |  .0284199
+                                                   5 4  |  1.361744
+                                                        |
+                                         ethnicity#male |
+                                                   3 1  |  .1663325
+                                                        |
+                                    ethnicity#obese4cat |
+                                                   3 2  |  .2489885
+                                                   3 4  |  .6656087
+                                                   4 4  |  1.224794
+                                                   5 2  |  1.236333
+                                                        |
+                                 ethnicity#smoke_nomiss |
+                                                   3 1  |  .2668779
+                                                   4 2  |  .4729568
+                                                        |
+                                          ethnicity#imd |
+                                                   4 3  |  1.599548
+                                                   5 2  | -.7894198
+                                                        |
+                  ethnicity#chronic_respiratory_disease |
+                                                   1 0  | -.2841224
+                                                        |
+                                    ethnicity#asthmacat |
+                                                   5 2  |  1.499198
+                                                        |
+                      ethnicity#chronic_cardiac_disease |
+                                                   3 1  |   .268809
+                                                   4 1  |  .9034983
+                                                        |
+                                      ethnicity#diabcat |
+                                                   2 3  |  .8983306
+                                                   3 1  |    .51022
+                                                   4 3  |  .3834819
+                                                        |
+                            ethnicity#cancer_exhaem_cat |
+                                                   2 4  |   19.5461
+                                                   4 3  |  17.59403
+                                                        |
+                        ethnicity#chronic_liver_disease |
+                                                   3 1  |  1.494905
+                                                        |
+                  ethnicity#reduced_kidney_function_cat |
+                                                   1 1  |  .0966101
+                                                   3 2  |  .5681716
+                                                   5 2  | -.8402688
+                                                        |
+                                       ethnicity#spleen |
+                                                   4 1  |  3.435418
+                                                        |
+                                         male#obese4cat |
+                                                   0 2  | -.1695791
+                                                   1 4  |  .6048089
+                                                        |
+                                      male#smoke_nomiss |
+                                                   1 2  | -.0685037
+                                                        |
+                                               male#imd |
+                                                   1 4  |  .1380971
+                                                   1 5  |  .3419412
+                                                        |
+                                  male#htdiag_or_highbp |
+                                                   0 0  | -.2013253
+                                                        |
+                       male#chronic_respiratory_disease |
+                                                   0 0  | -.1145599
+                                                        |
+                                         male#asthmacat |
+                                                   1 2  | -.2360461
+                                                        |
+                           male#chronic_cardiac_disease |
+                                                   0 0  | -.1268828
+                                                        |
+                                           male#diabcat |
+                                                   1 3  |  .0610347
+                                                        |
+                                 male#cancer_exhaem_cat |
+                                                   1 3  |  .2059665
+                                                        |
+                                   male#cancer_haem_cat |
+                                                   1 3  |  1.538343
+                                                        |
+                             male#chronic_liver_disease |
+                                                   0 1  |   .666022
+                                                        |
+                                       male#other_neuro |
+                                                   0 1  |  .3485972
+                                                        |
+                       male#reduced_kidney_function_cat |
+                                                   0 1  | -.1064372
+                                                        |
+                           male#other_immunosuppression |
+                                                   1 1  |   .746557
+                                                        |
+                                 obese4cat#smoke_nomiss |
+                                                   2 3  | -.4365079
+                                                        |
+                                          obese4cat#imd |
+                                                   1 2  | -.0391654
+                                                   2 4  | -.2538122
+                                                   2 5  |  .1502606
+                                                        |
+                             obese4cat#htdiag_or_highbp |
+                                                   1 0  | -.0689855
+                                                   4 0  |  .5681155
+                                                        |
+                  obese4cat#chronic_respiratory_disease |
+                                                   3 0  |  .0593844
+                                                        |
+                      obese4cat#chronic_cardiac_disease |
+                                                   2 1  |   .251113
+                                                   3 0  |  .2383283
+                                                        |
+                                      obese4cat#diabcat |
+                                                   1 3  |   .175081
+                                                   3 2  |  .2582975
+                                                   4 3  |  .3096171
+                                                        |
+                              obese4cat#cancer_haem_cat |
+                                                   3 2  |  35.48556
+                                                   4 4  |  16.67956
+                                                        |
+                              obese4cat#stroke_dementia |
+                                                   3 1  |   .601215
+                                                        |
+                                  obese4cat#other_neuro |
+                                                   1 1  |  .8593306
+                                                   4 0  |  .0779024
+                                                        |
+                  obese4cat#reduced_kidney_function_cat |
+                                                   1 1  | -.1554512
+                                                   3 1  |  .0557061
+                                                   4 3  |  16.55703
+                                                        |
+                                       obese4cat#spleen |
+                                                   2 1  |  .7001149
+                                                        |
+                             obese4cat#ra_sle_psoriasis |
+                                                   4 1  |  1.053765
+                                                        |
+                                       smoke_nomiss#imd |
+                                                   1 5  |  .1289521
+                                                   2 4  | -.0090296
+                                                        |
+               smoke_nomiss#chronic_respiratory_disease |
+                                                   2 1  |  .1744333
+                                                        |
+                   smoke_nomiss#chronic_cardiac_disease |
+                                                   2 1  |  .2467925
+                                                        |
+                                   smoke_nomiss#diabcat |
+                                                   1 3  |  .1419845
+                                                   2 4  |  .2456633
+                                                        |
+                         smoke_nomiss#cancer_exhaem_cat |
+                                                   3 1  | -.1955158
+                                                   3 2  |   .957272
+                                                        |
+                           smoke_nomiss#cancer_haem_cat |
+                                                   3 2  |  .1133006
+                                                   3 4  | -1.840796
+                                                        |
+               smoke_nomiss#reduced_kidney_function_cat |
+                                                   1 3  |  .3966418
+                                                   3 1  | -.2887073
+                                                        |
+                   smoke_nomiss#other_immunosuppression |
+                                                   2 1  |  1.026196
+                                                        |
+                                   imd#htdiag_or_highbp |
+                                                   2 0  | -.1401852
+                                                   4 0  |  .2387056
+                                                        |
+                        imd#chronic_respiratory_disease |
+                                                   1 0  | -.3492418
+                                                   2 0  | -.0401911
+                                                   5 0  |  .1228354
+                                                        |
+                                          imd#asthmacat |
+                                                   4 1  |  .0321613
+                                                        |
+                            imd#chronic_cardiac_disease |
+                                                   2 0  | -.0664547
+                                                        |
+                                            imd#diabcat |
+                                                   1 2  | -.3789491
+                                                        |
+                                  imd#cancer_exhaem_cat |
+                                                   1 2  | -1.382664
+                                                   4 3  |  .3629091
+                                                   5 3  |  .4747301
+                                                        |
+                                    imd#cancer_haem_cat |
+                                                   3 3  | -1.197358
+                                                   5 2  |  19.31998
+                                                   5 3  |  16.84308
+                                                        |
+                              imd#chronic_liver_disease |
+                                                   1 1  |   1.07595
+                                                        |
+                                             imd#spleen |
+                                                   2 1  | -2.580811
+                                                        |
+                                   imd#ra_sle_psoriasis |
+                                                   1 0  |  .0152545
+                                                   1 1  |  .6937446
+                                                        |
+                            imd#other_immunosuppression |
+                                                   4 1  |  .5096085
+                                                        |
+           htdiag_or_highbp#chronic_respiratory_disease |
+                                                   0 0  |  .0268874
+                                                        |
+                               htdiag_or_highbp#diabcat |
+                                                   0 3  |  .2313702
+                                                        |
+                       htdiag_or_highbp#cancer_haem_cat |
+                                                   0 2  | -29.76552
+                                                   0 3  |  1.544955
+                                                        |
+                 htdiag_or_highbp#chronic_liver_disease |
+                                                   0 1  |  .7060022
+                                                        |
+                       htdiag_or_highbp#stroke_dementia |
+                                                   0 0  | -.1209662
+                                                        |
+                           htdiag_or_highbp#other_neuro |
+                                                   0 1  |  1.024691
+                                                        |
+               htdiag_or_highbp#other_immunosuppression |
+                                                   1 1  | -.0288735
+                                                        |
+                  chronic_respiratory_disease#asthmacat |
+                                                   0 3  |  .3324646
+                                                        |
+                    chronic_respiratory_disease#diabcat |
+                                                   0 1  |  -.103852
+                                                        |
+          chronic_respiratory_disease#cancer_exhaem_cat |
+                                                   0 1  | -.0967081
+                                                        |
+      chronic_respiratory_disease#chronic_liver_disease |
+                                                   0 1  |  .6989299
+                                                        |
+            chronic_respiratory_disease#stroke_dementia |
+                                                   0 0  | -.2584767
+                                                        |
+chronic_respiratory_disease#reduced_kidney_function_cat |
+                                                   0 1  | -.3423489
+                                                        |
+                      asthmacat#chronic_cardiac_disease |
+                                                   3 1  |  .5722504
+                                                        |
+                                      asthmacat#diabcat |
+                                                   3 4  |   1.85312
+                                                        |
+                            asthmacat#cancer_exhaem_cat |
+                                                   3 1  | -.1589597
+                                                   3 4  | -1.592468
+                                                        |
+                              asthmacat#cancer_haem_cat |
+                                                   3 4  | -.4718594
+                                                        |
+                                       asthmacat#spleen |
+                                                   2 1  |  1.997401
+                                                   3 1  |  19.78944
+                                                        |
+                chronic_cardiac_disease#cancer_haem_cat |
+                                                   0 2  |   29.6475
+                                                        |
+                chronic_cardiac_disease#stroke_dementia |
+                                                   0 0  | -.0682424
+                                                        |
+                    chronic_cardiac_disease#other_neuro |
+                                                   0 1  |  .1614261
+                                                        |
+               chronic_cardiac_disease#organ_transplant |
+                                                   0 1  |  .3894754
+                                                        |
+               chronic_cardiac_disease#ra_sle_psoriasis |
+                                                   0 0  |  .0371746
+                                                        |
+                                diabcat#stroke_dementia |
+                                                   1 0  | -.3848688
+                                                        |
+                    diabcat#reduced_kidney_function_cat |
+                                                   3 1  |  .1438925
+                                                        |
+                                         diabcat#spleen |
+                                                   3 1  |  19.09093
+                                                        |
+                               diabcat#ra_sle_psoriasis |
+                                                   1 0  | -.1285315
+                                                   3 0  | -.0712818
+                                                        |
+                        diabcat#other_immunosuppression |
+                                                   4 1  |  17.33672
+                                                        |
+                      cancer_exhaem_cat#cancer_haem_cat |
+                                                   3 4  | -1.465982
+                                                   4 3  |  18.87225
+                                                        |
+                      cancer_exhaem_cat#stroke_dementia |
+                                                   1 0  | -.2324872
+                                                        |
+          cancer_exhaem_cat#reduced_kidney_function_cat |
+                                                   1 1  | -.0077075
+                                                   2 1  |  .5396218
+                                                        |
+                     cancer_exhaem_cat#ra_sle_psoriasis |
+                                                   2 1  |  .5027711
+                                                   4 1  | -.5668422
+                                                        |
+                  cancer_haem_cat#chronic_liver_disease |
+                                                   1 0  |  .3522894
+                                                        |
+                            cancer_haem_cat#other_neuro |
+                                                   3 0  | -.5992159
+                                                   3 1  | -6.596114
+                                                        |
+            cancer_haem_cat#reduced_kidney_function_cat |
+                                                   3 1  |  .3671734
+                                                        |
+                       cancer_haem_cat#organ_transplant |
+                                                   1 0  | -.7966291
+                                                        |
+                       cancer_haem_cat#ra_sle_psoriasis |
+                                                   2 1  | -18.29601
+                                                   4 1  |  1.815102
+                                                        |
+                cancer_haem_cat#other_immunosuppression |
+                                                   3 1  |  15.42976
+                                                        |
+                            stroke_dementia#other_neuro |
+                                                   0 0  | -.3245122
+                                                        |
+            stroke_dementia#reduced_kidney_function_cat |
+                                                   0 3  |   .645063
+                                                        |
+                       stroke_dementia#ra_sle_psoriasis |
+                                                   0 0  | -.1369555
+                                                        |
+                other_neuro#reduced_kidney_function_cat |
+                                                   0 1  | -.5451602
+                                                        |
+           reduced_kidney_function_cat#organ_transplant |
+                                                   2 1  |   .840385
+                                                        |
+           reduced_kidney_function_cat#ra_sle_psoriasis |
+                                                   1 0  | -.1251716
+                                                   3 0  |  .0380324
+                                                        |
+                                organ_transplant#spleen |
+                                                   0 0  |  .4216668
+                                                        |
+                                                  _cons |  1.440294
+-------------------------------------------------------------------
+Legend:
+  b - base level
+  e - empty cell
+  o - omitted
+
+. timer off 1
+
+. timer list 1
+   1:  40318.68 /        1 =   40318.6810
+
+. 
+. 
+. 
+. 
+. /*   
+> 
+>                 IF THE ABOVE FAILS TO CONVERGE: TRY...
+> 
+> 
+> * All pairwise interactions (full model)
+> timer clear 1
+> timer on 1
+> lasso logit onscoviddeath i.(agegroup male ethnicity)##i.(agegroup      ///
+>                                                         male                                                                    ///
+>                                                         ethnicity                                                               ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression),                               ///
+>                                                         selection(plugin)
+> lassocoef, display(coef, postselection)
+> timer off 1
+> timer list 1
+> 
+>                                                 
+> 
+> 
+> * All pairwise interactions (full model with cross-validation, 50 times slower)
+> timer clear 1
+> timer on 1
+> lasso logit onscoviddeath i.(agegroup                                                           ///
+>                                                         ethnicity                                                               ///
+>                                                         male)##i.(agegroup                                              ///
+>                                                         male                                                                    ///
+>                                                         obese4cat                                                               ///
+>                                                         smoke_nomiss                                                    ///
+>                                                         imd                                                                             ///
+>                                                         htdiag_or_highbp                                                ///
+>                                                         chronic_respiratory_disease                     ///
+>                                                         asthmacat                                                               ///
+>                                                         chronic_cardiac_disease                                 ///
+>                                                         diabcat                                                                 ///
+>                                                         cancer_exhaem_cat                                               ///
+>                                                         cancer_haem_cat                                                 ///
+>                                                         chronic_liver_disease                                   ///
+>                                                         stroke_dementia                                                 ///
+>                                                         other_neuro                                                             ///
+>                                                         reduced_kidney_function_cat                             ///
+>                                                         organ_transplant                                                ///
+>                                                         spleen                                                                  ///
+>                                                         ra_sle_psoriasis                                                ///
+>                                                         other_immunosuppression)                        
+> lassocoef, display(coef, postselection)
+> timer off 1
+> timer list 1
+> 
+> 
+> */
+. 
+. 
+. * Close the log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_variable_selection.log
+  log type:  text
+ closed on:   6 Jun 2020, 05:00:30
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

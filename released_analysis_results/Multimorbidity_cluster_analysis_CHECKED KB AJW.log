@@ -1,0 +1,762 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_cluster_analysis.log
+  log type:  text
+ opened on:   5 Jun 2020, 18:31:06
+
+. 
+. 
+. 
+. * Separately inspect subgroups of a particular age, sex and ethnic group
+. forvalues i = 1 (1) 6 {
+  2.         forvalues j = 0 (1) 1 {
+  3.                 forvalues k = 1 (1) 5 {
+  4.                     
+.                         use "cr_create_analysis_dataset.dta", clear
+  5.                         keep if agegroup==`i'
+  6.                         keep if male==`j'
+  7.                         keep if ethnicity==`k'
+  8. 
+.                         * Sub-sample (take whole subgroup or 20,000 whichever is biggest)
+.                         qui count
+  9.                         if r(N) > 20000 {
+ 10.                                 set seed 17248
+ 11.                                 sample 20000, count
+ 12.                         }
+ 13. 
+. 
+.                         * Create dummy variables for categorical predictors
+.                         foreach var of varlist obese4cat smoke_nomiss imd  ///
+>                                 asthmacat diabcat cancer_exhaem_cat cancer_haem_cat             ///
+>                                 reduced_kidney_function_cat              {
+ 14.                                         egen ord_`var' = group(`var')
+ 15.                                         qui summ ord_`var'
+ 16.                                         local max=r(max)
+ 17.                                         forvalues l = 1 (1) `max' {
+ 18.                                                 gen `var'_`l' = (`var'==`l')
+ 19.                                         }       
+ 20.                                         drop ord_`var'
+ 21.                                         drop `var'_1
+ 22.                         }
+ 23. 
+. 
+. 
+.                         * Cluster analysis of binary characteristics
+.                         set seed 123789
+ 24.                         cluster kmeans  obese4cat_*                                                     ///
+>                                                         smoke_nomiss_*                                          ///
+>                                                         imd_*                                                           ///
+>                                                         htdiag_or_highbp                                        ///
+>                                                         chronic_respiratory_disease             ///
+>                                                         asthmacat_*                                             ///
+>                                                         chronic_cardiac_disease                         ///
+>                                                         diabcat_*                                                       ///
+>                                                         cancer_exhaem_cat_*                             ///
+>                                                         cancer_haem_cat_*                                       ///
+>                                                         chronic_liver_disease                           ///
+>                                                         stroke_dementia                                         ///
+>                                                         other_neuro                                                     ///
+>                                                         reduced_kidney_function_cat_*           ///
+>                                                         organ_transplant                                        ///
+>                                                         spleen                                                          ///
+>                                                         ra_sle_psoriasis                                        ///
+>                                                         other_immunosuppression                         ///
+>                                         ,  k(`numcluster') measure(Jaccard)             ///
+>                                         name(group_`numcluster')
+ 25.                         
+.                         preserve
+ 26.                         keep patient_id agegroup male ethnicity group_`numcluster'
+ 27.                         save cluster_`i'_`j'_`k', replace
+ 28.                         restore
+ 29.                         
+.                         * Summarise characteristics by group
+.                         tempname temp
+ 30.                         postfile `temp' agegroup male ethnicity group str30(var) pc ///
+>                                 using cluster_desc_`i'_`j'_`k', replace
+ 31. 
+.                                 forvalues l = 1 (1) 10 {
+ 32.                                         * Size of group 
+.                                         qui count
+ 33.                                         local N=r(N)
+ 34.                                         qui count if group_`numcluster'==`l' 
+ 35.                                         local pgp = r(N)/`N'
+ 36.                                 
+.                                         post `temp' (`i') (`j') (`k') (`l') ("N") (`pgp')
+ 37.                                                                                 
+.                                         foreach var of varlist obese4cat_*                      ///
+>                                                         smoke_nomiss_*                                          ///
+>                                                         imd_*                                                           ///
+>                                                         htdiag_or_highbp                                        ///
+>                                                         chronic_respiratory_disease             ///
+>                                                         asthmacat_*                                             ///
+>                                                         chronic_cardiac_disease                         ///
+>                                                         diabcat_*                                                       ///
+>                                                         cancer_exhaem_cat_*                             ///
+>                                                         cancer_haem_cat_*                                       ///
+>                                                         chronic_liver_disease                           ///
+>                                                         stroke_dementia                                         ///
+>                                                         other_neuro                                                     ///
+>                                                         reduced_kidney_function_cat_*           ///
+>                                                         organ_transplant                                        ///
+>                                                         spleen                                                          ///
+>                                                         ra_sle_psoriasis                                        ///
+>                                                         other_immunosuppression {
+ 38.                                                         
+.                                                         qui summ `var' if group_`numcluster'==`l'       
+ 39.                                                         post `temp' (`i') (`j') (`k') (`l') ("`var'") (r(mean))
+ 40.                                                 }       
+ 41.                                 }
+ 42. 
+.                         postclose `temp'
+ 43.                 }
+ 44.         }
+ 45. }
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(3,036,651 observations deleted)
+(1,152,823 observations deleted)
+(1,704,910 observations deleted)
+(note: file cluster_1_0_1.dta not found)
+file cluster_1_0_1.dta saved
+(note: file cluster_desc_1_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(3,036,651 observations deleted)
+(2,830,019 observations deleted)
+(27,714 observations deleted)
+(note: file cluster_1_0_2.dta not found)
+file cluster_1_0_2.dta saved
+(note: file cluster_desc_1_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(3,036,651 observations deleted)
+(2,646,517 observations deleted)
+(211,216 observations deleted)
+(note: file cluster_1_0_3.dta not found)
+file cluster_1_0_3.dta saved
+(note: file cluster_desc_1_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(3,036,651 observations deleted)
+(2,806,563 observations deleted)
+(51,170 observations deleted)
+(note: file cluster_1_0_4.dta not found)
+file cluster_1_0_4.dta saved
+(note: file cluster_desc_1_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(3,036,651 observations deleted)
+(2,793,171 observations deleted)
+(64,562 observations deleted)
+(note: file cluster_1_0_5.dta not found)
+file cluster_1_0_5.dta saved
+(note: file cluster_desc_1_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(2,877,733 observations deleted)
+(1,442,179 observations deleted)
+(1,574,472 observations deleted)
+(note: file cluster_1_1_1.dta not found)
+file cluster_1_1_1.dta saved
+(note: file cluster_desc_1_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(2,877,733 observations deleted)
+(2,991,839 observations deleted)
+(24,812 observations deleted)
+(note: file cluster_1_1_2.dta not found)
+file cluster_1_1_2.dta saved
+(note: file cluster_desc_1_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(2,877,733 observations deleted)
+(2,784,428 observations deleted)
+(232,223 observations deleted)
+(note: file cluster_1_1_3.dta not found)
+file cluster_1_1_3.dta saved
+(note: file cluster_desc_1_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(2,877,733 observations deleted)
+(2,965,582 observations deleted)
+(51,069 observations deleted)
+(note: file cluster_1_1_4.dta not found)
+file cluster_1_1_4.dta saved
+(note: file cluster_desc_1_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(11,364,008 observations deleted)
+(2,877,733 observations deleted)
+(2,946,922 observations deleted)
+(69,729 observations deleted)
+(note: file cluster_1_1_5.dta not found)
+file cluster_1_1_5.dta saved
+(note: file cluster_desc_1_1_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,466,220 observations deleted)
+(476,172 observations deleted)
+(887,592 observations deleted)
+(note: file cluster_2_0_1.dta not found)
+file cluster_2_0_1.dta saved
+(note: file cluster_desc_2_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,466,220 observations deleted)
+(1,366,402 observations deleted)
+(note: file cluster_2_0_2.dta not found)
+file cluster_2_0_2.dta saved
+(note: file cluster_desc_2_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,466,220 observations deleted)
+(1,274,363 observations deleted)
+(89,401 observations deleted)
+(note: file cluster_2_0_3.dta not found)
+file cluster_2_0_3.dta saved
+(note: file cluster_desc_2_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,466,220 observations deleted)
+(1,344,180 observations deleted)
+(19,584 observations deleted)
+(note: file cluster_2_0_4.dta not found)
+file cluster_2_0_4.dta saved
+(note: file cluster_desc_2_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,466,220 observations deleted)
+(1,351,181 observations deleted)
+(12,583 observations deleted)
+(note: file cluster_2_0_5.dta not found)
+file cluster_2_0_5.dta saved
+(note: file cluster_desc_2_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,383,764 observations deleted)
+(580,748 observations deleted)
+(865,472 observations deleted)
+(note: file cluster_2_1_1.dta not found)
+file cluster_2_1_1.dta saved
+(note: file cluster_desc_2_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,383,764 observations deleted)
+(1,448,837 observations deleted)
+(note: file cluster_2_1_2.dta not found)
+file cluster_2_1_2.dta saved
+(note: file cluster_desc_2_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,383,764 observations deleted)
+(1,334,736 observations deleted)
+(111,484 observations deleted)
+(note: file cluster_2_1_3.dta not found)
+file cluster_2_1_3.dta saved
+(note: file cluster_desc_2_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,383,764 observations deleted)
+(1,424,456 observations deleted)
+(21,764 observations deleted)
+(note: file cluster_2_1_4.dta not found)
+file cluster_2_1_4.dta saved
+(note: file cluster_desc_2_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,428,408 observations deleted)
+(1,383,764 observations deleted)
+(1,430,745 observations deleted)
+(15,475 observations deleted)
+(note: file cluster_2_1_5.dta not found)
+file cluster_2_1_5.dta saved
+(note: file cluster_desc_2_1_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,550,440 observations deleted)
+(477,566 observations deleted)
+(1,003,104 observations deleted)
+(note: file cluster_3_0_1.dta not found)
+file cluster_3_0_1.dta saved
+(note: file cluster_desc_3_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,550,440 observations deleted)
+(1,488,436 observations deleted)
+(note: file cluster_3_0_2.dta not found)
+file cluster_3_0_2.dta saved
+(note: file cluster_desc_3_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,550,440 observations deleted)
+(1,436,283 observations deleted)
+(44,387 observations deleted)
+(note: file cluster_3_0_3.dta not found)
+file cluster_3_0_3.dta saved
+(note: file cluster_desc_3_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,550,440 observations deleted)
+(1,468,990 observations deleted)
+(11,680 observations deleted)
+(note: file cluster_3_0_4.dta not found)
+file cluster_3_0_4.dta saved
+(note: file cluster_desc_3_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,550,440 observations deleted)
+(1,480,989 observations deleted)
+(note: file cluster_3_0_5.dta not found)
+file cluster_3_0_5.dta saved
+(note: file cluster_desc_3_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,500,670 observations deleted)
+(558,790 observations deleted)
+(971,650 observations deleted)
+(note: file cluster_3_1_1.dta not found)
+file cluster_3_1_1.dta saved
+(note: file cluster_desc_3_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,500,670 observations deleted)
+(1,538,496 observations deleted)
+(note: file cluster_3_1_2.dta not found)
+file cluster_3_1_2.dta saved
+(note: file cluster_desc_3_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,500,670 observations deleted)
+(1,478,738 observations deleted)
+(51,702 observations deleted)
+(note: file cluster_3_1_3.dta not found)
+file cluster_3_1_3.dta saved
+(note: file cluster_desc_3_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,500,670 observations deleted)
+(1,515,577 observations deleted)
+(14,863 observations deleted)
+(note: file cluster_3_1_4.dta not found)
+file cluster_3_1_4.dta saved
+(note: file cluster_desc_3_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,227,282 observations deleted)
+(1,500,670 observations deleted)
+(1,530,528 observations deleted)
+(note: file cluster_3_1_5.dta not found)
+file cluster_3_1_5.dta saved
+(note: file cluster_desc_3_1_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,186,308 observations deleted)
+(359,086 observations deleted)
+(826,998 observations deleted)
+(note: file cluster_4_0_1.dta not found)
+file cluster_4_0_1.dta saved
+(note: file cluster_desc_4_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,186,308 observations deleted)
+(1,200,362 observations deleted)
+(note: file cluster_4_0_2.dta not found)
+file cluster_4_0_2.dta saved
+(note: file cluster_desc_4_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,186,308 observations deleted)
+(1,159,254 observations deleted)
+(26,830 observations deleted)
+(note: file cluster_4_0_3.dta not found)
+file cluster_4_0_3.dta saved
+(note: file cluster_desc_4_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,186,308 observations deleted)
+(1,191,729 observations deleted)
+(note: file cluster_4_0_4.dta not found)
+file cluster_4_0_4.dta saved
+(note: file cluster_desc_4_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,186,308 observations deleted)
+(1,194,204 observations deleted)
+(note: file cluster_4_0_5.dta not found)
+file cluster_4_0_5.dta saved
+(note: file cluster_desc_4_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,206,084 observations deleted)
+(393,749 observations deleted)
+(772,559 observations deleted)
+(note: file cluster_4_1_1.dta not found)
+file cluster_4_1_1.dta saved
+(note: file cluster_desc_4_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,206,084 observations deleted)
+(1,181,204 observations deleted)
+(note: file cluster_4_1_2.dta not found)
+file cluster_4_1_2.dta saved
+(note: file cluster_desc_4_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,206,084 observations deleted)
+(1,140,121 observations deleted)
+(26,187 observations deleted)
+(note: file cluster_4_1_3.dta not found)
+file cluster_4_1_3.dta saved
+(note: file cluster_desc_4_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,206,084 observations deleted)
+(1,172,707 observations deleted)
+(note: file cluster_4_1_4.dta not found)
+file cluster_4_1_4.dta saved
+(note: file cluster_desc_4_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(14,886,000 observations deleted)
+(1,206,084 observations deleted)
+(1,175,840 observations deleted)
+(note: file cluster_4_1_5.dta not found)
+file cluster_4_1_5.dta saved
+(note: file cluster_desc_4_1_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(924,044 observations deleted)
+(291,202 observations deleted)
+(703,596 observations deleted)
+(note: file cluster_5_0_1.dta not found)
+file cluster_5_0_1.dta saved
+(note: file cluster_desc_5_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(924,044 observations deleted)
+(1,012,022 observations deleted)
+(note: file cluster_5_0_2.dta not found)
+file cluster_5_0_2.dta saved
+(note: file cluster_desc_5_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(924,044 observations deleted)
+(990,539 observations deleted)
+(4,259 observations deleted)
+(note: file cluster_5_0_3.dta not found)
+file cluster_5_0_3.dta saved
+(note: file cluster_desc_5_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(924,044 observations deleted)
+(1,007,408 observations deleted)
+(note: file cluster_5_0_4.dta not found)
+file cluster_5_0_4.dta saved
+(note: file cluster_desc_5_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(924,044 observations deleted)
+(1,008,868 observations deleted)
+(note: file cluster_5_0_5.dta not found)
+file cluster_5_0_5.dta saved
+(note: file cluster_desc_5_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(1,014,798 observations deleted)
+(275,014 observations deleted)
+(629,030 observations deleted)
+(note: file cluster_5_1_1.dta not found)
+file cluster_5_1_1.dta saved
+(note: file cluster_desc_5_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(1,014,798 observations deleted)
+(921,898 observations deleted)
+(note: file cluster_5_1_2.dta not found)
+file cluster_5_1_2.dta saved
+(note: file cluster_desc_5_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(1,014,798 observations deleted)
+(903,999 observations deleted)
+(45 observations deleted)
+(note: file cluster_5_1_3.dta not found)
+file cluster_5_1_3.dta saved
+(note: file cluster_desc_5_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(1,014,798 observations deleted)
+(918,917 observations deleted)
+(note: file cluster_5_1_4.dta not found)
+file cluster_5_1_4.dta saved
+(note: file cluster_desc_5_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(15,339,550 observations deleted)
+(1,014,798 observations deleted)
+(919,143 observations deleted)
+(note: file cluster_5_1_5.dta not found)
+file cluster_5_1_5.dta saved
+(note: file cluster_desc_5_1_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(466,740 observations deleted)
+(237,234 observations deleted)
+(407,706 observations deleted)
+(note: file cluster_6_0_1.dta not found)
+file cluster_6_0_1.dta saved
+(note: file cluster_desc_6_0_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(466,740 observations deleted)
+(663,488 observations deleted)
+(note: file cluster_6_0_2.dta not found)
+file cluster_6_0_2.dta saved
+(note: file cluster_desc_6_0_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(466,740 observations deleted)
+(651,890 observations deleted)
+(note: file cluster_6_0_3.dta not found)
+file cluster_6_0_3.dta saved
+(note: file cluster_desc_6_0_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(466,740 observations deleted)
+(659,788 observations deleted)
+(note: file cluster_6_0_4.dta not found)
+file cluster_6_0_4.dta saved
+(note: file cluster_desc_6_0_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(466,740 observations deleted)
+(662,066 observations deleted)
+(note: file cluster_6_0_5.dta not found)
+file cluster_6_0_5.dta saved
+(note: file cluster_desc_6_0_5.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(664,940 observations deleted)
+(167,418 observations deleted)
+(279,322 observations deleted)
+(note: file cluster_6_1_1.dta not found)
+file cluster_6_1_1.dta saved
+(note: file cluster_desc_6_1_1.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(664,940 observations deleted)
+(465,692 observations deleted)
+(note: file cluster_6_1_2.dta not found)
+file cluster_6_1_2.dta saved
+(note: file cluster_desc_6_1_2.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(664,940 observations deleted)
+(455,394 observations deleted)
+(note: file cluster_6_1_3.dta not found)
+file cluster_6_1_3.dta saved
+(note: file cluster_desc_6_1_3.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(664,940 observations deleted)
+(462,586 observations deleted)
+(note: file cluster_6_1_4.dta not found)
+file cluster_6_1_4.dta saved
+(note: file cluster_desc_6_1_4.dta not found)
+(Analysis dataset for the poor outcomes in Covid project)
+(16,146,712 observations deleted)
+(664,940 observations deleted)
+(464,603 observations deleted)
+(note: file cluster_6_1_5.dta not found)
+file cluster_6_1_5.dta saved
+(note: file cluster_desc_6_1_5.dta not found)
+
+. 
+. * Combine clustering (in case useful for later)
+. forvalues i = 1 (1) 6 {
+  2.         forvalues j = 0 (1) 1 {
+  3.                 forvalues k = 1 (1) 5 {
+  4.                         if `i'==1 & `j'==0 & `k'==1 {
+  5.                                 use cluster_`i'_`j'_`k'.dta, clear
+  6.                         }
+  7.                         else {
+  8.                                 append using cluster_`i'_`j'_`k'.dta
+  9.                         }
+ 10.                         erase cluster_`i'_`j'_`k'.dta
+ 11.                 }
+ 12.         }
+ 13. }
+(Analysis dataset for the poor outcomes in Covid project)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+(label ethnicity already defined)
+(label agegroup already defined)
+
+. save "output/cluster.dta", replace
+file output/cluster.dta saved
+
+. 
+. 
+. * Combine descriptions
+. use cluster_desc_1_1_1, clear
+
+. 
+. * Combine descriptions of clusters
+. forvalues i = 1 (1) 6 {
+  2.         forvalues j = 0 (1) 1 {
+  3.                 forvalues k = 1 (1) 5 {
+  4.                         if `i'==1 & `j'==0 & `k'==1 {
+  5.                                 use cluster_desc_`i'_`j'_`k'.dta, clear
+  6.                         }
+  7.                         else {
+  8.                                 append using cluster_desc_`i'_`j'_`k'.dta
+  9.                         }
+ 10.                         erase cluster_desc_`i'_`j'_`k'.dta
+ 11.                 }
+ 12.         }
+ 13. }
+
+. reshape wide pc, i( agegroup ethnicity male var) j(group)
+(note: j = 1 2 3 4 5 6 7 8 9 10)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                    19800   ->    1980
+Number of variables                   6   ->      14
+j variable (10 values)            group   ->   (dropped)
+xij variables:
+                                     pc   ->   pc1 pc2 ... pc10
+-----------------------------------------------------------------------------
+
+. save "output/cluster_desc", replace
+(note: file output/cluster_desc.dta not found)
+file output/cluster_desc.dta saved
+
+. 
+. 
+. use "output/cluster_desc", clear
+
+. outsheet using "output/cluster_desc", replace
+
+. erase "output/cluster_desc.dta"
+
+. 
+. 
+. 
+.         
+. * Close the log file
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/Multimorbidity_cluster_analysis.log
+  log type:  text
+ closed on:   5 Jun 2020, 18:48:39
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

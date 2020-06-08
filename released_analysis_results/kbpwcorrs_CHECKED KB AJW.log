@@ -1,0 +1,846 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/kbpwcorrs.log
+  log type:  text
+ opened on:   6 Jun 2020, 18:22:25
+
+. 
+. use "cr_create_analysis_dataset.dta", clear
+(Analysis dataset for the poor outcomes in Covid project)
+
+. 
+. /*agegroup ethnicity male obese4cat smoke_nomiss imd htdiag_or_highbp   chronic_respiratory_disease asthmacat   chronic_cardiac_disease diabcat cancer_exhaem_cat cancer_haem_cat chronic_li
+> ver_disease stroke_dementia other_neuro reduced_kidney_function_cat organ_transplant spleen ra_sle_psoriasis other_immunosuppression */
+. 
+. gen age70plus = agegroup
+
+. recode age70plus 1/4=0 5/6=1
+(age70plus: 17278392 changes made)
+
+. 
+. gen nonwhite = ethnicity
+(4,560,113 missing values generated)
+
+. recode nonwhite 1=0 2/5=1
+(nonwhite: 12718279 changes made)
+
+. 
+. gen obese = obese4cat
+
+. recode obese4cat 1=0 2/4=1
+(obese4cat: 17278392 changes made)
+
+. 
+. gen currsmok = smoke_nomiss
+
+. recode currsmok 1/2=0 3=1
+(currsmok: 17278392 changes made)
+
+. 
+. gen deprived = imd
+
+. recode deprived 1/3=0 4/5=1
+(deprived: 17278392 changes made)
+
+. 
+. gen evercancer_exhaem = cancer_exhaem_cat
+
+. recode evercancer_exhaem 1=0 2/4=1
+(evercancer_exhaem: 17278392 changes made)
+
+. 
+. gen evercancer_haem = cancer_haem_cat
+
+. recode evercancer_haem 1=0 2/4=1
+(evercancer_haem: 17278392 changes made)
+
+. 
+. gen anyckd = reduced_kidney_function_cat
+
+. recode anyckd 1=0 2/3=1
+(anyckd: 17278392 changes made)
+
+
+
+. *Pairwise comorbidity prevalences 
+. cap postutil clear
+
+. postfile comorbn str30 var1 str30 var2 nboth using ./output/kbpwcorr_prevalences, replace
+
+. local var1num = 1
+
+. foreach var1 of varlist obese htdiag_or_highbp  chronic_respiratory_disease asthma      chronic_cardiac_disease diabetes evercancer_exhaem evercancer_haem chronic_liver_disease stroke_deme
+> ntia other_neuro anyckd organ_transplant spleen ra_sle_psoriasis other_immunosuppression {
+  2.         local var2num = 1
+  3.         foreach var2 of varlist obese htdiag_or_highbp  chronic_respiratory_disease asthma      chronic_cardiac_disease diabetes evercancer_exhaem evercancer_haem chronic_liver_disease 
+> stroke_dementia other_neuro anyckd organ_transplant spleen     ra_sle_psoriasis other_immunosuppression  {
+  4.         if `var2num'>`var1num' {
+  5.                 di "`var1' `var2'"
+  6.                 cou if `var1'==1 & `var2'==1    
+  7.                 post comorbn ("`var1'") ("`var2'") (r(N))
+  8.         }
+  9.         local var2num = `var2num' + 1
+ 10.         }
+ 11.         local var1num = `var1num' + 1
+ 12. }
+obese htdiag_or_highbp
+  3,932,161
+obese chronic_respiratory_disease
+  492,725
+obese asthma
+  1,983,528
+obese chronic_cardiac_disease
+  778,108
+obese diabetes
+  940,332
+obese evercancer_exhaem
+  635,389
+obese evercancer_haem
+  75,787
+obese chronic_liver_disease
+  68,749
+obese stroke_dementia
+  281,870
+obese other_neuro
+  129,637
+obese anyckd
+  754,103
+obese organ_transplant
+  14,859
+obese spleen
+  21,247
+obese ra_sle_psoriasis
+  624,744
+obese other_immunosuppression
+  213,359
+htdiag_or_highbp chronic_respiratory_disease
+  434,483
+htdiag_or_highbp asthma
+  910,244
+htdiag_or_highbp chronic_cardiac_disease
+  818,693
+htdiag_or_highbp diabetes
+  1,180,086
+htdiag_or_highbp evercancer_exhaem
+  522,063
+htdiag_or_highbp evercancer_haem
+  54,453
+htdiag_or_highbp chronic_liver_disease
+  55,062
+htdiag_or_highbp stroke_dementia
+  291,582
+htdiag_or_highbp other_neuro
+  83,036
+htdiag_or_highbp anyckd
+  840,718
+htdiag_or_highbp organ_transplant
+  15,515
+htdiag_or_highbp spleen
+  12,902
+htdiag_or_highbp ra_sle_psoriasis
+  404,156
+htdiag_or_highbp other_immunosuppression
+  49,813
+chronic_respiratory_disease asthma
+  203,558
+chronic_respiratory_disease chronic_cardiac_disease
+  178,176
+chronic_respiratory_disease diabetes
+  169,879
+chronic_respiratory_disease evercancer_exhaem
+  89,833
+chronic_respiratory_disease evercancer_haem
+  10,336
+chronic_respiratory_disease chronic_liver_disease
+  12,631
+chronic_respiratory_disease stroke_dementia
+  57,100
+chronic_respiratory_disease other_neuro
+  14,281
+chronic_respiratory_disease anyckd
+  137,583
+chronic_respiratory_disease organ_transplant
+  1,751
+chronic_respiratory_disease spleen
+  2,328
+chronic_respiratory_disease ra_sle_psoriasis
+  71,757
+chronic_respiratory_disease other_immunosuppression
+  5,894
+asthma chronic_cardiac_disease
+  186,120
+asthma diabetes
+  292,539
+asthma evercancer_exhaem
+  119,502
+asthma evercancer_haem
+  14,750
+asthma chronic_liver_disease
+  16,822
+asthma stroke_dementia
+  57,220
+asthma other_neuro
+  27,980
+asthma anyckd
+  146,884
+asthma organ_transplant
+  3,137
+asthma spleen
+  4,528
+asthma ra_sle_psoriasis
+  158,242
+asthma other_immunosuppression
+  54,284
+chronic_cardiac_disease diabetes
+  374,997
+chronic_cardiac_disease evercancer_exhaem
+  145,288
+chronic_cardiac_disease evercancer_haem
+  18,143
+chronic_cardiac_disease chronic_liver_disease
+  14,654
+chronic_cardiac_disease stroke_dementia
+  135,908
+chronic_cardiac_disease other_neuro
+  26,916
+chronic_cardiac_disease anyckd
+  328,445
+chronic_cardiac_disease organ_transplant
+  4,263
+chronic_cardiac_disease spleen
+  3,726
+chronic_cardiac_disease ra_sle_psoriasis
+  96,910
+chronic_cardiac_disease other_immunosuppression
+  7,010
+diabetes evercancer_exhaem
+  168,166
+diabetes evercancer_haem
+  18,675
+diabetes chronic_liver_disease
+  26,677
+diabetes stroke_dementia
+  115,978
+diabetes other_neuro
+  28,692
+diabetes anyckd
+  325,356
+diabetes organ_transplant
+  6,469
+diabetes spleen
+  5,324
+diabetes ra_sle_psoriasis
+  129,443
+diabetes other_immunosuppression
+  14,894
+evercancer_exhaem evercancer_haem
+  16,258
+evercancer_exhaem chronic_liver_disease
+  9,287
+evercancer_exhaem stroke_dementia
+  51,821
+evercancer_exhaem other_neuro
+  14,794
+evercancer_exhaem anyckd
+  173,194
+evercancer_exhaem organ_transplant
+  1,948
+evercancer_exhaem spleen
+  4,218
+evercancer_exhaem ra_sle_psoriasis
+  61,204
+evercancer_exhaem other_immunosuppression
+  6,843
+evercancer_haem chronic_liver_disease
+  1,221
+evercancer_haem stroke_dementia
+  5,428
+evercancer_haem other_neuro
+  1,611
+evercancer_haem anyckd
+  21,126
+evercancer_haem organ_transplant
+  487
+evercancer_haem spleen
+  2,039
+evercancer_haem ra_sle_psoriasis
+  7,536
+evercancer_haem other_immunosuppression
+  2,107
+chronic_liver_disease stroke_dementia
+  5,322
+chronic_liver_disease other_neuro
+  1,518
+chronic_liver_disease anyckd
+  11,504
+chronic_liver_disease organ_transplant
+  3,616
+chronic_liver_disease spleen
+  816
+chronic_liver_disease ra_sle_psoriasis
+  10,133
+chronic_liver_disease other_immunosuppression
+  3,199
+stroke_dementia other_neuro
+  25,862
+stroke_dementia anyckd
+  115,500
+stroke_dementia organ_transplant
+  1,107
+stroke_dementia spleen
+  1,562
+stroke_dementia ra_sle_psoriasis
+  31,713
+stroke_dementia other_immunosuppression
+  2,264
+other_neuro anyckd
+  20,298
+other_neuro organ_transplant
+  252
+other_neuro spleen
+  466
+other_neuro ra_sle_psoriasis
+  11,150
+other_neuro other_immunosuppression
+  1,735
+anyckd organ_transplant
+  11,515
+anyckd spleen
+  2,964
+anyckd ra_sle_psoriasis
+  84,566
+anyckd other_immunosuppression
+  5,261
+organ_transplant spleen
+  220
+organ_transplant ra_sle_psoriasis
+  1,388
+organ_transplant other_immunosuppression
+  667
+spleen ra_sle_psoriasis
+  1,936
+spleen other_immunosuppression
+  515
+ra_sle_psoriasis other_immunosuppression
+  15,138
+
+. postclose comorbn
+
+. *Pairwise correlations
+
+. pwcorr age70plus nonwhite male obese currsmok deprived htdiag_or_highbp chronic_respiratory_disease asthma      chronic_cardiac_disease diabetes evercancer_exhaem evercancer_haem chronic_l
+> iver_disease stroke_dementia other_neuro anyckd organ_transplant spleen ra_sle_psoriasis other_immunosuppression 
+
+             | age70p~s nonwhite     male    obese currsmok deprived htdiag~p
+-------------+---------------------------------------------------------------
+   age70plus |   1.0000 
+    nonwhite |  -0.1226   1.0000 
+        male |  -0.0433   0.0230   1.0000 
+       obese |   0.0055  -0.0466  -0.0847   1.0000 
+    currsmok |  -0.1238  -0.0430   0.0675  -0.0278   1.0000 
+    deprived |  -0.0792   0.1611   0.0128   0.0579   0.1420   1.0000 
+htdiag_or_~p |   0.3746  -0.0861   0.0275   0.1953  -0.0603  -0.0294   1.0000 
+chronic_re~e |   0.1953  -0.0571   0.0024   0.0374   0.0512   0.0322   0.1191 
+      asthma |  -0.0406  -0.0506  -0.0252   0.0701   0.0096   0.0056  -0.0105 
+chronic_ca~e |   0.2968  -0.0447   0.0566   0.0642  -0.0345  -0.0004   0.2032 
+    diabetes |   0.2089   0.0641   0.0243   0.1878  -0.0327   0.0335   0.2406 
+everca~xhaem |   0.2269  -0.0612  -0.0315   0.0150  -0.0451  -0.0387   0.1283 
+everca~_haem |   0.0616  -0.0152   0.0083   0.0022  -0.0141  -0.0110   0.0325 
+chronic_li~e |   0.0144   0.0006   0.0105   0.0160   0.0232   0.0146   0.0334 
+stroke_dem~a |   0.1974  -0.0312   0.0073   0.0159  -0.0170  -0.0008   0.1296 
+ other_neuro |   0.0546  -0.0197  -0.0045   0.0041  -0.0133  -0.0031   0.0303 
+      anyckd |   0.4154  -0.0525  -0.0326   0.0443  -0.0688  -0.0225   0.2354 
+organ_tran~t |  -0.0001   0.0041   0.0065   0.0018  -0.0062   0.0015   0.0310 
+      spleen |   0.0097   0.0019   0.0034   0.0012   0.0004   0.0005   0.0101 
+ra_sle_pso~s |   0.0532  -0.0411  -0.0266   0.0383   0.0113  -0.0053   0.0571 
+other_immu~n |  -0.0503   0.0166  -0.0738   0.0070   0.0066   0.0062  -0.0444 
+
+             | c~resp~e   asthma c~card~e diabetes ev~xhaem ev~_haem c~live~e
+-------------+---------------------------------------------------------------
+chronic_re~e |   1.0000 
+      asthma |   0.0734   1.0000 
+chronic_ca~e |   0.1523   0.0004   1.0000 
+    diabetes |   0.0977   0.0103   0.1994   1.0000 
+everca~xhaem |   0.0741  -0.0121   0.0929   0.0739   1.0000 
+everca~_haem |   0.0242  -0.0024   0.0346   0.0223   0.0398   1.0000 
+chronic_li~e |   0.0330   0.0019   0.0240   0.0426   0.0152   0.0065   1.0000 
+stroke_dem~a |   0.0812  -0.0051   0.1701   0.1005   0.0583   0.0163   0.0157 
+ other_neuro |   0.0217   0.0014   0.0359   0.0230   0.0171   0.0048   0.0041 
+      anyckd |   0.1126  -0.0167   0.2424   0.1733   0.1312   0.0467   0.0164 
+organ_tran~t |   0.0081  -0.0002   0.0197   0.0255   0.0075   0.0083   0.0785 
+      spleen |   0.0087   0.0004   0.0106   0.0123   0.0188   0.0357   0.0124 
+ra_sle_pso~s |   0.0479   0.0134   0.0394   0.0370   0.0214   0.0085   0.0175 
+other_immu~n |  -0.0127   0.0125  -0.0217  -0.0197  -0.0148   0.0030   0.0096 
+
+             | stroke~a other_~o   anyckd organ_~t   spleen ra_sle~s other_~n
+-------------+---------------------------------------------------------------
+stroke_dem~a |   1.0000 
+ other_neuro |   0.0868   1.0000 
+      anyckd |   0.1461   0.0231   1.0000 
+organ_tran~t |   0.0075   0.0009   0.0720   1.0000 
+      spleen |   0.0090   0.0028   0.0072   0.0080   1.0000 
+ra_sle_pso~s |   0.0211   0.0066   0.0319   0.0029   0.0034   1.0000 
+other_immu~n |  -0.0125  -0.0047  -0.0232   0.0046   0.0007   0.0020   1.0000 
+
+. 
+. matrix ALL = r(C)
+
+. svmat ALL, names(matcol)
+
+. 
+. pwcorr nonwhite male obese currsmok deprived htdiag_or_highbp   chronic_respiratory_disease asthma      chronic_cardiac_disease diabetes evercancer_exhaem evercancer_haem chronic_liver_dis
+> ease stroke_dementia other_neuro anyckd organ_transplant spleen ra_sle_psoriasis other_immunosuppression if age70plus==0
+
+             | nonwhite     male    obese currsmok deprived htdiag~p c~resp~e
+-------------+---------------------------------------------------------------
+    nonwhite |   1.0000 
+        male |   0.0224   1.0000 
+       obese |  -0.0516  -0.0945   1.0000 
+    currsmok |  -0.0623   0.0685  -0.0262   1.0000 
+    deprived |   0.1598   0.0130   0.0558   0.1399   1.0000 
+htdiag_or_~p |  -0.0546   0.0616   0.2266  -0.0138  -0.0057   1.0000 
+chronic_re~e |  -0.0415  -0.0023   0.0431   0.0749   0.0397   0.0780   1.0000 
+      asthma |  -0.0653  -0.0228   0.0722   0.0086  -0.0004   0.0025   0.0691 
+chronic_ca~e |  -0.0188   0.0561   0.0784   0.0057   0.0176   0.1306   0.1019 
+    diabetes |   0.0856   0.0239   0.2028  -0.0098   0.0451   0.2054   0.0738 
+everca~xhaem |  -0.0419  -0.0498   0.0240  -0.0215  -0.0241   0.0696   0.0416 
+everca~_haem |  -0.0095   0.0074   0.0062  -0.0067  -0.0061   0.0178   0.0179 
+chronic_li~e |   0.0020   0.0123   0.0162   0.0274   0.0168   0.0363   0.0385 
+stroke_dem~a |  -0.0140   0.0137   0.0313   0.0112   0.0120   0.0771   0.0537 
+ other_neuro |  -0.0171  -0.0099   0.0089  -0.0063   0.0012   0.0185   0.0191 
+      anyckd |  -0.0091  -0.0126   0.0570  -0.0195   0.0008   0.1096   0.0471 
+organ_tran~t |   0.0032   0.0063   0.0026  -0.0067   0.0014   0.0386   0.0124 
+      spleen |   0.0036   0.0035   0.0018   0.0021   0.0014   0.0089   0.0082 
+ra_sle_pso~s |  -0.0396  -0.0265   0.0431   0.0184  -0.0029   0.0480   0.0356 
+other_immu~n |   0.0103  -0.0857   0.0081   0.0004   0.0023  -0.0307  -0.0057 
+
+             |   asthma c~card~e diabetes ev~xhaem ev~_haem c~live~e stroke~a
+-------------+---------------------------------------------------------------
+      asthma |   1.0000 
+chronic_ca~e |   0.0076   1.0000 
+    diabetes |   0.0155   0.1548   1.0000 
+everca~xhaem |  -0.0050   0.0363   0.0405   1.0000 
+everca~_haem |   0.0004   0.0207   0.0154   0.0291   1.0000 
+chronic_li~e |   0.0019   0.0268   0.0443   0.0160   0.0069   1.0000 
+stroke_dem~a |   0.0027   0.1097   0.0711   0.0224   0.0085   0.0198   1.0000 
+ other_neuro |   0.0047   0.0216   0.0158   0.0086   0.0031   0.0046   0.0786 
+      anyckd |  -0.0011   0.0980   0.0963   0.0543   0.0263   0.0225   0.0526 
+organ_tran~t |  -0.0001   0.0291   0.0322   0.0107   0.0110   0.0822   0.0129 
+      spleen |   0.0004   0.0105   0.0112   0.0151   0.0329   0.0137   0.0099 
+ra_sle_pso~s |   0.0156   0.0279   0.0322   0.0154   0.0058   0.0171   0.0149 
+other_immu~n |   0.0111  -0.0116  -0.0126  -0.0060   0.0051   0.0106  -0.0049 
+
+             | other_~o   anyckd organ_~t   spleen ra_sle~s other_~n
+-------------+------------------------------------------------------
+ other_neuro |   1.0000 
+      anyckd |   0.0101   1.0000 
+organ_tran~t |   0.0018   0.1455   1.0000 
+      spleen |   0.0029   0.0080   0.0089   1.0000 
+ra_sle_pso~s |   0.0059   0.0189   0.0038   0.0030   1.0000 
+other_immu~n |  -0.0027  -0.0054   0.0041   0.0010   0.0045   1.0000 
+
+. 
+. matrix U70 = r(C)
+
+. svmat U70, names(matcol)
+
+. 
+. pwcorr nonwhite male obese currsmok deprived htdiag_or_highbp   chronic_respiratory_disease asthma      chronic_cardiac_disease diabetes evercancer_exhaem evercancer_haem chronic_liver_dis
+> ease stroke_dementia other_neuro anyckd organ_transplant spleen ra_sle_psoriasis other_immunosuppression if age70plus==1
+
+             | nonwhite     male    obese currsmok deprived htdiag~p c~resp~e
+-------------+---------------------------------------------------------------
+    nonwhite |   1.0000 
+        male |  -0.0019   1.0000 
+       obese |  -0.0103  -0.0359   1.0000 
+    currsmok |  -0.0206   0.0258  -0.0373   1.0000 
+    deprived |   0.1159  -0.0085   0.0722   0.0941   1.0000 
+htdiag_or_~p |   0.0271  -0.0184   0.1214  -0.0264   0.0295   1.0000 
+chronic_re~e |  -0.0292   0.0417   0.0329   0.1326   0.0816   0.0042   1.0000 
+      asthma |   0.0256  -0.0490   0.0608  -0.0274   0.0177   0.0180   0.1399 
+chronic_ca~e |   0.0184   0.1239   0.0574  -0.0062   0.0453   0.0768   0.0999 
+    diabetes |   0.1644   0.0661   0.1783   0.0023   0.0761   0.1224   0.0423 
+everca~xhaem |  -0.0352   0.0296  -0.0036  -0.0162  -0.0211   0.0143   0.0215 
+everca~_haem |  -0.0066   0.0210  -0.0079  -0.0093  -0.0075  -0.0048   0.0069 
+chronic_li~e |   0.0048   0.0068   0.0152   0.0169   0.0123   0.0080   0.0211 
+stroke_dem~a |   0.0029   0.0262  -0.0053   0.0058   0.0270   0.0587   0.0386 
+ other_neuro |  -0.0016   0.0189  -0.0105  -0.0102   0.0014  -0.0093   0.0018 
+      anyckd |   0.0077  -0.0284   0.0560  -0.0392   0.0323   0.1189   0.0299 
+organ_tran~t |   0.0130   0.0078  -0.0020  -0.0039   0.0018   0.0103   0.0014 
+      spleen |   0.0007   0.0052  -0.0012  -0.0003   0.0008   0.0004   0.0054 
+ra_sle_pso~s |  -0.0151  -0.0173   0.0201   0.0198   0.0060   0.0126   0.0465 
+other_immu~n |   0.0099   0.0084  -0.0008  -0.0000   0.0020  -0.0030   0.0084 
+
+             |   asthma c~card~e diabetes ev~xhaem ev~_haem c~live~e stroke~a
+-------------+---------------------------------------------------------------
+      asthma |   1.0000 
+chronic_ca~e |   0.0292   1.0000 
+    diabetes |   0.0334   0.1430   1.0000 
+everca~xhaem |   0.0007   0.0197   0.0129   1.0000 
+everca~_haem |  -0.0005   0.0139   0.0021   0.0240   1.0000 
+chronic_li~e |   0.0051   0.0136   0.0333   0.0075   0.0037   1.0000 
+stroke_dem~a |   0.0050   0.1267   0.0583   0.0087   0.0011   0.0077   1.0000 
+ other_neuro |   0.0010   0.0202   0.0054   0.0005  -0.0006   0.0006   0.0827 
+      anyckd |   0.0021   0.1630   0.1108   0.0361   0.0227   0.0033   0.0807 
+organ_tran~t |  -0.0006   0.0093   0.0114   0.0032   0.0040   0.0662   0.0024 
+      spleen |   0.0022   0.0052   0.0091   0.0218   0.0414   0.0084   0.0055 
+ra_sle_pso~s |   0.0166   0.0227   0.0147   0.0013   0.0047   0.0160   0.0079 
+other_immu~n |   0.0053   0.0054   0.0044   0.0050   0.0216   0.0154   0.0019 
+
+             | other_~o   anyckd organ_~t   spleen ra_sle~s other_~n
+-------------+------------------------------------------------------
+ other_neuro |   1.0000 
+      anyckd |  -0.0067   1.0000 
+organ_tran~t |  -0.0013   0.0310   1.0000 
+      spleen |   0.0009  -0.0001   0.0049   1.0000 
+ra_sle_pso~s |  -0.0008   0.0055  -0.0003   0.0025   1.0000 
+other_immu~n |   0.0008   0.0014   0.0144   0.0045   0.0104   1.0000 
+
+. 
+. matrix O70 = r(C)
+
+. svmat O70, names(matcol)
+
+. 
+. keep ALL* U70* O70*
+
+. drop if ALLage70plus>=.
+(17,278,371 observations deleted)
+
+. 
+. outsheet using ./output/kbpwcorr.csv, c replace
+(note: file ./output/kbpwcorr.csv not found)
+
+.**Graph results
+
+. for var ALL*: replace X = . if X==1
+
+->  replace ALLage70plus = . if ALLage70plus==1
+(1 real change made, 1 to missing)
+
+->  replace ALLnonwhite = . if ALLnonwhite==1
+(1 real change made, 1 to missing)
+
+->  replace ALLmale = . if ALLmale==1
+(1 real change made, 1 to missing)
+
+->  replace ALLobese = . if ALLobese==1
+(1 real change made, 1 to missing)
+
+->  replace ALLcurrsmok = . if ALLcurrsmok==1
+(1 real change made, 1 to missing)
+
+->  replace ALLdeprived = . if ALLdeprived==1
+(1 real change made, 1 to missing)
+
+->  replace ALLhtdiag_or_highbp = . if ALLhtdiag_or_highbp==1
+(1 real change made, 1 to missing)
+
+->  replace ALLchronic_respiratory_disease = . if ALLchronic_respiratory_disease==1
+(1 real change made, 1 to missing)
+
+->  replace ALLasthma = . if ALLasthma==1
+(1 real change made, 1 to missing)
+
+->  replace ALLchronic_cardiac_disease = . if ALLchronic_cardiac_disease==1
+(1 real change made, 1 to missing)
+
+->  replace ALLdiabetes = . if ALLdiabetes==1
+(1 real change made, 1 to missing)
+
+->  replace ALLevercancer_exhaem = . if ALLevercancer_exhaem==1
+(1 real change made, 1 to missing)
+
+->  replace ALLevercancer_haem = . if ALLevercancer_haem==1
+(1 real change made, 1 to missing)
+
+->  replace ALLchronic_liver_disease = . if ALLchronic_liver_disease==1
+(1 real change made, 1 to missing)
+
+->  replace ALLstroke_dementia = . if ALLstroke_dementia==1
+(1 real change made, 1 to missing)
+
+->  replace ALLother_neuro = . if ALLother_neuro==1
+(1 real change made, 1 to missing)
+
+->  replace ALLanyckd = . if ALLanyckd==1
+(1 real change made, 1 to missing)
+
+->  replace ALLorgan_transplant = . if ALLorgan_transplant==1
+(1 real change made, 1 to missing)
+
+->  replace ALLspleen = . if ALLspleen==1
+(1 real change made, 1 to missing)
+
+->  replace ALLra_sle_psoriasis = . if ALLra_sle_psoriasis==1
+(1 real change made, 1 to missing)
+
+->  replace ALLother_immunosuppression = . if ALLother_immunosuppression==1
+(1 real change made, 1 to missing)
+
+
+. gen x=0
+. gen y=0
+
+
+. count
+  21
+
+. local nobs = r(N)
+
+. forvalues i = 1/`nobs'{
+  2.         graph twoway scatter y x  if _n==`i', m(i) mlab(varname) mlabpos(0) mlabsize(vhuge) xtitle("") ytitle("
+> ") xlab(none) ylab(none) name(heading`i', replace)
+  3.         local j = 1
+  4.         foreach var of varlist ALLage70plus-ALLother_immunosuppression{
+  5.                 graph bar (mean) `var' if _n==`i', yscale(r(-1 1)) ylab(-1 0 1) yline(0, lp(dash)) name(row`i'c
+> ol`j', replace) ytitle("")
+  6.         local j = `j'+ 1                
+  7.         }
+  8.         }
+
+
+. *Blank
+. graph twoway scatter y x  if _n==1, m(i) xtitle("") ytitle("") xlab(none) ylab(none) name(blank, replace)
+
+. *Combine
+
+. local combine "blank "
+
+. forvalues i = 1/`nobs'{
+  2.         local combine "`combine' heading`i'"
+  3. }
+
+. forvalues row=1/`nobs'{
+  2.         local combine "`combine' heading`row'"
+  3.         forvalues col=1/`nobs'{
+  4.                 if `col'>=`row' local combine "`combine' blank"
+  5.                 else local combine "`combine' row`row'col`col'"
+  6.         }
+  7. }
+
+. local ncols = `nobs'+1  
+
+. graph combine `combine', cols(`ncols')
+. 
+. **Display highest correlations
+. *Replace duplicates with missing (reversed pairs)
+. local i=1
+
+. foreach var of varlist ALLage70plus-ALLother_immunosuppression{
+  2.         replace `var'=. if _n<=`i'
+  3.         local i=`i'+1
+  4. }
+(1 real change made, 1 to missing)
+(2 real changes made, 2 to missing)
+(3 real changes made, 3 to missing)
+(4 real changes made, 4 to missing)
+(5 real changes made, 5 to missing)
+(6 real changes made, 6 to missing)
+(7 real changes made, 7 to missing)
+(8 real changes made, 8 to missing)
+(9 real changes made, 9 to missing)
+(10 real changes made, 10 to missing)
+(11 real changes made, 11 to missing)
+(12 real changes made, 12 to missing)
+(13 real changes made, 13 to missing)
+(14 real changes made, 14 to missing)
+(15 real changes made, 15 to missing)
+(16 real changes made, 16 to missing)
+(17 real changes made, 17 to missing)
+(18 real changes made, 18 to missing)
+(19 real changes made, 19 to missing)
+(20 real changes made, 20 to missing)
+(21 real changes made, 21 to missing)
+
+. foreach stem of any O70 U70{
+  2. local i=1
+  3. foreach var of varlist `stem'nonwhite-`stem'other_immunosuppression{
+  4.         replace `var'=. if _n<=`i'
+  5.         local i=`i'+1
+  6. }
+  7. }
+(1 real change made, 1 to missing)
+(2 real changes made, 2 to missing)
+(3 real changes made, 3 to missing)
+(4 real changes made, 4 to missing)
+(5 real changes made, 5 to missing)
+(6 real changes made, 6 to missing)
+(7 real changes made, 7 to missing)
+(8 real changes made, 8 to missing)
+(9 real changes made, 9 to missing)
+(10 real changes made, 10 to missing)
+(11 real changes made, 11 to missing)
+(12 real changes made, 12 to missing)
+(13 real changes made, 13 to missing)
+(14 real changes made, 14 to missing)
+(15 real changes made, 15 to missing)
+(16 real changes made, 16 to missing)
+(17 real changes made, 17 to missing)
+(18 real changes made, 18 to missing)
+(19 real changes made, 19 to missing)
+(20 real changes made, 20 to missing)
+(1 real change made, 1 to missing)
+(2 real changes made, 2 to missing)
+(3 real changes made, 3 to missing)
+(4 real changes made, 4 to missing)
+(5 real changes made, 5 to missing)
+(6 real changes made, 6 to missing)
+(7 real changes made, 7 to missing)
+(8 real changes made, 8 to missing)
+(9 real changes made, 9 to missing)
+(10 real changes made, 10 to missing)
+(11 real changes made, 11 to missing)
+(12 real changes made, 12 to missing)
+(13 real changes made, 13 to missing)
+(14 real changes made, 14 to missing)
+(15 real changes made, 15 to missing)
+(16 real changes made, 16 to missing)
+(17 real changes made, 17 to missing)
+(18 real changes made, 18 to missing)
+(19 real changes made, 19 to missing)
+(20 real changes made, 20 to missing)
+
+. *Reshape to help rank
+. reshape long ALL U70 O70, i(varname) j(var2) string
+(note: j = age70plus anyckd asthma chronic_cardiac_disease chronic_liver_disease chronic_respiratory_disease currsmok deprived diabetes evercancer_exhaem evercancer_haem htdiag_or_highbp mal
+> e nonwhite obese organ_transplant other_immunosuppression other_neuro ra_sle_psoriasis spleen stroke_dementia)
+(note: U70age70plus not found)
+(note: O70age70plus not found)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                       21   ->     441
+Number of variables                  62   ->       5
+j variable (21 values)                    ->   var2
+xij variables:
+ALLage70plus ALLanyckd ... ALLstroke_dementia->ALL
+U70age70plus U70anyckd ... U70stroke_dementia->U70
+O70age70plus O70anyckd ... O70stroke_dementia->O70
+-----------------------------------------------------------------------------
+
+. drop if ALL==. & U70==. & O70==.
+(212 observations deleted)
+
+. *Ranking comorbidities not demographics
+. gen comorb = !(varname=="age70plus"|varname=="male"|varname=="currsmok"|varname=="deprived"|varname=="nonwhite"|var2=="age70plus"|var2=="male"|var2=="currsmok"|var2=="deprived"|var2=="nonw
+> hite")
+
+. gsort -comorb -ALL 
+
+. *Display
+. noi di _n "Biggest correlations between comorbidities" _n "********************"_n
+
+Biggest correlations between comorbidities
+********************
+
+
+. l varname var2 ALL in 1/20
+
+     +--------------------------------------------------------------------------------+
+     |                        var1                          var2     nboth        pct |
+     |--------------------------------------------------------------------------------|
+  1. |                       obese              htdiag_or_highbp   3932161   22.75768 |
+  2. |                       obese                        asthma   1983528   11.47982 |
+  3. |            htdiag_or_highbp                      diabetes   1180086   6.829837 |
+  4. |                       obese                      diabetes    940332   5.442243 |
+  5. |            htdiag_or_highbp                        asthma    910244   5.268106 |
+     |--------------------------------------------------------------------------------|
+  6. |            htdiag_or_highbp                        anyckd    840718   4.865719 |
+  7. |            htdiag_or_highbp       chronic_cardiac_disease    818693   4.738248 |
+  8. |                       obese       chronic_cardiac_disease    778108   4.503359 |
+  9. |                       obese                        anyckd    754103   4.364428 |
+ 10. |                       obese             evercancer_exhaem    635389   3.677362 |
+     |--------------------------------------------------------------------------------|
+ 11. |                       obese              ra_sle_psoriasis    624744   3.615753 |
+ 12. |            htdiag_or_highbp             evercancer_exhaem    522063   3.021479 |
+ 13. |                       obese   chronic_respiratory_disease    492725   2.851683 |
+ 14. |            htdiag_or_highbp   chronic_respiratory_disease    434483   2.514603 |
+ 15. |            htdiag_or_highbp              ra_sle_psoriasis    404156   2.339083 |
+     |--------------------------------------------------------------------------------|
+ 16. |     chronic_cardiac_disease                      diabetes    374997   2.170323 |
+ 17. |     chronic_cardiac_disease                        anyckd    328445     1.9009 |
+ 18. |                    diabetes                        anyckd    325356   1.883022 |
+ 19. |                      asthma                      diabetes    292539   1.693092 |
+ 20. |            htdiag_or_highbp               stroke_dementia    291582   1.687553 |
+     |--------------------------------------------------------------------------------|
+ 21. |                       obese               stroke_dementia    281870   1.631344 |
+ 22. |                       obese       other_immunosuppression    213359   1.234831 |
+ 23. | chronic_respiratory_disease                        asthma    203558   1.178107 |
+ 24. |                      asthma       chronic_cardiac_disease    186120   1.077184 |
+ 25. | chronic_respiratory_disease       chronic_cardiac_disease    178176   1.031207 |
+     |--------------------------------------------------------------------------------|
+ 26. |           evercancer_exhaem                        anyckd    173194   1.002373 |
+ 27. | chronic_respiratory_disease                      diabetes    169879   .9831876 |
+ 28. |                    diabetes             evercancer_exhaem    168166   .9732735 |
+ 29. |                      asthma              ra_sle_psoriasis    158242   .9158375 |
+ 30. |                      asthma                        anyckd    146884   .8501022 |
+     +--------------------------------------------------------------------------------+
+
+
+. 
+
+*Display prevalence ranking
+
+. use ./output/kbpwcorr_prevalences, clear
+
+. gsort -nboth
+
+. *gen pct = 100*nboth/`overalln'
+. gen pct = 100*nboth/172728392
+
+. noi di _n "Most prevalent 2-way multimorbidities" _n "********************"_n
+
+Most prevalent 2-way multimorbidities
+********************
+
+
+. l in 1/30 
+
+     +--------------------------------------------------------------------------------+
+     |                        var1                          var2     nboth        pct |
+     |--------------------------------------------------------------------------------|
+  1. |                       obese              htdiag_or_highbp   3932161     2.2765 |
+  2. |                       obese                        asthma   1983528   1.148351 |
+  3. |            htdiag_or_highbp                      diabetes   1180086   .6832033 |
+  4. |                       obese                      diabetes    940332   .5443992 |
+  5. |            htdiag_or_highbp                        asthma    910244     .52698 |
+     |--------------------------------------------------------------------------------|
+  6. |            htdiag_or_highbp                        anyckd    840718   .4867283 |
+  7. |            htdiag_or_highbp       chronic_cardiac_disease    818693   .4739771 |
+  8. |                       obese       chronic_cardiac_disease    778108   .4504807 |
+  9. |                       obese                        anyckd    754103   .4365831 |
+ 10. |                       obese             evercancer_exhaem    635389   .3678544 |
+     |--------------------------------------------------------------------------------|
+ 11. |                       obese              ra_sle_psoriasis    624744   .3616916 |
+ 12. |            htdiag_or_highbp             evercancer_exhaem    522063   .3022451 |
+ 13. |                       obese   chronic_respiratory_disease    492725     .28526 |
+ 14. |            htdiag_or_highbp   chronic_respiratory_disease    434483   .2515412 |
+ 15. |            htdiag_or_highbp              ra_sle_psoriasis    404156   .2339835 |
+     |--------------------------------------------------------------------------------|
+ 16. |     chronic_cardiac_disease                      diabetes    374997   .2171021 |
+ 17. |     chronic_cardiac_disease                        anyckd    328445   .1901511 |
+ 18. |                    diabetes                        anyckd    325356   .1883628 |
+ 19. |                      asthma                      diabetes    292539   .1693636 |
+ 20. |            htdiag_or_highbp               stroke_dementia    291582   .1688095 |
+     |--------------------------------------------------------------------------------|
+ 21. |                       obese               stroke_dementia    281870   .1631868 |
+ 22. |                       obese       other_immunosuppression    213359   .1235228 |
+ 23. | chronic_respiratory_disease                        asthma    203558   .1178486 |
+ 24. |                      asthma       chronic_cardiac_disease    186120    .107753 |
+ 25. | chronic_respiratory_disease       chronic_cardiac_disease    178176   .1031539 |
+     |--------------------------------------------------------------------------------|
+ 26. |           evercancer_exhaem                        anyckd    173194   .1002696 |
+ 27. | chronic_respiratory_disease                      diabetes    169879   .0983504 |
+ 28. |                    diabetes             evercancer_exhaem    168166   .0973586 |
+ 29. |                      asthma              ra_sle_psoriasis    158242   .0916132 |
+ 30. |                      asthma                        anyckd    146884   .0850376 |
+     +--------------------------------------------------------------------------------+
+
+
+. log close
+      name:  <unnamed>
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/kbpwcorrs.log
+  log type:  text
+ closed on:   6 Jun 2020, 18:37:41
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

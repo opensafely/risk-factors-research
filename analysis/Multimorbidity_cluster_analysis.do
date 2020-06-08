@@ -99,7 +99,7 @@ forvalues i = 1 (1) 6 {
 			postfile `temp' agegroup male ethnicity group str30(var) pc ///
 				using cluster_desc_`i'_`j'_`k', replace
 
-				forvalues l = 1 (1) 5 {
+				forvalues l = 1 (1) 10 {
 					* Size of group 
 					qui count
 					local N=r(N)
