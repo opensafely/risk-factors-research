@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="Figure A1.svg"
+   id="svg1161"
+   viewBox="0 0 3885.1055 2793.3428"
+   height="3.8796427in"
+   width="5.3959799in"
+   version="1.1">
+  <metadata
+     id="metadata1167">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs1165" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg1161"
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="-8"
+     inkscape:cy="188.15198"
+     inkscape:cx="257.87806"
+     inkscape:zoom="1.6742424"
+     fit-margin-left="0.1"
+     fit-margin-bottom="0.1"
+     fit-margin-right="0.1"
+     fit-margin-top="0.1"
+     showgrid="false"
+     id="namedview1163"
+     inkscape:window-height="1723"
+     inkscape:window-width="1598"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <desc
+     id="desc1001">Stata Graph - Graph</desc>
+  <rect
+     id="rect1009"
+     style="fill:#ffffff"
+     height="2388.3301"
+     width="3468.22"
+     y="72"
+     x="344.88547" />
+  <rect
+     id="rect1011"
+     style="fill:none;stroke:#ffffff;stroke-width:5.76"
+     height="2382.5701"
+     width="3462.46"
+     y="74.880005"
+     x="347.76547" />
+  <line
+     id="line1013"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="2337.8098"
+     x2="3813.1055"
+     y1="2337.8098"
+     x1="344.88547" />
+  <line
+     id="line1015"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="1822.6199"
+     x2="3813.1055"
+     y1="1822.6199"
+     x1="344.88547" />
+  <line
+     id="line1017"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="1307.4299"
+     x2="3813.1055"
+     y1="1307.4299"
+     x1="344.88547" />
+  <line
+     id="line1019"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="792.25"
+     x2="3813.1055"
+     y1="792.25"
+     x1="344.88547" />
+  <line
+     id="line1021"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="277.05994"
+     x2="3813.1055"
+     y1="277.05994"
+     x1="344.88547" />
+  <line
+     id="line1023"
+     style="stroke:#eaf2f3;stroke-width:8.64"
+     y2="637.17993"
+     x2="3813.1055"
+     y1="637.17993"
+     x1="344.88547" />
+  <path
+     id="path1107"
+     style="fill:none;stroke:#1a476f;stroke-width:8.64"
+     stroke-linejoin="round"
+     d="m 408.12549,2397.0899 38.48,-35.77 38.37,-35.64 38.36,-35.64 38.49,-35.64 38.36,-35.64 38.49,-35.52 38.36,-35.52 38.36,-35.14 38.49,-35.03 38.36,-34.77 38.36,-34.4 38.49,-34.16 38.36,-33.66 38.49,-33.29 38.36,-32.67 38.36001,-32.3 38.49,-31.68 38.36,-31.06 38.36,-30.32 38.49,-29.71 38.36,-28.95 38.49,-28.22 38.36,-27.35 38.36,-26.48 38.49,-25.87 38.36,-25.24 38.36,-24.51 38.49,-24 38.36,-23.64 38.49,-23.14 38.36,-22.65 38.36,-22.52 38.49,-22.16 38.36,-22.02 38.37,-21.78 38.48,-21.79 38.36,-21.78 38.49,-21.78 38.36,-21.78 38.36,-22.03 38.49,-22.15 38.36,-22.4 38.37,-22.4 38.48,-22.52 38.36,-22.65 38.49,-22.89 38.36,-22.9 38.37,-23.01 38.48,-23.02 38.36,-23.27 38.37,-23.26 38.48,-23.39 38.37,-23.39 38.48,-23.52 38.36,-23.63 38.37,-23.52 38.48,-23.76 38.37,-23.63 38.36,-23.76 38.49,-23.76 38.36,-23.89 38.48,-23.76 38.37,-23.88 38.36,-23.77 38.49,-23.88 38.36,-23.88 38.36,-23.76 38.49,-23.89 38.36,-23.88 38.49,-23.76 38.36,-23.89 38.36,-23.76 38.49,-23.88 38.36,-23.89 38.36,-23.76 38.49,-23.88 38.36,-23.89 38.49,-23.76 38.36,-23.88 38.36,-23.89 38.49,-23.76 38.36,-23.88 38.36,-23.76 38.49,-23.89 38.36,-23.88 38.49,-23.76 38.36,-23.89" />
+  <line
+     id="line1109"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="72"
+     x2="344.88547"
+     y1="2460.3298"
+     x1="344.88547" />
+  <line
+     id="line1111"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2337.8098"
+     x2="304.91547"
+     y1="2337.8098"
+     x1="344.88547" />
+  <text
+     id="text1113"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.8054"
+     x="-2337.8101">.01</text>
+  <line
+     id="line1115"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="1822.6199"
+     x2="304.91547"
+     y1="1822.6199"
+     x1="344.88547" />
+  <text
+     id="text1117"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.80547"
+     x="-1822.6199">.1</text>
+  <line
+     id="line1119"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="1307.4299"
+     x2="304.91547"
+     y1="1307.4299"
+     x1="344.88547" />
+  <text
+     id="text1121"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.80553"
+     x="-1307.4299">1</text>
+  <line
+     id="line1123"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="792.25"
+     x2="304.91547"
+     y1="792.25"
+     x1="344.88547" />
+  <text
+     id="text1125"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.80547"
+     x="-792.25">10</text>
+  <line
+     id="line1127"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="277.05994"
+     x2="304.91547"
+     y1="277.05994"
+     x1="344.88547" />
+  <text
+     id="text1129"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.8055"
+     x="-277.05994">100</text>
+  <line
+     id="line1131"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="637.17993"
+     x2="304.91547"
+     y1="637.17993"
+     x1="344.88547" />
+  <text
+     id="text1133"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="254.80547"
+     x="-637.17993">20</text>
+  <text
+     id="text1135"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="144.79546"
+     x="-1266.0999">Hazard ratio compared to age 55 years (log scale)</text>
+  <line
+     id="line1137"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2460.3298"
+     x2="3813.1055"
+     y1="2460.3298"
+     x1="344.88547" />
+  <line
+     id="line1139"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2500.2998"
+     x2="485.09549"
+     y1="2460.3298"
+     x1="485.09549" />
+  <text
+     id="text1141"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2590.2798"
+     x="485.09549">20</text>
+  <line
+     id="line1143"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2500.2998"
+     x2="1253.2155"
+     y1="2460.3298"
+     x1="1253.2155" />
+  <text
+     id="text1145"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2590.2798"
+     x="1253.2155">40</text>
+  <line
+     id="line1147"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2500.2998"
+     x2="2021.4556"
+     y1="2460.3298"
+     x1="2021.4556" />
+  <text
+     id="text1149"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2590.2798"
+     x="2021.4556">60</text>
+  <line
+     id="line1151"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2500.2998"
+     x2="2789.5654"
+     y1="2460.3298"
+     x1="2789.5654" />
+  <text
+     id="text1153"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2590.2798"
+     x="2789.5654">80</text>
+  <line
+     id="line1155"
+     style="stroke:#000000;stroke-width:5.76"
+     y2="2500.2998"
+     x2="3557.8054"
+     y1="2460.3298"
+     x1="3557.8054" />
+  <text
+     id="text1157"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2590.2798"
+     x="3557.8054">100</text>
+  <text
+     id="text1159"
+     text-anchor="middle"
+     style="font-size:99.99px;font-family:Helvetica;fill:#000000"
+     y="2700.2998"
+     x="2078.9954">Age in years</text>
+</svg>
