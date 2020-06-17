@@ -59,12 +59,12 @@ sts graph if male==0, title("Female") 				///
 	label(3 "50-<60") label(4 "60-<70")				///
 	label(5 "70-<80") label(6 "80+")				///
 	col(3) colfirst size(small))	noorigin		///
-	plot1opts(lcolor(red)) 							///
-	plot2opts(lcolor(blue)) 						///
-	plot3opts(lcolor(orange) lpattern(dash)) 		///
-	plot4opts(lcolor(green)  lpattern(dash)) 		///
-	plot5opts(lcolor(pink)   lpattern(dash_dot)) 	///
-	plot6opts(lcolor(sienna) lpattern(dash_dot))  	///
+	plot1opts(lcolor(gs11) lpattern(dot))			///
+	plot2opts(lcolor(gs11) 	lpattern(shortdash))	///
+	plot3opts(lcolor(gs9) lpattern(shortdash_dot)) 	///
+	plot4opts(lcolor(gs6)  lpattern(longdash)) 		///
+	plot5opts(lcolor(gs3)   lpattern(longdash_dot)) ///
+	plot6opts(lcolor(gs0) lpattern(solid))  		///
 	saving(female, replace)
 * KM plot for males by age		
 sts graph if male==1, title("Male") 				///
@@ -81,12 +81,12 @@ failure by(agegroup) 								///
 	label(3 "50-<60") label(4 "60-<70")				///
 	label(5 "70-<80") label(6 "80+")				///
 	col(3) colfirst size(small))	noorigin		///
-	plot1opts(lcolor(red)) 							///
-	plot2opts(lcolor(blue)) 						///
-	plot3opts(lcolor(orange) lpattern(dash)) 		///
-	plot4opts(lcolor(green)  lpattern(dash)) 		///
-	plot5opts(lcolor(pink)   lpattern(dash_dot)) 	///
-	plot6opts(lcolor(sienna) lpattern(dash_dot))  	///
+	plot1opts(lcolor(gs11) lpattern(dot))			///
+	plot2opts(lcolor(gs11) 	lpattern(shortdash))	///
+	plot3opts(lcolor(gs9) lpattern(shortdash_dot)) 	///
+	plot4opts(lcolor(gs6)  lpattern(longdash)) 		///
+	plot5opts(lcolor(gs3)   lpattern(longdash_dot)) ///
+	plot6opts(lcolor(gs0) lpattern(solid))  		///
 	saving(male, replace)	
 * KM plot for males and females 
 grc1leg female.gph male.gph, 						///
