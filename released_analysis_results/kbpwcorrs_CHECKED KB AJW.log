@@ -737,6 +737,55 @@ Biggest correlations between comorbidities
 
 . l varname var2 ALL in 1/20
 
+.     
+     +----------------------------------------------------------------------+
+     |                     varname                          var2        ALL |
+     |----------------------------------------------------------------------|
+  1. |                      anyckd       chronic_cardiac_disease   .2424178 |
+  2. |                    diabetes              htdiag_or_highbp   .2406477 |
+  3. |                      anyckd              htdiag_or_highbp   .2353909 |
+  4. |     chronic_cardiac_disease              htdiag_or_highbp   .2031979 |
+  5. |                    diabetes       chronic_cardiac_disease   .1994493 |
+     |----------------------------------------------------------------------|
+  6. |            htdiag_or_highbp                         obese   .1952958 |
+  7. |                    diabetes                         obese   .1878389 |
+  8. |                      anyckd                      diabetes   .1732554 |
+  9. |             stroke_dementia       chronic_cardiac_disease   .1700724 |
+ 10. |     chronic_cardiac_disease   chronic_respiratory_disease   .1523466 |
+     |----------------------------------------------------------------------|
+ 11. |                      anyckd               stroke_dementia   .1461301 |
+ 12. |                      anyckd             evercancer_exhaem    .131197 |
+ 13. |             stroke_dementia              htdiag_or_highbp   .1295568 |
+ 14. |           evercancer_exhaem              htdiag_or_highbp   .1282649 |
+ 15. | chronic_respiratory_disease              htdiag_or_highbp   .1190816 |
+     |----------------------------------------------------------------------|
+ 16. |                      anyckd   chronic_respiratory_disease   .1126459 |
+ 17. |             stroke_dementia                      diabetes   .1004928 |
+ 18. |                    diabetes   chronic_respiratory_disease   .0976902 |
+ 19. |           evercancer_exhaem       chronic_cardiac_disease   .0928664 |
+ 20. |                 other_neuro               stroke_dementia   .0867948 |
+     +----------------------------------------------------------------------+
+
+
+
+*Display prevalence ranking
+
+. use ./output/kbpwcorr_prevalences, clear
+
+. gsort -nboth
+
+. *gen pct = 100*nboth/`overalln'
+. gen pct = 100*nboth/172728392
+
+. noi di _n "Most prevalent 2-way multimorbidities" _n "********************"_n
+
+Most prevalent 2-way multimorbidities
+********************
+
+
+. l in 1/30 
+
+   
      +--------------------------------------------------------------------------------+
      |                        var1                          var2     nboth        pct |
      |--------------------------------------------------------------------------------|
@@ -777,65 +826,7 @@ Biggest correlations between comorbidities
  30. |                      asthma                        anyckd    146884   .8501022 |
      +--------------------------------------------------------------------------------+
 
-
-. 
-
-*Display prevalence ranking
-
-. use ./output/kbpwcorr_prevalences, clear
-
-. gsort -nboth
-
-. *gen pct = 100*nboth/`overalln'
-. gen pct = 100*nboth/172728392
-
-. noi di _n "Most prevalent 2-way multimorbidities" _n "********************"_n
-
-Most prevalent 2-way multimorbidities
-********************
-
-
-. l in 1/30 
-
-     +--------------------------------------------------------------------------------+
-     |                        var1                          var2     nboth        pct |
-     |--------------------------------------------------------------------------------|
-  1. |                       obese              htdiag_or_highbp   3932161     2.2765 |
-  2. |                       obese                        asthma   1983528   1.148351 |
-  3. |            htdiag_or_highbp                      diabetes   1180086   .6832033 |
-  4. |                       obese                      diabetes    940332   .5443992 |
-  5. |            htdiag_or_highbp                        asthma    910244     .52698 |
-     |--------------------------------------------------------------------------------|
-  6. |            htdiag_or_highbp                        anyckd    840718   .4867283 |
-  7. |            htdiag_or_highbp       chronic_cardiac_disease    818693   .4739771 |
-  8. |                       obese       chronic_cardiac_disease    778108   .4504807 |
-  9. |                       obese                        anyckd    754103   .4365831 |
- 10. |                       obese             evercancer_exhaem    635389   .3678544 |
-     |--------------------------------------------------------------------------------|
- 11. |                       obese              ra_sle_psoriasis    624744   .3616916 |
- 12. |            htdiag_or_highbp             evercancer_exhaem    522063   .3022451 |
- 13. |                       obese   chronic_respiratory_disease    492725     .28526 |
- 14. |            htdiag_or_highbp   chronic_respiratory_disease    434483   .2515412 |
- 15. |            htdiag_or_highbp              ra_sle_psoriasis    404156   .2339835 |
-     |--------------------------------------------------------------------------------|
- 16. |     chronic_cardiac_disease                      diabetes    374997   .2171021 |
- 17. |     chronic_cardiac_disease                        anyckd    328445   .1901511 |
- 18. |                    diabetes                        anyckd    325356   .1883628 |
- 19. |                      asthma                      diabetes    292539   .1693636 |
- 20. |            htdiag_or_highbp               stroke_dementia    291582   .1688095 |
-     |--------------------------------------------------------------------------------|
- 21. |                       obese               stroke_dementia    281870   .1631868 |
- 22. |                       obese       other_immunosuppression    213359   .1235228 |
- 23. | chronic_respiratory_disease                        asthma    203558   .1178486 |
- 24. |                      asthma       chronic_cardiac_disease    186120    .107753 |
- 25. | chronic_respiratory_disease       chronic_cardiac_disease    178176   .1031539 |
-     |--------------------------------------------------------------------------------|
- 26. |           evercancer_exhaem                        anyckd    173194   .1002696 |
- 27. | chronic_respiratory_disease                      diabetes    169879   .0983504 |
- 28. |                    diabetes             evercancer_exhaem    168166   .0973586 |
- 29. |                      asthma              ra_sle_psoriasis    158242   .0916132 |
- 30. |                      asthma                        anyckd    146884   .0850376 |
-     +--------------------------------------------------------------------------------+
+---------------------------------------------------------+
 
 
 . log close
