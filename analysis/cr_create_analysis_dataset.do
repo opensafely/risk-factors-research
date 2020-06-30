@@ -470,9 +470,9 @@ gen temp2  = inrange(temporary_immunodeficiency_date, d(1/2/2019), d(1/2/2020))
 gen temp3  = inrange(aplastic_anaemia_date, d(1/2/2019), d(1/2/2020))
 
 egen other_immunosuppression = rowmax(temp1 temp2 temp3)
+egen other_imm_except_hiv = rowmax(permanent_immunodeficiency temp2 temp3)
 drop temp1 temp2 temp3
 order other_immunosuppression, after(temporary_immunodeficiency)
-
 
 
 
@@ -782,7 +782,7 @@ keep patient_id imd stp region enter_date  									///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
 	reduced_kidney_function_cat stroke dementia stroke_dementia 			///
 	other_neuro other_immunosuppression   									///
-	creatinine egfr egfr_cat ckd dialysis
+	creatinine egfr egfr_cat ckd dialysis hiv other_imm_except_hiv
 
 
 

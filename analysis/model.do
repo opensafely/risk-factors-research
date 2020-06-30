@@ -12,7 +12,9 @@ cd  `c(pwd)'/analysis
 **********************************************
 do "cr_create_analysis_dataset.do"
 
+do "an_hiv" onscoviddeath
 
+/*
 /*  Run analyses  */
 
 *********************************************************************
@@ -214,3 +216,6 @@ foreach outcome of any onscoviddeath cpnsdeath {
 foreach outcome of any onscoviddeath cpnsdeath {
 do "an_tablecontent_SENSANtable.do" `outcome'
 }
+
+
+*/
