@@ -45,7 +45,7 @@ foreach var of any `varlist' {
 	else if "`var'"=="agegroupsex" local model "ib3.agegroup i.male"
 	else if "`var'"=="bmicat" local model "age1 age2 age3 i.male ib2.bmicat"
 	*General form of model
-	else local model "age1 age2 age3 i.`var'"
+	else local model "age1 age2 age3 i.male i.`var'"
 
 	*Fit and save model
 	cap erase ./output/models/an_univariable_cox_models_`outcome'_AGESEX_`var'.ster
