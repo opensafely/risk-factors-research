@@ -39,6 +39,8 @@ replace ethnicity = 1+(floor(5*uniform()))
 
 replace ethnicity_16 = 1+(floor(16*uniform())) 
 
+replace hiv = uniform()<.05
+
 
 * Kidney function 
 replace reduced_kidney_function_cat=.

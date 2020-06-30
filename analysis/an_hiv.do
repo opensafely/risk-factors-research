@@ -73,7 +73,7 @@ timer on 1
 			i.organ_transplant 				///
 			i.spleen 						///
 			i.ra_sle_psoriasis  			///
-			i.other_imm_ex_hiv				///
+			i.other_imm_except_hiv			///
 			`if'							///
 			, strata(stp)
 timer off 1
@@ -81,14 +81,14 @@ timer list
 end
 *************************************************************************************
 
-basecoxmodel, age("age1 age2 age3") ethnicity(0) dialysis(0)
+basecoxmodel, age("age1 age2 age3") ethnicity(0) 
 if _rc==0{
 estimates
 estimates save ./output/models/an_hiv_multiv_noeth, replace
  }
  else di "WARNING HIV model (no eth) DID NOT FIT (OUTCOME `outcome')"
 
-basecoxmodel, age("age1 age2 age3") ethnicity(1) dialysis(0)
+basecoxmodel, age("age1 age2 age3") ethnicity(1) 
 if _rc==0{
 estimates
 estimates save ./output/models/an_hiv_multiv_CCeth, replace
