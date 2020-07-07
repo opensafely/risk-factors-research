@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddea
-> th_other_immunosuppressionTOstroke_dementia.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddeath_other_immun
+> osuppressionTOstroke_dementia.log
   log type:  text
- opened on:  30 Jun 2020, 00:32:25
+ opened on:   7 Jul 2020, 00:35:43
 
 . 
 . * Open dataset and fit specified model(s)
@@ -32,34 +32,34 @@
  13. 
 . }
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
 No. of failures =       10,926
 Time at risk    =   1638907207
-                                                LR chi2(5)       =    33577.36
-Log likelihood  =    -130290.4                  Prob > chi2      =      0.0000
+                                                LR chi2(5)       =    33587.91
+Log likelihood  =   -130285.12                  Prob > chi2      =      0.0000
 
 -------------------------------------------------------------------------------------------
                        _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 --------------------------+----------------------------------------------------------------
-                     age1 |   1.154482   .0243299     6.82   0.000     1.107767    1.203166
-                     age2 |   .9453373   .0434162    -1.22   0.221     .8639605    1.034379
-                     age3 |   1.139965   .1212704     1.23   0.218     .9254227    1.404246
-                   1.male |   1.777592   .0346461    29.51   0.000     1.710968    1.846811
-1.other_immunosuppression |   2.057372   .2494201     5.95   0.000     1.622257    2.609192
+                     age1 |   1.153909   .0242091     6.82   0.000     1.107423    1.202347
+                     age2 |   .9445498   .0432058    -1.25   0.212     .8635531    1.033144
+                     age3 |   1.143962   .1212367     1.27   0.204     .9293972    1.408061
+                   1.male |   1.776368   .0346257    29.48   0.000     1.709783    1.845546
+1.other_immunosuppression |   2.752044   .3829768     7.27   0.000     2.095084    3.615009
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_other_immunosuppression.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_other_immunosuppression.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -82,9 +82,9 @@ Log likelihood  =    -130015.5                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_other_neuro.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_other_neuro.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -107,9 +107,9 @@ Log likelihood  =   -130277.14                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_ra_sle_psoriasis.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_ra_sle_psoriasis.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -135,9 +135,9 @@ Log likelihood  =   -129009.48                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_smoke.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_smoke.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -163,9 +163,9 @@ smoke_nomiss |
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_smoke_nomiss.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_smoke_nomiss.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -188,9 +188,9 @@ Log likelihood  =   -130300.61                  Prob > chi2      =      0.0000
 (note: file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_spleen.ster not found)
 file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_spleen.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -218,8 +218,8 @@ file ./output/models/an_univariable_cox_models_onscoviddeath_AGESEX_stroke_demen
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddea
-> th_other_immunosuppressionTOstroke_dementia.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_univariable_cox_models_onscoviddeath_other_immun
+> osuppressionTOstroke_dementia.log
   log type:  text
- closed on:  30 Jun 2020, 02:10:21
---------------------------------------------------------------------------------------------------------------------
+ closed on:   7 Jul 2020, 02:16:45
+----------------------------------------------------------------------------------------------------------------------------------

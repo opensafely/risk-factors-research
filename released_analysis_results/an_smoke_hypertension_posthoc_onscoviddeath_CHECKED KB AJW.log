@@ -1,9 +1,8 @@
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoke_hypertension_posthoc_onscovi
-> ddeath.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoke_hypertension_posthoc_onscoviddeath.log
   log type:  text
- opened on:   3 Jun 2020, 01:19:03
+ opened on:   7 Jul 2020, 00:35:44
 
 . 
 . 
@@ -19,9 +18,9 @@
 . if _rc==0{
 . estimates 
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -57,11 +56,12 @@ Asian or Asian British  |   1.640039   .0757269    10.71   0.000     1.498135   
 -----------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_smokeadjdemog, replace   
-(note: file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_smokeadjdemog.ster not found)
 file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_smokeadjdemog.ster saved
 . }
 
-
+. 
+. 
+. 
 . **********************************
 . *Hypertension adjusted for diabetes and obesity
 . cap stcox age1 age2 age3 i.male htdiag_or_highbp i.obese4cat i.diabcat, strata(stp)
@@ -69,9 +69,9 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_smokeadjdemog.s
 . if _rc==0{
 . estimates 
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -102,10 +102,9 @@ Diabetes, no hba1c measure  |    2.18661    .108051    15.83   0.000     1.98476
 ---------------------------------------------------------------------------------------------
                                                              Stratified by stp
 . estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_htadjdiabobes, replace   
-(note: file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster not found)
-file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster saved
+(note: file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_htadjdiabobes.ster not found)
+file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_htadjdiabobes.ster saved
 . }
-
 
 . 
 . **********************************
@@ -132,8 +131,8 @@ file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster saved
 >                         i.ra_sle_psoriasis                      ///
 >                         i.other_immunosuppression                       ///
 >                         ib3.agegroup i.htdiag_or_highbp ///
->                         1.agegroup#1.htdiag_or_highbp 2.agegroup#1.htdiag_or_highbp 4.agegroup#1.htdiag_or_highbp 
->  5.agegroup#1.htdiag_or_highbp 6.agegroup#1.htdiag_or_highbp ///
+>                         1.agegroup#1.htdiag_or_highbp 2.agegroup#1.htdiag_or_highbp 4.agegroup#1.htdiag_or_highbp  5.agegroup#1.
+> htdiag_or_highbp 6.agegroup#1.htdiag_or_highbp ///
 >                         , strata(stp)
 
          failure _d:  onscoviddeath
@@ -143,100 +142,99 @@ file ./output/models/an_smoke_hypertension_posthoc__htadjdiabobes.ster saved
                  id:  patient_id
 
 Iteration 0:   log likelihood = -147079.08
-Iteration 1:   log likelihood = -134128.46
-Iteration 2:   log likelihood =  -128974.5
-Iteration 3:   log likelihood = -128582.13
-Iteration 4:   log likelihood = -128539.93
-Iteration 5:   log likelihood = -128534.51
-Iteration 6:   log likelihood =  -128534.3
-Iteration 7:   log likelihood =  -128534.3
+Iteration 1:   log likelihood = -134126.85
+Iteration 2:   log likelihood = -128970.47
+Iteration 3:   log likelihood = -128578.22
+Iteration 4:   log likelihood = -128536.04
+Iteration 5:   log likelihood = -128530.62
+Iteration 6:   log likelihood = -128530.41
+Iteration 7:   log likelihood = -128530.41
 Refining estimates:
-Iteration 0:   log likelihood =  -128534.3
+Iteration 0:   log likelihood = -128530.41
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
 No. of failures =       10,926
 Time at risk    =   1638907207
-                                                LR chi2(43)      =    37089.56
-Log likelihood  =    -128534.3                  Prob > chi2      =      0.0000
+                                                LR chi2(43)      =    37097.32
+Log likelihood  =   -128530.41                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
                      agegroup |
-                      18-<40  |   .0719998   .0125002   -15.15   0.000     .0512332     .101184
-                      40-<50  |   .3030861   .0422179    -8.57   0.000     .2306742    .3982289
-                      60-<70  |   2.920833   .2595196    12.06   0.000     2.454011    3.476459
-                      70-<80  |   9.152732   .7411414    27.34   0.000     7.809528    10.72696
-                         80+  |   37.35235   2.895105    46.71   0.000     32.08802    43.48033
+                      18-<40  |   .0727472   .0126291   -15.10   0.000     .0517662     .102232
+                      40-<50  |   .3059811   .0426127    -8.50   0.000     .2328904    .4020108
+                      60-<70  |   2.916956   .2591629    12.05   0.000     2.450773    3.471815
+                      70-<80  |   9.139086   .7399632    27.33   0.000     7.798008     10.7108
+                         80+  |   37.29885     2.8905    46.70   0.000     32.04284    43.41701
                               |
-                       1.male |   1.452003    .029174    18.56   0.000     1.395935    1.510324
+                       1.male |   1.451314   .0291617    18.54   0.000     1.395269     1.50961
                               |
                     obese4cat |
-           Obese I (30-34.9)  |    .947616   .0251831    -2.02   0.043     .8995214    .9982822
-          Obese II (35-39.9)  |   1.211776   .0471361     4.94   0.000     1.122825    1.307774
-             Obese III (40+)  |   1.575274     .08506     8.42   0.000     1.417078     1.75113
+           Obese I (30-34.9)  |   .9477881   .0251877    -2.02   0.044     .8996847    .9984635
+          Obese II (35-39.9)  |   1.212113   .0471496     4.95   0.000     1.123137    1.308139
+             Obese III (40+)  |   1.575488   .0850716     8.42   0.000      1.41727    1.751368
                               |
                  smoke_nomiss |
-                      Former  |   1.188782    .025739     7.99   0.000      1.13939    1.240315
-                     Current  |    .814279   .0345471    -4.84   0.000     .7493068    .8848849
+                      Former  |   1.189137   .0257467     8.00   0.000      1.13973    1.240685
+                     Current  |   .8148258     .03457    -4.83   0.000     .7498105    .8854785
                               |
                           imd |
-                           2  |   1.122166   .0359567     3.60   0.000      1.05386      1.1949
-                           3  |    1.22895   .0393335     6.44   0.000     1.154225    1.308511
-                           4  |   1.517185   .0478764    13.21   0.000     1.426192    1.613984
-             5 most deprived  |   1.790742   .0578789    18.03   0.000      1.68082    1.907853
+                           2  |   1.121989   .0359511     3.59   0.000     1.053694    1.194712
+                           3  |   1.228628   .0393233     6.43   0.000     1.153923    1.308169
+                           4  |   1.516753   .0478625    13.20   0.000     1.425786    1.613523
+             5 most deprived  |    1.78983   .0578514    18.01   0.000      1.67996    1.906885
                               |
-1.chronic_respiratory_disease |   1.597884   .0402456    18.61   0.000      1.52092    1.678744
+1.chronic_respiratory_disease |    1.59751   .0402356    18.60   0.000     1.520565    1.678349
                               |
                     asthmacat |
-                 Yes, no OCS  |   .9640833   .0297042    -1.19   0.235     .9075871    1.024096
-                Yes with OCS  |   1.086206   .0614691     1.46   0.144     .9721694    1.213618
+                 Yes, no OCS  |   .9640331   .0297027    -1.19   0.234     .9075397    1.024043
+                Yes with OCS  |   1.086356   .0614774     1.46   0.143     .9723044    1.213786
                               |
-    1.chronic_cardiac_disease |   1.221832   .0264592     9.25   0.000     1.171058    1.274807
+    1.chronic_cardiac_disease |   1.221801   .0264578     9.25   0.000     1.171029    1.274773
                               |
                       diabcat |
-         Controlled diabetes  |   1.262442   .0314718     9.35   0.000     1.202241    1.325658
-       Uncontrolled diabetes  |   1.799634   .0577177    18.32   0.000     1.689991     1.91639
-  Diabetes, no hba1c measure  |   1.961883   .0971747    13.61   0.000     1.780376    2.161893
+         Controlled diabetes  |   1.262893   .0314826     9.36   0.000     1.202671     1.32613
+       Uncontrolled diabetes  |   1.800465   .0577437    18.34   0.000     1.690773    1.917273
+  Diabetes, no hba1c measure  |    1.96257   .0972096    13.61   0.000     1.780999    2.162653
                               |
             cancer_exhaem_cat |
-                   Last year  |   1.682415    .115033     7.61   0.000     1.471408     1.92368
-               2-5 years ago  |   1.131626   .0549044     2.55   0.011     1.028974     1.24452
-                    5+ years  |   .9806648   .0312793    -0.61   0.540     .9212355    1.043928
+                   Last year  |   1.681543   .1149739     7.60   0.000     1.470645    1.922684
+               2-5 years ago  |   1.131106   .0548798     2.54   0.011       1.0285    1.243949
+                    5+ years  |   .9802644    .031267    -0.62   0.532     .9208586    1.043503
                               |
               cancer_haem_cat |
-                   Last year  |   2.686486   .4110261     6.46   0.000     1.990457    3.625905
-               2-5 years ago  |    2.32086   .2134077     9.16   0.000     1.938114    2.779193
-                    5+ years  |    1.57499   .1210895     5.91   0.000     1.354675    1.831136
+                   Last year  |   2.669663   .4085389     6.42   0.000     1.977866    3.603428
+               2-5 years ago  |   2.317566   .2131125     9.14   0.000     1.935351    2.775266
+                    5+ years  |   1.570571   .1207691     5.87   0.000     1.350841    1.826042
                               |
-      1.chronic_liver_disease |   1.655664   .1257058     6.64   0.000      1.42674    1.921319
-            1.stroke_dementia |   2.319238   .0561219    34.76   0.000     2.211808    2.431885
-                1.other_neuro |   2.472797   .1004814    22.28   0.000     2.283495    2.677791
+      1.chronic_liver_disease |   1.654868   .1256395     6.63   0.000     1.426065    1.920382
+            1.stroke_dementia |   2.319444   .0561264    34.77   0.000     2.212006      2.4321
+                1.other_neuro |    2.47239   .1004657    22.28   0.000     2.283118    2.677353
                               |
   reduced_kidney_function_cat |
-Stage 3a/3b egfr 30-60        |   1.557788   .0349724    19.74   0.000      1.49073    1.627863
-           Stage 4/5 egfr<30  |   3.240936   .1254107    30.39   0.000     3.004225    3.496297
+Stage 3a/3b egfr 30-60        |   1.557306   .0349601    19.73   0.000     1.490271    1.627357
+           Stage 4/5 egfr<30  |   3.239696   .1253606    30.38   0.000      3.00308    3.494956
                               |
-           1.organ_transplant |   2.805065   .3455851     8.37   0.000     2.203305    3.571177
-                     1.spleen |    1.29102   .2049094     1.61   0.108     .9458693    1.762117
-           1.ra_sle_psoriasis |   1.152821    .039064     4.20   0.000     1.078745    1.231985
-    1.other_immunosuppression |   1.600249   .1940608     3.88   0.000      1.26172    2.029607
-           1.htdiag_or_highbp |   2.070165    .187655     8.03   0.000     1.733188    2.472658
+           1.organ_transplant |   2.789821   .3437888     8.33   0.000     2.191205    3.551973
+                     1.spleen |   1.290856    .204883     1.61   0.108     .9457496    1.761892
+           1.ra_sle_psoriasis |   1.152257   .0390461     4.18   0.000     1.078214    1.231385
+    1.other_immunosuppression |   2.030832   .2831707     5.08   0.000     1.545205    2.669082
+           1.htdiag_or_highbp |   2.068369   .1874925     8.02   0.000     1.731684    2.470514
                               |
     agegroup#htdiag_or_highbp |
-                    18-<40#1  |   1.499971    .485141     1.25   0.210     .7957486    2.827419
-                    40-<50#1  |    1.32633   .2542399     1.47   0.141     .9109356    1.931149
-                    60-<70#1  |   .6398882   .0709654    -4.03   0.000     .5148769    .7952519
-                    70-<80#1  |   .4532009      .0455    -7.88   0.000     .3722484    .5517582
-                       80+#1  |   .3549152   .0338254   -10.87   0.000     .2944424     .427808
+                    18-<40#1  |   1.499671   .4850441     1.25   0.210     .7955888    2.826853
+                    40-<50#1  |   1.321809   .2533706     1.46   0.146     .9078341    1.924558
+                    60-<70#1  |   .6403509   .0710167    -4.02   0.000     .5152493     .795827
+                    70-<80#1  |   .4535902   .0455391    -7.87   0.000      .372568    .5522323
+                       80+#1  |   .3552475   .0338571   -10.86   0.000      .294718    .4282085
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
 
 .                         
 . estimates save ./output/models/an_smoke_hypertension_posthoc_`outcome'_ht_byage, replace        
-(note: file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster not found)
 file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster saved
 
 . 
@@ -247,7 +245,7 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |   3.105188   .9644781     3.65   0.000     1.689285    5.707855
+         (1) |   3.101873   .9634499     3.64   0.000     1.687479    5.701767
 ------------------------------------------------------------------------------
 
 . lincom 1.htdiag_or_highbp + 2.agegroup#1.htdiag_or_highbp, eform
@@ -257,7 +255,7 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |   2.745722   .4645026     5.97   0.000     1.970861    3.825226
+         (1) |   2.733989   .4625103     5.95   0.000      1.96245     3.80886
 ------------------------------------------------------------------------------
 
 . lincom 1.htdiag_or_highbp , eform
@@ -267,7 +265,7 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |   2.070165    .187655     8.03   0.000     1.733188    2.472658
+         (1) |   2.068369   .1874925     8.02   0.000     1.731684    2.470514
 ------------------------------------------------------------------------------
 
 . lincom 1.htdiag_or_highbp + 4.agegroup#1.htdiag_or_highbp, eform
@@ -277,7 +275,7 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |   1.324674   .0855511     4.35   0.000     1.167175    1.503425
+         (1) |   1.324482   .0855389     4.35   0.000     1.167006    1.503208
 ------------------------------------------------------------------------------
 
 . lincom 1.htdiag_or_highbp + 5.agegroup#1.htdiag_or_highbp, eform
@@ -287,7 +285,7 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |   .9382005   .0411978    -1.45   0.146     .8608315    1.022523
+         (1) |    .938192   .0411975    -1.45   0.146     .8608234    1.022514
 ------------------------------------------------------------------------------
 
 . lincom 1.htdiag_or_highbp + 6.agegroup#1.htdiag_or_highbp, eform
@@ -297,14 +295,13 @@ file ./output/models/an_smoke_hypertension_posthoc_onscoviddeath_ht_byage.ster s
 ------------------------------------------------------------------------------
           _t |     exp(b)   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-         (1) |    .734733   .0220391   -10.28   0.000     .6927824    .7792237
+         (1) |   .7347829   .0220403   -10.27   0.000     .6928299    .7792762
 ------------------------------------------------------------------------------
 
 . 
 . log close
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoke_hypertension_posthoc_onscovi
-> ddeath.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoke_hypertension_posthoc_onscoviddeath.log
   log type:  text
- closed on:   3 Jun 2020, 02:38:15
---------------------------------------------------------------------------------------------------------------------
+ closed on:   7 Jul 2020, 02:01:12
+----------------------------------------------------------------------------------------------------------------------------------

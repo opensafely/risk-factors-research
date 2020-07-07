@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_onscoviddeath.log
   log type:  text
- opened on:   3 Jun 2020, 01:19:07
+ opened on:   7 Jul 2020, 00:35:44
 
 . 
 . 
@@ -85,87 +85,86 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 .                         
 . * Age spline model (not adj ethnicity)
 . basecoxmodel, age("age1 age2 age3")  ethnicity(0)
-   1:   3067.20 /        1 =    3067.1980
+   1:   2786.52 /        1 =    2786.5180
 
 . if _rc==0 {
 .         
 .         estimates
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   17,277,935                  Number of obs    =  17,277,935
 No. of failures =       10,926
 Time at risk    =   1638907207
-                                                LR chi2(36)      =    38748.98
-Log likelihood  =   -127704.59                  Prob > chi2      =      0.0000
+                                                LR chi2(36)      =    38757.96
+Log likelihood  =   -127700.09                  Prob > chi2      =      0.0000
 
 -----------------------------------------------------------------------------------------------
                            _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------------------+----------------------------------------------------------------
-                         age1 |   1.172873   .0256231     7.30   0.000     1.123713    1.224185
-                         age2 |   .8853217   .0420434    -2.56   0.010     .8066369     .971682
-                         age3 |   1.326724   .1457831     2.57   0.010     1.069667    1.645554
-                       1.male |   1.590052   .0321404    22.94   0.000     1.528289     1.65431
+                         age1 |   1.172213   .0255195     7.30   0.000     1.123248    1.223313
+                         age2 |   .8851475   .0419027    -2.58   0.010     .8067146    .9712061
+                         age3 |    1.32895   .1455945     2.60   0.009     1.072147    1.647262
+                       1.male |    1.58918   .0321247    22.91   0.000     1.527447    1.653407
                               |
                     obese4cat |
-           Obese I (30-34.9)  |   1.048912   .0280309     1.79   0.074     .9953861    1.105316
-          Obese II (35-39.9)  |   1.403434   .0548133     8.68   0.000     1.300011    1.515085
-             Obese III (40+)  |    1.91523   .1036355    12.01   0.000     1.722509    2.129514
+           Obese I (30-34.9)  |   1.049214   .0280393     1.80   0.072     .9956723    1.105635
+          Obese II (35-39.9)  |   1.403919   .0548334     8.69   0.000     1.300458    1.515611
+             Obese III (40+)  |   1.915494   .1036511    12.01   0.000     1.722743     2.12981
                               |
                  smoke_nomiss |
-                      Former  |   1.190147   .0257558     8.04   0.000     1.140722    1.241713
-                     Current  |   .8913247   .0379789    -2.70   0.007     .8199109    .9689587
+                      Former  |   1.190565    .025765     8.06   0.000     1.141123     1.24215
+                     Current  |     .89189   .0380027    -2.69   0.007     .8204314    .9695726
                               |
                           imd |
-                           2  |   1.119706   .0358785     3.53   0.000     1.051549    1.192282
-                           3  |   1.225026   .0391947     6.34   0.000     1.150565    1.304306
-                           4  |   1.513489   .0477074    13.15   0.000     1.422814    1.609943
-             5 most deprived  |   1.795199   .0579593    18.12   0.000      1.68512    1.912468
+                           2  |   1.119479   .0358713     3.52   0.000     1.051335     1.19204
+                           3  |   1.224602   .0391813     6.33   0.000     1.150166    1.303855
+                           4  |   1.512891   .0476885    13.13   0.000     1.422252    1.609307
+             5 most deprived  |   1.794147   .0579272    18.10   0.000     1.684129    1.911351
                               |
-           1.htdiag_or_highbp |   .8907143   .0205669    -5.01   0.000     .8513025    .9319507
-1.chronic_respiratory_disease |   1.627883   .0409152    19.39   0.000     1.549634    1.710083
+           1.htdiag_or_highbp |   .8906513   .0205642    -5.02   0.000     .8512446    .9318823
+1.chronic_respiratory_disease |   1.627553   .0409063    19.38   0.000     1.549321    1.709735
                               |
                     asthmacat |
-                 Yes, no OCS  |   .9909171   .0305435    -0.30   0.767     .9328254    1.052627
-                Yes with OCS  |   1.126633   .0637897     2.11   0.035     1.008295    1.258859
+                 Yes, no OCS  |   .9908897   .0305427    -0.30   0.767     .9327994    1.052598
+                Yes with OCS  |    1.12687   .0638027     2.11   0.035     1.008508    1.259124
                               |
-    1.chronic_cardiac_disease |   1.169748    .025264     7.26   0.000     1.121265    1.220327
+    1.chronic_cardiac_disease |   1.169705   .0252628     7.26   0.000     1.121224    1.220283
                               |
                       diabcat |
-         Controlled diabetes  |   1.306511   .0325326    10.74   0.000     1.244279    1.371855
-       Uncontrolled diabetes  |   1.947391   .0624579    20.78   0.000     1.828744    2.073736
-  Diabetes, no hba1c measure  |   1.899107   .0940159    12.96   0.000     1.723497    2.092611
+         Controlled diabetes  |   1.307176   .0325487    10.76   0.000     1.244913    1.372552
+       Uncontrolled diabetes  |   1.948581   .0624953    20.80   0.000     1.829863    2.075001
+  Diabetes, no hba1c measure  |   1.899715   .0940468    12.96   0.000     1.724047    2.093282
                               |
             cancer_exhaem_cat |
-                   Last year  |   1.718587   .1175186     7.92   0.000     1.503022    1.965067
-               2-5 years ago  |   1.154272   .0559942     2.96   0.003     1.049581    1.269405
-                    5+ years  |   .9638411   .0307195    -1.16   0.248     .9054741     1.02597
+                   Last year  |   1.717574   .1174501     7.91   0.000     1.502135    1.963911
+               2-5 years ago  |   1.153872   .0559755     2.95   0.003     1.049216    1.268967
+                    5+ years  |    .963489   .0307086    -1.17   0.243     .9051426    1.025596
                               |
               cancer_haem_cat |
-                   Last year  |   2.821221   .4316938     6.78   0.000     2.090206    3.807897
-               2-5 years ago  |    2.46916   .2270277     9.83   0.000     2.061984    2.956741
-                    5+ years  |   1.616408   .1242533     6.25   0.000     1.390334    1.879242
+                   Last year  |   2.802517   .4289251     6.73   0.000     2.076213    3.782897
+               2-5 years ago  |   2.464605   .2266224     9.81   0.000     2.058158    2.951318
+                    5+ years  |   1.611519   .1238994     6.21   0.000     1.386091    1.873608
                               |
-      1.chronic_liver_disease |   1.748676   .1331546     7.34   0.000     1.506239    2.030135
-            1.stroke_dementia |   2.160875   .0523341    31.81   0.000     2.060699    2.265922
-                1.other_neuro |   2.578903   .1047244    23.33   0.000     2.381603    2.792549
+      1.chronic_liver_disease |   1.747977   .1330957     7.33   0.000     1.505646    2.029311
+            1.stroke_dementia |   2.161146   .0523404    31.82   0.000     2.060957    2.266205
+                1.other_neuro |    2.57889   .1047244    23.33   0.000      2.38159    2.792536
                               |
   reduced_kidney_function_cat |
-Stage 3a/3b egfr 30-60        |   1.334576   .0304808    12.64   0.000     1.276153    1.395675
-           Stage 4/5 egfr<30  |   2.518785   .0984393    23.64   0.000     2.333052    2.719304
+Stage 3a/3b egfr 30-60        |    1.33411   .0304694    12.62   0.000     1.275708    1.395186
+           Stage 4/5 egfr<30  |    2.51778   .0983969    23.63   0.000     2.332127    2.718213
                               |
-           1.organ_transplant |   3.548627   .4372422    10.28   0.000     2.787277    4.517943
-                     1.spleen |   1.340171   .2127285     1.84   0.065     .9818542    1.829252
-           1.ra_sle_psoriasis |   1.186968   .0402331     5.06   0.000     1.110675    1.268502
-      other_immunosuppression |   1.702604   .2066262     4.39   0.000     1.342186    2.159805
+           1.organ_transplant |   3.526578   .4346386    10.23   0.000     2.769783    4.490153
+                     1.spleen |   1.339497    .212622     1.84   0.066       .98136    1.828333
+           1.ra_sle_psoriasis |   1.186408   .0402154     5.04   0.000     1.110149    1.267906
+      other_immunosuppression |   2.207481   .3078685     5.68   0.000     1.679513     2.90142
 -----------------------------------------------------------------------------------------------
                                                              Stratified by stp
-.         * estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_n
-> oeth, replace
+.         * estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 . 
 .         /*  Proportional Hazards test  */
 .         
@@ -180,66 +179,66 @@ Stage 3a/3b egfr 30-60        |   1.334576   .0304808    12.64   0.000     1.276
       ----------------------------------------------------------------
                   |       rho            chi2       df       Prob>chi2
       ------------+---------------------------------------------------
-      age1        |      0.01167         1.72        1         0.1894
-      age2        |     -0.01372         2.33        1         0.1269
-      age3        |      0.01634         3.26        1         0.0708
+      age1        |      0.01169         1.72        1         0.1899
+      age2        |     -0.01372         2.32        1         0.1281
+      age3        |      0.01634         3.24        1         0.0717
       0b.male     |            .            .        1             .
-      1.male      |     -0.05962        38.76        1         0.0000
+      1.male      |     -0.05952        38.64        1         0.0000
       1b.obese4cat|            .            .        1             .
-      2.obese4cat |     -0.05424        31.87        1         0.0000
-      3.obese4cat |     -0.01352         1.98        1         0.1596
-      4.obese4cat |     -0.05163        28.73        1         0.0000
+      2.obese4cat |     -0.05425        31.89        1         0.0000
+      3.obese4cat |     -0.01354         1.98        1         0.1592
+      4.obese4cat |     -0.05162        28.72        1         0.0000
       1b.smoke_n~s|            .            .        1             .
-      2.smoke_no~s|     -0.01355         1.99        1         0.1587
-      3.smoke_no~s|      0.00482         0.26        1         0.6118
+      2.smoke_no~s|     -0.01358         1.99        1         0.1578
+      3.smoke_no~s|      0.00479         0.25        1         0.6138
       1b.imd      |            .            .        1             .
-      2.imd       |      0.02341         5.97        1         0.0145
-      3.imd       |      0.02713         7.96        1         0.0048
-      4.imd       |      0.03321        11.95        1         0.0005
-      5.imd       |      0.03314        11.83        1         0.0006
+      2.imd       |      0.02340         5.97        1         0.0145
+      3.imd       |      0.02714         7.97        1         0.0048
+      4.imd       |      0.03320        11.94        1         0.0005
+      5.imd       |      0.03316        11.85        1         0.0006
       0b.htdiag_~p|            .            .        1             .
-      1.htdiag_o~p|     -0.00870         0.88        1         0.3486
+      1.htdiag_o~p|     -0.00868         0.87        1         0.3499
       0b.c~respi~e|            .            .        1             .
-      1.c~respir~e|     -0.03030        10.31        1         0.0013
+      1.c~respir~e|     -0.03029        10.31        1         0.0013
       1b.asthmacat|            .            .        1             .
-      2.asthmacat |     -0.01727         3.26        1         0.0709
-      3.asthmacat |     -0.01536         2.61        1         0.1062
+      2.asthmacat |     -0.01727         3.26        1         0.0710
+      3.asthmacat |     -0.01537         2.61        1         0.1059
       0b.c~cardi~e|            .            .        1             .
-      1.c~cardia~e|     -0.04118        19.56        1         0.0000
+      1.c~cardia~e|     -0.04120        19.58        1         0.0000
       1b.diabcat  |            .            .        1             .
-      2.diabcat   |     -0.02358         6.14        1         0.0132
-      3.diabcat   |     -0.04269        20.04        1         0.0000
-      4.diabcat   |      0.00712         0.56        1         0.4550
+      2.diabcat   |     -0.02364         6.17        1         0.0130
+      3.diabcat   |     -0.04273        20.08        1         0.0000
+      4.diabcat   |      0.00711         0.56        1         0.4554
       1b.c~exhae~t|            .            .        1             .
-      2.cancer_e~t|     -0.00400         0.18        1         0.6749
-      3.cancer_e~t|     -0.02221         5.42        1         0.0199
-      4.cancer_e~t|     -0.00186         0.04        1         0.8451
+      2.cancer_e~t|     -0.00399         0.17        1         0.6759
+      3.cancer_e~t|     -0.02219         5.41        1         0.0200
+      4.cancer_e~t|     -0.00185         0.04        1         0.8465
       1b.cancer_h~|            .            .        1             .
-      2.cancer_h~t|      0.00488         0.26        1         0.6095
-      3.cancer_h~t|     -0.01116         1.36        1         0.2428
-      4.cancer_h~t|      0.01190         1.55        1         0.2129
+      2.cancer_h~t|      0.00487         0.26        1         0.6098
+      3.cancer_h~t|     -0.01116         1.36        1         0.2432
+      4.cancer_h~t|      0.01197         1.57        1         0.2098
       0b.c~liver~e|            .            .        1             .
-      1.c~liver_~e|     -0.00142         0.02        1         0.8803
+      1.c~liver_~e|     -0.00146         0.02        1         0.8765
       0b.stroke_~a|            .            .        1             .
-      1.stroke_d~a|      0.04901        28.18        1         0.0000
+      1.stroke_d~a|      0.04900        28.16        1         0.0000
       0b.other_n~o|            .            .        1             .
-      1.other_ne~o|      0.01663         3.13        1         0.0768
+      1.other_ne~o|      0.01663         3.13        1         0.0767
       1b.reduced~t|            .            .        1             .
-      2.reduced_~t|     -0.01805         3.83        1         0.0504
-      3.reduced_~t|     -0.02455         7.19        1         0.0073
+      2.reduced_~t|     -0.01802         3.82        1         0.0507
+      3.reduced_~t|     -0.02451         7.16        1         0.0074
       0b.organ_t~t|            .            .        1             .
-      1.organ_tr~t|      0.00628         0.44        1         0.5076
+      1.organ_tr~t|      0.00629         0.44        1         0.5075
       0b.spleen   |            .            .        1             .
       1.spleen    |     -0.01117         1.37        1         0.2426
       0b.ra_sle_~s|            .            .        1             .
-      1.ra_sle_p~s|     -0.00605         0.40        1         0.5271
-      other_immu~n|     -0.00712         0.55        1         0.4583
+      1.ra_sle_p~s|     -0.00607         0.40        1         0.5259
+      other_immu~n|     -0.00510         0.28        1         0.5939
       ------------+---------------------------------------------------
-      global test |                    497.62       36         0.0000
+      global test |                    496.97       36         0.0000
       ----------------------------------------------------------------
 .         timer off 1
 .         timer list
-   1:   3035.39 /        1 =    3035.3890
+   1:   2761.36 /        1 =    2761.3590
 .         
 .         
 .         /*  Concordance statistic  */
@@ -281,9 +280,9 @@ Fraction of cases to be used.45762402
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7764
-                            Somers' D =   0.5528
-C-statistic in 1 th sample = .7763959
+                          Harrell's C =   0.7765
+                            Somers' D =   0.5530
+C-statistic in 1 th sample = .77649561
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -296,9 +295,9 @@ C-statistic in 1 th sample = .7763959
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7736
-                            Somers' D =   0.5473
-C-statistic in 2 th sample = .77364723
+                          Harrell's C =   0.7737
+                            Somers' D =   0.5474
+C-statistic in 2 th sample = .77369685
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -313,7 +312,7 @@ C-statistic in 2 th sample = .77364723
 
                           Harrell's C =   0.7759
                             Somers' D =   0.5517
-C-statistic in 3 th sample = .77587044
+C-statistic in 3 th sample = .77586427
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -328,7 +327,7 @@ C-statistic in 3 th sample = .77587044
 
                           Harrell's C =   0.7772
                             Somers' D =   0.5543
-C-statistic in 4 th sample = .77716053
+C-statistic in 4 th sample = .77716771
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -341,9 +340,9 @@ C-statistic in 4 th sample = .77716053
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7750
-                            Somers' D =   0.5501
-C-statistic in 5 th sample = .77503352
+                          Harrell's C =   0.7751
+                            Somers' D =   0.5502
+C-statistic in 5 th sample = .77509579
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -356,9 +355,9 @@ C-statistic in 5 th sample = .77503352
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7742
-                            Somers' D =   0.5483
-C-statistic in 6 th sample = .77415293
+                          Harrell's C =   0.7743
+                            Somers' D =   0.5485
+C-statistic in 6 th sample = .77426031
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -371,9 +370,9 @@ C-statistic in 6 th sample = .77415293
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7778
-                            Somers' D =   0.5556
-C-statistic in 7 th sample = .77781187
+                          Harrell's C =   0.7779
+                            Somers' D =   0.5559
+C-statistic in 7 th sample = .77793586
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -386,9 +385,9 @@ C-statistic in 7 th sample = .77781187
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7771
-                            Somers' D =   0.5542
-C-statistic in 8 th sample = .77708497
+                          Harrell's C =   0.7772
+                            Somers' D =   0.5544
+C-statistic in 8 th sample = .77717848
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -401,9 +400,9 @@ C-statistic in 8 th sample = .77708497
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7760
-                            Somers' D =   0.5520
-C-statistic in 9 th sample = .7759901
+                          Harrell's C =   0.7761
+                            Somers' D =   0.5522
+C-statistic in 9 th sample = .77607915
 (10,926 missing values generated)
 (10,926 real changes made)
 
@@ -416,15 +415,15 @@ C-statistic in 9 th sample = .7759901
   Harrell's C concordance statistic
   (note: different samples used to fit model and to calculate C statistic)
 
-                          Harrell's C =   0.7746
-                            Somers' D =   0.5493
-C-statistic in 10 th sample = .7746273
+                          Harrell's C =   0.7747
+                            Somers' D =   0.5495
+C-statistic in 10 th sample = .77473935
 .         local csum = `csum'/10
 .         noi di "Average C-statistic = " `csum'
-Average C-statistic = .77577748
+Average C-statistic = .77585134
 .         timer off 2
 .         timer list      
-   2:   1432.78 /        1 =    1432.7770
+   2:   1341.75 /        1 =    1341.7500
 .         
 .         
 . }
@@ -440,5 +439,5 @@ Average C-statistic = .77577748
       name:  <unnamed>
        log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_onscoviddeath.log
   log type:  text
- closed on:   3 Jun 2020, 03:31:15
---------------------------------------------------------------------------------------------------------------------
+ closed on:   7 Jul 2020, 02:36:44
+----------------------------------------------------------------------------------------------------------------------------------
