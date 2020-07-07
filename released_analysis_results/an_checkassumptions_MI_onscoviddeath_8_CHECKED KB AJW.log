@@ -1,9 +1,8 @@
--------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/
-> an_checkassumptions_MI_onscoviddeath_8.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_MI_onscoviddeath_8.log
   log type:  text
- opened on:   3 Jun 2020, 06:22:37
+ opened on:   7 Jul 2020, 02:59:28
 
 . 
 . local k = `region'
@@ -15,13 +14,11 @@
 . * Load user written functions
 . do Calibration_parameter_nlsolution.do  
 
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *
 . *       Do-file:                Calibration_parameter_nlsolution.do
 . *
-. *       Project:                Risk factors for poor outcomes in Covid-19; E
-> thnicity MNAR
+. *       Project:                Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
 . *
 . *       Programmed by:  Fizz
 . *
@@ -29,56 +26,40 @@
 . *
 . *       Data created:   None
 . *
-. *       Other output:   User-written program:  nlnle2 and a wrapper, nlnle2_w
-> rap
+. *       Other output:   User-written program:  nlnle2 and a wrapper, nlnle2_wrap
 . *
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *
-. *       Purpose:                This do-file creates a program whose purpose 
-> is to solve
-. *                                       a specific set of non-linear equation
-> s.
+. *       Purpose:                This do-file creates a program whose purpose is to solve
+. *                                       a specific set of non-linear equations.
 . *  
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *       
 . *       Input parameters: The following globals need to be defined:
 . *
 . *               Number missing ethnicity, $Nmis 
-. *               Probability of missing/observing ethnicity, $r0star and $r1st
-> ar
+. *               Probability of missing/observing ethnicity, $r0star and $r1star
 . *               Probability of each ethnicity among observed, $Eth1obsstar, 
-. *                                               $Eth2obsstar, $Eth3obsstar, $
-> Eth4obsstar
-. *               Marginal probability of ethnicity (external data), $Eth1, $Et
-> h2, $Eth3, $Eth4
+. *                                               $Eth2obsstar, $Eth3obsstar, $Eth4obsstar
+. *               Marginal probability of ethnicity (external data), $Eth1, $Eth2, $Eth3, $Eth4
 . *
 . *       Input variables: The following variables need to be in memory:
 . *
 . *               r - indicator of Ethnicity being observed (1=yes, 0=no)
-. *               lp1 - linear predictor from mlogit model to impute ethnicity 
-> among r=1, Black
-. *               lp2 - linear predictor from mlogit model to impute ethnicity 
-> among r=1, Asian
-. *               lp3 - linear predictor from mlogit model to impute ethnicity 
-> among r=1, Mixed
-. *               lp4 - linear predictor from mlogit model to impute ethnicity 
-> among r=1, Other
+. *               lp1 - linear predictor from mlogit model to impute ethnicity among r=1, Black
+. *               lp2 - linear predictor from mlogit model to impute ethnicity among r=1, Asian
+. *               lp3 - linear predictor from mlogit model to impute ethnicity among r=1, Mixed
+. *               lp4 - linear predictor from mlogit model to impute ethnicity among r=1, Other
 . *
 . *
 . *       ASSUMPTIONS:    This is a complete case sample, other than ethnicity.
-. *                                       Ethnicity is White, Black, Asian, Mix
-> ed, other
-. *                                       (same order, coding (1, 2, 3, 4, 5), 
-> labelling)
+. *                                       Ethnicity is White, Black, Asian, Mixed, other
+. *                                       (same order, coding (1, 2, 3, 4, 5), labelling)
 . *  
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . 
 . 
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *       
 . *       To run alone:   
 . *                       matrix mat = (1,0,0,0)
@@ -86,11 +67,9 @@
 . *
 . *       Use in MI process:
 . *                       nl nle2 @ y lp1 lp2 lp3 lp4 ethnicity, ///
-> *                                       parameters(A B C D) initial(A 2 B 2 C
->  2 D 2)
+> *                                       parameters(A B C D) initial(A 2 B 2 C 2 D 2)
 . *
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . 
 . 
 . *******************************************
@@ -112,8 +91,7 @@
   7.         local lp4 `5'
   8.         local r   `6'
   9.         
-.         * Pick up current parameter values (Black/Asian/Mixed/Other, respecti
-> vely)
+.         * Pick up current parameter values (Black/Asian/Mixed/Other, respectively)
 .         tempname A B C D
  10.         scalar `A' = `at'[1, 1]
  11.         scalar `B' = `at'[1, 2]
@@ -123,8 +101,7 @@
 .         tempvar yh t1 t2 t3 t4 denom
  15.         
 .         * Linear predictor among those missing ethnicity
-.         gen `denom' = 1 + exp(`A' + `lp1') + exp(`B' + `lp2') + exp(`C' + `lp
-> 3') + exp(`D' + `lp4')
+.         gen `denom' = 1 + exp(`A' + `lp1') + exp(`B' + `lp2') + exp(`C' + `lp3') + exp(`D' + `lp4')
  16.         gen `t1' = exp(`A' + `lp1')/`denom'
  17.         gen `t2' = exp(`B' + `lp2')/`denom'
  18.         gen `t3' = exp(`C' + `lp3')/`denom'
@@ -140,14 +117,10 @@
  27.         local t4sum=r(sum)
  28.         
 .         * Set equal to marginal expression (using external data)
-.         gen double      `yh' =  `t1sum'*$r0star/$Nmis + $Eth1obsstar*$r1star 
-> - $Eth1 + 1 in 1
- 29.         replace         `yh' =  `t2sum'*$r0star/$Nmis + $Eth2obsstar*$r1st
-> ar - $Eth2 in 2
- 30.         replace         `yh' =  `t3sum'*$r0star/$Nmis + $Eth3obsstar*$r1st
-> ar - $Eth3 in 3
- 31.         replace         `yh' =  `t4sum'*$r0star/$Nmis + $Eth4obsstar*$r1st
-> ar - $Eth4 in 4
+.         gen double      `yh' =  `t1sum'*$r0star/$Nmis + $Eth1obsstar*$r1star - $Eth1 + 1 in 1
+ 29.         replace         `yh' =  `t2sum'*$r0star/$Nmis + $Eth2obsstar*$r1star - $Eth2 in 2
+ 30.         replace         `yh' =  `t3sum'*$r0star/$Nmis + $Eth3obsstar*$r1star - $Eth3 in 3
+ 31.         replace         `yh' =  `t4sum'*$r0star/$Nmis + $Eth4obsstar*$r1star - $Eth4 in 4
  32. 
 .         * Return 4 equations evaluated at current versions of parameter 
 .         replace `y' = `yh'
@@ -208,8 +181,7 @@
  25. 
 .         qui drop y 
  26. 
-.         * Convert calibration parameters into RR for being observed among r=0
->  vs r=1
+.         * Convert calibration parameters into RR for being observed among r=0 vs r=1
 .         mat def G = e(b)
  27.         * On logged scale
 .         local delta1 = G[1,1]
@@ -237,8 +209,7 @@
  42.         noi di _col(10) "Asian:  " `delta2'
  43.         noi di _col(10) "Mixed:  " `delta3'
  44.         noi di _col(10) "Other:  " `delta4'
- 45.         noi di _col(10) "Relative risk (for being this ethnicity (vs white
-> )"
+ 45.         noi di _col(10) "Relative risk (for being this ethnicity (vs white)"
  46.         noi di _col(15) "...in missing cf complete cases):"
  47.         noi di _col(10) "Black:  " `gamma1'
  48.         noi di _col(10) "Asian:  " `gamma2'
@@ -254,13 +225,11 @@ end of do-file
 
 . do Calibration_parameter_estimation.do  
 
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *
 . *       Do-file:                Calibration_parameter_estimation.do
 . *
-. *       Project:                Risk factors for poor outcomes in Covid-19; E
-> thnicity MNAR
+. *       Project:                Risk factors for poor outcomes in Covid-19; Ethnicity MNAR
 . *
 . *       Programmed by:  Fizz
 . *
@@ -268,30 +237,22 @@ end of do-file
 . *
 . *       Data created:   None
 . *
-. *       Other output:   User-written programs:  count_missing and prop_ethnic
-> ity
+. *       Other output:   User-written programs:  count_missing and prop_ethnicity
 . *
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . *
-. *       Purpose:                This do-file creates programs which count the
->  proportion 
-. *                                       of missing ethnicity data, and the pr
-> oportion in each group
+. *       Purpose:                This do-file creates programs which count the proportion 
+. *                                       of missing ethnicity data, and the proportion in each group
 . *                                       in the complete case data. 
 . *
-. *                                       It then draws these parameters from t
-> heir posterior 
+. *                                       It then draws these parameters from their posterior 
 . *                                       predictive distributions. 
 . *
 . *       ASSUMPTIONS:    This is a complete case sample, other than ethnicity.
-. *                                       Ethnicity is White, Black, Asian, Mix
-> ed, other
-. *                                       (same order, coding (1, 2, 3, 4, 5), 
-> labelling)
+. *                                       Ethnicity is White, Black, Asian, Mixed, other
+. *                                       (same order, coding (1, 2, 3, 4, 5), labelling)
 . *  
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . 
 . 
 . 
@@ -383,13 +344,11 @@ end of do-file
   6.         mat def Eth_m = r(table)
   7. 
 .         ** Draw probability from the normal approximation
-.         ** whose mean is the corresponding observed proportion of each catego
-> ry
+.         ** whose mean is the corresponding observed proportion of each category
 .         forvalues i = 2 (1) 5 {
   8.             local j = `i' - 1
   9.                 local Eth`j'obs = Eth_m[1,`i']
- 10.                 local se_Eth`j'obs = sqrt((`Eth`j'obs'*(1-`Eth`j'obs'))/(`
-> nobs'))
+ 10.                 local se_Eth`j'obs = sqrt((`Eth`j'obs'*(1-`Eth`j'obs'))/(`nobs'))
  11.                 local Eth`j'obsstar = rnormal(`Eth`j'obs', `se_Eth`j'obs')
  12.         }
  13.         matrix drop Eth_m
@@ -437,8 +396,7 @@ end of do-file
 . 
 . 
 . 
-. ********************************   NOTES  ***********************************
-> ***
+. ********************************   NOTES  **************************************
 . 
 . *  Assumes region is string, taking  values: 
 . *    East, East Midlands, London, North East, North West, South East, 
@@ -454,8 +412,7 @@ end of do-file
 . *
 . *  Assumes a complete case sample other than ethnicity
 . *
-. *****************************************************************************
-> ***
+. ********************************************************************************
 . 
 . 
 . 
@@ -525,8 +482,7 @@ Yorkshire and The Humber |  2,477,131       14.34      100.00
 
 .         
 . * Change ordering of ethnicity
-. label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other", mod
-> ify
+. label define ethnicity 1 "White" 2 "Black" 3 "Asian" 4 "Mixed" 5 "Other", modify
 
 . recode ethnicity 1=1 2=4 3=3 4=2 5=5
 (ethnicity: 50738 changes made)
@@ -536,34 +492,21 @@ Yorkshire and The Humber |  2,477,131       14.34      100.00
 . * Only keep required variables
 . keep patient_id stp region ethnicity                            ///
 >         stime_`outcome' `outcome' enter_date                    ///
->         agegroup male obese4cat                                              
->    ///
+>         agegroup male obese4cat                                                 ///
 >         smoke_nomiss imd htdiag_or_highbp                               ///
 >         chronic_respiratory_disease                                     ///
->         asthmacat                                                            
->                    ///
->         chronic_cardiac_disease                                              
->    ///
->         diabcat                                                              
->                    ///
->         cancer_exhaem_cat                                                    
->            ///
->         cancer_haem_cat                                                      
->            ///
->         chronic_liver_disease                                                
->    ///
->         stroke_dementia                                                      
->            ///
->         other_neuro                                                          
->                    ///
->         reduced_kidney_function_cat                                          
->    ///
->         organ_transplant                                                     
->            ///
->         spleen                                                               
->                    ///
->         ra_sle_psoriasis                                                     
->            ///
+>         asthmacat                                                                               ///
+>         chronic_cardiac_disease                                                 ///
+>         diabcat                                                                                 ///
+>         cancer_exhaem_cat                                                               ///
+>         cancer_haem_cat                                                                 ///
+>         chronic_liver_disease                                                   ///
+>         stroke_dementia                                                                 ///
+>         other_neuro                                                                             ///
+>         reduced_kidney_function_cat                                             ///
+>         organ_transplant                                                                ///
+>         spleen                                                                                  ///
+>         ra_sle_psoriasis                                                                ///
 >         other_immunosuppression
 
 . 
@@ -614,8 +557,7 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 . 
 . * Create dummy variables for categorical predictors
 . foreach var of varlist agegroup obese4cat smoke_nomiss imd  ///
->         asthmacat diabcat cancer_exhaem_cat cancer_haem_cat     reduced_kidne
-> y_function_cat     ///
+>         asthmacat diabcat cancer_exhaem_cat cancer_haem_cat     reduced_kidney_function_cat     ///
 >         stp cumhgp {
   2.                 egen ord_`var' = group(`var')
   3.                 qui summ ord_`var'
@@ -721,12 +663,9 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 . 
 . 
 . 
-.         *********************************************************************
-> **
-.         *  Obtain linear predictor needed to estimate calibration parameters 
->  *
-.         *********************************************************************
-> **
+.         ***********************************************************************
+.         *  Obtain linear predictor needed to estimate calibration parameters  *
+.         ***********************************************************************
 . 
 . 
 .         /*   Fit imputation model for ethnicity   */
@@ -742,33 +681,26 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 .         * Fit imputation model for ethnicity
 .         capture drop temp
  72.         noi uvis mlogit ethnicity                               ///
->                 `stp_text'                                                   
->    ///
+>                 `stp_text'                                                      ///
 >                 cumhgp_* `outcome'                                      ///
 >                 agegroup_*                                              ///
->                 male                                                         
->    ///
->                 obese4cat_*                                                  
->    ///
+>                 male                                                            ///
+>                 obese4cat_*                                                     ///
 >                 smoke_nomiss_*                                          ///
->                 imd_*                                                        
->    ///
+>                 imd_*                                                           ///
 >                 htdiag_or_highbp                                        ///
 >                 chronic_respiratory_disease             ///
 >                 asthmacat_*                                             ///
 >                 chronic_cardiac_disease                         ///
->                 diabcat_*                                                    
->    ///
+>                 diabcat_*                                                       ///
 >                 cancer_exhaem_cat_*                             ///
 >                 cancer_haem_cat_*                                       ///
 >                 chronic_liver_disease                           ///
 >                 stroke_dementia                                         ///
->                 other_neuro                                                  
->    ///
+>                 other_neuro                                                     ///
 >                 reduced_kidney_function_cat_*           ///
 >                 organ_transplant                                        ///
->                 spleen                                                       
->    ///
+>                 spleen                                                          ///
 >                 ra_sle_psoriasis                                        ///
 >                 other_immunosuppression,                        ///
 >                 gen(temp) baseoutcome(1)
@@ -782,49 +714,32 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
  78. 
 .         forvalues j = 1 (1) 4 {
  79.                 qui gen lp`j' = [`eth_text_`j'']_b[_cons]
- 80.                 foreach var of varlist                                  //
-> /
->                         `stp_text'                                           
->            ///
->                         cumhgp_* `outcome'                                   
->    ///
->                         agegroup_*                                           
->    ///
->                         male obese4cat_*                                     
->    ///
->                         smoke_nomiss_*                                       
->    ///
->                         imd_*                                                
->            ///
->                         htdiag_or_highbp                                     
->    ///
+ 80.                 foreach var of varlist                                  ///
+>                         `stp_text'                                                      ///
+>                         cumhgp_* `outcome'                                      ///
+>                         agegroup_*                                              ///
+>                         male obese4cat_*                                        ///
+>                         smoke_nomiss_*                                          ///
+>                         imd_*                                                           ///
+>                         htdiag_or_highbp                                        ///
 >                         chronic_respiratory_disease             ///
->                         asthmacat_*                                          
->    ///
+>                         asthmacat_*                                             ///
 >                         chronic_cardiac_disease                         ///
->                         diabcat_*                                            
->            ///
+>                         diabcat_*                                                       ///
 >                         cancer_exhaem_cat_*                             ///
->                         cancer_haem_cat_*                                    
->    ///
+>                         cancer_haem_cat_*                                       ///
 >                         chronic_liver_disease                           ///
->                         stroke_dementia                                      
->    ///
->                         other_neuro                                          
->            ///
+>                         stroke_dementia                                         ///
+>                         other_neuro                                                     ///
 >                         reduced_kidney_function_cat_*           ///
->                         organ_transplant                                     
->    ///
->                         spleen                                               
->            ///
->                         ra_sle_psoriasis                                     
->    ///
+>                         organ_transplant                                        ///
+>                         spleen                                                          ///
+>                         ra_sle_psoriasis                                        ///
 >                         other_immunosuppression                         ///
 >                          {
  81.                          capture  di [`eth_text_`j'']_b[`var'] 
  82.                          if _rc==0 {
- 83.                                 qui replace lp`j' = lp`j' + [`eth_text_`j'
-> ']_b[`var']*(`var'==1)
+ 83.                                 qui replace lp`j' = lp`j' + [`eth_text_`j'']_b[`var']*(`var'==1)
  84.                         }
  85.                 }
  86.         }
@@ -855,12 +770,10 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 .         **********************
 . 
 . 
-.         /*  Use calibration parameters to generate probability weights (P(obs
-> ))  */
+.         /*  Use calibration parameters to generate probability weights (P(obs))  */
 . 
 .         * Missing ethnicities, assign a small weight
-.         * Observed ethnicities, weight = the RR from above (for non-ref group
-> s)
+.         * Observed ethnicities, weight = the RR from above (for non-ref groups)
 .         cap drop caldelw
  99.         gen     caldelw = 0.0001 
 100.         replace caldelw = 1           if ethnicity == 1
@@ -871,40 +784,32 @@ obs. time interval:  (stime_onscoviddeath[_n-1], stime_onscoviddeath]
 105. 
 .         noi tab caldelw ethnicity, m
 106.         noi di "Manual replacements to avoid crashes:"
-107.         replace caldelw = 0.1 if caldelw==0 & ethnicity<. // To avoid cras
-> hes
+107.         replace caldelw = 0.1 if caldelw==0 & ethnicity<. // To avoid crashes
 108. 
 . 
 .         /*  Fit imputation model in weighted population */
 .         
 .         uvis mlogit ethnicity                                   ///
->                 `stp_text'                                                   
->    ///
+>                 `stp_text'                                                      ///
 >                 cumhgp_* `outcome'                                      ///
 >                 agegroup_*                                              ///
->                 male                                                         
->    ///
->                 obese4cat_*                                                  
->    ///
+>                 male                                                            ///
+>                 obese4cat_*                                                     ///
 >                 smoke_nomiss_*                                          ///
->                 imd_*                                                        
->    ///
+>                 imd_*                                                           ///
 >                 htdiag_or_highbp                                        ///
 >                 chronic_respiratory_disease             ///
 >                 asthmacat_*                                             ///
 >                 chronic_cardiac_disease                         ///
->                 diabcat_*                                                    
->    ///
+>                 diabcat_*                                                       ///
 >                 cancer_exhaem_cat_*                             ///
 >                 cancer_haem_cat_*                                       ///
 >                 chronic_liver_disease                           ///
 >                 stroke_dementia                                         ///
->                 other_neuro                                                  
->    ///
+>                 other_neuro                                                     ///
 >                 reduced_kidney_function_cat_*           ///
 >                 organ_transplant                                        ///
->                 spleen                                                       
->    ///
+>                 spleen                                                          ///
 >                 ra_sle_psoriasis                                        ///
 >                 other_immunosuppression                         ///
 >                 [pw=caldelw],                                           ///
@@ -948,17 +853,16 @@ Drawn probabilities of each ethnic group:
          P(Mixed | r=1):  .02256307
          P(Other | r=1):  .03239054
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 1.340]
+[true/approx likelihood = 0.000/0.000 = 1.274]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    693,822   -2.578447    1.254652  -8.674365   2.097637
-         lp2 |    693,822   -1.562287    1.206772  -6.692591   2.335071
-         lp3 |    693,822   -3.588786    1.020373  -7.708031  -.8706617
-         lp4 |    693,822   -3.350966    1.235146  -9.250431  -.5747257
+         lp1 |    693,822   -2.580796     1.25633  -8.681994   2.564095
+         lp2 |    693,822   -1.562161    1.206028  -6.696817   2.334836
+         lp3 |    693,822   -3.590092    1.022456  -7.672688  -.4898426
+         lp4 |    693,822   -3.351059    1.235077  -9.252343  -.5769551
 
 INPUTS:
 
@@ -1001,29 +905,19 @@ Weight for Other: 1
 (12,260 real changes made)
 (17,424 real changes made)
 
-           |                       Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other |     Total
------------+-------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0 |   158,810 
-         1 |   366,730     38,478    100,120     12,260     17,424 |   535,012 
------------+-------------------------------------------------------+----------
-     Total |   366,730     38,478    100,120     12,260     17,424 |   693,822 
-
-
-           | Ethnicity
-   caldelw |   Unknown |     Total
------------+-----------+----------
-     .0001 |   158,810 |   158,810 
-         1 |         0 |   535,012 
------------+-----------+----------
-     Total |   158,810 |   693,822 
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,810 |   158,810 
+         1 |   366,730     38,478    100,120     12,260     17,424          0 |   535,012 
+-----------+------------------------------------------------------------------+----------
+     Total |   366,730     38,478    100,120     12,260     17,424    158,810 |   693,822 
 Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.625]
+[true/approx likelihood = 0.000/0.000 = 0.626]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
 Observed proportions:
          Number Missing:   158810
@@ -1059,17 +953,16 @@ Drawn probabilities of each ethnic group:
          P(Mixed | r=1):  .02272932
          P(Other | r=1):  .03273979
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.380]
+[true/approx likelihood = 0.000/0.000 = 0.358]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    693,822   -2.578447    1.254652  -8.674365   2.097637
-         lp2 |    693,822   -1.562287    1.206772  -6.692591   2.335071
-         lp3 |    693,822   -3.588786    1.020373  -7.708031  -.8706617
-         lp4 |    693,822   -3.350966    1.235146  -9.250431  -.5747257
+         lp1 |    693,822   -2.580796     1.25633  -8.681994   2.564095
+         lp2 |    693,822   -1.562161    1.206028  -6.696817   2.334836
+         lp3 |    693,822   -3.590092    1.022456  -7.672688  -.4898426
+         lp4 |    693,822   -3.351059    1.235077  -9.252343  -.5769551
 
 INPUTS:
 
@@ -1112,29 +1005,19 @@ Weight for Other: 1
 (12,260 real changes made)
 (17,424 real changes made)
 
-           |                       Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other |     Total
------------+-------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0 |   158,810 
-         1 |   366,730     38,478    100,120     12,260     17,424 |   535,012 
------------+-------------------------------------------------------+----------
-     Total |   366,730     38,478    100,120     12,260     17,424 |   693,822 
-
-
-           | Ethnicity
-   caldelw |   Unknown |     Total
------------+-----------+----------
-     .0001 |   158,810 |   158,810 
-         1 |         0 |   535,012 
------------+-----------+----------
-     Total |   158,810 |   693,822 
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,810 |   158,810 
+         1 |   366,730     38,478    100,120     12,260     17,424          0 |   535,012 
+-----------+------------------------------------------------------------------+----------
+     Total |   366,730     38,478    100,120     12,260     17,424    158,810 |   693,822 
 Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.900]
+[true/approx likelihood = 0.000/0.000 = 0.623]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
 Observed proportions:
          Number Missing:   158810
@@ -1170,17 +1053,16 @@ Drawn probabilities of each ethnic group:
          P(Mixed | r=1):  .02314528
          P(Other | r=1):  .03203671
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.058]
+[true/approx likelihood = 0.000/0.000 = 0.059]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    693,822   -2.578447    1.254652  -8.674365   2.097637
-         lp2 |    693,822   -1.562287    1.206772  -6.692591   2.335071
-         lp3 |    693,822   -3.588786    1.020373  -7.708031  -.8706617
-         lp4 |    693,822   -3.350966    1.235146  -9.250431  -.5747257
+         lp1 |    693,822   -2.580796     1.25633  -8.681994   2.564095
+         lp2 |    693,822   -1.562161    1.206028  -6.696817   2.334836
+         lp3 |    693,822   -3.590092    1.022456  -7.672688  -.4898426
+         lp4 |    693,822   -3.351059    1.235077  -9.252343  -.5769551
 
 INPUTS:
 
@@ -1223,29 +1105,19 @@ Weight for Other: 1
 (12,260 real changes made)
 (17,424 real changes made)
 
-           |                       Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other |     Total
------------+-------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0 |   158,810 
-         1 |   366,730     38,478    100,120     12,260     17,424 |   535,012 
------------+-------------------------------------------------------+----------
-     Total |   366,730     38,478    100,120     12,260     17,424 |   693,822 
-
-
-           | Ethnicity
-   caldelw |   Unknown |     Total
------------+-----------+----------
-     .0001 |   158,810 |   158,810 
-         1 |         0 |   535,012 
------------+-----------+----------
-     Total |   158,810 |   693,822 
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,810 |   158,810 
+         1 |   366,730     38,478    100,120     12,260     17,424          0 |   535,012 
+-----------+------------------------------------------------------------------+----------
+     Total |   366,730     38,478    100,120     12,260     17,424    158,810 |   693,822 
 Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.196]
+[true/approx likelihood = 0.000/0.000 = 0.160]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
 Observed proportions:
          Number Missing:   158810
@@ -1281,17 +1153,16 @@ Drawn probabilities of each ethnic group:
          P(Mixed | r=1):  .02311819
          P(Other | r=1):  .03262759
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.314]
+[true/approx likelihood = 0.000/0.000 = 0.331]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    693,822   -2.578447    1.254652  -8.674365   2.097637
-         lp2 |    693,822   -1.562287    1.206772  -6.692591   2.335071
-         lp3 |    693,822   -3.588786    1.020373  -7.708031  -.8706617
-         lp4 |    693,822   -3.350966    1.235146  -9.250431  -.5747257
+         lp1 |    693,822   -2.580796     1.25633  -8.681994   2.564095
+         lp2 |    693,822   -1.562161    1.206028  -6.696817   2.334836
+         lp3 |    693,822   -3.590092    1.022456  -7.672688  -.4898426
+         lp4 |    693,822   -3.351059    1.235077  -9.252343  -.5769551
 
 INPUTS:
 
@@ -1334,29 +1205,19 @@ Weight for Other: 1
 (12,260 real changes made)
 (17,424 real changes made)
 
-           |                       Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other |     Total
------------+-------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0 |   158,810 
-         1 |   366,730     38,478    100,120     12,260     17,424 |   535,012 
------------+-------------------------------------------------------+----------
-     Total |   366,730     38,478    100,120     12,260     17,424 |   693,822 
-
-
-           | Ethnicity
-   caldelw |   Unknown |     Total
------------+-----------+----------
-     .0001 |   158,810 |   158,810 
-         1 |         0 |   535,012 
------------+-----------+----------
-     Total |   158,810 |   693,822 
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,810 |   158,810 
+         1 |   366,730     38,478    100,120     12,260     17,424          0 |   535,012 
+-----------+------------------------------------------------------------------+----------
+     Total |   366,730     38,478    100,120     12,260     17,424    158,810 |   693,822 
 Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.571]
+[true/approx likelihood = 0.000/0.000 = 0.606]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
 Observed proportions:
          Number Missing:   158810
@@ -1392,17 +1253,16 @@ Drawn probabilities of each ethnic group:
          P(Mixed | r=1):  .02283312
          P(Other | r=1):  .03243247
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.946]
+[true/approx likelihood = 0.000/0.000 = 0.925]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
-         lp1 |    693,822   -2.578447    1.254652  -8.674365   2.097637
-         lp2 |    693,822   -1.562287    1.206772  -6.692591   2.335071
-         lp3 |    693,822   -3.588786    1.020373  -7.708031  -.8706617
-         lp4 |    693,822   -3.350966    1.235146  -9.250431  -.5747257
+         lp1 |    693,822   -2.580796     1.25633  -8.681994   2.564095
+         lp2 |    693,822   -1.562161    1.206028  -6.696817   2.334836
+         lp3 |    693,822   -3.590092    1.022456  -7.672688  -.4898426
+         lp4 |    693,822   -3.351059    1.235077  -9.252343  -.5769551
 
 INPUTS:
 
@@ -1445,29 +1305,19 @@ Weight for Other: 1
 (12,260 real changes made)
 (17,424 real changes made)
 
-           |                       Ethnicity
-   caldelw |     White      Black      Asian      Mixed      Other |     Total
------------+-------------------------------------------------------+----------
-     .0001 |         0          0          0          0          0 |   158,810 
-         1 |   366,730     38,478    100,120     12,260     17,424 |   535,012 
------------+-------------------------------------------------------+----------
-     Total |   366,730     38,478    100,120     12,260     17,424 |   693,822 
-
-
-           | Ethnicity
-   caldelw |   Unknown |     Total
------------+-----------+----------
-     .0001 |   158,810 |   158,810 
-         1 |         0 |   535,012 
------------+-----------+----------
-     Total |   158,810 |   693,822 
+           |                             Ethnicity
+   caldelw |     White      Black      Asian      Mixed      Other    Unknown |     Total
+-----------+------------------------------------------------------------------+----------
+     .0001 |         0          0          0          0          0    158,810 |   158,810 
+         1 |   366,730     38,478    100,120     12,260     17,424          0 |   535,012 
+-----------+------------------------------------------------------------------+----------
+     Total |   366,730     38,478    100,120     12,260     17,424    158,810 |   693,822 
 Manual replacements to avoid crashes:
 (0 real changes made)
 [imputing by drawing from conditional distribution without bootstrap]
-[true/approx likelihood = 0.000/0.000 = 0.378]
+[true/approx likelihood = 0.000/0.000 = 0.307]
 
-158810 missing observations on ethnicity imputed from 535012 complete observati
-> ons.
+158810 missing observations on ethnicity imputed from 535012 complete observations.
 
 . 
 . * Keep the imputed data and patient ID for each region
@@ -1483,8 +1333,7 @@ file imputed_onscoviddeath_8.dta saved
 . 
 . log close
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/
-> an_checkassumptions_MI_onscoviddeath_8.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_checkassumptions_MI_onscoviddeath_8.log
   log type:  text
- closed on:   3 Jun 2020, 06:34:14
--------------------------------------------------------------------------------
+ closed on:   7 Jul 2020, 03:13:16
+----------------------------------------------------------------------------------------------------------------------------------

@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoking_exploration_cox_models_ons
-> coviddeath_imdTOother_neuro.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoking_exploration_cox_models_onscoviddeath_imd
+> TOother_neuro.log
   log type:  text
- opened on:   3 Jun 2020, 01:19:05
+ opened on:   7 Jul 2020, 00:35:44
 
 . 
 . * Open dataset and fit specified model(s)
@@ -22,16 +22,15 @@
   4.         capture stcox `model' , strata(stp) 
   5.         if _rc==0 {
   6.                 estimates
-  7.                 estimates save ./output/models/an_smoking_exploration_cox_models_`outcome'_AGESEX_`var', replac
-> e
+  7.                 estimates save ./output/models/an_smoking_exploration_cox_models_`outcome'_AGESEX_`var', replace
   8.                 }
   9.         else di "WARNING - `var' vs `outcome' MODEL DID NOT SUCCESSFULLY FIT"
  10. 
 . }
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -60,12 +59,11 @@ Log likelihood  =   -128662.88                  Prob > chi2      =      0.0000
         Current  |   1.004608   .0423409     0.11   0.913     .9249565    1.091118
 ----------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_imd.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_imd.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -93,12 +91,11 @@ Obese II (35-39.9)  |   1.754417   .0674684    14.62   0.000     1.627042    1.8
            Current  |   1.156773   .0484761     3.48   0.001     1.065559    1.255795
 -------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_obese4cat.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_obese4cat.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -122,42 +119,39 @@ Log likelihood  =   -128943.89                  Prob > chi2      =      0.0000
           Current  |   1.134104   .0474893     3.01   0.003     1.044744    1.231108
 ------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_organ_transplant.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_organ_transplant.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
 No. of subjects =   16,557,013                  Number of obs    =  16,557,013
 No. of failures =       10,837
 Time at risk    =   1570435914
-                                                LR chi2(7)       =    32838.52
-Log likelihood  =   -128995.69                  Prob > chi2      =      0.0000
+                                                LR chi2(7)       =    32849.78
+Log likelihood  =   -128990.05                  Prob > chi2      =      0.0000
 
 -------------------------------------------------------------------------------------------
                        _t | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 --------------------------+----------------------------------------------------------------
-                     age1 |   1.160023    .025983     6.63   0.000     1.110199    1.212083
-                     age2 |   .9233913   .0447386    -1.65   0.100       .83974    1.015376
-                     age3 |   1.214715    .135811     1.74   0.082     .9756766    1.512317
-                   1.male |   1.684125    .033533    26.18   0.000     1.619668    1.751148
-1.other_immunosuppression |    2.03444   .2467249     5.86   0.000     1.604043     2.58032
+                     age1 |   1.159085   .0258409     6.62   0.000     1.109528    1.210855
+                     age2 |   .9231234   .0445379    -1.66   0.097     .8398309    1.014677
+                     age3 |   1.217609   .1355968     1.77   0.077     .9788481    1.514608
+                   1.male |   1.682778   .0335096    26.14   0.000     1.618366    1.749755
+1.other_immunosuppression |   2.748905   .3825717     7.27   0.000     2.092647    3.610967
                           |
                     smoke |
-                  Former  |   1.417707    .030118    16.43   0.000     1.359889    1.477984
-                 Current  |   1.130261   .0473267     2.92   0.003     1.041206    1.226932
+                  Former  |   1.418156   .0301278    16.44   0.000     1.360319    1.478453
+                 Current  |   1.130521   .0473394     2.93   0.003     1.041443    1.227218
 -------------------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_other_immunosuppression.ster not 
-> found)
 file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_other_immunosuppression.ster saved
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 active results
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Stratified Cox regr. -- Breslow method for ties
 
@@ -181,7 +175,6 @@ Log likelihood  =   -128730.23                  Prob > chi2      =      0.0000
      Current  |   1.141733   .0478223     3.16   0.002     1.051747    1.239418
 -------------------------------------------------------------------------------
                                                              Stratified by stp
-(note: file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_other_neuro.ster not found)
 file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_other_neuro.ster saved
 
 . 
@@ -189,8 +182,8 @@ file ./output/models/an_smoking_exploration_cox_models_onscoviddeath_AGESEX_othe
 . * Close log file
 . log close
       name:  <unnamed>
-       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoking_exploration_cox_models_ons
-> coviddeath_imdTOother_neuro.log
+       log:  E:\analyses\opensafely-risk-factors-research-full\analysis\output/an_smoking_exploration_cox_models_onscoviddeath_imd
+> TOother_neuro.log
   log type:  text
- closed on:   3 Jun 2020, 02:59:03
---------------------------------------------------------------------------------------------------------------------
+ closed on:   7 Jul 2020, 01:55:11
+----------------------------------------------------------------------------------------------------------------------------------
