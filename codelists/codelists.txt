@@ -20,7 +20,7 @@ opensafely/hypertension/2020-04-28
 opensafely/inflammatory-bowel-disease/2020-04-07
 opensafely/lung-cancer/2020-04-15
 opensafely/other-neurological-conditions/2020-06-02
-opensafely/permanent-immunosuppresion/2020-06-02
+opensafely/permanent-immunosuppression/2020-06-02
 opensafely/asthma-oral-prednisolone-medication/2020-04-27
 opensafely/ra-sle-psoriasis/2020-04-14
 opensafely/sickle-cell-disease/2020-04-14
@@ -28,4 +28,4 @@ opensafely/smoking-clear/2020-04-29
 opensafely/smoking-unclear/2020-04-29
 opensafely/solid-organ-transplantation/2020-04-10
 opensafely/stroke-updated/2020-06-02
-opensafely/temporary-immunosuppresion/2020-04-24
+opensafely/temporary-immunosuppression/2020-04-24
