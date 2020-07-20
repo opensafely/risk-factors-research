@@ -1,6 +1,5 @@
 CTV3ID,CTV3PreferredTermDesc,CTV3Source
 43C3.,HIV positive,CTV3Map_Code_And_Term
-43CZ.,HTLV-3 antibody NOS,High_Level_SNOMED
 65QA.,AIDS carrier,CTV3Map_Code_And_Term
 65VE.,Notification of AIDS,CTV3Map_Code_And_Term
 A788.,(AIDS) or (HIV infection),CTV3_Children
@@ -69,8 +68,6 @@ Xa1k1,HIV-related sclerosing cholangitis,CTV3_Children
 Xa1k3,HIV-related gut disease - cause unknown,QOF
 Xa3e8,AIDS with viral/chlamydial disease NOS,High_Level_SNOMED
 XaFuL,HIV viral load,CTV3Map_Code_And_Term
-XaFuN,HIV antibody/antigen (Duo),High_Level_SNOMED
-XaFuO,HIV p24 antigen level,High_Level_SNOMED
 XaILa,HIV 1 nucleic acid detection,CTV3Map_Code_And_Term
 XaMBK,Human immunodeficiency virus RNA/DNA ratio,CTV3Map_Code_And_Term
 XaO9K,Human immunodeficiency virus viral load by log rank,CTV3Map_Code_And_Term
