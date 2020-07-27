@@ -49,6 +49,7 @@ replace reduced_kidney_function_cat  = 2 if uniform()<0.5 & reduced_kidney_funct
 replace reduced_kidney_function_cat  = 3 if reduced_kidney_function_cat==.
 
 
+replace diabcat = 2+(uniform()<.5)  if uniform()<0.67
 
 
 save cr_create_analysis_dataset, replace

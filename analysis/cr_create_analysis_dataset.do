@@ -465,6 +465,14 @@ order cancer_exhaem_cat cancer_haem_cat, after(other_cancer_date)
 * Immunosuppressed:
 * HIV, permanent immunodeficiency ever, OR 
 * temporary immunodeficiency or aplastic anaemia last year
+
+*(FIX to get rid of original HIV testing codes - codes are stored in a temp file from + infections repo; this will be redundant on a re-extract as code list corrected)
+merge 1:1 patient_id using _temphiv, keep(match master) nogen
+replace hiv=0 if hiv_code=="XaFuN"
+replace hiv=0 if hiv_code=="XaFuO"
+replace hiv=0 if hiv_code=="43CZ."
+drop hiv_code
+
 gen temp1  = max(hiv, permanent_immunodeficiency)
 gen temp2  = inrange(temporary_immunodeficiency_date, d(1/2/2019), d(1/2/2020))
 gen temp3  = inrange(aplastic_anaemia_date, d(1/2/2019), d(1/2/2020))
@@ -782,7 +790,7 @@ keep patient_id imd stp region enter_date  									///
 	chronic_liver_disease organ_transplant spleen ra_sle_psoriasis 			///
 	reduced_kidney_function_cat stroke dementia stroke_dementia 			///
 	other_neuro other_immunosuppression   									///
-	creatinine egfr egfr_cat ckd dialysis hiv other_imm_except_hiv
+	creatinine egfr egfr_cat ckd dialysis /*hiv other_imm_except_hiv*/
 
 
 

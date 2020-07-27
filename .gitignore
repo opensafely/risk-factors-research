@@ -10,3 +10,4 @@ analysis/*
 !*.hlp
 !*.py
 !*.sthlp
+!analysis/_temphiv.dta
