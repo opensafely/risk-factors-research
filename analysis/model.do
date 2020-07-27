@@ -10,6 +10,7 @@ cd  `c(pwd)'/analysis
 **********************************************
 *IF PARALLEL WORKING - THIS MUST BE RUN FIRST*
 **********************************************
+do "cr_create_analysis_dataset.do"
 
 /*  Run analyses  */
 
