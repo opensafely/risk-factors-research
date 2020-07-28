@@ -16,7 +16,7 @@ prog define basemodel
 	else local ethnicity
 timer clear
 timer on 1
-	  stcox 	`age' 					///
+	  cap stcox 	`age' 					///
 			i.male 							///
 			i.obese4cat						///
 			i.smoke_nomiss					///
@@ -81,7 +81,6 @@ if ("`intvar'"=="ethnicity") local ethnicityflag 1
 
 	qui levelsof `intvar', local(intvarlevels)
 	local intvarlevelsexbase = substr("`intvarlevels'", 3, .)
-	di "`intvarlevelsexbase'"
 
 	*get interaction terms
 	local interactionterms
