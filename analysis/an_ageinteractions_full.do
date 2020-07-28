@@ -130,6 +130,6 @@ drop pint1 pint2 pint3 pint4 pint5 pint6
 	}
 	sort order variablelevel
 
-outsheet variablename variablelevel hrci0 hrci1 pint0 using ./output/an_ageinteractions_lt70vsgte70_TABLE.txt, replace
+outsheet variablename-pint using ./output/an_ageinteractions_full_TABLE.txt, replace
 	
 log close
