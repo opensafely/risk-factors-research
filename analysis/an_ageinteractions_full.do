@@ -95,6 +95,7 @@ if ("`intvar'"=="ethnicity") local ethnicityflag 1
 
 	*post results
 	if _rc==0{
+	estimates
 	est save ./output/models/an_ageinteractions_full_`intvar', replace
 	testparm `interactionterms'
 	local pint=r(p)
