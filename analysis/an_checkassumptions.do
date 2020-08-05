@@ -18,9 +18,13 @@
 *
 ********************************************************************************
 *	
-*	Stata routines required:		???
+*	Stata routines required:		Somers d to create weighted C-statistics
 *
 ********************************************************************************
+
+
+* Add the required ado files to the adopath
+adopath ++  "`c(pwd)'\somersd"
 
 
 
@@ -69,7 +73,7 @@ timer on 1
 			i.chronic_liver_disease 		///
 			i.stroke_dementia		 		///
 			i.other_neuro					///
-			i.reduced_kidney_function_cat 		///
+			i.reduced_kidney_function_cat 	///
 			i.organ_transplant 				///
 			i.spleen 						///
 			i.ra_sle_psoriasis  			///
@@ -93,6 +97,9 @@ basecoxmodel, age("age1 age2 age3")  ethnicity(0)
 if _rc==0 {
 	
 	estimates
+	predict hr
+	generate invhr=1/hr
+	gen censind= 1-_d if _st==1
 	* estimates save ./output/models/an_multivariate_cox_models_`outcome'_MAINFULLYADJMODEL_agespline_bmicat_noeth, replace
 
 	/*  Proportional Hazards test  */
@@ -124,11 +131,15 @@ if _rc==0 {
 	forvalues i = 1 (1) 10 {
 		gen     rsample`i' = uniform()<`p0' if `outcome'==0
 		replace rsample`i' = uniform()<`p1' if `outcome'==1
-		estat concordance if rsample`i'==1
-		local cstat`i' =  r(C)
+		gen     weight =  1/`p0' if  `outcome'==0 & rsample`i'==1
+		replace weight =  1/`p1' if  `outcome'==1 & rsample`i'==1
+		
+		somersd _t invhr if _st==1 & weight<. [iweight=weight], cenind(censind) tdist transf(c)
+		matrix b = r(table)
+		local cstat`i' = b[1,1]
 		noi di "C-statistic in `i' th sample = " `cstat`i''
 		local csum = `csum' + `cstat`i''
-		drop rsample`i'
+		drop rsample`i' weight
 	}
 	local csum = `csum'/10
 	noi di "Average C-statistic = " `csum'
