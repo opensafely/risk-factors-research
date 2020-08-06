@@ -1,0 +1,24 @@
+--- .github/workflows/test_runner.yaml
++++ .github/workflows/test_runner.yaml
+@@ -29,9 +29,9 @@ jobs:
+       with:
+         # It seems we can't do this with the standard GITHUB_TOKEN, but
+         # have to use a personal token with the correct permissions instead
+-        login-server: docker.pkg.github.com
+-        username: sebbacon
+-        password: ${{ secrets.PACKAGE_READ_ACCESS_TOKEN }}
++        login-server: docker.opensafely.org
++        username: docker
++        password: ${{ secrets.OPENSAFELY_DOCKER_PASSWORD }}
+ 
+     - name: Update codelists
+       run: cohortextractor update_codelists
+@@ -42,7 +42,7 @@ jobs:
+       run: cohortextractor generate_cohort --expectations-population=100000
+ 
+     - name: Run model
+-      run: docker run --mount source=${{ github.workspace }},dst=/workspace,type=bind docker.pkg.github.com/opensafely/stata-docker/stata-mp analysis/model.do
++      run: docker run --mount source=${{ github.workspace }},dst=/workspace,type=bind docker.opensafely.org/stata-mp analysis/model.do
+ 
+     - name: Create pre-release if on non-master branch
+       if: github.ref != 'master'

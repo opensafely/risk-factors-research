@@ -43,11 +43,11 @@ jobs:
       with:
         # It seems we can't do this with the standard GITHUB_TOKEN, but
         # have to use a personal token with the correct permissions instead
-        login-server: docker.opensafely.org
+        login-server: docker.pkg.github.com
         username: sebbacon
-        password: ${{ secrets.OPENSAFELY_DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_GITHUB_TOKEN_TEST }}
     - name: Docker Pull
-      run: docker pull docker.opensafely.org/stata-mp
+      run: docker pull docker.pkg.github.com/ebmdatalab/stata-docker-runner/stata-mp
     - name: Docker Run
       run: PYTHONPATH=. python run.py run --test
   test_model:

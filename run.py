@@ -39,7 +39,7 @@ except ImportError:
     GOOEY_INSTALLED = False
     from argparse import ArgumentParser
 
-stata_image = "docker.pkg.github.com/ebmdatalab/stata-docker-runner/stata-mp:latest"
+stata_image = "docker.opensafely.org/stata-mp:latest"
 notebook_tag = "opencorona-research"
 target_dir = "/home/app/notebook"
 
