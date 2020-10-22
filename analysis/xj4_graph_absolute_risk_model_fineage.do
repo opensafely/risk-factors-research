@@ -35,6 +35,7 @@ noi di "`ethnicity'"
 use "output/abs_risks_fineage_`ethnicity'.dta", clear
 drop if age>80
 
+
 label define male 0 "Female" 1 "Male" 
 label values male male
 
@@ -67,7 +68,7 @@ graph export output/abs_risk_resp_eth`ethnicity'.svg, as(svg) replace width(1600
 * Hypertension, cardiac disease and diabetes
 sort age
 twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )						///
-		(rarea risk80_htdiag_or_highbp_lci risk80_htdiag_or_highbp_uci age, color(gs14) )	///
+  		(rarea risk80_htdiag_or_highbp_lci risk80_htdiag_or_highbp_uci age, color(gs14) )	///
 		(rarea risk80_cardiac_disease_lci risk80_cardiac_disease_uci 		age, color(gs14) )	///
 		(rarea risk80_diabcat_2_lci risk80_diabcat_2_uci 		age, color(gs14) )			///
 		(rarea risk80_diabcat_3_lci risk80_diabcat_3_uci 		age, color(gs14) )			///
@@ -248,5 +249,6 @@ twoway 	(line risk80_respiratory_disease 		age, lwidth(vthin) lcolor(eltblue)) 	
 		colfirst) 
 graph export output/abs_risk_ALL_eth`ethnicity'.svg, as(svg) replace width(1600)
 			
+
 			
 			

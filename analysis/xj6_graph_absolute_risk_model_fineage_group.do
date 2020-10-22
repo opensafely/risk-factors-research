@@ -176,4 +176,5 @@ twoway  (line risk_age_65 age, lpattern(dot) lcolor(gs10))		///
 		colfirst) 
 		
 graph export output/abs_risk_comorbid_all_eth.svg, as(svg) replace width(1600)
+
 		
