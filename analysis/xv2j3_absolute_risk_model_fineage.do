@@ -1,14 +1,14 @@
 ********************************************************************************
 *
-*	Do-file:		xj1_absolute_risk_model.do
+*	Do-file:		xv2j3_absolute_risk_model_fineage.do
 *
 *	Programmed by:	Fizz & Krishnan
 *
 *	Data used:		cr_create_analysis_dataset_STSET_onscoviddeath.dta
 *
-*	Data created:	output/abs_risks_`ethnicity'.dta, for ethnicity = 1,2,..,5
+*	Data created:	abs_risks_fineage_`ethnicity', for ethnicity=1,2,...,5
 *
-*	Other output:	Log file:  xj1_absolute_risk_model_`ethnicity'.log
+*	Other output:	Log file:  xj3_absolute_risk_model_fineage_`ethnicity'.log
 *
 ********************************************************************************
 *
@@ -31,10 +31,14 @@ local ethnicity `1'
 noi di "`ethnicity'"
 
 
+local outcome `2'
+noi di "`outcome'"
+
+
 
 * Open a log file
 capture log close
-log using "./output/xj1_absolute_risk_model_`ethnicity'", text replace
+log using "./output/xj3_absolute_risk_model_fineage_`ethnicity'_`outcome'", text replace
 
 
 
@@ -43,9 +47,19 @@ log using "./output/xj1_absolute_risk_model_`ethnicity'", text replace
 *************************************************
 
 
-use "cr_create_analysis_dataset_STSET_onscoviddeath.dta", clear
+* Stset for outcome of interest
+if "`outcome'"=="death" {
+	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_onsdeath_fail1.dta", replace
+}
+else if "`outcome'"=="hosp" {
+	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_covidadmission.dta", replace
+}
+
+
 drop if ethnicity>=.
 drop ethnicity_*
+
+
 
 
 
@@ -76,7 +90,8 @@ egen comorbidity_count = rowtotal(			///
 			organ_transplant 				///
 			spleen 							///
 			ra_sle_psoriasis  				///
-			other_immunosuppression 		///
+			other_imm_except_hiv	 		///
+			hiv								///
 			)
 drop asthmabin diabbin cancer_exhaem_bin cancer_haem_bin kidneybin
 
@@ -100,7 +115,7 @@ rename region_new region
 rename reduced_kidney_function_cat 	red_kidney_cat
 rename chronic_respiratory_disease 	respiratory_disease
 rename chronic_cardiac_disease 		cardiac_disease
-rename other_immunosuppression 		immunosuppression
+rename other_imm_except_hiv 		immunosuppression
 
 
 * Create dummy variables for categorical predictors 
@@ -112,7 +127,7 @@ foreach var of varlist obese4cat smoke_nomiss imd  		///
 		qui summ ord_`var'
 		local max=r(max)
 		forvalues i = 1 (1) `max' {
-			gen `var'_`i' = (ord_`var'==`i')
+			gen `var'_`i' = (`var'==`i')
 		}	
 		drop ord_`var'
 		drop `var'_1
@@ -141,6 +156,7 @@ stpm2  age1 age2 age3 male 					///
 			spleen 							///
 			ra_sle_psoriasis  				///
 			immunosuppression				///
+			hiv								///
 			region_*,						///
 			scale(hazard) df(5) eform
 estat ic
@@ -173,53 +189,19 @@ global p90 = r(c_4)
 
 
 
-*************************************
-*   Split age more finely in 60-80  *
-*************************************
-
-drop agegroup 
-
-recode age  min/39	= 1 	///
-			40/49 	= 2 	///
-			50/59 	= 3 	///
-			60/64 	= 4 	///
-			65/69 	= 5 	///
-			70/74 	= 6 	///
-			75/79 	= 7 	///
-			80/max	= 8, gen(agegroup)
-
-label define agegroup_fine  ///
-				1  "18-<40"	///
-				2  "40-<50"	///
-				3  "50-<60"	///
-				4  "60-<65"	///
-				5  "65-<70"	///
-				6  "70-<75"	///
-				7  "75-<80" ///
-				8  "80+"  
-
-label values agegroup agegroup_fine
-tab agegroup, m
-
-
-
 *********************************************************
 *   Obtain predicted risks by comorbidity with 95% CIs  *
 *********************************************************
 
-* Collapse data to one row per age-group, with age set to the median within the group
-bysort agegroup (age): gen order 	= _n
-bysort agegroup (age): gen revorder = _N - _n
-gen diff = abs(order-revord)
-keep if diff<=1
-bysort agegroup: keep if _n==1
+* Collapse data to one row per age, with age set to the median within the group
+bysort age: keep if _n==1
 
 * Keep only variables needed for the risk prediction
-keep agegroup age? _rcs1- _d_rcs5  _st _d _t _t0
+keep age age? _rcs1- _d_rcs5  _st _d _t _t0
 
 * Create two rows per agegroup (male and female)
 expand 2
-bysort agegroup: gen male = _n-1
+bysort age: gen male = _n-1
 
 * Set time to 80 days (for the risk prediction period)
 gen time80 = 80
@@ -251,26 +233,9 @@ gen organ_transplant  			= 0
 gen spleen						= 0
 gen ra_sle_psoriasis  			= 0
 gen immunosuppression 			= 0
+gen hiv				 			= 0
 
-gen smoke_nomiss_2 = 0
-gen smoke_nomiss_3 =0 			 
-gen obese4cat_2 =0 
-gen obese4cat_3 =0 
-gen obese4cat_4 =0 					
-gen imd_2 =0 
-gen imd_3 =1 
-gen imd_4 =0 
-gen imd_5 =0 							
-gen region_2= 0	
-gen region_3= 0 
-gen region_4= 0 
-gen region_5= 1 				
-gen region_6= 0 
-gen region_7= 0 
-gen region_8= 0 
-gen region_9= 0			
 
-* Ethnicity - default white
 gen ethnicity_2 =0
 gen ethnicity_3 =0 
 gen ethnicity_4 =0 
@@ -287,6 +252,24 @@ else if `ethnicity'==4 {
 else if `ethnicity'==5 {
 	replace ethnicity_5 =1	
 }
+
+gen smoke_nomiss_2 = 0
+gen smoke_nomiss_3 = 0 			 
+gen obese4cat_2 =0 
+gen obese4cat_3 =0 
+gen obese4cat_4 =0 					
+gen imd_2 =0 
+gen imd_3 =1 
+gen imd_4 =0 
+gen imd_5 =0 							
+gen region_2= 0	
+gen region_3= 0 
+gen region_4= 0 
+gen region_5= 1 				
+gen region_6= 0 
+gen region_7= 0 
+gen region_8= 0 
+gen region_9= 0			
 
 
 
@@ -319,6 +302,7 @@ foreach var of varlist cons 				///
 		spleen 								///
 		ra_sle_psoriasis   					///
 		immunosuppression  					///
+		hiv
 		{
 				
 	* Reset that value to "yes"
@@ -329,15 +313,15 @@ foreach var of varlist cons 				///
 	
 	* Change to risk, not survival
 	gen risk80_`var' = 1 - pred80_`var'
-	gen risk80_`var'_lci = 1 - pred80_`var'_uci
 	gen risk80_`var'_uci = 1 - pred80_`var'_lci
-	drop pred80_`var' pred80_`var'_uci  pred80_`var'_lci
+	gen risk80_`var'_lci = 1 - pred80_`var'_uci
+	drop pred80_`var' pred80_`var'_lci pred80_`var'_uci
 	
 	* Reset that value back to "no"
 	replace `var' = 0
 }
 
-keep agegroup male risk*
+keep age male risk*
 
 
 * Save relevant percentiles
@@ -348,7 +332,7 @@ gen p90 = $p90
 
 
 * Save data
-save "output/abs_risks_`ethnicity'", replace
+save "output/abs_risks_fineage_`ethnicity'_`outcome'", replace
 
 
 

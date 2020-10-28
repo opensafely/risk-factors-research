@@ -30,11 +30,13 @@
 local ethnicity `1' 
 noi di "`ethnicity'"
 
+local outcome `2'
+noi di "`outcome'"
 
 
 * Open a log file
 capture log close
-log using "./output/xj1_absolute_risk_model_`ethnicity'", text replace
+log using "./output/xv2j1_absolute_risk_model_`ethnicity'_`outcome'", text replace
 
 
 
@@ -43,7 +45,15 @@ log using "./output/xj1_absolute_risk_model_`ethnicity'", text replace
 *************************************************
 
 
-use "cr_create_analysis_dataset_STSET_onscoviddeath.dta", clear
+* Stset for outcome of interest
+if "`outcome'"=="death" {
+	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_onsdeath_fail1.dta", replace
+}
+else if "`outcome'"=="hosp" {
+	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_covidadmission.dta", replace
+}
+
+
 drop if ethnicity>=.
 drop ethnicity_*
 
@@ -76,7 +86,8 @@ egen comorbidity_count = rowtotal(			///
 			organ_transplant 				///
 			spleen 							///
 			ra_sle_psoriasis  				///
-			other_immunosuppression 		///
+			other_imm_except_hiv	 		///
+			hiv								///
 			)
 drop asthmabin diabbin cancer_exhaem_bin cancer_haem_bin kidneybin
 
@@ -100,7 +111,7 @@ rename region_new region
 rename reduced_kidney_function_cat 	red_kidney_cat
 rename chronic_respiratory_disease 	respiratory_disease
 rename chronic_cardiac_disease 		cardiac_disease
-rename other_immunosuppression 		immunosuppression
+rename other_imm_except_hiv 		immunosuppression
 
 
 * Create dummy variables for categorical predictors 
@@ -141,11 +152,15 @@ stpm2  age1 age2 age3 male 					///
 			spleen 							///
 			ra_sle_psoriasis  				///
 			immunosuppression				///
+			hiv								///
 			region_*,						///
 			scale(hazard) df(5) eform
 estat ic
 timer off 1
 timer list 1
+
+
+
 
 
 
@@ -251,6 +266,7 @@ gen organ_transplant  			= 0
 gen spleen						= 0
 gen ra_sle_psoriasis  			= 0
 gen immunosuppression 			= 0
+gen hiv 						= 0
 
 gen smoke_nomiss_2 = 0
 gen smoke_nomiss_3 =0 			 
@@ -319,6 +335,7 @@ foreach var of varlist cons 				///
 		spleen 								///
 		ra_sle_psoriasis   					///
 		immunosuppression  					///
+		hiv									///
 		{
 				
 	* Reset that value to "yes"
@@ -348,7 +365,7 @@ gen p90 = $p90
 
 
 * Save data
-save "output/abs_risks_`ethnicity'", replace
+save "output/abs_risks_`ethnicity'_`outcome'", replace
 
 
 
