@@ -42,18 +42,22 @@ log using "./output/xv2j5_absolute_risk_model_fineage_group_`outcome'", text rep
 *************************************************
 
 
-
 * Stset for outcome of interest
 if "`outcome'"=="death" {
 	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_onsdeath_fail1.dta", replace
 }
 else if "`outcome'"=="hosp" {
-	use "../hiv-research/analysis/cr_create_analysis_dataset_STSET_covidadmission.dta", replace
+	use "../hiv-research/analysis/cr_create_analysis_dataset.dta", replace
+	qui summ stime_covidadmission
+	global covid_admissiondeathcensor = r(max)
+	gen newstime_covidadmission 	= min($covid_admissiondeathcensor, covid_admission_date)
+	gen byte new_covidadmission = (covid_admission_date < .)
+	replace covidadmission 	= 0 if (newstime_covidadmission > $covid_admissiondeathcensor) 
 }
-
 
 drop if ethnicity>=.
 drop ethnicity_*
+
 
 
 
