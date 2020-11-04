@@ -1,0 +1,41 @@
+Name	leveldesc	hr_death	hr_hosp
+"Age"	"Spline 1"	1.18823	1.092166
+"Age"	"Spline 2"	.8464167	.8582944
+"Age"	"Spline 3"	1.507406	1.539564
+"Male"	" "	1.453929	1.401408
+"Ethnicity"	"Asian"	1.415273	1.685509
+"Ethnicity"	"Black"	1.525361	2.012144
+"Ethnicity"	"Mixed"	1.487685	1.709201
+"Ethnicity"	"Other"	1.301547	1.573798
+"IMD"	"2"	1.143288	1.097018
+"IMD"	"3"	1.187555	1.184959
+"IMD"	"4"	1.444162	1.329639
+"IMD"	"5"	1.631714	1.509931
+"BMI"	"Obese I (30-34.9)"	1.002545	1.233638
+"BMI"	"Obese II (35-39.9)"	1.356077	1.5668
+"BMI"	"Obese III (40+)"	1.843312	2.083017
+"Smoking"	"Former"	1.207803	1.11585
+"Smoking"	"Current"	.996474	.7533118
+"Asthma"	"With no recent OCS use"	.9539706	1.146347
+"Asthma"	"With recent OCS use"	1.095268	1.37545
+"Chronic respiratory disease"	" "	1.635224	1.785075
+"Hypertension/high bp"	" "	.9001538	1.100587
+"Diabetes"	"Controlled (HbA1c <58mmol/mol)"	1.284359	1.367578
+"Diabetes"	"Uncontrolled (HbA1c >=58mmol/mol) "	1.855242	1.998491
+"Diabetes"	"Unknown HbA1c"	1.881331	1.854081
+"Chronic cardiac disease"	" "	1.179963	1.321182
+"Stroke or dementia"	" "	2.176048	1.707898
+"Other neurological"	" "	2.625961	2.381132
+"Cancer (non-haematological)"	"<1 year ago"	1.748314	2.253619
+"Cancer (non-haematological)"	"1-4.9 years ago"	1.233976	1.267763
+"Cancer (non-haematological)"	"5+ years ago"	1.005869	1.093368
+"Haematological malignancy"	"<1 year ago"	2.779167	3.295279
+"Haematological malignancy"	"1-4.9 years ago"	2.373092	2.636492
+"Haematological malignancy"	"5+ years ago"	1.609115	1.632352
+"Chronic liver disease"	" "	1.915115	1.911104
+"Reduced kidney function"	"eGFR 30-60 ml/min/1.73m2"	1.313675	1.361455
+"Reduced kidney function"	"eGFR <30 ml/min/1.73m2"	2.423722	2.678768
+"Organ transplant"	" "	3.125402	2.557143
+"Asplenia"	" "	1.157549	1.759896
+"Rheumatoid arthritis/Lupus/Psoriasis"	" "	1.159318	1.22124
+"Other immunosuppression"	" "	3.254454	4.110765
