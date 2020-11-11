@@ -46,32 +46,21 @@ log using "./output/xv2j1_absolute_risk_model_`ethnicity'_`outcome'_new", text r
 
 use "../../hiv-research/analysis/cr_create_analysis_dataset.dta", replace
 
+qui summ 
+global covid_admissiondeathcensor = d(6may2020)
+global covid_onsdeathcensor = d(6may2020)
 
-********* DEFAULT CENSORING IS MAX OUTCOME DATE MINUS 7 **********
-foreach var of varlist 	ons_died_date covid_admission_date {
-		*Set default censoring date as max observed minus 7 days
-		local endofname = strpos("`var'", "_date")-1
-		noi di "end `endofname'"
-		local globstem = substr("`var'",1,`endofname')
-		noi di "gob `globstem'"
-		qui summ `var'
-		global `globstem'deathcensor = r(max)-7
-		noi di "`globstem'deathcensor"
-}
+gen stime_hosp	= min($covid_admissiondeathcensor, covid_admission_date)
+gen byte covid_hosp = (covid_admission_date <= $covid_admissiondeathcensor)
 
-gen stime_hosp = min($covid_admissiondeathcensor, covid_admission_date)
-gen byte hosp = (covid_admission_date <= $covid_admissiondeathcensor)
-	
-gen covid_death = (onsdeath==1)
-gen onscovid_date = ons_died_date if covid_death==1
-gen stime_death   = min($ons_dieddeathcensor, onscovid_date)
-gen byte death = (onscovid_date <= $ons_dieddeathcensor)
+gen coviddeath = (onsdeath==1)
+gen onscovid_date = ons_died_date if coviddeath==1
+gen stime_death 	= min($covid_onsdeathcensor, onscovid_date)
+gen byte covid_death = (onscovid_date <= $covid_onsdeathcensor)
 
-	
-	
-stset stime_`outcome', fail(`outcome') 				///
+
+stset stime_`outcome', fail(covid_`outcome') 				///
 	id(patient_id) enter(enter_date) origin(enter_date)
-
 
 drop if ethnicity>=.
 drop ethnicity_*
@@ -173,7 +162,7 @@ stpm2  age1 age2 age3 male 					///
 			immunosuppression				///
 			hiv								///
 			region_*,						///
-			scale(hazard) df(10) eform lininit
+			scale(hazard) df(10) eform lininit 
 estat ic
 timer off 1
 timer list 1

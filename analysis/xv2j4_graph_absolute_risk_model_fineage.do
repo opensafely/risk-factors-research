@@ -34,9 +34,30 @@ local outcome `2'
 noi di "`outcome'"
 
 
+
+
 * Open data 
 use "output/abs_risks_fineage_`ethnicity'_`outcome'.dta", clear
 drop if age>80
+
+
+
+*************************************
+*  HIV - drop for hospitalisations  *
+*************************************
+
+if "`outcome'"=="hosp" {
+drop risk80_hiv risk80_hiv_uci risk80_hiv_lci
+}
+
+if "`outcome'"=="hosp" {
+	local opts = "ylab(0 (0.001) 0.009, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80)"
+}
+else {
+	local opts = "ylab(0 (0.001) 0.007, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80)"	
+}
+
+
 
 
 label define male 0 "Female" 1 "Male" 
@@ -58,7 +79,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )							///
 		(line risk80_asthmacat_3			 	age, lcolor(gold)) 								///
 		(line risk80_cons 						age, lcolor(navy)) 								///
 		(line risk_age_65 						age, lpattern(dot) lcolor(black))				///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 				///
+		, 	`opts' by(male, note("")) 			///
 		legend(order(5 6 7 8) 				///
 		label(5 "Respiratory disease")		///
 		label(6 "Asthma, mild")				///
@@ -83,7 +104,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )						///
 		(line risk80_diabcat_4			 		age, lcolor(brown)) 						///
 		(line risk80_cons 						age, lcolor(navy)) 							///
 		(line risk_age_65 						age, lpattern(dot) lcolor(black))			///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 		///
+		, 	`opts' by(male, note("")) 			///
 		legend(order(7 8 9 10 11 12) 		///
 		label(7 "High BP/hypertension")		///
 		label(8 "Cardiac disease")			///
@@ -109,7 +130,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )									///
 		(line risk80_organ_transplant			age, lcolor(green))  					///
 		(line risk80_cons 						age, lcolor(navy)) 						///
 		(line risk_age_65 						age, lpattern(dot) lcolor(black))		///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 	///
+		, 	`opts' by(male, note("")) 			///
 		legend(order(6 7 8 9 10) 			///
 		label(6 "Liver disease")			///
 		label(7 "Reduced kidney function")	///
@@ -130,7 +151,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )						///
 		(line risk80_other_neuro 				age, lcolor(orange)) 	 					///
 		(line risk80_cons 						age, lcolor(navy)) 	 						///
 		(line risk_age_65 						age, lpattern(dot) lcolor(black))			///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 	///
+		, 	`opts' by(male, note("")) 			///
 		legend(order(4 5 6) 				///
 		label(4 "Stroke/dementia")			///
 		label(5 "Other neurological")		///
@@ -157,7 +178,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )								///
 		(line risk80_cancer_haem_cat_4		age, lcolor(brown)) 			///
 		(line risk80_cons 					age, lcolor(navy)) 	 			///
 		(line risk_age_65 					age, lpattern(dot) lcolor(black))						///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 	///
+		, 	`opts' by(male, note("")) 			///
 		legend(order(8 9 10 11 12 13 14) colfirst	///
 		label(8 "Other cancer (<1yr)")		///
 		label(9 "Other cancer (2-5yr)")		///
@@ -171,92 +192,171 @@ graph export output/abs_risk_cancer_eth`ethnicity'_`outcome'.svg, as(svg) replac
 	
 		
 * Spleen, RA, immuno
-sort age
-twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )								///
-		(rarea risk80_spleen_lci risk80_spleen_uci age, color(gs14) )								///
-		(rarea risk80_ra_sle_psoriasis_lci risk80_ra_sle_psoriasis_uci 		age, color(gs14) )		///
-		(rarea risk80_immunosuppression_lci risk80_immunosuppression_uci 	age, color(gs14) )		///
-		(rarea risk80_hiv_lci risk80_hiv_uci 	age, color(gs14) )		///
-		(line risk80_spleen 					age, lcolor(green)) 								///
-		(line risk80_ra_sle_psoriasis 			age, lcolor(red)) 	  								///
-		(line risk80_immunosuppression			age, lcolor(gold)) 	  								///
-		(line risk80_hiv						age, lcolor(gold)) 	  								///
-		(line risk80_cons 						age, lcolor(navy)) 	  								///
-		(line risk_age_65 					age, lpattern(dot) lcolor(black))						///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) 	///
-		legend(order(6 7 8 9 10) 				///
-		label(5 "Spleen")					///
-		label(6 "RA/SLE/Psoriasis")			///
-		label(7 "Immunosuppression (not HIV)")		///
-		label(7 "HIV")		///
-		label(8 "No comborbidity")			///
-		)
-graph export output/abs_risk_immuno_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
-				
+if "`outcome'"=="hosp" {
+	sort age
+	twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )								///
+			(rarea risk80_spleen_lci risk80_spleen_uci age, color(gs14) )								///
+			(rarea risk80_ra_sle_psoriasis_lci risk80_ra_sle_psoriasis_uci 		age, color(gs14) )		///
+			(rarea risk80_immunosuppression_lci risk80_immunosuppression_uci 	age, color(gs14) )		///
+			(line risk80_spleen 					age, lcolor(green)) 								///
+			(line risk80_ra_sle_psoriasis 			age, lcolor(red)) 	  								///
+			(line risk80_immunosuppression			age, lcolor(gold)) 	  								///
+			(line risk80_cons 						age, lcolor(navy)) 	  								///
+			(line risk_age_65 					age, lpattern(dot) lcolor(black))						///
+			, 	`opts' by(male, note("")) 			///
+			legend(order(5 6 7 8) 				///
+			label(5 "Spleen")					///
+			label(6 "RA/SLE/Psoriasis")			///
+			label(7 "Immunosuppression (not HIV)")		///
+			label(8 "No comborbidity")			///
+			)
+	graph export output/abs_risk_immuno_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
+} 
+else {
+		sort age
+	twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )								///
+			(rarea risk80_spleen_lci risk80_spleen_uci age, color(gs14) )								///
+			(rarea risk80_ra_sle_psoriasis_lci risk80_ra_sle_psoriasis_uci 		age, color(gs14) )		///
+			(rarea risk80_immunosuppression_lci risk80_immunosuppression_uci 	age, color(gs14) )		///
+			(rarea risk80_hiv_lci risk80_hiv_uci 	age, color(gs14) )		///
+			(line risk80_spleen 					age, lcolor(green)) 								///
+			(line risk80_ra_sle_psoriasis 			age, lcolor(red)) 	  								///
+			(line risk80_immunosuppression			age, lcolor(gold)) 	  								///
+			(line risk80_hiv						age, lcolor(gold)) 	  								///
+			(line risk80_cons 						age, lcolor(navy)) 	  								///
+			(line risk_age_65 					age, lpattern(dot) lcolor(black))						///
+			, 	`opts' by(male, note("")) 			///
+			legend(order(6 7 8 9 10) 				///
+			label(6 "Spleen")					///
+			label(7 "RA/SLE/Psoriasis")			///
+			label(8 "Immunosuppression (not HIV)")		///
+			label(9 "HIV")		///
+			label(10 "No comborbidity")			///
+			)
+	graph export output/abs_risk_immuno_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
+}				
 			
 			
 			
 			
 			
 * All comorbidities
-sort age
-twoway 	(line risk80_respiratory_disease 		age, lwidth(vthin) lcolor(eltblue)) 			///
-		(line risk80_asthmacat_2 				age, lwidth(vthin) lcolor(blue)) 				///
-		(line risk80_asthmacat_3			 	age, lwidth(vthin) lcolor(midblue)) 			///
-		(line risk80_htdiag_or_highbp 			age, lwidth(vthin) lcolor(olive_teal)) 		///
-		(line risk80_cardiac_disease 			age, lwidth(vthin) lcolor(mint)) 				///
-		(line risk80_diabcat_2			 		age, lwidth(vthin) lcolor(midgreen)) 			///
-		(line risk80_diabcat_3			 		age, lwidth(vthin) lcolor(green)) 			///
-		(line risk80_diabcat_4			 		age, lwidth(vthin) lcolor(dkgreen)) 			///
-		(line risk80_chronic_liver_disease 		age, lwidth(vthin) lcolor(olive))  			///
-		(line risk80_red_kidney_cat_2 			age, lwidth(vthin) lcolor(stone))  			///
-		(line risk80_red_kidney_cat_3 			age, lwidth(vthin) lcolor(sand))  			///
-		(line risk80_organ_transplant			age, lwidth(vthin) lcolor(sienna))  			///
-		(line risk80_stroke_dementia 			age, lwidth(vthin) lcolor(red)) 				///
-		(line risk80_other_neuro 				age, lwidth(vthin) lcolor(maroon)) 	 			///
-		(line risk80_cancer_exhaem_cat_2 		age, lwidth(vthin) lcolor(gs3)) 	 			///
-		(line risk80_cancer_exhaem_cat_3 		age, lwidth(vthin) lcolor(gs5)) 	 			///
-		(line risk80_cancer_exhaem_cat_4		age, lwidth(vthin) lcolor(gs7)) 	 			///
-		(line risk80_cancer_haem_cat_2 			age, lwidth(vthin) lcolor(sandb)) 				///
-		(line risk80_cancer_haem_cat_3 			age, lwidth(vthin) lcolor(gold)) 				///
-		(line risk80_cancer_haem_cat_4			age, lwidth(vthin) lcolor(yellow)) 				///
-		(line risk80_spleen 					age, lwidth(vthin) lcolor(orange_red)) 			///
-		(line risk80_ra_sle_psoriasis 			age, lwidth(vthin) lcolor(magenta)) 	  		///
-		(line risk80_immunosuppression			age, lwidth(vthin) lcolor(red)) 		///
-		(line risk80_hiv						age, lwidth(vthin) lcolor(red)) 		///
-		(line risk80_cons 						age, lwidth(vthin) lcolor(black)) 	  		///
-		(line risk_age_65 					age, lpattern(dot) lcolor(black))	///
-		, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) by(male, note("")) ///
-		legend(order(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25) ///
-		size(tiny) col(4)					///
-		label(1 "Respiratory") 				///
-		label(2 "Asthma mild") 				///
-		label(3 "Asthma sev") 				///
-		label(4 "Hypertension") 			///
-		label(5 "Cardiac") 					///
-		label(6 "Diab, control") 			/// 
-		label(7 "Diab, uncontrol")  		///
-		label(8 "Diab, unknown")  			///
-		label(9 "Liver")  					///
-		label(10 "Red kidney")  			///
-		label(11 "Poor kidney")  			///
-		label(12 "Transplant")  			///
-		label(13 "Stroke/dementia") 		///
-		label(14 "Neuro") 	 				///
-		label(15 "Canc. Oth (<1yr)") 		///
-		label(16 "Canc. Oth (2-4yr)") 		///
-		label(17 "Canc. Oth (5+yr)") 		///
-		label(18 "Canc. Haem (<1yr)") 		///
-		label(19 "Canc. Haem (2-4yr)") 		///
-		label(20 "Canc. Haem (5+yr)") 		///
-		label(21 "Spleen") 					///
-		label(22 "RA/SLE/psoriasis") 		///
-		label(23 "Immunosuppression") 		///
-		label(24 "HIV") 					///
-		label(25 "No comorbidity") 	  		///
-		colfirst) 
-graph export output/abs_risk_ALL_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
-			
-
-			
+if "`outcome'"=="hosp" {
+	sort age
+	twoway 	(line risk80_respiratory_disease 		age, lwidth(vthin) lcolor(eltblue)) 						///
+			(line risk80_asthmacat_2 				age, lwidth(vthin) lcolor(blue)) 							///
+			(line risk80_asthmacat_3			 	age, lwidth(vthin) lcolor(midblue)) 						///
+			(line risk80_htdiag_or_highbp 			age, lwidth(vthin) lcolor(olive_teal)) 						///
+			(line risk80_cardiac_disease 			age, lwidth(vthin) lcolor(mint)) 							///
+			(line risk80_diabcat_2			 		age, lwidth(vthin) lcolor(midgreen)) 						///
+			(line risk80_diabcat_3			 		age, lwidth(vthin) lcolor(green)) 							///
+			(line risk80_diabcat_4			 		age, lwidth(vthin) lcolor(dkgreen)) 						///
+			(line risk80_chronic_liver_disease 		age, lwidth(vthin) lcolor(olive))  							///
+			(line risk80_red_kidney_cat_2 			age, lwidth(vthin) lcolor(stone))							///
+			(line risk80_red_kidney_cat_3 			age, lwidth(vthin) lcolor(sand))  							///
+			(line risk80_organ_transplant			age, lwidth(vthin) lcolor(sienna))  						///
+			(line risk80_stroke_dementia 			age, lwidth(vthin) lcolor(red)) 							///
+			(line risk80_other_neuro 				age, lwidth(vthin) lcolor(maroon)) 	 						///
+			(line risk80_cancer_exhaem_cat_2 		age, lwidth(vthin) lcolor(gs3) lpattern(dash))	 			///
+			(line risk80_cancer_exhaem_cat_3 		age, lwidth(vthin) lcolor(gs5) lpattern(dash))	 			///
+			(line risk80_cancer_exhaem_cat_4		age, lwidth(vthin) lcolor(gs7) lpattern(dash))	 			///
+			(line risk80_cancer_haem_cat_2 			age, lwidth(vthin) lcolor(sandb) lpattern(dash))			///
+			(line risk80_cancer_haem_cat_3 			age, lwidth(vthin) lcolor(gold) 	lpattern(dash))			///
+			(line risk80_cancer_haem_cat_4			age, lwidth(vthin) lcolor(yellow) 	lpattern(dash))			///
+			(line risk80_spleen 					age, lwidth(vthin) lcolor(orange_red)  lpattern(dot))		///
+			(line risk80_ra_sle_psoriasis 			age, lwidth(vthin) lcolor(magenta)) 	  					///
+			(line risk80_immunosuppression			age, lwidth(vthin) lcolor(red) lpattern(dash))				///
+			(line risk80_cons 						age, lwidth(vthin) lcolor(black)) 	  						///
+			(line risk_age_65 					age, lpattern(dot) lcolor(black))								///
+			, 	`opts' by(male, note("")) 		///
+			legend(order(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24) ///
+			size(tiny) col(4)					///
+			label(1 "Respiratory") 				///
+			label(2 "Asthma mild") 				///
+			label(3 "Asthma sev") 				///
+			label(4 "Hypertension") 			///
+			label(5 "Cardiac") 					///
+			label(6 "Diab, control") 			/// 
+			label(7 "Diab, uncontrol")  		///
+			label(8 "Diab, unknown")  			///
+			label(9 "Liver")  					///
+			label(10 "Red kidney")  			///
+			label(11 "Poor kidney")  			///
+			label(12 "Transplant")  			///
+			label(13 "Stroke/dementia") 		///
+			label(14 "Neuro") 	 				///
+			label(15 "Canc. Oth (<1yr)") 		///
+			label(16 "Canc. Oth (2-4yr)") 		///
+			label(17 "Canc. Oth (5+yr)") 		///
+			label(18 "Canc. Haem (<1yr)") 		///
+			label(19 "Canc. Haem (2-4yr)") 		///
+			label(20 "Canc. Haem (5+yr)") 		///
+			label(21 "Spleen") 					///
+			label(22 "RA/SLE/psoriasis") 		///
+			label(23 "Immunosuppression") 		///
+			label(24 "No comorbidity") 	  		///
+			colfirst) 
+	graph export output/abs_risk_ALL_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
+}
+else {
+	
+	sort age
+	twoway 	(line risk80_respiratory_disease 		age, lwidth(vthin) lcolor(eltblue)) 				///
+			(line risk80_asthmacat_2 				age, lwidth(vthin) lcolor(blue)) 					///
+			(line risk80_asthmacat_3			 	age, lwidth(vthin) lcolor(midblue)) 				///
+			(line risk80_htdiag_or_highbp 			age, lwidth(vthin) lcolor(olive_teal)) 				///
+			(line risk80_cardiac_disease 			age, lwidth(vthin) lcolor(mint)) 					///
+			(line risk80_diabcat_2			 		age, lwidth(vthin) lcolor(midgreen)) 				///
+			(line risk80_diabcat_3			 		age, lwidth(vthin) lcolor(green)) 					///
+			(line risk80_diabcat_4			 		age, lwidth(vthin) lcolor(dkgreen)) 				///
+			(line risk80_chronic_liver_disease 		age, lwidth(vthin) lcolor(olive))  					///
+			(line risk80_red_kidney_cat_2 			age, lwidth(vthin) lcolor(stone))  					///
+			(line risk80_red_kidney_cat_3 			age, lwidth(vthin) lcolor(sand))  					///
+			(line risk80_organ_transplant			age, lwidth(vthin) lcolor(sienna))  				///
+			(line risk80_stroke_dementia 			age, lwidth(vthin) lcolor(red)) 					///
+			(line risk80_other_neuro 				age, lwidth(vthin) lcolor(maroon)) 	 				///
+			(line risk80_cancer_exhaem_cat_2 		age, lwidth(vthin) lcolor(gs3) lpattern(dash)) 	 	///
+			(line risk80_cancer_exhaem_cat_3 		age, lwidth(vthin) lcolor(gs5) lpattern(dash))	 	///
+			(line risk80_cancer_exhaem_cat_4		age, lwidth(vthin) lcolor(gs7) lpattern(dash)) 	 	///
+			(line risk80_cancer_haem_cat_2 			age, lwidth(vthin) lcolor(sandb) lpattern(dash)) 	///
+			(line risk80_cancer_haem_cat_3 			age, lwidth(vthin) lcolor(gold) lpattern(dash)) 	///
+			(line risk80_cancer_haem_cat_4			age, lwidth(vthin) lcolor(yellow) lpattern(dash)) 	///
+			(line risk80_spleen 					age, lwidth(vthin) lcolor(orange_red) lpattern(dot)) 	///
+			(line risk80_ra_sle_psoriasis 			age, lwidth(vthin) lcolor(magenta)) 	  			///
+			(line risk80_immunosuppression			age, lwidth(vthin) lcolor(red) lpattern(dash)) 		///
+			(line risk80_hiv						age, lwidth(vthin) lcolor(red)) 					///
+			(line risk80_cons 						age, lwidth(vthin) lcolor(black)) 	  				///
+			(line risk_age_65 					age, lpattern(dot) lcolor(black))						///
+			, 	`opts' by(male, note("")) 			///
+			legend(order(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25) ///
+			size(tiny) col(4)					///
+			label(1 "Respiratory") 				///
+			label(2 "Asthma mild") 				///
+			label(3 "Asthma sev") 				///
+			label(4 "Hypertension") 			///
+			label(5 "Cardiac") 					///
+			label(6 "Diab, control") 			/// 
+			label(7 "Diab, uncontrol")  		///
+			label(8 "Diab, unknown")  			///
+			label(9 "Liver")  					///
+			label(10 "Red kidney")  			///
+			label(11 "Poor kidney")  			///
+			label(12 "Transplant")  			///
+			label(13 "Stroke/dementia") 		///
+			label(14 "Neuro") 	 				///
+			label(15 "Canc. Oth (<1yr)") 		///
+			label(16 "Canc. Oth (2-4yr)") 		///
+			label(17 "Canc. Oth (5+yr)") 		///
+			label(18 "Canc. Haem (<1yr)") 		///
+			label(19 "Canc. Haem (2-4yr)") 		///
+			label(20 "Canc. Haem (5+yr)") 		///
+			label(21 "Spleen") 					///
+			label(22 "RA/SLE/psoriasis") 		///
+			label(23 "Immunosuppression") 		///
+			label(24 "HIV") 					///
+			label(25 "No comorbidity") 	  		///
+			colfirst) 
+	graph export output/abs_risk_ALL_eth`ethnicity'_`outcome'.svg, as(svg) replace width(1600)
+}
+				
 			
