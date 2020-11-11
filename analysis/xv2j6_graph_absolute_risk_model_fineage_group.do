@@ -51,6 +51,12 @@ qui summ risk80_cons if age==65 & male==1 & ethnicity==1
 replace risk_age_65 = r(mean) if male==1
 
 
+if "`outcome'"=="hosp" {
+	local opts = "ylab(0 (0.001) 0.009, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80)"
+}
+else {
+	local opts = "ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80)"	
+}
 
 * White
 sort age
@@ -62,7 +68,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )			///
 		(line risk80_comorbid_3	 				age, lcolor(orange)) ///
 		(line risk80_cons 						age, lcolor(navy)) ///
 		if ethnicity==1						///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80)  ///
+		, `opts' 							///
 		by(male, note("") subtitle("Ethnicity White")) 				///
 		legend(order(5 6 7 4) 				///
 		label(5 "1 comorbidity")			///
@@ -84,7 +90,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )			///
 		(line risk80_comorbid_3	 				age, lcolor(orange)) ///
 		(line risk80_cons 						age, lcolor(navy)) ///
 		if ethnicity==3						///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) ///
+		, `opts' 							///
 		by(male, note("") subtitle("Ethnicity Asian")) 				///
 		legend(order(5 6 7 4) 				///
 		label(5 "1 comorbidity")			///
@@ -105,7 +111,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )			///
 		(line risk80_comorbid_3	 				age, lcolor(orange)) ///
 		(line risk80_cons 						age, lcolor(navy)) ///
 		if ethnicity==4						///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) ///
+		, `opts' 							///
 		by(male, note("") subtitle("Ethnicity Black")) 				///
 		legend(order(5 6 7 4) 				///
 		label(5 "1 comorbidity")			///
@@ -126,7 +132,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )			///
 		(line risk80_comorbid_3	 				age, lcolor(orange)) ///
 		(line risk80_cons 						age, lcolor(navy)) ///
 		if ethnicity==2						///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) ///
+		, `opts' 							///
 		by(male, note("") subtitle("Ethnicity Mixed")) 				///
 		legend(order(5 6 7 4) 				///
 		label(5 "1 comorbidity")			///
@@ -146,7 +152,7 @@ twoway 	(rarea risk80_cons_lci risk80_cons_uci 		age, color(gs14) )			///
 		(line risk80_comorbid_3	 				age, lcolor(orange)) ///
 		(line risk80_cons 						age, lcolor(navy)) ///
 		if ethnicity==5						///
-	, ylab(0 (0.001) 0.005, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) ///
+		, `opts' 							///
 		by(male, note("") subtitle("Ethnicity Other")) 				///
 		legend(order(5 6 7 4) 				///
 		label(5 "1 comorbidity")			///
@@ -167,8 +173,8 @@ twoway  (line risk_age_65 age, lpattern(dot) lcolor(gs10))		///
 		(line risk80_cons age if ethnicity==4, lcolor(green)) 	///
 		(line risk80_cons age if ethnicity==2, lcolor(red)) 	///
 		(line risk80_cons age if ethnicity==5, lcolor(orange)) 	///
-	, ylab(0 (0.0005) 0.002, angle(0)) xlab(20 (20) 80) xmtick(20 (5) 80) ///
-	by(male, note("") subtitle("No comorbidities")) 				///
+		, `opts' 							///
+		by(male, note("") subtitle("No comorbidities")) 				///
 		legend(order(2 3 4 5 6 1) 				///
 		label(2 "White")			///
 		label(3 "Asian")			///
