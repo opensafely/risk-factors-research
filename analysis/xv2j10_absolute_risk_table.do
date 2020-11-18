@@ -198,13 +198,13 @@ foreach a in numlist 50 60 65 70 80 {
 }
 
 * Keep only variables needed for the risk prediction
-keep _rcs1- _d_rcs5  _st _d _t _t0
+keep _rcs1- _d_rcs5  _st _d _t _t0 
 
 gen     age1 = 50 in 1
-replace age2 = 60 in 2
-replace age3 = 65 in 3
-replace age4 = 70 in 4
-replace age5 = 80 in 5
+replace age1 = 60 in 2
+replace age1 = 65 in 3
+replace age1 = 70 in 4
+replace age1 = 80 in 5
 
 gen age2 = .
 gen age3 = .
