@@ -33,7 +33,7 @@ noi di "`outcome'"
 
 * Open a log file
 capture log close
-log using "./output/xv2j10_absolute_risk_table", text replace
+log using "./output/xv2j10_absolute_risk_table_`outcome'", text replace
 
 
 
@@ -190,7 +190,7 @@ timer list 1
 *	Age: 50/60/65/70/80
 * 	For each ethnic group, no comorbidities
 
-foreach a in numlist 50 60 65 70 80 {
+foreach a of numlist 50 60 65 70 80 {
 	forvalues j = 2 (1) 3 {
 		summ age`j' if age==`a'
 		local age`j'_`a'  = r(mean)
@@ -208,7 +208,7 @@ replace age1 = 80 in 5
 
 gen age2 = .
 gen age3 = .
-foreach a in numlist 50 60 65 70 80 {
+foreach a of numlist 50 60 65 70 80 {
 	forvalues j = 2 (1) 3 {
 		replace age`j' = `age`j'_`a'' if age1==`a'
 	}
