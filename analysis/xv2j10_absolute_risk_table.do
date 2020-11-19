@@ -199,6 +199,7 @@ foreach a of numlist 50 60 65 70 80 {
 
 * Keep only variables needed for the risk prediction
 keep _rcs1- _d_rcs5  _st _d _t _t0 
+duplicates drop
 
 gen     age1 = 50 in 1
 replace age1 = 60 in 2
@@ -220,7 +221,7 @@ expand 2
 bysort age1: gen male = _n-1
 
 * Create five rows per agegroup (5 ethnicity groups)
-expand 2
+expand 5
 bysort age1 male: gen ethnicity = _n
 
 forvalues j = 2 (1) 5 {
@@ -303,9 +304,29 @@ gen risk100_uci = (1 - pred100_lci)*100000
 drop pred100 pred100_uci pred100_lci
 
 
+
+
+
+****************
+*   Tidy data  *
+****************
+
+
+* Label ethnicity
+label define ethnicity  1 "White"  					///
+						2 "Mixed" 					///
+						3 "Asian or Asian British"	///
+						4 "Black"  					///
+						5 "Other"					
+label values ethnicity ethnicity
+
+* Keep only required data
+drop if risk100 == .
+keep risk100 age1 male ethnicity time100 risk100* 
+
 * Save data
 save "output/abs_risks_table_`outcome'", replace
-
+outsheet using "output/abs_risks_table_`outcome'", replace
 
 log close
 
