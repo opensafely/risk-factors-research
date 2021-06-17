@@ -7,8 +7,8 @@ NHS patients_
 * The paper is [here](https://www.medrxiv.org/content/10.1101/2020.05.06.20092999v1)
 * Raw model outputs, including charts, crosstabs, etc, are in `released_analysis_results/`
 * If you are interested in how we defined our covarates, take a look at the [study definition](analysis/study_definition.py); this is written in Python, but non-programmers should be able to understand what is going on there
-* If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/). A new tool
-called OpenSafely Codelists was developed to allow codelists to be versioned and hosted online at [codelists.opensafely.org](http://codelists.opensafely.org)
+* If you are interested in how we defined our codelists, look in the [codelists folder](./codelists/). A new tool
+called OpenCodelists was developed to allow codelists to be versioned and hosted online at [www.opencodelists.org](https://www.opencodelists.org/).
 The tool allows agreed codelists to be pulled into a repository by running a Python command. More information available in
 the [README](codelists/README.md) of the codelist folder
 * Developers and epidemiologists interested in the code should review
