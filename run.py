@@ -253,8 +253,7 @@ def generate_cohort():
     sys.dont_write_bytecode = True
     from study_definition import study
 
-    with_sqlcmd = shutil.which("sqlcmd") is not None
-    study.to_csv("analysis/input.csv", with_sqlcmd=with_sqlcmd)
+    study.to_csv("analysis/input.csv", expectations_population=True)
     print("Successfully created cohort and covariates at analysis/input.csv")
 
 
