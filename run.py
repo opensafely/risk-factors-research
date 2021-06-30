@@ -253,7 +253,7 @@ def generate_cohort():
     sys.dont_write_bytecode = True
     from study_definition import study
 
-    study.to_csv("analysis/input.csv", expectations_population=True)
+    study.to_csv("analysis/input.csv", expectations_population=1000)
     print("Successfully created cohort and covariates at analysis/input.csv")
 
 
