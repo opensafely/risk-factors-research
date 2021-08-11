@@ -253,8 +253,13 @@ def generate_cohort():
     sys.dont_write_bytecode = True
     from study_definition import study
 
-    study.to_csv("analysis/input.csv", expectations_population=1000)
-    print("Successfully created cohort and covariates at analysis/input.csv")
+    input_filename = "analysis/input.csv"
+    with_sqlcmd = shutil.which("sqlcmd")
+    if os.environ.get("DATABASE_URL") and (with_sqlcmd is not None):
+        study.to_csv(input_filename, with_sqlcmd=with_sqlcmd)
+    else:
+        study.to_csv(input_filename, expectations_population=1000)
+    print(f"Successfully created cohort and covariates at {input_filename}")
 
 
 def make_cohort_report():
@@ -388,7 +393,6 @@ def main(from_cmd_line=False):
         "--database-url",
         help="Database URL to query",
         type=str,
-        required=True,
         default=os.environ.get("DATABASE_URL", ""),
     )
     if from_cmd_line:
