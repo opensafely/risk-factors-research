@@ -334,18 +334,6 @@ study = StudyDefinition(
         return_last_date_in_period=True,
         include_month=True,
     ),
-    most_recent_unclear_smoking_cat=patients.with_these_clinical_events(
-        unclear_smoking_codes,
-        find_last_match_in_period=True,
-        on_or_before="2020-02-01",
-        returning="category",
-    ),
-    most_recent_unclear_smoking_numeric=patients.with_these_clinical_events(
-        unclear_smoking_codes,
-        find_last_match_in_period=True,
-        on_or_before="2020-02-01",
-        returning="numeric_value",
-    ),
     most_recent_unclear_smoking_cat_date=patients.with_these_clinical_events(
         unclear_smoking_codes,
         on_or_before="2020-02-01",
